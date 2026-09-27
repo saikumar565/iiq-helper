@@ -1,0 +1,4966 @@
+===== Page 1/82 =====
+ Lifecycle Manager
+
+
+ Version:8.4
+
+ Revised:September2023
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thisdocument and the informationcontained herein isSailPointConfidential Information
+
+===== Page 2/82 =====
+Copyright and Trademark Notices
+
+Copyright © 2023 SailPoint Technologies, Inc.  All Rights Reserved.
+
+Alllogos, text,content, including underlying HTML code, designs, and graphics used and/or depicted on these written
+materials or in thisInternet website are protected under United States and international copyright and trademark laws
+and treaties, and may not be used or reproduced without the prior express written permission of SailPoint Tech-
+nologies, Inc.
+
+“SailPoint Technologies,” (design and word mark), “SailPoint,” (design and word mark), "Identity IQ,” “IdentityNow,”
+“SecurityIQ,” “Identity AI,” “Identity Cube,” and “SailPoint Predictive Identity” are registered trademarks of SailPoint
+Technologies, Inc. “Identity isEverything,” “The Power of Identity,” and “Identity University” are trademarks of
+SailPoint Technologies, Inc. None of the foregoing marks may be used without the prior express written permission of
+SailPoint Technologies, Inc. Allother trademarks shown herein are owned by the respective companies or persons
+indicated.
+
+SailPoint Technologies, Inc. makes no warranty ofany kind regarding these materials or the information included
+therein, including, but not limited to,the implied warranties ofmerchantability and fitness for a particular purpose.
+SailPoint Technologies shall not be liable for errors contained herein or direct, indirect, special, incidental orcon-
+sequential damages inconnection with the furnishing, performance, or use of thismaterial.
+
+Patents Notice. https://www.sailpoint.com/patents
+
+Restricted Rights Legend. All rights are reserved. No part ofthis document may be published, distributed, reproduced,
+publicly displayed, used to create derivative works, or translated to another language, without the prior written consent
+ofSailPoint Technologies. The information contained inthis document issubject to change without notice.
+
+Use, duplication or disclosure by the U.S. Government is subject to restrictions as set forth insubparagraph (c) (1) (ii)
+ofthe Rights inTechnical Data and Computer Software clause at DFARS 252.227-7013 for DOD agencies, and sub-
+paragraphs (c)(1) and (c)(2) ofthe Commercial Computer Software Restricted Rights clause at FAR 52.227-19 for
+other agencies.
+
+Regulatory/Export Compliance. The export and re-export of this software iscontrolled for export purposes by the U.S.
+Government. By accepting this software and/or documentation, licensee agrees to comply with allU.S. and foreign
+export laws and regulations as they relate to software and related documentation.  Licensee will not export or re-
+export outside the United States software or documentation, whether directly or indirectly, to any Prohibited Party and
+willnot cause, approve or otherwise intentionally facilitate others inso doing. A Prohibited Party includes: a party in a
+U.S. embargoed country or country the United States has named as a supporter of international terrorism; a party
+involved in proliferation; a party identified by the U.S. Government as a Denied Party; a party named on the U.S.
+Department of Commerce’s Entity Listin Supplement No. 4 to 15 C.F.R. § 744; a party prohibited from participation in
+export orre-export transactions by a U.S. Government General Order; a party listed by the U.S. Government’s Office
+ofForeign Assets Control as ineligible to participate in transactions subject toU.S. jurisdiction; or any party that
+licensee knows or has reason toknow has violated or plans to violate U.S. or foreign export laws or regulations.
+Licensee shall ensure that each of itssoftware users complies with U.S. and foreign export laws and regulations as
+they relate to software and related documentation.
+
+===== Page 3/82 =====
+Contents
+
+
+ Lifecycle Manager Setup 1
+
+ Lifecycle Manager Configuration 2
+
+ Configuring Full Text Searching 11
+
+ Creating Direct Links to IdentityIQ 15
+
+ Using Lifecycle Manager 24
+
+ Lifecycle Manager Components 26
+
+ Managing User Access 34
+
+ Approving Access Requests 51
+
+ Lifecycle Events 58
+
+ Lifecycle Manager Reports 62
+
+ Batch Requests 71
+
+===== Page 4/82 =====
+Lifecycle Manager Setup
+
+Lifecycle Manager Setup
+
+
+
+ Note: SailPoint IdentityIQ Lifecycle Manager issold as a separate license and must be pur-
+ chased and activated before itis available for use.
+
+The Lifecycle Manager portion ofIdentityIQ Setup includes ofthe following:
+
+
+
+ l Lifecycle Manager Configuration
+
+
+
+ l Configuring FullText Searching
+
+
+
+ l Creating Direct Links to IdentityIQ
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 1
+
+===== Page 5/82 =====
+Lifecycle Manager Configuration
+
+Use Lifecycle Manager Configuration to customize the availabilityof tools and functionality based on end user needs.
+
+To configure Lifecycle Manager clickthe gear icon > Lifecycle Manager.
+
+The Lifecycle Manager configuration is divided into the following sections:
+
+ Note: IdentityIQ System Administrators can make any request regardless of the Lifecycle Man-
+ ager Configuration settings.
+
+
+
+
+ l Configure Tab
+
+
+
+ l Business Processes Tab
+
+
+
+ l Identity Provisioning Policies Tab
+
+Configure Tab
+
+Use the Configure tab tocustomize your Lifecycle Manager configuration. The Configure tab includes the following.
+
+ General Options
+
+
+Enable requesters to set request priorities
+
+ Use this option to enable requesters toset the prioritylevel oftheir request. Ifthisoption isnot selected, all
+ requests default to Normal prioritylevel.
+
+Enable Account Group Management
+
+ Use this option to enable provisioning of account groups through Lifecycle Manager requests.
+
+Enable Full Text Search
+
+ Use this option to enable fulltext searching on the Lifecycle Manager request pages. Enabling fulltextsearching
+ might have some affecton the performance of those pages. For detailed information, see Configuring Full Text
+ Searching.
+
+ You must run the Full Text Index Refresh task before full-textsearch is available. Refer to the system admin-
+ istrationdocumentation formore information.
+
+Base directory path used to store full text index files
+
+ The directory on the server in which fulltext index searches are stored.
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 2
+
+===== Page 6/82 =====
+Enable automatic index refresh
+
+ Enables the automatic refreshing of the fulltextindex atthe interval specified.
+
+Allow Searching by Population when requesting access
+
+ Enable the use ofpopulations as a search filter.
+
+Allow Searching by Identity when requesting access
+
+ Enable the use ofidentities as a search filter.
+
+Allow opt-in to viewing request access search result details
+
+ Use thisoption to limitthe amount of information displayed for each item on the Access Request, Review and
+ Submit panel and add a View Details button on each item to show the complete information. This feature
+ enables more items todisplay on each table.
+
+Show external service request details
+
+ Use thisoption to display the information such as request numbers and ID from external ticketing systems
+ throughout IdentityIQ.
+
+Maximum number of results returned in a Request Access search
+
+ Limitthe number of items returned by an access request. Large listsare hard to scan and the search should be
+ narrowed orrefined.
+
+Maximum number of selectable users in Request Access
+
+ Limitthe number of selectable users returned by an access request. Large listsare hard to scan and the search
+ should be narrowed or refined.
+
+Applications that support additional account requests
+
+ Use the dropdown listtospecify the applications on which multiple accounts can exist orbe created.
+
+ Select All Applications toinclude allapplications in your environment.
+
+ Request Role Options
+
+
+Request Role Options
+
+ Select the role types that are available forrole requests. Any options not selected are unavailable to any user
+ attempting tomake that type of request.
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 3
+
+===== Page 7/82 =====
+When searching for roles based on population, only return roles contained by at least the fol-
+lowing percentage of the population
+
+ Specify the minimum percentage of a population whose roles must match any given search criteria.
+
+ Request Entitlement Options
+
+
+When searching for entitlements based on population, only return entitlements contained by at
+least the following percentage of the population
+
+ Specify the minimum percentage of a population whose entitlements must match any given search criteria.
+
+Entitlement Search Results must return less than this number of identities when searching by
+identity
+
+ Indicate the maximum amount of identitiesan entitlement search resultcan yield.
+
+ Create Identity Options
+
+
+Require password on all identity creation requests.
+
+ Require a password on allidentitycreation requests.
+
+Enable self-service registration
+
+ Enables new user self-registration and creates a linkfor registration on the IdentityIQ login page.
+
+ The securityOfficerName variable must be configured within the LCM Registration process variable before
+ the self-service registration functionality isfullyenabled. The default securityOfficername is the IdentityIQ
+ system administrator. For more information, see the System Configuration documentation.
+
+ Follow these steps tosetup self-service registration:
+
+ 1. From the navigation menu bar, go toSetup > Business Processes.
+
+ 2. In the Edit An Existing Process panel, select LCM Registration.
+
+ 3. Select the Process Variables tab.You can use the Advanced View option to view or configure allavail-
+ able variables.
+
+ 4. The default setting forthe Approvers field isSecurity Officer.To delete the Security Officer setting,click
+ the X icon next toit.
+
+ 5. To add another setting, select the down arrow next to the Approvers fieldand select another entry.
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 4
+
+===== Page 8/82 =====
+ 6. The default entry for the Fallback Approver isthe IdentityIQ system administrator. Ifdesired, you can
+ change the Fallback Approver.
+
+ 7. When you are satisfied with allof the entries, select Save atthe bottom of the screen.
+
+URL of action button after successful registration
+
+ Enter a URL to redirect the browser to the specified page aftersuccessful user registration. Ifthisfieldis blank,
+ the user isredirected to the login page.
+
+Prevent pruning of new identities for this many days
+
+ Select the number of days that must pass afterthe creation of an identity before itcan be pruned. Default is30
+ days.
+
+ Manage Account Options
+
+
+Show Enable /Unlock decision buttons regardless of whether the account is disabled or
+unlocked.
+
+ Display the decision buttons on account management page fordisabled or unlocked accounts.
+
+Manage Account Actions
+
+ Choose which actions are enabled for Manage Accounts requests for yourself and subordinates. Options include
+ the following:
+ Delete
+ Disable
+ Enable
+ Unlock
+ Deselected options are unavailable to a user attempting tomake that type ofrequest.
+ Select one or more applications from the Applications that support account only requests to specify which applic-
+ ations allow Account Only requests. Select All Applications to enable this feature for allapplications.
+
+Disable auto refresh account status
+
+ The status is automatically refreshed only for the accounts from applications that are not listedin the Disable
+ auto refresh account status listAND accounts thatsupport the Enable or Unlock feature AND accounts without
+ the NO_RANDOM_ACESS feature.
+
+ Deactivate auto refresh foraccount status. By default,accounts from allapplications support this feature.
+
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 5
+
+===== Page 9/82 =====
+Applications that do not support auto refresh account status
+
+ Select one or more applications to deactivate auto refresh.
+
+Applications that support account only requests
+
+ Select applications from the dropdown listthat support request foraccounts thatare not associated with a role or
+ entitlement.
+
+ Select All Applications ifunassociated accounts can be request for allapplications.
+
+ Manage Password Options
+
+Choose Enable password auto-generation when requesting forothers toenable passwords to be auto-generated
+when requests are made on behalf of another user by an authorized user.
+
+ Password Validation Rule
+
+Select a rule from the dropdown listtoused when validating password creations.
+
+ AI Services
+
+The AI Services section appears only ifthe AI Services feature has been integrated and configured inIdentityIQ.
+
+See the AI Services documentation formore information.
+
+Enable AI Services recommendations on approvals
+
+ Show AIServices recommendations for approval decisions inaccess reviews.
+
+Enable AI Services recommendations on access requests
+
+ Show AI Services recommendations in access requests, to see access items that are recommended foryou.
+ This option is available only when the user isrequesting access forthemself, and does not appear when the user
+ isrequesting access forothers.
+
+ Batch Request Approver
+
+Require an approval before granting batch requests.
+
+ Manage Classifications Options
+
+This option determines whether classification data is shown with access items, roles or entitlements, inaccess
+requests. This option is provided so that you can choose whether or not to alertrequesters to the fact thatcertain
+roles orentitlements may allow access tosensitive orprotected data. Classification data always appears in access
+approvals, regardless of thissetting.
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 6
+
+===== Page 10/82 =====
+ Manage Elevated Access Options
+
+This option determines whether elevated access isshown on roles and entitlements in access requests.
+
+Business Processes Tab
+
+Use the Business Process tab on Lifecycle Manager Configuration to determine which business process is used when
+performing specified Lifecycle Manager actions.
+
+For more information on working with Business Processes, see the IdentityIQ Business Processes guide.
+
+Identity Provisioning Policies Tab
+
+Identity Provisioning Policies are used to define identityattributes that must be set when creating an identity from a
+Lifecycle Manager request.
+
+The following types of Identity Provisioning Policies are available:
+
+
+
+ l Create Identity
+
+
+
+ l Update identity
+
+
+
+ l Self-service Registration
+
+
+ Note: If an Update provisioning policy isdefined, that policy overwrites the Create policy.
+
+You must include the criteriarequired by the provisioning policy in the generated form before the request can be com-
+pleted. Use the Provisioning Policy Editor to customize the look and function of the form fieldsgenerated from the pro-
+visioning policy.
+
+Name
+
+ The name of your provisioning policy.
+
+Description
+
+ A brief description of the provisioning policy.
+
+ Provisioning Policy Editor
+
+Use the Edit Provisioning Policy Fields panel tocustomize the look and function ofthe form fields generated from the
+provisioning policy.
+
+Attribute
+
+ Select the attribute fieldfrom the dropdown listtodisplay on the form generated from the provisioning policy.
+
+
+
+
+
+ SailPoint Lifecycle Manager 7
+
+===== Page 11/82 =====
+Display Name
+
+ The name displayed for the fieldin the form generated by the provisioning policy.
+
+Help Text
+
+ The text you wish toappear when hovering the mouse over the help icon.
+
+Type
+
+ Select the type of fieldfrom the dropdown list.Choose from the following:
+ Boolean – true or false values field
+ Date – calendar date field
+ Integer – only numerical values field
+ Long – similar to integer but is used for large numerical values
+ Identity – specific identityin IdentityIQ field
+ Secret – hidden text field
+ String – textfield
+
+Multi Valued
+
+ Choose thisto have more than one selectable value in thisfield of the generated form. Click the plus sign to add
+ another value.
+
+Read Only
+
+ Determine how the read only value isderived:
+ Value – value based on the selection from the dropdown list
+ Rule – value isbased on a specified rule
+ Script – value is determined by the execution of a script
+
+Hidden
+
+ Determine how the hidden value isderived:
+ Value – value based on the selection from the dropdown list
+ Rule – value isbased on a specified rule
+ Script – value is determined by the execution of a script
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 8
+
+===== Page 12/82 =====
+Owner
+
+ The owner of the provisioning policy. This isdetermined by selecting from the following:
+ None – no owner is assigned to this provisioning policy.
+ Application Owner – identity assigned as owner ofthe application in which the provisioning policy resides.
+ Role Owner – identity assigned as owner of the role in which the provisioning policy resides.
+ Rule – use a rule to determine the owner of this provisioning policy.
+ Script – use a script to determine the owner ofthis provisioning policy
+
+Required
+
+ Choose whether or not to have the completion of thisfield a requirement forsubmitting the form.
+
+Refresh Form on Change
+
+ Select this option tohave the form associated with this policy refresh to reflex changes to thispolicy.
+
+Display Only
+
+ Set thisfield as display only.
+
+Authoritative
+
+ Boolean that specifies whether the fieldvalue should completely replace the current value rather than be merged
+ with it;applicable only for multi-valued attributes
+
+Value
+
+ Determine how the value isderived. Select from the following:
+ Literal – value isbased on the information you provide
+ Rule – value is based on a specified rule
+ Script – value is determined by the execution of a script
+
+Allowed Values
+
+ The value(s) which can be displayed inthe fieldof the generated form. Choose from the following:
+ None – the field isblank
+ Literal – value isbased on the information you provide
+ Rule – value is based on a specified rule
+ Script – value is determined by the execution of a script
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 9
+
+===== Page 13/82 =====
+Validation
+
+ Gives the ability to specify a script or rule for validating the user's value. For example, a script that validates that
+ a password is8 characters or longer.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 10
+
+===== Page 14/82 =====
+Configuring Full Text Searching
+
+When fulltext searching is enabled, you can use the following types ofsearches to find the correct access to request:
+
+
+
+ l Keyword search – search based on keywords that relate to role,entitlements and descriptions.
+
+
+
+ l Affinity search – search for access based on what other users who are similar to them currently have.
+
+
+
+
+ Feature / Description Benefit
+ Enhancement
+
+ Search that finds results
+ based on role and enti- Provides a familiarshopping experience forend
+ Keyword tlement names, descrip- users. The keyword search makes itpossible for
+ search tions and extended end users and managers tofind the right access to
+ attributes using rel- request.
+ evance-based search
+ and predictive analytics.
+ Guides users tothe right Enables users tolocate roles and entitlements by
+ access torequest by reviewing access that others inthe organization
+ enabling them tofind have. The affinitysearch provides a controlled, gov-
+ AffinitySearch roles or entitlements ernance-based approach that enables you to com-
+ assigned to specific pare similar access and view any areas ofrisk,
+ users or a population of such as high identityrisk scores or open policy viol-
+ users. ations.
+
+Enabling Full Text Searching
+
+To enable the most basic fulltext searching:
+
+ 1. From the navigation menu bar, go to gear icon > Lifecycle Manager Configuration page. Select the Enable
+ Full Text Search option on the Addition Options Tab.
+
+ 2. Select the Enable Full Text Search.
+
+ 3. Run the Full Text Index Refresh task. Refer to the system administration documentation for more information.
+
+
+ Note: The FullText Index Refresh must run every time you make a change toroles, managed
+ attributes, or the FullTextIndex objects in your enterprise. The index filesare only updated when
+
+
+
+
+
+ SailPoint Lifecycle Manager 11
+
+===== Page 15/82 =====
+ this task is run. Ifyou do not select thisoption, you willhave to schedule the Full Text Index
+ Refresh to run periodically or you willhave to remember to run itmanually.
+
+When you run the Full Text Index Refresh task the firsttime, filesfor each FullTextIndex object in your IdentityIQ con-
+figuration are created.
+
+
+
+ l Setting the Location ofIndex Files
+
+
+
+ l Adding Additional Fields
+
+
+
+ l Special Considerations
+
+Setting the Location of Index Files
+
+To set the location ofthe index files,edit the FullTextIndex objects and add an indexPath key.
+
+For example, <entry key="indexPath" value="indexFileLocation"> where IndexFileLocation is a fullyqual-
+ifiedpath name. By default the index files forroles, BundleIndex, managed attributes, ManagedAttributesIndex, and
+unstructured targets TargetAssociation are added to the WEB-INF folder of the directory where you installed Iden-
+tityIQ.
+
+By default, after completing both steps above, you can do fulltext searches on the following fields:
+
+
+
+ l Managed Attributes: displayableName, description, and application.name
+
+
+
+ l Roles: name, displayableName, and description
+
+
+
+ l Targets: name and description
+
+Adding Additional Fields
+
+To add additional fields, edit the FullTextIndex objects and add a fieldwith analyzed="true" set: <FullTextField ana-
+lyzed="true" name="myAttribute"/>.
+
+The following example illustrates how to add a new fulltext searchable field(division) and indicate a location for the
+index files(/tmp/indexlocation). This example isfor the roles index file.
+
+ Note: Roles are also referred to as bundles inthe product code.
+
+Field options:
+
+
+
+ l Analyzed – used to index the field and for fulltext searching. Add analyze fieldsto include custom attributes in
+ fulltext search.
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 12
+
+===== Page 16/82 =====
+ l Indexed –enables thefieldtobe used inthe advanced filtersonthe access request pages.
+
+
+
+ l Stored – enables the fieldtoreturn inthesearch resultsand display on theaccess request pages, ifthe user
+ interface isdesigned tosupport thisuse.
+
+
+
+ l Ignored – sets thefieldtonot be used infulltextsearching norfiltering.Thisfielddoes appear in thefilter
+ passed down from the user interface.
+
+ <?xml version='1.0' encoding='UTF-8'?>
+ <!DOCTYPE FullTextIndex PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+ <FullTextIndex created="1346076712810" id="4028818239686c4f0139686c9f6900e7"
+ name="Bundle">
+ <Attributes>
+ <Map>
+ <entry key="fields">
+ <value>
+ <List>
+ <FullTextField analyzed="true" indexed="true" name="name"/>
+ <FullTextField analyzed="true" indexed="true" name="displayableName"/>
+ <FullTextField analyzed="true" name="description"/>
+ <FullTextField indexed="true" name="assignedScope.path"/>
+ <FullTextField indexed="true" name="type"/>
+ <FullTextField name="defaultDescription" stored="true"/>
+ <FullTextField ignored="true" name="disabled"/>
+ <FullTextField name="riskScoreWeight" stored="true"/>
+ <FullTextField name="owner.id"/>
+ <FullTextField name="owner.name"/>
+ <FullTextField name="owner.displayName" stored="true"/>
+ <FullTextField name="division" analyzed="true" indexed="true">
+ </List>
+ </value>
+ </entry>
+ <entry key="indexPath" value="/tmp/indexlocation"/>
+ </Map>
+ </Attributes>
+ </FullTextIndex>
+
+Special Considerations
+
+When FullTextSearch isenabled, Bundle /Role references within filterobjectsinRequest Object Authority rules
+should include onlythe followingindexed attributes:
+
+
+
+ l name
+
+
+
+ l displayableName
+
+
+
+ l id
+
+
+
+ l description
+
+
+
+
+
+ SailPointLifecycleManager 13
+
+===== Page 17/82 =====
+ l owner.name
+
+
+
+ l owner.id
+
+
+
+ l assignedScopePath (id of the associated scope).
+
+
+ Note: The only attributes that are indexed inthe FullTextSearch index are listed above. Ifyou use
+ attributes that are not in thislist,extra Bundles are returned during search, which can result in
+ errors in the log.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Lifecycle Manager 14
+
+===== Page 18/82 =====
+Creating Direct Links to IdentityIQ
+
+LifecycleManager enables you tocreate direct linksintoIdentityIQ pages from outside of the product from places
+such as emails, forms, or portal.These direct linkscan either use your single sign-on solution or require users to login
+toIdentityIQ as an intermediate step.Direct linkscan also use a number of filteringoptionsenabling users to go dir-
+ectlyto specificpages using specific filteringcriteria.
+
+IdentityIQsupports the following types ofdirect links:
+
+
+
+ l Desktop Direct Links
+
+
+
+ l Mobile Interface Direct Links
+
+Desktop Direct Links
+
+Directlinks provide a method to linkdirectlyto IdentityIQDesktop pages. For Example, use the following directlinksto
+go tothe Manage Accounts, or Manage Passwords, or Manage Identitypages fora user that islogged intoIdentityIQ,
+where <hostName> is the name of thehost on which IdentityIQ isinstalled.
+
+Ifyou are using deep linksforRequest Access, you need toinclude the quicklink name in your query parameters in
+order toensure that thedetails dialogs work properly.
+
+The following directlinks can be used:
+
+ Manage Accounts
+
+https://<hostname>/identityiq/ui/rest/redirect?
+rp1=/identities/identities.jsf&rp2=quickLinks/Manage%20Accounts
+
+ Manage Specific Account
+
+https://<hostname>/identityiq/ui/rest/redirect?
+rp1=/identities/identities.jsf&rp2=identities/<identityId>/accounts
+
+ Manage Password
+
+https://<hostname>/identityiq/ui/rest/redirect?
+rp1=/identities/identities.jsf&rp2=quickLinks/Manage%20Passwords/identities
+
+ Manage Specific Password
+
+https://<hostname>/identityiq/ui/rest/redirect?
+rp1=/identities/identities.jsf&rp2=identities/<identityId>/passwords
+
+ Create Identity
+
+
+
+
+ SailPointLifecycle Manager 15
+
+===== Page 19/82 =====
+https://<hostname>/identityiq/ui/rest/redirect?
+rp1=/identities/identities.jsf&rp2=quickLinks/Create%20Identity/createIdentity
+
+ Edit Identity
+
+https://<hostname>/identityiq/ui/rest/redirect?
+rp1=/identities/identities.jsf&rp2=quickLinks/Edit%20Identity
+
+ Edit Specific Identity
+
+https://<hostname>/identityiq/ui/rest/redirect?
+rp1=/identities/identities.jsf&rp2=identities/<identityId>/edit
+
+ View Identity
+
+https://<hostname>/identityiq/ui/rest/redirect?
+rp1=/identities/identities.jsf&rp2=quickLinks/View%20Identity/identities
+
+ View Specific Identity
+
+https://<hostname>/identityiq/ui/rest/redirect?
+rp1=/identities/identities.jsf&rp2=identities/<identityId>/attributes
+
+ Access Request Details (previously named Track My Requests)
+
+https://<hostname>/identityiq/ui/rest/redirect?
+rp1=/identityRequest/identityRequest.jsf&rp2=requests
+
+ Track My Requests
+
+https://<hostname>/identityiq/identityRequest/identityRequest.jsf
+
+ Manage Certifications
+
+https://<hostname>/identityiq/certification/certification.jsf#/certifications
+
+ Policy Violation List Page
+
+https://<hostname>/identityiq/policyViolation/policyViolation.jsf#/policyViolations
+
+Mobile Interface Direct Links
+
+Use thefollowingdirectlinkstogodirectlytoIdentityIQMobilepages:
+
+ Direct Link to Passwords (Mobile)
+
+
+
+
+
+
+SailPointLifecycleManager 16
+
+===== Page 20/82 =====
+ l Manage Password
+ https://<hostname>/identityiq/ui/rest/redirect?
+ rp1=/ui/index.jsf&rp2=quickLinks/Manage%20Passwords/identities
+
+
+
+ l Manage SpecificPassword
+ https://<hostname>/identityiq/ui/rest/redirect?
+ rp1=/ui/index.jsf&rp2=identities/<identityId>/passwords
+
+ Direct Link to Manage Accounts (Mobile)
+
+
+
+
+ l Manage Accounts
+ https://<hostname>/identityiq/ui/rest/redirect?
+ rp1=/ui/index.jsf&rp2=quickLinks/Manage%20Accounts/identities
+
+
+
+ l Manage SpecificAccount https://<hostname>/identityiq/ui/rest/redirect?
+ rp1=/ui/index.jsf&rp2=identities/<identityId>/accounts
+
+ Direct Link to Manage Certifications (Mobile)
+
+
+
+
+ l Manage Certifications
+ https://<hostname>/identityiq/ui/index.jsf#/certifications
+
+ Direct Link to Policy Violations (Mobile)
+
+
+
+
+ l Policy ViolationsListPage
+ https://<hostname>/identityiq/ui/index.jsf#/listViolations
+
+ Direct Link to Access Management Page (Mobile)
+
+Specificaccess request pages can be accessed through direct linksusingparameters. Query parameters can be
+appended tothe Access Review Management tab URL.
+
+ Important: Ifyou are usingdeep linksforRequest Access, you must include the quicklink
+ name inyour query parameters in orderto ensure thatthe detailsdialogs work properly.
+
+
+
+ Note: Your browser may requirespecial characters inthe parameter values to be URL-
+ encoded. For example, spaces must be replaced with%20, ampersands (&)must be replaced
+ with %26, and question marks (?) must be replaced with %3F.
+
+
+
+
+
+
+
+
+SailPoint LifecycleManager 17
+
+===== Page 21/82 =====
+ http://<hostname>/identityiq/ui/rest/redirect?rp1=/accessRequest/accessRequest.jsf&r
+ p2=accessRequest/manageAccess/add%3FidentityName=<identity1>%26filterRoleType=<roleT
+ ype1>%26filterRoleStringAttr=<roleAttrib1>%26quickLink=Request%20Access
+The following parameters allow you to create direct links tothe page with a variety of filtersalready selected:
+
+ Access Request Management Deep Link Parameters
+
+
+Identity
+
+ identityName – name of identity the deep linkis targeting.
+
+Role Filters
+
+ filterRoleType
+ filterRole<attribute>
+
+ Note: Only role type and extended attributes are supported. Attributes from the bundle object are
+ not supported.
+
+Entitlement Filters
+
+ filterEntitlementApplication (multi)
+ filterEntitlementAttribute (multi)
+ filterEntitlementEntitlement (multi)
+ filterEntitlementOwner
+ filterEntitlement<attribute>
+
+
+ The (multi)params can be specified multiple times in a single URL. However, filterEntitlementOwner isNOT
+ multi.
+
+ Ifan entitlement application has only one attribute defined, the directlink can omit the entitlement attribute on the
+ URL and the defined attribute is used by default.
+
+ Note: With the exception of Application, Attribute, and Value, only extended attributes are sup-
+ ported.
+
+Keyword Filters
+
+ filterKeyword
+
+ Note: Iffulltext search indexing is enabled, the description is also searched for the keyword.
+
+
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 18
+
+===== Page 22/82 =====
+ Access Request for Single User Pre-Selected
+
+Inthe following example,
+
+<hostName> isthe name of thehost on which IdentityIQ isinstalled.
+
+<identity1> isthe name of theidentity.
+ https://<hostname>/identityiq/ui/rest/redirect?rp1=/ui/index.jsf&rp2=accessRequest/manag
+ eAccess/add?identityName=<identity1>%26quickLink=Request%20Access
+
+
+ Access Request for Single User Pre-Selected – Filtering on Role Type
+
+Inthe following example,
+
+<hostName> isthe name of thehost on which IdentityIQ isinstalled.
+
+<identity1> isthe name of theuser.
+
+<roleType1> is therequested role.
+
+
+ https://<hostname>/identityiq/ui/rest/redirect?rp1=/ui/index.jsf&rp2=accessRequest/manag
+ eAccess/add?identityName=<identity1>&filterRoleType=<roleType1>%26quickLink=Request%20Ac
+ cess
+
+
+ Access Request for Single User Pre-Selected – Filtering on Role Type and Role Exten-
+ ded Attribute
+
+Inthe following example,
+
+<hostName> isthe name of thehost on which IdentityIQ isinstalled.
+
+<identity1> isthe name of theuser.
+
+<roleType1> is thetype of role.
+
+<roleAttrib1> isthe roleattribute.
+ https://<hostname>/identityiq/ui/rest/redirect?rp1=/ui/index.jsf&rp2=accessRequest/manag
+ eAccess/add?identityName=<identity1>&filterRoleType=<roleType1>&filterRoleStringAttr=<ro
+ leAttrib1>%26quickLink=Request%20Access
+
+
+ Access Request for Single User Pre-Selected – Filtering on a Single Entitlement Applic-
+ ation / Attribute /Value
+
+Inthe following example,
+
+<hostName> isthe name of thehost on which IdentityIQ isinstalled.
+
+<identity1> isthe name of theuser.
+
+
+
+
+SailPoint Lifecycle Manager 19
+
+===== Page 23/82 =====
+<entApp1> isthe entitlement application.
+
+<entAttrib1> isthe entitlement attribute(such as memberOf or groupmbr).
+
+<entValue1> is the entitlement value.
+ https://<hostname>/identityiq/ui/rest/redirect?rp1=/accessRequest/accessRequest.jsf&rp2=
+ accessRequest/manageAccess/add?identityName=<identity1>&filterEntitlementApplication=<en
+ tApp1>&filterEntitlementAttribute=<entAttrib1>&filterEntitlementEntitlement=<entValue1>
+
+
+ Access Request Logged In User Selected with Filtering on Multiple Applications
+
+Inthe following example,
+
+<hostName> isthe name of thehost on which IdentityIQ isinstalled.
+
+<identity1> isthe name of theuser.
+
+<entApp1> and <entApp2> are the entitlement applications.
+
+<entAttrib1> and <entAttrib2> are the entitlement attributes(such as memberOf or groupmbr).
+
+<entValue1> and <entValue2> are the entitlement values.
+
+ Inthe following example, two entitlements are requested.
+
+ https://<hostname>/identityiq/ui/rest/redirect?rp1=/ui/index.jsf
+ &rp2=accessRequest/manageAccess/add?FidentityName=<identity1>
+ &filterEntitlementApplication=<entApp1>&filterEntitlementAttribute=<entAttrib1>
+ &filterEntitlementEntitlement=<entValue1>&filterEntitlementApplication=<entApp2>
+ &filterEntitlementAttribute=<entAttrib2>&filterEntitlementEntitlement=<entValue2>%26quic
+ kLink=Request%20Access
+
+
+ Access Request Logged In User Selected with Filtering on a Keyword Search
+
+Inthe following example,
+
+<hostName> isthe name of thehost on which IdentityIQ isinstalled
+
+<keyword1> isthe specifickeyword you want tofind
+ https://<hostname>/identityiq/ui/rest/redirect?rp1=/ui/index.jsf
+ &rp2=accessRequest/manageAccess/add?filterKeyword=<keyword1>%26quickLink=Request%20Access
+
+
+ Direct Link to IdentityIQ Manage Access Review Page (Mobile)
+
+Specificaccess request review pages can be accessed through directlinksusing parameters. Query parameters can
+be appended tothe Access Request Review tab URL:
+
+
+
+
+
+SailPoint Lifecycle Manager 20
+
+===== Page 24/82 =====
+https://<host-
+name>identityiq/ui/rest/redirect?rp1=/ui/index.jsf&rp2=certification/<id>
+
+
+ Note: Your browser may require Special characters in the parameter values to be URl encoded.
+ For example, spaces must be replaced with %20, & must be replaced with %26, and ? must be
+ replaced with %3F.
+
+The following parameters allow you to create direct links tothe page with a variety of filtersalready selected:
+
+ Access Request Review Deep Link Parameters
+
+
+Identity
+
+ filterKeyword – search term
+
+ Ifno identityName parameter isspecified, the loggedInUser is used.
+
+Role
+
+ To specify a role or entitlement using name orid:
+ role (multi) – name of idof role
+ entitlement (multi) – entitlement id
+
+
+ The (multi) params can be specified multiple times in a single URL.
+
+Entitlements
+
+ To specify an entitlement without an id,use a combo:
+ entitlementApplication<X>
+ entitlementAttribute<X>
+ entitlementValue<X>
+
+ <X> corresponds toa matching integer, such as entitlementApplication1, entitilementAttribute1, enti-
+ tlementValue1.
+
+ Access Request for Logged In User for a Single Role
+
+Inthe following example,
+
+<hostName> is the name of the host on which IdentityIQ isinstalled.
+
+<role1> isthe name ofthe role.
+ https://<hostName>/identityiq/ui/rest/redirect?rp1=/ui/index.jsf&rp2=accessRequest/revie
+ w?role=<role1>%26quickLink=Request%20Access
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 21
+
+===== Page 25/82 =====
+ Access Request for a Specified User for Multiple Roles
+
+Inthe following example,
+
+<hostName> isthe name of the host on which IdentityIQ isinstalled.
+
+<identity1> isthe name of theuser.
+
+<role1> and <role2> are requested roles.
+ https://<hostName>/identityiq/ui/rest/redirect?rp1=/ui/index.jsf&rp2=accessRequest/revie
+ w?identityName=<identity1>&role=<role1>&role=<role2>%26quickLink=Request%20Access
+
+
+ Access Request for Logged In User for Single Entitlement Using Entitlement ID
+
+Inthe following example,
+
+<hostName> isthe name of the host on which IdentityIQ isinstalled.
+
+<identity1> isthe name of theuser.
+
+<role1> and <role2> are requested roles.
+ https://<hostName>/identityiq/ui/rest/redirect?rp1=/ui/index.jsf&rp2=accessRequest/revie
+ w?identityName=<identity1>&role=<role1>&role=<role2>%26quickLink=Request%20Access
+
+
+ Multiple Entitlements for Specified User Using Entitlement Application/Attribute/Value
+
+
+ Note: Ifyou define only one attributedefined foran application, the entitlementAttribute can be
+ omitted and itwillbe filledinautomatically. Inallother cases, the attributeis required. In all
+ cases, entitlementApplication and entitlementValue are required for each entitlement com-
+ bination.
+
+Inthe following example,
+
+<hostName> isthe name of the host on which IdentityIQ isinstalled.
+
+<identity1> isthe name of theuser.
+
+<entApp1> and <entApp2> are the entitlement applications.
+
+<entAttrib1> and <entAttrib2> are the entitlement attributes (such as memberOf or groupmbr).
+
+<entValue1> and <entValue2> are the entitlement values.
+
+ Note: In the following example, two entitlements are requested.
+
+ https://<hostname>/identityiq/ui/rest/redirect?rp1=/ui/index.jsf
+ &rp2=accessRequest/manageAccess/add&identityName=<identity1>&filterEntitlementApplicatio
+ n=<entApp1>
+ &filterEntitlementAttribute=<entAttrib1>&filterEntitlementEntitlement=<entValue1>
+
+
+
+
+SailPoint Lifecycle Manager 22
+
+===== Page 26/82 =====
+ &filterEntitlementApplication=<entApp2>&filterEntitlementAttribute=<entAttrib2>
+ &filterEntitlementEntitlement=<entValue2>%26quickLink=Request%20Access
+
+
+ Direct Link to Pending Work Items (Mobile)
+
+IdentityIQ supports the following mobile work items:
+
+
+
+ l Forms
+
+
+
+ l Approvals
+
+
+
+ l Request Violations
+
+
+For allother types ofwork items, go tothe desktop version of IdentityIQ and access the page associated with the work
+item.
+
+You can link directlyto any open work item such as a form or aviolation. To access a directlink,a user must be logged
+in,have visibilitytothe work item and have authorization to access the item.
+
+ Note: Some work items, such as manager access reviews, are not supported as direct links.Ifa
+ direct linkcontains a work item id thatis not supported, a warning message displays that indic-
+ ates the work item does not exist.
+
+Inthe following example,
+
+<hostname> isthe name of the host on which IdentityIQ isinstalled.
+
+<workItemid> is the identifyingnumber for the work item.
+ https://<hostname>/SailPoint
+ IdentityIQ/ui/rest/redirect?rp1=/ui/index.jsf&rp2=commonWorkItem/<workItemid>
+
+
+ Using Direct Work Item Links in Email Templates
+
+When you send an email with a direct linkto apending work item to a user, the email system variable must be con-
+figured tomatch server name and path of the currently deployed instance of IdentityIQ. Click the Gear icon in the nav-
+igation menu bar and go toGlobal Settings > IdentityIQ Settings > Notification Settings tab > Notification
+Templates > Server Root Path.
+
+For example, the default isset to https://localhost:8080/IdentityIQ. However, ifyou deploy from /spt on
+port 80, you should change the setting tohttps://localhost/spt.
+
+ Note: The $spTools.formatURL() is a Velocity template function that formats the urlcor-
+ rectly inthe actual email sent to the user.
+
+$spTools.formatURL('/ui/index.jsf#/commonWorkItem')/$item.id
+
+
+
+
+ SailPoint Lifecycle Manager 23
+
+===== Page 27/82 =====
+Using Lifecycle Manager
+
+Using Lifecycle Manager
+
+
+
+ Note: SailPoint IdentityIQ Lifecycle Manager issold as a separate license and must be pur-
+ chased and activated before itisavailable foruse.
+
+IdentityIQ Lifecycle Manager manages changes to user access and automates provisioning activitiesinyour enter-
+prise environment. The Lifecycle Manager maps directly tothe lifecycle of a user in an organization and the core iden-
+titybusiness processes associated with the user lifecycleactivities.
+
+
+
+ l User Lifecycle Activities– joining, moving, leaving
+
+
+
+ l Core Identity Processes – provision, change, de-provision
+
+
+The Lifecycle Manager can be configured to enable users to make requests through IdentityIQ and control which
+requests they can make.
+
+ Users
+
+
+
+
+ l Individual User – can make requests using the self-service feature
+
+
+
+ l Managers – can make requests for directreports
+
+
+
+ l Help Desk Operators – can make requests for populations
+
+
+
+ l Other users – controls requests by allusers not a part of the standard groups
+
+
+ User Requests
+
+
+
+
+ l New access – request entitlement and roles
+
+
+
+ l Account Management – create, manage, and delete accounts including enable, disable, and unlock, change
+ and reset passwords, and track current requests
+
+
+
+ l Identity Management – create, edit,and view identities
+
+
+ Automated Change Management Using Configurable Event Triggers
+
+Lifecycle Manager provides automated change management based on configurable identity lifecycle event triggers.
+These triggers are mapped to different identity-related events in an authoritative source, typically an human resources
+system. When a tracked event isdetected, provisioning requests are generated. For example, when the status of an
+
+
+
+
+
+ SailPoint Lifecycle Manager 24
+
+===== Page 28/82 =====
+Using Lifecycle Manager
+
+
+employee changes from active to terminated, thislifecycle event can be configured to trigger a deprovisioning request
+forallof the access associate with the employee. Ifan employee's job titlechanges, a trigger can launch the assign-
+ment of a new business role to replace the employee's current business role.
+
+ IdentityIQ Governance Platform
+
+Lifecycle Manager leverages the IdentityIQ Governance Platform to enhance compliance performance, improve
+security, and reduce risk.
+
+SailPoint uses a combination of roles, policy, and risk toprovide a framework for evaluating all requests for changes to
+access against predefined business policies.
+
+
+
+ l IdentityIQ Role Model – simplifies administration of user access by providing a predefined and planned struc-
+ ture for requesting and validating user access based on business or IT roles.
+
+
+
+ l IdentityIQ Policy Model – evaluates your corporate access policies during the access request and pro-
+ visioning processes.
+
+
+
+ l IdentityIQ Risk Model – reduces operational risk by using a risk-based approach to identity governance and
+ provisioning by enabling organizations to modify change management processes.
+
+ Identity Provisioning Broker
+
+Lifecycle Manager uses the IdentityIQ Provisioning Broker to manage the final change manage activities that are the
+resultof self-service access requests or automated lifecycle event triggers. The IdentityIQ Provisioning Broker is a key
+piece of the IdentityIQ architecture that enables organizations to coordinate changes to user access across different
+provisioning processes. When a provisioning change is triggered, the provisioning broker separates each request into
+itscomponent parts and determines the appropriate provisioning implementation process. Provisioning options
+include:
+
+
+
+ l The SailPoint Automated Change Manager
+
+
+
+ l 3rd-party user provisioning solutions, such as Oracle IdM
+
+
+
+ l Service request systems, such as BMC Remedy
+
+
+
+ l Email generated to a system administrator
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Lifecycle Manager 25
+
+===== Page 29/82 =====
+Lifecycle Manager Components
+
+Lifecycle Manager isa part of your IdentityIQ solution that adds tools,work items and reports related to Lifecycle Man-
+ager core functionality.
+
+New User Registration – a self-service feature that enables new users to request initialaccess toIdentityIQ. When
+access is granted, a new identitycube is created forthe user.
+
+Quicklink Cards –convenient links to request and track user access from your Home page.
+
+
+
+ l How to Manage Access
+
+
+
+ l How to Manage Identities
+
+How to Manage Access
+
+Lifecycle Manager adds Manage Access links toHome page. Use the linksto perform the following functions:
+
+ Note: IdentityIQ System Administrators can make any request regardless ofthe Lifecycle Man-
+ ager Configuration settings.
+
+
+
+
+ l Managing User Access
+
+
+
+ l Requesting Access
+
+
+
+ l Request Violations
+
+
+
+ l Manage Accounts
+
+
+
+ l Account Passwords
+
+
+
+ l Track My Requests
+
+
+Requests are processed based on the business process defined when IdentityIQ isconfigured foryour organization. If
+approval isnot required, the roles are added or removed from the entitlements listand are available after the asso-
+ciated access is granted on the required applications. Ifapproval isrequired, the request must firstpass the approval
+process before being assigned.
+
+Requests can be processed:
+
+
+
+ l Manually
+
+
+
+ l Through a work item
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 26
+
+===== Page 30/82 =====
+ l By generating a help ticket,ifyour implementation isconfigured to work with a help desk solution
+
+
+
+ l Automatically through a provisioning provider
+
+Manage Accounts
+
+
+ Note: The status for the accounts listedon the Manage Accounts page are refreshed auto-
+ matically based on the conditions set during configuration.
+
+You can use the Manage Accounts link totake action on any ofthe accounts assigned toa user. Based on how you
+system is configured, you can:
+
+
+
+ l View account information
+
+
+
+ l Delete and account
+
+
+
+ l Disable/Enable an account
+
+
+
+ l Refresh account status
+
+
+
+ l Request an account
+
+Manage Accounts Page
+
+The Manage Accounts page displays the user's cards that you can manage. From thispage, you can:
+
+
+
+ l Search for a user – enter a letter orcombination ofletters and click the Search icon.
+
+
+
+ l Manage a user's accounts – select a user's card and clickManage.
+
+
+The Accounts section listsinformation about accounts associated with the selected user. Information can include:
+
+ Account Selection Options:
+
+
+Application
+
+ The application specific to the Account ID.
+
+Account ID
+
+ Name of the account.
+
+Status
+
+ The current status of the account.
+
+
+
+
+ SailPoint Lifecycle Manager 27
+
+===== Page 31/82 =====
+Application
+
+ The application specific to the Account ID.
+
+Last Refresh
+
+ The date the account information inIdentityIQ was lastupdated.
+
+Last Action Status
+
+ The status of the lastprovisioning operation performed though IdentityIQ. This state is not updated by actions
+ performed outside ofIdentityIQ, so might not reflect the current state of the account.
+
+The available actions are represented by icons defined inthe legend on the page. Click an icon to perform the spe-
+cifiedaction.
+
+ Note: Ifthe application does not support the action, the icon is not visible.These options are only
+ available ifconfigured by an administrator.
+
+
+
+
+ l Click the Refresh icon torefresh the account status.
+
+
+
+ l Click the Information icon to view information about the account.
+
+
+
+ l Click the Actions Menu icon toperform available actions.
+
+
+
+ l To request a new account for an application, clickRequest Account and select the application from the
+ Application dropdown list.
+
+Account Password Tasks
+
+Based on how your system isconfigured, the following account password tasks may be available:
+
+
+
+ l Change passwords for individual applications – see Changing Account Passwords Manually doc-
+ umentation.
+
+
+
+ l Use Generate to manage individual passwords or a group ofpasswords – see Generating Account Pass-
+ words Automatically documentation.
+
+
+
+ l Use Sync to set up a single password for multiple applications – see Synchronizing Passwords across
+ Accounts documentation.
+
+Track My Requests
+
+To track the progress ofaccess requests you created, click Manage Access > Track My Access Requests, use the
+Track My Access Requests linkon your Home page, or My Work > Access Requests to display the Access
+
+
+
+
+ SailPoint Lifecycle Manager 28
+
+===== Page 32/82 =====
+Request page.
+
+Click on a item inthe listto display detailed information about the requested items and any pending actions that still
+need to be taken on that request.
+
+From the detailed history panel you can navigate further into the request to expand the details view, review the actual
+access request, and send messages to owners ofthe request reminding them that their action isrequired.
+
+Click the X icon tocancel a request.
+
+ Access Request Options
+
+
+Access Request ID
+
+ Identification number assigned tothe access request.
+
+Priority
+
+ Specifies the prioritylevel to which the access request was designated.
+
+Type
+
+ The type of access request.
+
+Description
+
+ The a briefdescription of the access request.
+
+Requester
+
+ The name ofthe user who assigned this work item to you.
+
+Requestee
+
+ The name ofthe user to who was assigned thisaccess request.
+
+Request Date
+
+ The date the request was made.
+
+Current Step
+
+ The process step thatis currently pending.
+
+Completion Status
+
+ Status ofthe request. Status levels include:
+
+ Pending – request was received but no action has taken place.
+ Approved – request was approved. Additional action may be needed to complete the request.
+
+
+
+ SailPoint Lifecycle Manager 29
+
+===== Page 33/82 =====
+ Rejected – request was denied.
+ Completed – allactions required for thisaccess request have been fulfilled.
+ Cancelled – request was cancelled.
+ Completed Pending Verification – the manual action for thisrequest was completed, however the verification pro-
+ cedure has yet to have been run.
+
+Completion Date
+
+The date when the work item was completed.
+
+Execution Status
+
+ Status of the request execution. Status levels include:
+
+
+ Executing – the request is going through the business process and has not completed.
+ Verifying – the request has finished the business process and iswaiting forthe Provisioning Scanner toverify it.
+ Terminated – the request was terminated before itwas completed.
+ Completed – the request was completed and verified.
+
+Track Request Details
+
+To view detailed information about the requested items and any pending actions that stillneed to be taken on that
+request, clickthe Track Request Details option under the Actions (three-line) menu. This option is not available for
+some types of approvals, such as batch requests and native changes.
+
+How to Manage Identities
+
+Based on the IdentityIQ configuration, the following options can be available from the Manage Identity Quicklinks
+menu:
+
+
+
+ l Create Identity
+
+
+
+ l Edit Identity
+
+
+
+ l View Identity
+
+
+After choosing either Edit Identity or View Identity,you can browse and select a specific identity to manage, then use
+the Identity Details Menu to access your options.
+
+Create Identity
+
+To create new Identity Cubes in IdentityIQ, use the Create Identity page. This page can be accessed from the Quick-
+linksmenu, under the Manage Identity option.
+
+
+
+
+
+ SailPoint Lifecycle Manager 30
+
+===== Page 34/82 =====
+The data fields inthis page are determined by the Create Identity provisioning policy that isdefined in the Lifecycle
+Manager configuration. You can. view or edit this provisioning policy by navigating togear icon > Lifecycle Manager
+> Identity Provisioning Policies. Ifa provisioning policy has not been defined, the fields default to what isdefined in
+the Identity Configuration Object, which can be viewed or edited inthe Debug pages.
+
+Click Submit after allselections are completed.
+
+Upon submission, the approval ofnewly created identities follows the specific business process configured in Life-
+cycle Manager. See Business Processes Tab.
+
+Edit Identity
+
+Use the Edit Identity option to edit attributes of an identity in IdentityIQ. This page can be accessed from the Quick-
+links menu, under the Manage Identity option. The set of identities you can view depends on your user rights in Iden-
+tityIQ.
+
+
+
+ l Those with no one reporting to them are only able to edit theirown identity information
+
+
+
+ l Those with others reporting to them may edit identity information for themselves and those who report to or
+ through them
+
+
+
+ l Admins are able to edit identity information for allidentities in the organization
+
+
+Use the search feature to limitthe number of identities displayed. Select the Manage button on an available Identity
+tileto display the Edit Identity Attributes page.
+
+Once an Identity is selected tomanage, the Identity Details page displays. The data fields in this page are determined
+by the Create Identity provisioning policy that isdefined inthe Lifecycle Manager configuration. You can view or edit
+thisprovisioning policy by navigating to gear icon > Lifecycle Manager > Identity Provisioning Policies. Ifa pro-
+visioning policy has not been defined, the fields default to what isdefined inthe Identity Configuration Object, which
+can be viewed or edited in the Debug pages.
+
+Click Submit after allselections are completed to display the Review and Submit page. Upon submission, the
+approval ofedited identities follows the specific business process configured in Lifecycle Manager. See Business Pro-
+cesses Tab.
+
+Use the Identity Details Menu on the leftto view or update different elements of information about the identity.
+
+View Identity
+
+Use the View Identity option to view detailed information about an identity.This page can be accessed from the
+Quicklinks menu, under the Manage Identity option.
+
+The set of identities you can view depends on your user rights in IdentityIQ.
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 31
+
+===== Page 35/82 =====
+ l Those with no one reporting to them are only able to view their own identity information.
+
+
+
+ l Those with others reporting tothem may view identity information forthemselves and those who report to or
+ through them.
+
+
+
+ l Admins are able to view identityinformation for allusers in the organization.
+
+
+Ifyou have the abilityto view multiple identities,select Manage on the identity you want to view toopen the Identity
+Details page, then use the Identity Details Menu on the leftto view different elements of information about the identity.
+
+Identity Details Menu
+
+Based on the IdentityIQ configuration and your role,the following options may be available as leftnavigation options
+foridentities being viewed or edited:
+
+
+
+ l Edit– editidentity details.
+
+
+
+ l Forward– assign an identity towhom allwork items assigned to the current identity willbe forwarded and
+ define a start and end date forforwarding.
+
+
+
+ l Attributes– view the basic user identityinformation from Identity Mapping such as user name, firstname, last
+ name, and email.
+
+
+
+ l Access– view allroles and entitlements associated with the identity.By default, the identity's direct access is
+ shown. You can select the Effective Access button atthe top right tosee the identity's effective access. Effect-
+ ive Access isany indirect access that isgranted through another object, such as group membership, another
+ role,or an unstructured target.
+
+
+
+ l Accounts– view account information for allof the applications to which the identityhas some level of access.
+
+
+
+ l Account Passwords– manage account passwords forone or more applications.
+
+
+
+ l System Password– change the IdentityIQ system password for the identity.
+
+Lifecycle Manager Optional Links
+
+The following items are optional Lifecycle Manager links that your administrator can configure:
+
+
+
+ l Manage Recycle Bin — provides support for deleted users, groups with alltheir attributes, and group mem-
+ berships.
+
+
+
+ l Update My RSA Token PIN — provides support forupdating you RSA Token PIN. See
+
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 32
+
+===== Page 36/82 =====
+How to Update My RSA Token PIN
+
+
+ Note: Ifyou are logged inand have an RSA link associated with your identity,the Update My
+ RSA Token PIN option isavailable.
+
+To reset a PIN, clickthe Update My RSA Token PIN link on the Lifecycle Manager. The form displays the serialnum-
+bers of the tokens assigned to you. Select one of the multiple tokens (serialnumbers) and type ina new PIN. The PIN
+isreset and changed in the target system. Ifyou have multiple tokens and want tomodify the PIN for allof the token,
+you must make a separate request foreach token.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 33
+
+===== Page 37/82 =====
+Managing User Access
+
+IdentityIQ can be set up to letyou request and manage access foryourself or forother identities. Based on how your
+system is configured, users who are able to manage access forboth themselves and others have a Manage User
+Access Quicklinks menu item and card on the home page. Users who can manage only theirown access see a sim-
+ilarmenu item and card called Manage My Access.
+
+
+
+ l Manage My Access – users request and manage access forthemselves. Users selecting thisoption are only
+ able tomanage access for themselves, and therefore do not see the Select Users panel, but go directly tothe
+ Add or Remove Access page.
+
+
+
+ l Manage User Access – users request and manage access forone or more identities,including theirown.
+ Users selecting thisoption are directed tothe Select Users panel to choose the users whose access they would
+ like tomanage.
+
+Ifyou click the Home button, exitthe IdentityIQ application, or navigate away from the manage access pages before
+you complete alltasks, your entries are cleared and the access request is NOT submitted.
+
+ Note: When searching fora user to add or remove access, the elevated access icon displays on
+ any user that has elevated roles or entitlements.
+
+Requesting Access
+
+Based on how your system isconfigured, you can:
+
+ Request Access for Others
+
+This option must be configured on the Lifecycle Manager configuration page. Access itvia the Quicklink Manage
+User Access menu item orcard on the home page.
+
+ 1. On the Select User tab,select the checkmark icon on the card for one ormore identities.
+
+ a. To search for an identity, enter the name or firstfew lettersof an identity inthe search box and click the
+ Search icon. To limitthe number of listings,select Filters, choose specific filtercriteria,and then select
+ Apply.
+
+ b. Select the checkmark icon to choose one or more identities. You can also select the All button to
+ select allidentities (maximum of 100).
+
+ c. The Users Selected listjustbelow the navigation bar shows the users you have selected; you can click
+
+
+
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 34
+
+===== Page 38/82 =====
+ on this listof users at any point in the access request process to remove users from the selection.
+
+ d. Select the person icon on any user card to see details about that identity.
+
+ 2. Select Next to move on tothe Manage Access page.
+
+ 3. On the Manage Access page, select the Add Access tab.
+
+ 4. Click Browse all access items to display the fulllistof access options available. To search, select either
+ Search by Keywords, Find Users' Access, or FilterPopulation from the dropdown options.
+
+
+
+ l Search by Keywords – enter a search term and select the search icon or select Browse Access to see
+ a fulllistofroles and entitlements. The specifics ofwhich attributes can be searchable isconfigured by
+ your system administrator.
+
+
+
+ l Find Users' Access – select a user from the dropdown options to see access granted to that identity so
+ you can choose items from that set of access and request those items for the identities in your selection.
+ Ifyou search on multiple users, the search results show the number and percentage of users that have
+ each type ofaccess. Note that is a configurable option that may not be enabled inyour particular install-
+ ation.
+
+
+
+ l Filter Population – filterby a number of configurable options such as Manager, Region, Department,
+ Location, or Job Title tofind users and see the access granted to them. Results are shown ingroups that
+ include a notification about what percentage ofthe given population the role or entitlement applies to.
+ Select a percentage notification for details. Note that is a configurable option that may not be enabled in
+ your particular installation.
+
+ 5. Alternately, clickFilters to limitthe number of listings using various filteringoptions, including Role Source
+ Application, Role Source Attribute, Role Classification, Entitlement Application, Entitlement Attribute, and
+ more. After choosing your filtercriteria,select Apply to see search results.
+
+
+
+ l The Filterbutton turns green when filtering isapplied to alert you that you are seeing a filteredsubset of
+ access. To clear filtering,select the Filters button again and select Clear.
+
+ 6. From the listed results, select the checkmark icon for each access item you want to add.
+
+
+
+ l When you select a role that permits additional roles, you are alerted that additional, optional roles are
+ available and can select any of them toadd to the request.
+
+ 7. After IdentityIQ validates that the user does not currently have the requested access, the number ofitems you
+ selected displays on the Add Access tab.
+
+
+
+
+
+
+
+
+
+SailPoint Lifecycle Manager 35
+
+===== Page 39/82 =====
+ 8. Select Next to move on to Review and Submit.
+
+
+
+ l A pop-up message notifiesyou ifconflicting changes have been requested.
+
+ 9. Review access request information and verify your choices. Based on how your system is configured, before
+ you complete the access request you may:
+
+
+
+ l Remove an access request entry – select the X icon next to the access item.
+
+
+
+ l Add an attachment (forsingle user requests only) – ifyour configuration allows, you may add attach-
+ ments by selecting the paper clip icon. See Adding Attachments toAccess Requests.
+
+
+
+ l Add a comment – ifyour configuration allows, you may add a comment to your request by selecting the
+ comments icon to the right.Your system may be configured torequired comments, in which case the
+ Comment icon isflagged with a red asterisk. See Viewing and Posting Comments.
+
+
+
+ l Change the priority– see Editing an Access Request
+
+
+
+ l Change the sunrise / sunset dates – see Editing an Access Request .
+
+ 10. Select Submit. After you clickSubmit, forms are issued iffurther information isneeded before your request can
+ be completed.
+
+
+
+ l Ifyou are requesting access for a single identity,a pop-up displays enabling you tocomplete the form
+ immediately or send itto your Home page.
+
+
+
+ l Ifyou are requesting access for multiple identities,the forms are sent directly to your Home page and no
+ pop-up is displayed.
+
+ 11. A banner message confirms that your request was successfully submitted and shares the request ID.
+
+
+ Request Access for Yourself
+
+Ifyour system isset up toallow you to request access foryourself, a card with your identity details isthe firstcard dis-
+played on the Select User tab. This option must be configured inIdentityIQ.
+
+ 1. On the Manage My Access tab, select the Add Access tab.
+
+ 2. Select Browse allaccess items to display the fulllistof access options available. To search for available
+ access, select either Search by Keywords orRecommended for You from the dropdown options.
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Lifecycle Manager 36
+
+===== Page 40/82 =====
+ l Search by Keywords – enter a search term and select the search icon.
+
+
+
+ l Recommended For You – ifAI Services has been configured foryour organization, the Search field
+ includes an option in the drop-down listtoshow access items that AI Services recommends for you
+ based on peer group analysis. Recommendations are available only for your own access; ifyou are able
+ to request access forother users such as your directreports, you willnot be offered recommendations
+ for those users. See Enabling Recommendations for Access Requests.
+
+
+
+ l You can also select the Yes, show my recommendations button to see AI-recommended access ifAI
+ Services are configured.
+
+ 3. Alternately, select Filters touse various filteringoptions, including Role Source Application, Role Source Attrib-
+ ute, Role Source Value, Entitlement Application, Entitlement Attribute, Entitlement Owner, and more. After
+ choosing your filtercriteria,select Apply tosee search results.
+
+
+
+ l The Filters button turns green when filteringisapplied to alertyou that you are seeing a filtered subset of
+ access. To clear filtering,select the Filters button again and select Clear.
+
+ 4. From the listed results, select the checkmark icon for each access item you want to add.
+
+
+
+ l Some roles allow related roles tobe added. To add the additional roles, select the role or roles and click
+ Continue.
+
+ 5. Select Next to move on to Review and Submit.
+
+
+
+ l A pop-up message notifies you ifaduplicate change has been requested.
+
+ 6. Review access request information and verify your choices. Based on how your system isconfigured, before
+ submitting the access request you may:
+
+
+
+ l Remove an access request entry – select the X icon next to the access item.
+
+
+
+ l Add an attachment (for single user requests only) – ifyour configuration allows, you may add attach-
+ ments by selecting the paper clip icon. See Adding Attachments to Access Requests.
+
+
+
+ l Add a comment – ifyour configuration allows, you may add a comment to your request by selecting the
+ comments icon to the right.Your system may be configured torequired comments, inwhich case the
+ Comment icon is flagged with a red asterisk. See Viewing and Posting Comments.
+
+
+
+ l Change the priority– see Editing an Access Request
+
+
+
+ l Change the sunrise /sunset dates – see Editing an Access Request
+
+
+
+
+
+
+
+
+SailPoint Lifecycle Manager 37
+
+===== Page 41/82 =====
+ 7. Select Submit. After you click Submit, forms are issued iffurther information isneeded before your request can
+ be completed. A pop-up is displayed enabling you to complete the form immediately or send itto your Home
+ page.
+
+ 8. A banner message confirms that your request was successfully submitted and shares the request ID.
+
+
+ Request Access Containing a Permitted Role
+
+A permitted role is generally a requested or assigned role and is not automatically granted to a user. Permitted roles
+are enabled by default. When permitted roles are available, they are displayed on the following tabs:
+
+
+
+ l Add Access – when you select a role that has permits, the associated permitted roles are displayed as cards
+ afteryou complete the account selection setup.
+
+
+
+ l Review – permitted roles are displayed below the associated assigned role.
+
+
+You can set sunrise /sunset dates and comments on permitted roles.
+
+Removing Access
+
+The remove access feature isonly available for an individual user. Ifyour system isset up to allow you to add or
+remove access foryourself, a card with your identity details is the firstcard displayed on the Select User tab.
+
+ 1. On the Select User tab, clickthe checkmark icon on the card for an identity.
+
+ 2. Navigate to the Manage Access tab and select the Remove Access tab. Current access is listedon the lower
+ part ofthe window. You may use the search bar to search current access by keyword. Enter a term inthe
+ search box and clickthe search icon. Full text search is not available forRemove Access.
+
+ 3. Alternately, use the Filters button toapply available filters,including options forStatus, Role Source Applic-
+ ation, Role Source Attribute, Entitlement Application, Entitlement Attribute, and more. After choosing your filter
+ criteria,select Apply to see search results.
+
+
+
+ l The Filter button turns green when filteringis applied toalert you that you are seeing a filtered subset of
+ access. To clear filtering,select the Filters button again and select Clear.
+
+ 4. From the search results, select the X icon next to any role to remove access.
+
+
+
+ l When removing access, only the roles and entitlements the user currently has assigned are available for
+ removal
+
+ 5. The number of items you selected to be deleted is displayed in a circle on the Remove Access tab.
+
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 38
+
+===== Page 42/82 =====
+ 6. Once you have selected allaccess you want toremove, select Next to move on to Review and Submit.
+
+ 7. Review access request information and verify your choices. Based on how your system isconfigured, before
+ submitting the request you may:
+
+ 8. Before you complete the access actions, you can:
+
+
+
+ l Remove an access request entry – select the X icon next to the access item.
+
+
+
+ l Add an attachment – ifyour configuration allows, you may add attachments by selecting the paper clip icon.
+ See Adding Attachments to Access Requests
+
+
+
+ l Add a comment – ifyour configuration allows, you may add a comment to your request by selecting the com-
+ ment icon tothe right. Your system may be configured to require comments, in which case the comment icon
+ is flagged with a red asterisk. See Viewing and Posting Comments
+
+
+
+ l View Details –select the Details button. See Viewing Details
+
+ 7. Select Submit.
+
+ 8. A banner message confirms that your request was successfully submitted and shares the request ID.
+
+Viewing Details
+
+You can view the following information about a user:
+
+ View User Details
+
+Based on how your system isconfigured, you can view items such as User Name, Last Name, First, email, Location
+Owner, Region, and more.
+
+ 1. Navigate tothe Manage User Access page.
+
+ 2. On the Select User tab, clickthe user icon on any user card.
+
+To view user details from the Review tab, clickthe user name next tothe user icon to return to the Select User tab and
+then click the user icon on the user card.
+
+ View Role Details
+
+For any role,you can view information such as the application associated with the role,the Attribute, the Name of the
+roleand how the rolewas assigned.
+
+
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 39
+
+===== Page 43/82 =====
+ 1. Navigate tothe Manage User Access page.
+
+ 2. On the Manage Access tab, clickDetails for any role listing.
+
+Viewing and Posting Comments
+
+
+ Note: Assignment notes can only be added toassigned roles.You cannot add assignment notes
+ to permitted roles.
+
+You can view or post comments and assignment notes to an access request using the comments button, talk bubble
+icon.The number next tothe icon indicates the number ofcomments and notes forthe access request. Ifcomments
+are required for thisitem, the comment icon isflagged with a red asterisk. Comments can be made at the overall
+request leveland at the individualrequest item level;when comments are required, a comment atthe request satisfies
+the requirement forcomments at the individual request item level.
+
+ Note: Requiring comments is offby default. To configure comments being required, see Mis-
+ cellaneous inthe System Configuration Guide.
+
+When you add a comment or assignment note to an access request line item, the note icon turns green.
+
+Based on how your system isconfigured, you can:
+
+ View or Post Access Request Line Item Comments
+
+Before you complete and access request, you can view or post a comment toline items for entitlements and roles.
+
+ Note: If an Assignment note is not permitted for the item, the titleofthe dialog isComment.
+
+ 1. On the Review and Submit tab, select the comments icon for the request item.
+
+ 2. In the Comments and Notes dialog, select the Comments tab.
+
+ 3. To post a new comment, type your comments in the textbox and click Save.
+
+
+ Post an Assignment Note to Access Request Line Items
+
+Before you complete an access request, you can post an assignment note to lineitems forroles.
+
+ Note: If an assignment note isnot permitted for the item, the Assignment Notes tab is not dis-
+ played.
+
+
+
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 40
+
+===== Page 44/82 =====
+ 1. On the Review and Submit tab, select the comments icon forthe request item.
+
+ 2. Inthe Comments and Notes dialog, select the Assignment Notes tab.
+
+ 3. Type your note in the text box and clickSave.
+
+Adding Attachments to Access Requests
+
+You can add attachments to access request items using the attachments (paper clip)icon. Based on how your system
+isconfigured, you may have the option to add attachments, or you may be required to add an attachment forspecific
+items. See Configuring File Attachments for Access Requests.
+
+Attachments are only available for single user access requests. Ifattachments are enabled, you willsee the attach-
+ment icon on allrequest items, but itwillonly be active on requests that support attachments.
+
+To add an attachment to an access request:
+
+ 1. On the Review and Submit tab, select the attachments icon (paper clip) forthe request item.
+
+ 2. Inthe attachments overlay, add attachments by dragging and dropping oruploading files.
+
+ Once you've added an attachment, you have the option to add a description, download the attachment, or
+ delete the attachment. You can also add more attachments to the request.
+
+ 3. Select OK after allfilesare loaded.
+
+Ifyou tryto add an attachment fora filetype that isnot supported, or that exceeds the maximum filesize that was con-
+figured for attachments, you willsee an error.
+
+Supported File Types: Your IdentityIQ system administrator can configure what types of fileattachments are sup-
+ported; for example, PDF documents, text files,JPG images, etc.
+
+ Caution: IdentityIQ does not perform filecontent validation or verification on attachments. Itis
+ your responsibility to ensure that only filesthat do not violate security policies within your envir-
+ onment are included as attachments.
+
+
+File Size Limits: There may be an attachment size limitset during the configuration of IdentityIQ. Ifyou run into
+issues, contact your system administrator. For information how fileattachment options are configured, see Enabling
+FileAttachments.
+
+Required Attachments: IdentityIQ can be configured to make attachments required for access requests. Ifattach-
+ments are required, itwillbe indicated on the icon and you willreceive a warning ifyou tryto submit the request with
+out an attachment.
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 41
+
+===== Page 45/82 =====
+Attachments for Specific Roles: Attachments are added to individual access request items, and can also be added
+forspecific roles thatmay be included with the access request item.
+
+Single-Identity Requests Only: Note that attachments can NOT be added to requests that encompass multiple iden-
+tities;they can be added forsingle-identity requests only.
+
+ Note: Adding any attachment willfulfilltherequired attachment rules. IdentityIQ does not validate
+ to ensure the correct item was attached. Ifattachments are required for an item and you include
+ that item in a request for multiple users, a message isdisplayed instructing you toamend the
+ request as required.
+
+ Attachments Overlay
+
+The information displayed on the attachment overlay is controlled using AttachmentConfig rules. Every time a user
+accesses the Review and Submit tab ofan access request, every AttachmentConfig rule isreviewed and the attach-
+ment overlay isconstructed based on that input, possibly with the names ofrequired or suggested attachments dis-
+played ina list.
+
+Required attachment names are displayed with a red asterisk. Allrequired attachments should be included inthe
+access request, but any attachment will satisfythe requirement rules. IdentityIQ does not validate the attached files.
+
+Drag and drop or upload the attachments to add them to the Attached to This Item list.
+
+The Attached to This Item listcontains any filesalready attached to thisrequest item. From this listyou can:
+
+
+
+ l Add oredit comments – clickthe pencil icon to add oredit comments
+
+
+
+ l Download and view – download and view the attachment
+
+
+
+ l Remove – remove the attachment from the request and delete itfrom the database
+
+
+ Viewing Attachments when Approving Requests
+
+When an Access Request item includes fileattachments, the reviewer sees a green attachment icon indicating the
+presence and number of attachments. The reviewer can click the icon to download and view the attachment. Iden-
+tityIQdoes not have any built-inviewers; inorder to open and view an attachment, the user must have the appropriate
+application installed (forexample, Adobe Acrobat orsimilar, to open and view a PDF attachment).
+
+Configuring File Attachments for Access Requests
+
+The access request attachments feature enables users to add attachments to single-user access requests. For
+example, you could attach a training certificateor a notarized document of authorization to a request.
+
+Here are some key points for configuring thisfeature:
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 42
+
+===== Page 46/82 =====
+ l The option for including attachments can be switched on or off,system-wide. See Enabling File Attachments.
+
+
+
+ l Attachments can only be used with single-identity access requests. That is,the attachment option isnot avail-
+ able for access requests that include multiple identities.
+
+
+
+ l You can add multiple attachments to each request item.
+
+
+
+ l You can add attachments topermitted roles that may be included with an access request item.
+
+
+
+ l You can designate items as requiring attachment, via rules. See Required vs. Optional Attachments and Work-
+ ing With Attachment Rules.
+
+
+
+ l You can review attachments during the approval process and when the access request isarchived.
+
+
+
+ l Filesize and type limits forattachments are configured globally. See Enabling File Attachments.
+
+
+
+ l The feature supports encryption of fileattachments.
+
+
+
+ l Attachments are not supported incustom workflow/forms.
+
+
+
+ l IdentityIQ does not perform filecontent validation or verification on attachments. Itisyour responsibility to
+ ensure that only filesthat do not violate security policies within your environment are included as attachments.
+
+Enabling File Attachments
+
+To enable the fileattachments feature forAccess Requests:
+
+ 1. Select the gear menu and navigate toGlobal Settings > IdentityIQ Configuration.
+
+ 2. Select the Miscellaneous tab. (See Miscellaneous.)
+
+ 3. Inthe Attachment Settings section ofthe Miscellaneous tab, enable and configure fileattachments:
+
+
+
+ l Enable Attachments: check the box toenable fileattachments.
+
+
+
+ l Attachments per item: set the maximum number of attachments allowed per request item.
+
+
+
+ l Maximum file size (MB): set the maximum filesize, in megabytes, foreach attachment. The default is5
+ MB, and the system maximum is20 MB.
+
+
+
+ l Supported file types: listthe types of fileattachments you want tosupport, in a comma-separated list.
+ You do not need to include a dot prefix for the filetype. For example, txt,jpg, png, pdf.
+
+
+
+ l Supported characters: listthe special characters that are allowed in the filename.
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 43
+
+===== Page 47/82 =====
+ l Configuration Rules: ifyou want to require attachments for particular use cases (such as job title,loc-
+ ation, etc.),use a rule to enforce the requirement. Any Attachment Configuration rules that have been
+ configured on your IdentityIQ instance are listedhere, but only the rules you select are run during an
+ access request. You can select multiple rules to implement by using Ctrl-click. See Working With Attach-
+ ment Rules.
+
+ Note: Only rules with a rule type of AttachmentConfig are used to govern attach-
+ ment behavior and are listedhere.
+
+ 4. Save your changes.
+
+
+Required vs. Optional Attachments
+
+When you enable attachments foraccess requests, you can make them either optional or required. When an attach-
+ment is required, the attachment icon in the Access Request UI includes text indicating “Required.”
+
+Requirements forattachments are managed through rules, and rule logic gives you flexibilityon how to implement
+your requirements for attachments. For example, you might require attachments based on job title,location, the spe-
+cificaccess being requested, etc.
+
+ Note: Ifyou configure rules to require specific attachments, such as a work authorization form,
+ any attachment willsatisfy the requirement rules. IdentityIQ does not validate the attached files.
+
+
+Working With Attachment Rules
+
+You can implement multiple rules tomanage various use cases or requirements. IdentityIQ includes some sample
+rules that you can use as a model for developing your own.
+
+Rules that govern fileattachments are of rule type AttachmentConfig. Any rules with a type of AttachmentConfig
+appear inthe selection listof rules in Global Settings. You can choose more than one rule to govern requirements for
+attachments; use Ctrl-click to select multiple rules to activate.
+
+Attachment rules are inactive by default. To activate rules that govern attachments:
+
+ 1. Select the gear menu and navigate to Global Settings > IdentityIQ Configuration.
+
+ 2. Select the Miscellaneous tab.
+
+ 3. Inthe Attachment Settings section of the Miscellaneous tab, select allthe rules you want to activate. Use Ctrl-
+ clickto select multiple rules toactivate. Selected rules are highlighted in blue.
+
+ 4. Save your changes. When you save your changes, the active rules remain highlighted.
+
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 44
+
+===== Page 48/82 =====
+ Note: When an attachment rule isenabled, the requestor willsee an error message ifthey try to
+ submit an access request without the required attachment.
+
+Rules that govern requirements forattachments use BeanShell to determine the rule'sbehavior. BeanShell provides a
+great deal offlexibilityinwhat your rulescan do, including things likewho or what the rule applies to,and what mes-
+saging the UI willshow users regarding attachments.
+
+For an overview of developing and using rules inIdentityIQ, see the IdentityIQ System Administration guide.
+
+See Sample Attachment Configuration Rule: Contractor Work Authorization Form for a simple example rule tohelp
+you understand how tocreate your own attachment rules.
+
+Sample Attachment Configuration Rule: Contractor Work Authorization Form
+
+The sample attachment configuration ruleshown below enforces a requirement that any time access is requested for
+a contractor identity,a Contractor Authorization Form must be attached to the request.
+
+
+ Sample Attachment ConfigurationRule
+  <?xml version='1.0' encoding='UTF-8'?>
+ <!DOCTYPE sailpoint PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+ <sailpoint>
+ <Rule language="beanshell" name="Contractor Work Auth Rule" type="AttachmentConfig">
+     <Description>Returns configs for contractor work authorization.</Description>
+     <Signature returnType="java.util.List">
+       <Inputs>
+         <Argument name="log">
+           <Description>
+           </Description>
+         </Argument>
+         <Argument name="context">
+           <Description>
+           </Description>
+         </Argument>
+         <Argument name="requester" type="sailpoint.object.Identity">
+           <Description>
+           </Description>
+         </Argument>
+         <Argument name="requestee" type="sailpoint.object.Identity">
+           <Description>
+           </Description>
+         </Argument>
+         <Argument name="requestedItem" type="sailpoint.object.SailPointObject">
+           <Description>
+           </Description>
+         </Argument>
+         <Argument name="action" type="java.lang.String">
+           <Description>
+           </Description>
+         </Argument>
+       </Inputs>
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 45
+
+===== Page 49/82 =====
+       <Returns>
+         <Argument name="configList">
+           <Description>
+           </Description>
+         </Argument>
+       </Returns>
+     </Signature>
+     <Source>
+       import sailpoint.object.*;
+       import java.util.*;
+       import sailpoint.service.*;
+       import sailpoint.tools.Util;
+
+       // Result is always a list of AttachmentConfigDTOs. The list may be empty but
+ shouldn't be null.
+       List result = new ArrayList();
+
+       if (requestee != null) {
+           String employeeType = requestee.getType();
+           if (Util.nullSafeEq(employeeType, "contractor")  && Util.nullSafeEq(action,
+ "add")) {
+               result.add(new AttachmentConfigDTO(true, "Please attach signed work author-
+ ization form."));
+           }
+       }
+
+       return result;
+     </Source>
+   </Rule>
+   </sailpoint>
+
+
+
+The following sections explain some specificareas ofthe rule'selements and BeanShell code:
+
+ Rule Type
+
+Inthe Rule element of the XML, the ruletype is specified as AttachmentConfig. This iswhat indicates thatthe rule
+applies toAttachments, and what makes the rule appear inthe Attachment Settings area of the IdentityIQGlobal Con-
+figuration(gear menu >Global Settings > IdentityIQ Configuration > Miscellaneous Tab). The Rule element also
+provides the name of the ruleas itwillappear inthe configuration UI.
+
+
+ <Rule language="beanshell" name="Contractor Work Auth Rule" type="AttachmentConfig">
+
+
+ Who this Rule Applies To
+
+The bolded BeanShell code here specifies that thisrule applies toidentitiesof employee type "contractor":
+
+
+ if (requestee != null) {
+           String employeeType = requestee.getType();
+
+
+
+
+
+
+SailPoint Lifecycle Manager 46
+
+===== Page 50/82 =====
+           if (Util.nullSafeEq(employeeType, "contractor")) && Util.nullSafeEq(action,
+ "add")) {
+
+               result.add(new AttachmentConfigDTO(true, "Please attach signed work author-
+ ization form."));
+
+
+ Attachment Overlay Text
+
+The BeanShell code can also determine the message thatappears on the overlay screen when the requestor clicks
+the Attachment link.
+
+
+ if (requestee != null) {
+           String employeeType = requestee.getType();
+           if (Util.nullSafeEq(employeeType, "contractor")) && Util.nullSafeEq(action,
+ "add")) {
+
+               result.add(new AttachmentConfigDTO(true, "Please attach signed work author-
+ ization form."));
+
+
+
+Editing an Access Request
+
+Before you submit an Access Request, the following editing options may be available from the Review and Submit
+tab:
+
+
+
+ l Changing Access Request Priority
+
+
+
+ l Changing Access Sunrise and Sunset Dates
+
+Changing Access Request Priority
+
+Ifyour system isset up to allow prioritiesforaccess requests, you can change the priorityforan access request. The
+defaultsetting isNormal Priority.When you create an access request, you can change the prioritytoHigh Priorityor
+Low Priority.
+
+Before you complete an access request, change the priorityforan access request by completing these steps:
+
+ 1. On the Review tab, select the button with the flag icon.
+
+ 2. Select High Priority, Normal Priority, orLow Priority.
+
+
+
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 47
+
+===== Page 51/82 =====
+ Note: For this feature tobe available tousers, the Administrator must select the option toEnable
+ requesters to set request priorities under gear > Lifecycle Manager > Configure tab. See
+ Configure Tab.
+
+Changing Access Sunrise and Sunset Dates
+
+Sunrise and sunset dates support the temporary assignment of roles and entitlements by lettingyou set a beginning
+(sunrise) and an end (sunset) date for access. Access is deprovisioned when the sunset date arrives. For information
+on using sunrise and sunset dates for entitlements, see Using Sunrise and Sunset Dates for User Access For
+information on using sunrise and sunset dates forroles, see Using Sunrise and Sunset in Roles.
+
+Before completing an access request, you can set a beginning and ending date fora line item inan access request or
+forthe fullrequest. Ifall the dates inthe access request are the same, the global date icon is green. Ifthe dates for one
+or more line items inthe access request are different,the date icon isgray.
+
+For line items, set sunrise/sunset dates by completing these steps:
+
+ 1. On the Review tab, select the date icon forthe lineitem inthe access request.
+
+ 2. Inthe Set Sunrise /Sunset Dates dialog, type a new date inthe fieldin the mm/dd/yyyy format or select the
+ calendar to choose a date.
+
+ 3. Select Save.
+
+For fullrequests, set global sunrise /sunset dates by completing these steps:
+
+ 1. On the Review tab, select the date icon forthe access request.
+
+ 2. Inthe Set Sunrise /Sunset Dates dialog, type a new date inthe fieldin the mm/dd/yyyy format or select the
+ calendar to choose a date.
+
+ 3. Select Save.
+
+
+ Note: Ifyou specify a global sunrise /sunset date on an entire access request and then change
+ the global setting, the new global setting overrides any individual lineitem date settings you may
+ have made.
+
+
+ Note: For this feature tobe available tousers, the administrator must enable the option to allow
+ sunrise /sunset dates on role assignment.
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 48
+
+===== Page 52/82 =====
+Request Violations
+
+
+ Note: The section only applies forsingle identity access requests. Ifa request formultiple users
+ contains violations, the request goes through and notifications are sent.
+
+When you submit an access request that results ina policy violation and IdentityIQ is configured to have interactive
+violation handling, a warning message appears atthe top of the page with a listof the violations. Click a violation to
+view details about the violation possibly including compensating controls and correction advice ifthey were included.
+
+Access Request Violations Options
+
+For access requests that generate policy violations, IdentityIQ can be configured to:
+
+ Reject and Cancel Requests with Policy Violations
+
+Ifyou submit an access request that results in a policy violation and IdentityIQ isconfigured to reject any requests with
+policy violations, the request fails and iscanceled. You can navigate to the Manage User Access page and create a
+new request.
+
+ Reject Requests with Policy Violations – Interactive
+
+Ifyou submit an access request that results in a policy violation and IdentityIQ isconfigured to reject any requests with
+policy violations, the request fails.Ifyou are notified that the request failed because of a policy violation and you are
+stillonthe Manage User Access page, you can:
+
+
+
+ l Change the access request
+
+
+
+ l Cancel the access request
+
+
+ Allow Requests with Policy Violations – Non-Interactive
+
+Ifyou submit an access request that results in a policy violation and IdentityIQ isconfigured to allow any requests with
+policy violations, the request goes through and you are not notified.
+
+ Allow Requests with Policy Violations – Interactive
+
+
+ Note: When you continue with an access request with a violation, IdentityIQ can be configured to
+ allow the violation with no user interaction orrequire users to add a comment or sunset date.
+
+Ifyou submit an access request that results in a policy violation and IdentityIQ isconfigured to allow requests with
+policy violations and notify the requester, the request continues. When you are notified ofthe violation,you can:
+
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 49
+
+===== Page 53/82 =====
+ l Change the access request
+
+
+
+ l Cancel the access request
+
+
+
+ l Continue with the access request
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Lifecycle Manager 50
+
+===== Page 54/82 =====
+Approving Access Requests
+
+Use the Approve Access Requests interface tomake decisions on access request approvals that are assigned toyou.
+Ifyou are a member ofany workgroups, the listingsinclude approvals for those workgroups.
+
+Click the Approve Access Requests Quicklink card or select Approve Access Requests in the Quicklink menu to
+access the Approvals page, which shows the access request approvals that are assigned to you. Use thispage to
+view and manage your approval requests. Approval items include the following types of Lifecycle Manager access
+requests:
+
+
+
+ l Role Requests
+
+
+
+ l Entitlement Requests
+
+
+
+ l Account Requests
+
+
+Approval items are shown in an expanded view by default, showing fulldetails forallitems inthe request. Click Col-
+lapse All toswitch to a more compact display showing only the approval-level details,without item details. Click
+Expand Allto expand the listingto the detailed view.
+
+To sort the list,clickthe arrow next toSort By and select a sort type, Newest, Oldest, or Priority.
+
+Use the Filter icon to filtertheitems that are displayed on the page. You can filterbyOwner, Requester, or
+Assignee. When you have selected your filteringcriteria,clickApply. When filteringisapplied, the Filtericon turns
+green toalert you that you are seeing a filteredsubset of your items. To clear filteringcriteriaand return to viewing all
+items, click Filteragain, and clickClear to remove your filtercriteria.
+
+Use Collapse All or Expand All tocontrol how the items are displayed.
+
+Use the Search fieldto search for approval items by Work Item ID or Requestee Name.
+
+Click Recommendations to display the Decision Recommendation popup. The recommendations icon isonly dis-
+played IfSailPoint AI Services was purchased and activated for your installation ofIdentityIQ. See the AI Services
+documentation formore information.
+
+Requiring Comments for Access Approvals or Denials
+
+Complete the following to require comments for access approvals or denials:
+
+ 1. Navigate to Setup > Business Processes.
+
+ 2. Select the LCM Provisioning business process, or your organization's custom business process forpro-
+ visioning ifyou use one.
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 51
+
+===== Page 55/82 =====
+ 3. Select the Process Variables tab.
+
+ 4. Use the checkbox options Require comments for approval and Require comments for denial to setyour
+ comment preferences.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 5. Save your changes.
+
+Requiring Electronic Signatures for Access Approvals or Denials
+
+Complete the following to require electronic signatures for access approvals or denials:
+
+ 1. Navigate to Setup > Business Processes.
+
+ 2. Select the business process you want to configure forelectronic signatures.
+
+ 3. Select the Process Variables tab.
+
+ 4. In the Approver Electronic Signature dropdown, choose the electronic signature touse with this
+ process. Note that electronic signatures must be defined inadvance. For more information on defining elec-
+ tronic signatures, see the Electronic Signatures section of the IdentityIQ System Configuration doc-
+ umentation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 52
+
+===== Page 56/82 =====
+ 5. Save your changes.
+
+Approval Tasks
+
+You can perform the followingtasks:
+
+
+
+ l Complete an Approval
+
+
+
+ l Forward an Approval
+
+
+
+ l View Details
+
+
+
+ l Viewing Attachments when Approving Requests
+
+
+
+ l View and Post Comments
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint LifecycleManager 53
+
+===== Page 57/82 =====
+Complete an Approval
+
+
+ Note: A Policy Violation alertis displayed at the top ofany approval that causes a violation ifthe
+ request is approved.
+
+You can take approval actions both atthe overall approval request level, or atthe individual request item level.
+
+IfSailPoint AI Services was purchased and activated foryour installation of IdentityIQ, recommendation icons are dis-
+played with each item for which a recommendation is available. Click the icon to see the recommendation details. See
+the SailPoint AI Services documentation for more information.
+
+For each approval request you can:
+
+
+
+ l Approve All items, Deny All items, or Forward the approval.
+
+
+
+ l Make a decision on each individual approval item to Approve or Deny the request.
+
+
+
+ l Use an electronic signature tosign an approval ifyour installation is configured to use this feature.
+
+
+ Note: If the approval request was set up to use electronic signature, the Electronic Signature dia-
+ log displays automatically. Use the same credentials you use to sign in to the product.
+
+The Complete Approval dialog displays when you click Approve All or Deny All for an approval, or afteryou click the
+Approve or Deny button forthe lastindividual item in an approval. To complete the approval, click Complete. To
+change your approval decisions, click Cancel.
+
+Forward an Approval
+
+You can forward an approval to another identityor workgroup, to pass the responsibility forapproval decisions to
+them. Forwarded approvals can not be recalled, and once you forward an approval, you can no longer view inform-
+atoin about it.To forward an approval:
+
+ 1. Click the Forward icon inthe Actions (three-line) menu for an approval.
+
+ 2. Enter the name or a few letters of the name of the new owner of the approval. Alternatively, you can click the
+ down icon and select a name from the list.
+
+ 3. Add any forwarding comments and click Forward.
+
+View Details
+
+You can view detailed information about an approval, itsforwarding history, and information about any approval line
+item.
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 54
+
+===== Page 58/82 =====
+ Note: For small form factors such a mobile phones, the Details button is displayed in the Actions
+ menu.
+
+You can view the following types of details:
+
+ View Approval Details
+
+Click the Info button for the overall approval toopen the Details dialog. Itshows the following items.
+
+
+
+ l Work Item Details tab – displays the work item and Access Request ID number, who made the request, who
+ owns the approval, when the approval was created and the priority.
+
+
+
+ l Identity Details tab – displays the attributes that the Administrator configures for the Identity Mappings and
+ can include attributes such as user name, firstand last name for the identity,the email for the identity and the
+ owner of the location and region for the identity.
+
+
+
+ l Forwarding History tab – displays the name of the person who forwarded the approval, the date the approval
+ was forwarded and any comments. Approvals thatare forwarded to orfrom a workgroup display the name of
+ the workgroup. Ifthere are multiple forwards, all ownership changes are displayed.
+
+ View Approval Line Item Details
+
+Click the Info button for an individual approval item tosee these Details.
+
+For Roles:
+
+ Note: If the requestor includes an Assignment Note when an approval request fora role and an
+ account selection is required, the Assignment Note isdisplayed atthe bottom of the Details tab.
+
+
+
+
+ l Details – displays the requested action and the name of the role. For Entitlement and account requests, inform-
+ ation about the account and application is displayed.
+
+
+
+ l Account Details – displays the specific role name, the account name and the application for roles requests.
+
+
+
+ l Entitlements – displays the associated applications, attributes,entitlement name, and how itwas assigned.
+
+
+For Entitlements:
+
+
+
+ l A single panel listingthe Action, Attribute, Value, Account Name, Application, and Entitlement Owner.
+
+
+Viewing Attachments when Approving Requests
+
+When an Access Request item includes fileattachments, the reviewer sees a green attachment icon indicating the
+presence and number of attachments. The reviewer can select the icon to download and view the attachment.
+
+
+
+
+
+ SailPoint Lifecycle Manager 55
+
+===== Page 59/82 =====
+IdentityIQ does not have any built-inviewers; inorder to open and view an attachment, the user must have the appro-
+priateapplication installed(for example, Adobe Acrobat or similar,to open and view a PDF attachment).
+
+Who Can View Attachments
+
+The requester or the requestee can download and view the attachment via the Access Request details.Approval
+owners can download and view the attachment inthe approval. System Administrators can also download and
+view attachments at any stage of the request or review process.
+
+Other users willsee thatan attachment has been included, but willnot be able toaccess the attachment for download
+orviewing.
+
+View and Post Comments
+
+You can view orpost comments foran approval or for an individual approval item, using the Comments button. The
+number next toComments indicates the number of comments thatexist forthe approval or approval item. Ifno num-
+ber isdisplayed, there are no current comments.
+
+ Note: For small form factors such as mobile phones, the Comments button isdisplayed in the
+ Actions menu.
+
+You can perform the following tasks:
+
+ View Approval or Approval Line Item Comments
+
+Click Comments forthe overall approval or an approval item toview the comments. The Comments dialog liststhe
+comments from the oldest to the newest with the oldest comments at the top. For each comment, the following inform-
+ation isdisplayed:
+
+ Note: Allapprovers can view allcomments made by other users.
+
+
+
+
+ l Posted comment
+
+
+
+ l Name of the user who posted the comment
+
+
+
+ l Date and time the comment was posted
+
+
+ Post Approval or Approval Line Item Comments
+
+To post a new comment:
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 56
+
+===== Page 60/82 =====
+ l Click Comments forthe approval or approval item
+
+
+
+ l Type your comment inthe text box atthe bottom on the Comments dialog.
+
+
+
+ l Click Post.
+
+
+ Required Comments for Approvals and Denials
+
+IdentityIQ can be configured to require comments forany approval and, separately, forany denial of access. This set-
+tingis defined in the provisioning business process that manages approvals. The default business process forthis is
+the LCM Provisioning business process.
+
+To require comments on approvals and denials, clickSetup > Business Processes, and choose the
+LCM Provisioning business process (oryour custom provisioning business process ifyou have implemented one).
+On the Process Variables tab, use the checkboxes todetermine when comments are required: Require comments
+for approval and Require comments for denial.
+
+Inthe approvals UI, ifcomments are required forthe item, the comment icon isflagged with a red asterisk. Comments
+can be made at the overall approval leveland at the individual approval item level;when comments are required, a
+comment atthe overall request level satisfies the requirement for comments at the individual approval item level.If
+bulk decisions are enabled inyour system, a pop-up dialog willopen for the required comments when approvals or
+denials are made in bulk.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Lifecycle Manager 57
+
+===== Page 61/82 =====
+Lifecycle Events
+
+
+ Note: You must have IdentityIQ administrative capabilities to setup this function. For information
+ about setting up administrative capabilities, contact your IdentityIQ administrator.
+
+Use the Lifecycle Events page tocreate new events or toconfigure existing events in your enterprise to trigger busi-
+ness process. When changes are detected during an identity refresh, IdentityIQ can be set up to launch event-based
+business processes.
+
+To access the Lifecycle Events page, navigate to Setup > Lifecycle Events.
+
+
+
+ l Lifecycle Events Page
+
+
+
+ l How To Create Lifecycle Events
+
+Lifecycle Events Page
+
+The Lifecycle Events page displays the following information about existing lifecycle events:
+
+Name
+
+ The name assigned when the certification event was created.
+
+ This name isused to identify the certification event. This name isnot displayed in the certifications that are cre-
+ ated when this event istriggered.
+
+Type
+
+ The event type associated with thiscertification event.
+
+Attribute Name
+
+ The specified attribute when the Event type isset as Attribute Change.
+
+Owner
+
+ The user who created the event certification.
+
+Disabled
+
+ The Enabled /Disabled status ofthe event.
+
+Use the Lifecycle Events page toedit or create a lifecycle event and the associated event behavior.
+
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 58
+
+===== Page 62/82 =====
+How To Create Lifecycle Events
+
+Lifecycle events can be configured torun based on events that occur in IdentityIQ. For example, when a manager
+change isdetected for an identity, an event-based business process can be configured to run and tosend any
+requests to the newly-assigned manager.
+
+
+
+ l Lifecycle Events
+
+
+
+ l Lifecycle Events Page
+
+Lifecycle Event Parameters:
+
+
+ Note: The options displayed are dependent on the event type selected.
+
+ Name
+
+ Assign an intuitive name for the event. This name isused to identify the event. This name is not displayed in the
+ requests that are created when an event istriggered.
+
+ Description
+
+ Assign a briefdescription of the event.
+
+ Event Type
+
+ The fieldsdisplayed above Disabled are dependent on the Event Type specified here.
+
+ Specify an event type:
+
+
+
+ l Create – launch a certificationwhen a new identity isdiscovered.
+
+
+
+ l Manager Transfer – launch a business process when the manager changes foran identity.
+
+
+
+ l Attribute Change – launch a business process when a change isdetected forthe specified attribute.
+
+
+
+ l Rule – use a rule todetermine when to launch a business process. To make changes to your rules, click
+ the [...]icon tolaunch the Rule Editor.
+
+
+
+ l Native Change –launch a business process when a change isdetected on a native application that
+ was configured topass this information to IdentityIQ.
+
+
+
+ l Alert – launch a business process when an alertis triggered.
+
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 59
+
+===== Page 63/82 =====
+ l Rapid Setup – launch a rapid setup business process when the selected RapidSetup Process is detec-
+ ted.
+
+ Attribute
+
+ Select the identity attributefrom the listto associate with thisevent. The attribute dropdown listcontains allof the
+ standard and extended identityattributes configured in your deployment ofIdentityIQ.
+
+ Previous Manager Filter
+
+ For Manager Transfer event types only:
+
+ IdentityIQ launches business processes only when identities are transferred from the specified manager.
+
+ Ifno manager isspecified, allmanagers are included.
+
+ New Manager Filter
+
+ For Manager Transfer event types only:
+
+ IdentityIQ launches business processes only when identities are transferred from the specified manager.
+
+ Ifno manager isspecified, allmanagers are included.
+
+ Previous Value Filter
+
+ For Attribute Change event types only:
+
+ IdentityIQ launches business processes only when the attribute value specified has changed.
+
+ Ifno value isspecified, allvalues are included.
+
+ New Value Filter
+
+ For Attribute Change event types only:
+ IdentityIQ launches business processes only when the attribute value specified is newly assigned.
+ Ifno value isspecified, allvalues are included.
+
+ RapidSetup Process
+
+ The RapidSetup business process context in which this lifecycle event should be evaluated.
+
+ Disabled
+
+ Enabled /Disabled status of the event.
+
+ Rule
+
+
+
+
+
+SailPoint Lifecycle Manager 60
+
+===== Page 64/82 =====
+ For Rule event types only:
+
+ Select the event rule used to launch business processes.
+ Rules are created as part of the configuration process of IdentityIQ.
+
+ Include Identities
+
+ Select a rule to define the population.
+
+ None – only the identities specified inthe Included Identities listare in the population.
+
+ All – include allidentities in the population.
+
+ Match List – only identities whose criteria match that specified in the list.Add identity attributes, application
+ attributes and application permissions. Customize further by creating attribute groups to which this assignment
+ rule applies.
+ Ifthe Is Null checkbox isselected, the associated value text box is disabled. When the Is Null match ispro-
+ cessed, the term matches users on the chosen application who have a null value for that attribute /permission.
+
+ Filter – a custom database query.
+
+ Script – a custom script.
+
+ Rule – select an existing rule from the dropdown list.Click Edit Rule tolaunch the Rule Editor.
+
+ Population – select an existing population.
+
+ Threshold Type and Threshold Value
+
+ To use an Identity Processing Threshold to stop lifecycle events before they are fully processed, in case of acci-
+ dentally-triggered business process, set a type and value for the threshold.
+
+ For more information, see Identity Processing Thresholds in the Rapid Setup documentation.
+
+ Fixed – must be a positive whole number greater than 1. Decimals are not allowed when using a Fixed
+ Threshold.
+
+ Percentage – must be a positive whole number between 1 and 100.
+
+ Business Process
+
+ Select the business process triggered by this event.
+ The business process dropdown listcontains allof the standard and extended business processes configured in
+ your IdentityIQ deployment.
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Lifecycle Manager 61
+
+===== Page 65/82 =====
+Lifecycle Manager Reports
+
+Lifecyle Manager Reports enable you tomonitor and analyze information about Lifecycle Manager requests.
+
+The following reports provide information that isspecific to the functions of Lifecycle Manager:
+
+
+
+ l Access Request Status Report
+
+
+
+ l Account Requests Status Report
+
+
+
+ l Identity Requests Status Report
+
+
+
+ l Password Management Requests Report
+
+
+
+ l Registration Requests Status Report
+
+
+ Note: An identitymust have IdentityIQ administrative capabilities to use this option. For inform-
+ ation about setting up administrative capabilities, contact your IdentityIQ administrator.
+
+To access these report templates, navigate to Intelligence > Reports and select a report from the list.
+
+Lifecycle Manager Reports have the following sections:
+
+ Note: All reports use a set ofstandard properties to handle basic information, such as naming
+ and descriptions, and controls settings. Controls include items such as scope and required sign
+ off.You must enter the name before you run a report.
+
+
+
+
+ l Standard Properties – see Standard Properties
+
+
+
+ l Parameters – see the individual report descriptions fortheir unique parameters.
+
+
+
+ l Report Layout – see Report Layout
+
+
+The report information inthe detailed results format can be exported to a CSV fileand used inspreadsheets.
+
+Access Request Status Report
+
+The Access Request Status report shows details about access requests (roleand entitlement requests) submitted
+through Lifecycle Manager. The summary section displays a graph toillustrate the ratioof pending to completed
+requests included in the report. The detail section shows the access request ID, the requester, the target identity,the
+entitlement owner, and the date and type of request made, along with various details about the request including its
+current status.
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 62
+
+===== Page 66/82 =====
+ Note: To report on access requests that were triggered by lifecycle events, such as Rapid Setup
+ joiner, mover, orleaver events, or standard Lifecycle Events, use the Lifecycle Events Status
+ Report.
+
+Use the following criteria todetermine the information touse in thisreport. You can use any combination of options to
+build a report. You can use the Shift and Crtl keys to select multiple items from lists.
+
+ Note: If you select no options from a list,alloptions inthe listare included in the report.
+
+Applications
+
+ Show only access requests pertaining to one of the selected applications.
+
+Approvers
+
+ Include only access requests approved by, or submitted forapproval to, the selected identity or identities.
+
+Requesters
+
+ Include only access requests originally created by one of the selected identities.
+
+Entitlements
+
+ Show only access requests that included a request for access to the selected application-attribute-entitlement
+ combination(s).
+
+Roles
+
+ Show only access requests that included a request for one or more of the selected roles.
+
+Target Identities
+
+ Include only access requests made for one or more of the selected identities.
+
+Status
+
+ Show only access requests currently inthe specified state: Completed, Approved, Rejected, Pending, Can-
+ celled.
+
+Requested Date Range
+
+ Show only access requests made during the specified date range; date ranges can be open-ended ineither dir-
+ ection (no start or no end date), as needed.
+
+
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 63
+
+===== Page 67/82 =====
+Finished Date Range
+
+ Show only access requests whose end date is during the specified date range; date ranges can be open-ended
+ in either direction (no start or no end date), as needed.
+
+Account Requests Status Report
+
+The Account Requests Status report shows information about account requests submitted through Lifecycle Man-
+ager; thiscan include requests for new accounts or management of existing accounts (account deletion, dis-
+able/enable account, etc.). Itshows the access request ID associated with each request, the requester, the target
+identity, the application name and owner, the account native identity (ifthe request isfor an existing account), and the
+date and type ofrequest made, along with various details about the request including itscurrent status.
+
+Use the following criteria todetermine the information to use inthis report. You can use any combination of options to
+build a report. Ifyou do not select options from a list,alloptions inthe listare included in the report. You can use the
+Shift and Crtl keys to select multiple items from lists.
+
+Approvers
+
+ Include only account requests approved by, or submitted for approval to, the selected identity or identities. Ifno
+ approvers are selected, allapprovers are included.
+ Click the arrow tothe right of the suggestion field todisplay a listofall approvers, or enter a few letters in the field
+ to display a listof approvers that start with those letters.
+
+Requestors
+
+ Include only account requests originally created by one of the selected identities. If no requestors are specified,
+ all requestors are included.
+ Click the arrow tothe right of the suggestion field todisplay a listofall requestors, or enter a few letters in the
+ field to display a listof requestors that start with those letters.
+
+Applications
+
+ Show only account requests pertaining to accounts on one of the selected applications. Ifno applications are spe-
+ cified, allapplications are included.
+ Click the arrow tothe right of the suggestion field todisplay a listofall applications, or enter a few letters in the
+ field to display a listof applications that start with those letters.
+
+Target Identities
+
+ Include only account requests made for one or more of the selected identities. Ifno target identity are specified,
+ all target identities are included.
+ Click the arrow tothe right of the suggestion field todisplay a listofall target identities, or enter a few letters in the
+ field to display a listof target identities that start with those letters.
+
+
+
+
+ SailPoint Lifecycle Manager 64
+
+===== Page 68/82 =====
+Request Start and End Date(s)
+
+ The account request date range. The report provides all requests created on or afterthe start date and on or
+ before the end date.
+ You can enter the date manually, or click the [...]icon to select a date from the calendar. Date ranges can be
+ open-ended in either direction (no start or no end date), as needed.
+
+Approval Start and End Date(s)
+
+ The account approval date range. The report provides allapprovals created on or after the start date and on or
+ before the end date.
+ You can enter the date manually, or click the [...]icon to select a date from the calendar. Date ranges can be
+ open-ended in either direction (no start or no end date), as needed.
+
+Status
+
+ Show only account requests currently inthe specified state (completed, approved, rejected, pending, canceled).
+ Ifnone are specified, allstatus levels are included.
+
+Identity Requests Status Report
+
+The Identity Requests Status report shows details about identity requests submitted through Lifecycle Manager; this
+includes both Create Identity and Edit Identity actions. Requests to create a new identity are expanded into separate
+requests foreach attribute value, so the report displays those each on separate lines. The identity creation action is
+also represented as itsown record in the report. The same is true for editrequests which change more than one attrib-
+ute: a separate request line item isgenerated for each attribute. Each line on the report shows the access request ID
+associated with the request, the requester, the target identity name, the approval owner (commonly the identity's man-
+ager), the date of the request, and the operation to be performed, along with various other details about the request
+including itscurrent status.
+
+Use the following criteria to determine what information to use in this report. You can use any combination of options
+to build a report. Ifyou do not select any options from a list,alloptions in the listare included inthe report. You can use
+the Shift and Crtl keys to select multiple items from lists.
+
+Approvers
+
+ Select the approvers to include in the report. Ifno approvers are specified, allapprovers are included.
+ Click the arrow to the right of the suggestion fieldto display a listof allapprovers, or enter a few letters inthe field
+ to display a listof approvers that start with those letters.
+
+Requestors
+
+ Select the requestors to include inthe report. Ifno requestors are specified, allrequestors are included.
+ Click the arrow to the right of the suggestion fieldto display a listof allrequestors, or enter a few lettersin the
+
+
+
+
+ SailPoint Lifecycle Manager 65
+
+===== Page 69/82 =====
+ field to display a listofrequestors that start with those letters.
+
+Target Identity
+
+ Select the target identity to include in the report. Ifno target identity are specified, alltarget identities are
+ included.
+ Click the arrow to the rightof the suggestion field to display a listofall target identities, or enter a few letters inthe
+ field to display a listoftarget identities that start with those letters.
+
+Status
+
+ Select the status to include in the report. Ifnone are specified, allstatus levels are included.
+
+Request Date Range
+
+ The identity creation request date range. The report provides allrequests created on or after the start date and
+ on or before the end date.
+ You can enter the date manually, or clickthe calendar icon to select a date from the calendar. Date ranges can
+ be open-ended ineither direction (no start or no end date), as needed.
+
+Finished Date Range
+
+ The identity creation finished date range. The report provides all requests the finished on or after the start date
+ and on or before the end date.
+ You can enter the date manually, or clickthe calendar icon to select a date from the calendar. Date ranges can
+ be open-ended ineither direction (no start or no end date), as needed.
+
+Lifecycle Events Status Report
+
+The Lifecycle Events Status Report report shows details about access requests that were triggered by lifecycle
+events, such as Rapid Setup joiner, mover, or leaver events, or standard Lifecycle events.
+
+Report details can include the access request ID, the requester, the target identity, the entitlement owner, and the
+date and type of request made, along with various details about the request including itscurrent status. What appears
+inthe report details willdepend on the columns you selected for inclusion inthe Report Layout tab.
+
+Use the following criteriato determine the information to use inthis report. You can use any combination of options to
+build a report. You can use the Shift and Crtl keys to select multiple items from lists.
+
+ Note: If you select no options from a list,alloptions in the listare included in the report.
+
+Applications
+
+ Show only access requests pertaining to one of the selected applications.
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 66
+
+===== Page 70/82 =====
+Approvers
+
+ Include only access requests approved by, or submitted forapproval to, the selected identity or identities.
+
+Requesters
+
+ Include only access requests originallycreated by one ofthe selected identities.
+
+Entitlements
+
+ Show only access requests that included a request for access to the selected application-attribute-entitlement
+ combination(s).
+
+Roles
+
+ Show only access requests that included a request for one or more ofthe selected roles.
+
+Target Identities
+
+ Include only access requests made forone or more of the selected identities.
+
+Status
+
+ Show only access requests currently in the specified state:Completed, Approved, Rejected, Pending, Can-
+ celled.
+
+Requested Date Range
+
+ Show only access requests made during the specified date range; date ranges can be open-ended in either dir-
+ ection (no start or no end date), as needed.
+
+Finished Date Range
+
+ Show only access requests whose end date is during the specified date range; date ranges can be open-ended
+ ineither direction (no startor no end date), as needed.
+
+Password Management Requests Report
+
+This report shows password change requests that meet the filtercriteriaselected. Passwords can be changed through
+the Change Password option inLifecycle Manager, through the Forgot Password option (secondary authentication
+through security questions), and as a result of an expired password where the system forces the user to change their
+password. The reason for the change isincluded in the report, along with the requester, the target identity, the date of
+the request, the application and account native identity for which the password is being changed, and the completion
+date (along with any comments) forthe request.
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 67
+
+===== Page 71/82 =====
+Use the following criteria to determine what information is used inthis report. You can use any combination of options
+to build a report.
+
+ Note: If you do not select any options from a list,alloptions in the listare included in the report.
+
+Applications
+
+ Select the applications to include in the report. Ifno applications are specified, allapplications are included.
+ Click the arrow to the right of the suggestion field to display a listof allapplications, or enter a few letters inthe
+ field to display a listof applications that start with those letters.
+
+Requestors
+
+ Select the requestors to include inthe report. Ifno requestors are specified, all requestors are included.
+ Click the arrow to the right of the suggestion field to display a listof allrequestors, or enter a few letters in the
+ field to display a listof requestors that start with those letters.
+
+Roles
+
+ Type or use the dropdown listto select the roles to include in the report. If no roles are specified, all roles are
+ included.
+
+Target Identity
+
+ Select the target identity to include in the report. Ifno target identity are specified, all target identities are
+ included.
+ Click the arrow to the right of the suggestion field to display a listof alltarget identities, or enter a few letters inthe
+ field to display a listof target identities that start with those letters.
+
+Cause
+
+ Select the cause type to include in the report. Ifno cause types are specified, all types are included.
+ Choose from the following types:
+
+
+
+ l Expired Password
+
+
+
+ l Forgotten Password
+
+
+
+ l Change Request
+
+Status
+
+ Select the status to include in the report. Ifnone are specified, allstatus levels are included.
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 68
+
+===== Page 72/82 =====
+Request Date Range
+
+ The edit identity request date range. The report provides allrequests created on or after the start date and on or
+ before the end date.
+ You can enter the date manually, or clickthe [...]icon to select a date from the calendar. Date ranges can be
+ open-ended in either direction (no startor no end date), as needed.
+
+Finished Date Range
+
+ The edit identity request completion date range. The report provides allrequests that were completed on or after
+ the startdate and on or before the end date.
+ You can enter the date manually, or clickthe [...]icon to select a date from the calendar. Date ranges can be
+ open-ended in either direction (no startor no end date), as needed.
+
+Registration Requests Status Report
+
+This report shows the status of self-service registration requests submitted to IdentityIQ, when that feature isenabled
+forthe installation. Itshows the username for the self-registering user along with the current status, the approving or
+rejecting identity,and any available comments.
+
+The following criteria isused to determine what information is used in this report. You can use any combination of
+options to build a report. Ifyou do not select any options from a list,alloptions in the listare included in the report.
+
+Approvers
+
+ Select the approvers to include in the report. Ifno approvers are specified, all approvers are included.
+ Click the arrow to the rightof the suggestion field to display a listofall approvers, or enter a few letters inthe field
+ to display a listof approvers that startwith those letters.
+
+Target Identities
+
+ Select the target identity to include in the report. Ifno target identity are specified, alltarget identities are
+ included.
+ Click the arrow to the rightof the suggestion field to display a listofall target identities, or enter a few letters in the
+ field to display a listoftarget identities that start with those letters.
+
+Request Date Range
+
+ The edit identity request date range. The report provides allrequests created on or after the start date and on or
+ before the end date.
+ You can enter the date manually, or clickthe [...]icon to select a date from the calendar. Date ranges can be
+ open-ended in either direction (no startor no end date), as needed.
+
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 69
+
+===== Page 73/82 =====
+Finished Date Range
+
+ The edit identity request completion date range. The report provides all requests that were completed on or after
+ the start date and on or before the end date.
+ You can enter the date manually, or click the [...]icon to select a date from the calendar. Date ranges can be
+ open-ended in either direction (no start or no end date), as needed.
+
+Status
+
+ Select the status to include in the report. Ifnone are specified, allstatus levels are included.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 70
+
+===== Page 74/82 =====
+Batch Requests
+
+Batch Requests
+
+ Note: If the order ofoperations isimportant, create a separate filefor each request type and run
+ them sequentially.
+
+Batch Requests enable you togenerate specific types of access requests for more than one user at a time. The
+required data is gathered from a prepared comma-delimited fileforeach request type. The batch filesrequire comma-
+delimited data that represents the individual requests. In most cases the native identity or identityname can be used
+tospecify the request target.
+
+There might be an batch size limitset during the configuration ofIdentityIQ. Ifyou run into issues, contact your admin-
+istrator.
+
+To access the Batch Request option, navigate to Setup > Batch Requests.
+
+ Note: An identity must have IdentityIQ administrative capabilities to use thisoption. For inform-
+ ation about setting up administrative capabilities, contact your IdentityIQ administrator.
+
+For more information, see:
+
+
+
+ l Batch Requests Page – provides information on how toview, create, stop, or delete batch requests
+
+
+
+ l Batch Request Types and Examples – provides descriptions and examples of the types ofbatch requests
+
+
+
+ l Batch Request Details Page – provides information on how toview specific information about a batch request
+
+
+
+ l Create Batch Request Page – provides information on how toimport prepared comma-delimited files and set
+ the parameters of the batch request.
+
+Batch Requests Page
+
+Use the Batch Requests page to:
+
+
+
+ l View allbatch requests that are assigned toyou or to one ofyour workgroups
+
+
+
+ l View allbatch requests that you requested
+
+
+
+ l Create a new batch request
+
+
+
+ l Stop or delete an existing batch request
+
+
+You can perform the following tasks:
+
+
+
+
+
+ SailPoint Lifecycle Manager 71
+
+===== Page 75/82 =====
+ l View details about a batch request – double-click on a batch request entry in the table. See Batch Request
+ Details Page.
+
+
+
+ l Create a new batch request – click New Batch Request at the top of the table. See Create Batch Request
+ Page.
+
+
+
+ l Stop or delete a batch request – right-clickthe batch request entry in the table.
+
+View Batch Requests
+
+To sort the information inthe table by ascending or descending order, click the table header. Alternatively, mouse over
+the header row and use the dropdown arrow to select ascending or descending order. To select which rows are dis-
+played:
+
+ 1. Mouse over a header row.
+
+ 2. Click the dropdown arrow.
+
+ 3. Mouse over Columns to display the column options.
+
+ 4. Use the check boxes toselect which columns appear inthe table.
+
+Use the search field atthe top ofthe table to filtertheresults of the Batch File Name column. Double-click a batch
+request lineitem to view the Batch Request Details page. Right-click a line item to Terminate or Delete the batch
+request.
+
+ Column Name Description
+
+ Batch File Name The filelocation where the batch fileisoriginated.
+ Request Date The date the batch request was generated.
+ Run Date The date the batch request was executed.
+ Completed Date The date the batch request was completed.
+ Record Count The number of items within the batch request.
+ The current status of the batch request.
+
+
+ Status Scheduled – batch request isscheduled to run at a laterdate.
+ Running – batch request is currently running.
+ Executed – batch request was run successfully.
+ Terminated – batch request process was cancelled.
+
+
+
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 72
+
+===== Page 76/82 =====
+Batch Request Types and Examples
+
+This section describes the batch request types and criteriarequired in the comma-delimited filewith examples. Iden-
+tityIQsupports the following types of batch requests:
+
+
+
+ l Creating Identities by Batch Request
+
+
+
+ l Modifying Identitiesby Batch Request
+
+
+
+ l Creating Accounts by Batch Request
+
+
+
+ l Deleting Accounts by Batch Request
+
+
+
+ l Enabling /Disabling Accounts by Batch Request
+
+
+
+ l Unlocking Accounts by Batch Request
+
+
+
+ l Adding Roles by Batch Request
+
+
+
+ l Removing Roles by Batch Request
+
+
+
+ l Adding Entitlements by Batch Request
+
+
+
+ l Removing Entitlements by Batch Request
+
+
+
+ l Changing Passwords by Batch Request
+
+
+Batch request types with similar data and columns can be mixed inthe same file.The following batch request types
+must be in a separate file:
+
+ Note: To specify multiple entitlements orroles in the same request, use the pipe (|)delimiter to
+ separate each role or entitlement.
+
+
+
+
+ l Create Identity
+
+
+
+ l Modify Identity
+
+
+
+ l Change Password
+
+Date Formats in Batch Requests
+
+Ifyour batch request CSV fileincludes dates, they must be in one ofthese supported formats:
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 73
+
+===== Page 77/82 =====
+MM/DD/YYYY
+
+ Examples:
+
+ 3/17/2023
+
+ 09/28/2023
+
+MM/DD/YYYY H:m:s
+
+ Examples:
+
+ 01/26/2023 16:45:51
+
+ 1/26/2023 16:45:51
+
+MM/DD/YYYY H:m:s z
+
+ Examples:
+
+ 02/22/2222 22:22:22 GMT+02:00
+
+ 2/22/2222 22:22:22 GMT
+
+Creating Identities by Batch Request
+
+Use a Create Identitybatch request tocreate a listofidentitiesfrom a prepared comma-delimited spreadsheet. The
+operation inthe spreadsheet fora Create Identitybatch request isCreateIdentity.
+
+Example:
+ operation, name, location, email, department
+ CreateIdentity, Alex Smith, Austin, asmith@adept.com, Accounting
+ CreateIdentity, Bob Smith, Austin, asmith@adept.com, Engineering
+ CreateIdentity, Mark Smith, Austin, asmith@adept.com, Accounting
+ CreateIdentity, John Smith, Austin, johnsmith@adept.com, Finance
+
+Modifying Identities by Batch Request
+
+Use a Modify Identitybatch request tomodify orchange the data ofa listofidentitiesfrom a prepared comma-delim-
+itedspreadsheet. The operation in thespreadsheet fora Modify Identitybatch request isModifyIdentity.
+
+Example:
+ operation, identityName, location, email, department
+ ModifyIdentity, Alex Smith, Austin, asmith@adept.com, Accounting
+ ModifyIdentity, Bob Smith, Austin, asmith@adept.com, Engineering
+ ModifyIdentity, Mark Smith, Austin, asmith@adept.com, Accounting
+ ModifyIdentity, John Smith, Austin, johnsmith@adept.com, Finance
+
+
+
+
+
+
+
+
+
+ SailPointLifecycle Manager 74
+
+===== Page 78/82 =====
+Creating Accounts by Batch Request
+
+Use a Create Account batch request to create accounts fora listofidentitiesfrom a prepared comma-delimited
+spreadsheet. The operation in the spreadsheet for a Create Account batch request is CreateAccount.
+
+Example:
+ operation, application, nativeIdentity | identityName, email
+ CreateAccount, AdminsApp, atoby, atoby@example.com
+ CreateAccount, AdminsApp, jsmith, jsmith@example.com
+
+Deleting Accounts by Batch Request
+
+Use a Delete Account batch request to delete accounts fora listofidentitiesfrom a prepared comma-delimited spread-
+sheet. The operation inthe spreadsheet fora Delete Account batch request isDeleteAccount.
+
+Example:
+ operation, application, nativeIdentity | identityName, email
+ DeleteAccount, AdminsApp, atoby, atoby@example.com
+ DeleteAccount, AdminsApp, jsmith, jsmith@example.com
+
+Enabling / Disabling Accounts by Batch Request
+
+Use an Enable /Disable Account batch request toenable or disable accounts on a specificapplication for a listofiden-
+titiesfroma prepared comma-delimited spreadsheet. The operation inthe spreadsheet foran Enable Account batch
+request isEnableAccount. The operation in the spreadsheet for an Disable Account batch request isDis-
+ableAccount.
+
+Example:
+ operation, application, nativeIdentity | identityName
+ EnableAccount, AdminsApp, abell
+ EnableAccount, AdminsApp, jsmith
+ EnableAccount, AdminsApp, mjohnson
+
+Unlocking Accounts by Batch Request
+
+Use an Unlock Account batch request tounlock application accounts fora listofidentitiesfrom a prepared comma-
+delimited spreadsheet. The operation in the spreadsheet for an Unlock Account batch request isUnlockAccount.
+
+Example:
+ operation, application, nativeIdentity | identityName
+ UnlockAccount, AdminsApp, abell
+ UnlockAccount, AdminsApp, jsmith
+ UnlockAccount, AdminsApp, mjohnson
+
+
+
+
+
+
+
+
+
+
+ SailPoint LifecycleManager 75
+
+===== Page 79/82 =====
+Adding Roles by Batch Request
+
+Use an Add Role batch request to add one ormore roles toa listofidentitiesfrom a prepared comma-delimited
+spreadsheet. The operation inthe spreadsheet for an Add Role batch request isAddRole.
+
+Example:
+ operation, roles, identityName
+ AddRole, Helpdesk Associate
+ AddRole, Benefits Manager, 222
+ AddRole, Accounting, 222
+ AddRole, Helpdesk Associate, 222
+
+Removing Roles by Batch Request
+
+Use a Remove Role batch request toremove one or more roles from a listofidentitiesfrom a prepared comma-delim-
+itedspreadsheet. The operation inthe spreadsheet fora Remove Role batch request isRemoveRole.
+
+Example:
+ operation, roles, identityName
+ RemoveRole, Helpdesk Associate, 122
+ RemoveRole, Helpdesk Associate, 132
+ RemoveRole, Helpdesk Associate, 143
+ RemoveRole, Helpdesk Associate, 156
+
+Adding Entitlements by Batch Request
+
+Use an Add Entitlement batch request to add one ormore entitlements to a listofidentitiesfrom a prepared comma-
+delimited spreadsheet. The operation inthe spreadsheet for an Add Entitlement batch request isAddEntitlement.
+
+Example:
+ operation, application, attributeName, attributeValue, nativeIdentity | identityName
+ AddEntitlement, Procurement_System, group, @Audit, id1
+ AddEntitlement, Procurement_System, group, @Audit, id2
+ AddEntitlement, Procurement_System, group, @Audit, id3
+ AddEntitlement, Procurement_System, group, @Audit, id4
+ AddEntitlement, Procurement_System, group, @Audit, id5
+
+Removing Entitlements by Batch Request
+
+Use a Remove Entitlement batch request toremove one ormore entitlements from a listofidentitiesfrom aprepared
+comma-delimited spreadsheet. The operation in thespreadsheet fora Remove Entitlement batch request is
+RemoveEntitlement.
+
+Example:
+ operation, application, attributeName, attributeValue, nativeIdentity | identityName
+ RemoveEntitlement, Procurement_System, group, @Audit, id1
+ RemoveEntitlement, Procurement_System, group, @Audit, id2
+ RemoveEntitlement, Procurement_System, group, @Audit, id3
+
+
+
+
+ SailPointLifecycle Manager 76
+
+===== Page 80/82 =====
+ RemoveEntitlement, Procurement_System, group, @Audit, id4
+ RemoveEntitlement, Procurement_System, @Audit, id5
+
+Changing Passwords by Batch Request
+
+Use aChange Password batch request tochange or reset passwords fora listofidentitiesfrom aprepared comma-
+delimited spreadsheet. The operation inthe spreadsheet for aChange Password batch request isChangePassword.
+
+Example:
+ operation, application, password, nativeIdentity | identityName
+ ChangePassword, Active_Directory, 1111, jsmith
+ ChangePassword, Active_Directory, 1111, mjohson
+ ChangePassword, Active_Directory, 1111, ajones
+Batch Request Details Page
+
+Use theBatch Request Details page toview specificinformation about a batch request. The page isdivided into two
+sections. The upper section provides information about the batch request as awhole including:
+
+
+
+ l FileName
+
+
+
+ l Date Requested
+
+
+
+ l Date Launched
+
+
+
+ l Date Completed
+
+
+
+ l Status
+
+
+
+ l Total Records
+
+
+
+ l Total Completed
+
+
+
+ l Total Errors
+
+
+
+ l Total Invalid
+
+
+The lower section includes the Batch Request Items table which displays information foreach record in the batch
+request.
+
+Request Data
+
+ Displays the comma-delimited data of the requested operation.
+
+Status
+
+ Displays the current status of the record's request.
+
+
+
+ SailPoint Lifecycle Manager 77
+
+===== Page 81/82 =====
+ Running – requested item isstillprocessing. This could indicate an approval or manual work item completion is
+ needed.
+ Finished – the request process completed.
+ Terminated – the request was manually cancelled.
+ Invalid – something was wrong with the request. Click the cell to show further details.
+
+Result
+
+ Displays the resultof the record's request.
+
+ Success – the request completed.
+ Failed – the request failed due to a general validation error.
+ Approval – the request is waiting on an approval.
+ ManualWorkItem – indicates the request failed because the request type requires the generation ofa manual
+ work item and this was not a configured option inthe batch request.
+ PolicyViolation – the request failed because of a policy violation.
+ ProvisioningForm – indicates the request failed because the request type requires the generation of a pro-
+ visioning form and this was not a configured option inthe batch request.
+ Skipped – something was wrong with the request and itwas skipped. Click the cellto show further details.
+
+Identity Request ID*
+
+
+ Note: You must select Identity Request ID when you create the batch request.
+
+ The request ID generated by the batch request.
+
+Create Batch Request Page
+
+Use the Create Batch Request page to import prepared comma-delimited filesand set parameters of the batch
+request.
+
+Choose batch file
+
+ Click Browse and navigate the prepared comma-delimited filelocation.
+
+Error handling
+
+ Determines the batch request process behavior in the event of an error. Ifa request item generates errors, you
+ can continue the tasks or stop the task after a specified number of errors.
+
+Policy Option
+
+ Determines the batch request process behavior for policy violations. You can include policy checking or to failon
+ any policy violation.
+
+
+
+
+
+ SailPoint Lifecycle Manager 78
+
+===== Page 82/82 =====
+Schedule to run
+
+ Choose to run the batch request immediately or select a later date and time when the request runs.
+
+Manual input
+
+ Determines the batch request process behavior when a request needs manual interaction. You can skip batch
+ requests which require additional manual input or create any necessary provisioning forms.
+
+Work items
+
+ Determines the batch request process behavior when a request results in the generation of a work item. You can
+ skip the request or create any necessary work items.
+
+Handle create identity as modify if identity exists
+
+ Select this check box to handle a create identity batch request line item as modify identity request ifidentity
+ exists.
+
+Generate identity requests
+
+ Select this check box to create an identityrequest that can be viewed in Manage > Access Request.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Lifecycle Manager 79

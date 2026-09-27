@@ -1,0 +1,1858 @@
+﻿===== Page 93/149 =====
+IdentityIQ Standard Reports
+
+
+ Note:Â Selecting NO options from a listindicates that ALL options inthe listare included in the
+ report.
+
+
+ Note:Â Use the Shift and Crtl keys to select multiple items from lists.
+
+
+
+
+ Option Description
+
+ Select the applications to include in the report. Ifno applications are specified, all
+ applications are included.
+ Applications Click the arrow to the right of the suggestion field to display a listof allapplic-
+ ations, or enter a few letters in the field to display a listof applications that start
+ with that letter string.
+ Capabilities Select the capabilities to include in the report.
+ The roles to include inthe report.
+ Roles Click the arrow to the right of the field and select a role to create the inclusion list
+ for this report.
+ The groups or populations to include inthe report.
+ Groups Click the arrow to the right of the field and select a group to create the inclusion
+ listfor this report.
+ Last Refresh Select a date range to filterusers based on when the user was last refreshed.
+ Date
+ Last login Specify a login date range manually or click the calendar icon and select one
+ Date using the calendar options.
+
+Risky Accounts Report
+
+This report lists identities with accounts which represent risk on applications (that is,cause a higher application risk
+score for the application), along with the issues that cause the accounts to be identified as risky.
+
+Summary reports include mainly charts, graphs and summary statistics that highlight status of different areas within
+IdentityIQ. These reports cannot be exported to the CSV format.
+
+The Risky Accounts Report consists ofthe following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Report Options. These are described in the table below.
+
+
+
+ l Report Layout
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 89
+
+===== Page 94/149 =====
+IdentityIQ Standard Reports
+
+
+Allreports use a set of standard properties forbasic information such as naming and descriptions, and forsetting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Report Options
+
+The following criteria determines what information is included in this report. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included in the
+ report.
+
+
+
+
+ Option Description
+
+ Select the applications to include in the report. Ifno applications are specified, all
+ applications are included.
+ Click the arrow to the right of the suggestion field to display a listofall applic-
+ Correlated ations, or enter a few letters inthe fieldto display a listof applications that start
+ Applications with that letter string.
+ Correlated Applications are applications that are to be compared with the author-
+ itative application. Any identity that has an account on the correlated application
+ but not on the authoritative application isconsidered uncorrelated.
+
+Role Management Reports
+
+Role analytics are an important part of the overall role life-cycle management. Role analytics provide role managers
+the abilityto be proactive in their approach to monitoring and improving the role model within your organization. Role
+modeling is an iterative and constant process. As your business needs change, security features improve, and new
+applications and user are added to your enterprise, your role model will have to change accommodate them. Use role
+analytics to keep up with those changing needs and adjust your model as needed.
+
+
+
+ l Identity Roles Report
+
+
+
+ l Role Archive Report
+
+
+
+ l Role Change History Report
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 90
+
+===== Page 95/149 =====
+IdentityIQ Standard Reports
+
+
+
+ l Role Details Report
+
+
+
+ l Role Members Report
+
+
+
+ l Role Profiles Composition Report
+
+
+
+ l Roles by Application Report
+
+
+
+ l Roles by Entitlement Report
+
+Identity Roles Report
+
+This report shows allof the roles connected to a set of identities. Itindicates whether each role was assigned to or
+detected on the identity,and itshows the last time that role was certified for the identity. Note that detected roles which
+were certified as a part of assigned roles (i.e.they were required/permitted by assigned roles that were certified) will
+not have a certification date shown next tothem, but detected roles that are not granted by assigned roles and are
+therefore certified independently will show a certification date.
+
+The detailed results of this report can be exported to a .csv or PDFÂ file.
+
+The Identity Roles Report consists ofthe following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Identity Attributes
+
+
+
+ l Identity Extended Attributes
+
+
+
+ l Additional Identity Properties
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Identity Attributes
+
+The following criteria determines what information isincluded in thisreport. You can use any combination of options to
+build a report.
+
+
+
+
+
+ SailPoint IdentityIQ Reports 91
+
+===== Page 96/149 =====
+IdentityIQ Standard Reports
+
+
+ Note:Â Selecting NO options from a listindicates that ALL options inthe listare included in the
+ report.
+
+
+ Note:Â Use the Shift and Crtlkeys toselect multiple items from lists.
+
+
+ Option Description
+
+ First Input the firstname of the identity you wish the report to include. For example, ifyou
+ Name input â€œJohnâ€ in the field,the report includes information on identities whose first
+ name isJohn.
+ Last Input the last name ofthe identity you wish the report to include. For example, ifyou
+ Name input â€œSmithâ€ in the field, the report includes information on identities whose last
+ name isSmith.
+ Display Input the display name of the identity you wish the report to include. For example, if
+ Name you input â€œJohn_Smithâ€ in the field,the report includes information on identities
+ whose display name is John_Smith.
+ Input the email address ofthe identity you wish the report to include. For example, if
+ Email you input â€œJohn@email.comâ€ in the field, the report includes information on iden-
+ titieswhose email address is name is John@email.com.
+ The manager listto include in thisreport. Only users who report to the selected man-
+ Manager agers are included in the report.
+ Click the arrow tothe right ofthe suggestion fieldto a listof allmanagers, or enter a
+ few letters in the field to display a listof managers that start with that letterstring.
+ Choose how the report handles inactive users. Select No selection toinclude both
+ Inactive inactive and active users, True to include only inactive users, or False to not include
+ inactive users.
+
+Identity Extended Attributes
+
+You can use the identity extended attributes that have been defined for your installation as criteria for this report.
+Because these are custom-defined attributes, the specific criteria options you have here willbe specific to your own
+installation of IdentityIQ. Any identity extended attributes defined as searchable or as multi-valued are included as
+possible filtersfor the report.
+
+Additional Identity Properties
+
+The following criteria determines what information is included in this report. You can use any combination of options to
+build a report.
+
+ Selecting NO options from a listindicates that ALL options inthe listare included inthe report.
+
+
+
+
+
+ SailPoint IdentityIQ Reports 92
+
+===== Page 97/149 =====
+IdentityIQ Standard Reports
+
+
+ Use the Shift and Crtl keys to select multiple items from lists.
+
+
+
+
+ Option Description
+
+ Select the applications to include inthe report. If no applications are specified, all
+ applications are included.
+ Applications Click the arrow to the right of the suggestion fieldto display a listofall applic-
+ ations, or enter a few letters in the fieldto display a listof applications that start
+ with that letter string.
+ Capabilities Select the capabilities toinclude in the report.
+ The roles to include in the report.
+ Roles Click the arrow to the right of the fieldand select a role to create the inclusion list
+ forthis report.
+ The groups or populations to include in the report.
+ Groups Click the arrow to the right of the fieldand select a group to create the inclusion
+ listforthis report.
+ Last Refresh Select a date range to filterusers based on when the user was lastrefreshed.
+ Date
+ Last Login Select a date range to filterusers based on when the user was lastlogged in.
+ Date
+
+Role Archive Report
+
+This report shows a detailed view of each role defined inthe system (subject to filtercriteria). Each page lists a single
+role and shows details such as itsowner, activity monitoring status, activation status, type, inheritance, and as applic-
+able tothe role type, itspermitted/required roles, detection profiles, among others.
+
+This report is an archive-type report. Archive reports include end-of-period and task information that is formatted for
+easy dissemination of key audit information. Due to the large amount ofdata that isgenerated, the best option is to
+export the report results to a .pdf file.
+
+The Role Archive Report consists ofthe following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Role Report Options. These are described in the table below.
+
+
+
+ l Report Layout
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 93
+
+===== Page 98/149 =====
+IdentityIQ Standard Reports
+
+
+Allreports use a set ofstandard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Role Report Options
+
+The following criteria determines what information is included in this report. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options inthe listare included inthe
+ report.
+
+
+
+
+ Option Description
+
+ Select the applications toinclude inthe report. Ifno applications are specified, all
+ applications are included.
+ Applications Click the arrow to the right ofthe suggestion field to display a listof allapplic-
+ ations, or enter a few lettersin the fieldto display a listof applications that start
+ with that letterstring.
+ Only roles associated with the selected applications are included in this report.
+ Type Select types of roles to include in the report.
+ The listof role owners to include inthis report. Ifno role owners are specified,
+ the roles for allowners are included.
+ Owners Click the arrow to the right ofthe suggestion field to display a listof allrole own-
+ ers, or enter a few letters in the field to display a listofrole owners that start with
+ that letter string.
+ Status Include only active roles or only inactive roles in the report.
+
+Role Change History Report
+
+This report shows a summary of the roles which have been altered during the specified time period, the date of the
+alteration, and the name of the change approver. This report is based on the existence of role archives, so itcan only
+be run for installations that have enabled role archiving (set the â€œdoArchiveâ€ variable to â€œtrueâ€ inthe selected role man-
+agement workflow). The person whose name isassociated with the creation of the RoleArchive object is listedas the
+approver on the report; this may be the person who made the change or may be a separate approver, depending on
+the approval mode configured inthe system.
+
+
+
+
+ SailPoint IdentityIQ Reports 94
+
+===== Page 99/149 =====
+IdentityIQ Standard Reports
+
+
+The detailed results of thisreport can be exported to a .csv or PDFÂ file.
+
+The Role Change History Report consists ofthe following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Role Properties. These are described in the table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties forbasic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Role Properties
+
+The following criteria determines what information is included inthis report. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included in the
+ report.
+
+
+
+
+ Option Description
+
+ Change Start Filter request based on request date:
+ and End Date Start Date â€” allchanges made on or after the selected date.
+ (s) End Date â€” allchanges made on or before the selected date.
+ Role Status Include only active roles or only inactive roles in the report.
+ Type Select types ofroles to include in the report.
+ Select the applications to include in the report. Ifno applications are specified, all
+ applications are included.
+ Applications Click the arrow tothe right of the suggestion fieldto display a listof all applic-
+ ations, or enter a few letters inthe fieldto display a listofapplications that start
+ with that letter string.
+ Only roles associated with the selected applications are included in this report.
+ Owners The listofrole owners to include in this report. Ifno role owners are specified,
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 95
+
+===== Page 100/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ the roles for allowners are included.
+ Click the arrow tothe right of the suggestion fieldto display a listof allrole own-
+ ers, or enter a few letters in the field to display a listof role owners that start with
+ that letter string.
+
+Role Details Report
+
+The Role Details Report includes information on the role name, owner name, role type, and associated applications
+configured in IdentityIQ, foreach role that matches the specified criteria.
+
+The detailed results of thisreport can be exported to a .csv or PDFÂ file.
+
+The Role Details Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Report Criteria. These options are described in the table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties for basic information such as naming and descriptions, and forsetting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Report Criteria
+
+The following criteria determines what information is included inthis report. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included in the
+ report.
+
+
+
+
+ Option Description
+
+ Role Status Include only active roles or only inactive roles in the report.
+ Applications Select the applications to include in the report. Ifno applications are specified,
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 96
+
+===== Page 101/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ allapplications are included.
+ Click the arrow to the rightof the suggestion fieldto display a listof all applic-
+ ations, or enter a few letters in the fieldto display a listof applications that start
+ with that letter string.
+ Only roles associated with the selected applications are included in this report.
+ The listof role owners toinclude inthis report. Ifno role owners are specified,
+ the roles for allowners are included.
+ Owners Click the arrow to the rightof the suggestion fieldto display a listof all role own-
+ ers, or enter a few letters in the field to display a listof role owners that start with
+ that letter string.
+ Role Type Select types of roles to include in the report.
+ Ifyour role model uses indirect roles (for example, ifyou map business roles to
+ Show Applic- ITÂ roles), use this option to include application information for indirect roles.
+ ations for Indir- Note that selecting this option may impact report performance. You can also
+ ect Roles use the Roles by Application Report to report on indirect roles, with more
+ streamlined performance.
+ Ifa role (whether direct or indirect) inherits any entitlements, select this option
+ to display the names of the applications for the inherited entitlements.
+ Show Inherited
+ Applications Note that selecting this option may impact report performance. You can also
+ use the Roles by Application Report to report on inherited, with more stream-
+ lined performance.
+
+Role Members Report
+
+This report shows the names of allIdentities who are associated to each role that meets the specified report filters.
+Identities are considered â€œmembersâ€ of a role ifthe role is in either their assigned or detected role set.
+
+The detailed results of this report can be exported to a .csv or PDFÂ file.
+
+The Role Members Report consists ofthese sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Role Members Options. These options are described inthe table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties for basic information, such as naming and descriptions, and to set controls,
+such as scope and to require sign off.
+
+
+
+
+
+ SailPoint IdentityIQ Reports 97
+
+===== Page 102/149 =====
+IdentityIQ Standard Reports
+
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Role Members Options
+
+The following criteria determines what information is included in thisreport. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included in the
+ report.
+
+
+
+
+ Option Description
+
+ Role Status Include only active roles or only inactive roles in the report.
+ Select the applications to include inthe report. If no applications
+ are specified, all applications are included.
+ Applications Click the arrow to the right of the suggestion fieldto display a list
+ of all applications, or enter a few letters in the field to display a list
+ of applications that start with that letter string.
+ To filterroles by role owner, choose the owner(s) here. If no role
+ owners are specified, the roles for allowners are included.
+ Role Owners Click the arrow to the right of the suggestion fieldto display a list
+ of all role owners, or enter a few letters in the fieldto display a list
+ of role owners that start with that letter string.
+ Type To filterroles by type, select types here. Ifno types are selected.
+ all types of roles are included.
+ Filter for role membership:Â select AllRoles, Only Empty Roles (to
+ Empty Roles include only roles with no members) or Only Populated Roles (to
+ include only roles with members assigned).
+ Choose roles to include in the report, by name. Click the arrow to
+ display a listof allroles, or enter a few letters inthe fieldto display
+ Role Name a listofroles that start with that letter string.
+
+ Leave thisfield blank to include allroles.
+ For the next four fields, the values you can choose are determined by the application(s) you have
+ selected.
+
+
+
+
+
+ SailPoint IdentityIQ Reports 98
+
+===== Page 103/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ Ifno application isselected, the drop-down willshow all valid options forall applications in the
+ system.
+
+ Ifthe application(s) you have selected do not have any valid options forthe field,the drop-down
+ is replaced by a text box. You can type inany values and click the plus icon to add them as cri-
+ teria, but any invalid options entered in this way are "sanitized" when the report isrun, and willnot
+ produce results or appear inthe report's listof parameters.
+
+
+ Entitlement Attribute Filter for roles that include the selected entitlement attribute(s).
+ Entitlement Value Filter for roles that include the selected entitlement value(s).
+ Permission Target Filter for roles that include the selected permission target(s).
+ Permission Right Filter for roles that include the selected permission right(s).
+ Filter roles by the role's profile relationship (direct or indirect). A
+ profile is a set ofentitlements on a specific application.
+
+ Options are:
+
+
+
+ l Any direct or indirect relationships
+
+
+
+ l Any direct relationships
+
+
+
+ l Any indirect relationships
+
+
+ Profile Relationship to Role This filteris typically used inconjunction with an application, and
+ the entitlement or permission filters.For example, to filterfor a
+ role that provides direct access to the PayrollControls permission
+ target on the Oasis_DB application, you would select the Oasis_
+ DB application, select PayrollControls in the Permission Tar-
+ get field, and choose Any direct relationships here.
+
+ Note that some roles can grant both direct and indirect access to
+ entitlements and permissions, so a role can potentially be
+ returned by both the direct relationship and indirect relationship
+ options.
+
+Role Profiles Composition Report
+
+This report shows the profiles used for role detection. Ifa description was provided for the profile, itis included in the
+report along with the filterused for role detection and the application against which the filteris applied. Ifa role
+includes more than one profile filter(forexample, to specify criteria on multiple applications), each one is included as a
+
+
+
+
+
+ SailPoint IdentityIQ Reports 99
+
+===== Page 104/149 =====
+IdentityIQ Standard Reports
+
+
+separate line item on the report. Roles without profiles are noted with â€œContains No Profilesâ€ inthe description column;
+under the default IdentityIQ role configuration, any non-IT role will be marked as containing no profiles since profiles
+are specific to IT roles only.
+
+This report returns information inthe detailed results format that can be exported toa .csv fileand used as spread-
+sheets.
+
+The Role Profiles Composition Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Role Properties. These are described inthe table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Role Properties
+
+The following criteria determines what information is included inthis report. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included inthe
+ report.
+
+
+
+
+ Option Description
+
+ Role Status Include only active roles or only inactive roles in the report.
+ Roles Without Include only roles that contain no profiles or only roles that contain at least one
+ Profiles profile.
+ Select the applications to include inthe report. If no applications are specified, all
+ applications are included.
+ Applications Click the arrow to the right of the suggestion fieldto display a listof all applic-
+ ations, or enter a few letters in the fieldto display a listof applications that start
+ with that letter string.
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 100
+
+===== Page 105/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ Only roles associated with the selected applications are included inthis report.
+ The listof role owners to include in this report. Ifno role owners are specified,
+ the roles for allowners are included.
+ Owners Click the arrow to the right of the suggestion field todisplay a listof allrole own-
+ ers, or enter a few letters in the fieldto display a listof role owners that start with
+ that letterstring.
+ Type Select types of roles to include in the report.
+
+
+
+Roles by Application Report
+
+The Roles by Application Report shows role relationships for allapplications. You can run this report on all applic-
+ations, or on selected applications.
+
+The Roles by Application Report includes the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Role Properties. These are described in the table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties forbasic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Role Properties
+
+The following criteria determines what information isincluded in this report.
+
+ Option Description
+
+ Select the application(s) to include in the report. Ifno applications are selected,
+ Applications all applications are included.
+ To select the applications to include, click the arrow in the suggestion field to
+ see a listofall applications, or enter a few letters in the field to display a listof
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 101
+
+===== Page 106/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ applications that start with that letterstring.
+ Only roles associated with the selected applications are included in this report.
+ Show role rela- This option is available only ifyou have not selected specific applications to
+ tions for all report on, in the Applications field. Use this option to listalldirect, required,
+ applications and permitted applications for allroles.
+ Include roles
+ with inherited Use this option toinclude roles that inherit application entitlements.
+ entitlements
+
+Roles by Entitlement Report
+
+The Roles by Entitlement Report shows how particular entitlements and permissions fitinto your organizationâ€™s role
+model. This report lets you enter specific entitlements or permissions forselected application(s)Â and see which roles
+provide direct or indirect access to them. You must select at least one application as part of your reporting critiera(in
+other words, you can not leave the Application fieldblank toreport on allapplications at once).
+
+The Roles by Entitlement Report includes the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Role Properties. These are described in the table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties for basic information such as naming and descriptions, and forsetting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+
+ l Application
+
+
+
+ l FilterType
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Role Properties
+
+The following criteria determines what information is included inthis report.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 102
+
+===== Page 107/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ Select the application(s) to include in the report. You must select at least one
+ application.
+
+ Applications Click the arrow in the suggestion field to see a listof allapplications, or enter a
+ few letters in the fieldto display a listof applications that start with that letter
+ string.
+
+ Only roles associated with the selected applications are included in this report.
+ Choose whether to report on role relationships based on entitlements or on per-
+ missions. A selection inthis field is required.
+ FilterType
+ The selection you make here determines which ofthe following fields
+ appear:Â Entitlement fields or Permission fields.
+ Entitlement Filter for roles that include the selected entitlement attribute(s).
+ Attribute
+ Entitlement Filter for roles that include the selected entitlement value(s).
+ Value
+ Permission Filter for roles that include the selected permission target(s).
+ Target
+ Permission Filter for roles that include the selected permission right(s).
+ Right
+ Filter roles by the role's profile relationship (direct or indirect). A profile isa set of
+ entitlements on a specific application.
+
+ Options are:
+
+
+
+ l Any direct or indirect relationships
+
+
+
+ l Any direct relationships
+
+ Profile Rela- l Any indirect relationships
+ tionship to
+ Role For example, to filterfora role that provides direct access to both the Acct-
+ sPayable and AcctsReceiveable groups in the Accounting application, you
+ would select the Accounting application, choose Entitlements as the Filter
+ Type, and enter AcctsPayable and AcctsReceiveable inthe Entitlement
+ Value field. Then choose Any direct relationships here.
+
+ Note that some roles can grant both direct and indirect access to entitlements
+ and permissions, so a role can potentially be returned by both the direct rela-
+ tionship and indirect relationship options.
+
+
+
+
+
+SailPoint IdentityIQ Reports 103
+
+===== Page 108/149 =====
+Developing Custom Reports
+
+Developing Custom Reports
+
+
+IdentityIQ includes a reporting architecture that greatly simplifies the process ofdeveloping custom reports by allow-
+ing the developer to specify the report requirements in a TaskDefinition XML document. The executor uses Iden-
+tityIQ'sForms API to generate the UI form for specifying parameters, and creates the report output based on column
+configurations specified inthe TaskDefinition. The XML specifies the report's Standard Properties values, the report-
+specific parameters, the columns that are available for the report, how the data isretrieved forinclusion on the report,
+and how the report results are laid out inboth the detail and summary sections.
+
+The standard report templates provide some good examples of how to define reports through XML. Excerpts from
+these standard templates are used inthis section to illustratehow to configure custom reports. Many of the excerpts
+come from the Uncorrelated Accounts Report, a simple example that can be used to explore the basics of defining a
+custom report.
+
+Itcan be helpful toexamine the fullXML for these reports to see the tags' usage incontext as they are referenced and
+excerpted in thissection. The reports can be viewed through the Debug pages as described in XML Representation of
+Reports and Instances, or the entire set ofTaskDefinition objects can be exported to a filethrough the iiqconsole and
+explored in atext editor. The console export command to write the system's TaskDefinition objects to a fileisâ€œexport
+taskDefs.xml TaskDefinitionâ€ (where â€œtaskDefs.xmlâ€ is the name ofthe fileto which the objects are exported).
+Note thatthe filecontains alltasks including reports because no filteravailable on the export command to select only a
+subset ofobjects of a given type.
+
+See:
+
+
+
+ l Reports inthe IdentityIQ Object Model
+
+
+
+ l Report Definition
+
+
+
+ l Report Forms
+
+
+
+ l Reports DataSource Example
+
+Reports in the IdentityIQ Object Model
+
+InIdentityIQ, a report isexecuted as a specialized task. The root element of a report inthe object model is a
+<TaskDefinition> element. Report results are stored inthe object model as <TaskResult>Â objects.
+
+
+ <TaskDefinition executor="sailpoint.reporting.LiveReportExecutor" name="Uncorrelated
+ Accounts Report" progressMode="Percentage" resultAction="Rename" subType="Identity and
+ User Reports" template="true" type="LiveReport">
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 104
+
+===== Page 109/149 =====
+Developing Custom Reports
+
+
+Inthe example above, the type attribute forthe TaskDefinition indicates that thisis a report definition, and the
+executor specifies which class processes this task definition to run the report. The attributes of the TaskDefinition
+object and their purposes are described below.
+
+
+
+ Attribute Usage
+
+ The class used to run the report. The â€œsail-
+ executor point.reporting.LiveReportExecutorâ€, isalways specified as the executor for
+ any report of type â€œLiveReport,â€ including custom reports.
+ Name ofthe report template; shown on the Reports listas the report's Name
+
+
+ When templates are edited, they must be saved as customized report
+ instances, and the name value across allreport templates and report
+ name instances must be unique. Therefore, the name attribute fora template isnot
+ displayed as the Name field'svalue on the Edit Report window's Standard
+ Properties page since instances cannot be saved with this same name. The
+ value entered in the Standard Properties page's Name fieldbecomes the
+ name value of the TaskDefinition XML for that instance.
+ Specifies how the executor updates progress while the report is being
+ executed; most reports use Percentage. Possible values are:
+
+
+ progressMode None â€” executor doesn't update progress (same as null, or not specifying)
+ String â€” executor periodically updates progressString property of the result
+ during execution
+ Percentage â€” executor periodically updates the progress and per-
+ centageComplete properties of the result during execution
+ Specifies the PreviousResultAction (shown on the Standard Properties
+ page) which determines how to manage the results from previous runs of this
+ report when itis executed again. Possible values are:
+
+
+ Rename â€” rename old report results by appending a numeric value (for
+ resultAction example, Uncorrelated Accounts Report -2)
+ RenameNew â€” rename new report results by appending a numeric value
+ Cancel â€” do not run the report when old report results stillexistfor the report
+ (displays an error message indicating that a result from a previous execution
+ of the report stillexists)
+ Delete â€” delete old report results when the report isexecuted again
+ subType The report category to which this report belongs (sub-categories within the
+
+
+
+
+
+SailPoint IdentityIQ Reports 105
+
+===== Page 110/149 =====
+Developing Custom Reports
+
+
+ Attribute Usage
+
+ Reports and My Reports tabs);can be one ofthe out-of-the-box subTypes or
+ a custom subType
+ Boolean indicating whether thisis a report template (appears on the Reports
+ template tab) ora customized report instance (appears on My Reports tab);new cus-
+ tom reports should be set up as template=â€trueâ€
+ type Allreports, including new custom reports, are of type â€œLiveReportâ€
+
+See, Elements within TaskDefinition
+
+Elements within TaskDefinition
+
+The TaskDefinition contains several nested elements thatare used to define important information forthe report. The
+TaskDefinition always contains an Attributes map and a Signature, and usually contains a Description element and a
+listofRequiredRights.
+
+ Attributes Map
+
+The Attributes map must at minimum include the report definition.
+
+
+ Â <Attributes>
+ Â Â Â Â Â Â <Map>
+ Â Â Â Â Â Â Â Â <entry key="report">
+ Â Â Â Â Â Â Â Â Â Â <value>
+ Â Â Â Â Â Â Â Â Â Â Â Â <LiveReport title="Uncorrelated Accounts Report">
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â â€¦
+ Â Â Â Â Â Â Â Â Â Â Â Â </LiveReport>
+ Â Â Â Â Â Â Â Â Â Â </value>
+ Â Â Â Â Â Â Â Â </entry>
+ Â Â Â Â Â Â </Map>
+ Â Â Â Â </Attributes>
+
+Other optional attributesin the attributemap include emailIdentities, reportSortBy, reportGroupBy, disableSummary,
+and disableDetail, as described in the Standard Forms forReport Specification section.
+
+ Signature
+
+The Signature contains a map ofInput attributes that name allofthe parameters that can be specified for the report.
+
+
+ <Signature>
+ Â Â Â Â <Inputs>
+ Â Â Â Â Â Â <Argument multi="true" name="correlatedApps" type="Application">
+ Â Â Â Â Â Â Â Â <Description>rept_input_uncorrelated_ident_report_correlated_apps
+ Â Â Â Â Â Â Â Â </Description>
+ Â Â Â Â Â Â Â Â <Prompt>report_input_correlated_apps</Prompt>
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 106
+
+===== Page 111/149 =====
+Developing Custom Reports
+
+
+
+ Â Â Â Â Â Â </Argument>
+ Â Â Â Â Â Â <Argument name="resultScope" type="Scope">
+ Â Â Â Â Â Â Â Â <Description>rept_input_result_scope</Description>
+ Â Â Â Â Â Â </Argument>
+ Â Â Â Â Â Â <Argument multi="true" name="emailIdentities" type="Identity">
+ Â Â Â Â Â Â Â Â <Description>rept_input_email_recips</Description>
+ Â Â Â Â Â Â </Argument>
+ Â Â Â Â </Inputs>
+ Â </Signature>
+
+When a customized report instance with pre-populated parameters is saved, those parameters are saved as a part of
+theinstance's TaskDefinition initsAttributes map. In thisexample, alistof Applications and a listofEmail Recipients
+have been saved for thisreport instance.
+
+
+ <TaskDefinition created="1344453735712" id="4028460238edaba4013907aff5200ec9" mod-
+ ified="1344867911170" name="Uncorrelated Accounts" resultAction="Rename" sub-
+ Type="Identity and User Reports" type="LiveReport">
+ Â <Attributes>
+ Â Â Â Â <Map>
+ Â Â Â Â Â Â Â <entry key="correlatedApps">
+ Â Â Â Â Â Â Â Â <value>
+ Â Â Â Â Â Â Â Â Â Â <List>
+ Â Â Â Â Â Â Â Â Â Â Â Â <String>4028460238edaba401372767b6eb0d70</String>
+ Â Â Â Â Â Â Â Â Â Â Â Â <String>4028460238edaba40138edcfcd1102d2</String>
+ Â Â Â Â Â Â Â Â Â Â </List>
+ Â Â Â Â Â Â Â Â </value>
+ Â Â Â Â Â Â </entry>
+ Â Â Â Â Â Â <entry key="disableDetail" value="false"/>
+ Â Â Â Â Â Â <entry key="disableSummary" value="false"/>
+ Â Â Â Â Â Â <entry key="emailIdentities">
+ Â Â Â Â Â Â Â Â <value>
+ Â Â Â Â Â Â Â Â Â Â <List>
+ Â Â Â Â Â Â Â Â Â Â Â Â <String>4028460238edaba40138edb3571e000d</String>
+ Â Â Â Â Â Â Â Â Â Â </List>
+ Â Â Â Â Â Â Â Â </value>
+ Â Â Â Â Â Â </entry>
+ Â Â Â Â Â Â <entry key="reportColumnOrder" value="username, firstName, lastName"/>
+ Â Â Â Â </Map>
+ Â </Attributes>
+
+They are passed from the customized report instance tothe associated report template atrun-time through the
+taskDefinition input arguments specified inthe <Signature> forthe report.
+
+Every report template's Signature should include input arguments forresultScope and emailIdentities, since these
+automatically appear on the Standard Properties window and are available for a user to specify on allreports. Allother
+inputarguments are report-specificand the remainder ofthe arguments in a custom report isspecific to thatreport.
+The listofarguments should match the set of fieldsavailable for parameter specification on the report'sForm. Report-
+specificarguments should include a name and type as attributeson the <Argument> element. Ifthe argument is
+multi-valued, itshould also include the attributeâ€œmulti=â€trueâ€.â€
+
+
+
+
+
+SailPoint IdentityIQ Reports 107
+
+===== Page 112/149 =====
+Developing Custom Reports
+
+
+Application arguments can include a Description and Prompt element. When a custom form (ina <ReportForm> ele-
+ment) has been specified, these are ignored and can be omitted. However, ifno custom form isspecified, these
+report-specific input arguments are automatically rendered on a form page (titledReport Options) using the Prompt
+value as the fieldlabel and the Description value as the tooltipfor the field.Both of these values can be specified as
+strings oras localizable message keys.
+
+
+ <Argument multi="true" name="correlatedApps" type="Application">
+ Â <Description>rept_input_uncorrelated_ident_report_correlated_apps
+ Â </Description>
+ Â <Prompt>report_input_correlated_apps</Prompt>
+
+The Account Group Members report is an example of a report thatrelies on thisautomatic form rendering for its
+report-specific filteroptions.
+
+ Description
+
+The Description element isdisplayed as the Description for the report on both the Reports and My Reports listsand on
+the Edit Report window.
+
+<Description>A detailed view of the uncorrelated user accounts in the sys-
+tem.</Description>
+
+ Required Rights
+
+The RequiredRights element specifies what system right(s)a user must have to be able tosee and execute the report.
+The required rights are specified as references toone or more SPRight objects.
+
+
+ <RequiredRights>
+ Â Â Â <Reference class="sailpoint.object.SPRight" id="4028460238ed9b8e0138ed9bc59d0054" name-
+ e="FullAccessUncorrelatedIdentitiesReport"/>
+ </RequiredRights>
+
+
+Report Definition
+
+The report,including itscustom UI form orforms, itsquery specification, and itsresults contents and layout, isspe-
+cifiedas a part of the TaskDefinition's attributesmap with the attributekey â€œreportâ€.The value for thisattribute isa
+<LiveReport> element.
+
+
+ <Attributes>
+ Â Â Â Â <Map>
+ Â Â Â Â Â Â <entry key="report">
+ Â Â Â Â Â Â Â Â <value>
+ Â Â Â Â Â Â Â Â Â Â <LiveReport title="Uncorrelated Accounts Report">
+
+
+
+
+
+ SailPoint IdentityIQ Reports 108
+
+===== Page 113/149 =====
+Developing Custom Reports
+
+
+Elements within <LiveReport> determine the report filtersthatcan be specified by a report user, the query used to
+retrieve the data forthe report, the layout ofthe report detail grid, and the contents and layout of the report's summary
+table and chart. The nested elements within <LiveReport> are:
+
+
+
+ Element Description
+
+ Determines how the report-specific parameters sections are presented to
+ ReportForm the user in the Edit Report window (see ReportForm: Collecting Report-Spe-
+ cificParameters)
+ DataSource Specifies how the data for the report details is retrieved from the database
+ (see DataSource: Retrieving Report Data)
+ Lists columns available forinclusion in the report detail grid; also used in
+ Columns conjunction with DataSource to determine which data elements are
+ retrieved in the query (see Columns/ReportColumnConfig: Report Grid
+ Presentation)
+ Describes the Summary section ofthe report -information included, query to
+ ReportSummary retrieve it,layout and labels for presentation of it(see ReportSummary: Sum-
+ mary Table)
+ Chart Defines the graph or chart displayed in the Summary section for the report
+ (see Chart: Report Graph)
+
+For more information, see:
+
+
+
+ l ReportForm: Collecting Report-Specific Parameters
+
+
+
+ l DataSource: Retrieving Report Data
+
+
+
+ l Columns/ReportColumnConfig: Report Grid Presentation
+
+
+
+ l Initialization Script or Rule
+
+
+
+ l Extended Column Script or Rule
+
+
+
+ l Validation Script or Rule
+
+
+
+ l Chart: Report Graph
+
+
+
+ l Report Forms
+
+
+
+ l Reports DataSource Example
+
+
+
+
+
+
+SailPoint IdentityIQ Reports 109
+
+===== Page 114/149 =====
+Developing Custom Reports
+
+ReportForm: Collecting Report-Specific Parameters
+
+Most reports allow you to set filtersthatconstrain the contents of the generated report. Incustom reports, report-spe-
+cificparameters are collected from the report user through a custom form, thatis referenced through a ReportForm
+element inthe report definition.The form must be specified as a separate XML document and imported intoIdentityIQ.
+The Form object isdescribed in Report Forms.
+
+The ReportForm element references the form likethis:
+
+
+ <ReportForm>
+ <Reference class="sailpoint.object.Form" id="4028460238edaba40138edb36b330010" name-
+ e="Uncorrelated Account Report Custom Fields"/>
+ </ReportForm>
+
+ Standard Forms for Report Specification
+
+The referenced ReportForm is presented to the user inthe Edit Report window between the two standard form pages
+thatare part of every report's specification: Standard Properties and Report Layout. Those two standard pages are
+rendered based on aForm object called Report Skeleton using values specified inthe report's TaskDefinition XML.
+These tables indicate which TaskDefinition elements and attributes determine the values forfieldson the Standard
+Properties and Report Layout pages.
+
+
+
+ Standard Prop- TaskDefinition Source
+ ertiesField
+
+ Ifediting acustomized report instance, <TaskDefinition> name attribute
+
+
+ <TaskDefinition name="Uncorrelated Accounts - Financials"
+ Name â€¦ >
+
+
+ Ifcreating a new report instance based on a template, none (notpopulated)
+
+
+ Previous Res- <TaskDefinition> resultAction attribute<TaskDefinition
+ ultAction name="Uncorrelated Accounts Report" resultAction="Rename"
+ â€¦ >
+ Description <Description> element
+ Â resultScope entry inAttributes map (value contains ID of selected scope)
+
+ Scope* <entry key="resultScope" value-
+
+ e="2c9082ee38e813a20138e934eb210146"/>
+
+
+
+
+
+ SailPoint IdentityIQ Reports 110
+
+===== Page 115/149 =====
+Developing Custom Reports
+
+
+Standard Prop- TaskDefinitionSource
+ertiesField
+
+ emailIdentitiesentryinAttributesmap (ListcontainsIdentityID values)
+
+
+ <entry key=â€emailIdentitiesâ€>
+ <value>
+Email Recip- <List>
+ients* <String>4028460238edaba40138edb35653000b</String>
+ </List>
+ </value>
+ </entry>
+
+
+ Usually specifiedininstance XML instead oftemplate XML
+Allow Con- <TaskDefinition> concurrent attribute (con-
+currency current=â€trueâ€)<TaskDefinition concurrent="true" name-
+ e="Uncorrelated Accounts Report" â€¦ >
+ <SignoffConfig> element
+
+
+ <SignoffConfig>
+ <WorkItemConfig created="1344962495866" escal-
+ ationStyle="none" id="4028460238edaba401392603057a1464">
+ <NotificationEmailTemplateRef><Reference class-
+ s="sailpoint.object.EmailTemplate"
+Require id="4028460238ed9b8e0138ed9bd8690106" name="Default
+Signoff* Report Template"/>
+ </NotificationEmailTemplateRef>
+ <Owners><Reference class="sailpoint.object.Identity"
+ id="4028460238edaba40138edb36b33016d" name-
+ e="Aaron.Nichols"/>
+ </Owners>
+ </WorkItemConfig>
+ </SignoffConfig>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPointIdentityIQReports 111
+
+===== Page 116/149 =====
+Developing Custom Reports
+
+
+ Report Layout TaskDefinition Source
+ Field
+
+ reportSortBy entry in Attributes map
+
+ Sort By* <entry key="reportSortBy" value-
+
+ e="accountGroupDisplayName"/>
+ reportSortAsc entry inattributes map
+
+
+ Sort Ascend- <entry key="reportSortAsc">
+ ing* <value>
+ <Boolean>true</Boolean>
+ </value>
+ </entry>
+ reportGroupBy entry inAttributes map
+ Group By*
+ <entry key="reportGroupBy" value="application"/>
+ <ReportColumnConfig> header attributes;hidden="true" attribute places
+ column inleftpane -available but not included on report detail by default
+
+ Columns <ReportColumnConfig field="accountGroupName" head-
+
+ er="rept_app_account_grp_memb_col_name" property="value"
+ sortable="true" />
+ Disable Report disableSummary entry inAttributes map
+ Summary Dis-
+ play* <entry key="disableSummary" value="true"/>
+ Disable Report disableDetail entry inAttributes map
+
+ DetailDisplay* <entry key="disableDetail" value="true"/>
+
+
+*These fields are typicallyspecified through the UI for customized instances of reports and saved into the My Reports
+instances' attributes map, rather than being specified inthe report template XML. However, they can be specified in
+thetemplate XML ifthey apply to the report's default configuration.
+
+Although most reports do include a custom form, itisnot required. When one isnot specified, the Edit Report window
+stilldisplaysthe Standard Properties and Report Layout pages; the IdentityStatus Summary report shows an
+example of this.
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Reports 112
+
+===== Page 117/149 =====
+Developing Custom Reports
+
+DataSource: Retrieving Report Data
+
+The data shown inthe detail section of the report is retrieved through a query that isbuiltbased on a combination of
+the <DataSource> specification and the <Columns> element. In general, a query is specified in three parts: Select,
+From, and Where. The Select portion (the columns list)isspecified through the <Columns> element inthe report defin-
+ition-specifically, the <ReportColumnConfig>s listedwithin <Columns> element. The From and Where clauses are
+specified through the <DataSource> element.
+
+There are three available datasource types: Filter,Java, and HQL. The simplest of these three isthe Filterdatasource,
+though various options available with thisdatasource type make itquite powerful and flexible.The other two are avail-
+able formore complex report data retrieval needs, and Java is likelyto be used as the datasource more often in HQL
+inthose cases. Each of these three datasource types isdiscussed next.
+
+Filter DataSource
+
+A filterdatasource executes a projection query to retrieve the data required by the ReportColumnConfigs specified for
+the report. Itemploys the SailPoint Filterobject to specify the query. The object whose data is being queried is spe-
+cifiedas the objectType for the DataSource, and the DataSource type isspecified as â€œFilterâ€.
+
+<DataSource objectType="sailpoint.object.Link" type="Filter">
+
+
+ Ifthe objectType is one of the top-level classes in the IdentityIQ object model (forexample, the
+ setof objects thatcan be exported from the iiqconsole orretrieved directlyin from the debug
+ pages), the fully-qualifiedclass name isnot required forthis attribute.For example, Identity can
+ be specified here as objectType=â€Identityâ€. However, the fully-qualifiedname (forexample, sail-
+ point.object.Identity) isalways acceptable, even forthe top-level classes, so when in doubt, spe-
+ cifythe fully-qualifiedname.
+
+This isan example ofa filter<DataSource> and its<Columns> specification:
+
+
+ <LiveReport title="Uncorrelated Accounts Report">
+ Â <DataSource objectType="sailpoint.object.Link" type="Filter">
+ Â Â Â <QueryParameters>
+ <Parameter argument="correlatedApps" property="application.id"/>
+ Â Â Â Â Â Â Â <Parameter defaultValue="false" property="identity.correlated" valueClass-
+ s="Boolean"/>
+ Â Â Â Â Â Â Â <Parameter defaultValue="false" property="application.authoritative" valueClass-
+ s="Boolean"/>
+ Â Â Â Â Â Â Â <Parameter defaultValue="false" property="application.logical" valueClass-
+ s="Boolean"/>
+ Â Â Â </QueryParameters>
+ Â </DataSource>
+ Â <Columns>
+ <ReportColumnConfig field="username" header="rept_uncorrelated_ids_grid_username" prop-
+ erty="nativeIdentity" sortable="true" />
+ <ReportColumnConfig field="firstName" header="rept_uncorrelated_ids_grid_firstName" prop-
+ erty="identity.firstname" sortable="true" />
+
+
+
+
+
+ SailPoint IdentityIQ Reports 113
+
+===== Page 118/149 =====
+Developing Custom Reports
+
+
+
+ <ReportColumnConfig field="lastName" header="rept_uncorrelated_ids_grid_lastName" prop-
+ erty="identity.lastname" sortable="true" />
+ <ReportColumnConfig field="applicationName" header="rept_uncorrelated_ids_grid_appName"
+ property="application.name" sortable="true" />
+ Â </Columns>
+
+The search criteria,making up the â€œwhereâ€ clause forthe search, are specified through one ormore ofseveral query-
+related elements: Query, QueryParameters, and QueryScript. Joins, sorts and groupBy columns can also be specified
+as needed forthe query.
+
+ QueryParameters
+
+The <QueryParameters> element isused most often. QueryParameters is a map of argument values used tocreate
+the queryOptions object that controls the search. They can be specified based on report arguments, hard-coded val-
+ues, or calculated values. QueryParameters contains a listof<Parameter> elements, each ofwhich defines one ofthe
+criteria.These <Parameter>s are "anded" together to make the where clause.
+
+
+ <QueryParameters>
+ Â Â Â <Parameter argument="correlatedApps" property="application.id"/>
+ Â Â Â <Parameter defaultValue="false" property="identity.correlated" valueClass="Boolean"/>
+ Â Â Â â€¦
+ </QueryParameters>
+
+There are several different options forspecifying parameters ina set of QueryParameters. These options are
+described below, illustratedwith example Parameters. Most of these examples (except where noted) were taken from
+the Entitlement Owner Access Review Live Report which queries against the sailpoint.object.CertificationItem
+object,so allofthese parameters relate to thatobject.
+
+
+
+ l Referencing a report argument: generally processed as â€œproperty = argumentâ€; thisparameter looks forcer-
+ tificationItems with a parent.certification.certificationGroups.id value inthe report argument â€œcer-
+ tificationGroupsâ€
+
+
+ <Parameter argument="certificationGroups" prop-
+ erty="parent.certification.certificationGroups.id"/>
+
+
+ When arguments are multi-valued, parameters based on them are automatically eval-
+ uated with â€œinâ€rather than â€œequalsâ€.
+
+
+
+
+ l Specifying a default value: generally processed as â€œproperty = argument ordefaultValue (ifargument is
+ null)â€;thisparameter looks forCertificationItems with a parent.certification.type equal to the report argument
+ â€œtypeâ€; ifnone isprovided, itdefaults to the type â€œDataOwnerâ€
+
+
+ <Parameter argument="type" defaultValue="DataOwner"
+
+
+
+
+
+SailPoint IdentityIQ Reports 114
+
+===== Page 119/149 =====
+Developing Custom Reports
+
+
+ property="parent.certification.type" valueClass-
+ s="sailpoint.object.Certification$Type"/>
+
+
+ This example also illustratesusage of the valueClass attribute;thisattribute isnot neces-
+ sary forstring or object comparisons but is forother types, such as enumerations (such as
+ Type inthis example), Booleans, Dates, Lists, etc.
+
+
+
+
+ l Specifying a hard-coded value: an attribute can also be hard coded tobe evaluated against the defaultValue
+ by not including an argument, as shown in thisparameter from the Uncorrelated Accounts Report. This is pro-
+ cessed as â€œproperty = defaultValueâ€, inthis case cast as valueClass (notrequired forstrings).
+
+
+ <Parameter defaultValue=â€falseâ€ property=â€identity.correlatedâ€ valueClass-
+ s=â€booleanâ€/>
+
+
+
+ l Specifying different operations: thisexample illustrateshow to create evaluation conditions other than
+ equals (orin) relationships; operation can be specified as GT, GE, LT, or LE (greater than, greater than or
+ equal to, less than, less than or equal to)
+
+
+ <Parameter argument="createStartDate" operation="GT" prop-
+ erty="parent.certification.created"/>
+
+
+
+ l Using a ValueScript: processed as "property = return value from ValueScript"; thisparameter performs pro-
+ cessing based on the argument to return a different value that should be used inthe criterion; thisexample
+ uses a ValueScript toget the application name thatcorresponds tothe applicationID in the "application" report
+ argument; ina ValueScript, the argument isaccessed through the variable name "value".
+
+
+
+
+ <Parameter argument="applications" property="parent.application">
+ Â Â Â <ValueScript>
+ Â Â Â Â Â Â <Source>
+ Â Â Â Â Â Â Â Â Â import sailpoint.object.*;
+ Â Â Â Â Â Â Â Â Â import sailpoint.api.ObjectUtil;
+ Â Â Â Â Â Â Â Â Â if (value != null){
+ Â Â Â Â Â Â Â Â Â Â Â Â return ObjectUtil.convertIdsToNames(context, Application.class, value);
+ Â Â Â Â Â Â Â Â Â }
+ Â Â Â Â Â Â Â Â Â return null;
+ Â Â Â Â Â Â </Source>
+ Â Â Â </ValueScript>
+ </Parameter>
+
+
+ Since object references are stored inthe customized report instance XML (and passed to report
+ input arguments) as ID values and many comparisons need to be done based on name, this con-
+ vertIdsToNames() utilitymethod isfrequently used in ValueScripts in the standard reports.
+
+
+
+
+
+SailPoint IdentityIQ Reports 115
+
+===== Page 120/149 =====
+Developing Custom Reports
+
+
+
+
+ l Using a QueryScript: used tospecify any custom filterand add itinto the queryOptions
+ object that isused inthe datasource filter;parameters using a QueryScript do not need to
+ specify a property because the queryScript overrides any property on the parameter; the
+ argument specified on the parameter can be accessed within the script through the â€œvalueâ€
+ variable
+
+
+ Group and populations are stored in groupDefinitions objects as a filter,sothis example
+ (from the Identity Forwarding Report) shows how a group or population selected as a report
+ parameter isbuilt into the datasource filterthrough a QueryScript.
+
+
+ <Parameter argument="groupDefinitions">
+ Â Â Â <QueryScript>
+ Â Â Â Â Â Â <Source>
+ Â Â Â Â Â Â Â Â Â import sailpoint.object.*;
+ Â Â Â Â Â Â Â Â Â import sailpoint.reporting.*;
+ Â Â Â Â Â Â Â Â Â Filter f = ReportingLibrary.getGroupDefinitionFilter(context, value,
+ false);
+ Â Â Â Â Â Â Â Â Â if (f!=null) {
+ Â Â Â Â Â Â Â Â Â Â Â Â queryOptions.addFilter(f);
+ Â Â Â Â Â Â Â Â Â }
+ Â Â Â Â Â Â Â Â Â return queryOptions;
+ Â Â Â Â Â Â </Source>
+ Â Â Â </QueryScript>
+ </Parameter>
+
+
+
+
+
+ l ValueRule and QueryRule: These two can be specified in place of ValueScript and
+ QueryScript, respectively, to encapsulate the beanshell ofa script into a reusable rule.
+ (These two examples were not pulled from a standard report; they represent the appropriate
+ syntax ifthe reports using the ValueScript and QueryScript specified above had encap-
+ sulated those scripts into rules.)
+
+
+
+
+ <Parameter argument="applications" property="parent.application">
+ Â Â Â <ValueRule>
+ Â Â Â Â Â Â <Reference class="sailpoint.object.Rule" id="4028460238ed9b8e0138ed9beff9090f" name-
+ e="App Value Rule"/>
+ Â Â Â </ValueRule>
+ </Parameter>
+
+ <Parameter argument="groupDefinitions">
+
+
+
+
+
+
+SailPoint IdentityIQReports 116
+
+===== Page 121/149 =====
+Developing Custom Reports
+
+
+
+ Â Â Â <QueryRule>
+ Â Â Â Â Â Â <Reference class="sailpoint.object.Rule" id="4028460238ed9b8e0138ed9beff90900" name-
+ e="Group Query Rule"/>
+ Â Â Â </QueryRule>
+ </Parameter>
+
+
+ Query
+
+Another way to specify the filtercontents isthough a <Query> element. The contents of Query element are specified
+as a filterstringand can only specify hard-coded criteriawith no variable substitution (i.e.report arguments cannot be
+specified within a Query element). Query allows the specification of â€œorâ€criteria,as shown in the example below:
+
+<Query>IdentityEntitlement.name=="assignedRoles" || Iden-
+tityEntitlement.name=="detectedRoles"</Query>
+
+Query and QueryParameters can be specified forthe same DataSource. When both are specified, the Query filterand
+the Parameter filtersare â€œandedâ€ together to create the finalwhere clause.
+
+ QueryScript
+
+QueryScript creates a filterstringthrough abeanshell script.Itisdesigned so itcan append additional criteria,includ-
+ing those requiring variable substitution, onto a Query element's contents. The script has access tothe string value of
+the Query element (ina string variable called â€œqueryâ€) and must explicitly append the additional criteriato it;otherwise,
+the originalquery string isoverwritten with the QueryScript's return value. The QueryScript shown below actually
+comes from an HQL datasource report (theAccount Group Membership Totals Report), but the QueryScript syntax is
+the same for alldatasource types.
+
+
+ <QueryScript>
+ Â Â Â <Source>
+ Â Â Â Â Â Â import java.util.*;
+
+ Â Â Â Â Â Â List applications = args.get("application.id");
+ Â Â Â Â Â Â if (applications != null &amp;&amp; !applications.isEmpty()){
+ Â Â Â Â Â Â Â Â Â query = query + " and application.id in(:application_id) ";
+ Â Â Â Â Â Â }
+ Â Â Â Â Â Â return query;
+
+ Â Â Â Â </Source>
+ </QueryScript>
+
+
+ Join
+
+When the search must access more than one object to process the filtercriteria,a <Join> element is required to con-
+nect the objects properly. One or more Joins can be specified for a single datasource.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 117
+
+===== Page 122/149 =====
+Developing Custom Reports
+
+
+For example, the IdentityRoles Report displays the roles that each Identity isassigned. Most ofthe available filtersfor
+the report apply to the Identity object,but the roleassignment isrecorded on the IdentityEntitlement object, linked to
+the Identityobject by the IdentityID. The Join element specifies thatconnection. The property is the value on the
+primary object (the DataSource objectType) and the joinProperty specifies the connection attribute on the second
+object.
+
+
+ <DataSource objectType="Identity" type="Filter">
+ Â Â Â <Join joinProperty="IdentityEntitlement.identity.id" property="id"/>
+ Â Â Â <Query>IdentityEntitlement.name=="assignedRoles" || Iden-
+ tityEntitlement.name=="detectedRoles"</Query>
+ Â Â Â <QueryParameters>
+ Â Â Â Â Â Â <Parameter argument="identities" property="id"/>
+ Â Â Â Â Â Â â€¦
+ Â Â Â </QueryParameters>
+ </DataSource>
+
+
+ OptionsRule or OptionsScript
+
+The finalelements available on a filterdatasource are an OptionsRule or OptionsScript. These can be used to make
+modifications tothe QueryOptions before the query isrun; they can also replace the rest ofthe query specification (for
+example, eliminating the need fora Query, QueryParameters, QueryScript or Join element) by simply constructing the
+whole queryOptions in the ruleor script.
+
+Only one of these can be specified (the ruleoverrides the script ifboth are provided). The OptionsRule or Option-
+sScript ispassed a SailPoint Context called â€œcontextâ€, a queryOptions called â€œoptionsâ€ and an argument map called
+â€œargsâ€.Options contains the entire set of query criteriaspecified in any of the other elements (Query, QueryScript,
+QueryParameters, Join) and args contains the TaskDefinition argument map. The rule orscript should append any
+additional custom queryOptions to options and return it.
+
+
+ <OptionsScript>
+ Â Â Â Â <Source>
+ Â Â Â Â Â Â Â import java.util.*;
+ Â Â Â Â Â Â Â import sailpoint.object.*;
+ Â Â Â Â Â Â Â //code to add components to queryOptions goes here. e.g.: this would
+ Â Â Â Â Â Â Â // Apply to an Identity objectType and would get only Identities whose
+ Â Â Â Â Â Â Â // Manager is the Identity selected in the manager filter (typically,
+ Â Â Â Â Â Â Â // an optionsScript or optionsRule would be used for a more complex
+ Â Â Â Â Â Â Â Filter myFilter = Filter.eq("manager.id", args.get("manager.id");
+ Â Â Â Â Â Â Â options.addFilter(myFilter);
+ Â Â Â Â Â Â Â return options;
+ Â Â Â Â Â </Source>
+ Â </OptionsScript>
+
+An OptionsRule isspecified as areference toa Rule object:
+
+<OptionsRule>
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 118
+

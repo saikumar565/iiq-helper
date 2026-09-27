@@ -1,0 +1,1889 @@
+﻿===== Page 63/149 =====
+IdentityIQ Standard Reports
+
+
+
+ l Total Assignments
+
+
+
+ l Unique Entitlements
+
+Configured Resource Reports
+
+
+
+ l Configured Applications Archive Report
+
+
+
+ l Configured Applications Detail Report
+
+
+
+ l Delimited File Application Status Report
+
+Configured Applications Archive Report
+
+This report shows key attributes of allapplications meeting specified report filters.Specifically, itindicates the con-
+nector inuse, the owner, the object types defined (account, group), and the identity attribute and display attribute
+selected for each object schema. Italso shows the applicationâ€™s creation date and last updated date. Finally, the Iden-
+tityIQAuthentication attribute indicates whether the application is used for pass-through-authentication to authen-
+ticate users toIdentityIQ.
+
+This report isan archive-type report. Archive reports include end-of-period and task information that isformatted for
+easy dissemination ofkey audit information.Due tothe large amount ofdata that is generated, the best option is to
+export the report results to a .pdf file.
+
+Allreports use a set of standard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running thisreport:
+
+
+
+ l Name
+
+
+For more information on Standard Properties, see Standard Report Properties
+
+For more information on Report Layout, see Report Layout
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Application Properties
+
+The following criteriadetermines what information isincluded inthis report. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included in the
+ report.
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 59
+
+===== Page 64/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ Select the applications to include inthe report. Ifno applications are specified, all
+ applications are included.
+ Applications Click the arrow to the right ofthe suggestion fieldto display a listof allapplic-
+ ations, or enter a few letters inthe fieldto display a listof applications that start
+ with that letterstring.
+ The application owners to include in the report. Only applications associated
+ with selected application owners are included in the report
+ Owners Click the arrow to the right ofthe suggestion fieldto display a listof allowners, or
+ enter a few letters in the field todisplay a listofowners that start with that letter
+ string.
+
+Configured Applications Detail Report
+
+This report shows the name, connector type, owner, and revoker specified foreach application configured inthe sys-
+tem.
+
+The detailed results of thisreport can be exported to a .csv or PDFÂ file.
+
+The Configured Applications Detail Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Application Properties. These options are described inthe table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Application Properties
+
+The following criteria determines what information is included in this report. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options inthe listare included in the
+ report.
+
+
+
+
+
+ SailPoint IdentityIQ Reports 60
+
+===== Page 65/149 =====
+IdentityIQ Standard Reports
+
+
+
+
+ Option Description
+
+ Select the applications to include in the report. Ifno applications are specified, all
+ applications are included.
+ Applications Click the arrow to the right of the suggestion field to display a listof allapplic-
+ ations, or enter a few letters in the field to display a listof applications that start
+ with that letter string.
+ The application owners to include in the report. Only applications associated
+ with selected application owners are included in the report
+ Owners Click the arrow to the right of the suggestion field to display a listof allowners, or
+ enter a few letters in the field to display a listof owners that start with that letter
+ string.
+
+Delimited File Application Status Report
+
+The Delimited File Application Status Report includes information about applications that are of type Delimited File
+Parsing Connector and that also have local file types. For example, applications that use delimited files,but are
+acquired through a proxy such as ftp are not shown in the report.
+
+Specifically, the report indicates the lasttime the application was aggregated and statistics about the fileto which itis
+pointed, including filename, date, size, and calculated fileage. The report does not include information on the end
+date of that aggregation or ifitwas successful. Therefore this report should not be used as an indicator ofapplication
+aggregation success.
+
+The detailed results of this report can be exported to a .csv or PDFÂ file.
+
+The Delimited File Application Status Report consists ofthe following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Delimited File Properties. These options are described in the table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties forbasic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 61
+
+===== Page 66/149 =====
+IdentityIQ Standard Reports
+
+Delimited File Properties
+
+The following criteria determines what information isincluded inthis report. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included in the
+ report.
+
+
+
+
+ Option Description
+
+ Application Select which application to include inthe report.
+
+Identity and User Reports
+
+
+
+ l Account Attributes Live Report
+
+
+
+ l Application Account Summary Report
+
+
+
+ l Application Account by Attribute Report
+
+
+
+ l Identity Effective Access Live Report
+
+
+
+ l Identity Entitlements Detail Report
+
+
+
+ l Identity Forwarding Report
+
+
+
+ l Identity Status Summary Report
+
+
+
+ l Privileged Access Report
+
+
+
+ l Uncorrelated Accounts Report
+
+
+
+ l User Account Attributes Report
+
+
+
+ l User Security Question Status Report
+
+
+
+ l User Details Report
+
+
+
+ l Users by Application Report
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 62
+
+===== Page 67/149 =====
+IdentityIQ Standard Reports
+
+Account Attributes Live Report
+
+This report shows the account attributes for every application account held by every identity (according to filters
+applied). Each account attribute and value combination is listedon a separate line of the report results.
+
+This report can be filteredto include accounts fora subset of identities based on values specified for core identity
+attributes, extended identity attributes, and other extended properties of identities such as the capabilities assigned to
+them and the groups towhich they belong. Ifone or more applications are selected, only accounts on those applic-
+ations are included inthe report.
+
+The detailed results ofthis report can be exported to a .csv or PDFÂ file.
+
+The Account Attributes Live Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Identity Attributes
+
+
+
+ l Identity Properties
+
+
+
+ l Report Layout
+
+
+ Note:Â Based on how IdentityIQ was set up for your enterprise, other attributes may be available.
+ Extended attributes may include items such as region, location, department, and other attributes
+ specific to your deployment.
+
+Allreports use a set ofstandard properties for basic information such as naming and descriptions, and forsetting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running thisreport:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Identity Attributes
+
+The following criteria determines what information isincluded in this report. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included in the
+ report.
+
+
+ Note:Â Use the Shift and Crtl keys to select multiple items from lists.
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 63
+
+===== Page 68/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ The user attributes on which to filter.Only users with the listed attributes are
+ User Attrib- included in the report. This information is discovered during identity aggregation.
+ utes Identity attributes can be configured. The attributes that display can vary for each
+ instance of the product.
+ Input the firstname of the identity you wish the report to include. For example, if
+ First Name you input â€œJohnâ€ in the field, the report includes information on identities whose first
+ name isJohn.
+ Input the last name ofthe identity you wish the report to include. For example, ifyou
+ Last Name input â€œSmithâ€ in the field, the report includes information on identities whose last
+ name isSmith.
+ Display Input the display name of the identity you wish the report toinclude. For example, if
+ Name you input â€œJohn_Smithâ€ inthe field,the report includes information on identities
+ whose display name is John_Smith.
+ Input the email address of the identity you wish the report to include. For example,
+ Email ifyou input â€œJohn@email.comâ€ in the field, the report includes information on iden-
+ titieswhose email address is name is John@email.com.
+ The manager listto include in this report. Only users who report to the selected
+ Manager managers are included in the report.
+ Click the arrow tothe right of the suggestion fieldto a listof all managers, or enter a
+ few letters in the field to display a listof managers that start with that letter string.
+ Choose how the report handles inactive users. Select No selection to include both
+ Inactive inactive and active users, True to include only inactive users, or False to not
+ include inactive users.
+
+Identity Properties
+
+The following criteria determines what information isincluded in this report. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included inthe
+ report.
+
+
+ Note:Â Use the Shift and Crtl keys to select multiple items from lists.
+
+
+ Option Description
+
+ Applications Select the applications to include inthe report. Ifno applications are spe-
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 64
+
+===== Page 69/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ cified, allapplications are included.
+ Click the arrow to the rightof the suggestion field todisplay a listofall applic-
+ ations, or enter a few letters in the field to display a listofapplications that
+ start with that letterstring.
+ Capabilities Select the capabilities toinclude inthe report.
+ The groups or populations to include inthe report.
+ Groups Click the arrow to the rightof the fieldand select a group to create the inclu-
+ sion listfor thisreport.
+ Last Refresh Select a date range to filterusers based on when the user was last refreshed.
+ Date
+ Last Login Date Specify a login date range manually or click the calendar icon and select one
+ using the calendar options.
+ Show authorized Select this option to include authorized scopes and capabilities for each iden-
+ scopes and cap- tityin the report.
+ abilities
+
+Application Account Summary Report
+
+This report shows counts ofthe number of accounts on each application, the number of identities with accounts on
+each application, and the number of identities with more than one account on each application.
+
+The detailed results of this report can be exported to a .csv or PDFÂ file.
+
+The Application Account Summary Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Report Options. These options are described in the table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 65
+
+===== Page 70/149 =====
+IdentityIQ Standard Reports
+
+Report Options
+
+The following criteria determines what information is included inthis report.
+
+
+
+ Option Description
+
+ Select the applications to include inthe report. Ifno applications are specified, all
+ applications are included.
+ Applications Click the arrow to the right ofthe suggestion fieldto display a listof allapplic-
+ ations, or enter a few letters inthe fieldto display a listof applications that start
+ with that letterstring.
+
+
+ Note:Â Selecting NO options from a listindicates that ALL options inthe listare included in the
+ report.
+
+
+ Note:Â Use the Shift and Crtlkeys toselect multiple items from lists.
+
+Application Account by Attribute Report
+
+This report shows each account aggregated from the selected application and the Identity to which each account is
+linked. This report can be run foronly one application at a time, so the Application filterisrequired. Other filtersare
+determined by the configured extended account attributes forthe installation. Boolean attributes offer the option to
+select either value or none (toinclude accounts with either value set); date attributes can be constrained by a start or
+end date or both. String attributes are analyzed for an exact match to the entered filtervalue.
+
+The detailed results of thisreport can be exported to a .csv or PDFÂ file.
+
+The Application Account by Attribute Report consists ofthe following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Account Properties. These options are described in the table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+
+
+
+ SailPoint IdentityIQ Reports 66
+
+===== Page 71/149 =====
+IdentityIQ Standard Reports
+
+Account Properties
+
+The following criteria determines what information isincluded in this report. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included in the
+ report.
+
+
+
+
+ Option Description
+
+ Select the applications to include in the report. Ifno applications are specified, all
+ applications are included.
+ Applications Click the arrow to the right of the suggestion field to display a listofall applic-
+ ations, or enter a few letters in the field to display a listof applications that start
+ with that letterstring.
+ Inactive Choose how the report handles inactive accounts. Select No selection to
+ Account include both inactive and active accounts, True to include only inactive
+ accounts, or False to not include inactive accounts.
+ Privileged Choose how the report handles privileged accounts. Select No selection to
+ Account include both privileged and standard accounts, True to include only privileged
+ accounts, or False to not include privileged accounts.
+ Service Choose how the report handles service accounts. Select No selection to
+ Account include both service and standard accounts, True to include only service
+ accounts, or False to not include service accounts.
+ Last login Specify a login date range manually or click the calendar icon and select one
+ using the calendar options.
+
+Identity Effective Access Live Report
+
+This report listsall entitlements, including account group memberships, found for identities meeting the filtercriteria
+specified. When an entitlement isencapsulated in a detected role and/or is granted to the user based on an assigned
+role, the associated roles are also shown on the report row for that entitlement.
+
+This report can be filteredto include entitlements for a subset of identities based on values specified for core identity
+attributes, extended identity attributes, and extended properties of identities such as the capabilities assigned to them,
+and the groups to which they belong. If one or more applications are selected, only accounts on those applications are
+included in the report.
+
+The detailed results ofthis report can be exported to a .csv or PDFÂ file.
+
+The Identity Effective Access Live Report consists of the following sections:
+
+
+
+
+ SailPoint IdentityIQ Reports 67
+
+===== Page 72/149 =====
+IdentityIQ Standard Reports
+
+
+
+ l Standard Report Properties
+
+
+
+ l Identity Attributes
+
+
+
+ l Identity Extended Attributes
+
+
+
+ l Additional Identity Properties
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Identity Attributes
+
+The following criteria determines what information is included in this report. You can use any combination of options to
+build a report.
+
+ Option Description
+
+ First Input the firstname of the identity you wish the report to include. For example, ifyou
+ Name input â€œJohnâ€ in the field,the report includes information on identities whose first
+ name isJohn.
+ Last Input the last name ofthe identity you wish the report to include. For example, ifyou
+ Name input â€œSmithâ€ in the field, the report includes information on identities whose last
+ name isSmith.
+ Display Input the display name of the identity you wish the report to include. For example, if
+ Name you input â€œJohn_Smithâ€ in the field,the report includes information on identities
+ whose display name is John_Smith.
+ Input the email address ofthe identity you wish the report to include. For example, if
+ Email you input â€œJohn@email.comâ€ in the field, the report includes information on iden-
+ titieswhose email address is name is John@email.com.
+ The manager listto include in thisreport. Only users who report to the selected man-
+ Manager agers are included in the report.
+ Click the arrow tothe right ofthe suggestion fieldto a listof allmanagers, or enter a
+ few letters in the field to display a listof managers that start with that letterstring.
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 68
+
+===== Page 73/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ Choose how the report handles inactive identities. Select No selection to include
+ Inactive both inactive and active identities, True to include only inactive identities, or False
+ to not include inactive identities.
+
+Identity Extended Attributes
+
+You can use the identity extended attributes that have been defined for your installation as criteria for thisreport.
+Because these are custom-defined attributes, the specific criteriaoptions you have here will be specific to your own
+installation of IdentityIQ. Any identity extended attributes defined as searchable or as multi-valued are included as
+possible filtersfor the report.
+
+Additional Identity Properties
+
+The following criteria determines what information isincluded in thisreport. You can use any combination of options to
+build a report.
+
+ Option Description
+
+ Select the applications to include in the report. Ifno applications are specified, all
+ applications are included.
+ Applications Click the arrow to the right of the suggestion field todisplay a listofall applic-
+ ations, or enter a few letters in the field todisplay a listofapplications that start
+ with that letter string.
+ Capabilities Select the capabilities to include in the report.
+ The roles to include in the report.
+ Roles Click the arrow to the right of the field and select a role to create the inclusion list
+ for this report.
+ The groups or populations to include in the report.
+ Groups Click the arrow to the right of the field and select a group to create the inclusion
+ listfor this report.
+ Last Refresh Select a date range to filterusers based on when the user was lastrefreshed.
+ Date
+ Last Login Select a date range to filterusers based on when the user was lastlogged in.
+ Date
+
+Identity Entitlements Detail Report
+
+
+ Note:Â Including classifications inthe Identity Entitlements Detail Report can impact performance.
+ By default, classifications are included inthis report, but you can remove them inthe Report
+
+
+
+
+
+ SailPoint IdentityIQ Reports 69
+
+===== Page 74/149 =====
+IdentityIQ Standard Reports
+
+
+ Layout dialog.
+
+This report listsallidentity entitlements â€“ assigned and aggregated application entitlements, assigned and detected
+roles â€“ and details about them. Some columns apply only to application entitlements, some apply only to roles, and
+some relate to both.
+
+
+
+ l For application entitlements, the data displayed includes the application name and instance (ifapplicable),
+ the attribute name and value, the account name, and whether itwas directly assigned (e.g. requested through
+ LCM) or whether itwas granted indirectly by one or more of the Identityâ€™s roles.
+
+
+
+ l For roles, the Attribute columns shows whether itwas assigned or detected, and the Entitlement column
+ shows the role name; the Allowed column isonly ever â€œtrueâ€ fordetected roles which are allowed or required by
+ an assigned role forthe Identity.
+
+Information about when they were last certified forthe identity isshown forboth types of records, as isthe Source data
+(how the entitlement/role was granted to or found for the identity).
+
+The detailed results of this report can be exported to a .csv or PDFÂ file.
+
+The Identity Entitlements Detail Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Identity Entitlements Report Arguments. These options are described in the table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties forbasic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Identity Entitlements Report Arguments
+
+The following criteria determines what information is included inthis report. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included in the
+ report.
+
+
+ Note:Â Use the Shift and Crtl keys to select multiple items from lists.
+
+
+
+
+ SailPoint IdentityIQ Reports 70
+
+===== Page 75/149 =====
+IdentityIQ Standard Reports
+
+
+
+
+ Option Description
+
+ Identities Type in manually or use the drop-down listto select the identities to include in
+ the report. Ifno identities are specified, all identities are included.
+ Applications Type in manually or use the drop-down listto select the applications to include in
+ the report. Ifno applications are specified, allapplications are included.
+ Attributes Type in manually or use the drop-down listto select the attributes to include in
+ the report. Ifno attributes are specified, allattributes are included.
+ Entitlements Type in manually or use the drop-down listto select the entitlements to include
+ in the report. Ifno entitlements are specified, allentitlements are included.
+ Accounts Type in manually or use the drop-down listto select the accounts to include in
+ the report. Ifno accounts are specified, all accounts are included.
+ Instances Type in manually or use the drop-down listto select the instances to include in
+ the report. Ifno instances are specified, allinstances are included.
+ Assigners Type in manually or use the drop-down listto select the assigners to include in
+ the report. Ifno assigners are specified, all assigners are included.
+ Source Type in manually or use the drop-down listto select the sources to include in the
+ report. Ifno sources are specified, allsources are included.
+ Exists on Select Include All to include all entitlements True toinclude only entitlements
+ account that were found on the last aggregation, or False to not include entitlements that
+ were found on the last aggregation. The default is to include both.
+ Entitlement Select from Include All, Entitlements, or Permissions.
+ Type
+ Select True to report only detected roles that are permitted or required by an
+ Allowed by an assigned role (no entitlements or assigned roles will appear in the report). Select
+ assigned role False to omit these detected roles from the report. By default, they are included
+ alongside account entitlements and assigned roles.
+ Additional Select True to include only entitlements that are not encapsulated in a role held
+ Entitlements by the identity. Select False to include only entitlements that are granted by a
+ only role assigned to the identity. By default, additional entitlement and role-based
+ entitlements are both included.
+ Has been cer- Select Include All to include all entitlements True toinclude only entitlements
+ tified that have been certified, or False to not include entitlements that have been cer-
+ tified.
+ Has pending Select Include All to include all entitlements True toinclude only entitlements
+ certification that have a pending certification, or False tonot include entitlements that have a
+
+
+
+
+
+
+SailPoint IdentityIQ Reports 71
+
+===== Page 76/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ pending certification.
+ Has been Select Include All to include allentitlements True toinclude only entitlements
+ requested that have been requested, or False tonot include entitlements that have been
+ requested.
+ Has pending Select Include All to include allentitlements True toinclude only entitlements
+ request that have a pending request, or False to not include entitlements that have a
+ pending request.
+
+Identity Forwarding Report
+
+The Identity Forwarding Report shows identities that currently have a forwarding user set to redirect IdentityIQ work
+items toanother system user. Itshows the forwarding user and the date range for which forwarding isset.
+
+The detailed results of this report can be exported to a .csv or PDFÂ file.
+
+The Identity Forwarding Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Identity Attributes
+
+
+
+ l Identity Extended Attributes
+
+
+
+ l Additional Identity Properties
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Identity Attributes
+
+The following criteriadetermines what information is included in this report. You can use any combination of options to
+build a report.
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 72
+
+===== Page 77/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ First Input the firstname of the identity you wish the report toinclude. For example, ifyou
+ Name input â€œJohnâ€ in the field, the report includes information on identities whose first
+ name isJohn.
+ Last Input the last name of the identity you wish the report to include. For example, ifyou
+ Name input â€œSmithâ€ in the field, the report includes information on identities whose last
+ name isSmith.
+ Display Input the display name of the identity you wish the report to include. For example, if
+ Name you input â€œJohn_Smithâ€ inthe field,the report includes information on identities
+ whose display name is John_Smith.
+ Input the email address of the identity you wish the report toinclude. For example, if
+ Email you input â€œJohn@email.comâ€ in the field,the report includes information on iden-
+ tities whose email address isname isJohn@email.com.
+ The manager listto include in this report. Only users who report to the selected man-
+ Manager agers are included in the report.
+ Click the arrow to the right of the suggestion field toa listofall managers, or enter a
+ few letters in the field to display a listof managers that start with that letter string.
+ Choose how the report handles inactive identities. Select No selection to include
+ Inactive both inactive and active identities, True to include only inactive identities, or False
+ to not include inactive identities.
+
+Identity Extended Attributes
+
+You can use the identity extended attributes that have been defined for your installation as criteria for thisreport.
+Because these are custom-defined attributes, the specific criteriaoptions you have here will be specific to your own
+installation of IdentityIQ. Any identity extended attributes defined as searchable or as multi-valued are included as
+possible filtersfor the report.
+
+Additional Identity Properties
+
+The following criteria determines what information isincluded in thisreport. You can use any combination of options to
+build a report.
+
+
+
+ Option Description
+
+ Select the applications to include in the report. Ifno applications are specified, all
+ Applications applications are included.
+ Click the arrow to the right of the suggestion field todisplay a listofall applic-
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 73
+
+===== Page 78/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ ations, or enter a few letters in the field to display a listof applications that start
+ with that letterstring.
+ Capabilities Select the capabilities to include inthe report.
+ The roles to include in the report.
+ Roles Click the arrow to the rightof the fieldand select a role to create the inclusion list
+ for this report.
+ The groups or populations to include in the report.
+ Groups Click the arrow to the rightof the fieldand select a group to create the inclusion
+ listfor this report.
+ Last Refresh Select a date range to filterusers based on when the user was last refreshed.
+ Date
+ Last Login Select a date range to filterusers based on when the user was last logged in.
+ Date
+
+Identity Status Summary Report
+
+This report is a simple count report that shows the number ofactive identities, inactive identities, and total identities
+defined in the system. Itoffers no filters.
+
+The detailed results ofthis report can be exported to a .csv or PDFÂ file.
+
+Allreports use a set ofstandard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For more information on Standard Properties, see Standard Report Properties
+
+For more information on Report Layout, see Report Layout
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Privileged Access Report
+
+This report listsaccounts that are marked as privileged accounts on the selected application(s), specifically the dis-
+play name ofthose accounts. Italso shows the identity to which the account is linked, the identityâ€™s manager, and the
+risk score assigned to the identity. This report returns a listof allaccounts meeting the specified criteria. To make this
+function as a privileged access report, an account attribute must be defined forthe installation to designate privileged
+accounts, and that attribute and privileged-account-designating value must be specified as a filtercriterion for the
+report.
+
+
+
+
+ SailPoint IdentityIQ Reports 74
+
+===== Page 79/149 =====
+IdentityIQ Standard Reports
+
+
+The detailed results ofthis report can be exported to a .csv or PDFÂ file.
+
+The Privileged Access Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Privileged Account Attributes
+
+
+
+ l Account Applications
+
+
+
+ l Identity Attributes
+
+
+
+ l Identity Extended Attributes
+
+
+
+ l Report Layout
+
+
+Allreports use a set ofstandard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+
+ l At least one Privileged Account Attribute
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Privileged Account Attributes
+
+The Privileged Account Attributes age of filtercriteriashows alldefined account attributes, which vary by installation.
+The report creator must choose the attributes and values that designate a privileged account for the system. Note that
+ifadditional account attributes are selected on this filterpage, this report willbe constrained to show only accounts
+meeting those criteria, which could make this report something other than a â€œprivileged accessâ€ report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included inthe
+ report.
+
+
+ Note:Â Use the Shift and Crtl keys to select multiple items from lists.
+
+Account Applications
+
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included inthe
+ report. Use the Shift and Crtl keys to select multiple items from lists.
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 75
+
+===== Page 80/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ Select the applications to include in the report. Ifno applications are specified, all
+ applications are included.
+ Applications Click the arrow to the right of the suggestion field to display a listof allapplic-
+ ations, or enter a few letters in the field to display a listof applications that start
+ with that letter string.
+
+Identity Attributes
+
+The following criteria determines what information is included in this report. You can use any combination ofoptions to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options inthe listare included in the
+ report. Use the Shift and Crtl keys toselect multiple items from lists.
+
+
+
+
+ Option Description
+
+ First Input the firstname of the identity you wish the report to include. For example, ifyou
+ Name input â€œJohnâ€ in the field,the report includes information on identities whose first
+ name is John.
+ Last Input the last name of the identity you wish the report to include. For example, ifyou
+ Name input â€œSmithâ€ inthe field,the report includes information on identities whose last
+ name is Smith.
+ Display Input the display name of the identity you wish the report to include. For example, if
+ Name you input â€œJohn_Smithâ€ in the field, the report includes information on identities
+ whose display name isJohn_Smith.
+ Input the email address of the identity you wish the report to include. For example, if
+ Email you input â€œJohn@email.comâ€ in the field,the report includes information on iden-
+ titieswhose email address isname is John@email.com.
+ The manager listto include in this report. Only users who report to the selected man-
+ Manager agers are included in the report.
+ Click the arrow to the right of the suggestion field to a listof allmanagers, or enter a
+ few letters in the fieldto display a listof managers that start with that letter string.
+ Choose how the report handles inactive users. Select No selection to include both
+ Inactive inactive and active users, True to include only inactive users, or False tonot include
+ inactive users.
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 76
+
+===== Page 81/149 =====
+IdentityIQ Standard Reports
+
+Identity Extended Attributes
+
+You can use the identity extended attributes that have been defined foryour installation as criteriafor this report.
+Because these are custom-defined attributes, the specific criteria options you have here willbe specific to your own
+installation of IdentityIQ. Any identity extended attributes defined as searchable or as multi-valued are included as
+possible filtersfor the report.
+
+Uncorrelated Accounts Report
+
+This report shows accounts on non-authoritative applications which have not yet been correlated to authoritative iden-
+titiesinIdentityIQ. Itcan be filteredto show only accounts forselected applications orto show alluncorrelated
+accounts.
+
+This report includes a summary section with a table showing the statistics of correlated identities vs. uncorrelated iden-
+titiesand a chart which indicates the percentage of uncorrelated accounts coming from each application in the report.
+These statistics and chart are based only offidentities with accounts on the applications selected for the report; they
+do not necessarily indicate total counts in the whole system.
+
+The detailed results of this report can be exported to a .csv or PDFÂ file.
+
+The Uncorrelated Accounts Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Uncorrelated Accounts Parameters. These are described inthe table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Uncorrelated Accounts Parameters
+
+The following criteriadetermines what information is included in this report. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included in the
+ report.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 77
+
+===== Page 82/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ Select the applications to include in the report. Ifno applications are specified, all
+ applications are included.
+
+
+ Correlated Applications are applications that are to be compared with the author-
+ Correlated itative application. Any identity that has an account on the correlated application
+ Applications but not on the authoritative application is considered uncorrelated.
+
+ Click the arrow to the right of the suggestion field todisplay a listof allapplic-
+ ations, or enter a few letters in the field to display a listofapplications that start
+ with that letterstring.
+
+User Account Attributes Report
+
+This report shows all accounts on the selected application and the identity to which each is correlated. This report can
+only be run for one application ata time.
+
+The attributes that can be included in thisreport may vary depending on which application you choose to report on.
+The report can include any attributes from the selected application that have been mapped to the account attributes
+defined for your installation. These attributes are mapped in Global Settings > Account Mappings. Attributes are
+selected for inclusion in the report on the Report Layout page.
+
+For more information on Account Mappings, see the IdentityIQÂ System Configuration guide.
+
+The detailed results of this report can be exported to a .csv or PDFÂ file.
+
+The User Account Attributes Report consists ofthe following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Account Properties. These are described inthe table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties for basic information, such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 78
+
+===== Page 83/149 =====
+IdentityIQ Standard Reports
+
+Account Properties
+
+The following criteria determines what information isincluded in this report. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included in the
+ report.
+
+
+
+
+ Option Description
+
+ Select the application to include in the report.
+ Applications Click the arrow to the right of the suggestion field to display a listofall applic-
+ ations, or enter a few letters in the field to display a listof applications that start
+ with that letterstring.
+ User Inactive Choose how the report handles inactive users. Select Include All to include
+ Status both inactive and active users, True to include only inactive users, or False to
+ not include inactive users.
+
+User Security Question Status Report
+
+This report shows which identities have provided answers to the authentication questions which are required to log in
+through the Forgot Password feature ofIdentityIQ. Italso shows the lastlogin date and the manager name foreach
+user. Itcan be filtered by a broad set of identity attributes and data, so itcan report on subsets of identities (e.g. by
+manager, by department, by users with accounts on a specific application, etc.).
+
+The detailed results ofthis report can be exported to a .csv or PDFÂ file.
+
+The Account Authentication Question Status Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Identity Attributes
+
+
+
+ l Identity Extended Attributes
+
+
+
+ l Additional Identity Details
+
+
+
+ l Report Layout
+
+
+Allreports use a set ofstandard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running thisreport:
+
+
+
+
+ SailPoint IdentityIQ Reports 79
+
+===== Page 84/149 =====
+IdentityIQ Standard Reports
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Identity Attributes
+
+The following criteria determines what information is included inthis report. You can use any combination of options to
+build a report.
+
+
+
+ Option Description
+
+ First Input the firstname of the identity you wish the report to include. For example, ifyou
+ Name input â€œJohnâ€ in the field, the report includes information on identities whose first
+ name isJohn.
+ Last Input the last name ofthe identity you wish the report to include. For example, ifyou
+ Name input â€œSmithâ€ in the field, the report includes information on identities whose last
+ name isSmith.
+ Display Input the display name of the identity you wish the report to include. For example, if
+ Name you input â€œJohn_Smithâ€ inthe field,the report includes information on identities
+ whose display name is John_Smith.
+ Input the email address of the identity you wish the report to include. For example, if
+ Email you input â€œJohn@email.comâ€ in the field, the report includes information on iden-
+ titieswhose email address is name is John@email.com.
+ The manager listto include in thisreport. Only users who report tothe selected man-
+ Manager agers are included in the report.
+ Click the arrow tothe right of the suggestion fieldto a listof allmanagers, or enter a
+ few letters in the field to display a listof managers that start with that letterstring.
+ Choose how the report handles inactive identities. Select No selection to include
+ Inactive both inactive and active identities, True to include only inactive identities, or False
+ to not include inactive identities.
+
+Identity Extended Attributes
+
+You can use the identity extended attributes that have been defined for your installation as criteria for this report.
+Because these are custom-defined attributes, the specific criteria options you have here willbe specific toyour own
+installation of IdentityIQ. Any identity extended attributes defined as searchable or as multi-valued are included as
+possible filtersfor the report.
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 80
+
+===== Page 85/149 =====
+IdentityIQ Standard Reports
+
+Additional Identity Details
+
+The following criteria determines what information isincluded in this report. You can use any combination of options to
+build a report.
+
+
+
+ Option Description
+
+ Select the applications to include in the report. Ifno applications are specified, all
+ applications are included.
+ Applications Click the arrow to the right of the suggestion field to display a listof allapplic-
+ ations, or enter a few letters in the field to display a listof applications that start
+ with that letter string.
+ Capabilities Include only identities assigned one or more of the selected capabilities.
+ Roles Include only identities who hold the selected role(s).
+ Groups Include only identities who are part of one or more of the selected group(s).
+ Last Refresh Select a date range to filterusers based on when the user was last refreshed.
+ Date
+ Last Login Select a date range to filterusers based on when the user was last logged in.
+ Date
+
+User Details Report
+
+This report shows each identityâ€™s name, firstname, last name, and manager, plus a listof allroles assigned to or detec-
+ted for each identity and a listof allapplications on which each identity has accounts. Ifroles are specified as filtersfor
+the report, only users with those roles willbe listed, but allroles connected to each listed identity willappear in their
+Roles column. Likewise, all applications on which the user has an account will appear inthe Applications column,
+even ifthe report is filtered by a specific application.
+
+The detailed results of this report can be exported to a .csv or PDFÂ file.
+
+The User Details Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Identity Attributes
+
+
+
+ l Identity Extended Attributes
+
+
+
+ l Additional Identity Properties
+
+
+
+ l Report Layout
+
+
+
+
+
+ SailPoint IdentityIQ Reports 81
+
+===== Page 86/149 =====
+IdentityIQ Standard Reports
+
+
+Allreports use a set of standard properties for basic information such as naming and descriptions, and forsetting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Identity Attributes
+
+The following criteria determines what information is included inthis report. You can use any combination of options to
+build a report.
+
+ Option Description
+
+ First Input the firstname of the identity you wish the report to include. For example, ifyou
+ Name input â€œJohnâ€ in the field, the report includes information on identities whose first
+ name isJohn.
+ Last Input the last name ofthe identity you wish the report to include. For example, ifyou
+ Name input â€œSmithâ€ in the field, the report includes information on identities whose last
+ name isSmith.
+ Display Input the display name of the identity you wish the report to include. For example, if
+ Name you input â€œJohn_Smithâ€ inthe field,the report includes information on identities
+ whose display name is John_Smith.
+ Input the email address of the identity you wish the report to include. For example, if
+ Email you input â€œJohn@email.comâ€ in the field, the report includes information on iden-
+ titieswhose email address is name is John@email.com.
+ The manager listto include in thisreport. Only users who report tothe selected man-
+ Manager agers are included in the report.
+ Click the arrow tothe right of the suggestion fieldto a listof allmanagers, or enter a
+ few letters in the field to display a listof managers that start with that letterstring.
+ Choose how the report handles inactive identities. Select No selection to include
+ Inactive both inactive and active identities, True to include only inactive identities, or False
+ to not include inactive identities.
+
+Identity Extended Attributes
+
+You can use the identity extended attributes that have been defined for your installation as criteriafor this report.
+Because these are custom-defined attributes, the specific criteria options you have here willbe specific toyour own
+installation of IdentityIQ. Any identity extended attributes defined as searchable or as multi-valued are included as
+possible filtersfor the report.
+
+
+
+
+ SailPoint IdentityIQ Reports 82
+
+===== Page 87/149 =====
+IdentityIQ Standard Reports
+
+Additional Identity Properties
+
+The following criteria determines what information isincluded inthis report. You can use any combination of options to
+build a report.
+
+ Option Description
+
+ Select the applications to include in the report. If no applications are specified, all
+ applications are included.
+ Applications Click the arrow to the right of the suggestion fieldto display a listof allapplic-
+ ations, or enter a few letters in the field todisplay a listof applications that start
+ with that letter string.
+ Capabilities Include only identities assigned one or more of the selected capabilities.
+ Roles Include only identities who hold the selected role(s).
+ Groups Include only identities who are part of one or more of the selected group(s)
+ Last Refresh Select a date range to filterusers based on when the user was last refreshed.
+ Date Date ranges can be open-ended ineither direction (no start or no end date), as
+ needed.
+ Last Login Select a date range to filterusers based on when the user was last logged in.
+ Date Date ranges can be open-ended ineither direction (no start or no end date), as
+ needed.
+
+Users by Application Report
+
+This report liststhe identities connected to each account on one or more applications defined inthe system. For each
+account, itshows the associated Identity name, the account native identity (as Account Id), and the account display
+name (as Account Name). By default, the report includes allapplications, but itcan be filtered to show only accounts
+forspecific applications.
+
+The detailed results of this report can be exported to a .csv orPDFÂ file.
+
+The Users by Application Detail Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Report Options. These are described inthe table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+
+
+ SailPoint IdentityIQ Reports 83
+
+===== Page 88/149 =====
+IdentityIQ Standard Reports
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Report Options
+
+The following criteria determines what information is included inthis report. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options inthe listare included in the
+ report.
+
+
+
+
+ Option Description
+
+ Select the applications to include in the report. Ifno applications are specified, all
+ applications are included.
+ Applications Click the arrow tothe right of the suggestion fieldto display a listof allapplic-
+ ations, or enter a few letters inthe fieldto display a listof applications that start
+ with that letterstring.
+
+Policy Violation Report
+
+This report details policy violations detected for identities. Itshows which policies, and rules within the policies, were
+violated by which user, the violation owner for each, the current status ofeach violation, and a brief summary or
+description of each. (The Summary column either shows the description value for the violation, or displays the lists of
+mutually exclusive roles ina separation of duties policy, or displays the description on the policy constraint itself.)
+
+The report also includes a summary section made up of a summary table and a graph. The table shows the number of
+violations included in the report, the number of identities involved in that violation set, and the number ofopen viol-
+ations and mitigated violations in the set. The chart shows the numbers of violations of each policy type in graphical
+form.
+
+The detailed results of thisreport can be exported to a .csv or PDFÂ file.
+
+The Policy Violation Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Policy Violation Properties. These are described in the table below.
+
+
+
+ l Report Layout
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 84
+
+===== Page 89/149 =====
+IdentityIQ Standard Reports
+
+
+Allreports use a set of standard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Policy Violation Properties
+
+The following criteria determines what information is included inthis report. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included in the
+ report.
+
+
+
+
+ Option Description
+
+ Select the identities to include in the report. Ifno identities are specified, all iden-
+ titiesare included.
+ Identities Click the arrow to the right of the suggestion field to display a listof allidentities, or
+ enter a few letters in the field to display a listof identities that start with that letter
+ string.
+ Only violations associated with the selected identities are included in the report.
+ Policy The policies to include in this report. Only violations of the policies selected from the
+ listare included in the report.
+ Violation Show only violations of active policies, only violations of no longer active policies, or
+ Activity allviolations (only relevant after running an identity refresh task with both the Check
+ active policies and Keep previous violations options selected)
+ Violation Only the violations detected on or before this date are included in the report.
+ Date
+ Violation Use to filterthe report by violation status type. Choose from Open Violations, Inact-
+ Status ive Violations, and All Violations.
+
+Risk Reports
+
+
+
+ l Applications Risk Live Report
+
+
+
+ l Identity Risk Live Report
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 85
+
+===== Page 90/149 =====
+IdentityIQ Standard Reports
+
+
+
+ l Risky Accounts Report
+
+Applications Risk Live Report
+
+This report shows the composite risk score for each application along with the component scores that were used to cal-
+culate that composite score. Disabled application risk score components are not included on the report.
+
+Summary reports include mainly charts, graphs and summary statistics that highlight status ofdifferent areas within
+IdentityIQ. These reports cannot be exported to the CSV format.
+
+The Application Risk Live Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Report Options. These options are described in the table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Report Options
+
+The following criteria determines what information isincluded inthis report. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options inthe listare included inthe
+ report.
+
+
+
+
+ Option Description
+
+ Select the applications to include in the report. If no applications are specified, all
+ applications are included.
+ Applications Click the arrow to the right of the suggestion fieldto display a listof allapplic-
+ ations, or enter a few letters in the field todisplay a listof applications that start
+ with that letter string.
+ Owners The application owners to include in the report. Only applications associated
+
+
+
+
+
+ SailPoint IdentityIQ Reports 86
+
+===== Page 91/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ with selected application owners are included in the report
+ Click the arrow to the right of the suggestion fieldto display a listof allowners, or
+ enter a few letters inthe fieldto display a listof owners that start with that letter
+ string.
+
+Identity Risk Live Report
+
+This report shows the totalrisk score, and the component risk scores used to calculate it,foreach Identity. Italso
+shows the Identityâ€™s name, firstname, and manager.
+
+The summary section of thisreport shows a graph of the number ofidentities with risk scores in various score ranges.
+Total and component risk scores are allgraphed in separate color-coded columns, and scores are subdivided into
+ranges of200 points each.
+
+The detailed results of this report can be exported to a .csv or PDFÂ file.
+
+The Identity Risk Live Report consists ofthe following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Identity Attributes
+
+
+
+ l Identity Extended Attributes
+
+
+
+ l Additional Identity Details
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Identity Attributes
+
+The following criteria determines what information isincluded in thisreport. You can use any combination of options to
+build a report.
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 87
+
+===== Page 92/149 =====
+IdentityIQ Standard Reports
+
+
+ Note:Â Selecting NO options from a listindicates that ALL options inthe listare included inthe
+ report.
+
+
+ Note:Â Use the Shift and Crtlkeys toselect multiple items from lists.
+
+
+
+
+ Option Description
+
+ Input the firstname of the identity you wish the report to include. For example, if
+ First Name you input â€œJohnâ€ in the field, the report includes information on identities whose first
+ name is John.
+ Input the lastname of the identity you wish the report to include. For example, if
+ Last Name you input â€œSmithâ€ in the field,the report includes information on identities whose
+ lastname isSmith.
+ Display Input the display name of the identity you wish the report toinclude. For example, if
+ Name you input â€œJohn_Smithâ€ in the field,the report includes information on identities
+ whose display name is John_Smith.
+ Input the email address of the identity you wish the report to include. For example,
+ Email ifyou input â€œJohn@email.comâ€ in the field,the report includes information on iden-
+ titieswhose email address isname isJohn@email.com.
+ The manager listto include in this report. Only users who report to the selected
+ Managers managers are included inthe report.
+ Click the arrow to the right of the suggestion fieldto a listof all managers, or enter
+ a few letters inthe fieldto display a listof managers that start with that letter string.
+ Choose how the report handles inactive users. Select No selection to include
+ Inactive both inactive and active users, True toinclude only inactive users, or False to not
+ include inactive users.
+
+Identity Extended Attributes
+
+You can use the identity extended attributes that have been defined for your installation as criteria for this report.
+Because these are custom-defined attributes, the specific criteria options you have here willbe specific to your own
+installation of IdentityIQ. Any identity extended attributes defined as searchable or as multi-valued are included as
+possible filtersfor the report.
+
+Additional Identity Details
+
+The following criteria determines what information is included in this report. You can use any combination of options to
+build a report.
+
+
+
+
+
+ SailPoint IdentityIQ Reports 88
+

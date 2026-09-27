@@ -1,0 +1,1924 @@
+﻿===== Page 1/120 =====
+ IdentityIQ System Configuration
+
+
+ Version:8.4
+
+ Revised:September2023
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thisdocument and the informationcontainedhereinisSailPointConfidentialInformation
+
+===== Page 2/120 =====
+Copyright and Trademark Notices
+
+Copyright Â© 2023 SailPoint Technologies, Inc.Â  All Rights Reserved.
+
+Alllogos, text,content, including underlying HTML code, designs, and graphics used and/or depicted on these written
+materials or in thisInternet website are protected under United States and international copyright and trademark laws
+and treaties, and may not be used or reproduced without the prior express written permission of SailPoint Tech-
+nologies, Inc.
+
+â€œSailPoint Technologies,â€ (design and word mark), â€œSailPoint,â€ (design and word mark), "Identity IQ,â€ â€œIdentityNow,â€
+â€œSecurityIQ,â€ â€œIdentity AI,â€ â€œIdentity Cube,â€ and â€œSailPoint Predictive Identityâ€ are registered trademarks of SailPoint
+Technologies, Inc. â€œIdentity isEverything,â€ â€œThe Power of Identity,â€ and â€œIdentity Universityâ€ are trademarks of
+SailPoint Technologies, Inc. None of the foregoing marks may be used without the prior express written permission of
+SailPoint Technologies, Inc. Allother trademarks shown herein are owned by the respective companies or persons
+indicated.
+
+SailPoint Technologies, Inc. makes no warranty ofany kind regarding these materials or the information included
+therein, including, but not limited to,the implied warranties ofmerchantability and fitness for a particular purpose.
+SailPoint Technologies shall not be liable for errors contained herein or direct, indirect, special, incidental orcon-
+sequential damages inconnection with the furnishing, performance, or use of thismaterial.
+
+Patents Notice. https://www.sailpoint.com/patents
+
+Restricted Rights Legend. All rights are reserved. No part ofthis document may be published, distributed, reproduced,
+publicly displayed, used to create derivative works, or translated to another language, without the prior written consent
+ofSailPoint Technologies. The information contained inthis document issubject to change without notice.
+
+Use, duplication or disclosure by the U.S. Government is subject to restrictions as set forth insubparagraph (c) (1) (ii)
+ofthe Rights inTechnical Data and Computer Software clause at DFARS 252.227-7013 for DOD agencies, and sub-
+paragraphs (c)(1) and (c)(2) ofthe Commercial Computer Software Restricted Rights clause at FAR 52.227-19 for
+other agencies.
+
+Regulatory/Export Compliance. The export and re-export of this software iscontrolled for export purposes by the U.S.
+Government. By accepting this software and/or documentation, licensee agrees to comply with allU.S. and foreign
+export laws and regulations as they relate to software and related documentation.Â  Licensee will not export or re-
+export outside the United States software or documentation, whether directly or indirectly, to any Prohibited Party and
+willnot cause, approve or otherwise intentionally facilitate others inso doing. A Prohibited Party includes: a party in a
+U.S. embargoed country or country the United States has named as a supporter of international terrorism; a party
+involved in proliferation; a party identified by the U.S. Government as a Denied Party; a party named on the U.S.
+Department of Commerceâ€™s Entity Listin Supplement No. 4 to 15 C.F.R. Â§ 744; a party prohibited from participation in
+export orre-export transactions by a U.S. Government General Order; a party listed by the U.S. Governmentâ€™s Office
+ofForeign Assets Control as ineligible to participate in transactions subject toU.S. jurisdiction; or any party that
+licensee knows or has reason toknow has violated or plans to violate U.S. or foreign export laws or regulations.
+Licensee shall ensure that each of itssoftware users complies with U.S. and foreign export laws and regulations as
+they relate to software and related documentation.
+
+===== Page 3/120 =====
+Contents
+
+
+ System Setup 1
+
+ IdentityIQ Global Settings 2
+
+ Compliance Manager 79
+
+ Define Home Page Quicklinks 86
+
+ EmailTemplate Nested Elements 88
+
+ IdentityIQ Email Templates 90
+
+ Accessing the Templates 90
+
+ Importing Email Templates into IdentityIQ 91
+
+ Associating Templates with Events 91
+
+ Email Template XML 99
+
+ Apache Velocity Engine 100
+
+ Incorporating VTL inEmail Template XML 102
+
+ Sending an Email from a Rule 108
+
+ Data Encryption 111
+
+ spt KeyStore Console Commands 111
+
+ Encrypted Data Synchronization 112
+
+ Using IdentityIQ KeyStore 113
+
+===== Page 4/120 =====
+System Setup
+
+System Setup
+
+
+Use System Setup to configure the different options forIdentityIQ. To access System setup options, click the gear
+icon on the Navigation menu bar and select from the listof options that can include:
+
+ Caution:Â Do not open multiple tabs or browsers. Opening multiple tabs might overwrite changes
+ made inthe other.
+
+
+
+ Note:Â Because configuration options are based on your deployment, your available options may
+ vary from the set of options inthis guide.
+
+
+
+
+ l IdentityIQ Global Settings
+
+
+
+ l Lifecycle Manager Setup inthe Lifecycle documentation
+
+
+
+ l Compliance Manager
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 1
+
+===== Page 5/120 =====
+IdentityIQ Global Settings
+
+From the Navigation bar, click the gear icon and then select Global Settings. Use the Global Setting index page to
+select the items you want to configure. The following table displays the available options.
+
+ Note:Â You must be a System Administrator toaccess this page.
+
+ IdentityIQ Configuration
+
+ Set default values foruse with notifications, work item policy, object expiration, user interface preferences, and
+ identity history. See IdentityIQ Configuration.
+
+ Login Configuration
+
+ Set an application other than IdentityIQ forauthentication verification and select the automatic identity creation
+ rule. See Login Configuration.
+
+ Identity Mappings
+
+ Specify the applications, and application attributes, from which the identity data, is derived. See Identity Map-
+ pings.
+
+ Account Mappings
+
+ Specify the account attributes to be used in filtersand searches throughout the application. See Account Map-
+ pings.
+
+ Rapid Setup
+
+ Configure global options for Rapid Setup in IdentityIQ forjoiners, movers, leavers, immediate termination, and
+ business processes in your organization. See Rapid Setup Configuration.
+
+ Application Attributes
+
+ Define application attributes in addition to those provided by the connectors. See Application Attributes.
+
+ Entitlement Catalog Attributes
+
+ Define custom extended entitlement attributes and roletypes. See Entitlement Catalog Attributes.
+
+ Quicklink Populations
+
+ Configure the quicklink populations for IdentityIQ. See Quicklink Populations.
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 2
+
+===== Page 6/120 =====
+ Forms
+
+ Configure forms forworkflows, roleprovisioning policies, and application provisioning policies in IdentityIQ. See
+ Forms.
+
+ Role Configuration
+
+ Define custom extended role attributes and role type. See Role Configuration.
+
+ Scopes
+
+ Define scopes foruse throughout your enterprise. See Scopes.
+
+ Time Periods
+
+ Define the time periods foruse inactivitysearches. See Time Periods.
+
+ Audit Configuration
+
+ Specify the actions that are audited and stored in the audit logs. See Audit Configuration.
+
+ Electronic Signatures
+
+ Configure electronic signatures and their displayed meanings. See Electronic Signatures.
+
+ API Authentication
+
+ Import filesinto IdentityIQ. See API Authentication.
+
+ AI Services Configuration
+
+
+ Note: This link ispresent only ifyou have purchased the AI Services product.
+
+ Connect IdentityIQ to the AI Services product. See AI Services Configuration.
+
+ File Access Manager Configuration
+
+
+ Note:Â This link ispresent only ifyou have imported the File Access Manager module.
+
+ Configure IdentityIQ to connect to File Access Manager. See FileAccess Manager Configuration.
+
+ Cloud Access Management Configuration
+
+
+ Note:Â This link ispresent only ifyou have purchased the Cloud Access Management module.
+
+
+
+
+
+
+SailPoint IdentityIQ System Configuration 3
+
+===== Page 7/120 =====
+ Configure IdentityIQ to use Cloud Access Management, including connection information, timeouts, and ini-
+ tiatingdata synchronization. See Cloud Access Management Configuration.
+
+ Import from File
+
+ Import filesinto IdentityIQ. See Import From File.
+
+IdentityIQ Configuration
+
+Use thispage toset default values foruse with notifications, work item policy,object expiration, user interface pref-
+erences, and identity history. This page contains the following tabs:
+
+
+
+ l Notification Settings
+
+
+
+ l Work Items
+
+
+
+ l Identities
+
+
+
+ l Roles
+
+
+
+ l Passwords
+
+
+
+ l Miscellaneous
+
+
+
+ l Privileged Account Management
+
+ Multi-language Description Files
+
+Some escaped HTML characters are not recognized and do not display in descriptions ifthey are formatted using
+those characters. You must ensure thatall filesare formatted correctly before importing them into IdentityIQ and ref-
+erencing them from the product. Use the following examples toformat the HTML correctly:
+ test (to appear in bold) - <b>test</b>
+ <test> - &lt;test&gt;
+ <test> (to appear in bold) - <b>&lt;test&gt;<b\>
+ <<test>> - &lt;&lt;test&gt;&lt;
+ â€œtestâ€ - &quot;test&quot;
+ â€˜testâ€™ - â€˜testâ€™
+ &test - &test
+
+ Using the Rule Editor
+
+The Rule Editor letsyou to edit any existing ruleto your specifications. Click the â€œ...â€icon next to a rule drop-down list
+toaccess the rule editor throughout IdentityIQ. Choose toeither create a new rule, or edit an existing rule structure.
+
+The Rule Editor panel includes the following items:
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 4
+
+===== Page 8/120 =====
+ Copy from an existing rule
+
+ Select an existing rulefrom the drop-down list.This option is available ifyou did not select a rule from the drop-
+ down liston the previous page.
+
+ Code input area
+
+ Field where code isinput. IdentityIQ recognizes BeanShell programing language. You can editcode from an
+ existing rule or create a new one from scratch.
+
+ Description
+
+ Enter the description of your new rule.
+
+ Rule Name
+
+ Enter the name of your rule.
+
+ Rule Type
+
+ Non-editable field which displays the type ofrule (for example, Violation).
+
+ Return Type
+
+ Non-editable field which displays the type ofreturn (forexample, PolicyViolation).
+
+ Arguments
+
+ Non-editable field which displays the arguments used in the rule (forexample, log,context, state, etc.).
+
+ Returns
+
+ Non-editable field which displays the type ofreturn the rule executes (forexample, Violation).
+
+When you have completed your rule edits, click Save to return to the previous page. The new rule is now available
+from the drop-down list.
+
+ Access Request Attachments
+
+
+ Important:Â IdentityIQ does not perform filecontent validation or verification on attachments. Itis
+ your responsibility to ensure that only filesthat do not violate security policies within your envir-
+ onment are included as attachments.
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ System Configuration 5
+
+===== Page 9/120 =====
+ Note:Â Attachments are only allowed on single-user requests, and are only available for manual
+ access requests.
+
+The attachments feature enables users to add attachments tosingle user access requests. For example, you could
+attach training certificates ora notarized document of authorization.
+
+By enabling attachments on the Global Settings >Â IdentityIQ Configuration > Miscellaneous tab, you are
+enabling, but not requiring, any user to add an attachment to any single user access request. When the feature is
+enabled, requests display the attachment icon, paper clip,on each item in a request, but the icon isonly active ifan
+attachment is allowed for that item. When you click the icon, the attachment overlay isdisplayed and you can add an
+attachment by dragging and dropping or uploading a file.
+
+Attachments are controlled through AttachmentConfig rules. Ifthere are no AttachmentConfig rules for an item, or
+they allhave nullor empty prompts, the attachment overlay contains no additional information.
+
+ Attachment Configuration
+
+Fileattachment settings such as the maximum filesize, maximum number of attachments per request, and the type(s)
+offiles thatcan be attached to a request are configured on the Miscellaneous tab.
+
+Attachments can be further configured through AttachmentConfig rules. When AttachmentConfig rules are set for file
+attachments, each of these rules is run with every request made. Use the AttachmentConfig rules to require attach-
+ments for specific access request scenarios and customize the prompts displayed on the attachment overlay. When
+an attachment isrequired, the word required isdisplayed with the attachment icon and an error isdisplayed ifa
+request issubmitted without an attachment.
+
+Activate the attachment configuration rules to run with access requests by selecting them from the Configuration
+Rules liston the Global Settings > IdentityIQ Configuration > Miscellaneous tab under the gear icon.
+
+You can import attachment configuration rules using the Global Settings > Import from File page under the gear
+icon.
+
+To remove an attachment configuration rule from IdentityIQ, firstde-select that rule from the Configuration Rules list
+and then delete the rule object.
+
+These rules can be as simple or complex as the needs of your organization require.
+
+These rules contain the following inputs:
+
+
+
+ l requestor â€“ the user making the request
+
+
+
+ l requestee â€“ the user forwhom the request is being made
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ System Configuration 6
+
+===== Page 10/120 =====
+ l requestItem â€“ the item being requested
+
+
+
+ l action â€“ the request action (add or remove)
+
+
+Each attachment configuration rule isrun once for each item being requested and returns a listofconfiguration
+objects.
+
+The fieldsof an attachment configuration object are:
+
+
+
+ l required â€“ boolean (true, false) where true means an attachment is required
+
+
+
+ l prompt â€“ string â€“ the prompt thatis displayed in the attachment overlay when attaching filesto thisrequest item
+
+
+Multiple attachment configuration objects can be associated with a single request item. In this case, the prompt strings
+are concatenated on the attachment overlay.
+
+A filecontaining an example of attachment configuration rules is included inthe IdentityIQ installation package. The
+examplerules.xmlfile is located intheIdentityIQ_HOME/WEB-INF/config directory.
+
+ Pruning Attachments
+
+Inrare cases attachments that are not associated with an access request might end up getting loaded intothe data-
+base.The System Maintenance and System Maintenance Object Pruner tasks both include an option toprune
+those attachments and clean them out of your database. Use the Prune Attachments option inthese tasks todelete
+any attachments that are more than 30 days old and and are not associated with an access request.
+
+Files attached to abandoned access requests may also need to be cleared from your database. The System Main-
+tenance and System Maintenance Object Pruner tasks both include an option to Prune Pending Attachments.
+When this option is selected, the task willdelete any pending request attachments that are older than 12 hours. This
+timeframe can be overridden by adding an entry to the system configuration object called pendingAt-
+tachmentPruneAge with a value that represents a number ofhours.
+
+For auditing purposes, there isan audit event called Prune Pending Attachments which can be triggered during the
+cleanup in the System Maintenance Task. To enable auditing forattachment pruning, enable the Prune Pending
+Attachments option in IdentityIQ's Audit Configuration.
+
+.
+
+
+Notification Settings
+
+Use thistab toset default values forhow notifications are sent in IdentityIQ.
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 7
+
+===== Page 11/120 =====
+Email Settings
+
+Email notifications can be sent using HTTP/OAuth authorization or SMTP/Basic authorization. You can also opt to
+redirect emails to a specific email address or to a file,which isuseful for testing your email settings and templates.
+
+Choose your Email Notification Type, then configure your email options as described below.
+
+HTTP/OAuth
+
+Choose this option to use the OAuth2 authentication protocol to send email notification via HTTP/HTTPS. This option
+isrecommended foruse with Microsoft Office 365, as an alternative to the SMTP/Basic method which has been
+deprecated by Microsoft.
+
+ Note:Â IdentityIQ supports OAuth version 2.0
+
+To use HTTP/OAuth with IdentityIQ, you need to register and configure IdentityIQ with your OAuth provider, and gen-
+erate an access token touse for authenticating connection requests.
+
+Inaddition, when working with Azure instances, you must set the Microsoft Graph Mail.send permission as an Applic-
+ation level permission; setting the permission type to Delegated does not provide sufficient access forthis feature.
+
+Email Service Endpoint
+
+ The email service endpoint forsending email notifications. Use the provided syntax as a guide, substituting your
+ organization's preferred email address.
+
+Token Endpoint
+
+ The token endpoint forthe email notifier to use. Use the provided syntax as a guide, substituting your organ-
+ ization's tenant ID.
+
+Refresh Token Endpoint
+
+ The refresh token endpoint forthe email notifier touse. Use the provided syntax as a guide, substituting your
+ organization's tenant ID.
+
+Scope
+
+ The scope forthe email notifier. The provided syntax enables the /.default scope, which isthe least
+ restrictive.Â You can editthis scope as needed.
+
+Client ID and Client Secret
+
+ The OAuth Client ID and Client Secret for authenticating. For Azure Active Directory, these can be found in the
+ Azure application registration page foryour organization.
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 8
+
+===== Page 12/120 =====
+SMTP/Basic
+
+Choose this option to use basic authentication foremail notifications.
+
+Encryption
+
+ Choose your email encryption type from the drop-down list:Â NONE, SSL, or TLS
+
+Default SMTP Host
+
+ Your organization's default mail host.
+
+Default SMTP Port
+
+ Your organization's default SMTP port.
+
+Default From Address
+
+ The address touse as the From address for allnotices automatically generated by IdentityIQ.
+
+Username and Password
+
+ The username and password required to access the SMTP host.
+
+Connection Timeout
+
+ The email socket connection timeout value in milliseconds.
+
+ Ifthere are session properties defined inthe notification template objects that are used tosend the email, those
+ willtake precedence over thisproperty.
+
+Read Timeout
+
+ The email socket read timeout value, inmilliseconds.
+
+ Ifthere are session properties defined inthe notification template objects that are used tosend the email, those
+ willtake precedence over thisproperty.
+
+Redirect to Email
+
+Choose this option to redirect allIdentityIQ emails toa specific email address. The options you configure for this
+setting are the defined in the same way as the settings described above for SMTP/Basic, with the addition of
+thisoption:
+
+Redirection Email Address
+
+ The email address to which email should be redirected.
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 9
+
+===== Page 13/120 =====
+Redirect to File
+
+Choose thisoption to redirect email to a file.
+
+Redirection File Name
+
+ The name ofthe fileto which email should be redirected.
+
+Default From Address
+
+ The address to use as the From address for emails and notices generated by IdentityIQ.
+
+Email Settings Common to All Notification Types
+
+Every email notification type requires these configuration options:
+
+Maximum Email Retries
+
+ Specify the maximum number oftimes to retry sending emails ifa temporary error is returned. Set this to0 to dis-
+ able retries.
+
+Suppress Duplicate Emails
+
+ Prevent the sending of multiple emails of the same type to the same recipient at one time. For example, iffive
+ work item reminders are generated forthe same person atone time, they only receive an email forthe firstone.
+ This option isused only for certification-related emails, and is enabled by default.
+
+Notification Templates
+
+Choose a template to use for each notification type. Notification templates are highly configurable; you can use Iden-
+tityIQ'sprovided defaults, or create your own. Detailed information about importing, customizing, and using IdentityIQ
+notification and email templates is in IdentityIQ Email Templates.
+
+Email Task Alerts
+
+You can configure IdentityIQ tosend emails to users or groups with the status of tasks after completion. The settings
+defined here at the global level are typically used when the email notification configured at the task level is
+disabled.Â Note that email notification settings at the task level have priorityover the global settings configured here.
+For example, ifyou set a global default to send task notifications tothe Administrator, then configure "Task1" to send
+notifications to the IT Helpdesk and "Task2" without any notification settings, "Task1" willsend notifications to the
+ITÂ Helpdesk and "Task2" will send email notifications tothe Administrator.
+
+Refer to the IdentityIQ Tasks documentation for more information on choosing notification recipients and templates
+at the task level.
+
+ Email Notification
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 10
+
+===== Page 14/120 =====
+ Select a frequency foremail notification to be sent upon task completion:
+
+
+
+ l Disabled â€” no email notification sent on task completion
+
+
+
+ l Warning â€” send an email notification ifthe task results in a warning
+
+
+
+ l Failure â€” send an email notification ifthe task fails
+
+
+
+ l Always â€” always send an email notification upon task completion
+
+
+ Email Notification Template
+
+ Choose a notification email template from the drop-down list.The Task Status email template isprovided out of
+ the box as a default template for task notifications, but you can choose another template ifyou prefer. For details
+ on creating your own custom email templates, see IdentityIQ Email Templates
+
+ This option is disabled ifEmail Notification field isdisabled.
+
+ Email Recipients
+
+ Choose the users and/or groups to receive task completion notifications. You can use the drop-down arrow to dis-
+ play allidentities, or type the firstfew letters ofa name orgroup and select them from the list.
+
+
+Microsoft Teams Notification Settings
+
+Check Enable Microsoft Teams Notification to enable the Microsoft Teams Notification feature. This feature
+enables IdentityIQ to send notifications both to users' emails and to their Microsoft Teams application. When this
+option is checked, notifications are enabled on allAzure Active Directory applications on which Microsoft Teams are
+configured.
+
+Work Items
+
+Use this page to set default values for use with work item policy.
+
+Certification Related Work Item Policy
+
+ Days before expiration
+
+ Specify the number ofdays after which a work item should expire.
+
+ Days before expiration to send first reminder
+
+ Specify the number ofdays, before a work item expires, that IdentityIQ should begin sending the owner of that
+ work item reminder notices.
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 11
+
+===== Page 15/120 =====
+ Days between expiration reminders
+
+ Specify the frequency with which reminder notices should be sent to the owners of certifications and work items.
+
+ Number of notices before escalation
+
+ Specify the number ofreminder notices that should be sent before the firstescalation notice is sent to the man-
+ ager of the owner of the assess certificationor work item.
+
+ Send notification email on work item assignment
+
+ Select this option to send an email notificationwhen a work item is assigned.
+
+ Send notification email on work item assignment removal
+
+ Select this option to send an email notificationwhen a work item assignment isremoved.
+
+ Allow priority editing on work items
+
+ Select this option to give work item recipients the abilitytoadjust the prioritylevelof work items.
+
+
+Work Item Archives
+
+Select one or more work item types to be archived. Press the <Ctrl> key to select multiple items.
+
+Work Item Rules
+
+You can use rules to customize work item processes and behavior. See Using the Rule Editor inIdentityIQ Con-
+figuration formore information on how to editrules.
+
+ Inactive user work item escalation rule
+
+ Select the rule from the drop-down listfordetermining a new owner forwork items from an inactive user.
+
+ Global work item forwarding rule
+
+ Use the drop-down listto select the rule used todetermine general work item forwarding.
+
+ Self-certification work item forwarding rule
+
+ Use the drop-down listto select the rule used todetermine work item forwarding in special cases. Allows for the
+ specification of a fallback forwarding user inthe case that configured automatic forwarding would cause self-cer-
+ tification.
+
+
+ This rule only applies ifauser has configured a forwarding rule,the ruledoes not apply when apre-delegation
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 12
+
+===== Page 16/120 =====
+ rule causes selfcertification.
+
+Identities
+
+Use this page to set configuration values foridentities.
+
+ Identity Risk
+
+Use this section to categorize your organization's risk scores.
+
+Number of Bands
+
+ Specify the number of colored bands, from 2 to 6, todisplay on allscore card charts, graphs, and tables.
+
+
+ These bands are used to indicate various levels of riskassociated with ranges of Identity risk scores. Specify a
+ number that best meets the needs ofyour enterprise.
+
+Label
+
+ Select the default labels or create your own text label associated with the colored risk bank.
+
+Range
+
+ Input the numeric riskscore range associated with each risk band. Risk scores are determined by multiple con-
+ tributing factors defined on the Configure Risk Scoring page.
+
+
+ Refer to the system administration documentation for more information.
+
+Indicator
+
+ The indication color associated with the risklevel.
+
+ Identity Attributes
+
+
+Number of Searchable Attributes
+
+ Specify the number of attributes that can be configured for use as searchable attributes on the Identity Attributes
+ page. This can be any number between 1 and 20. The default is 10.
+
+ This number should match the number configured during the installation and deployment process. Ifno cus-
+ tomization was performed during the installation and deployment process, the maximum number you can enter
+ is10.
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 13
+
+===== Page 17/120 =====
+Always Sync using workflow
+
+ Check this option ifyou want to always use the business process selected in the Business Processes section of
+ this page for attribute synchronization. Leaving thisoption unchecked means that you can set the option to use
+ the business process individually on each attribute inIdentity Mappings. For more information see the Pro-
+ visioning documentation.
+
+ Index History Granularity
+
+IdentityIQ can save history about riskscorecards foridentities and groups. Risk scorecards are calculated foriden-
+titiesand groups using the Identity Refresh task; scores are calculated based on the Identity Risk Model configured for
+your installation. Use this option to set the increments atwhich tostore scorecard history for identities (using Identity
+History) and groups (using Group History). For example, ifthe Identity History is set to'Week', scorecards are pre-
+served on a weekly basis. This means that when a scorecard is updated, itoverwrites any scorecard calculated within
+the previous week (7 days), and any scorecard that is older than 7 days issaved.
+
+ Identity Snapshots
+
+Set the frequency with which identity snapshot should be taken. Identity snapshots are used to build the risk score
+card history thatcan be used to track trends and patterns forindividual users, groups, departments, and your entire
+organization
+
+ Account Attributes
+
+Specify the number of attributes that can be configured for use as searchable attributes. This can be any number
+between 1 and 20. The default is5.
+
+This number should match the number configured during the installation and deployment process. Ifno customization
+was performed during the installation and deployment process, the maximum number you can enter is 5.
+
+ Business Processes
+
+You can configure IdentityIQ torun business processes when actions are taken on identities. See the Business Pro-
+cesses documentation for more information.
+
+Identity update
+
+ Select which business process isexecuted when an identity is edited in IdentityIQ. This can perform role assign-
+ ment approvals and send provisioning requests.
+
+Identity refresh
+
+ Select which business process isexecuted when an identity is refreshed in a background task. This might per-
+ form role assignment approvals and send provisioning requests.
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 14
+
+===== Page 18/120 =====
+Identity Correlation
+
+ Select which business process is executed when an manual correlation of accounts is done.
+
+Attribute Sync
+
+ Using a business process with attribute synchronization lets you manage the synchronization of multiple attrib-
+ utes together, in a single request and approval process.Â To use this option, choose a business process to use for
+ Attribute Sync. IdentityIQ provides a standard Attribute Sync business process thatmeets most use cases; you
+ can editthis business process to tailoritto your needs, and you can also create and choose a custom business
+ process ifyou prefer. See the Business Processes documentation formore information.
+
+Roles
+
+Use thispage to set default behavior for roles. Additional role configuration options are in Role Configuration.
+
+ Role Sunrise/Sunset Dates
+
+Sunrise and sunset dates are used tomake roles and entitlements temporary - they specify when a role (or an indi-
+vidual user's access to a role or an entitlement) becomes active, and when itbecomes inactive. This feature offers an
+efficient,automated way to grant time-limited access tosensitive roles, roles that are seasonal or temporary, or
+access that for any reason is intended to have a limited duration, such as a short-term assignment to a different team
+or a special project.
+
+IdentityIQ gives you two ways to use sunrise and sunset dates:
+
+
+
+ l On roles themselves, so that the role itselfhas a temporary duration.
+
+
+
+ l When a role or entitlement isgranted toa specific user; in other words, the role itselfmay not have time limits,
+ but a certain user's access to that role should have a limited duration.
+
+ Enable Sunrise/Sunset Dates on Role Assignment
+
+ Enable the abilityto set activation and deactivation dates on roles when they are assigned.
+ Activation and deactivation dates can be used to grant temporary access to sensitive roles.
+
+ A workflow to manage assignment and removal of roles or entitlements for this option can be set in Scheduled
+ role/entitlement assignment inthe Business Processes section below. A standard workflow ("Scheduled
+ Assignment") isprovided out of the box, but you can implement a custom workflow ifyour business needs
+ require one.
+
+ Enable Sunrise/Sunset Dates on Role Activation
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 15
+
+===== Page 19/120 =====
+ Enable the ability toinsert activation and deactivation events into roles from the role modeler. Activation events
+ are used to automatically activate ordeactivate roles using business processes.
+
+ A workflow tomanage activation/deactivation ofroles or entitlements forthis option can be set in Scheduled
+ role activation inthe Business Processes section below. A standard workflow ("Scheduled Role Activation") is
+ provided out of the box, but you can implement a custom workflow ifyour business needs require one.
+
+ Days before Sunset expiration to send notification
+
+ Send a notification to both the requestor and the requestee ofthe role or entitlement, when access isabout to
+ expire. This value determines when the notification issent. To disable notifications, enter 0.The email template
+ touse for notifications isconfigured on the Mail Settings tab inthe For notice of deprovisioning of sunsetted
+ roles and entitlements field.
+
+ Business Process Editor
+
+Inthis section you can set business processes torun with the sunrise and sunset options set in the previous section,
+and torun when roles are created, modified or deleted.
+
+Role create, update, and delete
+
+ Select which business process isexecuted when roles are created, modified, ordeleted in the role modeler.
+
+Schedule role activation
+
+ Select which business process isexecuted when a scheduled role assignment becomes due. This assigns the
+ role and can perform provisioning. Use this business process with Enable Sunrise/Sunset Dates on Role
+ Activation.
+
+Schedule role/entitlement assignment
+
+ Select which business process isexecuted when a scheduled role assignment or de-assignment becomes due.
+ This de-assigns the role and can perform provisioning. Use thisoption with Enable Sunrise/Sunset Dates on
+ Role Assignment.
+
+ Additional Role Options
+
+ Show user interface option to allow multiple application accounts
+
+
+ Note:Â Ifthis option is not enabled, required roles are assigned to the same account as the top-
+ level role.
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 16
+
+===== Page 20/120 =====
+ Enables an option on the Role Management page that enables a role to specify itsown target account, or create
+ a new account, during a role request, even ifitisrequired by another role and included inthat roles required roles
+ list.
+
+ Show user interface option to allow multiple assignments
+
+
+ Note:Â This option isonly available on assignable role types.
+
+ Enable an option on the Role Management page that enables a role tobe assigned to the same identity multiple
+ times.
+
+ Allow multiple assignment for all assignable roles
+
+
+ Note:Â This setting supersedes the settings on the individual role definitions.
+
+ Make allassignable role types available formultiple assignment to the same identity.
+
+ Allow propagation of role changes
+
+ Enables a role change topropagate to allidentitiesthat have the role assigned.
+
+ Retain assigned entitlements when detected roles are removed
+
+ Do not remove assigned entitlements from an identitywhen a detected role with which they are associated is
+ removed from that identity.
+
+ Retain assigned entitlements when assigned roles are removed
+
+ Do not remove assigned entitlements from an identitywhen an assigned rolewith which they are associated is
+ removed from that identity.
+
+ Require comments for all access items
+
+ Require comments in Access Requests. The comment requirement applies to both the addition and removal of
+ roles and entitlements in the Access Requests UI.
+
+
+Passwords
+
+Use thistab to define the password policy for IdentityIQ. Allof the users must set up theirpasswords based on the
+policy created on thistab.
+
+Use the Define Character Types dialog todefine acustom set of character thatare allowed in passwords. These can
+be used to match password requirements for specific application types. Click Define Character Types to open the
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 17
+
+===== Page 21/120 =====
+dialog and enter character sets by category, such as Digits, Uppercase Characters, Lowercase orNon-English
+Characters, Special Characters. All characters are allowed ifthese fields are empty.
+
+Configuration
+
+ Enable one-way hashing of secret values
+
+ You must run the Encrypt Sensitive Data Task afterselecting thisoption toconvert any saved values from
+ encrypted to hashed.
+
+ Note:Â When thisoption isselected, allvalues are hashed instead ofencrypted.
+
+ These values include passwords, password history, and authentication questions. When thisoption is enabled,
+ specificpassword policy options are disabled.
+
+
+ For more information, see Data Encryption.
+
+ Number of hashing iterations
+
+ The number of iterations performed inthe hashing algorithm.
+
+
+Password Policy
+
+ Minimum number of characters
+
+ The minimum number of characters, letters,or digits,required fora valid password.
+
+ Maximum number of characters
+
+ The maximum number ofcharacters, letters,or digits,allowed ina valid password.
+
+ Minimum number of letters
+
+ The minimum number of lettersrequired fora valid password.
+
+ Minimum number of character type constraints to meet
+
+ The minimum number of character types required fora valid password. Applicable character types are upper
+ case, lower case, digits,and special characters. Ifno value isset, allofthe character type constraints must be
+ met.
+
+ Minimum number of digits
+
+ The minimum number of digitsrequired fora valid password.
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 18
+
+===== Page 22/120 =====
+ Minimum uppercase letters
+
+ The minimum number ofuppercase lettersrequired for a valid password.
+
+ Minimum lowercase letters
+
+ The minimum number oflowercase letters required fora valid password.
+
+ Minimum special characters
+
+ The minimum number ofspecial characters required.
+
+ Number of repeated characters allowed
+
+ The maximum number of consecutive repeated characters allowed in a valid password. For example, ifthis
+ option is set to2, â€œclouddâ€ and â€œcclooudâ€ are valid,but â€œcloudddâ€, â€œcloooudâ€ and â€œcccloudâ€ are invalid. This value
+ also sets the maximumÂ numberÂ ofÂ occurrencesÂ ofÂ repeatedÂ charactersÂ allowedÂ inÂ aÂ validÂ  password. For
+ example, ifthisoption is set to2, â€œhappy123â€ isvalid,however, â€œhappy22â€ and â€œhapppy123â€ are not.
+
+ Inthis example, when â€œccloouddâ€ isan invalidpassword, the following error message isdisplayed: Password
+ should not contain more than 2 occurrence(s) ofthe repeated characters. When â€œcloudddâ€ isan invalid pass-
+ word, the following error message isdisplayed: Password should not contain more than 2 consecutive repeated
+ characters.
+
+ Setting this value to zero has the same effect as leaving thisfield blank, allowing any number of repeated and
+ consecutive characters.
+
+ To prevent the use of any consecutive repeated characters, set this value to1.Â Setting the value to 1 does not
+ prevent using a character more than once, as long as the characters are not consecutive. For example, with a
+ value of 1, "kitkat"isvalid but "kitten" isnot.
+
+ Password history length
+
+ The number ofprevious passwords stored by IdentityIQ.
+
+ This number includes the current password so ifthe length istwo, the history isthe current password and one
+ other. Ifthe length is set tozero there is no history.
+
+ Triviality check against old password
+
+ Ensure that the shorter ofthe old and new password isnot a substring of the other.
+
+
+ Both passwords are changed toupper case prior to the check.
+
+ Minimum number of characters by position
+
+
+
+
+
+SailPoint IdentityIQ System Configuration 19
+
+===== Page 23/120 =====
+ The minimum number of unique characters by position for the new password. Can be used to ensure thatnot just
+ the firstorlast character is changed.
+
+
+ Select Case sensitive check toensure that more than justthe case ischanging in the new password.
+
+ Days until expiration for manually set passwords
+
+ The number ofdays untila password set manually expires.
+
+ Ifthe days are zero passwords do not expire.
+
+ Days until expiration for generated passwords
+
+ The number ofdays untila password set by the identitycreate rule during aggregation expires.
+
+ Ifzero thedays are zero passwords do not expire.
+
+ Minimum Hours between password changes
+
+ The minimum number of hours that must past before a userâ€™s password can be changed again.
+
+ Validate passwords against the password dictionary
+
+ Ensures thatthe password to be created isunique.
+
+ Validate passwords against the identity's list of attributes
+
+ Check the new password forvalidityagainst the attributes assigned tothe identity.
+
+ Require users to enter their current password when setting a new password
+
+ Require users toenter there current password before creating a new password.
+
+Miscellaneous
+
+Use thistab toset a variety ofIdentityIQÂ configuration options.
+
+ Other Object Expirations
+
+
+Days before snapshot deletion
+
+ Specify the number ofdays tokeep an identity snapshot inthe system before itisdeleted. Identitysnapshots are
+ used to buildhistory.
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 20
+
+===== Page 24/120 =====
+Days before task result deletion
+
+ Specify the number of days to keep task results on the Task Results page before removing them from the sys-
+ tem.
+
+Days before certifications are archived
+
+ Specify the number of days after which to archive certifications.
+ Leave the settings at zero (0) to never archive certifications.
+
+ Caution:Â Certification archives are not recommended. Certification reports should be used to pre-
+ serve certificationinformation.
+
+
+Days before certification archive deletion
+
+ Specify the number of days to maintain the certification archive before deleting certifications records.
+ Leave the settings at zero (0) to never delete certifications archives.
+
+ Caution:Â Certification archives are not recommended. Certification reports should be used to pre-
+ serve certificationinformation.
+
+
+Minutes before object locks are released
+
+ Specify the number of minutes toelapse before releasing an object lock.
+ Leave the settings at zero (0) to have no time delay when objects are released.
+
+Days before provisioning request logs expire
+
+ Specify the number of days to maintain provisioning request logs before deleting them.
+ Leave the settings at zero (0) to never delete provisioning request logs.
+
+ UI Preferences
+
+
+Disable Role Modeler Tree View
+
+ Disable the tree view on the Role Manager page. Disabling the tree view might enhance performance on that
+ page.
+
+Maximum Roles Page Size
+
+ The maximum number of roles todisplay per page on the Role Management page.
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 21
+
+===== Page 25/120 =====
+Show unsupported browser message
+
+ Display a message when an unsupported browser isused.
+
+Accessibility: Color Contrast
+
+ Enable color contrast throughout the entire IdentityIQ instance.
+
+ Syslog Settings
+
+
+Enable syslog
+
+ Enable the syslog.
+
+Level at which syslog events will be stored
+
+ Select the lowest levelof event which is stored inthe syslog. Choose from FATAL, ERROR, and WARN.
+
+Days before syslog event deletion
+
+ Input the number ofdays an event inthe syslog must remain before becoming eligibleforpurging.
+
+ Provisioning Transaction Log Settings
+
+
+Enable Provisioning Transaction Log
+
+ Enable the Provisioning Transaction table and begin logging some or allof the provisioning actions within Iden-
+ tityIQ.
+
+Maximum Log Level
+
+ The level at which transactions are logged based on theircompletion status.
+ Success â€” all transaction are logged
+ Retry â€” transactions that didnot succeed and are ineither the retry orfailed state
+ Failure â€” only log transaction that have failedand are setup forretry
+
+Days before provisioning transaction event deletion
+
+ The number of days before a provisioning transaction is removed from the table.
+
+ File Preferences
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 22
+
+===== Page 26/120 =====
+Temporary Directory
+
+ Input the path to a default temporary director foruse by IdentityIQ. This is the directory where IdentityIQ stores
+ temporary files,such as log files,during processing.
+
+Maximum Upload Size (MB)
+
+ Limit the size ofthe filesuploaded using import objects, batch requests, and entitlement imports.
+
+ System Help Settings
+
+
+Help Contact Email Address
+
+ Input an email address of a user responsible forsupporting IdentityIQ inyour enterprise. The email account is
+ accessible from an Email Help button displayed at the bottom of some pages.
+
+ Localized Object Attributes
+
+
+Enable applications to be configured with multi-language descriptions
+
+ Enable applications to be configured with multi-language descriptions. See Multi-language Description Files.
+
+Enable roles to be configured with multi-language descriptions
+
+ Enable roles to be configured with multi-language descriptions. See Multi-language Description Files
+
+Enable policies to be configured with multi-language descriptions
+
+ Enable policies to be configured with multi-language descriptions. See Multi-language Description Files
+
+Enable entitlements to be configured with multi-language descriptions
+
+ Enable entitlements to be configured with multi-language descriptions. See Multi-language Description Files.
+
+ Multi-Languages Descriptions
+
+
+ Note:Â You must add allsupported languages tothe <locale-configure> section ofthe
+ faces-config.xml filebefore the application can properly recognize the languages.
+
+Default Language
+
+ Select the language to use as a default from the listof supported languages.
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 23
+
+===== Page 27/120 =====
+Supported Languages
+
+ Enter the languages thatyour instance of IdentityIQ supports.
+
+ Business Processes
+
+
+Entitlement Update
+
+ Select the business process to execute when a managed entitlement or group iscreated or edited.
+
+Password Intercept
+
+ Select the business process to execute when a password change interception event isreceived.
+
+ Caches
+
+
+Enable asynchronous policy and role cache refresh
+
+ Disable the immediate cache refresh with each Lifecycle Manger request.
+
+
+ When you enable thisoption, IdentityIQ does not check forchanges topolicy and role objects. When a Lifecycle
+ Manager request is submitted, the cache is refreshed immediately. Using thisoption can speed the request pro-
+ cess. However, the effects ofa recent policy or rolechange might not display for a few minutes.
+
+ Reports
+
+
+CSV Delimiter
+
+ The character used as the CSV delimiter when exporting report results.Comma isused by default.
+
+Filter searches by
+
+ Determines how users can search forreport names inthe Reports UI. Choose startsWith to letusers find the
+ input string only atthe beginning of the report name, or contains to findthe search string anywhere inthe
+ report name.
+
+ Plugin Settings
+
+
+Prohibit scripts from accessing plugin-loaded classes
+
+
+ Note:Â All BeanShell executions are referred to as scripts.
+
+ Restrict the access to classes loaded by plugins. Without thisrestriction,all class are available inIdentityIQ.
+
+
+
+
+ SailPoint IdentityIQ System Configuration 24
+
+===== Page 28/120 =====
+Relax strict declaration enforcement
+
+ Enable IdentityIQ to work fullywith plugins that were created without explicitlydeclaring classes forexport.
+
+
+ By default, fora fresh installation ofIdentityIQ this option is not selected. For an upgraded installation ofIden-
+ tityIQ,this option isselected ifplugins exist.
+
+ Attachment Settings
+
+For detailed information about configuring and using fileattachments in access requests, see Configuring File
+Attachments for Access Requests .
+
+ Caution:Â IdentityIQ does not perform filecontent validation or verification on attachments. Itis
+ your responsibility to ensure that only filesthat do not violate security policies within your envir-
+ onment are included as attachments.
+
+
+
+ Note:Â Attachments are only allowed on single-user requests.
+
+
+ Note:Â Attachments are only available for manual access requests.
+
+Enable Attachments
+
+ Enable the attachments feature. Allow users to add attachments to access requests.
+
+Attachments Per Item
+
+ The maximum number of attachments allowed for a request.
+
+Maximum filesize (MB)
+
+ Maximum filesize for any single attachment. The default maximum value you can enter here is20 MB, but the
+ maximum attachment size limitcan be adjusted by a system administrator using the attach-
+ mentsMaxFileSizeLimit key in the system configuration object.
+
+Supported file types
+
+ Comma separated listoffiletypes. The dot prefix isnot required.
+
+Supported characters
+
+ Special characters, inaddition to Unicode alphanumeric characters, that are allowed in the filename.
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 25
+
+===== Page 29/120 =====
+Configuration Rules
+
+
+ Note:Â Only the rules selected in thislistare run during an access request.
+
+ This listcontains allof the attachment configuration rules available in your installation of IdentityIQ. Use the Ctrl
+ or Shiftkeys to select multiple rules.
+
+ Edit Preferences Settings
+
+
+Enable edit for forwarding preferences
+
+ Enable users to change theirforwarding preferences from the Edit Preferences page. See the
+ IdentityIQÂ Getting Started documentation for more information.
+
+Enable change password
+
+ Enable users to change theirIdentityIQ password from the Edit Preferences page. See the IdentityIQÂ Getting
+ Started documentation for more information.
+
+ Manage User Access Require Comments Settings
+
+
+Require comments for all access items
+
+ Require comments on allAccess Requests. The comment requirement applies to both the addition and removal
+ ofroles and entitlements in the Access Requests UI.
+
+ Complete the following torequire user comments on access requests:
+
+ 1. Navigate to the gear icon > Global Settings > IdentityIQ Configuration.
+
+ 2. Select the Miscellaneous tab.
+
+ 3. Select Require comments for all access items in the Manage User Access Require Comments section.
+
+ 4. Select Save.
+
+Configuration Rules
+
+ You can use rule logic todefine specific requirements and behavior for requiring comments.
+
+ Select the rule(s) to run during access requests from this list.You can use the Ctrl or Shiftkeys to select multiple
+ rules. Note that ifthe option torequire comments forall access items ischecked in the fieldabove, the rules do
+ not run.
+
+ A sample Example Comment Config Rule rule isincluded in the examplerules.xml file.
+
+
+
+
+ SailPoint IdentityIQ System Configuration 26
+
+===== Page 30/120 =====
+Privileged Account Management
+
+The SailPoint IdentityIQ Privileged Account Management Module (PAM) extends identity governance processes and
+controls to highly privileged access, enabling you to centrally manage access to privileged and non-privileged
+accounts.
+
+This tab appears only ifyou have implemented the Privileged Account Management feature. Use thistab to configure
+the Privileged Account Management feature.
+
+For more information, see the Privileged Account Management documentation.
+
+Login Configuration
+
+Use the Login Configuration page to set an application forauthentication verification. For example, ifall ofthe users in
+your organization are set up with roles and authorization inan LDAP server, use thatserver to verify users logging into
+IdentityIQ. Login Configuration has the following tabs:
+
+
+
+ l Login Settings
+
+
+
+ l User Reset
+
+
+
+ l Multi-Factor Authentication
+
+
+
+ l SSO Configuration
+
+
+Authentication Method Processing Order
+
+IdentityIQ attempts to authenticate users by allenabled methods before reporting login failure. The methods are
+executed inthis order, skipping any disabled methods:
+
+ 1. Single Sign On (Rule-based or SAML)
+
+ 2. Pass-Through Authentication
+
+ 3. Internal IdentityIQ Authentication
+
+
+ Note:Â If configured, Multi-Factor Authentication follows the initialuser authentication through any
+ of these means.
+
+
+
+Login Settings
+
+Use the Login Settings tab to configure general settings for login criteria.
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 27
+
+===== Page 31/120 =====
+ Note:Â Any user discovered by an aggregation task appears in the identities listsand can be
+ assigned work items. Before a user can access IdentityIQ and the work item, they must be val-
+ idated by an authentication verification server.
+
+Use Auto create user rules when adding users to the application. The firsttime a user logs into the application, and is
+verified by the pass-through server, the Auto create user rules creates an IdentityIQ user based on specifications
+defined inthis rule. Those rules are applied each time the user accesses product.
+
+The following table describes the login settings.
+
+ Pass through application
+
+ Specify an application to use as the authentication verification server for allusers logging into IdentityIQ.
+
+ Auto create user rule
+
+ Specify an auto create user rule to use when creating IdentityIQ identities based on account attributes dis-
+ covered during aggregations.
+
+ Click the â€œ...â€icon to launch the Rule Editor to make changes toyour rules ifneeded. See Using the Rule Editor
+
+ Login error style
+
+ Ifyou select Simple and are using the Lockout feature, users that are locked out do not receive a message provid-
+ ing that information.
+
+ Select a login error message style.
+ Simple â€” shows an error with no information about what isincorrect.
+ Detailed â€” provides information about the incorrect part of the login. For example, Invalid password for user
+ admin.
+
+ Login after timeout returns to
+
+ Specify how navigation is handled aftera session times out and you log back in to that session.
+
+
+ Ifchecked, the Home page is displayed. Ifnot, the session returns to the page that was viewed atthe time of the
+ timeout.
+
+ Enable Authorization Lockout
+
+
+ Note:Â This option is only associated with the IdentityIQ password. Itdoes not apply to the pass
+ through authentication application. For example, ifa user is locked out of directly logging into
+ IdentityIQ, but they enter the correct information on the pass through authentication server, they
+ are allowed into the application.
+
+
+
+
+
+
+SailPoint IdentityIQ System Configuration 28
+
+===== Page 32/120 =====
+ Enable a lockout period for users who enter the wrong authorization information.
+
+
+ Use the options that display to set the lockout parameters.
+
+ Number of Unsuccessful Login Attempts before lockout
+
+ Specify the number oflogin attempt failures allowed before the user islocked out of IdentityIQ.
+
+ Number of minutes a user will be locked out due to unsuccessful login
+
+ Specify the number ofminutes auser islocked out of IdentityIQ before they can attempt tologin again.
+
+ Enable Protected User Lockout
+
+ Select this ifyou want users marked as "Protected" (such as the default spadmin user) to be treated the same
+ as other users inauthorization lockout. Leave itunchecked ifyou do not want protected users tobe subject to
+ lockout.
+
+
+ By default, only the spadmin user is marked as protected; ifthere are other users you want to protect from lock-
+ out,you can make them protected by adding a protected="true" flag to the userâ€™s Identityobject inthe
+ Debug Pages.
+
+User Reset
+
+On the User Reset tab,configure your system to letusers reset forgotten passwords or unlock accounts. Navigate to
+gear >Â Global Settings >Â Login Configuration and use the following options:
+
+
+
+ l Enable Forgot Passwordâ€”displays a Forgot Password linkon the login page so users who have forgotten
+ their password can reset it.
+
+
+
+ l Enable Account Unlockâ€”displays an Account Unlock link on the login page so users who have been locked
+ out can unlock theiraccount.
+
+Selecting eitheror both ofthese options brings up two additional options:
+
+
+
+ l Enable Security Questionsâ€”when enabled, security questions are used toconfirm a userâ€™s identity ifthey
+ have forgotten theirpassword or become locked out.
+
+
+
+ l Enable SMS Verificationâ€”when enabled, a user is provided the option to have a reset code sent via SMS if
+ they have forgotten theirpassword orbeen locked out.
+
+See Password Recoveryâ€”Account Unlock.
+
+ Security Question Configuration
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 29
+
+===== Page 33/120 =====
+ Note:Â Security questions and settings are associated with the password set on the pass through
+ application. These are not associated with a direct logon to IdentityIQ.
+
+Security questions display when you select the Forgot Password linkon the login page during the authentication pro-
+cess. The questions listcan contain tags from the properties fileconfigured when your IdentityIQ instance was
+deployed, or when text isentered directlyon thistab, or a combination of both. Mapping tags from a properties fileis
+generally used forinternationalization purposes.
+
+Configure security questions as follows:
+
+ 1. In the Questions section, select your desired questions using the + option to add new questions and the - option
+ to remove options from the list.
+
+ 2. In the Settings section, adjust the default parameters as needed.
+
+
+
+ l Number of questions asked to authenticate an identityâ€”specifies the number ofquestions that
+ must be answered correctly in order to reset the password.
+
+
+
+ l Number of questions a user must answer for authenticationâ€”specifies the number of questions
+ for which the user must provide answers in advance so they can be authenticated using these ques-
+ tions. Questions without known answers cannot be used for authentication because there is no correct
+ answer to be matched.
+
+
+
+ l Prompt users for answers to unanswered security questions upon successful loginâ€”causes
+ IdentityIQÂ to check during login whether the user has the required number ofauthentication answers
+ provided already and, ifnot, prompt the user forthose answers. The required number ofquestions is
+ defined on the Edit Preferences page.
+
+
+
+ l Maximum number of unsuccessful authentication attempts before IdentityIQ lockoutâ€”specifies
+ the number offailed authentication attempts before the user is locked out of IdentityIQ.
+
+
+
+ l Number of minutes a user will remain locked out due to unsuccessful authenticationâ€”set how
+ long a user is locked out after the specified number of unsuccessful login attempts before they can try
+ again to sign into IdentityIQ.
+
+ 3. Select Save.
+
+When a user clicks the Forgot Password link and then selects and answers the authentication questions, by default
+the user's answers are shown inplain text as they are typed in the user interface. Ifyou want toobscure the user's
+answers with asterisks as they are typed, use the Debug page to add thisentry key to IdentityIQâ€™s Sys-
+temConfiguration object.
+ <entry key="obscureAuthAnswers" value="true"/>
+Use the Settings section to configure behaviors for password attempts.
+
+
+
+
+SailPoint IdentityIQ System Configuration 30
+
+===== Page 34/120 =====
+ SMS Reset
+
+Be sure toselect the Enable SMSÂ Verification checkbox. Additionally, before you set up SMS Reset, you need the
+following items from twilio.com:
+
+
+
+ l An active Twilio account
+
+
+
+ l Twilio ID
+
+
+
+ l Twilio credentials (authentication token)
+
+
+
+ l "From" phone number configured on account
+
+
+SMSÂ Verification Configuration
+
+Set up SMSÂ verification for your system by completing the form as follows:
+
+
+
+ l Twilio Account IDâ€”enter the account ID you receive from Twilio when you set up your company Twilio
+ account.
+
+
+
+ l Twilio Authentication Tokenâ€”enter the authentication token you receive from Twilio when you set up your
+ company Twilio account.
+
+
+
+ l From Phone Numberâ€”specify the phone number tobe displayed in the From fieldon the SMS messages.
+ This phone number must be configured as the From number on your Twilio account.
+
+
+
+ l Phone Number Attribute on Identityâ€”from a dropdown list,select the identity attribute thatrepresents the
+ mobile phone number. To define a new identity attribute,see Account Mappings.
+
+
+ For a user to reset their password using the SMS Reset feature, the fieldassociated with their
+ mobile phone number must contain a complete number including the area code. Using E.164
+ number formatting forallphone numbers inthe To and From fields isstrongly encouraged. For
+ more information, see SSO Configuration.
+
+
+
+
+ l Verification Token Timeout (minutes)â€”you may adjust the default as needed to specify how many minutes
+ the user's password reset token is validbefore itexpires.
+
+
+
+ l Throttle requests at a rate of 1 per N minute(s)â€”specify the rate at which SMSÂ requests can be made ina
+ certain amount of time. For example, ifyou enter the number 5, your limitis 1 request every 5minutes.
+
+
+
+ l Maximum Failed Attemptsâ€”after reaching the maximum failed attempts, a user cannot verifya reset token
+ untilthat token expires and a new token isrequested.
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ System Configuration 31
+

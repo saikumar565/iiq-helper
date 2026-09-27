@@ -1,0 +1,4561 @@
+===== Page 1/75 =====
+ Business Processes
+
+
+ Version:8.4
+
+ Revised:September2023
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thisdocument and theinformation contained hereinisSailPoint ConfidentialInformation
+
+===== Page 2/75 =====
+Copyright and Trademark Notices
+
+Copyright © 2023 SailPoint Technologies, Inc.  All Rights Reserved.
+
+Alllogos, text,content, including underlying HTML code, designs, and graphics used and/or depicted on these written
+materials or in thisInternet website are protected under United States and international copyright and trademark laws
+and treaties, and may not be used or reproduced without the prior express written permission of SailPoint Tech-
+nologies, Inc.
+
+“SailPoint Technologies,” (design and word mark), “SailPoint,” (design and word mark), "Identity IQ,” “IdentityNow,”
+“SecurityIQ,” “Identity AI,” “Identity Cube,” and “SailPoint Predictive Identity” are registered trademarks of SailPoint
+Technologies, Inc. “Identity isEverything,” “The Power of Identity,” and “Identity University” are trademarks of
+SailPoint Technologies, Inc. None of the foregoing marks may be used without the prior express written permission of
+SailPoint Technologies, Inc. Allother trademarks shown herein are owned by the respective companies or persons
+indicated.
+
+SailPoint Technologies, Inc. makes no warranty ofany kind regarding these materials or the information included
+therein, including, but not limited to,the implied warranties ofmerchantability and fitness for a particular purpose.
+SailPoint Technologies shall not be liable for errors contained herein or direct, indirect, special, incidental orcon-
+sequential damages inconnection with the furnishing, performance, or use of thismaterial.
+
+Patents Notice. https://www.sailpoint.com/patents
+
+Restricted Rights Legend. All rights are reserved. No part ofthis document may be published, distributed, reproduced,
+publicly displayed, used to create derivative works, or translated to another language, without the prior written consent
+ofSailPoint Technologies. The information contained inthis document issubject to change without notice.
+
+Use, duplication or disclosure by the U.S. Government is subject to restrictions as set forth insubparagraph (c) (1) (ii)
+ofthe Rights inTechnical Data and Computer Software clause at DFARS 252.227-7013 for DOD agencies, and sub-
+paragraphs (c)(1) and (c)(2) ofthe Commercial Computer Software Restricted Rights clause at FAR 52.227-19 for
+other agencies.
+
+Regulatory/Export Compliance. The export and re-export of this software iscontrolled for export purposes by the U.S.
+Government. By accepting this software and/or documentation, licensee agrees to comply with allU.S. and foreign
+export laws and regulations as they relate to software and related documentation.  Licensee will not export or re-
+export outside the United States software or documentation, whether directly or indirectly, to any Prohibited Party and
+willnot cause, approve or otherwise intentionally facilitate others inso doing. A Prohibited Party includes: a party in a
+U.S. embargoed country or country the United States has named as a supporter of international terrorism; a party
+involved in proliferation; a party identified by the U.S. Government as a Denied Party; a party named on the U.S.
+Department of Commerce’s Entity Listin Supplement No. 4 to 15 C.F.R. § 744; a party prohibited from participation in
+export orre-export transactions by a U.S. Government General Order; a party listed by the U.S. Government’s Office
+ofForeign Assets Control as ineligible to participate in transactions subject toU.S. jurisdiction; or any party that
+licensee knows or has reason toknow has violated or plans to violate U.S. or foreign export laws or regulations.
+Licensee shall ensure that each of itssoftware users complies with U.S. and foreign export laws and regulations as
+they relate to software and related documentation.
+
+===== Page 3/75 =====
+Contents
+
+
+ Business Process Management 1
+
+ Workflow Basics 2
+
+ Using the Business Process Editor with Workflows 8
+
+ Editing Workflow XML 26
+
+ Accessing the XML 26
+
+ Dollar-Sign Reference Syntax 27
+
+ XML Content 27
+
+ Workflow Element 28
+
+ Variable Definitions 29
+
+ Workflow Description 32
+
+ Rule Libraries 32
+
+ Step Libraries 33
+
+ Step Elements 34
+
+ Approval Steps 44
+
+ Workflow Library Methods 52
+
+ Standard Workflow Handler 52
+
+ Identity Library 55
+
+ IdentityRequest Library 62
+
+ Approval Library 62
+
+ Policy Violation Library 64
+
+ Role Library 64
+
+ LCM Library 66
+
+ Monitoring Workflows 67
+
+ Viewing the Workflow Case XML 67
+
+ Advanced Workflow Topics 68
+
+ Loops withinWorkflows 68
+
+ Launching Workflows from a Task or Workflow 68
+
+ Workflow Forms 71
+
+===== Page 4/75 =====
+Business Process Management
+
+Business Process Management
+
+
+A Business Process isa sequence of operations or steps thatare launched toperform work. IdentityIQ Business Pro-
+cesses include standard out-of-the-box processes and custom installation-specific processes. The informal term
+workflow is also used in thisdocument to refer toa business process.
+
+System events trigger both standard and custom IdentityIQ Business Processes. Events thatcan trigger a workflow
+include:
+
+
+
+ l Role creation or modification
+
+
+
+ l Account Group creation ormodification
+
+
+
+ l Identity update
+
+
+
+ l Identity refresh
+
+
+
+ l Identity correlation
+
+
+
+ l Deferred role assignment, de-assignment
+
+
+
+ l Deferred role activation, deactivation
+
+
+
+ l Any Lifecycle Manager event
+
+
+
+ l Any Lifecycle Event (marked by changes to an Identity'sattributes)
+
+
+Custom workflows can be defined to do a wide variety of processing tasks. You can use:
+
+
+
+ l IdentityIQ workflow library methods and rules.
+
+
+
+ l Custom BeanShell scripts and rules.
+
+
+Customizing or creating workflows generally involves a combination of XML and Java /BeanShell programming. You
+can manage some customization activities with the IdentityIQ graphical process editor that isincluded in the product.
+To customize or create new workflows, typicallyyou need to be comfortable writing XML and Java.
+
+This document includes these topics:
+
+
+
+ l Workflow Basics
+
+
+
+ l Using the Business Process Editor with Workflows
+
+
+
+
+
+
+ SailPoint Business Processes 1
+
+===== Page 5/75 =====
+Business Process Management
+
+
+
+ l Editing Workflow XML
+
+
+
+ l Workflow Library Methods
+
+
+
+ l Monitoring Workflows
+
+
+
+ l Advanced Workflow Topics
+
+Workflow Basics
+
+This section contains some key concepts for developing and using workflows. Topics include:
+
+
+
+ l Terminology
+
+
+
+ l Important Workflow Objects
+
+
+
+ l Workflows Operation
+
+
+
+ l Triggering Workflows
+
+
+
+ l IdentityIQ Default Workflows
+
+Terminology
+
+The terms business process and workflow are used synonymously in IdentityIQ and throughout this document.
+
+The IdentityIQ user interface refers tothese sets of connected actions as business processes, which isthe term that
+business managers often use. System implementers and users working inthe object model typically use the term
+workflow.
+
+Important Workflow Objects
+
+The IdentityIQ Object Model uses four key objects inworkflows. To work with workflows, you need a basic under-
+standing ofthese objects.
+
+ Note: The most important object for writing workflows is the WorkflowContext object, which
+ tracks the launchtime state ofthe workflow and performs other criticalfunctions. Because Work-
+ flowContext methods are used inworkflows, data can be extracted from itas needed within any
+ step of the workflow.
+
+
+ Object Usage
+
+ Workflow Defines the workflow structure and steps involved in the workflow pro-
+ cessing.
+
+
+
+
+
+ SailPoint Business Processes 2
+
+===== Page 6/75 =====
+Business Process Management
+
+
+ Object Usage
+
+ Represents a workflow in progress.
+ WorkflowCase Contains a workflow element in which the process is outlined and current
+ state data is tracked.
+ Contains identifying information about the workflow target object.
+ Tracks launchtime information the Workflower maintains as itadvances
+ through a workflow case.
+ WorkflowContext Passed intorules and scripts and to the registered WorkflowHandler.
+ Contains allworkflow variables, step arguments, current step or approval,
+ workflow definition, libraries,and WorkflowCase.
+ TaskResult Records the completion status of a task, or inthis case, the workflow.
+ Contained within the WorkflowCase.
+
+Workflows Operation
+
+
+ Note: If multiple identities are modified atone time ina way that requires a workflow tolaunch for
+ allof the identities, a separate workflow case iscreated totrack the processing of the workflow
+ for each single identity.
+
+Workflows carry out a sequence of defined actions based on a triggering event and can be used for a variety ofactiv-
+itieswithin the system. In itslaunching state, a workflow istracked through a workflow case, which manages only one
+target entity at a time (one identity, one role,one provisioning plan, etc.).
+
+Provisioning Plans in Workflows
+
+A provisioning plan contains a listofrequested changes to an identity. Most workflows that change identities contain a
+single provisioning plan in a workflow variable. When performing Workflow customization you commonly need to
+inspect and sometimes need to modify the provisioning plan.
+
+ Note: Customization rules might run multiple times, updating the same ResourceObject. For
+ example, once forthe provisioning result, once for the result in the provisioning plan, and once
+ for the result in the account request.
+
+
+ Note: Only one provisioning plan can be referenced ina workflow case at a time.
+
+When you request changes for more than one identity ata time, even ifthe same change is requested for allthe iden-
+tities:
+
+
+
+
+
+
+
+
+
+
+ SailPoint Business Processes 3
+
+===== Page 7/75 =====
+Business Process Management
+
+
+
+ l A separate provisioning plan is created for each identity.
+
+
+
+ l A separate workflow case is created to manage the provisioning plan created foreach identity.
+
+Triggering Workflows
+
+
+ Note: You can also configure an IdentityIQ task totrigger a workflow. This workflow set up is a
+ more complex process. See Advanced Workflow Topics .
+
+Events that occur in other parts of IdentityIQ and changes to attributes can trigger Workflows. Common Workflow trig-
+gers include:
+
+
+
+ l Lifecycle Manager Actions – Requests to change an identity'sroles, entitlements, or accounts can activate
+ workflows.
+
+
+
+ l Lifecycle Events – Creating an identity, deactivating an identity,or moving an identity from one manager to
+ another manager can activate workflows.
+
+
+
+ l Non-Lifecycle Events – Editing a role,editing an account group, and changing a password can active work-
+ flows.
+
+
+
+ l Identity Attribute Change – Value changes can activate workflows.
+
+
+
+ l Policy Violations – A policy violation can activate workflows.
+
+
+This table liststhe main areas of IdentityIQ where you can associate Workflows to system activities.
+
+ Workflow IdentityIQ Setup
+ Trigger
+
+ Lifecycle Select Lifecycle Manager from the gear icon menu and go tothe Business Pro-
+ Manager cesses tab.
+ Requests
+ Lifecycle Select Lifecycle Events from the Setup menu and specify the business process
+ Events behavior.
+ Non-LCM- Linked to triggering events.
+ related Select Global Settings from the gear icon menu and go to the IdentityIQ Con-
+ Events figuration page. Select the Identities,Roles, or Miscellaneous tab and then select
+ a business process.
+ Identity Configured with a Value Change Workflow.
+ Attribute Select Global Settings from the gear icon menu and go to the Identity Mapping
+ Change page. Click an attribute to editor add a new attribute.On the Edit Identity Attribute
+
+
+
+
+
+ SailPoint Business Processes 4
+
+===== Page 8/75 =====
+Business Process Management
+
+
+ Workflow IdentityIQ Setup
+ Trigger
+
+ page, go tothe Advanced Options > Value Change Workflow option to select
+ the business process.
+ Policy Select Policies from the Setup menu, select or create a new policy, and specify
+ Violation the business process behavior.
+
+IdentityIQ Default Workflows
+
+IdentityIQ is preconfigured with various standard workflows that manage activities.The following workflows are
+examples of default workflows that are included with the product:
+
+
+
+ l Provisioning of roles or entitlements
+
+
+
+ l Account management
+
+
+
+ l Identity creation
+
+
+
+ l Password management
+
+
+The default workflows can be configured and customized to address the specific business requirements ofeach install-
+ation. Additionally, you can write new workflows and apply them to any of the actions in IdentityIQ that support work-
+flows.
+
+Workflow Types
+
+Each workflow must have a specified type. The type determines which workflow librariesare available to it,and which
+activitiesitcan be assigned to.
+
+Default workflows have predefined workflow types. IdentityIQ uses these assigned types todetermine which work-
+flows to present in the Business Process configuration listboxes. Workflows can be specified toactivate based on a
+specific system event.
+
+For example, role create, update, and delete actions can trigger a RoleModeler type of workflow. Only workflows of
+that type are listed in the dropdown listforthat configuration option.
+
+ Note: You can assign custom types to workflows. However, custom type workflows can only be
+ triggered through the user interface on Lifecycle Events, which can trigger workflows of any type.
+
+ Workflow Types and Associated Actions
+
+This table liststhe workflow type associated with each type of action within IdentityIQ.
+
+
+
+
+
+
+ SailPoint Business Processes 5
+
+===== Page 9/75 =====
+Business Process Management
+
+
+Process Type Description
+
+Policy Viola- Workflow activated to launch policy violation actions.
+tion
+Batch Pro- Workflow activated to launch batch requests.
+visioning
+Scheduled Workflow activated to when a role is ready to be assigned.
+Assignment
+Scheduled
+Role Activ- Workflow activated when a role is ready to be enabled or disabled.
+ation
+Managed Workflow activated when an entitlement iscreated or edited.
+Attribute
+Identity Cor- Workflow activated when performing identity correlation tasks.
+relation
+Identity Event Workflow activated for identity event. For example, sunrise /sunset dates for
+ deferred entitlement, role assignment, or role removal.
+Identity Life- Workflow activated for Lifecycle events. For example, Lifecycle Event – Joiner or
+cycle Lifecycle Event – Leaver.
+Identity Workflow activated when you update an identity through the Identity > Identity
+Update Warehouse page. Typically requires few or no approvals.
+ Workflow activated for identities that are refreshed using the Identity Refresh
+Identity task. This type of process can be used foradditional customization during
+Refresh refresh, and to present provisioning policy forms ifaccounts need tobe created
+ as a result of automated role assignment.
+LCM Identity Workflow associated with Lifecycle Manager Identity related tasks, for example,
+ LCM Create and Update.
+LCM Pro- Workflow activated for Lifecycle Manager provisioning tasks.
+visioning
+LCM Regis- Workflow activated for registration tasks.
+tration
+Policy Viola- Workflow activated to initiatepolicy violation actions.
+tion
+Role Modeler Workflow associated with Role functions. For example, Owner Approval and
+ Role Activation.
+Subprocess Designation of a workflow which is part of a larger workflow.
+Password Workflow activated when a password change interception event is received.
+Intercept
+
+
+
+
+SailPoint Business Processes 6
+
+===== Page 10/75 =====
+Business Process Management
+
+ Sub-process Workflows
+
+Some complex workflows are divided into multiple sub-process workflows that are activated by a master workflow.
+Using subprocess workflows with a master workflow can:
+
+
+
+ l Simplify the structure ofthe master workflow
+
+
+
+ l Make workflows easier to manage
+
+
+
+ l Promote reusability because more than one master workflow can reference the same subprocesses
+
+
+As a standard practice, these smaller workflows are assigned the Subprocess type of workflow. This type is not asso-
+ciated with any system functionality. However, using the Subprocess type designation enables you to easily identify
+the workflow as a subprocess of a larger workflow.
+
+ Transient Workflows
+
+Transient workflows are launched in a special mode thatdoes not persist any information to the database. A workflow
+remains in the transient state untilthe workflow reaches an approval step. Ifthe workflow launches tocompletion
+without an approval step, nothing isstored inthe database unless the browser terminates or the session times out the
+workflow and any progress made islost.
+
+ Note: Ifthe browser terminates or the session times out the workflow and any progress made is
+ lost.
+
+Examples of transient workflows include:
+
+
+
+ l QuickLaunch workflows that can present a series of forms before performing any relevant actions
+
+
+
+ l Self-registration workflows that do not require authentication
+
+
+
+ l Workflows forusers trying the registration process, who do not have an inbox where they can see their past
+ attempts
+
+To create a transient workflow, add a variable named transient and set the value to true.
+
+For transient workflows to work correctly, the user interface code needs to manage the workflow case in a special
+way, through a WorkflowSession.
+
+The case persists when any ofthese things happen:
+
+
+
+ l An approval forsomeone that is not the submitting user
+
+
+
+ l A step with a wait='x' in it
+
+
+
+
+
+
+
+SailPoint Business Processes 7
+
+===== Page 11/75 =====
+Business Process Management
+
+
+
+
+ l A step with background='true'
+
+Using the Business Process Editor with Workflows
+
+
+ Note: Because some workflow steps cannot be defined with the graphical editor,workflow devel-
+ opment can involve directediting in the XML representation and some amount of Java coding.
+ An understanding of XML and Java syntax isa general requirement for workflow development.
+
+The IdentityIQ user interface provides a graphical toolfor defining and editing workflow processes. You can use the
+IdentityIQ Business Process Editor to:
+
+
+
+ l Create a new workflow or editan existing workflow
+
+
+
+ l Set up the workflow structure
+
+
+
+ l Create the steps that define the behavior or the workflow
+
+
+
+ l Outline the transitions between the steps
+
+
+
+ l Define forms
+
+
+
+ l Assign conditions
+
+
+This tool also provides a graphical representation ofthe process flow that can be used tocreate documentation about
+the activitiesincluded in the workflow.
+
+Typically, administrators use the graphical editor tooutline the process and then move to the XML representation to
+add to or adjust the details of each step. After you save the process, you can view, edit, orexport the XML rep-
+resentation from the IdentityIQ Debug pages.
+
+Creating and Editing Workflows
+
+Use the Business Process Editor tocreate a new workflow or edit an existing workflow. Original workflows can also be
+created from existing processes.
+
+Basic Workflow How-To Tasks
+
+The Process Editor has the following tabs:
+
+ Interface Inputs
+ Tab
+
+ Process Specify Name, Type, and Description ofthe workflow.
+ Details See Process Details Tab.
+
+
+
+
+
+ SailPoint Business Processes 8
+
+===== Page 12/75 =====
+Business Process Management
+
+
+ Interface Inputs
+ Tab
+
+ Process Lists the input, output, and processing variables you can use with the workflow.
+ Variables See Process Variables Tab.
+
+ To graphically represent the process, specify the actions involved in each step, and
+ Process provide the evaluation conditions for moving from one step toanother.
+ Designer
+ See Process Designer Tab,
+ Process Review statistics gathered for the process as itlaunches.
+ Metrics See Process Metrics Tab.
+
+
+For more information, see:
+
+
+
+ l Basic Workflow How-To Tasks
+
+
+
+ l Editing Workflow XML
+
+
+
+ l Workflow Library Methods
+
+
+
+ l Monitoring Workflows
+
+
+
+ l Advanced Workflow Topics
+
+Process Details Tab
+
+The Process Details tab contains basic information about the workflow, including:
+
+Name – name for the workflow.
+
+Type – the pre-defined workflow type for this workflow. IdentityIQ uses types to determine which workflows to present
+inthe Business Process configuration listboxes. See Workflow Types fordetails.
+
+Description – a description ofthe workflow.
+
+Enable Monitoring – select this option to turn on metrics tracking for the workflow.
+
+Process Variables Tab
+
+The Process Variables tab listsvariables you can use with the workflow. For most of the default processes, the vari-
+ables are listedin a collapsed, advanced view. You can expand the view to show the details for each variable. Vari-
+ables include:
+
+
+
+
+
+
+
+
+
+ SailPoint Business Processes 9
+
+===== Page 13/75 =====
+Business Process Management
+
+
+
+ l Input variables for workflow
+
+
+
+ l Output variables for workflow
+
+
+
+ l Working variables used forprocessing a workflow
+
+
+Variables are marked as Input, Required, Editable, or Output.
+
+To delete a variable, expand the variable and click Remove.
+
+ Object Usage
+
+ Input Specifies that the variable is one of the arguments to the workflow, passed in
+ when itislaunched.
+ Stores the variable in the workflow's task result to allow the user to view the pro-
+ Output gress and results of the workflow. To view the results, navigate toSetup > Tasks
+ > Task Results.
+ Editable Enables the variable to be edited in the basic view.
+ Required Indicates that the variable must contain a value (non-null) when the workflow
+ starts.
+ Description A brief description of the variable and its function.
+
+
+ Note: The order of variable declarations can make a difference. For variables inthe XML that ref-
+ erence other variables intheir initializations, the referenced variable must be declared first.
+
+When variables are created through the user interface, the new variables are inserted in the listabove the existing vari-
+ables. When the XML representation of the workflow isgenerated, the variables are listedin the order they were cre-
+ated, which isthe opposite of the display order inthe user interface.
+
+Basic View
+
+IdentityIQ has several built-inbusiness processes that are available when you install the product. The commonly used
+processes are available through the Basic View which isa simplified, form-based view. The information you edit in the
+Basic View can be also be configured orremoved using the Advanced View. The Basic View includes the following
+business processes:
+
+ Note: Business processes with the LCM label are part of IdentityIQ Lifecycle Manager, which is
+ licensed separately.
+
+
+
+
+ l Identity Update
+
+
+
+ l LCM Create and Update
+
+
+
+
+
+
+ SailPoint Business Processes 10
+
+===== Page 14/75 =====
+Business Process Management
+
+
+
+ l LCM Manage Passwords
+
+
+
+ l LCM Provisioning
+
+
+
+ l LCM Registration
+
+How to Use the Basic View
+
+ 1. Navigate to the Debug page and edit the XML of the business process.
+
+ 2. Manually add and configure the configForm attribute to reference the form to be presented inthe Basic sec-
+ tion ofprocess variables. See also Editing Workflow XML.
+
+
+ Note: Ifthe reference exists inthe business process, but the form does not, an error isdisplayed
+ and you are returned to the Advanced view.
+
+
+Variable Initialization
+
+To initializevariables forthe workflow, specify an initialvalue for the variable in thispanel. For best results, use initial
+values for the workflow variables, rather than creating multiple process steps toinitializeeach variable.
+
+There are fiveways that initializationcan occur:
+
+ Object Usage
+
+ String Assigns a literalvalue tothe variable.
+ Reference Sets the variable value through a reference to one of the other workflow process
+ variables.
+ Script Sets the variable with a Beanshell script inside the workflow.
+ Rule Sets the variable by calling a Beanshell rule outside the workflow.
+ Call Method Assigns the return value of a call to a compiled Java method in a workflow library
+ to the variable.
+
+
+ Variable values passed into the workflow through workflow arguments supersede variable initial
+ values. Therefore, any value provided inan argument overwrites the initialvalue for that argu-
+ ment.
+
+
+Timing of Variable Definition
+
+Variables that are known at the beginning of workflow development can be defined before the graphical process
+design begins. Throughout the development process you might need to define other variables. Variables are not
+
+
+
+
+
+
+
+ SailPoint Business Processes 11
+
+===== Page 15/75 =====
+Business Process Management
+
+
+restricted to only those that were previously defined on the Process Variables tab. Variable definition can be done
+before, during, or after the design process.
+
+Process Designer Tab
+
+The majority ofthe work increating and modifying a workflow isdone on the Process Designer tab. The steps and
+transitions you create for workflow determine the workflow activitiesand can include the following items.
+
+Process Steps
+
+A workflow involves a minimum of three steps: a start step, a processing step, and a stop step or END. For best res-
+ults,allworkflows should contain a start and stop step and that these two steps contain no actions. Workflows can con-
+tain as many or as few processing steps as are necessary to manage the required actions. To add steps using the
+Process Designer, navigate to the Process Editor and clickthe desired step type inthe Add A Step section. You can
+drag steps around the Process Designer grid toline them up visually in a logical progression.
+
+To add a new step:
+
+ 1. Click Add a Step in the left-hand column to display panel that contains available steps.
+
+ Note: Only steps associated with the process type and that exist inthe Step Library are lis-
+ ted in the Add a Step panel.
+
+ 2. Click and drag the desired step toa position in the process design grid.
+
+To edit to the contents ofa step:
+
+ 1. Right-click the step icon and select Edit Step.
+
+ 2. The step details window displays. You can:
+
+
+
+ l Record the Name and Description of the step.
+
+
+
+ l Name the Result Variable, a variable to receive the resulting value of the step action.
+
+
+
+ l Specify the Action forthe step. See Action Type for details.
+
+Action Type
+
+Each step can take one of the types of actions listedin the following table. For any of these actions, an appropriate
+value must be specified or selected before the action can be saved.
+
+For example, ifScript isselected, a BeanShell script must be entered in the box. Ifyou choose the Subprocess object,
+a subprocess must be selected from the list.Ifthe value isnot specified, the step issaved with no associated action.
+
+
+
+
+
+
+ SailPoint Business Processes 12
+
+===== Page 16/75 =====
+Business Process Management
+
+
+Developers who use subprocesses must write the subprocesses before they can complete the step definition of steps
+inthe master process.
+
+ Note: Because all processing options should end with the stop step, every workflow should end
+ with a step that transitions to Stop.
+
+
+ Object Usage
+
+ Script Executes a segment of Java BeanShell code that isincluded in the step.
+ Rule Executes a workflow Rule – a block of Java BeanShell code encapsulated ina
+ reusable rule.
+ Launches another defined workflow, passing control to ituntilitcompletes.
+ Subprocess When you select thisoption, the listof available subprocesses – workflows of
+ type Subprocess – displays and you are given the option to enable step rep-
+ lication.
+ Calls a compiled java method in the IdentityIQ workflow library,exposed through
+ Call Method the standard workflow handler. When you select this option, the listofavailable
+ methods displays.
+
+The Enable Monitoring flag on this window turns on metrics tracking for the step. See Process Metrics Tab for more
+information on process monitoring and metrics.
+
+ Script
+
+Scripts are java BeanShell code that you write in order to execute a desired action. You write scripts directly in the
+Source box inthe detailwindow forthe step.
+
+ Note: The script examples in this document allshow very short java BeanShell code blocks.
+ There is no set length for a script.A scriptblock within the XML can be any length needed to
+ accomplish the required processing. However, long scripts are frequently encapsulated inrules,
+ as discussed in the next section.
+
+ Rule
+
+Rules are also blocks ofjava BeanShell code. Code encapsulated in a rule isavailable for reuse by other areas of the
+application that can launch a rule ofthe same type. Rules created through this window are of type Workflow and can
+be used by any workflow. When you choose Rule as the Action, you can select an existing workflow rule from the list
+orcreate a new rule inthe rule editor. To open the rule editor,Click the [.. .]icon.
+
+ Subprocess
+
+
+
+
+
+
+
+
+SailPoint Business Processes 13
+
+===== Page 17/75 =====
+Business Process Management
+
+
+Subprocesses are other workflows. You can use subprocesses tosubdivide complex processes into smaller seg-
+ments that can be easily managed and reused by other workflows. Subprocesses are complete workflows that contain
+a startstep, a stop step, and as many processing steps as are needed to complete their activities.
+
+You can enable step replication to enable multiple subprocesses to run to completion at the same time instead of hav-
+ing them run serially.For example, in an approval step, you can launch multiple approval subprocesses, to multiple
+approvers, that can take an approval all ofthe way through provisioning instead of the approval step waiting for all
+approvals tocomplete before provisioning can begin.
+
+When you enable replication, you must select an item from the main workflow forreplication and an argument that is
+passed to the action containing the replicated item. Only one item can be replicated per step, and allof the items must
+be passed the same argument. A new subprocess isgenerated foreach item replicated.
+
+ Call
+
+The IdentityIQ workflow librarycontains a set of methods that you launch within a workflow. Methods are exposed
+through the standard workflow handler that the workflow engine calls every time an action occurs in a workflow. Every
+workflow has access to the methods inthe standard workflow handler. Additional librariesof methods are also avail-
+able to use in workflows.
+
+ Note: When no library listisspecified for the workflow, the default includes access to the Identity,
+ Role, PolicyViolation, and LCM libraries.
+
+Through the XML, you can specify other libraries, including custom librariesfor an installation.The user interface does
+not provide an option to manage the librarylist.
+
+ Note: Specifying a library listoverrides the default. You must explicitlyinclude in the library list
+ any default libraries that contain methods the workflow needs. See Workflow Element for more
+ details on specifying a library list.
+
+When Call Method isselected forthe workflow step, Action, the method name isselected from the Call Method list.
+The methods inthese workflow libraries are listed and briefly described inWorkflow Library Methods.
+
+Step Arguments
+
+When arguments need tobe passed to the script, rule,subprocess, or library method launched by a step, you must
+specify the argument on Arguments tab forthe step. Arguments can be specified inthe following ways:
+
+ Type Usage
+
+ Some steps copied from the step library include a configuration form to simplify the
+ Basic View specification of arguments. When a step has a configuration form, this iscalled the
+ Basic View and is shown by default. The Basic View allows you to set arguments
+
+
+
+
+
+
+ SailPoint Business Processes 14
+
+===== Page 18/75 =====
+Business Process Management
+
+
+ Type Usage
+
+ using literalvalues.
+ Advanced The advanced view gives you more control over how the argument values is cal-
+ View culated.
+ Each step can return only one result variable, which can be specified through the
+ user interface. When a step has an action that launches a subprocess, you can
+ Return Vari- also use return variables. Multiple values can then be passed back from the sub-
+ ables process tothe main workflow. Because the user interface does not provide a
+ vehicle fordeclaring return variables, You must specify the return variables directly
+ inthe XML.
+
+
+ Type Usage
+
+ String A literalvalue. For example, the name of an email template touse.
+ Reference A reference to one of the workflow's process variables.
+ Script A segment of Java BeanShell code that returns a value.
+ Rule A workflow rule that returns a value. This functions similar to Script except
+ BeanShell iscontained within a reusable rule.
+ Call Method A callto a workflow librarymethod that returns a value.
+
+When a script,rule, or library method is used to calculate an argument value, the configuration can be more complex.
+Ifthe argument definition needs data to be passed in,you can pass the data by:
+
+
+
+ l Providing allthe current values of workflow variables.
+ OR
+
+
+
+ l Declaring the value of step arguments above an argument.
+
+
+Ifdesired, you can use ordered step arguments instead of workflow variables ifthe only use forthe value is within this
+step.
+
+For example, when these two step arguments are declared in thisorder, the method called topopulate Identity_mgr
+can use the value in Identity_name inits processing ifneeded.
+
+ Argument Name Value Type Value Source
+
+ Identity_name Reference IdentityName
+ Identity_mgr Rule getManagerRule
+
+
+
+
+
+
+
+
+
+
+SailPoint Business Processes 15
+
+===== Page 19/75 =====
+Business Process Management
+
+More on Start and Stop Steps
+
+Similar to other steps, start and stop steps can contain actions that launch scripts, rules, subprocesses, or calls to
+workflow library methods. By convention, these steps are included in every workflow but are used only to designate a
+clear starting and ending point forthe workflow. These steps are generally empty steps with no action. Occasionally,
+debugging messages can be printed from these steps to trace workflow progress during development.
+
+ Step Icons
+
+When steps are firstadded through the Process Designer, only three icon types are available: Start, Stop, and Gen-
+ericStep. A variety ofother icons are available. You can use different icons to make iteasier to determine the actions
+each step performs.
+
+To change an icon for a step:
+
+ 1. Right-click the step icon and click Change Icon.
+
+ 2. Select the desired icon style from the pop-up window.
+
+
+ Approval Steps
+
+Approval steps are a special type of step in IdentityIQ. You can use Approvals to gather data from a user through a
+work item. In an approval, the user is asked to review a requested action, such as, granting a role to an identity, and
+then give theirapproval for the action to be processed.
+
+To create a basic approval through the user interface:
+
+ 1. Right-click the step.
+
+ 2. Click Add Approval.
+
+
+ Note: A step can contain an action or an approval, but not both. Approval steps are used for
+ approval processing. Approval steps are not used to perform other actions such as scripts, sub-
+ processes, etc.
+
+To edit an approval that exists in a step
+
+ 1. Right-click the step and clickEdit Approval.
+
+ 2. Alternatively, you can choose Edit Approval from the Step Details window.
+
+Approvals are flexible and meet a variety ofbusiness needs. An approval can be constructed many ways. approvals
+range from a simple one-person approval to a complex approval process that involves multiple people with different
+approval modes and notification schemes.
+
+
+
+
+
+ SailPoint Business Processes 16
+
+===== Page 20/75 =====
+Business Process Management
+
+ Approval Details
+
+Every approval includes the following fields tobe completed on the Details tab forthe approval:
+
+ Object Usage
+
+ Name User-defined name forthe approval.
+ Send Comma-separated listof process variable names to be sent to the approval.
+ Return Comma-separated listof variables names to copy from the completed approval
+ work item back intothe workflow.
+ Renderer JSF (Java Server Faces) include torender the work item details. Not required if
+ using a default renderer.
+ Mode Specifies how approval is processed when multiple owners are specified.
+ Approver for the approval. Can be more than one Identity name and isspecified
+ by string, reference, script, rule,call method.
+
+ When more than one owner is specified, mode determines how and when the
+ Owner item issubmitted to each listedowner. Parallel, parallelPoll, and any modes sub-
+ mit the approval work item to allowners at the same time. Serial and serialPoll
+ modes wait untilthe firstowner completes the approval before submitting to the
+ next approver in the list.
+ Description Defines work item description. Shown as the work item Name inthe approver's
+ inbox. Set using string,reference, script,rule, callmethod.
+
+
+ Approval Arguments
+
+You can set arguments to the approval on the Arguments tab.Generally, variables are passed to approval through
+the send list.However, any arguments that require transformation, through script, rule,or library method, must be sent
+through an Arg element. Args defined with reserved system names are passed through the Arg element with the
+reserved name specified. See Approval Steps for information on reserved system names.
+
+ Work Item Configuration
+
+You can specify some details about the notification and escalation / reminder policy fora work item on the Work Item
+Configuration tab. The work item appears in the owner's IdentityIQ inbox and requires their input.Ifno configuration
+isspecified, the default work item configuration isused.
+
+To change the configuration forthe work item
+
+ 1. Select Override Work Item Configuration.
+
+ 2. To include an electronic signature in the approval step, select Override Electronic Signature Configuration.
+
+
+
+
+
+
+SailPoint Business Processes 17
+
+===== Page 21/75 =====
+Business Process Management
+
+
+The following configuration options are available on the Work Item Configuration tab:
+
+ Option Description
+
+ InitialNoti-
+ fication To change the notification email template, select the template from the list
+ Email
+ Choose an escalation policy:
+
+
+
+ l None – no escalation.
+
+
+
+ l Send Reminders – allows configuration ofreminder options, such as
+ days before firstreminder, frequency, email template.
+ Escalation
+ l Reminders then Escalation – allows reminder option configuration plus
+ escalation option configuration, such as reminders before escalation,
+ escalation owner rule,escalation email.
+
+
+
+ l Escalation Only – allows configuration ofescalation options, such as
+ days before expiration, escalation owner rule,escalation email).
+
+
+ Child Approvals
+
+Use Child Approvals to customize approval processing or presentation for the different sets of identities involved in the
+approval process. For example, a change in a user's assigned region requires someone in HR sign offand also
+requires manager approval. Although the approval of the user's own manager is required, any HR individual can com-
+pletes the sign-off. This type ofapproval can be created through child approvals.
+
+To create a child approval:
+
+ 1. Click Add Child Approval on the Details tab for the parent approval.
+
+ 2. Click the child approval inthe Approval Children hierarchy to select itfor editing.
+
+To set up the approval described in the example, create two child approvals:
+
+
+
+ l HR Approval set up – any of the identities who meet the criteriacan make the decision for the group
+
+
+
+ l Manager Approval set up – identity's manager specified as the owner.
+
+
+ Note: The reference variables HRApprovers and identityManager for the example are process
+ variables defined with initializationscripts that retrieve the appropriate sets of Identities.
+
+
+
+
+
+
+
+
+SailPoint Business Processes 18
+
+===== Page 22/75 =====
+Business Process Management
+
+
+Ifeither approval requires a custom work item configuration, you can specify the configuration on the Work Item Con-
+figuration tab forthe approval. Work item configurations are inherited by child approvals ifconfigurations are not spe-
+cificallyoverridden forthe child.Ifyou want a single custom work item configuration forthe entire set of approvals, the
+configuration should be specified on Work Item Configuration tab for the parent approval. In thiscase, the child
+approvals inheritthe parent configuration.
+
+ Form Steps
+
+An approval step can also display a form. Forms are a general way torequest information from the user and do not
+necessarily represent an approval. For example, you can use forms torequest a missing attribute such as the depart-
+ment name for an identity or ask the requester for more information about why they are making the request.
+
+You can define a form inside the workflow step oryou can reference an external form that is shared with other work-
+flows.
+
+To reference an existing form:
+
+ 1. Right-click the step and click Add Form.
+
+ 2. In the firstscreen, clickReference Form.
+
+ 3. In the form reference screen, select a form from the table and select the owner who willbe shown the form.
+
+To create a custom form for gathering data from a user:
+
+ 1. Right-click the step and click Add Form.
+
+ 2. In the firstscreen, clickCreate.
+
+ 3. In the form editor, specify the general form properties.
+
+
+ Field Description
+
+ Description Work item description text displayed on the user's home page.
+ Send Comma-separated listof process variables tobe passed as initialvalues for the
+ form fields.
+ Return Comma-separated listof form fields to copy back into process variables when the
+ work item is closed.
+ Owner The identity tobe shown the form. Can be a simple identity name, a name stored
+ in a process variable, ora name calculated by a script,rule, or library method.
+
+
+
+
+
+
+
+
+
+
+SailPoint Business Processes 19
+
+===== Page 23/75 =====
+Business Process Management
+
+
+A form includes one or more fields that define what information you want to show and the information you are asking
+the user toprovide. This form field editor is similar to the field editor for provisioning policies and uses most of the
+same options.
+
+ Field Attribute Description
+
+ Name System-accessible name for field.Used to reference field programmatically.
+ Display Name Label that is displayed on form for the field.
+ Help Text Tool tiphelp text for field.
+ Type Field type. Impacts rendering of fieldon form.
+ Multi-valued Flag to determine ifthe fieldcan contain multiple values (multi-selectable).
+ Read Only Field displays a value that cannot be changed.
+ Hidden Field is not displayed.
+ Owner Field owner. Does not apply to form fields.
+ Required Value must be entered.
+ Form isrefreshed when the value for thisfield ischanged.
+ Refresh Form
+ on Change Note: This field is useful when the value of a fieldin the
+ form depends on the value inanother field.
+
+ Display Only Does not apply for workflow forms.
+ Authoritative Does not apply for workflow forms.
+ Value Literal, script,or rule toset the initialvalue ofthe field.
+ Allowed Val- Allowed values for the field.Displays as a dropdown listbox or combo box
+ ues based on the multi-valued setting.
+ Validation Rule or script that validates the value of a fieldwhen the form issaved /sub-
+ mitted. Prevents submission ifthe value is not valid.
+ Dynamic Delays the launch of allowed values, scripts, or rules untilthe fieldis selected,
+ instead of launching as soon as the form loads.
+
+The form editor also provides the option tospecify buttons to include on the form.
+
+To add a button definition:
+
+ 1. Click Add Button.
+
+ 2. Select the button Action and specify a behavior of the button.
+
+ 3. Specify addition button options as described in the table below, and click Save.
+
+
+
+
+
+
+
+
+ SailPoint Business Processes 20
+
+===== Page 24/75 =====
+Business Process Management
+
+
+ Function Description
+
+ Select the action the button takes when pressed. Choose from the following
+ actions:
+
+
+
+ l Next – assimilates form data and advances to the next state, such as
+ OK/Save/Approve/Submit functionality. Sets status ofapproval to
+ Approved.
+
+ Action l Cancel – Stops form editing, returns to previous page in the user interface,
+ and leaves work item active.
+
+
+
+ l Back – assimilates form data and returns to the previous state. Sets status
+ of approval as Rejected and advances workflows.
+
+
+
+ l Refresh – Assimilates the posted form data and regenerates the form. Not
+ a state transition. Refresh isa redisplay of the form.
+ Label Text to display on the button.
+ Parameter Name of an optional value to be sent with the form fields when this button is
+ pressed.
+ Read Only Non-actionable button.
+ Skip Val- Ignores the validation when the form isposted.
+ idation
+ Value Optional value to be sent with the form fields when thisbutton is pressed.
+
+During initialform specification, defined buttons and fieldsare listedtogether inthe leftpanel inthe order they are
+added. Ifsome buttons were added before some fields,the button can be intermixed. On the final form, buttons are
+always grouped together atthe end ofthe form. When the Form Editor is revisited later,the fieldsare listed together
+first,inthe order they were created, and then the buttons follow in the order they were created.
+
+ Note: Buttons can be reordered inthe XML todisplay in a different order on the form.
+
+Custom forms can also be created or edited through XML. Various advanced form options, such as sections, multi-
+column layout, are only available through the XML.
+
+See the Forms documentation formore information.
+
+ Step Conditions
+
+Normally when a transition ismade into a step, the step action isexecuted. In some cases you might want the exe-
+cution of the step tobe optional. You can add a step condition to control whether or not the step action executes. Step
+conditions can also simplify transition lines inthe process because you do not have to create many complex
+
+
+
+
+
+
+SailPoint Business Processes 21
+
+===== Page 25/75 =====
+Business Process Management
+
+
+transitions to skip over steps. You can advance from one step to another and letthe step conditions determine ifthe
+step is executed.
+
+To edit the step conditions:
+
+ 1. Right-click any process step.
+
+ 2. Click Add Step Condition.
+
+ 3. Specify addition button options as described in the table below, and click Save.
+
+You can express conditions as any ofthe following:
+
+ Type Description
+
+ Reference Evaluation ofa defined process variable. Must be a Boolean variable.
+ Script Segment of java code that evaluates process variables.
+ Rule Workflow rule that contains a reusable segment of java code to evaluate process
+ variables.
+ Call Method Call to launch a Java method inthe IdentityIQ workflow library.Exposed through
+ standard workflow handler.
+
+Selecting the Negate option changes the evaluation to the opposite condition. For example, ifthe condition evaluates
+toFalse, the negate option changes ittoTrue.
+
+ Step Transitions
+
+Steps are connected through Transitions. Transitions can connect one step to the next sequentially. Alternatively,
+steps can include evaluation statements that enable conditional processing, such as certain data conditions that can
+cause the workflow to execute Step A versus Step B.
+
+To add a transition do the following:
+
+ 1. Right-click the process step for starting the transition and select Start Transition.
+
+ 2. Navigate tothe process step for ending the transition, right-click and select End Transition.
+
+ 3. Right-click the transition icon and select Edit Transition to set the condition.
+
+ 4. To add additional conditions to thistransition, repeat the process.
+
+To edit the transition conditions:
+
+
+
+
+
+
+
+
+SailPoint Business Processes 22
+
+===== Page 26/75 =====
+Business Process Management
+
+ 1. Right-click the transition diamond
+
+ 2. Click Edit Transitions.
+
+ 3. Specify addition button options as described inthe table below, and click Save.
+
+A step can have as many transitions to next steps as needed. Transition conditions are evaluated inthe order they are
+listed.The firsttransition that has no condition, or whose condition evaluates totrue istaken. Use the up and down
+arrows in the transitions dialog box toreorder the transitions. As a recommended practice, the finaltransition should
+have no condition. That transition istaken when no other transition conditions are met. Ifa step only has transitions
+with conditions, and none of the conditions are met, the workflow ends.
+
+Conditions can be expressed as any of the following:
+
+ Type Description
+
+ Not used. This condition is an artifactof the common structure used for variable
+ String setting and does not apply to conditions. A literalvalue of True or False can be
+ specified but does not allow any evaluation in the transition. True always launches
+ the associated step and False always bypasses the associated step.
+ Reference Evaluation of a defined process variable. Must be a Boolean variable.
+ Script Segment of java code that evaluates process variables.
+ Rule Workflow rule containing reusable segment ofjava code to evaluate process vari-
+ ables.
+ Call Method Call to launch a Java method in the IdentityIQ workflow library.Exposed through
+ standard workflow handler.
+
+Transition conditions must evaluate toBoolean values. Ifthe value is true, the workflow moves to the step that the
+transition references. Ifthe value is false, the next transition in the listisevaluated.
+
+Selecting the Negate option changes the evaluation tothe opposite condition. For example, ifthe condition evaluates
+to False, the negate option changes itto True.
+
+Process Metrics Tab
+
+The Process Metrics tab displays the following statistics that are useful for troubleshooting workflows:
+
+
+
+ l Number of times the workflow launched
+
+
+
+ l Number of times the workflow succeeded or failed
+
+
+
+
+
+
+
+
+
+ SailPoint Business Processes 23
+
+===== Page 27/75 =====
+Business Process Management
+
+
+
+ l Average and maximum duration of the workflow
+
+
+
+ l Date the workflow last launched
+
+
+You can view additional process metrics, including data tracked atthe step level,through the Intelligence >
+Advanced Analytics > Process Metrics Search tab.
+
+To turn on metrics tracking:
+
+ 1. For individual workflow steps, select Enable Monitoring inthe Details window.
+
+ 2. Alternatively, you can right-clickon a step and select Enable /Disable from the dropdown menu on the step.
+
+To turn on monitoring for allsteps in a workflow, clickMonitor atthe bottom of the business process editorwindow.
+
+Basic Workflow How-To Tasks
+
+You can perform the following tasks:
+
+
+
+ l How To View or Edit a Workflow
+
+
+
+ l How To Create a New Workflow
+
+
+
+ l How To Use an Existing Workflow to Create a New Business Process
+
+ How To View or Edit a Workflow
+
+ 1. Navigate to Setup > Business Processes.
+
+ 2. Select an existing workflow from the Edit An Existing Process list.
+
+ 3. Navigate through each of the process tabs to view ormodify the workflow data.
+
+ 4. To save changes to an existing workflow, clickSave.
+
+
+ How To Create a New Workflow
+
+ 1. Navigate to Setup > Business Processes.
+
+ 2. Click New tocreate a new workflow.
+
+ 3. Enter a short descriptive name forthe process (thatis,the workflow).
+
+
+
+
+
+
+
+ SailPoint Business Processes 24
+
+===== Page 28/75 =====
+Business Process Management
+
+ 4. In the Type field:
+
+ a. Select a workflow type from the dropdown listof predefined types. The available types are restricted to
+ the process options related to the workflow.
+
+ b. To enter a custom type, manually enter the type name inthe box instead ofselecting one from the list.
+ See the Workflow Basics chapters for any limitations to custom types.
+
+ 5. Enter a Description that provides an overview of the workflow function.
+
+ 6. Ifyou want to track metrics forthe workflow, check the Enable Monitoring box. See Process Metrics Tab for
+ more details.
+
+ 7. Navigate through each ofthe process tabs and specify workflow data.
+
+ 8. Click Save.
+
+
+ How To Use an Existing Workflow to Create a New Business Process
+
+ 1. Navigate to Setup > Business Processes.
+
+ 2. Select an existing workflow from the Edit An Existing Process list.
+
+ 3. Navigate through each ofthe process tabs to view ormodify the workflow data.
+
+ 4. Click Save As and enter a unique name forthe workflow.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Business Processes 25
+
+===== Page 29/75 =====
+Editing Workflow XML
+
+Editing Workflow XML
+
+
+There are various options for editing workflow XML. You can:
+
+
+
+ l Create the initialworkflow through the user interface and then edit the workflow directly.
+
+
+
+ l Complete allworkflow development inXML.
+
+
+
+ l Write originalXM oruse XML from an existing workflow as a template for a new process
+
+
+Allof these methods are valid and can be used as desired.
+Accessing the XML
+
+The XML for existing workflows can be viewed and edited through the IdentityIQ Debug pages or can be exported
+through the IdentityIQ Console.
+
+ Debug Pages
+
+To view the XML inthe Debug pages, navigate to the Debug pages and select Workflow from the object listtoview a
+listofalldefined workflows in the system.
+
+toview the XML representation, clickthe name of the workflow. From the Debug pages you can edit and save
+changes. A workflow can also be copied from here and pasted into an external editorof choice.
+
+
+
+ l View and edit the XML.
+
+
+
+ l Save changes tothe XML.
+
+
+
+ l Copy and paste the XML to an external editor.
+
+
+ IdentityIQ Console
+
+You can export one ormore workflows from IdentityIQ through the console. The console export isthe most efficient
+way toget the XML for allworkflows extracted from the system at one time. The IdentityIQ console export command
+can extract allthe Workflow XMLs together into a single file.
+
+See the IdentityIQ Console documentation formore details.
+
+After exporting the XML, you can parse the XML intoa separate fileforeach workflow and save the filesin the install-
+ation source code control system for lateruse insystem environment migrations orin product upgrade processes.
+
+
+
+
+
+
+
+
+
+ SailPoint Business Processes 26
+
+===== Page 30/75 =====
+Editing Workflow XML
+
+
+ Object Usage
+
+ Workflow Defines the workflow structure and steps involved in the workflow pro-
+ cessing.
+ Represents a workflow in progress. Contains a Workflow element in which
+ WorkflowCase the process isoutlined and current state data istracked, as well as identi-
+ fying information about the workflow target object.
+ Launchtime information that Workflower maintains as itadvances through a
+ WorkflowContext workflow case. Passed intorules and scripts and to the registered Work-
+ flowHandler. Contains allworkflow variables, step arguments, current step
+ or approval, workflow definition,libraries,and workflowCase.
+ Task Result Records the completion status ofa task, or in thiscase, the workflow, con-
+ tained within the WorkflowCase.
+
+
+ Reimporting the XML
+
+Because the system only launches Workflow XML thatis saved within IdentityIQ, XML documents that are edited
+externally must be re-imported for the changes made to them totake effect.
+
+To reimport an externally saved XML document, use the console import command or from the Import from File page
+accessed from the gear menu > Global Settings page.
+
+Dollar-Sign Reference Syntax
+
+You can reference workflow variables inside XML tags and in user interface fields using $()notation. These are
+resolved into theirvariable values. For example, ifa variable identityName isdefined and contains the fullname of an
+Identity,for example, John Smith, an Arg specified as:
+ <Arg name="FullIdentityName" value="$(identityName)">
+passes "John Smith" as the value for the variable FullIdentityName.
+
+When the variable is used alone, itfunctions the same as specifying value="ref:identityName. However, the more com-
+mon usage isto include the variable in alonger string such as:
+ <Arg name="Title" value="Role Update for $(identityName)">
+which passes "Role Update forJohn Smith" as the value for the variable Title.
+XML Content
+
+This section describes the elements present in the workflow XML and explains theirusage.
+
+
+
+
+
+
+
+
+ SailPoint Business Processes 27
+
+===== Page 31/75 =====
+Editing Workflow XML
+
+Header Elements
+
+The following three lines must be included as shown inany workflow document. The <sailpoint> tag must, of course,
+be matched with a </sailpoint> tag atthe end of the workflow document.
+
+
+ <?xml version='1.0' encoding='UTF-8'?>
+ <!DOCTYPE SailPoint PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+ <sailpoint>
+
+
+Workflow Element
+
+The Workflow tag identifies the name and type of the workflow.
+
+
+ <Workflow  explicitTransitions="true" name="WF-Training Hello World Workflow" type-
+ e="IdentityUpdate">
+
+The attributes of a workflow element including the following:
+
+ Workflow Attribute Purpose
+
+ A soft reference to a process variable form presented inthe Basic View of
+ configForm Process Variables tab, or a step form presented inthe Basic View of the
+ Arguments tab on the Step Editor panel accessed from the Process
+ Designer tab ofthe Manage Business Process page.
+ Short descriptive name for the workflow thisis displayed in user interface
+ name selection list-boxes and listofexisting business processes on the Process
+ Editor window.
+ Workflow type. Type is used to filterworkflow selection listsin con-
+ type figuration windows where you select the workflow based on system activ-
+ ities.
+ Boolean value indicating that transitions between steps are explicitly spe-
+ cifiedand workflow should not resort to implicit,fall-through, transitions
+ when no transition conditions evaluate to true.
+
+ explicitTransitions The default setting is false. Ifyou so omit this argument and the specified
+ transition conditions allevaluate to false, the workflow uses implicittrans-
+ itionsand launches the next sequential step in the XML. However, ifyou
+ edita workflow using the Business Process Editor, the value ischanged to
+ true.
+
+
+
+
+
+
+ SailPoint Business Processes 28
+
+===== Page 32/75 =====
+Editing Workflow XML
+
+
+ Workflow Attribute Purpose
+
+ Ifthe developer makes the lasttransition in any set unconditional, which is
+ considered best practice, the transitions between steps are smoother.
+ Lists workflow librariesthe workflow needs.
+ libraries Ifthis attribute isnot specified, workflows automatically have access to
+ Identity, Role, PolicyViolation, and LCM libraries.
+ Lists workflow step libraries the workflow can access.
+
+ stepLibraries Ifthis attribute isnot specified, workflows automatically have access tothe
+ Generic Step Library, which provides access to the Start, Stop and Gen-
+ eric steps.
+ The default workflow handler is sailpoint.api.StandardWorkflowHandler.
+ This attribute does not need to be specified when the default isused. In
+ this case, the best practice isto omit it.
+ handler
+ Ifyou use a custom workflow handler, the custom handler must EXTEND
+ the default handler and not replace it.The custom handler must be spe-
+ cified inthe workflow Handler argument.
+
+Variable Definitions
+
+The recommended best practice is toidentify allvariables for the workflow at the top of the XML document. The vari-
+able definitions come next in the XML.
+
+At a minimum, variable elements require a name. Other attributes can indicate the variable type and use, such as
+input, required, editable, and return. A description can be specified foreach variable. When needed, an initialization
+value can also be provided. Using the initializationoption isthe recommended practice rather than creating separate
+steps to initializeeach variable. Using initializationvalues is more efficient,easier to read, and easier to debug,
+because Trace reports initializationsas they occur. For more information, see InitializerOptions .
+
+
+ <Variable input="true" name="project" output="true" required="true">
+     <Description>
+       Project that has account requests in the QUEUED state.
+     </Description>
+   </Variable>
+
+ <Variable editable="true" initializer="true" name="doProvisioning">
+     <Description>Set to true to cause immediate provisioning after the assign-
+ ment</Description>
+   </Variable>
+
+Some parts of the variable definition are expressed within attributes on the Variables element. Other parts are
+expressed through nested elements of their own.
+
+
+
+
+ SailPoint Business Processes 29
+
+===== Page 33/75 =====
+Editing Workflow XML
+
+ Variable Attributes
+
+
+ Variable Purpose
+ Attribute
+
+ name Variable name.
+ type Variable type. Type declaration is not enforced by the application and isused
+ primarily for documentation.
+ initializer Initialization value for the field.
+ input Flag indicating that the variable is an argument to the workflow. Omitted ifnot
+ true.
+ output Flag indicating that the variable is a return value for the workflow. Omitted ifnot
+ true.
+ required Flag indicating that the variable is a required fieldfor the workflow. Omitted ifnot
+ true.
+ editable Flag indicating that the variable can be edited by the workflow. Omitted ifnot true.
+ Nested Tag within Variable Element
+ Description Provides a description of the purpose forthe variable.
+ Script Alternative to script in the initializerattribute value. Should be used for initializer
+ scripts of any length or complexity.
+ Source Nested within the Script tag and contains the java BeanShell source for the action
+ to be executed.
+
+
+ Initializer Options
+
+The Initializerattribute requires additional attention. When these attributes are set through the user interface, you can
+specify the attribute as a string, script, rule, call, or reference. The same options are available directly through the
+XML.
+
+ Note: The initializerfor a variable isonly used when a value for the variable is not passed in to
+ the workflow.
+
+ Initializer Type
+
+
+ Initializer Description and Examples
+ Type
+
+ Assigns a literalvalue to the variable.
+ string
+ String is the default initializeroption so the "string:" prefix can be included or omit-
+
+
+
+
+
+
+ SailPoint Business Processes 30
+
+===== Page 34/75 =====
+Editing Workflow XML
+
+
+Initializer Description and Examples
+Type
+
+ ted.
+
+ Examples:
+ <Variable initializer="string:true"name="trace"/>
+
+ <Variable initializer="spadmin" input="true" name="fallbackApprover">
+ Assigns avalue based on the results of a Java BeanShell script.
+
+ Examples:
+
+ (1) In-lineScript. Only use forvery short, simple scripts.
+ <Variable initializer="script:(identityDisplayName != void) ?
+ identityDisplayName : resolveDisplayName(identityName)"
+ input="true" name="identityDisplayName">
+ (2) Script within nested <script> element. Use formost scriptinitializers– scriptsof
+ any complexity or length.
+
+
+ <Variable initializer="script:resolveDisplayName(launcher)"
+ input="true" name="launcherDisplayName">
+ <Description>
+ The displayName of the identity being who started this
+ workflow.
+script Query for this using a projection query and fall back to the
+ name.
+ </Description>
+ <Script>
+ <Source>
+ // Lookup the launcher's display name for use in email
+ templates.
+ String returnString = launcher;
+ Identity launcherId = context.getObject(Identity.class,
+ launcher);
+ if (null != launcherId) {           returnString=
+ launcherId.getDisplayName(); // First+Last }
+ return returnString;
+ </Source>
+ </Script>
+ </Variable>
+rule Assigns avalue based on the return value ofa workflow Rule.
+
+
+
+
+
+
+SailPoint Business Processes 31
+
+===== Page 35/75 =====
+Editing Workflow XML
+
+
+ Initializer Description and Examples
+ Type
+
+ Examples:
+ <Variable initializer="rule:wfrule_GetIdentityName"
+ name="IdentityName">
+ Assigns a value based on the return value of a callto a workflow librarymethod.
+ call Example:
+
+ <Variable initializer="call:getObjectName" name="roleName">
+ Assigns a value based on a reference toanother workflow variable. This type is
+ rarely used.
+ ref
+ Example:
+ <Variable initializer="ref:otherVar" name="myVar"/>
+
+Workflow Description
+
+A description element should be included to describe the purpose of the workflow. Although the description element is
+not used inthe workflow process, itis recommended for usability.In the user interface, the contents of thiselement
+are displayed on the Process Details tab of the Business Process page. This element should be included near the top
+ofthe workflow, either before or after the variable definitionsection.
+
+
+ <Description>
+      Workflow called when a role is ready to be enabled.
+ </Description>
+
+Rule Libraries
+
+Some methods the workflows use are grouped together into Rule Libraries. These Rule Libraries are defined as rules
+inIdentityIQ. However, these librariescontain sets of related but unconnected methods that workflow steps can dir-
+ectly within a scriptaction. Because the rule methods are in rules, rather than in the compiled Java classes, theirfunc-
+tionalitycan be easily modified to meet the needs of each installation.To make the methods within one ofthese rules
+available to steps within the workflow, the RuleLibraries element must be declared. See the following example.
+
+ Note: Each Reference element applies to one library.Include only the libraries that contain the
+ required methods in the RuleLibraries declaration for the workflow.
+
+
+ <RuleLibraries>
+
+
+
+
+
+
+ SailPoint Business Processes 32
+
+===== Page 36/75 =====
+Editing Workflow XML
+
+
+
+     <Reference class="sailpoint.object.Rule" name="Workflow Library"/>
+     <Reference class="sailpoint.object.Rule" name="Approval Library"/>
+     <Reference class="sailpoint.object.Rule" name="LCM Workflow Library"/>
+ </RuleLibraries>
+
+
+ Note: You can create and reference custom librariesusing this same syntax.
+
+Step Libraries
+
+Step libraries are designed tooffer a group ofcommon functions that can be added to existing workflows from the Add
+a Step panel Business Process Editor.Step librariesare a collection ofsteps encapsulated by a workflow with the tem-
+plate attributemarked true. The steps do not have any transitions and they are not executable. A Step Library must be
+defined. See the following example.
+
+ Note: The type does not have to be StepLibrary. However, using the StepLibrary type ensures
+ that these workflows do not appear in other parts of the product.
+
+
+ <Workflow name="Provisioning Step Library"
+                   type="StepLibrary"
+                   template="true">
+
+When you edit a new or existing workflow, you can include a listof step librariesby including a comma separated listin
+the stepLibraries attribute.See the following example.
+
+
+ <Workflow name="LCM Provisioning"
+                   type="Provisioning"
+                   taskType="LCM"
+                   libraries="Identity,Role,PolicyViolation,LCM,BatchRequest"
+                   stepLibraries="Common,Provisioning"
+                   handler='IIQ.api.StandardWorkflowHandler'>
+
+Inthe example above, when you edita business process with the LCMProvisioning type, the Common and Pro-
+visioning steps are available in the Add a Step panel of the Business Process Editor.
+
+Steps within a step libraryworkflow can also include a softreference to a step form thatprovides a simplified form-
+based interface that you can use toadd arguments to some steps in the workflow. This form-based interface adds a
+Basic view option to the Arguments tab ofthe Step Editor. The Basic view isbuiltusing the information contained in
+the referenced form. The Advanced view isa listofallpossible arguments and isbuiltusing the listofarguments that
+the step libraryreferences.
+
+When you add a step form reference to a step library,use the configForm attribute,See the following example.
+
+
+
+
+
+
+
+
+ SailPoint Business Processes 33
+
+===== Page 37/75 =====
+Editing Workflow XML
+
+
+
+ <Workflow name="Provisioning Step Library"
+                      template="true"
+                  type="StepLibrary">
+  <Step configForm="Provisioning Approval Step Form"
+                  icon="Task"
+                  name="Account Approval">
+ <Arg name="approvalMode"/>
+ <Arg name="approvalScheme"/>
+ <Arg name="approvalSet" value="ref:approvalSet"/>
+ ...
+
+Inthe example above, when you edit an approval step inthe Step Editor, the Basic and Advance Views of the Argu-
+ments tab are displayed.
+
+Built-in Steps
+
+IdentityIQ includes several built-insteps. The Start, Stop, and Generic steps apply to allworkflow types. The fol-
+lowing table liststhe names, descriptions, and associated workflow types ofadditional built-insteps.
+
+ Step Description Process Type
+
+ Identity Life-
+ Allows users to select categories of recipients to notify,the specific cycle
+ Notify recipient, recipients for each category, and the specific email tem-
+ plate to use foreach category. LCM Pro-
+ visioning
+ Identity Life-
+ Account Used forprovisioning request approvals. The process assumes cycle
+
+ Approval many of the Provisioning Workflow structures exist. LCM Pro-
+
+ visioning
+
+Step Elements
+
+
+ Note: Similar tovariables, some parts ofa step definitionare included as attributes of the step
+ and others are expressed as nested elements within the step.
+
+The core of the workflow is contained within the step elements. The action attributedetermines what processing the
+step performs. Steps usually contain one or more nested <Transition> elements and ideally also contain a nested
+<Description> element thattellsthe reader what the step isintended todo. At a minimum, a step should contain:
+
+
+
+
+
+
+
+
+
+
+ SailPoint Business Processes 34
+
+===== Page 38/75 =====
+Editing Workflow XML
+
+
+
+ l an icon
+
+
+
+ l name
+
+
+
+ l posX attribute
+
+
+
+ l posY attribute
+
+
+The action attribute determines what processing the step performs. Steps usually contain one or more nested <Trans-
+ition>elements and ideally also contain a nested <Description> element that tellsthe reader what the step isintended
+todo.
+
+
+ <Step icon="Start" name="Start" posX="250" posY="126">
+     <Description>
+         The workflow's processing starts with this step.
+     </Description>
+     <Transition to="Initialize"/>
+   </Step>
+
+ Step Attributes
+
+
+ Step Attribute Purpose
+
+ configForm A soft reference to the form that ispresented to the Basic View of the Argu-
+ ments tab on the Step Editor panel.
+ name Short but descriptive name forstep displayed in user interface graphical dis-
+ play below the step icon.
+ Icon to display forthe step inthe user interface graphical Process Designer.
+
+ Valid icon values include:
+
+ icon
+ Start, Stop, Default (Generic Step), Analysis (Launch Impact Analysis),
+ Approval, Audit, Catches, Email, Message (Add Message), Provision, Task
+ (Launch Task), and Und
+ X and Y indicate positions where the step icon should be displayed on the user
+ interface graphical Process Designer grid.
+ posX, posY Ifyou omit the posX and posY values, the icon is displayed at the top right of
+ the grid. You can drag the icon around to create the desired layout ata later
+ time.
+ action The processing action to take forthe step, such as a script,rule, subprocess,
+ or call.See Step Actions.
+
+
+
+
+
+
+SailPoint Business Processes 35
+
+===== Page 39/75 =====
+Editing Workflow XML
+
+
+ Step Attribute Purpose
+
+ wait Pauses the action for a specified duration, see Wait Attribute.
+ catches Causes the step tobe launch when Complete status is caught, rather than
+ through a transition from another step. See Catches Attribute.
+ resultVariable Variable name that contains the return value from the step.
+ Nested Tag within Step Element
+ Description Provide a description of the step purpose.
+ Transition Identifies the next step the process moves to when the current step iscom-
+ plete. See Transition Element.
+ Arg Passes variables tothe step. Used for steps that require data tobe passed in
+ to them.
+ Return Receives return values from subprocess steps. See Return Elements.
+ Script Alternative to script in the Action attribute for the step. Use these step attrib-
+ utes for action scripts of any length or complexity.
+ Source Nested within the Script tag and contains the Java BeanShell source for the
+ action toexecute.
+
+
+ Transition Element
+
+The transition element indicates the name of the next step the process executes following completion of the current
+step and is always nested within a step inthe model. Transitions can contain conditions based on a string, script, rule,
+callmethod, or reference (similar toa variable initialization).The return value forconditions must be a Boolean (True /
+False). When multiple transitions are stipulated, they are evaluated in the order they are listed, and the transition for
+the firstcondition met is followed. The last transition in the listshould, as a best practice, not contain any conditions so
+itcan be used as the default action.
+
+Transitions contain two attributes:
+
+
+
+ l to– next step
+
+
+
+ l when – condition for progressing to the next step
+
+
+When a script is evaluated as the condition for a transition, itis often specified through these nested elements instead
+ofas a when attribute on the transition element, especially ifyou use a long script.
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Business Processes 36
+
+===== Page 40/75 =====
+Editing Workflow XML
+
+
+ Nested Tag
+ Within Trans- Purpose
+ itionElement
+
+ Script Alternative to scriptin the transition when attribute. The script should be used
+ for scripts ofany length or complexity.
+ Source Nested within the Script tag. This tag contains the BeanShell source for the
+ condition evaluation.
+
+Example:
+
+
+ <Transition to="end">
+     <Script>
+        <Source>
+ ("cancel".equals(violationReviewDecision) || ((size(policyViolations)
+             > 0 ) &amp;&amp; (policyScheme.equals("fail"))))
+        </Source>
+     </Script>
+ </Transition>
+
+Conditions in the when attribute can be specified using the following types ofconditions:
+
+ Condition Type Description and Examples
+
+ Not used. This condition type is an artifactof the common structure used for
+ variable setting and does not apply toconditions. A literalvalue of True or
+ string False can be specified. However, using one of those literalvalues does not
+ enable any evaluation in the transition. True always executes the associated
+ step and False always bypasses the step.
+ Evaluates script resultvalue to determine step transition. Very short scripts are
+ specified inlineon the transition element, within the when attribute. Longer
+ scripts are expressed within nested <script> and <source> elements.
+
+ Because script is the default transition when option, the "script:"prefix can be
+ included or omitted.
+
+ script Examples:
+
+ (1) In-lineScript. Use only forvery short, simple scripts.
+ <Transition to="Exit On Policy Violation"
+ when="script:((size(policyViolations)> 0)
+ &amp;&amp; (policyScheme.equals(&quot;fail&quot;)))"/>
+ (2) Longer script within nested <script> tag should be use fortransition scripts
+
+
+
+
+
+
+
+SailPoint Business Processes 37
+
+===== Page 41/75 =====
+Editing Workflow XML
+
+
+ Condition Type Description and Examples
+
+ of any complexity or length.
+ <Transition to="end">
+ <Script>
+ <Source>
+ ("cancel".equals(violationReviewDecision) || ((size
+ (policyViolations)
+ > 0 ) &amp;&amp; (policyScheme.equals("fail"))))
+ </Source>
+ </Script>
+ </Transition>
+ Evaluates the return value of a workflow rule todetermine step transition.
+
+ rule Examples:
+ <Transition to="Process Approval"
+ when="rule:RequireApprovalRule">
+ Evaluates return value ofa call toa workflow librarymethod to determine step
+ transition.
+ call Example:
+
+ <Transition to:"Check Status"
+ when="call:requiresStatusCheck" />
+ Evaluates a defined, Boolean, workflow variable to determine step transition.
+ ref Example:
+
+ <Transition to="Refresh Identity" when="ref:doRefresh"/>
+ Specified as lasttransition option to give a default path forthe transition.
+ Unconditional Example:
+
+ <Transition to="Approve"/>
+
+ Step Actions
+
+Most steps involve much more than a name and a transition.Steps also include an action attributethat executes the
+workflow processing. The action ofa step can be a scriptor can a rule,subprocess, or a callto a workflow library
+method.
+
+ Action Type Description
+
+ Script Similar toscripts in other parts of the workflow XML, the script can be contained
+ within the action attributeor can be nested within the Step in a <Script> block.
+
+
+
+
+
+
+SailPoint Business Processes 38
+
+===== Page 42/75 =====
+EditingWorkflow XML
+
+
+Action Type Description
+
+ Examples:
+
+ (1) In-lineScript,used only forvery short, simple scripts.
+
+
+ <Step action="script:approvalSet.setAllProvisioned();"
+ icon="Task" name="Post Provision">
+ <Transition to="Stop"/>
+ </Step>
+ (2) Longer scriptwithin nested <script> tag.Used for action scriptsof any com-
+ plexity orlength.
+ <Step name="Start" icon="Start" posX="20" posY="20">
+ <Script>
+ <Source>
+ String wfName = wfcontext.getWorkflow().getName();
+ System.out.println("Starting workflow: [" + wfName + "]");
+ </Source>
+ </Script>
+ <Transition to="Compile Provisioning Project"/>
+ </Step>
+ A step can execute a block ofJava BeanShell code encapsulated ina reusable
+ workflow Rule.
+Rule Example:
+
+ <Step action="rule:WFRule_verifyIdentity" icon="Task"
+ name="Verify Identity" posX="600" posY="202">
+ When you include a<WorkflowRef> element withinthe step and reference the
+ SailPoint.object.Workflow class and the specificworkflow by name, a sub-
+ process isdefined.
+
+ Example:
+ <Step icon="Task" name="Initialize" posX="320" posY="126">
+Subprocess …
+ <WorkflowRef>
+ <Reference class="sailpoint.object.Workflow" name="Identity
+ Request Initialize"/>
+ </WorkflowRef>
+ <Transition to="end">
+ </Step>
+
+
+
+
+
+SailPoint Business Processes 39
+
+===== Page 43/75 =====
+Editing Workflow XML
+
+
+ Action Type Description
+
+ Calls to workflow librarymethods can be used to do step processing.
+
+ Call isthe default action option. Therefore the "call:"prefixcan be included or
+ Call omitted.
+
+ Example:
+ <Step action="call:refreshIdentity" icon="Task"
+ name="Refresh Identity" posX="618" posY="242">
+
+ Arguments
+
+Any variables tobe passed to a script,rule,subprocess, or librarymethod must be declared as step arguments
+through <Arg> elements. Similar to other variables, the values forarguments can be specified by string,script, rule,
+call,orreference. The default specification type is string.Therefore, the "string:"qualifiercan be omitted. However,
+arguments are also commonly passed by referencing workflow variables.
+
+
+ Step icon="Task" name="Initialize" posX="320" posY="126">
+     <Arg name="w" vaflolue="ref:flow"/>
+     <Arg name="formTemplate" value="string:Identity Update"/>
+     <Arg name="identityName" value="ref:identityName"/>
+      ...
+     <Description>Call the standard subprocess to initialize the request,
+        this includes auditing, building the approvalset, compiling the plan into
+        project and checking policy violations.</Description>
+     ...
+     <WorkflowRef>
+         <Reference class="sailpoint.object.Workflow" name="Identity Request
+            Initialize"/>
+     </WorkflowRef>
+     <Transition to="end">
+ </Step>
+
+When an argument isspecified as a script,rule,or call,forexample, <Arg name="myVar" value="rule:myWFRule"/>,
+any needed arguments to the script,rule,or librarymethod cannot be explicitlyspecified.
+
+Because these scripts, rules,and librarymethods automatically have access tothe workflow context object, the
+scriptscan access workflow variables directlythrough the workflow context get methods. These scripts/rules/methods
+can also access any step arguments that were defined before them in the step declaration. For example, the method
+thatidentifies the value forthe Manager argument can use the value in the identityName argument initsprocessing, if
+needed. See the following example.
+
+
+ <Step icon="Task" name="Processing Step" posX="320" posY="126">
+     <Arg name="identityName" value="ref:identityName"/>
+     <Arg name="Manager" value="call:getManager"/>
+     ...
+
+
+
+
+
+SailPoint Business Processes 40
+
+===== Page 44/75 =====
+Editing Workflow XML
+
+
+
+ </Step>
+
+The following table liststhe available Arg attributes
+
+ Arg Attribute Purpose
+
+ name Variable name inprocess to which the data is being passed.
+ value Value to pass intothe variable, such as string, script,rule, call,reference.
+
+
+ Return Elements
+
+To return more than one value from a subprocess, you can declare <Return> elements forthe step. At a minimum, a
+return element contains: a name attribute and a to attribute.The name attribute isthe name ofthe variable in the sub-
+process workflow and the to attributeis the variable name inthe calling (current) workflow. Ifthese names are the
+same in both workflows, a to attribute isnot required. However, specifying a toattribute is a best practice forclarity.
+
+Use the merge attribute when the variable isa List and the returned values should be appended tothe current work-
+flow'slistinstead of replacing it.Similar toArgs, value attribute forreturn elements can be specified as a string,script,
+rule,call,or reference. String is the default. Ifthe value argument is omitted, the value of the name variable iscopied
+as-isinto the to variable, However, a script/rule/method can be used to transform or modify the value as itis passed.
+
+
+
+ l name attribute– name of the variable in the subprocess workflow
+
+
+
+ l to attribute – variable name inthe calling (current) workflow
+
+
+ Note: Ifthese names are the same inboth workflows, a to attributeis not required. However, spe-
+ cifying the toattribute is best practice.
+
+
+ <Step icon="Task" name="Initialize" posX="320" posY="126">
+     <Arg name="flow" value="ref:flow"/>
+     <Arg name="formTemplate" value="string:Identity Update"/>
+     <Arg name="identityName" value="ref:identityName"/>
+      ...
+     <Return name="project" to="project"/>
+     <Return merge="true" name="workItemComments" to="workItemComments"/>
+     <WorkflowRef>
+         <Reference class="sailpoint.object.Workflow" name="Identity Request
+            Initialize"/>
+     </WorkflowRef>
+     <Transition to="end">
+ </Step>
+
+The following table liststhe available Return attributes.
+
+
+
+
+
+
+
+SailPoint Business Processes 41
+
+===== Page 45/75 =====
+Editing Workflow XML
+
+
+ Return Purpose
+ Attribute
+
+ name Variable name inprocess from which the data is returned.
+ to Variable name inthe workflow step to which the data ispassed.
+ value Value to pass intothe variable, such as string, script,rule, call,reference.
+ merge Flag indicating that the value should be merged into the target variable instead of
+ replacing the variable. This attributeis used for listvariables.
+ Only applies to returns on Approvals. (See Approval Steps). A flag that indicate the
+ local value is passed tolocal storage within the parent approval and not passed to a work-
+ flow case variable. This attributeis used for complex approvals where a work item
+ state issaved forlater analysis ina script.
+
+
+ Call
+
+
+ Note: Installations can create custom librariesfor commonly used and required business meth-
+ ods. However, custom library methods must be named with unique names that do not conflict
+ with standard library method names. Conflicts resolve as a reference to the standard library
+ method. Itispossible to extend a standard libraryand overload its method names. Extending a
+ standard library isnot consider a best practice. Therefore, the best practice isto create new
+ names for nonstandard methods. Creating new names makes itclear thatthe method isnot a
+ standard method.
+
+Use callsto workflow librarymethods todo step processing. Similar to subprocesses, they sometimes require argu-
+ments to be passed to them. You declare method arguments the same way as subprocesses. You use Library meth-
+ods with a call action. See the following example.
+
+
+ <Step action="call:refreshIdentity" icon="Task" name="Refresh Identity" posX="618" posY-
+ Y="242">
+     <Arg name="identityName" value="ref:identityName"/>
+     <Arg name="correlateEntitlements" value="string:true"/>
+     <Description>Add arguments as necessary to enable refresh features. Typically you
+       only want this to correlate roles. Don't ask for provisioning since that
+       can result in provisioning policies that need to be presented and it's
+       too late for that. This is only to get role detection and exception
+       entitlements in the cube.</Description>
+     <Transition to="Notify"/>
+   </Step>
+
+The methods available forthe call action are those included inthe libraries attribute forthe workflow element, ifspe-
+cified.Ifno libraries attribute isspecified, the workflow automatically has access to the methods in the Identity, Role,
+PolicyViolation, and Lifecycle Manager libraries.Ifother libraries, including custom libraries, are explicitlylisted inthe
+librariesattribute, any of the default librarieswhose methods are needed by the workflow must also be explicitly
+
+
+
+
+
+SailPoint Business Processes 42
+
+===== Page 46/75 =====
+Editing Workflow XML
+
+
+included in the listtobe available. See Workflow Library Methods fordetails about the methods available ineach lib-
+rary.
+
+ Wait Attribute
+
+The step waitattribute causes the workflow to pause in itsexecution forthe duration specified. The waitvalue can be
+specified as a string,script,rule, call,orreference. String isthe default.
+
+
+ <Step name="Wait for next check" wait="ref:provisioningCheckStatusInterval">
+     <Description>
+        Pause and wait for things to happen on the PE side.
+        Use the configurable interval to determine how long
+        we wait in between checks.
+     </Description>
+     <Transition to="CheckStatus"/>
+   </Step>
+
+This attributecreates a special type of step with the sole purpose of creating a pause inthe action. Wait steps are com-
+monly used inretrylogic to enable behind-the-scenes processing to occur before the workflow attempts torepeat an
+action.
+
+ Catches Attribute
+
+These steps are not caused through a transitionfrom a previous step. These steps are caused by a thrown message
+thatthe steps intercepts or catches. Currently, only a complete message isthrown and can be caught. This process
+occurs when one of the following items occurs:
+
+
+
+ l Allsequential steps in a workflow are executed tocompletion.
+ OR
+
+
+
+ l Failure condition results in the termination of the workflow.
+
+
+
+ <Step catches="complete" icon="Task" name="Finalize">
+     <Arg name="project" value="ref:project"/>
+     <Arg name="approvalSet" value="ref:approvalSet"/>
+     <Arg name="trace" value="ref:trace"/>
+     <Description>
+        Call the standard subprocess that can audit/finalize the request.
+     </Description>
+     <WorkflowRef>
+        <Reference class="sailpoint.object.Workflow" name="Identity Request Finalize"/>
+     </WorkflowRef>
+     <Transition to="end"/>
+
+
+
+
+
+
+
+
+
+
+SailPoint Business Processes 43
+
+===== Page 47/75 =====
+Editing Workflow XML
+
+
+The primary purpose of these steps is to update the IdentityRequest object, which tracks and reports the status of a
+LifecycleManager request, making the history of LCM request processing available even after the TaskResult forthe
+workflow was purged.
+
+Each installation can drive custom logic based on catching this complete message.
+
+Approval Steps
+
+Approval isone of the most common actions that a workflow process performs. The IdentityIQ Approval model is con-
+structed tosimplify the process of defining an approval structure. Approvals are a special type ofstep that contain an
+<Approval> element, specifying how the approval work item ispresented for approval.
+
+Some approval steps are designed to get a user's approval on a requested change, as the name implies. However,
+the approval element can be used any time data needs to be gathered from a user.
+
+Typically, when you use approval steps togather non-approval data, you use a custom form to:
+
+
+
+ l Present the work item tothe user
+ and
+
+
+
+ l Request the needed information from the user.
+
+
+For information on creating approval steps, see the section above. Through the XML, the custom form ismanually
+defined within an approval step. You can also specify custom forms for traditional approvals when you need to present
+the information differently than the standard approval forms layout. SeeWorkflow Forms for more details on usage of
+custom forms.
+
+Similar to other Workflow elements, you specify some modifiers as attributes on the approval element and specify
+other modifiers through nested elements within the approval.
+
+ Approval Attributes
+
+
+ Approval Purpose
+ Attribute
+
+ Specifies how an approval isprocessed. Mode can be determined from
+ string, script, rule,call,or reference String is the default. The user interface
+ only supports the selection of a string of one ofthe values listedbelow. The
+ mode XML also enables reference to a process variable containing one of those
+ values orthe specification of a script, rule,or method call that can determine
+ one of those values programmatically.
+
+ Valid values are:
+
+
+
+
+
+
+
+ SailPoint Business Processes 44
+
+===== Page 48/75 =====
+Editing Workflow XML
+
+
+ Approval Purpose
+ Attribute
+
+
+ l serial – approvers are specified in order and the item ispassed to
+ each approver inthat order. Ifany approver in the chain rejects, the
+ item isrejected.
+
+
+
+ l serialPoll – approvers are specified in order and item is passed to
+ each approver inthat order. Data is collected on approvals and rejec-
+ tions. However, ifone approver rejects, does not necessarily result in
+ the item being rejected. The action decision isexpected to be spe-
+ cified in AfterScript logic.
+
+
+
+ l parallel – item issent to allnamed approvers atone time. The item is
+ rejected ifany approver rejects it.
+
+
+
+ l parallelPoll – item issent to allnamed approvers atone time. Data
+ is collected on approvals and rejections but rejection by one does not
+ mean rejection of item. The action decision isexpected to be spe-
+ cified in AfterScript logic.
+
+
+
+ l any – item is sent to allnamed approvers at one time. The first
+ approver to respond makes the decision forthe group.
+ One or more approvers can be specified by string, script, rule, call,or ref-
+ erence. String is the default.
+ owner
+ The mode determines how and when the item is submitted to each listed
+ owner when more than one isspecified.
+ renderer JSF include to render the work item details.
+ return Comma-separated values (CSV) listof variable names tocopy from com-
+ pleted work items back into workflow.
+ send CSV listof variable names to include in the work items.
+ Defines work item description. For nested approvals, child approvals use
+ description the work item defined by the parent approval unless the child approval
+ defines its own work item. You can set the description by string, script,rule,
+ call,or reference String isthe default.
+ Used to validate any information the user entered during the approval. This
+ validation attribute can be specified as string, script, rule, call,or reference. Script is
+ the default. You generally use a nested validationScript element instead ofa
+ validation argument.
+
+
+
+
+
+
+SailPoint Business Processes 45
+
+===== Page 49/75 =====
+Editing Workflow XML
+
+
+ Approval Purpose
+ Attribute
+
+ Nested Tag within Approval Element
+ Provides instructions foradditional processing to be done on the item after
+ the approval is complete, and only ifapproved. Often uses methods in the
+ Approval Rule Library and LCM Workflow Rule Library. If those methods are
+ to be used, the rule libraries must be explicitly included in the workflow using
+ the <RuleLibraries> element.
+
+ AfterScript ParallelPoll and serialPoll items always execute this script after all
+ responses are collected. With either of these modes, the logic in this script
+ should aggregate the results and determine ifthe item should be approved
+ or rejected. The business determines the criteria forapproval or rejection,
+ for example majority rule, any approval=approval, etc.
+
+ In either poll mode, the AfterScript isinherited by child approvals ifone is
+ not specified.In other modes, child approvals do not inheritthe after script.
+ This script ismore complex than the AfterScript and is used less often. The
+ script is called in several places in the approval processing: at the approval
+ start, pre-Assimilation, post-Assimilation, when the work item isarchived,
+ and at the end ofthe approval. The stage of the processing ispassed to the
+ script as an argument called method that can be used to determine what the
+ script should do at that time. The workflow context's args are also passed to
+ the script.
+
+ Method values for conditional analysis within InterceptorScript logic:
+
+
+
+ l startApproval
+ InterceptorScript
+
+
+ l preAssimilation
+
+
+
+ l postAssimilation
+
+
+
+ l archive
+
+
+
+ l endApproval
+
+
+ Ifan InterceptorScript and AfterScript exist, the InterceptorScript postAssim-
+ ilation logic launches before the AfterScript.
+ validationScript Script toperform validation on the work item. For example, you can use this
+ script to validate any data the user enters on the approval before the data is
+
+
+
+
+
+SailPoint Business Processes 46
+
+===== Page 50/75 =====
+Editing Workflow XML
+
+
+Approval Purpose
+Attribute
+
+ assimilated. This script is inherited by any child approvals.
+Source Nested within the AfterScript, InterceptorScript, and validationScript tags
+ and contains the java BeanShell source for the script.
+ Arguments available tothe approval action. Specified by string, script, rule,
+ call, or reference. Most variables are passed to approval through send list.
+ However, args that require any transformation must be sent through an Arg
+ element.
+
+ Additionally, the following args defined with reserved system names are
+ passed through the Arg element with that name specified:
+
+
+
+ l workItemRequester
+
+
+
+ l workItemDescription
+
+
+
+ l workItemType
+
+
+
+ l workItemTargetId
+
+
+
+ l workItemTargetName
+
+Arg
+ l workItemTargetClass
+
+
+
+ l workItemDisableNotification
+
+
+
+ l workItemNotificationTemplate
+
+
+
+ l workItemEscalationTemplate
+
+
+
+ l workItemReminderTemplate
+
+
+
+ l workItemEscalationRule
+
+
+
+ l workItemEscalationStyle
+
+
+
+ l workItemHoursTillEscalation
+
+
+
+ l workItemHoursBetweenReminder
+
+
+
+
+
+
+
+
+SailPoint Business Processes 47
+
+===== Page 51/75 =====
+Editing Workflow XML
+
+
+ Approval Purpose
+ Attribute
+
+
+ l workItemMaxReminders
+
+
+
+ l workItemPriority
+
+
+
+ l workItemIdentityRequestId
+
+
+
+ l workItemArchive
+
+ Return value defines how things should be assimilated from awork item
+ back into the workflow case. This attribute isan alternative to the return
+ attributeCSV ofvariables. Itismore complex and also more powerful.
+
+ This attributeis rarelyused inapprovals. Itismost often used when return-
+ Return ing an approval work item variable toa workflow variable of a differentname
+ orwhen you need to transform the variable contents of a work item with a
+ script.The use of these types of return elements follows the same rules as
+ step returns from steps thatsubprocesses, with addition oflocal attribute
+ options. See Step Elements.
+
+The following basic approval step example presents an account change to the identity'smanager forapproval. The
+AfterScriptrecords the approval decision and creates an audit record.
+
+
+ <RuleLibraries>
+     <Reference class="sailpoint.object.Rule"  name="Approval Library"/>
+     <Reference class="sailpoint.object.Rule"  name="LCM Workflow Library"/>
+ </RuleLibraries>
+
+ <Step icon="Approval" name="Manager Approval">
+ <Approval mode="serial" owner="script:getManagerName(identityName, launcher, fall-
+ backApprover);" renderer="lcmWorkItemRenderer.xhtml" send-
+ d="approvalSet,identityDisplayName,identityName,policyViolations">
+
+ <Arg name="workItemDescription" value="Manager Approval - Account Changes for User:
+ $(identityDisplayName)"/>
+ <Arg name="workItemNotificationTemplate" value="ref:managerEmailTemplate"/>
+ <Arg name="workItemRequester" value="$(launcher)"/>
+
+ <AfterScript>
+         <Source>
+
+           import sailpoint.workflow.IdentityRequestLibrary;
+           assimilateWorkItemApprovalSet(wfcontext, item, approvalSet);
+ IdentityRequestLibrary.assimilateWorkItemApprovalSetToIdentityRequest(wfcontext,
+ approvalSet);
+
+
+
+
+
+
+
+SailPoint Business Processes 48
+
+===== Page 52/75 =====
+Editing Workflow XML
+
+
+
+ auditDecisions(item);
+
+ </Source>
+       </AfterScript>
+
+ </Approval>
+
+     <Description>
+       If approvalScheme contains manager, send an approval for all
+       requested items in the request. This approval will get the entire
+       approvalSet as part of the workitem.
+     </Description>
+
+ <Transition to="Build Owner ApprovalSet"
+     when="script:isApprovalEnabled(approvalScheme, &quot;owner&quot;)"/>
+ <Transition to="Build Security Officer ApprovalSet"
+     when="script:isApprovalEnabled(approvalScheme, &quot;securityOfficer&quot;)"/>
+ <Transition to="end"/>
+
+   </Step>
+
+
+ Note: In the AfterScript inthis example, the methods not qualified by the libraryname are inthe
+ LCM Workflow Rule Library that isavailable to the workflow through the <RuleLibraries> declar-
+ ation.
+
+ The assimilateWorkItemApprovalSetToIdentityRequest method ispart ofthe Iden-
+ tityRequestLibrary, thisis available tothe script through the import of thatlibraryin the script.
+
+ Library methods called through step action attributes are available through the workflow libraries
+ attributelist,.However, when the librarymethods are executed from within scripts,the library
+ must be specifically imported forthe script.
+
+ Nested Approvals
+
+Child approvals created through the user interface are expressed as nested approval elements inthe XML. When nes-
+tedapprovals exist,the parent ceases tobe an approval ofitsown. In those case, the sole purpose ofthe parent
+approval is toorganize and contain the child approvals. The mode on the parent determines how toprocess the set of
+peer child approvals.
+
+
+    <Approval mode="string:parallel" name="Approve Region" owner="ref:regionApprover"
+        send="identityName,region">
+       <Arg name="workItemDescription" value="string:Approve Region for $(identityName)"/>
+       <Approval name="childApproval1" owner="string:Walter.Henderson"
+           send="identityName,region"/>
+       <Approval name="childApproval2" owner="string:Alan.Bradley"
+           send="identityName,region"/>
+    </Approval>
+
+
+
+
+
+
+SailPoint Business Processes 49
+
+===== Page 53/75 =====
+Editing Workflow XML
+
+
+Inthe example above, childApproval1 and childApproval2 are processed inparallel.Because both of these child
+approvals are identical(no custom work item config and no children of theirown), the same objective can be accom-
+plished with asingle approval with multiple owners:
+
+
+    <Approval mode="string:parallel" name="Approve Region" owner="ref:regionApprover"
+        send="identityName,region">
+       <Arg name="workItemDescription" value="string:Approve Region for $(identityName)"/>
+       <Approval name="childApproval1" owner="string:Walter.Henderson"
+           send="identityName,region"/>
+       <Approval name="childApproval2" owner="string:Alan.Bradley"
+           send="identityName,region"/>
+    </Approval>
+
+Nested approvals can be used effectively when differentapproval levels are implemented with custom configurations
+and specifications. For example, the workItemConfig foreach ofthe child approvals can be different,which can result
+ina notificationscheme, escalation policy,etc. forthe differentapprovers.
+
+Nested approvals can be governed by a differentapproval mode from the one used on the master set and/or can con-
+taintheirown child approval levels.One child approval can be done as an any approval, one thataccepts the ruling of
+thefirstresponder of several listedapprovers, while the highest approval levelismanaged serially.Another child
+approval can implement custom workItemConfigs for itsown childapprovals. The example below illustratesallof
+these concepts.
+
+Nested approvals can be used effectively when differentapproval levels are implemented with custom configurations
+and specifications. For example, the workItemConfig foreach ofthe child approvals can be. The following example
+thatillustratesallofthese concepts.
+
+
+    <!-- Approval submitted to HR and to supervisor and manager in serial manner -->
+    <Approval mode="string:serial" name="Approve Region" owner="spadmin"
+        send="identityName,region">
+       <Arg name="workItemDescription" value="string:Approve Region for $(identityName)"/>
+
+       <!-- HR Personnel approve region (whoever responds first makes decision) -->
+       <Approval name="HRApproval" mode="string:any"
+            owner="ref:HRApprovers" send="identityName,region"/>
+
+       <!-- Supervisor and Manager approve region serially after HR approves -->
+       <!-- Each has a different email template (work item config) for notification -->
+       <Approval mode="string:serial" name="SupMgrApproval" send="identityName,region">
+           <Approval name="Supervisor" send="identityName,region" owner="Tom.Jones">
+             <WorkItemConfig escalationStyle="none">
+                <NotificationEmailTemplateRef>
+                   <Reference class="sailpoint.object.EmailTemplate"
+                     name="SupervisorApprovalEmail"/>
+                </NotificationEmailTemplateRef>
+             </WorkItemConfig>
+           </Approval>
+           <Approval name="Manager" send="identityName,region" owner="Mary.Peterson">
+
+
+
+
+
+
+SailPoint Business Processes 50
+
+===== Page 54/75 =====
+Editing Workflow XML
+
+
+
+             <WorkItemConfig escalationStyle="none">
+                <NotificationEmailTemplateRef>
+                   <Reference class="sailpoint.object.EmailTemplate"
+ name="ManagerApprovalEmail"/>
+                </NotificationEmailTemplateRef>
+             </WorkItemConfig>
+           </Approval>
+       </Approval>
+    </Approval>
+
+This abilitytonest approvals, with options toassign differentapproval modes and work item configurations toeach,
+enables implementers tocreate highly customized approval structures to meet the needs ofthe installation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Business Processes 51
+
+===== Page 55/75 =====
+Workflow Library Methods
+
+Workflow Library Methods
+
+
+Workflow Libraries are sets of compiled java methods. To be accessible to workflows, these libraries must be spe-
+cifiedas a comma separated listinthe libraries attribute ofthe workflow element. The classes forlibraries are named
+as follows: SailPoint.workflow.[library]Library.class. Only the [library]portion isspecified inthe libraries attribute.
+
+The following example makes methods from the SailPoint.workflow.IdentityLibrary.class accessible to the work-
+flow.
+
+Example:
+
+
+ <Workflow libraries="Identity" explicitTransitions="true" name="Hello World Workflow"
+ type="IdentityUpdate">
+
+
+
+ Note: Ifno Libraries attribute isspecified on the Workflow element, the workflow can access the
+ Identity,Role, PolicyViolation, and LCM librariesby default.
+
+The following tables listthe workflow librariesand the methods available. Although the Standard Workflow Handler is
+not technically a library,the methods initare accessible toevery workflow and are called through the same syntax as
+librarymethods.
+Standard Workflow Handler
+
+
+ Expected Args
+
+ Method /Usage Description (Required Args are marked with
+
+ a * )
+
+ Object getProperty(Work- Returns value of the named sys- name*
+ flowContext wfc) tem property.
+ public Object isProperty Returns true ifthe named system name*
+ (WorkflowContext wfc) property has a value.
+
+ l message*
+
+ public Object getMessage Returns localized message for l type (severity)
+ (WorkflowContext wfc) use intask results
+ l arg1-arg4 (up to4 para-
+ meters for the message)
+ public Object addMes- Adds message to the workflow l message*
+
+
+
+
+
+
+ SailPoint Business Processes 52
+
+===== Page 56/75 =====
+Workflow Library Methods
+
+
+ Expected Args
+
+Method /Usage Description (Required Args are marked with
+
+ a *)
+
+
+ l type (optional severity)
+sage(WorkflowContext case.
+wfc) l arg1-arg4 (up to4 para-
+ meters for the message)
+
+ l message*
+ Adds message to workflow case
+public Object that isdisplayed inthe user inter-
+ l type (optional severity)
+addLaunchMessage face. Not kept in task result. For
+(WorkflowContext wfc) example, Request was sub- l arg1-arg4 (up to4 para-
+ mitted. meters for the message)
+
+
+ l message*
+
+public Object Replaces previously added
+ l type (optional severity)
+setLaunchMessage(Work- launch message with a new mes-
+flowContext wfc) sage based on new state. l arg1-arg4 (up to4 para-
+
+ meters for the message)
+
+ l message*
+public Object log(Work- Sends something to log4j.
+flowContext wfc) l level*
+
+public Object print(Work- Prints text tothe console. message*
+flowContext wfc)
+
+ l source*
+
+ Creates an audit event. Enables
+ l action*
+public Object audit(Work- workflows toput custom entries in
+flowContext wfc) audit log, which displays inthe l target
+ user interface.
+
+ l string1 -string4
+
+
+ l to*
+
+
+
+ l cc
+public Object sendEmail Sends an email message.
+(WorkflowContext wfc) l bcc
+
+
+
+
+ l from
+
+
+
+
+
+
+SailPoint Business Processes 53
+
+===== Page 57/75 =====
+Workflow Library Methods
+
+
+ Expected Args
+
+Method /Usage Description (Required Args are marked with
+
+ a *)
+
+
+ l subject
+
+
+
+ l body
+
+
+
+ l template*
+
+
+
+ l templateVariables
+
+
+
+ l sendImmediate
+
+
+
+ l exceptionOnFailure
+
+
+ l taskDefinition*
+
+public Object launchTask Launches a defined task. l taskResult
+(WorkflowContext wfc)
+ l sync (true=synchronous
+ execution)
+
+ l requestDefinition*
+
+
+
+ l requestName (name to
+public Object sched- assign to request)
+uleRequest(Work- Launches a generic event
+ request. l scheduleDate
+flowContext wfc)
+
+ l scheduleDelaySeconds
+
+
+
+ l owner
+
+
+ l requestName (name to
+ assign to request)
+public Object sched- Launches a workflow event l scheduleDate
+uleWorkflowEvent(Work- request.
+flowContext wfc) l scheduleDelaySeconds
+
+
+
+
+ l owner
+
+
+
+
+
+
+
+
+SailPoint Business Processes 54
+
+===== Page 58/75 =====
+Workflow Library Methods
+
+
+ Expected Args
+
+ Method /Usage Description (Required Args are marked with
+
+ a *)
+
+
+ l workflow* (name of work-
+ flow to launch)
+
+
+
+ l caseName (optional case
+ name to override default)
+ Commits a transaction. Not com-
+ l creator
+ public Object commit monly needed in workflows. Most
+ (WorkflowContext wfc) commonly used for role l archive
+ approvals.
+ Rolls back a transaction. Not com-
+ public Object rollback monly needed in workflows. Most none
+ (WorkflowContext wfc) commonly used for role
+ approvals.
+
+Identity Library
+
+
+ Expected Args
+
+ Method /Usage Description (Required Args are marked
+
+ with a * )
+
+ public String getManager(Work- Returns the name ofthe
+ flowContext wfc) manager forthe specified identityName
+ identity.
+
+ l oldRoles
+
+ Derive a simplified rep-
+ public Object cal- resentation of the changes l newRoles
+ culateIdentityDifference(Work- made to an identity foran
+ flowContext wfc) l plan
+ approval work item.
+
+ l approvalSet
+
+ Modifies workflow context
+ l linksToAdd
+ private void addLinksInformation listsof links(accounts) to
+ (WorkflowContext wfc) be added, moved, or l linksToMove
+ removed forthe identity as
+
+
+
+
+
+ SailPoint Business Processes 55
+
+===== Page 59/75 =====
+Workflow Library Methods
+
+
+ Expected Args
+
+ Method / Usage Description (Required Args are marked
+
+ with a * )
+
+
+ l linksToRemove
+ a result of the provisioning
+ plan. l plan
+
+
+
+ l policies
+ public List<Map<String,Object>>
+ checkPolicyViolations(Work- l identityName*
+ flowContext wfc) Evaluates policy violations
+ that the provisioning plan/- l project
+ Evaluate policy violations that can be project actions can incur.
+ incurred by the provisioning plan/-
+ l plan (either plan or
+ project's actions project isrequired)
+
+
+
+ l identity* (ID)
+
+
+
+ l role* (ID)
+ public void activateRoleAssignment Assigns a role or roles to
+ (WorkflowContext wfc) the identity. l detected (Boolean
+ indicating ifrole was
+ detected vs.
+ assigned)
+
+ l identity* (ID)
+
+
+
+ l role* (ID)
+ public void deac- Removes role assign-
+ tivateRoleAssignment(Work- ments from the identity. l detected (Boolean
+ flowContext wfc) indicating ifrole was
+
+ detected vs.
+ assigned)
+
+ l identity (ID)
+
+ public void refreshIdentity(Work- Performs an identity l identityName (either
+ flowContext wfc) refresh on one identity. identity or iden-
+
+ tityName is required)
+
+ l identityName
+ public void refreshIdentities(Work- Performs an identity
+ flowContext wfc) refresh on a set of iden- l identityNames (CSV)
+
+
+
+
+
+
+
+SailPoint Business Processes 56
+
+===== Page 60/75 =====
+Workflow Library Methods
+
+
+ Expected Args
+
+Method /Usage Description (Required Args are marked
+
+ with a * )
+ tities.Can specify one or l filterString
+
+ more identityNames, a fil-
+ l identitiesWithRoles
+ terString, or a listof roles. (CSV)
+ Processes the firstof the
+ above listed options that is l (any one ofthese 4 is
+ non-null. required)
+public Object com- Compiles a provisioning l plan
+pileProvisioningProject(Work- plan into provisioning pro-
+flowContext wfc) ject. l identityName
+
+ Creates a form to display
+ provisioning policy ques-
+ tions.
+ l project*
+ When requiredOwner is
+ passed as an argument, a l template (name of
+ form owned by thisuser is form to serve as
+ returned. Ifno more forms page template)
+public Object buildProvisioningForm for thisuser exist, null is
+ returned. l owner
+(WorkflowContext wfc)
+ When preferredOwner is l preferredOwner
+ passed as an argument, a (owner or pre-
+ form owned by thisuser is ferredOwner
+ returned. Ifthere are no required but mutually
+ remaining forms forthat exclusive)
+ owner, a form owned by a
+ different user can be
+ returned.
+ Collects data from com-
+public Object assim- pleted a provisioning form l project*
+ilateProvisioningForm(Work- and stores answers with
+flowContext wfc) questions on pro- l form*
+
+ visioningProject.
+public Object assim- Updates ApprovalSet with l project*
+
+
+
+
+
+
+SailPoint Business Processes 57
+
+===== Page 61/75 =====
+Workflow Library Methods
+
+
+ Expected Args
+
+Method /Usage Description (Required Args are marked
+
+ with a * )
+
+ilateAccountIdChanges(Work- any changes to accoun- l approvalSet
+flowContext wfc) tIDs.
+ Builds a form that rep-
+public Object buildPlanApprovalForm resents allattributes in a l plan*
+(WorkflowContext wfc) provisioningPlan for an
+ approval before the pro- l template
+
+ visioning occurs.
+ Collects data from a form
+public Object assim- and puts the data back into l form
+ilatePlanApprovalForm(Work- the provisioningPlan.
+flowContext wfc) Assumes buildPlanAp- l plan*
+
+ provalForm.
+ Called by the Identity
+ Update and LCM Work- l project*
+public Object provisionProject(Work- flows afterprovisioning
+flowContext wfc) forms are completed. Pro- l noTriggers
+ visions the remaining (Boolean)
+ items in the project.
+
+ l identitizer
+ Called by the Identity
+ Refresh workflow, after l refreshOptions (map
+ approvals are done and of args for creating
+public Object finishRefresh(Work- account completion attrib- new Identitizer if
+flowContext wfc) utes are gathered. Pro- needed)
+ visions what itcan and
+ l previousVersion
+ completes the refresh pro-
+ cess. l project
+
+ Called by the Lifecycle
+public Object buildApprovalSet(Work- Manager workflows. Builds
+flowContext wfc) a simplified ApprovalSet plan*
+ representation ofthe items
+ in the provisioning plan.
+
+
+
+
+
+
+
+SailPoint Business Processes 58
+
+===== Page 62/75 =====
+Workflow Library Methods
+
+
+ Expected Args
+
+Method /Usage Description (Required Args are marked
+
+ with a * )
+
+
+ l project*
+ Processes decisions made
+ during approval process l dontUpdatePlan
+public Object pro- audit and react. Modifies
+cessApprovalDecisions(Work- the project masterPlan and l disableAudit
+
+flowContext wfc) recompiles the project if
+ l approvalSet*
+ the recompile argument is
+ set totrue. l recompile
+
+
+
+ l plan*
+ Processes decisions made
+ during approval process
+public Object pro- audit and modifies the l dontUpdatePlan
+cessPlanApprovalDecisions(Work- Used before the plan is
+flowContext wfc ) l disableAudit
+ compiled intoa pro-
+ visioningProject. l approvalSet*
+
+
+ l approvalSet*
+public Object auditLCMStart(Work- Creates an audit event to
+flowContext wfc) mark the start of an Life- l flow (name of applic-
+ cycle Manager workflow. able UI flow)
+
+ Creates an audit event to
+ l approvalSet*
+public Object auditLCMCompletion mark the completion of
+(WorkflowContext wfc) anLifecycle Manager work- l flow
+ flow.
+ Used by lifecycle events to
+public void disableAllAccounts(Work- disable managed accounts none
+flowContext wfc) for the identity specified in
+ the workflow.
+ Used by Lifecycle events
+public void enableAllAccounts(Work- to enable allaccounts on none
+flowContext wfc) the identity specified inthe
+ workflow.
+public void deleteAllAccounts(Work- Used by Lifecycle events none
+flowContext wfc) to delete allaccounts on
+
+
+
+
+
+
+SailPoint Business Processes 59
+
+===== Page 63/75 =====
+Workflow Library Methods
+
+
+ Expected Args
+
+ Method /Usage Description (Required Args are marked
+
+ with a *)
+
+ the identity specified inthe
+ workflow.
+ Go through alllinks that
+ public ProvisioningPlan the workflow's specified
+ buildEventPlan(WorkflowContext Identity hold and creates a op* (operation)
+ wfc) plan to enable or disable
+ all ofthe Identity's
+ accounts. Specified by op.
+ public void updatePasswordHistory Adds a password to the plan*
+ (WorkflowContext wfc) link password history
+ Adds any account request
+ for an original provisioning
+ public ProvisioningProject project that are retryable
+ assembleRetryProject(Work- and then adds them to a project
+ flowContext wfc) new provisioning project.
+
+ Rarely used in custom
+ workflows.
+ Executes the retry pro-
+ visioning project, created
+ public Object retryProvisionProject in assembleRetryProject. project
+ (WorkflowContext wfc)
+ Rarely used in custom
+ workflow.
+ Merges results from the
+ retry project onto the main
+ l project*
+ public Object mergeRetryPro- project. Called between
+ jectResults(WorkflowContext wfc) retries.
+ l retryProject*
+ Rarely used in custom
+ workflow.
+ Identifies ifthe project con-
+ public Boolean requiresStatusCheck tains any Results that are project
+ (WorkflowContext wfc) queued with a requestID
+ stored on the result.
+
+
+
+
+
+
+SailPoint Business Processes 60
+
+===== Page 64/75 =====
+Workflow Library Methods
+
+
+ Expected Args
+
+ Method /Usage Description (Required Args are marked
+
+ with a * )
+
+ Calls down to the con-
+ public Object check- nector for each Result in
+ ProvisioningStatus(WorkflowContext the plan that is marked project
+ wfc) queued with a requestID
+ specified.
+ public Integer getPro- Compute intervals
+ visioningStatusCheckInterval(Work- between status checks for none
+ flow a request. The default is
+ Context wfc) 60 minutes.
+ public Integer getPro- Computes the maximum
+ visioningMaxStatusChecks(Workflow number of status checks none
+ Context wfc) permitted during a request.
+ The default is infinite.
+ public Integer getPro- Computes the maximum
+ visioningMaxRetries(Work- number of retries per- none
+ flowContext wfc) mitted during a request.
+ The default is infinite.
+ Computes the retry
+ public Integer getPro- threshold, the interval
+ visioningRetryThreshold(Work- between retries, touse for none
+ flowContext wfc) a request. the Default is60
+ minutes.
+
+The methods are available for use. However these methods are rarely used in a custom workflow. Itis recommended
+thatcustom workflows the workflow subprocesses instead of calling the library methods directly.
+
+ Note: This information isincluded forreference purposes and to document the purpose of the
+ methods and what ispassed to them. These explanations are also included to ensure that cus-
+ tomizations do not remove calls toimportant methods from the subprocess workflows and to
+ ensure that customizations only add other functionality around these method calls.
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Business Processes 61
+
+===== Page 65/75 =====
+Workflow Library Methods
+
+IdentityRequest Library
+
+
+ Expected Args
+
+ Method /Usage Method /Usage (Required Args are
+
+ marked with a *)
+
+
+ l project*
+ Creates an IdentityRequest
+ public Object createIdentityRequest(Work- object from current workflow con- l flow
+ flowContext wfc) text information. Tracks status
+ and history ofrequest pro- l source
+
+ cessing.
+ l policyViolations
+
+ public Object updateIdentityRequestState Modifies the IdentityRequest's identityRequestId
+ (WorkflowContext wfc) state.
+ Refreshes the IdentityRequest to
+ public Object refreshIden- include the provisioningEngine
+ tityRequestAfterApproval (Work- that processes the item. Updates project
+ flowContext wfc) the state and adds any expanded
+ attributes that are provisioned.
+ public Object refreshIden- After provisioning, copies inter-
+ tityRequestAfterProvisioning (Work- esting task result information project
+ flowContext wfc) back to the IdentityRequest.
+ public Object refreshIden- Scans the retry project and
+ tityRequestAfterRetry (WorkflowContext updates the IdentityRequestItem project
+ wfc) retry count.
+
+ l project
+ Marks IdentityRequest status
+ complete. Puts finalplan in
+ public Object completeIdentityRequest request and refreshes the l policyViolations
+ (WorkflowContext wfc) request based on the finalpro-
+ l autoVerify
+ ject. (Boolean)
+
+Approval Library
+
+
+ Method /Usage Method /Usage Expected
+ Args
+
+ public SailPointObject getOb- Returns the object being approved. none
+
+
+
+
+
+ SailPoint Business Processes 62
+
+===== Page 66/75 =====
+Workflow Library Methods
+
+
+Method /Usage Method / Usage Expected
+ Args
+
+ject(WorkflowContext wfc)
+public String getObjectClass Returns the simple class name of the object being none
+(WorkflowContext wfc) approved.
+public String getObjectName Returns the name of the object being approved. none
+(WorkflowContext wfc)
+public SailPointObject Returns the current persistent version of the object
+getCurrentObject(Work- held inthe workflowCase (approvalObject). none
+flowContext wfc)
+public Identity getOb- Returns the current owner of the object being
+jectOwner(WorkflowContext approved. Uses database lookup. none
+wfc)
+public Identity getNewOb- Returns the object owner. Inthe workflow context,
+jectOwner(WorkflowContext the owner could be different than the database-recor- none
+wfc) ded owner.
+public String getOb- Returns name of ObjectOwner from getOb-
+jectOwnerName(Work- jectOwner. none
+flowContext wfc)
+public String getNewOb- Returns name of NewObjectOwner from getNewOb-
+jectOwnerName(Work- jectOwner. none
+flowContext wfc)
+public boolean isOwn- Return true ifobject being approved has had an
+erChange(WorkflowContext owner change. none
+wfc)
+ Returns True ifthe user who launches workflow is
+public boolean isSelfAp- the same as the owner of the object being approved.
+proval(WorkflowContext wfc) Used to bypass an owner approval. Assumes that none
+ the user willapprove ifthe user isthe one who is ini-
+ tiating the request.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Business Processes 63
+
+===== Page 67/75 =====
+Workflow Library Methods
+
+Policy Violation Library
+
+
+ Expected Args
+
+ Method /Usage Method / Usage (Required Args are marked with a *
+
+ )
+
+ public Object delete Deletes the current approval object
+ (WorkflowContext associated with this workflow. none
+ wfc)
+ public Object ignore Ends the workflow associated with
+ (WorkflowContext the current approval object without none
+ wfc) performing any actions.
+ public Object mit- Mitigates by temporarily allowing a l expiration*
+ igateViolation(Work- policy violation.
+ flowContext wfc) l comments
+
+ public Object getRe-
+ mediatables(Work- none
+ flowContext wfc)
+
+ l remediator
+
+
+
+ l actor
+
+ public Object getRe- l comments
+ mediatables(Work-
+ flowContext wfc) l remediations*
+
+
+ Use ifremediator argument isnot
+ specified and actor is.Use remedi-
+ ator innew method calls.
+
+Role Library
+
+
+ Expected Args
+
+
+ Method /Usage Method /Usage (Required Args
+ are marked with a
+ * )
+
+ public Object launchIm- Starts an impact analysis task fora role none
+
+
+
+
+
+ SailPoint Business Processes 64
+
+===== Page 68/75 =====
+Workflow Library Methods
+
+
+ Expected Args
+
+
+Method /Usage Method / Usage (Required Args
+ are marked with a
+ * )
+
+pactAnalysis(WorkflowContext in workflow.
+wfc)
+public Object getRoleDifferences Calculates the differences between a
+(WorkflowContext wfc) role held inworkflow and the database none
+ version of the role.
+
+ l source
+
+public Object auditRoleDif- Creates one audit event for each attrib- l action
+ferences(WorkflowContext wfc) ute difference between role states. Com-
+ pares workflow vs database. l target
+
+
+
+ l string1
+
+public Approval buildOwn- Sets up an approval forthe owner of an none
+erApproval(WorkflowContext wfc) object. Currently used only for roles.
+ For role approvals only. Builds an
+ approval structure forthe owners of
+public List<Approval> buildAp- each application referenced inthe role
+plicationApprovals(Work- profiles. Normally processed as par- none
+flowContext wfc) allelPoll toallow application owners to
+ submit comments or modify the role
+ without terminating the approval pro-
+ cess.
+public void enableRole(Work- Marks role as enabled. role (name)
+flowContext wfc)
+public void disableRole(Work- Marks role as disabled. role (name)
+flowContext wfc)
+public void setRoleDis- Marks role with disabled status indicated l role (name)
+abledStatus(WorkflowContext in the disabled arg.
+ true = disabled l disable
+wfc) false = enabled (Boolean)
+
+public void Removes incomplete requests. Used to none
+removeOrphanedRoleRequests activate/deactivate roles that no longer
+
+
+
+
+
+
+SailPoint Business Processes 65
+
+===== Page 69/75 =====
+Workflow Library Methods
+
+
+ Expected Args
+
+
+ Method /Usage Method / Usage (Required Args
+ are marked with a
+ * )
+
+ (WorkflowContext wfc) exist.
+ Called by the post-approval audit steps,
+ Audit Failure and Audit Success, of Role
+ Modeler. Owner Approval workflow to
+ determine what type ofaction should be
+ public String getAp- recorded in audit log.
+ provalAuditAction(Work- none
+ flowContext wfc) Ifthe role is marked as disabled, returns
+ disableRole.
+
+
+ ifthe role is NOT marked as disabled,
+ returns updateRole .
+
+LCM Library
+
+Currently, the Lifecycle Manager Library contains no public methods. All ofitsmethods were moved to the Standard
+Workflow Handler.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Business Processes 66
+
+===== Page 70/75 =====
+Monitoring Workflows
+
+Monitoring Workflows
+
+
+Aftera workflow isinitiated,the workflow can launch tocompletion quickly. Sometimes aworkflow can take additional
+time to complete itsspecified actions. Approval steps often create a delay inthe processing while the workflow waits
+forthe approver toreview the work item and make a decision on it.
+
+To observe aworkflow inflightand understand how much of the process is complete and what actions are pending,
+you can examine the Task Result for the workflow on the Setup > Tasks > Task Results page. The TaskResult for a
+workflow exists fora period oftime following the successful completion ofthe workflow. Based on the retention period
+set,the TaskResult can be purged soon after the process launches tocompletion. While the workflow isstillinpro-
+gress, the TaskResult continues to exist and can be examined for current step and status information.
+Viewing the Workflow Case XML
+
+You can examine the workflow case in XML format from the IdentityIQ console or from the Debug pages.The status of
+each step can then be determined from the data recorded in the workflow case.
+
+To get the workflowcase XML from the console:
+
+ 1. Launch the console.
+
+ 2. List the workflow cases.
+
+ 3. Get the specific workflow case inquestion by name. See the following example.
+
+
+
+ IIQ console
+ > List workflowcase
+ [system will list all in-flight workflowcases by ID and name]
+ > get workflowcase "[workflowcase name]"[system will display the XML for the workflow
+ case]
+
+To view the workflowcase XML from the IdentityIQ Debug pages:
+
+ 1. Select WorkflowCase from the object list.
+
+ 2. Click the specific workflow case from the listtodisplay itsXML.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Business Processes 67
+
+===== Page 71/75 =====
+Advanced Workflow Topics
+
+Advanced Workflow Topics
+
+
+This section includes these advanced Workflow topics:
+
+
+
+ l Loops within Workflows
+
+
+
+ l Launching Workflows from a Task or Workflow
+
+
+
+ l Workflow Forms
+
+Loops within Workflows
+
+A loop occurs when a step transitions back to a step thatexecuted previously. The state of thatstep isreinitializedand
+the step isexecuted again. A loop can transition back any number ofsteps. You define a loop transitionthe same way
+you would any other transition.However, you must justselect a target step that appears before the loop transitionin
+the process designer.
+
+Inmost case, when you create a loop transition,you want togive ita conditional When expression. Ifaloop transition
+isunconditional, the workflow can enter an infiniteloop and not be able to finish.
+Launching Workflows from a Task or Workflow
+
+You can launch workflows from tasks or other workflows without using a system event to triggerthe workflow.
+
+Workflows Launched from Custom Tasks
+
+You can launch workflows from a custom task in IdentityIQ. Because tasks are compiled java classes, the custom task
+must be written as a Java method.
+
+To create aworkflow from a custom task:
+
+ 1. Create a WorkflowLaunch object inthe Java method.
+
+ 2. Populate the object with the data the workflow requires.
+
+ 3. Use the Workflower class to launch the workflow.
+
+Itisoften necessary forone workflow to launch another workflow. This can be performed inBeanshell using code sim-
+ilartothe previous example. However, using the workflow librarymethod <i>scheduleWorkflowEvent</i> iseasier.
+Not only does thismethod launch a workflow, italso allows you todelay the launch untila time inthe future.
+
+To have one workflow tolaunch another workflow, create a step and select scheduleWorkflowEvent as the action.
+This method requires the following arguments:
+
+
+
+
+ SailPoint Business Processes 68
+
+===== Page 72/75 =====
+Advanced Workflow Topics
+
+
+
+                import java.util.HashMap;
+                import sailpoint.api.sailpointContext;
+                import sailpoint.api.Workflower;
+                import sailpoint.integration.ProvisioningPlan;
+                import sailpoint.integration.ProvisioningPlan.AccountRequest;
+                import sailpoint.integration.ProvisioningPlan.AttributeRequest;
+                import sailpoint.object.Identity;
+                import sailpoint.object.Workflow;
+                import sailpoint.object.WorkflowLaunch;
+                import sailpoint.tools.GeneralException;
+                import sailpoint.tools.xml.XMLObjectFactory;
+
+
+                HashMap launchArgsMap = new HashMap();
+
+                String myIdentityName = "T339222";
+               Identity myIdentity = context.getObjectByName(Identity.class, myIden-
+ tityName);
+
+                //Create Provisioning Plan and add needed attribute values
+                ProvisioningPlan plan = new ProvisioningPlan();
+                plan.setIdentity(myIdentity);
+                AccountRequest accountRequest = new AccountRequest();
+                AttributeRequest attributeRequest = new AttributeRequest();
+
+                accountRequest.setApplication("IIQ");
+                accountRequest.setNativeIdentity(wbIdentity);
+                accountRequest.setOperation("Modify");
+
+                attributeRequest.setOperation("Add");
+                attributeRequest.setName("assignedRoles");
+                attributeRequest.setValue("Benefits Clerk");
+
+                accountRequest.add(attributeRequest);
+                plan.add(accountRequest);
+
+                //Add needed Workflow Launch Variables to map of name/value pairs
+                launchArgsMap.put("allowRequestsWithViolations","true");
+                launchArgsMap.put("approvalMode","parallelPoll");
+                launchArgsMap.put("approvalScheme","worldbank");
+                launchArgsMap.put("approvalSet","");
+                launchArgsMap.put("doRefresh","");
+                launchArgsMap.put("enableRetryRequest","false");
+                launchArgsMap.put("fallbackApprover","admin");
+                launchArgsMap.put("flow","RolesRequest");
+                launchArgsMap.put("foregroundProvisioning","true");
+                launchArgsMap.put("identityDisplayName","John.Smith");
+                launchArgsMap.put("identityName","John.Smith");
+                launchArgsMap.put("identityRequestId","");
+                launchArgsMap.put("launcher","admin");
+                launchArgsMap.put("notificationScheme","user,requester");
+                launchArgsMap.put("optimisticProvisioning","false");
+                launchArgsMap.put("plan",plan);
+                launchArgsMap.put("policiesToCheck","");
+
+
+
+
+
+
+SailPoint Business Processes 69
+
+===== Page 73/75 =====
+Advanced Workflow Topics
+
+
+
+                launchArgsMap.put("policyScheme","continue");
+                launchArgsMap.put("policyViolations","");
+                launchArgsMap.put("project","");
+                launchArgsMap.put("requireViolationReviewComments","true");
+                launchArgsMap.put("securityOfficerName","");
+                launchArgsMap.put("sessionOwner","admin");
+                launchArgsMap.put("source","LCM");
+                launchArgsMap.put("trace","true");
+                launchArgsMap.put("violationReviewDecision","");
+                launchArgsMap.put("workItemComments","");
+
+                sailpoint.object.ProvisioningPlan spPlan = new sail-
+ point.object.ProvisioningPlan();
+                spPlan.fromMap(plan.toMap());
+                launchArgsMap.put("plan", spPlan);
+
+                //Create WorkflowLaunch and set values
+                WorkflowLaunch wflaunch = new WorkflowLaunch();
+                Workflow wf = (Workflow) context.getObjectByName(Work-
+ flow.class,"myWorkflowName");
+                wflaunch.setWorkflowName(wf.getName());
+                wflaunch.setWorkflowRef(wf.getName());
+                wflaunch.setCaseName("LCM Provisioning");
+                wflaunch.setVariables(launchArgsMap);
+
+
+                //Create Workflower and launch workflow from WorkflowLaunch
+                Workflower workflower = new Workflower(context);
+                WorkflowLaunch launch = workflower.launch(wflaunch);
+
+                // print workflowcase ID (example only; might not want to do this in the
+ task)
+                String workFlowId = launch.getWorkflowCase().getId();
+                System.out.println("workFlowId: "+workFlowId);
+
+Workflows Launched by Other Workflows
+
+Installationsoftenhave one workflow startanother workflow using the scheduleWorkflowEvent method in the Stand-
+ard Workflow Handler. One ofthe initiatingworkflow steps launches the method through a callaction.
+
+Arguments to the step include thefollowing:
+
+ Name Value
+
+ workflow Name ofthe workflow tolaunch.
+ Name tobe assigned to the request.
+ requestName
+ Ifnot specified,the name of workflow isthe default.
+ scheduleDate Date and time you want theworkflow tolaunch. Must be specified
+ with a java.util.Datevalue.Ifthisargument isnot set,the workflow
+
+
+
+
+
+
+ SailPointBusiness Processes 70
+
+===== Page 74/75 =====
+Advanced Workflow Topics
+
+
+ Name Value
+
+ launches immediately.
+ scheduleDelaySeconds An alternative to using scheduleDate. When set, the value isthe num-
+ ber of seconds to delay before launching the workflow.
+ Specify a user friendly name for workflowCase to be displayed inthe
+ caseName user interface.
+
+ Ifno name is specified, the default is the name ofworkflow.
+ Name of the identity tobe displayed as the launcher of the new work-
+ launcher flow case. Ifthisargument isnot specified, the launcher of the ini-
+ tiatingworkflow isused.
+
+A workflow that is launched by another workflow isdifferent from a workflow that islaunched as a subprocess. Ifa
+workflow is launched as a subprocess, the calling workflow waits untilthe subprocess iscompleted. After the workflow
+returns control to the caller, the processing continues.
+
+A workflow that is launched by another workflow causes a completely separate workflow to begin launching. After the
+new workflow is started, the original or callingworkflow moves on to itsnext step.
+Workflow Forms
+
+Standard work item forms are available forpresenting approval or other data requests to approvers. However, some
+installations prefer to use custom forms forthese activities.Based on the type of the data collection effort,a custom
+form might be required. You can build a custom form using a <Form> element in the XML thatis embedded within the
+<Approval> element.
+
+ Note: The <Approval> element can be used tocollect data from a user, even ifthe workflow is
+ not an approval. You generally use custom forms forthese activitiesbecause the normal
+ approval forms do not apply. However, you can also use custom forms for traditionalapproval
+ activitieswhen you need a differentpresentation format.
+
+The basic elements in a Form definition are:
+
+
+ <Form>
+    <Attributes>    (map of name/value pairs that influence the form renderer)
+    <Button>     (determine form processing actions)
+    <Section>    (Subdivision of form; may contain nested Sections and Fields)
+      <Field>    (may contain Attributes map, Script to set value, Allowed Values Defin-
+ ition script, and Validation Script)
+
+For detailed information about working with forms, see the Forms documentation.
+
+
+
+
+
+
+
+
+ SailPoint Business Processes 71
+
+===== Page 75/75 =====
+Advanced Workflow Topics
+
+Process Variable and Step Forms
+
+You use forms added to steps on the Process Designer tab inthe Business Process Editor to request data thata pro-
+cess needs from a user. For example, you can add a form toa step torequest avalue for a missing attribute.
+
+However, to present information on the Basic Views of the Process Variables tab and the Arguments tab of the Step
+Editor, you use process variable and step forms.
+
+To simplify the information displayed on the Process Variables tab:
+
+
+
+ l Variables are displayed in more logical groups.
+
+
+
+ l Variables that are rarely, ifever, modified are hidden.
+
+
+Changes made in the Basic View are persisted to the Advanced View and more complex configuration can be per-
+formed there ifneeded.
+
+The step forms are referenced from the workflows or stepLibraries. These forms define the form thatis presented on
+the Arguments tab of the Step Editor panel and works similar to the process variable forms.
+
+Both of these forms are referenced from workflows using the configForm variable. The forms can be defined, viewed
+and edited on the IdentityIQ debug page.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Business Processes 72

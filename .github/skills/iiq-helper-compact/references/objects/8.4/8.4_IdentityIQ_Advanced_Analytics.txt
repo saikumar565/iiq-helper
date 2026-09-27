@@ -1,0 +1,2430 @@
+===== Page 1/44 =====
+ IdentityIQ Advanced Analytics
+
+
+ Version:8.4
+
+ Revised:September2023
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thisdocument andthe informationcontainedhereinisSailPointConfidentialInformation
+
+===== Page 2/44 =====
+Copyright and Trademark Notices
+
+Copyright © 2023 SailPoint Technologies, Inc.  All Rights Reserved.
+
+Alllogos, text,content, including underlying HTML code, designs, and graphics used and/or depicted on these written
+materials or in thisInternet website are protected under United States and international copyright and trademark laws
+and treaties, and may not be used or reproduced without the prior express written permission of SailPoint Tech-
+nologies, Inc.
+
+“SailPoint Technologies,” (design and word mark), “SailPoint,” (design and word mark), "Identity IQ,” “IdentityNow,”
+“SecurityIQ,” “Identity AI,” “Identity Cube,” and “SailPoint Predictive Identity” are registered trademarks of SailPoint
+Technologies, Inc. “Identity isEverything,” “The Power of Identity,” and “Identity University” are trademarks of
+SailPoint Technologies, Inc. None of the foregoing marks may be used without the prior express written permission of
+SailPoint Technologies, Inc. Allother trademarks shown herein are owned by the respective companies or persons
+indicated.
+
+SailPoint Technologies, Inc. makes no warranty ofany kind regarding these materials or the information included
+therein, including, but not limited to,the implied warranties ofmerchantability and fitness for a particular purpose.
+SailPoint Technologies shall not be liable for errors contained herein or direct, indirect, special, incidental orcon-
+sequential damages inconnection with the furnishing, performance, or use of thismaterial.
+
+Patents Notice. https://www.sailpoint.com/patents
+
+Restricted Rights Legend. All rights are reserved. No part ofthis document may be published, distributed, reproduced,
+publicly displayed, used to create derivative works, or translated to another language, without the prior written consent
+ofSailPoint Technologies. The information contained inthis document issubject to change without notice.
+
+Use, duplication or disclosure by the U.S. Government is subject to restrictions as set forth insubparagraph (c) (1) (ii)
+ofthe Rights inTechnical Data and Computer Software clause at DFARS 252.227-7013 for DOD agencies, and sub-
+paragraphs (c)(1) and (c)(2) ofthe Commercial Computer Software Restricted Rights clause at FAR 52.227-19 for
+other agencies.
+
+Regulatory/Export Compliance. The export and re-export of this software iscontrolled for export purposes by the U.S.
+Government. By accepting this software and/or documentation, licensee agrees to comply with allU.S. and foreign
+export laws and regulations as they relate to software and related documentation.  Licensee will not export or re-
+export outside the United States software or documentation, whether directly or indirectly, to any Prohibited Party and
+willnot cause, approve or otherwise intentionally facilitate others inso doing. A Prohibited Party includes: a party in a
+U.S. embargoed country or country the United States has named as a supporter of international terrorism; a party
+involved in proliferation; a party identified by the U.S. Government as a Denied Party; a party named on the U.S.
+Department of Commerce’s Entity Listin Supplement No. 4 to 15 C.F.R. § 744; a party prohibited from participation in
+export orre-export transactions by a U.S. Government General Order; a party listed by the U.S. Government’s Office
+ofForeign Assets Control as ineligible to participate in transactions subject toU.S. jurisdiction; or any party that
+licensee knows or has reason toknow has violated or plans to violate U.S. or foreign export laws or regulations.
+Licensee shall ensure that each of itssoftware users complies with U.S. and foreign export laws and regulations as
+they relate to software and related documentation.
+
+===== Page 3/44 =====
+Contents
+
+
+ Advanced Analytics Overview 1
+
+ Identity Search 3
+
+ Access Review Search 9
+
+ Role Search 13
+
+ Entitlement Search 20
+
+ Activity Search 23
+
+ Audit Search 26
+
+ Process Metrics Search 29
+
+ Access Requests Search 30
+
+ Syslog Search 33
+
+ Account Search 35
+
+ Using Advanced Search Options 37
+
+ Creating an Advanced Search 37
+
+ Grouping FilterCriteria 38
+
+ Viewing and Editing the FilterSource Directly 39
+
+ Search Results 40
+
+ Result Options 40
+
+ Export Searches 41
+
+===== Page 4/44 =====
+Advanced Analytics Overview
+
+
+Advanced Analytics Overview
+
+
+Advanced Analytics lets you to create specific queries based on a variety of search criteria within IdentityIQ. These
+searches can be used to identify specific areas of risk, and tocreate populations of identities that can be saved and
+used as filteringcriteria inother features.
+
+Search results can be saved forreuse, or saved as reports or populations. When you save a search as a report, you
+can schedule the search to run on an continuous basis, for monitoring and tracking purposes.
+
+When you save the search criteriaas a population, you can use activity monitoring and statisticalreporting of identities
+that fitthatcriteria inthe same way that you use them forgroups.
+
+To access Advanced Analytics from the navigation menu bar, select Intelligence > Advanced Analytics. Then
+choose a Search Type from the dropdown menu and enter the search criteria.
+
+IdentityIQ Advanced Analytics includes these search types:
+
+
+
+ l Identity Search – generate searches on specific attributes ofthe users inyour enterprise.
+
+
+
+ l Using Advanced Search Options – generate ad-hoc searches using Boolean operations.
+
+
+
+ l Access Review Search – generate searches based on certification criteria.
+
+
+
+ l Role Search – generate searches on the roles in your enterprise.
+
+
+
+ l Entitlement Search– generate searches on entitlements inyour enterprise.
+
+
+
+ l ActivitySearch – generate searches on activityover specific time periods and on specific applications, iden-
+ tities,groups, populations or targets.
+
+
+
+ l Audit Search – generate searches for audit records for specific time periods and forspecific actions, sources,
+ and targets.
+
+
+
+ l Process Metrics Search – generate searches based on business process metrics criteria.
+
+
+
+ l Access Requests Search – generate searches for current and archived access requests.
+
+
+
+ l Syslog Search – generate searches for specific technical support related information that relates toyour Iden-
+ tityIQinstallation.
+
+
+
+ l Account Search – generate searches based on the accounts in your enterprise. These searches can find
+ accounts by application, display name, owner, native identity, instance or any combination ofthese criteria.
+
+
+
+
+
+ SailPoint IdentityIQ Advanced Analytics 1
+
+===== Page 5/44 =====
+Advanced Analytics Overview
+
+
+Many search types offer an Advanced Search option that letsyou create detailed, multilayered search filters.For more
+information, see Using Advanced Search Options.
+
+To view your search results, see Search Results.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Advanced Analytics 2
+
+===== Page 6/44 =====
+Identity Search
+
+Generate searches on specific attributes of the identities in your enterprise. You can use these searches to identify
+specific risk areas, or to define populations of people from multiple organizations, departments, and locations.
+
+See Identity Search Criteria.
+
+Search results can be saved forreuse or saved as reports. Insome cases, you can save your results as populations of
+identities.
+
+
+
+ l When you save a search as a report, you can schedule the search on an continuous basis for monitoring and
+ tracking purposes.
+
+
+
+ l When you save the search criteria as a population, you can use activity monitoring and statistical reporting of
+ identitiesthat fitthat criteriain the same way that you use them for groups.
+
+Use Advanced Search to create detailed, multi-layered filtersto identifyspecific populations ofusers in your enter-
+prise. To create complex queries intoyour Identity Cubes, you can create multiple filtersand then group and layer
+them using And /Or operations.
+
+See Using Advanced Search Options.
+
+When a previous search issaved to use later,the Saved Searches section displays atthe top of the page. A saved
+search has the following information:
+
+ Field Description
+
+ Saved Searches:
+ The names ofpast searches that you saved to reuse at a later time. To view the
+ search results page, click the name of the saved search to view the search results
+ Search page.
+ Name
+ These Saved Searches are only available for your use. To make identitysearches
+ available to users with Report access, save the search as a report.
+ Loaded Saved Search:
+ The name and description of your current saved query.
+
+Identity Search Criteria
+
+The search criteria textfields support partial text strings using a starts-with protocol. For example, ifyou input "ro"in
+the Last Name field,the search results include Thomas Rowen and Betty Roberts.
+
+Ifyou want touse a "contains" type of search, so that using "ro" inthe Last Name fieldwould include "Brown" as well
+as "Rowen" and "Roberts," use the Advanced Search option and choose "IsLike" for the search operator. See Using
+Advanced Search Options.
+
+
+
+
+ SailPoint IdentityIQ Advanced Analytics 3
+
+===== Page 7/44 =====
+Your search criteria is used to narrow the search results. Ifyou do not type information in a search criteria field,all pos-
+sible choices are included. For example, ifyou do not select an application from the Applications list,allapplications
+are included.
+
+ Note: If the Load Saved Search panel displays, the search criteria for that search is loaded on
+ the page. To create a new search click Clear Search.
+
+The search fields are inclusive or "AND" type searches. Only actions matching values specified inall fieldsare
+included in the search results. For example, ifyou search by First Name John and Last Name Doe, the search res-
+ultsinclude only users with the character string John in theirfirstname and Doe in their lastname.
+
+Use the Fields to Display panel on the right to select the identity and riskfields to display on the search results page.
+
+Specify the search criteriaand columns to display and click Run Search to display the search results. From the
+search results page, you can review the results of your search and save the search. See Search Results.
+
+The Identity Search page has the following information:
+
+ Identity Attributes
+
+
+ Criteria Description
+
+ Identity Attributes
+ Identity attributes are pulled from the identity mapping information that isset during deployment
+ and configuration.
+
+ You can use fullor partial strings in the text fields. Simple text searches use starts with logic; for
+ example, "ro" in the Last Name field returns Roberts and Rowen. To search for results that con-
+ tain the text string in the field,use the Advanced Search option and choose is likeas the Search
+ Type.
+ Searchable Attributes
+ Searchable Attributes are attributes you created and that are designated as Searchable when an
+ identity isgenerated during deployment and configuration. For example, Department, Organ-
+ ization, or Location.
+ Last Name Last name criteria touse in the query.
+ FirstName First name criteria to use inthe query.
+ User Name User name criteriato use in the query.
+ Display Name The identity name inIdentityIQ.
+ Email Email address criteria to use in the query.
+ Manager criteria to use inthe query.
+ Manager The Identity search results include allusers that
+ report tomanagers that match the criteria in this
+
+
+
+
+
+
+ SailPoint IdentityIQ Advanced Analytics 4
+
+===== Page 8/44 =====
+Criteria Description
+
+ field.
+ Select True to include identities currently marked
+IsInactive inactive or False to include identities that are cur-
+ rently active inthe search results.
+ Select True to include identities that are marked as
+IsManager manager or False to include identities that are not
+ marked as manager in the search results.
+ Employee type:
+ -Employee
+Type -Contractor
+ -External Partner
+ -RPA/Bots
+ -Service Accounts
+ Only applicable to RPA /Bots
+Software Version Software version associated with the Robotic Pro-
+ cess Automation (RPA) / bots.
+ Only applicable to RPA /Bots
+Administrator The administrator of the Robotic Process Auto-
+ mation (RPA) /bots.
+ Select the applications to include inthe search. If no
+ applications are specified, allapplications are
+ included.
+ Click the arrow to the right of the suggestion fieldto
+Applications display a listof allapplications or type a few letters
+ inthe fieldto display a listof applications that begin
+ with that letter string.
+ Identities need to match only one of the selected
+ items to be included in the search results
+ Select the detected roles to include in the search. If
+ no roles are specified, allroles are included.
+ Click the arrow to the right of the suggestion fieldto
+Detected Roles display a listof allroles or type a few letters inthe
+ fieldto display a listof roles that begin with that let-
+ terstring.
+ For hierarchical roles, the identity is included inthe
+ search results with each role in the hierarchy not
+
+
+
+
+
+SailPoint IdentityIQ Advanced Analytics 5
+
+===== Page 9/44 =====
+Criteria Description
+
+ only the highest level role.
+Instance The attribute that uniquely identifies a specific sub-
+ division of an application.
+ Select the assigned roles to include in the search. If
+ no roles are specified, all roles are included.
+ Click the arrow to the right of the suggestion field to
+ display a listofall roles or type a few letters in the
+Assigned Roles field to display a listof roles that begin with that let-
+ ter string.
+ For hierarchical roles, the identity isincluded in the
+ search results with each role in the hierarchy not
+ only the highest level role.
+ Select the workgroups to include in the search. Ifno
+Workgroup workgroups are specified, allworkgroups are
+ included.
+Include Assigned Role Hierarchy Select to include roles that are inherited from the
+ assigned roles you selected for your search.
+
+
+ Entitlements
+
+
+Criteria Description
+
+Entitlement Filters
+Select an application, attribute name and entitlement then click Add to filterby your selection.
+Entitlement Metadata
+Filteryour search to include identities with entitlements meet specific IdentityIQ-related criteria.
+ Has uncertified entitlements – use the dropdown listand select True or
+ False to specify search results that include identities that have uncertified
+Certification entitlements.
+ Has entitlements pending certification – use the dropdown listand select
+ True or False to specify search results that include identities that have enti-
+ tlements with pending certifications.
+ Has entitlements that were not requested – use the dropdown listand
+Request select True or False to specify search results include identities with enti-
+ tlements that were not requested.
+ Has pending requests for entitlements – use the dropdown listand select
+
+
+
+
+
+
+SailPoint IdentityIQ Advanced Analytics 6
+
+===== Page 10/44 =====
+ Criteria Description
+
+ True or False to specify search results that include identities that have enti-
+ tlements with pending access requests.
+ Aggregation Status – specify ifthe search must include identities whose
+ entitlements are associated with applications that are Connected or Dis-
+ Other connected for aggregation.
+ Is Assigned – use the dropdown listand select True or False to specify
+ search results that include identities with entitlements were assigned and not
+ detected.
+
+
+ Multi Valued Attributes
+
+
+ Criteria Description
+
+ Multi-Valued Attributes:
+
+ By default, IdentityIQ does not come preconfigured with any multi-valued attributes. Multi-valued
+ attributes are created during deployment and configuration.
+
+
+ To limit the search, add values associated with a multi-valued attribute. The search results
+ include the member listfor the selected values. Use the and /or operator to define the search cri-
+ teria.
+
+
+ For example, formulti-valued identity attributes you can search by cost center or projects that
+ have multiple values on multiple applications. For multi-value account attributes you can use
+ group membership for specific accounts such as payroll or strategy and planning.
+ Certification Score The sum of compensated riskscores asso-
+ ciated with certifications.
+
+
+ Risk Attributes
+
+Risk scores and compensating factors are defined when IdentityIQ is configured.
+
+ Criteria Description
+
+ Composite The total composite riskscore for the identity.
+ Score
+ Role Score The sum of the compensated riskscores of each role assigned to this identity.
+ To determine the compensated role risk score, compensating factors are
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Advanced Analytics 7
+
+===== Page 11/44 =====
+Criteria Description
+
+ applied to the role base risk score.
+Role Score The sum of role base risk scores.
+(Base) This score does not account for the compensating factors defined forrole risk
+ scoring.
+ The sum of the compensated riskscores of each entitlement assigned to this
+Entitlement identity.
+Score To determine the compensated role risk score, compensating factors are
+ applied to the entitlement base risk score.
+Entitlement The sum of entitlement base risk scores.
+Score (Base) This score does not account for the compensating factors defined forenti-
+ tlement risk scoring.
+ The sum of compensated risk scores associated with policy violations as
+Policy Score defined when IdentityIQ was configured.
+ Policies do not affect identity risk scores until a violation occurs.
+Certification The sum of compensated risk scores associated with certifications.
+Score
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Advanced Analytics 8
+
+===== Page 12/44 =====
+Access Review Search
+
+Use the Access Review Search page to generate searches for access review records. These searches can find
+access reviews by certifier,identity tobe certified,access review type, access review phase, completion percentage,
+significant dates, tags, or any combination of criteria.
+
+See Access Requests Search Criteria.
+
+Use Advanced Search to create detailed, multi-layered filterstoidentify specific populations of users inyour enter-
+prise. To create complex queries into your Identity Cubes, you can create multiple filtersand then group and layer
+them using And /Or operations.
+
+See Using Advanced Search Options.
+
+When a previous search issaved to use later, the Saved Searches section displays at the top of the page. A saved
+search has the following information:
+
+ Field Description
+
+ Saved Searches:
+ The names of past searches that you saved to reuse at a latertime. To view the
+ search results page, clickthe name ofthe saved search to view the search results
+ Search page.
+ Name
+ These Saved Searches are only available foryour use. To make identity searches
+ available to users with Report access, save the search as a report.
+ Loaded Saved Search:
+ The name and description of your current saved query.
+
+After you enter the search criteria,clickRun Search. The search results are displayed on this tab.
+
+Access Review Search Criteria
+
+The search criteriatext fields support partial text strings using a starts-with protocol. For example, ifyou input "ro" in
+the Last Name field,the search results include Thomas Rowen and Betty Roberts.
+
+Your search criteria isused to narrow the search results. Ifyou do not type information in a search criteria field,allpos-
+sible choices are included. For example, ifyou do not select an application from the Applications list,allapplications
+are included.
+
+ Note: Ifthe Load Saved Search panel displays, the search criteria forthat search isloaded on
+ the page. To create a new search click Clear Search.
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Advanced Analytics 9
+
+===== Page 13/44 =====
+The search fields are inclusive or "AND" type searches. Only actions matching values specified in allfields are
+included inthe search results. For example, ifyou search by First Name John and Last Name Doe, the search res-
+ultsinclude only users with the character string John intheir firstname and Doe in theirlast name.
+
+Use the Fields to Display panel on the right toselect the identity and riskfields to display on the search results page.
+
+Specify the search criteria and columns to display and click Run Search to display the search results. From the
+search results page, you can review the results ofyour search and save the search. See Search Results.
+
+ The Access Review Search page has the following information:
+
+
+ Criteria Description
+
+ Saved Searches:
+ The names of past searches that you saved toreuse at a later time.
+ Search Name These Saved Searches are only available for your use. To make searches avail-
+ able to users with Report access, save the search as a report.
+ Loaded Saved Search:
+ The name and description of the current saved query.
+ Run the search with the criteriadisplayed on the current page.
+ Run Search Ifyou have modified the criteriaof the Loaded Saved Search, the modified cri-
+ teria isused forthe search.
+ Unload the
+ Loaded Saved
+ Search and Clear Search.
+ clear allquery
+ options.
+ Delete Search Delete the specified Loaded Saved Query.
+ Access Review Attributes:
+ The name that you assigned to the access review when the access review was
+ created. The search results include allaccess reviews that meet a specific cri-
+ Name teria. The search is case-insensitive. You can type the entire name ora portion
+ of the name. For example, you can type "mycert" to include that specific name
+ or you can type "m" to include allaccess reviews that begin with the letter "m."
+ The identity or workgroup that isassigned the access review request. The
+ search results include allaccess reviews assigned to the value specified.
+ Certifier Click the arrow to the right ofthe suggestion fieldto display a listofallcertifiers
+ or type a few letters in the fieldto display a listofidentities or workgroups that
+ begin with that letter string.
+
+
+
+
+
+SailPoint IdentityIQ Advanced Analytics 10
+
+===== Page 14/44 =====
+Criteria Description
+
+ An identity in access review requests. The search results include allaccess
+ reviews that have the specified identity.
+Identity Click the arrow to the right of the suggestion field to display a listofall identities
+ or type a few letters inthe fieldto display a listof identities that begin with that
+ letter string.
+ Select an access review type from the dropdown list.
+Type
+ The access review type can display additional options to filterthe search.
+Phase Select an access review phase to limitthe search. Review phases include Act-
+ ive, Challenge, Remediation, End.
+Percentage Limit the search results by a percentage complete. Type a percentage inthe
+Complete field tothe right and set the operator, greater than or less than.
+ Tags are assigned when access reviews are scheduled. You can use tags to
+Tags classify access reviews for search and report purposes.
+ The dropdown listhas allthe tags assigned to access reviews that you can
+ access.
+Filter By:
+The following fields are displayed based on the Type of access review selected in the
+Type field. Ifno type is specified, these fields are not displayed.
+ Specify a manager to include in your search for access review requests.
+Manager Attrib- Click the arrow to the right of the suggestion field to display a listofall managers
+utes or type a few letters inthe fieldto display a listof manager names that begin
+ with that letterstring.
+ Select a group or population to include in the search foraccess review
+ requests.
+
+Group Note: The search results include access reviews assigned to the group or pop-
+ ulation.
+ To display the valid options, click the arrow to the right of the Group and Value
+ fields.
+ Specify an application tosearch for access review requests.
+Application Click the arrow to the right of the suggestion field to display a listofall applic-
+Attributes ations or type a few letters in the field to display a listof application names that
+ begin with that letterstring.
+Role Attributes Specify a role to search for access review requests.
+
+
+
+
+
+
+
+SailPoint IdentityIQ Advanced Analytics 11
+
+===== Page 15/44 =====
+Criteria Description
+
+ Click the arrow to the right of the suggestion fieldto display a listof allroles or
+ type a few letters in the field to display a listof role names that begin with that let-
+ ter string.
+ Specify an account group and application to search foraccess review requests.
+Account
+Group Attrib- Click the arrow to the right of the suggestion fieldto display a listof allaccount
+utes groups or applications or type a few letters in the field todisplay a listofaccount
+ groups or applications that begin with that letter string.
+Filter By: Date
+Date Type Select an access review state for the dates specified. Review states include
+ Created, Expiration, Signed or Finished.
+ Specify a date to begin this search. For example, ifyou selected a type of
+Start Date Create, the search results include any access reviews created on or after the
+ specified date.
+ Specify a date to end this search. For example, ifyou selected a type of Create,
+End Date the search results include any access reviews created on or before the spe-
+ cified date.
+Filter By: Signed Status
+Status Specify access reviews by Signed or Unsigned status. Use the dropdown listto
+ select True or False.
+E-Signed Specify access reviews by Electronic Signature status. Use the dropdown listto
+ select True or False.
+Signed By Specify access reviews by the identity who signed off.
+Fields to Display:
+ Specify the information displayed on the Access Review Search Results page
+ associated with this search.
+Fields to Dis- The fields displayed change based on the type specified.
+play Each fielddefines a column on the results table.
+
+ You must select at least one fieldto display on the results page.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Advanced Analytics 12
+
+===== Page 16/44 =====
+Role Search
+
+Use the Role Search page to generate searches based on the roles in your enterprise. These searches can findroles
+by name, owner, type, or status. You can also search for roles by the number ofusers to whom they are assigned,
+manually or through role assignment rules,the number of entitlements they contain, their risk score weight, their asso-
+ciation toother roles, the last time they were assigned or certified,or any combination of that criteria.
+
+See Role Search Criteria
+
+For example, you can identifyroles that were created but are not being used by searching forsetting Detected Total
+and Assigned Total toless than one (1).
+
+ Note: The Refresh Role Indexes task must have run at least once before a roles search willyield
+ results.
+
+Search results can be saved as reports to reuse at a latertime. When you save a search as a report, you can schedule
+the search on an ongoing basis formonitoring and tracking purposes. See the Reports documentation.
+
+Use Advanced Search to create detailed, multi-layered filtersto identify specific populations ofusers in your enter-
+prise. To create complex queries into your Identity Cubes, you can create multiple filtersand then group and layer
+them using And /Or operations.
+
+See Using Advanced Search Options.
+
+When a previous search issaved touse later,the Saved Searches section displays at the top of the page. A saved
+search has the following information:
+
+ Field Description
+
+ Saved Searches:
+ The names of past searches that you saved toreuse ata later time. To view the
+ search results page, clickthe name of the saved search to view the search results
+ Search page.
+ Name
+ These Saved Searches are only available foryour use. To make identity searches
+ available tousers with Report access, save the search as a report.
+ Loaded Saved Search:
+ The name and description of your current saved query.
+
+Role Search Criteria
+
+The search fields are "AND" type searches. Only actions matching values specified inallfields are included inthe
+search results.
+
+
+
+
+
+
+ SailPoint IdentityIQ Advanced Analytics 13
+
+===== Page 17/44 =====
+To limit the search results, use search criteria.Ifyou do not enter any values in a search criteriafield, allpossible
+choices are included. For example, ifyou do not provide a type inthe Type field,roles of any type are included.
+
+Specify the search criteria and columns todisplay and clickRun Search to display the search results. From the
+search results page, you can review the results of your search and save the search. See Search Results.
+
+ Role Attributes
+
+
+Name
+
+ Enter a role name to include inthe search.
+
+
+ You can use full or partialstrings in the text fields. Simple text searches use "starts with" logic. Entering a string
+ of characters returns allroles with that string atthe beginning of their name that your controlled scopes enable
+ you to view. For example, ifyou enter "sys," the search results include information for the roles System Admin-
+ istrator, SysAdmin.
+
+ To search forresults that contain the text string anywhere in the field,use the Advanced Search option and
+ choose is like as the Search Type.
+
+Display Name
+
+ Enter a display name toinclude inthe search.
+
+
+ Entering a string of characters returns allroles with that string intheir display name that your controlled scopes
+ enable you to view. For example, ifyou enter "System Administrator," the search results include information for
+ the display name System Administrator.
+
+Owner
+
+ Enter the role owner toinclude inthe search.
+
+
+ Click the arrow to the right of the suggestion field to display a listofall role owners, or enter a few letters in the
+ field to display a listofrole owners that start with that letter string.
+
+Type
+
+ Select the role type to include in your search. For example, IT,Organizational, or Business.
+
+
+ Role types are defined for your enterprise during the role modeling process.
+
+Status
+
+ Select the Enabled /Disabled status of the roles to include in the search.
+
+
+
+
+
+ SailPoint IdentityIQ Advanced Analytics 14
+
+===== Page 18/44 =====
+Classification
+
+ Classifications can identify roles as potentially allowing access tosensitive, protected, or otherwise significant
+ data. Choose any classifications toinclude in the search.
+
+Elevated Access
+
+ When searching for a role or entitlement using Advanced Analytics, you can set the Elevated Access filterto
+ True or False.
+
+Detected Total
+
+ Specify an upper or lower limitfor the number ofidentities that have this role detected that should be included in
+ the search results.
+
+
+ Detected roles are roles that are automatically assigned to identities based on the entitlements towhich they
+ have access.
+
+
+ For example, to search forroles that were not detected by any identity during correlation, select Less Than from
+ the dropdown listand type 1 in the empty field. The search results include allroles that were not automatically
+ assigned to at least one identity.
+
+Assigned Total
+
+ Specify an upper or lower limitfor the number ofidentities that have this role assigned that should be included in
+ the search results.
+
+
+ Assigned roles are roles that were manually assigned to an identity by a user with role assignment authority or
+ through a role assignment rule.
+
+
+ For example, to search forroles that were not assigned to any identity,select Less Than from the dropdown list
+ and type 1 in the empty field.The search results include allroles that were not manually assigned toat least one
+ identity.
+
+Entitlement Total
+
+ Specify an upper or lower limitfor the number ofentitlement a role can have.
+
+
+ For example, ifyou select Less Than and type 3, the search results include roles that contain two (2), one (1),or
+ zero (0) entitlements.
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Advanced Analytics 15
+
+===== Page 19/44 =====
+Risk Score Weight
+
+ Specify an upper or lower limitfor riskscore weight assigned to a role for itto be included in the search results.
+
+
+ For example, you can specify a Greater Than value tosearch for high-risk roles, or you can specify a Less Than
+ value to search forroles that were created with a risk score weight that istoo low for their type. In the second
+ example, ifyour enterprise has a policy that requires that allIT-type roles have a risk score weight of 100, you
+ can select IT from the Type dropdown list,select Less Than from the Risk Score Weight dropdown list,and
+ type 100 in the empty fieldto return allIT-type roles with a risk score weight less than 100.
+
+Associated To Another Role
+
+ Include roles that are associated with at least one other role or roles that are NOT associated with any other role.
+
+
+ True – include roles that are associated with atleast one other role.
+ False – include roles that are NOT associated with any other roles.
+
+Effective Access
+
+ Limit the search to the specific effective access list.
+
+
+ Effective Access is any indirect access that was granted through another object, for example, a nested group, an
+ unstructured target, or another role.
+
+ Filter by: Profile
+
+A profile is a set of entitlements on a specific application. Options in thissection letyou search forroles based on pro-
+filesand on their relationship to other roles.
+
+Profile State
+
+ Search for roles based on how entitlements and permissions are defined relative tothe role(s). For example, you
+ can use this criteriato search for allroles on an invalid application, or for roles with entitlements that are not
+ defined (inother words, are missing) in IdentityIQ.
+
+ Options are:
+
+
+
+ l No Invalid/Missing Relationships
+
+
+
+ l Invalid Applications or Missing Entitlements/Permissions
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Advanced Analytics 16
+
+===== Page 20/44 =====
+ l Missing Entitlements/Permissions Only
+
+
+
+ l Invalid Applications Only
+
+Relationship to Role
+
+ Search for roles based on how entitlements or permissions are defined, relative tothe role(s). This filtercan be
+ used inconjunction with an application, or independently. For example, to search forroles that provide direct
+ access to permissions on the Oasis_DB application, you would select the Oasis_DB application, select Per-
+ missions inthe Filter Type field,and choose Any direct relationships here. To search for every role that
+ allows indirect access to entitlements, regardless of the application, you would select Any indirect rela-
+ tionships here and choose Entitlements in the Filter Type field.
+
+ Options are:
+
+
+
+ l Any direct or indirect relationships: Show roles with any entitlement or permission relationships
+
+
+
+ l Any direct relationships: Only show roles that have the entitlements or permissions directly on them
+
+
+
+ l Any direct and selected indirection relationships: Show roles that have the entitlements /permissions directly
+ on them, or a specific indirect relationship (such as inherited, permitted, or required). When you choose this
+ option, you can enter additional criteriato filteron Inheritance and Required/Permitted relationships.
+
+
+
+ l Any indirect relationships: Only show roles that have entitlements or permissions through a specific rela-
+ tionship, not on the role directly
+
+
+
+ l Selected indirect relationships: Only show roles that have the entitlement or permission through a specific rela-
+ tionship, not on the role itself.When you choose this option, you can enter additional criteria tofilteron Inher-
+ itance and Required / Permitted relationships.
+
+ Note that some roles can grant both direct and indirect access to entitlements and permissions, so a role can
+ potentially be returned by both the direct relationship and indirect relationship options.
+
+Application
+
+ To filterroles by application, choose the application(s) here.
+
+ Click the arrow tothe right of the suggestion fieldto display a listof allapplications, or enter a few letters in the
+ field to display a listof applications that start with that letter string.
+
+Filter Type
+
+ Choose whether to search for permissions or entitlements. Leave this fieldblank tosearch for both.
+
+ Filter by: Extended Attributes
+
+
+
+
+
+ SailPoint IdentityIQ Advanced Analytics 17
+
+===== Page 21/44 =====
+The extended attributes for roles are specific to your instance of IdentityIQ; they are defined under the gear icon >
+Global Settings > Role Configuration option. Any extended attributes defined for roles that are marked searchable
+appear here as search criteria.
+
+ Filter By: Date
+
+
+Date Type
+
+ Select a state to associate with the specified dates:
+
+
+ Last Membership Certification – the date when the last role membership certification was performed.
+ Last Composition Certification – the date when the lastrole composition certification was performed.
+ Last Assigned – the date when the role was lastassigned to an identity.
+
+Start Date
+
+ Specify a beginning date for thissearch. The search results include information pertaining to any action per-
+ formed on or after the specified date.
+
+End Date
+
+ Specify an end date forthis search. The search results include information pertaining to any action performed on
+ or before the specified date.
+
+ Fields to Display
+
+Choose the information todisplay on the Role Search Results page associated with thissearch. Each fielddefines a
+column on the results table.
+
+You must select at least one fieldto display on the results page.
+
+ Saving Searches
+
+Once you have run your search, you can save the results as a saved search or as a report.
+
+ 1. In the Search Results page, clickthe Result Options dropdown and choose Save Search or Save Search
+ as Report.
+
+ 2. Enter a Name and Description for the saved search or report.
+
+ 3. Click Save.
+
+Searches saved as reports are saved in the Intelligence > Reports > My Reports area of IdentityIQ. Searches
+saved as searches are listedin the Saved Searches section of the Role Search page.
+
+
+
+
+
+ SailPoint IdentityIQ Advanced Analytics 18
+
+===== Page 22/44 =====
+When you have saved searches, you can:
+
+
+
+ l Click on the saved search in the Search Name area tosee the saved search's description and to load the cri-
+ teria for the search.
+
+
+
+ l Clear any saved search criteriayou have loaded by clicking the Clear Search button at the bottom of the page.
+
+
+
+ l Delete the currently-selected saved search by clicking Delete Search.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Advanced Analytics 19
+
+===== Page 23/44 =====
+Entitlement Search
+
+Use the Entitlement Search page to generate searches based on the entitlements or application object types inyour
+enterprise. These searches can findapplication objects by attribute, owner, value, application, type, target, rights,
+annotation, or any combination ofthat criteria.
+
+See Entitlement Search Criteria.
+
+Search results can be saved as reports for reuse. When you save a search as a report, you can schedule the search
+on a continuous basis for monitoring and tracking purposes. See the Reports documentation.
+
+Entitlement searches that are saved as identity searches are only available from the Identity Search page. Ifyou save
+an entitlement search as an identity search, the filtersare converted towork on identity pages. The new search results
+include the identities that are in associated with the application objects for the original search.
+
+Use Advanced Search tocreate detailed, multi-layered filtersto identify specific populations of users in your enter-
+prise. To create complex queries into your Identity Cubes, you can create multiple filtersand then group and layer
+them using And / Or operations.
+
+See Using Advanced Search Options.
+
+When a previous search is saved to use later,the Saved Searches section displays at the top of the page. A saved
+search has the following information:
+
+ Field Description
+
+ Saved Searches:
+ The names of past searches that you saved toreuse ata later time. To view the
+ search results page, click the name of the saved search to view the search results
+ Search page.
+ Name
+ These Saved Searches are only available for your use. To make identity searches
+ available to users with Report access, save the search as a report.
+ Loaded Saved Search:
+ The name and description of your current saved query.
+
+Entitlement Search Criteria
+
+The search fields are inclusive or "AND" type searches. Only actions matching values specified inallfields are
+included in the search results.
+
+To limit the search results, use search criteria.Ifyou do not type information or make a selection in a search criteria
+field,allpossible choices are included. For example, ifyou do not provide a type in the Type field,allapplication object
+types are included.
+
+
+
+
+
+
+ SailPoint IdentityIQ Advanced Analytics 20
+
+===== Page 24/44 =====
+Specify the search criteriaand columns to display and click Run Search to display the search results. From the
+search results page, you can review the results of your search and save the search. See Search Results.
+
+ The Entitlement Search page has the following information:
+
+
+ Criteria Description
+
+ Saved Searches:
+ These Saved Searches are only available for your use.
+ Search Name
+ The names of past searches that you saved to reuse at a later time.
+ Loaded Saved Search:
+ The name and description of your current saved query.
+ Ifyou have modified the criteria of the Loaded Saved Search, the modified cri-
+ Run Search teria isused forthe search.
+
+ Run the search with the criteria that isdisplayed on the current page.
+ Clear Search Unload the Loaded Saved Search and clear all query options.
+ Delete Search Delete the specified Loaded Saved Query.
+ Account Group Attributes:
+ Attribute Type the name of an attribute to include inthe search.
+ Type the entitlement owner to include in the search.
+
+
+ Owner Click the arrow to the right of the suggestion field to display a listofall pos-
+ sible owners or type a few letters inthe fieldto display a listofpossible own-
+ ers that begin with that letterstring.
+ Value The value assigned to the attribute on an application.
+ Select the applications to include in the search for entitlements.
+ Application
+ Ifnothing is selected, allapplication are included.
+ Select the application object type to include in the search.
+
+
+ Type Ifno application isspecified allapplication object types from allapplications
+ are included in thislist.Ifno application object types are specified, allare
+ included in the search.
+ Classifications can identify entitlements as potentially allowing access to sens-
+ Classification itive,protected, or otherwise significant data. Choose any classifications to
+ include in the search.
+ Effective Access Limit the search to the specific effective access list.
+
+
+
+
+
+
+ SailPoint IdentityIQ Advanced Analytics 21
+
+===== Page 25/44 =====
+Criteria Description
+
+
+ Effective Access is any indirect access that was granted through another
+ object. For example a nested group, an unstructured target, or another role.
+Elevated Access Allows the results to be filteredfor the Elevated Access attribute.
+Target The specific target on an application to include inthe search. Use the target fil-
+ ter to narrow the search results based on a specific application.
+Rights The rights associated with an entitlement on the target attribute. For example,
+ create, read, update, delete, execute.
+Annotation The annotation field isan open fieldthat you can use to add information to
+ help describe permissions.
+Searchable Attributes:
+The extensible entitlement attributes marked as searchable inthe entitlements catalog.
+Fields to Display:
+ Specify the information displayed on the Entitlement Search Results page
+ associated with this search.
+Fields to Display Each fielddefines a column on the results table.
+
+ You must select at least one fieldto display on the results page.
+
+
+ Note: If Cloud Access Management is installed, the Effective Cloud Access options are doc-
+ umented in Cloud Based Search Options.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Advanced Analytics 22
+
+===== Page 26/44 =====
+Activity Search
+
+Use the Activity Search panel togenerate searches for activityinformation on applications and targets, by specific
+identities and population, over specific time periods. These searches can determine riskareas and track activity on
+sensitive applications inyour enterprise.
+
+See Activity Search Criteria.
+
+Search results can be saved as reports for reuse. When you save a search as a report, you can schedule the search
+on an on-going basis for monitoring and tracking purposes. See the Reports documentation.
+
+Activity Search Criteria
+
+The search fields are inclusive or"AND" type searches. Only actions matching values specified in allfields are
+included in the search results.
+
+To limitthe search results, use search criteria.Ifyou do not enter information or make a selection in a search criteria
+field,allpossible choices are included. For example, ifyou do not select an application from the Applications list,all
+application configured to work with IdentityIQ are included.
+
+Specify the search criteria and columns to display and click Run Search todisplay the search results. From the
+search results page, you can review the results of your search and save the search. See Search Results.
+
+ The Activity Search tab has the following information:
+
+
+ Criteria Description
+
+ Saved Searches:
+ The names of past searches that you saved for reuse.
+ Search
+ Name These Saved Searches are only available foryour use. To make searches avail-
+ able toIdentityIQ users with Report access, save the search as a report.
+ Loaded Saved Search:
+ The name and description of your current saved query.
+ Run the search with the criteria displayed on the current page.
+ Run Search Ifyou have modified the criteriaof the Loaded Saved Search, the modified criteria
+ isused forthe search.
+ Clear Unload the Loaded Saved Search and clear allquery options.
+ Search
+ Delete Delete the specified Loaded Saved Query.
+ Search
+ Activity Attributes:
+
+
+
+
+
+ SailPoint IdentityIQ Advanced Analytics 23
+
+===== Page 27/44 =====
+Criteria Description
+
+Type of Time Span:
+Time Period Ifyou want to filterby Time Period, select one or more time periods from the list.
+ The definition foreach time period isspecified when IdentityIQ is configured.
+ Ifyou want to filterby Date of Activity, type the start and end dates for the
+ search.
+ Start Date – include information on activity that occurred on or after this date in
+Date of Activ- the search results.
+ity End Date – include information on activity that occurred on or before this date in
+ the search results.
+ You can type the date manually or click the [...]icon to select a date from the cal-
+ endar.
+Actions:
+ The action that was performed
+Action For example, login or create.
+ Use the Shift and Ctrl keys to select multiple listitems. Identities need tomatch
+ only one ofthe selected items to be included in the search results.
+Applications:
+ Select the applications to include in the search. Ifno applications are specified, all
+ applications are included.
+Source Click the arrow to the right of the suggestion field to display a listof allapplications
+Application or type a few letters inthe fieldto display a listof applications that begin with that
+ letterstring.
+ Identities need to match only one of the selected items to be included in the
+ search results.
+Type of Target:
+ Ifyou want to filterby Category, select the category to search from the dropdown
+ list.
+ The Category dropdown has allof the activity target categories defined on the
+Category Activity Target Categories page. Activity Target Categories are groups of targets
+ from one or more applications.
+ The Target listhas allof the targets included in the selected category. This fieldis
+ read only.
+Targets Ifyou want to filterby Targets, specify the target that was acted upon.
+ For example, a machine name fora login or a filename fora create action.
+Identities or Populations:
+
+
+
+
+
+
+SailPoint IdentityIQ Advanced Analytics 24
+
+===== Page 28/44 =====
+Criteria Description
+
+ The name of the user or workgroup that requested the action.
+Identities Entering the firstletteror letters, of a name displays a selection listof users or
+ workgroups with names that have that letter string or click the arrow to the right of
+ the field to display allnames.
+ The population of identities to include in the search.
+Interesting The Interesting Populations dropdown listhas the populations created based
+Population on the results of Identity Searches. The listhas only the populations that you cre-
+ ated or that their creator designated as public.
+Activity Results:
+Result The result of the action, Failure or Success.
+Fields to Display:
+ Specify the information displayed on the Advanced Activity Search Results page.
+Activity Each field defines a column on the results table.
+Fields
+ You must select at least one fieldto display on the results page.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Advanced Analytics 25
+
+===== Page 29/44 =====
+Audit Search
+
+Use the Audit Search tab to generate searches foraudit records for specific time periods and forspecific actions,
+sources, and targets. These searches can find and track events. The information included in the audit logs isdifferent
+than application activitybecause the events in the audit log are not associated with an application or data source and
+may not be associated with a specific identity.
+
+See Audit Search Criteria.
+
+Before the audit logs collect any data to use in an audit search, IdentityIQ must be configured for auditing. Because
+collecting and storing event information in the audit logs can impact performance, a system administrator must specify
+the general actions and class actions toaudit.
+
+Search results can be saved as reports to reuse at a latertime. When you save a search as a report, you can schedule
+the search on an ongoing basis for monitoring and tracking purposes. See the Reports documentation.
+
+Use Advanced Search tocreate detailed, multi-layered filtersto identify specific populations of users in your enter-
+prise. To create complex queries into your Identity Cubes, you can create multiple filtersand then group and layer
+them using And / Or operations.
+
+See Using Advanced Search Options.
+
+When a previous search is saved to use later,the Saved Searches section displays at the top of the page. A saved
+search has the following information:
+
+ Field Description
+
+ Saved Searches:
+ The names of past searches that you saved toreuse ata later time. To view the
+ search results page, click the name of the saved search to view the search results
+ Search page.
+ Name
+ These Saved Searches are only available for your use. To make identity searches
+ available to users with Report access, save the search as a report.
+ Loaded Saved Search:
+ The name and description of your current saved query.
+
+Audit Search Criteria
+
+The search fields are inclusive or "AND" type searches. Only actions matching values specified inallfields are
+included in the search results.
+
+To limit the search results, use search criteria.Ifyou do not type information or make a selection in a search criteria
+field,allpossible choices are included. For example, ifyou do not provide a type in the Type field,events with any
+action type are included.
+
+
+
+
+ SailPoint IdentityIQ Advanced Analytics 26
+
+===== Page 30/44 =====
+Specify the search criteriaand columns todisplay and click Run Search todisplay the search results. From the
+search results page, you can review the results of your search and save the search. See Search Results.
+
+ The Audit Search tab has the following information:
+
+
+ Criteria Description
+
+ Saved Searches:
+ The names of past searches thatyou saved toreuse ata later time.
+ Search
+ Name These Saved Searches are only available foryour use. To make searches avail-
+ able to users with Report access, save the search as a report.
+ Loaded Saved Search:
+ The name and description of your current saved query.
+ Run the search with the criteriadisplayed on the current page.
+ Run Search Ifyou have modified the criteria ofthe Loaded Saved Search, the modified criteria
+ isused for the search.
+ Clear Unload the Loaded Saved Search and clear allquery options.
+ Search
+ Delete Delete the specified Loaded Saved Query.
+ Search
+ Audit Attributes:
+ Action The action that was performed, forexample, login, delete or signoff.
+ The string that identifies the source of the event. The source isgenerally the
+ name of an Identity object. The source can also be a less specific name such as,
+ Source "scheduler" or "system." When the event occurs during an interactive session with
+ the IdentityIQ Web application, identity names are used. When background tasks
+ or anonymous requests are not run for a specific identity,abstract names are
+ used.
+ Application Type manually or use the dropdown listtoselect an audited application.
+ Instance Type manually or use the dropdown listtoselect an instance of a specified
+ audited application.
+ Attribute Type manually or use the dropdown listtoselect an audited attribute name.
+ Name
+ Attribute Type manually or use the dropdown listtoselect a value ofa specific audited
+ Value attribute.
+ Target The object that was acted upon.
+ For example, a machine name fora login ora filename for a create action.
+
+
+
+
+
+
+SailPoint IdentityIQ Advanced Analytics 27
+
+===== Page 31/44 =====
+Criteria Description
+
+Account Type manually or use the dropdown listto select an audited account name.
+Name
+Filter by Date:
+ Include information on events that occurred on or after this date in the search res-
+Start Date ults.
+ You can type the date manually or click the [...]icon to select a date from the cal-
+ endar.
+ Include information on events that occurred on or before this date in the search
+End Date results.
+ You can type the date manually or click the [...]icon to select a date from the cal-
+ endar.
+ Specify the information displayed on the Audit Search Results page associated
+Fields to Dis- with this search.
+play Each field defines a column on the results table.
+
+ You must select at least one field todisplay on the results page.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Advanced Analytics 28
+
+===== Page 32/44 =====
+Process Metrics Search
+
+Use the Process Metrics Search page to generate searches on the business process metrics inyour enterprise.
+These searches provide visibilitytothe detailed metrics that monitored processes and process steps generate. These
+searches help administrators create, manage, and monitor the identity business processes inIdentityIQ.
+
+See Process Metrics Search Criteria.
+
+For example, you can determine the amount of time to run a defined business process and identity failuresin the mon-
+itored steps of that process.
+
+Search results can be saved as reports to reuse at a latertime. When you save a search as areport, you can schedule
+the search on a continuous basis formonitoring and tracking purposes. See the Reports documentation.
+
+Process Metrics Search Criteria
+
+Specify the search criteriaand columns to display and clickRun Search to display the search results. From the
+search results page you can review the results ofyour search and save the search. See Search Results.
+
+ The Process Metrics Search page has the following information:
+
+
+ Criteria Description
+
+ Name Type the name or select a business process from the dropdown list.
+ Participants Select one or more participants toinclude in your search.
+ Result Status Select All,Success, or Fail from the dropdown list.
+ Filterby Act- Include a start or end date to limityour search results. Click the Start Date check-
+ ive Dates box and select a date. Click the End Date checkbox and select a date.
+ Use one of the following filteringmethods tolimityour search results based on
+ the process run times:
+ Filterby Exe- Average or Maximum – select Average or Maximum todisplay the average or
+ cution Time maximum of allexecution times.
+ Execution time greater than – enter a minimum time unit as a baseline to start
+ your search.
+ Time Unit – select from minutes, hours, or days.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Advanced Analytics 29
+
+===== Page 33/44 =====
+Access Requests Search
+
+Use the Access Requests Search page to generate searches on specific attributes of the access requests made in
+your enterprise.
+
+See Access Requests Search Criteria.
+
+Search results can be saved as reports to reuse ata later time. When you save a search as a report, you can schedule
+the search on a continuous basis for monitoring and tracking purposes. See the Reports documentation.
+
+Use Advanced Search to create detailed, multi-layered filterstoidentify specific populations ofusers in your enter-
+prise. To create complex queries into your Identity Cubes, you can create multiple filtersand then group and layer
+them using And /Or operations.
+
+See Using Advanced Search Options.
+
+When a previous search is saved to use later,the Saved Searches section displays at the top of the page. A saved
+search has the following information:
+
+ Field Description
+
+ Saved Searches:
+ The names of past searches that you saved to reuse at a latertime. To view the
+ search results page, click the name of the saved search to view the search results
+ Search page.
+ Name
+ These Saved Searches are only available for your use. To make identity searches
+ available tousers with Report access, save the search as a report.
+ Loaded Saved Search:
+ The name and description ofyour current saved query.
+
+Access Requests Search Criteria
+
+Search results can be saved as reports to reuse ata later time. When you save a search as a report, you can schedule
+the search on a continuous basis for monitoring and tracking purposes. See the Reports documentation.
+
+The search fields are inclusive or "AND" type searches. Only actions matching values specified in allfieldsare
+included inthe search results.
+
+To limitthe search results, use search criteria.Ifyou do not type information ormake a selection ina search criteria
+field,allpossible choices are included. For example, ifyou do not provide a type in the Type field,events with any
+action type are included.
+
+Specify the search criteriaand columns to display and click Run Search to display the search results. From the
+search results page, you can review the results ofyour search and save the search. See Search Results.
+
+
+
+
+
+ SailPoint IdentityIQ Advanced Analytics 30
+
+===== Page 34/44 =====
+ The Access Request Search page has the following information:
+
+
+Criteria Description
+
+Saved Searches:
+ The names ofpast searches that you saved to reuse at a latertime.
+Search Name These Saved Searches are only available for your use. To make identity
+ searches available to users with Report access, save the search as a report.
+Loaded Search:
+ Run the search with the criteriadisplayed on the current page.
+Run Search Ifyou modify the criteria of the Loaded Saved Search, the modified criteriais
+ used for the search.
+Clear Search Unload the Loaded Saved Search and clear allquery options.
+Delete Delete the specified Loaded Saved Query.
+Search
+Access Request Attributes:
+Access Identification number designated for individual requests.
+Request ID
+Requestor Name of the identitythat made the request.
+Requestee Name of the identityfor who made the request
+IsVerified Attribute was verified through the provisioning process.
+Application The application that is part ofthe access request.
+Instance The instance ofthe application that is part of the access request.
+Operation Type ofoperator used to fulfillrequest.For example, Add isan operation used in
+ Request Roles and Lock isan action of a Certification.
+Completion The current state of a completed access request.
+Status
+Priority The priority assigned tothe access request.
+Request Type The type of business process associated with the access request.
+Approval The current state of the access request in the Approval phase.
+State
+Provisioning The current state of the access request in the Provisioning phase.
+State
+ Indicates ifan item was added (expanded) or filteredfrom the original request.
+Reason For example, a role requires an entitlement or an entitlement requires and
+ account. The compilation process adds or removes any required items in the pro-
+
+
+
+
+
+
+SailPoint IdentityIQ Advanced Analytics 31
+
+===== Page 35/44 =====
+Criteria Description
+
+ visioning process.
+State The current state of the access request.
+Filter by: Date
+Request Date Use the dropdown listtoselect from Request Date, Completion Date, or Verified
+ Date and select a Start Date and End Date.
+Fields to Dis- Select the columns to display in your search results.
+play
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Advanced Analytics 32
+
+===== Page 36/44 =====
+Syslog Search
+
+Use the Syslog Search page to generate searches on specific technical support information that relates to your Iden-
+tityIQinstallation.
+
+See Syslog Search Criteria.
+
+ Note: This tab isused primarily todetermine specific support information that SailPoint IdentityIQ
+ support engineers can use for troubleshooting issues.
+
+Search results can be saved as reports toreuse at a later time. When you save a search as a report, you can schedule
+the search on a continuing basis for monitoring and tracking purposes. See the Reports documentation.
+
+Use Advanced Search to create detailed, multi-layered filterstoidentify specific populations ofusers in your enter-
+prise. To create complex queries intoyour Identity Cubes, you can create multiple filtersand then group and layer
+them using And /Or operations.
+
+See Using Advanced Search Options.
+
+When a previous search is saved to use later,the Saved Searches section displays atthe top ofthe page. A saved
+search has the following information:
+
+ Field Description
+
+ Saved Searches:
+ The names of past searches that you saved to reuse ata later time. To view the
+ search results page, click the name ofthe saved search to view the search results
+ Search page.
+ Name
+ These Saved Searches are only available foryour use. To make identitysearches
+ available to users with Report access, save the search as a report.
+ Loaded Saved Search:
+ The name and description ofyour current saved query.
+
+Syslog Search Criteria
+
+Specify the search criteriaand columns to display and click Run Search todisplay the search results. From the
+search results page you can review the results of your search and save the search. See Search Results.
+
+ The Syslog Search page has the following information:
+
+
+ Criteria Description
+
+ Current Search:
+
+
+
+
+
+
+ SailPoint IdentityIQ Advanced Analytics 33
+
+===== Page 37/44 =====
+Criteria Description
+
+Run Search Run the search with the criteriadisplayed on the current page.
+Clear Search Clear all query options.
+Syslog Attributes:
+ The ID associated with the logged exception. Ifthe exception can be viewed in
+Incident Code the UI, the ID is atthe end of the message. The Incident Code assists help desk
+ personnel tolocate the exact exception.
+Server Name of the server running the code where exception was encountered. This
+ information ishelpful inclustered environments.
+ Indicates the level ofthe logged exception. SailPoint supports logging WARN,
+Level ERROR, and FATAL to the IdentityIQ database. Lower levels are logged using
+ log4j4 ifconfigured, but are not saved to the Syslog table in the database.
+Username User who was performing the action when the exception was encountered and
+ logged. The username can be an individual user or a system.
+Classname Class inwhich the exception was encountered.
+Message The message included in the exception.
+Line The lineof code executed when exception occurred.
+Thread Name The thread ofcode executed when the exception was encountered.
+Filter by Date:
+ Include information on events that occurred on or after thisdate in the search
+Start Date results.
+ You can type the date manually or click the [...]icon toselect a date from the cal-
+ endar.
+ Include information on events that occurred on or before this date in the search
+End Date results. You can type the date manually or click the [...]icon toselect a date
+ from the calendar.
+Fields to Display
+
+Specify the information displayed on the Syslog Search Results page associated with this
+search.
+Each field defines a column on the results table.
+
+You must select atleast one field to display on the results page.
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Advanced Analytics 34
+
+===== Page 38/44 =====
+Account Search
+
+Use the Account Search page to generate searches based on the accounts in your enterprise. These searches can
+findaccounts by application, display name, owner, native identity, instance, or any combination of these criteria.
+
+See Account Search Criteria
+
+When you save a search as a report, you can schedule the search on a continuous basis for monitoring and tracking
+purposes. See the Reports documentation.
+
+Use Advanced Search to create detailed, multi-layered filterstoidentify specific populations of users inyour enter-
+prise. To create complex queries into your Identity Cubes, you can create multiple filtersand then group and layer
+them using And /Or operations.
+
+See Using Advanced Search Options.
+
+When a previous search issaved to use later,the Saved Searches section displays at the top of the page. A saved
+search has the following information:
+
+ Field Description
+
+ Saved Searches:
+ The names of past searches that you saved to reuse at a latertime. To view the
+ search results page, click the name of the saved search toview the search results
+ Search page.
+ Name
+ These Saved Searches are only available for your use. To make identity searches
+ available tousers with Report access, save the search as a report.
+ Loaded Saved Search:
+ The name and description ofyour current saved query.
+
+Account Search Criteria
+
+The search fields are inclusive or "AND" type searches. Only actions matching values specified in allfields are
+included inthe search results. To limitthe search results, use search criteria.Ifyou do not type information or make a
+selection in a search criteria field,allpossible choices are included.
+
+For example, ifyou do not provide an application inthe Application field,all application’s accounts are included.
+
+Specify the search criteriaand columns to display and clickRun Search to display the search results. From the
+search results page you can review the results of your search and save the search. See Search Results.
+
+ The Account Search page has the following information:
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Advanced Analytics 35
+
+===== Page 39/44 =====
+Criteria Description
+
+Saved Searches:
+ The name of the past searches that you saved toreuse ata later time.
+Search Name
+ These saved searches are only available foryour use.
+Loaded Saved Search:
+The name and description of your current saved query.
+ Run the search with the criteriathat is displayed on the current page.
+Run Search Ifyou have modified the criteria ofthe Loaded Saved Search, the mod-
+ ified criteriaare used forthe search.
+Clear Search Unload the Loaded Saved Search and clear allquery options.
+Delete Search Delete the specified Loaded Saved Query.
+Account Attributes:
+Application Select the application to include in the search foraccounts.
+Display Name Enter the Display name ofaccount to include in the search.
+Owner Ifyou want to filterby owner, select the owner to search from the drop-
+ down list.
+Instance Select the instance toinclude in the search foraccounts.
+Native Identity Select the native identity to include inthe search for accounts.
+ Select True to search on only locked accounts or False to search on
+Locked only unlocked accounts. Ifneither is specified, all accounts are
+ included.
+Disabled Select True to search on only disabled accounts or False to search on
+ only enabled accounts. Ifneither is specified, allaccounts are included.
+Searchable Attributes:
+Select True or False toinclude or exclude the following in your search:
+
+
+
+ l Inactive Account
+
+
+
+ l Service Account
+
+
+
+ l Privileged Account
+
+Fields to Display:
+
+Specify the information displayed on the Account Search Results page associated with this
+search.
+Each field defines a column on the results table.
+
+You must select at least one fieldto display on the results page.
+
+
+
+
+SailPoint IdentityIQ Advanced Analytics 36
+
+===== Page 40/44 =====
+Using Advanced Search Options
+
+Using Advanced Search Options
+
+
+Most ofthe search types in Advanced Analytics include the option to create complex queries using multiple filters,with
+the Advanced Search feature.
+
+To create an Advanced Search, select the Advanced Search button. This opens the Advanced Search panel.
+
+ Note: Running a filteron more than one multi-value attribute with an OR condition generates a
+ query that isunable to use the indexes and might impact performance.
+
+Creating an Advanced Search
+
+Creating an Advanced Search isa multi-step process:
+
+ 1. In the Add A Filter section, select a Field and Search Type, then add a Value. For example, Manager equals
+ john.smith.
+
+ 2. Select Add Filterto add the criteriayou just defined to the Advanced Search.
+
+ 3. Repeat these steps as needed to add additional filteringcriteria.
+
+ 4. Optional: You can select and group individual filters,and choose AND or OR operators todetermine how items
+ are filtered.For more details, see Grouping FilterCriteria.
+
+ 5. After you enter the search criteria,select Run Search.The search results are displayed.
+
+ Advanced Search criteria and fields:
+
+
+ Criteria Description
+
+ Add A Filter:
+ Field A filtercharacteristic associated with the search type. The drop-down
+ listhas allof the categories available.
+ The qualifierassociated with the attribute value. For example,
+ Search Type “equals” or“is like.”
+ The choices in thisdropdown listare based on the Field specified.
+ Value The value of the attribute.
+ Filter(s):
+ Operations The dropdown listthathave the And / Or values that control the inter-
+ action of the filtersincluded inthe query.
+
+
+
+
+
+
+ SailPoint IdentityIQ Advanced Analytics 37
+
+===== Page 41/44 =====
+Using Advanced Search Options
+
+
+ Criteria Description
+
+ The dropdown listisnot visible unless two or more filtersare created.
+ Group Selected Group multiple filtersin the Filters listto create layers or sub-filters in
+ the query.
+ Ungroup Selected Ungroup grouped filtersto edit the query.
+ Remove the selected filterorsub-filter.
+
+ Remove Selected Ifyou select grouped filtersand click this button, all filtersinthe group
+ are removed from the query. To remove one filterfrom a grouped
+ bundle, you must firstungroup the filters.
+ Open a text box that enables you to view and edit a string view of the
+ view/edit filtersource query.
+ Ifyou type invalid query code the green check mark is replaced with a
+ red exclamation point.
+ Fields to Display:
+ Specify the information to display on the Search Results page. Each field defines a column on
+ the results table. See Search Results.
+
+ You must select at least one field to display on the results page.
+
+Grouping Filter Criteria
+
+As you add filtercriteria,you can select sets of criteria and use the Group and Ungroup options to link them, using
+AND or OR operators to determine how the filtering criteriais applied.
+
+This example shows how filterscan be grouped. This filterwillfind identities that are either in the Accounting depart-
+ment and have a status of inactive, or are managed by aaron.nichols and have a status of inactive.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Advanced Analytics 38
+
+===== Page 42/44 =====
+Using Advanced Search Options
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Viewing and Editing the Filter Source Directly
+
+Click the view/edit filter source linkto see the filterstring created by the filtercriteriayou have set. You can edit this
+filterstringdirectly.
+
+For more detailed information on working with filtersand filterstrings,see the Filters and FilterStrings technical white
+paper on Compass.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Advanced Analytics 39
+
+===== Page 43/44 =====
+Search Results
+
+Search Results
+
+
+The columns inthe tableare based on the Fields to Display list.From the resultsyou can export your search results
+tofileand save thesearch criteriaforfutureuse.
+
+ClickRefine Search to return tothe search criteriapage.
+
+From IdentitySearch resultsyou can use Schedule Certification to schedule certificationsforany or alllistediden-
+tities.Identitycertificationsaresentto themanagers of identitiesthatwarrant special attention.These additionalcer-
+tificationsdonot replace regularly scheduled certificationrequests.
+Result Options
+
+
+ Note: Result Options are dependent on the search type.
+
+Use the Result Options dropdown listto:
+
+
+
+ l Save Search – save the search for your own use. A listof saved searches displays at the top
+ of the search page every time you log in.
+
+
+
+ l Save Search As Report – searches saved as reports are added to your listof reports and
+ can be scheduled to run on a continuous basis.
+
+
+
+ l Save Search As Identity Search – searches that are saved as identity searches are only
+ available from the Identity Search page. Ifyou save an account group search as an identity
+ search, the filtersare converted to work on identity pages. The new search results include
+ the identities that are associated with the entitlements from the original search.
+
+
+
+ l Save Identities as Population – save the search as an interesting population of identities to
+ use in activity monitoring and statistical reporting in similar way groups are used.
+
+
+
+ l Show Entitlements – display the entitlement information for all of the identities included in
+ the list.The entitlements are separated into tables based on applications. To display a listof
+ allusers who are assigned the entitlement, click a value in any of the tables.
+ The Percent of Population column displays the number of identities assigned to the specified
+ attribute value on the application. The search results are displayed as a percentage and are
+ based on the identities that have an account on the application.
+
+
+
+
+
+
+ SailPointIdentityIQ Advanced Analytics 40
+
+===== Page 44/44 =====
+Search Results
+
+Export Searches
+
+Use the buttons on the top ofthe table toexport the search results to filefor archiving and auditing purposes. You can
+export search results toa .pdf, Microsoft Excel, or ArcSight CEF Flat File format.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Advanced Analytics 41

@@ -1,0 +1,2010 @@
+﻿===== Page 35/120 =====
+Multi-Factor Authentication
+
+Multi Factor Authentication (MFA) adds an additional layer ofsecurity by requiring users to use multiple methods to
+authenticate their identity before they can log into IdentityIQ. IdentityIQ supports the following MFA options:
+
+
+
+ l RSAÂ Workflow
+
+
+
+ l Duo Workflow
+
+
+To access MFA Login Configuration settings in IdentityIQ, click the gear icon in the menu bar and select Global Set-
+tings > Login Configuration > Multi Factor Authentication tab
+
+This section includes the following topics:
+
+ MFA Prerequisites
+
+
+ Note:Â To use Duo, you must follow the Duo Auth API instruction to enable the AuthAPI in the Duo
+ Admin Panel. To locate the Duo API documentation, go to https://duo.com, search for Auth API
+ documentation and then follow the steps foradding Duo two-factor authentication.
+
+ MFA User Process Flow Overview
+
+The basic process flow for using MFA to log in toIdentityIQ includes the following steps:
+
+ 1. The user enters a valid username and password at the IdentityIQ login screen.
+
+ 2. The IdentityIQ MFA workflow begins and displays the MFA provider's login page orprocess for login.Ifa user is
+ assigned to multiple providers, the user must select a provider from the provider listbefore proceeding to the
+ providerâ€™s login page.
+
+ 3. The user completes the authentication process fortheir MFA provider.
+
+ 4. The user islogged into IdentityIQ and the Home page displays.
+
+
+ MFA Configuration Process Flow Overview
+
+The basic process flow for configuring MFA forIdentityIQ includes the following steps:
+
+ 1. Use a pre-defined MFA workflow or choose to create a custom workflow.
+
+ 2. Install the workflow.
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 32
+
+===== Page 36/120 =====
+ l Import the workflow.
+
+
+
+ l Configure the workflow as a business process.
+
+
+
+ l Enable the populations to use with MFA.
+
+ 3. Save your MFA configuration.
+
+For more information, see How to Installa Multi-Factor Authentication Workflow - DUO Example
+
+ Multi-Factor Authentication Workflows
+
+Each MFA provider has itsown flow and process. MFA Providers contain the populations and providers are con-
+figured from an existing listofDynamicScopes/Populations. Workflows oftype MultiFactorAuthentication can
+enable Multi-Factor Authentication for a particularprovider.
+
+Pre-defined workflows are provided. These workflows use existing pre-configured applications toperform Multi-Factor
+Authentication
+
+You can choose to create a custom workflow. See Custom Multi-Factor Authentication Workflows.
+
+ How to Install a Multi-Factor Authentication Workflow - DUO Example
+
+The following workflows are provided, however they are not installed by default. These workflows use existing pre-con-
+figured applications toperform Multi-Factor Authentication. The provided workflows are located:
+
+
+
+ l WEB-INF/config/workflow_MultiFactor_DUO.xml
+
+
+
+ l WEB-INF/config/workflow_MultiFactor_RSA.xml
+
+
+ Note:Â The following instruction are specific tousing DUO as your MFA application. You can use
+ these instructions to installRSA by changing the DUO-specific items to RSA. As noted in the
+ instructions, you do not need toadd API authentication credentials forRSA.
+
+ 1. Review any prerequisites. See MFA Prerequisites.
+
+ 2. To import the workflow, you can use the Import From File function in the Global Settings menu or use the
+ IdentityIQ console. To use the IdentityIQ console, open the console and use the following command:
+
+ import workflow_MultiFactor_DUO.xml
+
+ 3. Configure the workflow as a business process:
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ System Configuration 33
+
+===== Page 37/120 =====
+ a. Login to IdentityIQ using an administrator account and navigate to Setup > Business Processes.
+
+ b. Click the workflow named MFA DUO
+
+ c. Click Process Variables
+
+ d. Select a pre-configured application, of type Duo, for the fieldDuo Application Name. The workflow reads
+ new properties added tothe application used to authenticate with the Duo cloud Authentication service.
+
+ e. Click Save.
+
+ 4. Use the following steps to add Duo authentication API credentials:
+
+
+ Note:Â These steps are not necessary for the MFA RSA workflow because RSA uses existing API
+ credential information already configured in the RSA Application.
+
+ a. Navigate to Applications > Application Definition.
+
+ b. Select the Application oftype Duo you configured inthe previous step.
+
+ c. Click Configuration.
+
+ d. Complete the Admin API Credentials section using the credentials you obtained from the Duo Admin Panel.
+
+
+ The firsttime you set up a Duo application, you must enter the Admin API information received from Duo. If
+ you are modifying a previously configured Duo application, the Admin API credentials should already be con-
+ figured.
+
+ e. Click Save.
+
+ 5. Next, enable a population of users that must use Multi-Factor Authentication to authenticate using the following
+ steps:
+
+ a. Click the gear icon.
+
+ b. Navigate to Global Settings >Quicklink Populations.
+
+ c. Verify you have an existing population of users you want toauthenticate using Multi-Factor Authentication.
+
+ 6. The population you enabled can allow a user inthe population to request access forother users. Ifyou do not
+ want a user have that capability, you can create a new QuickLink population. You must select No one inthe
+
+
+
+
+
+
+
+SailPoint IdentityIQ System Configuration 34
+
+===== Page 38/120 =====
+ section who can members request for? when you create the new QuickLink population. This configuration
+ separates Request Access type Quicklink Populations from Multi-Factor Authentication Populations.
+
+ 7. Next, associate the population to the Multi-Factor Authentication workflow using the following steps:
+
+ a. Click the gear icon and navigate toGlobal Settings > Login Configuration > MFA tab.
+
+ b. Check the box forthe MFA Workflow you want to enable.
+
+ c. Add any populations to the multi-select listyou want to enable forthis MFA workflow.
+
+ d. Click Save.
+
+
+ Custom Multi-Factor Authentication Workflows
+
+Implementers can create custom Multi-Factor authentication workflows. Any workflow of type MultiFact-
+orAuthentication displays in the MFA Configuration page. Ifyou choose to create a custom workflow, review the fol-
+lowing information:
+
+
+
+ l Adding an error message to the workflow case using:
+
+
+ wfcase.addMessage(new Message(Type.Error, "An error has occurred that prevents
+ Multi-Factor Authentication"))
+
+
+ This adds an error to the workflow case and signals to the Multi-Factor framework the user should not be
+ logged in.
+
+
+
+ l A workflow that was not marked complete willsignal Multi-Factor authentication has failed.During normal
+ workflow execution, ifa workflow has not produced an error, the workflow isautomatically marked complete.
+
+SSO Configuration
+
+IdentityIQ supports two different options for single sign-on (SSO) configuration, rule-based and SAML. SSO stream-
+linesthe login process forusers even further than pass-through authentication by enabling the user tobypass signing
+into each system, once they have completed the initialsign-on to the authenticating application.
+
+SSO Configuration has the following options:
+
+
+
+ l Enable Rule-Based Single Sign-On (SSO) -uses rules for Single Sign-On and Validation
+
+
+
+ l Enable SAML Based Single Sign-On (SSO) - uses Security Assertion Markup Language (SAML) as an authen-
+ tication protocol
+
+
+
+
+
+
+SailPoint IdentityIQ System Configuration 35
+
+===== Page 39/120 =====
+ Note:Â To access the IdentityIQ Login page directly when Single Sign-On isconfigured, use a sup-
+ ported browser and enter http://<iiq server>/spt/login.jsf?prompt=true.
+
+IdentityIQ supports specifying both types of SSO in the same installation's login configuration. The order in which they
+are consulted during user authentication willbe determined as follows:
+
+
+
+ l Ifan ssoAuthenticators attribute is specified inthe SystemConfiguration object, itwillspecify the configured
+ SSO options in a CSV list,and the options willbe checked in the order they are specified
+
+
+
+ l Ifthat attribute isnot present, SAML SSO willbe used firstand then rule-based SSO
+
+
+ Rule Based SSO
+
+Inrule-based Single Sign-On (SSO) configurations, when the user accesses the IdentityIQ web application, the
+authentication source recognizes itas a secure resource, requires the user to authenticate to it(ifthe user has not
+already done so), and passes a â€œtokenâ€, containing contextual information, in the HTTP header to IdentityIQ. The
+SSOAuthenticationRule validates that information and maps the user to the appropriate IdentityIQ Identity.
+
+Single Sign-On Rule
+
+ Specify the rule touse when authorizing users through and single sign-on system, such as SiteMinder.
+
+ Click the â€œ...â€icon tolaunch the Rule Editor tomake changes to your rules ifneeded.
+
+ See Using the Rule Editor.
+
+Single Sign-On Validation Rule
+
+ Specify the rule touse to verify a single sign-on session to make sure a stale session isnot actually a different
+ user.
+
+
+ The rule type (SSOValidation) runs on every request. Ifthe request isvalid, itreturns null.Ifitreturns a string,
+ that string is an indication of an error and is used in the error that is displayed inthe logs. Ifthe session isinval-
+ idated, the request is redirect to logoutUrl configured in web.xml.
+
+
+ This isdesigned tobe used with the Single Sign-On Rule.
+
+ SAML Based SSO: Identity Provider Settings
+
+InSAML-based SSO, the authorization request can be initiated with the Service Provider (the application itself-Iden-
+tityIQ)or with the SSO authentication application (known as the Identity Provider). In either case, the Identity Provider
+handles authentication ofthe user and provides a signed XML <Response>, or Assertion. This response contains
+information that IdentityIQ can match to an identity to determine the user's proper authorization to IdentityIQ
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 36
+
+===== Page 40/120 =====
+functionality.
+
+Entity ID / Issuer
+
+ Unique identifierdefining the organization (IdentityIQ) tothe IdentityÂ Provider. This ID isusually the URL or
+ domain name for the organization. For example, https://identityiq-server.your-domain.-
+ com:your-port/identityiq
+
+ Ifyou use the standard https port forcommunication, the :your-port isnot necessary.
+
+SSO Login URL
+
+ The URLÂ of the IdentityProvider SSO service provider (the SAML SSO service URL). You can obtain this
+ address from your Identity Provider. Ifthe Identity Provider Issuer isnot set, the configuration defaults to Identity
+ Provider Single Sign-On service URL.
+
+Public X.509 Certificate
+
+ An encrypted stringcontaining the public key of the X509 certificateof the Identity Provider.
+
+ This entry should include the header -----BEGIN CERTIFICATE----- and footer -----END CERTIFICATE-----
+
+Identity Provider Issuer URL
+
+ The Unique Identifierthat defines the Identity Provider to IdentityIQ. This identifierisoften in the form of a URL,
+ but does not have tobe.
+
+ The IdentityProvider Issuer URL fieldisonly necessary ifthe SAML response does not contain an Issuer value
+ thatdoes not match the leading characters ofthe Identities Provider SSO Server URL field.For example,
+
+ IdentityProvider SSO Server URL = https://idp.your-domain.com/SSOApp/SSOLogin
+
+
+ SAML Response Issuer field= https://idp.your-domain.com/SSOApp
+
+ SAML Based SSO: Service Provider Settings
+
+
+Entity ID / Issuer
+
+ Unique identifierthat represents the Service Provider.
+
+SAML URL (Assertion Consumer Service)
+
+ Specify the IdentityIQ URLÂ where the SAML isto be accepted. For example:
+
+ https://identityiqserver.your-domain.com:your-port/identityiq/home.jsf
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 37
+
+===== Page 41/120 =====
+SAMLÂ Binding
+
+ Select HTTP POST or HTTP Redirect for the communications scheme.
+
+SAMLÂ Name ID Format
+
+ Select the name format from the list.The Identity Provider provides the formats listed in drop-down box.
+
+SAML Correlation Rule
+
+ Select a rule to use tomatch a SailPoint identity with a SAMLÂ assertion from the Identity Provider results. Iden-
+ tityIQ includes a sample SAMLÂ correlation rule, called IdentityNowSAML, that you can use as a model for devel-
+ oping a correlation rule that meets your business needs.
+
+Identity Mappings
+
+The Identity Mappings feature iswhere you configure the identities that are managed by IdentityIQ. This is where you
+specify the applications and application attributes from which the identitydata is derived.
+
+Use the Identity Attributes page toview and edit the identity attributes information for your configuration. These attrib-
+utes are used throughout the product for certifications, searches, and tocollect and correlate identity data from applic-
+ations.
+
+IdentityIQ also supports the use of Robotic Process Automation (RPA) or bot identities. A bot isan application that can
+perform automated tasks, especially simple, repetitive tasks such as requesting access and managing identities.See
+Robotic Process Automation (Bot) Identities for more information.
+
+The Identity Attributes page listsany attributes that have been configured in your system, and shows the primary
+source mapping and any advanced options that have been configured foreach attribute. For details on how to edit and
+further configure identity attributes, see Edit Identity Attributes Page.
+
+ Attribute
+
+ The Attribute column shows the display name of the identity attribute, which is derived from the attribute and its
+ associated application inthe Primary Source Mapping column.
+ The following attributes are required by IdentityIQ toperform correctly:
+
+
+
+ l ID
+
+
+
+ l manager
+
+
+
+ l email
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 38
+
+===== Page 42/120 =====
+ l firstname
+
+
+
+ l lastname
+
+
+ Manager and role are system attributes that are configured for grouping. However, you can use any identity
+ attribute or grouping by defining itas a group factory in the Advanced Options.
+
+ Primary Source Mapping
+
+ The Primary Source Mapping column lists the firstof the the application/attribute pairs from which employee
+ attributes are derived. Ifthe required data is unavailable on this primary source, the collection process continues
+ down the listof configured sources until the information is found.
+
+ Set up the listofsources on the Edit Identity Attributes page.
+
+ Setting the same application and attribute as the source and target for an identity attribute creates circular ref-
+ erences.
+
+ Identity attributes with circular references between sources and targets can cause values tobe continually
+ changed on every attribute synchronization. This can be problematic when a transformation rule modifies a
+ value without firstchecking the identity attribute value has already been transformed.
+
+ Advanced Options
+
+ The Advanced Options column shows some of the main options that are enabled for thisattribute. Additional
+ Advanced Options can be configured in the Edit Identity Attributes Page.
+
+ Editable â€” the attribute can be edited.
+
+ Group Factory â€” the attribute can be used to create groups that are used foranalytical purpose throughout
+ IdentityIQ.
+
+ Searchable â€” the attributes that are available for filteringin identity searches.
+
+To add a new identity attributed, clickAdd New Attribute. For details on how to set up new identity attributes, see
+How to Add or Edit Identity Attributes and the Edit Identity Attributes Page.
+
+To delete identity attributes, right-click the attribute and select Delete.
+
+ Deleting an identity attribute also deletes any group factories that reference it.Review the group
+ factory information inthe Confirm Deletion of Attribute dialog before clicking Yes.
+
+For additional information:
+
+
+
+ l Edit Identity Attributes Page
+
+
+
+ l How toAdd or Edit Identity Attributes
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 39
+
+===== Page 43/120 =====
+Edit Identity Attributes Page
+
+Use the Edit Identity Attribute page to create and edit identity attributes including the display name, advanced options
+and source mapping.
+
+The maximum number of searchable attributes you can create isdefined during the application installation and con-
+figuration process and controlled from the System Setup pages. The default number isten (10). See Create Icons to
+Represent Specialized Account Attributes.
+
+To support the governance of bots, IdentityIQ has three standard attributes in the identity object that enable you to do
+things like run a focused certification on justbots.
+
+The attributes are:
+
+
+
+ l Type: an attribute to define the type of identity. The standard values for thisattribute are:
+
+
+
+ l Employee
+
+
+
+ l Contractor
+
+
+
+ l External /Partner
+
+
+
+ l RPA /Bots
+
+
+
+ l Service Account
+
+
+However, you can define your own types in addition to these 5, via editing XML in debug
+
+
+
+ l Version: an attribute toindicate what version of software the bot is using. This attribute is intended to be used
+ only for bots.
+
+
+
+ l Administrator: the owner, certifier,of the bot. This isused instead ofmanager for bots throughout IdentityIQ.
+
+ The Edit Identity Attribute page contains the following information:
+
+
+ Field Description
+
+ Identity Attribute:
+ The name of the attribute as itisused throughout IdentityIQ.
+ Attribute Name For example, this the name used to identify this attribute in
+ rules.
+ Display Name The IdentityIQ user assigned name.
+ Advanced Options:
+ Attribute Type Select from the following attribute types:
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 40
+
+===== Page 44/120 =====
+Field Description
+
+ String â€” creates a text-editable field.
+ Identity â€” creates a drop-down listfrom which you choose an
+ existing identity.
+ Enable editing of thisattribute from the Identity pages.
+ Read Only â€” this attribute cannot be edited from the Iden-
+ titiespages.
+Edit Mode Permanent â€” changes made on the identities pages are not
+ overwritten by refresh tasks.
+ Temporary â€” changes made on the edit identities pages are
+ overwritten when an aggregation task brings over a new
+ (changed) value for the attribute.
+Searchable Enable this attribute for use in searches and filteringthrough
+ IdentityIQ.
+ Specify attributes for which multiple values might be returned
+ during aggregation.
+ Attributes flagged as multi-valued are stored as a list.Even
+Multi-Valued objects that have a single value fora multi-value attribute are
+ stored as a single-item list.
+ Multi-valued attributes are used for queries throughout the
+ product.
+Group Factory Enable this attribute for use in creating groups used for ana-
+ lytical purpose throughout IdentityIQ.
+ Specify a rule to run every time a change is detected on this
+ attribute during the aggregation process. For example, a rule
+ can be written to send change notifications, request change
+Value Change Rule approval or launch a certification.
+
+
+ Click the â€œ...â€icon to launch the Rule Editor to make changes to
+ your rules ifneeded.
+ See Using the Rule Editor
+ Specify a business process to run every time a change is
+Value Change Workflow detected on this attribute during the aggregation process. For
+ example, a business process can be written to send change
+ notifications, request change approval or launch a certification.
+Sync with Workflow To use a business process handling for attribute syn-
+ chronization.
+
+
+
+
+
+SailPoint IdentityIQ System Configuration 41
+
+===== Page 45/120 =====
+ Field Description
+
+ Ifyou set the source and target mapping to the same application/attribute pair, itcreates circular
+ references and where the values continuously change with every attribute synchronization.
+ Source Mappings:
+ The listofapplication/attribute pairs from which employee attributes are derived. If the required
+ data isunavailable on the primary source, the collection process continues down the listof con-
+ figured sources until the information is found.
+ Target Mappings (Only available for Identity attribute types):
+ When creating or editing an Identity attribute, use the Target Attribute options to define targets
+ that the basis forattribute synchronization. Click Add Target to display the Add a target tothe
+ AttributeName attribute dialog, and complete allof the information.
+
+
+How to Add or Edit Identity Attributes
+
+
+ Note:Â When mapping to a named column, specify the name to match the .hbm.xml property
+ name, not the database column name. With camel case, the database column name is trans-
+ lated to lower case with underscore separators. For example, costCenter in the Hibernate map-
+ ping filebecomes cost_center inthe database.
+
+Begin by clicking Add New Attribute or clicking an existing attribute to display the Edit Identity Attribute page.
+
+Enter orchange the Attribute Name and an intuitiveDisplay Name.
+
+ Note:Â You cannot define an extended attribute with the same name as any existing identity attrib-
+ ute.
+
+
+ Caution:Â Changing an attribute name might cause attributes that were previously aggregated to
+ no longer be recognized.
+
+
+Advanced Options
+
+Advanced options are optional. The Advanced Options you can set are described on the Edit Identity Attributes Page.
+
+Source Mappings
+
+Click Add Source to display the Add a source dialog, then specify a source forthe new attribute. You can use more
+than one source forthe attribute.
+
+ Map directly to an attribute on an application.
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 42
+
+===== Page 46/120 =====
+For Application Attributes you have the option to also make this source a target for attribute synchronization. Ifthere
+are multiple source applications on which a user might have accounts, you would likely want to push the most author-
+itativevalue to the rest of the accounts.
+
+ 1. Select Application Attribute.
+
+ 2. Select an application from the Application drop-down list.
+
+ 3. Select an attribute from the Attribute drop-down list.
+
+ 4. Click Add.
+
+
+ Map to an application rule.
+
+This rule only applies to the application specified.
+
+ 1. Select Application Rule.
+
+ 2. Select an application from the Application drop-down list.
+
+ 3. Select a rule from the Rule drop-down list.
+
+ 4. Click Add.
+
+
+ Map to a global rule.
+
+This rule applies to all applications that contain thisattribute.
+
+ 1. Select Global rule (allapps).
+
+ 2. Select a rule from the Rule drop-down list.
+
+ 3. Click Add.
+
+
+When you have added your sources for the attribute, use the arrows to the right of the sources listto arrange the
+search order for the attribute sources. When aggregation tasks are run, they search the source at the top of the list,or
+the primary source, firstand then work down the list.
+
+Target Mappings
+
+For Identity attribute types only, add targets for attribute synchronization
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 43
+
+===== Page 47/120 =====
+ 1. Select Add Target to display the Add a target to the attribute dialog.
+
+ 2. Select the application to receive the value.
+
+ 3. Select the attribute to receive the value.
+
+ 4. Optional: Select a transformation rule to transform the value before itisset on the destination.
+
+ 5. Optional: Select Provision All Accounts to provision allof the identities accounts on the targeted application. If
+ you disable this option you are asked toselect the accounts to provision manually.
+
+Click Save to create the new attribute and return tothe Identity Attribute page.
+
+Account Mappings
+
+
+ Note:Â Extended attribute names must be unique. Extended attributes cannot share a name with
+ any other attribute inany other application schema.
+
+Use the Account Mapping page to setup and map specialized accounts. Specialized accounts can be any accounts
+that justifyspecial handling throughout your enterprise. For example privileged accounts such as Root, Administrator,
+or Super User, and service accounts that access a specific service or function on an application. Any attribute exten-
+ded on this page is available forsearching on the Identity Search page.
+
+You can assign icons to extended attributes to highlight these accounts incertifications and the detailed identity
+pages. See Create Icons to Represent Specialized Account Attributes.
+
+Specialized account attributes can be modeled to handle any concept using simple one-to-one mapping and rules.
+This section describes two of the most common scenarios.
+
+Use the Account Attributes page to view the extended account attribute information for your configuration. Use this
+page to set up specialized account attributes such as Privileged and Service, and any other extended attributes for
+use incertifications and searches.
+
+ The Account Attributes page contains the following information:
+
+
+Attribute
+
+ The display name of an account attribute derived from the attribute and itsassociated application in the Primary
+ Source Mapping column.
+
+Primary Source Mapping
+
+ The firstof the listof attribute/application pairs or rules from which account attributes are derived. Ifthe required
+ data isunavailable on thisprimary source, the collection process continues down the listofconfigured sources
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 44
+
+===== Page 48/120 =====
+ untilthe information isfound.
+ Set up the listofsources on the Edit Account Attribute page.
+
+To work with the attributes and sources, see Edit Account Attributes Page.
+
+To delete account attributes, right-click the attribute and select Delete.
+
+To edit account attributes,right-click the attribute and select Edit.
+
+ Additional Information:
+
+
+
+
+ l Edit Account Attributes Page
+
+
+
+ l How to Add or Edit Account Attributes
+
+
+Edit Account Attributes Page
+
+Use the Edit Account Attribute page to create and editaccount attributes including the display name, attribute type
+and source mapping. You can also use thispage tocreate specialized account attributes. See Create Icons to Rep-
+resent Specialized Account Attributes.
+
+The maximum number ofsearchable attributes that can be created isdefined during the installation and configuration
+process. By default you can set five searchable account attributes.See System Setup.
+
+ The Edit Account Attribute page contains the following information:
+
+ Account Attribute:
+
+
+Attribute Name
+
+ The name of the attribute as itappears inthe application.
+
+ Changing an attribute name might cause attributes that were previously aggregated to no longer be recognized.
+
+Display Name
+
+ The IdentityIQ user assigned name foruse throughout IdentityIQ.
+
+ Advanced Options:
+
+
+Edit Mode
+
+ Enable editing ofthis attribute.
+
+ Read Only â€” this attribute cannot be edited.
+ Permanent â€” changes made to thisattribute manually are not overwritten by refresh tasks.
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 45
+
+===== Page 49/120 =====
+ Temporary â€” changes made tothis attribute manually are overwritten by the firstrefresh task that detects a
+ value different than the original value.
+
+ For example, ifthe originalvalue is A and itismanually changed to B, the value is not overwritten by a refresh
+ task until the newly aggregated value is not A. When an aggregation detects a value that isnot A, itrefreshes the
+ manually-changed value and the value is updated with each subsequent refresh.
+
+Attribute Type
+
+ The attribute type to be linked, forexample string,boolean or date.
+
+Searchable
+
+ Account attributes are existing linkvalues and are always searchable. This fieldisdisplayed as selected and
+ read only so that identity and account attribute configuration pages are consistent in appearance.
+
+Multi-Valued
+
+ Specify attributes for which multiple values might be returned during aggregation.
+ Attributes flagged as multi-valued are stored as a list.Even objects that have a single value for a multi-value
+ attribute are stored as a single-item list.Multi-valued attributes are used for queries throughout the product.
+
+ Source Mappings:
+
+ The listofattribute/application pairs or rules from which account attributes are derived. Ifthe required data is
+ unavailable on this primary source, the collection process continues down the listofconfigured sources untilthe
+ information is found. This feature isunlikely to be used forAccount Attribute mapping.
+
+
+See How toAdd orEdit Account Attributes
+
+How to Add or Edit Account Attributes
+
+
+ Note:Â When mapping toa named column, specify the name to match the .hbm.xml property
+ name, not the database column name. With camel case the database column name istranslated
+ to lower case with underscore separators. For example, costCenter inthe Hibernate mapping file
+ becomes cost_center in the database.
+
+ 1. Click Add New Attribute or click an existing attribute to display the Edit Account Attribute
+ page.
+
+ 2. Enter or change the attribute name and an intuitive display name.
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 46
+
+===== Page 50/120 =====
+ Note:Â You cannot define an extended attribute with the same name as any application attribute
+ that is provided by a connector.
+
+ 3. Edit the Advance Options as required.
+
+ 4. Click Add Source to display the Add a source dialog and specify a source for the new attribute.
+
+ a. Map directly to an attribute on an application .
+
+ i. Select Application Attribute.
+
+ ii. Select an application from the Application drop-down list.
+
+ iii. Select an attribute from the Attribute drop-down list.
+
+ b. Map to an application rule.This rule only applies to the application specified.
+
+ i. Select Application Rule.
+
+ ii. Select an application from the Application drop-down list.
+
+ iii. Select a rule from the Rule drop-down list.
+
+ c. Map to a global rule.This rule applies toall applications that contain this attribute.
+
+ i. Select Global rule (allapplications).
+
+ ii. Select a rule from the Rule drop-down list.
+
+ 5. Click Add to add the new source.
+
+ 6. Use the arrows to the right of the sources listtorearrange the search order forthe attribute sources.
+ When aggregation tasks are run they search the source at the top ofthe list,orthe primary source, firstand
+ then work down the list.
+
+ 7. Click Save tocreate the new attribute and return to the Account Attribute page.
+
+Account Attributes
+
+ Create a Service Account Using Simple Mapping
+
+Inthis example, ifIdentityIQ finds an attribute named Service that has a value of true on the application DB Application
+itismarked as a service account. For thiscase the database connector has already provided an attribute value to
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 47
+
+===== Page 51/120 =====
+reflectthe service state, so a simple mapping isallthat isrequired.
+
+ Note:Â After configuring these attributes you must re-aggregate or refresh the identity cubes toset
+ the values.
+
+To configure the mapping:
+
+ 1. Access the Account Attributes page.
+ Select the System Setup tab and select Account Mappings from the table.
+
+ 2. Click Add New Attribute to display the Edit Account Attribute page.
+
+ 3. Specify the following values:
+
+
+
+ l Attribute Name â€” service
+
+
+
+ l Display Name â€” Service Account
+
+
+
+ l Edit Mode â€” Read Only
+
+
+
+ l Attribute Type â€” boolean
+
+
+
+ l Searchable â€” Read Only
+
+
+
+ l Multi-Valued â€” this isnot a multi-valued attributeso do not select thisfield.
+
+ 4. Click Add Source Mapping todisplay the Add a source tothe attributedialog.
+
+ 5. Map the attribute:
+
+ a. Select Application Attribute.
+
+ b. Select DB Application from the Application drop-down list.
+
+ c. Select Service from the Attribute drop-down list.
+
+ 6. Click Add.
+
+
+ Create a Privileged Account Using a Rule
+
+Inthis example, ifIdentityIQ finds an account that is a member ofthe group Domain Admins on any AD application,
+thataccount should be marked as a privileged account.
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ System Configuration 48
+
+===== Page 52/120 =====
+ 1. Write the ruleto define the logic.
+ This rulechecks each account on every AD application and looks forthe Domain Admins group. IftheDomain
+ Admins group isfound, the rule returns true,and theaccount is considered privileged.
+
+ Example rule:
+
+
+ <Rule language="beanshell" name="Example privileged promotion rule"
+ Â Â Â Â Â Â Â Â type="LinkAttribute">
+ Â Â Â Â <Source>
+ Â Â Â Â Â Â Â Â <![CDATA[
+ Boolean privileged = null;
+ Â Â Â Â Â Â Â Â Â Â Â Â If (Â link.getApplication().getName().contains(â€œADâ€) ) {
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â privileged = new Boolean(false);
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â List groups = (List)link.getAttribute("memberOf");
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â if (Â groups != null ) {
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â for (Â String group : groups ) {
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â if (Â (Â group != null ) &&
+ (Â group.startsWith("cn=Domain Admins") ) ) {
+ Â Â Â Â privileged = new Boolean(true);
+ }
+ Â Â Â Â }
+ Â Â Â Â }
+ Â Â Â Â )
+ Â Â Â Â return privileged;
+ Â Â Â Â ]]>
+ Â Â Â Â </Source>
+ </Rule>
+
+
+ 1. Access the Account Attributes page.
+ Go to the Global Settings and select Account Mappings.
+
+ 2. ClickAdd New Attribute todisplay the Edit Account Attributepage.
+
+ 3. Specify the following values:
+
+
+
+ l Attribute Name â€” service
+
+
+
+ l Display Name â€” Service Account
+
+
+
+ l Edit Mode â€” Read Only
+
+
+
+ l Attribute Type â€” boolean
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPointIdentityIQ System Configuration 49
+
+===== Page 53/120 =====
+ l Searchable â€” Read Only
+
+
+
+ l Multi-Valued â€” this isnot amulti-valued attributeso do not select thisfield.
+
+ 4. ClickAdd Source to display theAdd a source tothe attributedialog.
+
+ 5. Map the attribute:
+ Select Global Rule (allapplications).
+ Select Example privileged promotion rule from theApplication drop-down list.
+
+ 6. ClickSave.
+
+
+ Create Icons to Represent Specialized Account Attributes
+
+Assign icons to extended attributesto highlightthese accounts incertificationsand the detailed identitypages. To
+assign icons you must modify theUIConfig fileand add AccountIconConfig entries forany value thatshould be recog-
+nized.
+
+The following example references the attributesdefined inthissection.
+
+
+ <ImportAction name='merge'>
+ Â Â Â Â <UIConfig name='UIConfig'>
+ Â Â Â Â Â Â Â Â <Attributes>
+ Â Â Â Â Â Â Â Â Â Â Â Â <Map>
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â <entry key='accountIconConfig'>
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â <value>
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â <List>
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â <!â€”This indicates that when we are displaying accounts and we
+ see
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â the value â€œtrueâ€ for the extended account attribute
+ named
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â privileged we should display the icon listed in the
+ â€œsourceâ€
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â attribute. The title will be used in hover-over help.
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â ->
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â <AccountIconConfig attribute="privileged"
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â value="true"
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â source="/images/icons/privilege_16.png"
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â title="This is a privileged account"/>
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â <!â€”This indicates that when we are displaying accounts and we
+ see
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â the value â€œtrueâ€ for the extended account attribute
+ named
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â service we should display the icon listed in the
+ â€œsourceâ€
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â attribute. The title will be used in hover-over help.
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â ->
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â <AccountIconConfig attribute="service"
+
+
+
+
+
+
+
+SailPoint IdentityIQ System Configuration 50
+
+===== Page 54/120 =====
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â value="true"
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â source="/images/icons/service.png"
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â title="This is a service account"/>
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â </List>
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â </value>
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â </entry>
+ Â Â Â Â Â Â Â Â Â Â Â Â </Map>
+ Â Â Â Â Â Â Â Â </Attributes>
+ Â Â Â Â </UIConfig>
+ </ImportAction>
+
+
+Use the IdentityIQ console toimport the modifications.
+
+Application Attributes
+
+Use the Edit Application Configuration page todefine extended application attributes not provided by the application
+connectors during aggregation. These extended attributes are displayed on the Attributes tab ofthe Application Con-
+figuration page below the connection attributes provided by the connector. Because the additional attributes are
+stored with those provided by the connector, ifyou define an extended attribute with a name that matches any con-
+nector attribute, the values ofthe extended attribute overwrite the values of the connector attribute.
+
+You can use these extended attributes inside rules and custom reports and queries.
+
+ The Edit Application Configuration page contains the following information:
+
+
+Name
+
+ The display name of the application attribute assigned when itwas added.
+
+Category
+
+ The category defined when the attributewas created.
+ Ifno category was defined this column isblank.
+
+Description
+
+ A short description of the extended application attribute.
+
+Click New Attribute toadd additional attributes tothe applications.
+
+To edit or delete an existing attributefrom the list,right-clickthe attribute and select the corresponding option from the
+menu. Ifyou are deleting an attribute you must confirm the deletion inthe pop-up dialog.
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 51
+
+===== Page 55/120 =====
+Additional Information
+
+
+
+ l Edit Extended Attributes
+
+
+
+ l How to Add or Edit Extended Attributes
+
+Edit Extended Attributes
+
+Use the Edit Extended Attribute page to create and editadditional application attributes including the display name,
+attribute type and description.
+
+The fieldsdisplayed on the Edit Extended Attribute page are dependent on the attribute type selected.
+
+ Important:Â Extended attributes must use unique attribute names that willnot be duplicated in
+ other parts ofyour IdentityIQÂ environment. For example, an extended attributename must not
+ duplicate any attribute names inany of your application schema(s). A best practice is to use a
+ standard prefixor naming convention thatensures that your extended attribute names are
+ unique.
+
+
+ The Edit Extended Attribute page contains the following information:
+
+
+Attribute Name
+
+ The name of the attribute as itappears in the application.
+
+ Caution:Â Changing an attribute name might cause attributes that were previously aggregated to
+ no longer be recognized.
+
+
+Display Name
+
+ The IdentityIQ user assigned name for use throughout IdentityIQ.
+
+Type
+
+ The attribute type to be linked, forexample string,boolean, date, rule, or identity.
+
+Description
+
+ A brief description of the application attribute.
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 52
+
+===== Page 56/120 =====
+Category Name
+
+ An optional category used to separate the attributes into categories on the Application Configuration page. Enter
+ a category name or select an existing one from the drop-down list.
+
+Searchable
+
+ Enable thisapplication attribute for use insearches throughout the product.
+
+Editable
+
+ Enable editing of thisattribute from other pages in the product.
+
+Required
+
+ For String type attributes only.
+ Required attributes must have a value before you can save an application.
+
+Allowed Values
+
+ For String type attributes only.
+ Enter the values that are allowed forthis attribute. The values entered in this listare used to populate the drop-
+ down value liston the Application Configuration page.
+
+Default Value
+
+ Enter a default value for the attribute or select a value from the drop-down list,depending on the attribute type
+ you are working with.
+
+How to Add or Edit Extended Attributes
+
+
+ Note:Â When mapping to a named column, specify the name to match the .hbm.xml property
+ name, not the database column name. With camel case the database column name is translated
+ to lower case with underscore separators. For example, costCenter in the Hibernate mapping file
+ becomes cost_center in the database.
+
+ 1. Click New Attribute or click an existing attribute to display the Edit Extended Attribute page.
+
+ 2. Enter or change the attribute name and an intuitive display name.
+
+
+ Important:Â Extended attributes must use unique attribute names that willnot be duplicated in
+ other parts of your IdentityIQÂ environment. For example, an extended attribute name must not
+ duplicate any attribute names in any ofyour application schema(s). A best practice is touse a
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 53
+
+===== Page 57/120 =====
+ standard prefix or naming convention that ensures that your extended attribute names are
+ unique.
+
+
+
+ Caution:Â If you define an extended attribute with the same name as an application attribute, the
+ value of the extended attribute overwrites the value of the connector attribute.
+
+
+ 3. Select the attribute type from the drop-down list,String, Integer, Boolean, Date, Rule, or Identity.
+
+ 4. Optional: add more information for the extended attribute, as needed.
+
+
+
+ l Enter a description of the additional attribute.
+
+
+
+ l Select a category forthe attribute.
+
+
+
+ l Activate the Searchable option to enable this attribute for searching throughout the product.
+
+
+
+ l Activate the Editable option to enable thisattribute forediting from other pages within the product.
+
+
+
+ l Mark the attribute as required. For string type attributes only.
+
+
+
+ l Enter allowed values forthe attribute. For string type attributes only.
+
+
+
+ l Specify a default value.
+
+ 5. Click Save to save your changes and return to the Edit Application Configuration page.
+
+Entitlement Catalog Attributes
+
+Use the Edit Entitlement Catalog Configuration page to define custom extended entitlement attributes. The extended
+attributes are displayed with the rest of the entitlement information throughout the product. An example of a extended
+entitlement attribute might be Time Zone.
+
+The Edit Entitlement Catalog Configuration page contains the following information:
+
+Name
+
+ The display name of the extended entitlement attribute assigned when itwas added.
+
+Category Name
+
+ The category defined when the attribute was created.
+ Ifno category was defined this column is blank.
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 54
+
+===== Page 58/120 =====
+Description
+
+ A short description of the extended entitlement attribute.
+
+Click New Attribute to add additional extended entitlement attributes.
+
+To edit or delete an existing attribute or type from the list,right-clickthe item and select the corresponding option from
+the menu. Ifyou are deleting, you must confirm the deletion in the pop-up dialog.
+
+Additional Information
+
+
+
+ l Extended Attributes
+
+
+
+ l How toAdd or Edit Extended Entitlement Attributes
+
+Extended Attributes
+
+Use the Edit Extended Attribute page to create and edit additional role attributes including the display name, attribute
+type and description.
+
+The Edit Extended Attribute page contains the following information:
+
+Attribute Name
+
+ The name of the attribute as itappears in the application.
+
+ Important:Â Extended attributes must use unique attribute names that will not be duplicated in
+ other parts of your IdentityIQÂ environment. For example, an extended attribute name must not
+ duplicate any attribute names in any of your application schema(s). A best practice isto use a
+ standard prefix or naming convention that ensures that your extended attribute names are
+ unique.
+
+
+
+ Caution:Â Changing an attribute name might cause attributes that were previously aggregated to
+ no longer be recognized.
+
+
+Display Name
+
+ The name for use throughout the product.
+
+Type
+
+ The attribute type to be linked, for example string, boolean, date, rule,or identity.
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 55
+
+===== Page 59/120 =====
+Description
+
+ A brief description of the entitlement attribute.
+
+Category Name
+
+ An optional category used to separate the attributes into categories on the Application Configuration page. Enter
+ a category name orselect an existing one from the drop-down list.
+
+Searchable
+
+ Enable thisentitlement attribute for use inqueries.
+
+Editable
+
+ Enable editing of thisattribute from other pages in the product.
+
+Required
+
+ For String type attributes only. Required attributes must have a value before you can save an entitlement.
+
+Allowed Values
+
+ For String type attributes only. Enter the values thatare allowed for thisattribute. The values entered inthis list
+ are used to populate the drop-down value liston the Roles page.
+
+Default Value
+
+ Enter a default value forthe attribute or select a value from the drop-down list,depending on the attribute type
+ you are working with.
+
+How to Add or Edit Extended Entitlement Attributes
+
+
+ Note:Â When mapping to a named column, specify the name to match the .hbm.xml property
+ name, not the database column name. With camel case the database column name istranslated
+ to lower case with underscore separators. For example, costCenter inthe Hibernate mapping file
+ becomes cost_center in the database.
+
+ 1. Click New Attribute or click an existing attribute to display the Edit Extended Attribute page.
+
+ 2. Enter or change the attribute name and an intuitivedisplay name.
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 56
+
+===== Page 60/120 =====
+ Important:Â Extended attributes must use unique attribute names that will not be duplic-
+ ated in other parts of your IdentityIQÂ environment. For example, an extended attribute
+ name must not duplicate any attribute names in any ofyour application schema(s). A best
+ practice isto use a standard prefix or naming convention that ensures that your extended
+ attribute names are unique.
+
+
+
+ Caution:Â If you define an extended attribute with the same name as an application attrib-
+ ute, the value of the extended attribute overwrites the value of the connector attribute.
+
+
+ 3. Select the attribute type from the drop-down list,String, Integer, Boolean, Date, Rule, or Identity.
+
+ 4. Optional Selections:
+
+
+
+ l Optional: Enter a description of the additional attribute.
+
+
+
+ l Optional: Select a category for the attribute.
+
+
+
+ l Optional: Activate the Searchable option to enable this attribute forsearching throughout the product.
+
+
+
+ l Optional: Activate the Editable option to enable thisattribute forediting from other pages within the product.
+
+
+
+ l Optional: Mark the attribute as required. For string type attributes only.
+
+
+
+ l Optional: Enter allowed values for the attribute. For string type attributes only.
+
+
+
+ l Optional: Specify a default value.
+
+ 6. Click Save to save your changes and return tothe Edit Entitlement Catalog Configuration page.
+
+Quicklink Populations
+
+Quicklinks are tasked-based links to frequently-used areas of IdentityIQ. Quicklinks are displayed as cards on the
+IdentityIQ Home page and as links inthe Quicklink Menu, which isavailable throughout the product.
+
+Use the Quicklinks Populations page toassociate quicklinks, that are created and imported into IdentityIQ by your
+administrators, with quicklink populations, sometimes referred to as dynamic scopes.
+
+Quicklink populations grant access to specific areas of IdentityIQ to predetermined populations of users. These pop-
+ulations can be defined based on capabilities, identity attributes, work groups, or by selecting individual identities.
+
+One predefined population, Everyone, is inthe listby default. Ifyou have purchased IdentityIQ Lifecycle Manager you
+also see Help Desk, Manager, and Self Service inthe Populations list.
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 57
+
+===== Page 61/120 =====
+Select a population from the listor click New to open the Configuration and Quicklinks tabs.
+
+The Configuration tab contains the following:
+
+ Details
+
+
+Name
+
+ Name ofthe population.
+
+Description
+
+ Description of the population.
+
+ Membership
+
+
+Membership Rule
+
+ Select a membership rule to define the population.
+ None â€” only the identities specified in the Included Identities listare inthe population.
+ All â€” include allidentities in the population.
+ Match List â€” only identities whose criteriamatch that specified inthe list.Add identity attributes, application
+ attributes and application permissions. Customize further by creating attribute groups to which this assignment
+ rule applies.
+ IfIs Null isselected, the associated value text box is disabled. When the isnull match isprocessed, the term
+ matches users on the chosen application who have a null value forthat attribute/permission.
+ Filter â€” a custom database query.
+ Script â€” a custom script.
+ Rule â€” select an existing rule from the drop-down list.
+ Click Edit Rule to launch the Rule Editor. See Using the Rule Editor.
+ Population â€” select an existing population.
+
+Included Identities
+
+ Manually select identities toinclude in the population.
+
+Excluded Identities
+
+ Manually select identities that should not be included in the population. For example, Administrator.
+
+ Who can members request for?
+
+Identities forwhom the members of thispopulation can make access requests.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 58
+
+===== Page 62/120 =====
+Everyone
+
+ Can create access request for anyone.
+
+Specific Users
+
+ Can only create access requests foridentities based on the selected criteria.
+ Use the drop down listto specify ifthey must match allof the criteriaor just any ofthe criteria.
+
+Share attributes with the requester
+
+ Can make requests for identitiesthat share the attributes specified.
+
+Report to the requester
+
+ Enable managers to make requests for theirsubordinates.
+ Specify ifthisapplies to directreports or allsubordinates. Ifallsubordinates, specify a Maximum Hierarchical
+ Depth.
+
+Match custom criteria
+
+ The filteristhe context ofthe identity object and is parsed as a Velocity template with a parameter called
+ requester.spa
+ For example for an identity whose managerâ€™s name isthe same as the managerâ€™s name forthe requester:
+ manger.name == â€œ$requester.manager.nameâ€
+
+Match filter rule
+
+ Select the IdentityFilterGenerator rulethat generates the filterthat specifies for whom users can make requests.
+
+ Note:Â You must have the ManageRules SPRight to create oredit an IdentityFilter Generator rule
+ from this page.
+
+ When this ruleis executed, the resulting filtervalue isadded to the listoffiltersused to query the listofaccess-
+ ibleidentities.
+
+ For example, the following Beanshell ina rule could be used to return only identities that have the same manager
+ as the requester.
+
+
+ import sailpoint.object.Filter;
+ import sailpoint.object.Identity;
+ log.warn("Executing on behalf of " + requester.getFullName());
+ if (requester.getManager() != null)
+ {
+ Â Â return Filter.eq("manager.id", requester.getManager().getId());
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 59
+
+===== Page 63/120 =====
+ }
+ return null;
+
+
+
+Ignore scoping
+
+ Disregard IdentityIQ scopes when determining for whom request can be made.
+
+ What can members request?
+
+Click Edit Rule to launch the Rule Editor for any ofthe following. See Using the Rule Editor.
+
+Roles
+
+ Select a rule that defines the set of roles that thispopulation can request.
+
+Applications
+
+ Select a rule that defines the set of applications from which thispopulation can request entitlements.
+
+Entitlements
+
+ Select a rule that defines the set of entitlements that thispopulation can request.
+
+ What can members remove?
+
+Click Edit Rule to launch the Rule Editor for any ofthe following. See Using the Rule Editor.
+
+Roles
+
+ Select a rule that defines the set of roles that thispopulation can remove.
+
+Applications
+
+ Select a rule that defines the set of applications from which thispopulation can remove entitlements.
+
+Entitlements
+
+ Select a rule that defines the set of entitlements that thispopulation can remove.
+
+Sync with Request
+
+ The selections from What members can request is copied to What members can remove.
+
+Once you have selected a population, you can clickThe Quicklinks Tab to define Quicklinks for thispopulation.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 60
+
+===== Page 64/120 =====
+The Quicklinks Tab
+
+This tab contains allofthe quicklinks that are available in your environment.
+
+You cannot add quicklinks within IdentityIQ. The New button opens the Configuration tab to create a new population.
+
+Enabled
+
+ Specify which quicklinks to associate with this population.
+
+Name
+
+ Name of the quicklink as itappears on cards on the IdentityIQ Home page and as linksin the Quicklink Menu.
+
+Description
+
+ Description of the quicklink.
+
+Category
+
+ The category in which this quicklink displays in the Quicklink Menu.
+
+Options
+
+ When available, use Configure to specify quicklink settings.
+
+Forms
+
+Form Editors are used for configuring forms for Workflows, Role Provisioning Policies, and Application Provisioning
+Policies in IdentityIQ. Forms are referred in two ways, Centralized Forms and Reference Forms.
+
+ Centralized Forms
+
+Centralized Form location is a single location within the system, where an Administrator would be able toview allthe
+forms. All of the forms can be created, edited, managed, and maintained as one object.
+
+The Forms page displays allthe standalone forms. The form grid displays Workflow, Role and Application types of
+forms.
+
+Create and Edit Forms
+
+To create a new form, clickthe Create Form button. On the Create New Form window, select one of the following
+type of the form to be created:
+
+
+
+ l Application Provisioning Policy Form
+
+
+
+ l Role Provisioning Policy Form
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 61
+
+===== Page 65/120 =====
+ l Workflow Form
+
+
+On saving the newly created forms, the form grid would be updated.
+
+To edit an existing form, click the Edit button provided next toeach form in the grid to display the Form Editor page.
+
+Search Forms
+
+Forms are searched by theirnames. To search the required form, enter any name word of the Form Name. The
+search results is displayed by refreshing the listto display the searched form.
+
+ Reference Forms
+
+Reference Forms provide a means to create a single form thatcan be reused and referenced as standalone forms for
+Application Provisioning Policy Form, Role Provisioning Policy Form, and Workflow Form.
+
+Create Forms
+
+To create a new policy form, click Add Policy under the Provisioning Policies tab to display the Forms window. Click
+Create Policy Form to display the Provisioning Policy Editor page.
+
+On saving the newly created policy,the provisioning policies are updated.
+
+Referencing Forms
+
+
+ Note:Â The Existing Forms lists only contain the reference forms ofthe type associated with the
+ policy type you are viewing, application, role,or workflow. Ifyou are not seeing forms in the list,
+ ensure thatthe forms you are looking forhave the correct type set on the gear >Â Global Set-
+ tings > Forms page.
+
+Form referencing isdone by using the form name. To reference a form, click Add Policy under the Account Pro-
+visioning Policies tab to display the Forms window. Click Reference Policy Form todisplay the listof application pro-
+visioning policy forms from the central location on the Existing Forms page.
+
+Edit Reference Forms
+
+Click the policy name to display an option to Create a Form or Change Reference Policy Form button toedit an
+existing reference form.
+
+
+
+ l Click Create Policy Form to display the Provisioning Policy Editor page. On saving the newly created policy,
+ the reference provisioning policies are removed and policy is updated with newly created form.
+
+
+
+ l Click Change Reference Policy Form to display a listof application provisioning forms.
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 62
+
+===== Page 66/120 =====
+Role Configuration
+
+Use the Edit Role Configuration page to define custom extended role attributes and role types. The extended attrib-
+utes are displayed with the rest ofthe role information throughout the product. An example ofa extended role attribute
+might be role status. Role type isused toconfigure roles to perform different functions within your business model. For
+example, type might be used to control inheritance or automatic assignment ofroles.
+
+The Edit Role Configuration page contains the following information:
+
+ Role Attributes:
+
+
+Name
+
+ The display name of the role attribute assigned when itwas added.
+
+Category
+
+ The category defined when the attribute was created.
+ Ifno category was defined thiscolumn is blank.
+
+Description
+
+ A short description of the role attribute.
+
+ Role Types:
+
+
+Name
+
+ The display name of the role type.
+
+Description
+
+ A short description of the role type.
+
+Click New Attribute toadd additional role attributes. See Edit Extended Role Attributes.
+
+Click New Type to add or edit a role type. See Edit Role Types.
+
+To edit or delete an existing attribute or type from the list,right-clickthe item and select the corresponding option from
+the menu. Ifyou are deleting, you must confirm the deletion inthe pop-up dialog.
+
+Edit Extended Role Attributes
+
+Use the Edit Extended Attribute page tocreate and edit additional role attributes including the display name, attribute
+type and description.
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 63
+
+===== Page 67/120 =====
+ Important:Â Extended attributes must use unique attribute names that willnot be duplicated in
+ other parts of your IdentityIQÂ environment. For example, an extended attribute name must not
+ duplicate any attribute names in any of your application schema(s). A best practice isto use a
+ standard prefix ornaming convention that ensures that your extended attribute names are
+ unique.
+
+
+ The Edit Extended Attribute page contains the following information:
+
+
+Attribute Name
+
+ The name of the attribute as itappears in the application.
+
+ Caution:Â Changing an attribute name might cause attributes that were previously aggregated to
+ no longer be recognized.
+
+
+Display Name
+
+ The name for use throughout the product.
+
+Type
+
+ The attribute type to be linked, forexample string,boolean, date, rule, or identity.
+
+Description
+
+ A brief description of the role attribute.
+
+Category Name
+
+ An optional category used to separate the attributes into categories on the Application Configuration page. Enter
+ a category name orselect an existing one from the drop-down list.
+
+Searchable
+
+ Enable thisrole attribute for use in queries.
+
+Editable
+
+ Enable editing of thisattribute from other pages in the product.
+
+Required
+
+ For String type attributes only.
+ Required attributes must have a value before you can save a role.
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 64
+
+===== Page 68/120 =====
+Allowed Values
+
+ For String type attributes only.
+ Enter the values that are allowed for this attribute. The values entered inthis listare used to populate the drop-
+ down value liston the Roles page.
+
+Default Value
+
+ Enter a default value for the attribute or select a value from the drop-down list,depending on the attribute type
+ you are working with.
+
+How to Add or Edit Extended Attributes
+
+How to Add or Edit Extended Attributes
+
+ 1. Click New Attribute or click an existing attribute to display the Edit Extended Attribute page.
+
+ 2. Enter or change the attribute name and an intuitive display name.
+
+ Important:Â Extended attributes must use unique attribute names that willnot be duplic-
+ ated in other parts ofyour IdentityIQÂ environment. For example, an extended attribute
+ name must not duplicate any attribute names in any of your application schema(s). A best
+ practice isto use a standard prefix or naming convention that ensures that your extended
+ attribute names are unique.
+
+
+ 3. Select the attribute type from the drop-down list,String, Integer, Boolean, Date, Rule, or Identity.
+
+ 4. Optional: add more information for the extended attribute, as needed.
+
+
+
+ l Enter a description of the additional attribute.
+
+
+
+ l Select a category for the attribute.
+
+
+
+ l Activate the Searchable option to enable this attribute for searching throughout the product.
+
+
+
+ l Activate the Editable option to enable this attribute for editing from other pages within the product.
+
+
+
+ l Mark the attribute as required. For string type attributes only.
+
+
+
+ l Enter allowed values for the attribute. For string type attributes only.
+
+
+
+ l Specify a default value.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 65
+

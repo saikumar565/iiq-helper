@@ -1,0 +1,2455 @@
+===== Page 1/40 =====
+ Installation Guide
+
+
+ Version:8.4
+
+ Revised:September 2023
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thisdocument and the information contained herein isSailPointConfidential Information
+
+===== Page 2/40 =====
+Copyright and Trademark Notices
+
+Copyright © 2023 SailPoint Technologies, Inc.  All Rights Reserved.
+
+Alllogos, text,content, including underlying HTML code, designs, and graphics used and/or depicted on these written
+materials or in thisInternet website are protected under United States and international copyright and trademark laws
+and treaties, and may not be used or reproduced without the prior express written permission of SailPoint Tech-
+nologies, Inc.
+
+“SailPoint Technologies,” (design and word mark), “SailPoint,” (design and word mark), "Identity IQ,” “IdentityNow,”
+“SecurityIQ,” “Identity AI,” “Identity Cube,” and “SailPoint Predictive Identity” are registered trademarks of SailPoint
+Technologies, Inc. “Identity isEverything,” “The Power of Identity,” and “Identity University” are trademarks of
+SailPoint Technologies, Inc. None of the foregoing marks may be used without the prior express written permission of
+SailPoint Technologies, Inc. Allother trademarks shown herein are owned by the respective companies or persons
+indicated.
+
+SailPoint Technologies, Inc. makes no warranty ofany kind regarding these materials or the information included
+therein, including, but not limited to,the implied warranties ofmerchantability and fitness for a particular purpose.
+SailPoint Technologies shall not be liable for errors contained herein or direct, indirect, special, incidental orcon-
+sequential damages inconnection with the furnishing, performance, or use of thismaterial.
+
+Patents Notice. https://www.sailpoint.com/patents
+
+Restricted Rights Legend. All rights are reserved. No part ofthis document may be published, distributed, reproduced,
+publicly displayed, used to create derivative works, or translated to another language, without the prior written consent
+ofSailPoint Technologies. The information contained inthis document issubject to change without notice.
+
+Use, duplication or disclosure by the U.S. Government is subject to restrictions as set forth insubparagraph (c) (1) (ii)
+ofthe Rights inTechnical Data and Computer Software clause at DFARS 252.227-7013 for DOD agencies, and sub-
+paragraphs (c)(1) and (c)(2) ofthe Commercial Computer Software Restricted Rights clause at FAR 52.227-19 for
+other agencies.
+
+Regulatory/Export Compliance. The export and re-export of this software iscontrolled for export purposes by the U.S.
+Government. By accepting this software and/or documentation, licensee agrees to comply with allU.S. and foreign
+export laws and regulations as they relate to software and related documentation.  Licensee will not export or re-
+export outside the United States software or documentation, whether directly or indirectly, to any Prohibited Party and
+willnot cause, approve or otherwise intentionally facilitate others inso doing. A Prohibited Party includes: a party in a
+U.S. embargoed country or country the United States has named as a supporter of international terrorism; a party
+involved in proliferation; a party identified by the U.S. Government as a Denied Party; a party named on the U.S.
+Department of Commerce’s Entity Listin Supplement No. 4 to 15 C.F.R. § 744; a party prohibited from participation in
+export orre-export transactions by a U.S. Government General Order; a party listed by the U.S. Government’s Office
+ofForeign Assets Control as ineligible to participate in transactions subject toU.S. jurisdiction; or any party that
+licensee knows or has reason toknow has violated or plans to violate U.S. or foreign export laws or regulations.
+Licensee shall ensure that each of itssoftware users complies with U.S. and foreign export laws and regulations as
+they relate to software and related documentation.
+
+===== Page 3/40 =====
+Contents
+
+
+ Install and Deploy SailPoint IdentityIQ 1
+
+ Supported Platforms 2
+
+ Special Considerations 6
+
+ How to Installand Deploy IdentityIQ 10
+
+ Advanced Installation Information 18
+
+ IdentityIQ Upgrade 28
+
+ Upgrade Considerations 28
+
+ How to Upgrade IdentityIQ 30
+
+ Post-upgrade Procedures 37
+
+===== Page 4/40 =====
+Installand Deploy SailPoint IdentityIQ
+
+Install and Deploy SailPoint IdentityIQ
+
+
+Use the following information toinstall and deploy SailPoint IdentityIQ on your application server. After IdentityIQ is
+deployed itmust be configured towork within your enterprise.
+
+See the IdentityIQ System Configuration documentation to continue with your deployment of SailPoint IdentityIQ.
+
+ Note: When upgrading, remove alle-fixes currently deployed since they are created fora very
+ specific patch level.The instructions originally provided with the e-fixmay provide more detail for
+ this step. Updating to the latest patch in a patch stream or upgrading to a latermajor version may
+ remove the need for some or alle-fixes. Please check the IdentityIQ Security Vulnerabilities
+ page on Compass forthe listofsecurity e-fixes applicable to thispatch.
+
+During the installation and deployment procedure you must deploy a new Web application in your application server
+and create a new database and modify itsschema ina database server instance. Ensure that you have the required
+authorization credentials before you begin the installation and deployment process. The IdentityIQ application and the
+IdentityIQ databases can reside on the same server.
+
+Each application server instance may only contain one instance of IdentityIQ in a given cluster, using the same data-
+base. There are implicitand explicit methods used when defining an application to an application server. Implicit meth-
+ods include placing a .war fileor directory in a well-defined location, forexample, the webapps directory in Tomcat.
+Explicit methods include adding configuration. For example, in Tomcat, thisconfiguration can be in any number of
+places such as, conf/server.xml or conf/Catalina/<hostname>. Itisvery important that the application only
+be defined once so that itwillonly be instantiated once.
+
+The installation and deployment process contains the following parts:
+
+
+
+ l Download and expand the installation files.See Download and Expand the Installation Files.
+
+
+
+ l Configure the number of extended and searchable attributes allowed for your environment. See Configure the
+ Number ofExtended and Searchable Attributes Allowed.
+
+
+
+ l Create the database and tables required forIdentityIQ. See Create the IdentityIQ Database and Tables.
+
+
+
+ l Configure IdentityIQ to connect to itsdatabase. See Configure the IdentityIQ Installation.
+
+
+
+ l Access IdentityIQ tocontinue with the configuration for your enterprise. See Open IdentityIQ.
+
+
+
+ l Refer toAdvanced Installation Information foradditional information on how to deal with specific application
+ server and database server environments, and for integration requirements for some external systems.
+
+
+
+
+
+
+
+
+
+ SailPoint Installation Guide 1
+
+===== Page 5/40 =====
+Supported Platforms
+
+
+ IMPORTANT: SailPoint does not support anything beyond the compatibility of the platform
+ vendors. Confirm the interoperability and support from those vendors when deciding on your plat-
+ forms.
+
+
+Operating Systems
+
+
+
+ l Windows Server 2022 and 2019
+
+
+
+ l Solaris 11 and 10
+
+
+
+ l IBM AIX 7.3 and 7.2
+
+
+ Note regarding Linux Support: The distributionsand versions of Linux highlighted below have
+ been verifiedby IdentityIQ Engineering, but any currently available and supported distributions
+ and versions of Linux willbe supported by SailPoint. Implementers and customers should verify
+ that the distribution and version of Linux of choice iscompatible with the application server, data-
+ base server, and JDK also being used.
+
+
+
+
+ l Red Hat Linux 9.1 and 8.8
+
+
+
+ l SuSe Linux 15 and 12
+
+Application Servers
+
+
+
+ l Apache Tomcat 9.0
+
+
+
+ l Oracle WebLogic 14c
+
+
+
+ l JBoss Enterprise 7.4 and 7.3
+
+
+
+ l IBM WebSphere Liberty 21.0 and 22.0
+
+Databases (On Site)
+
+
+
+ l IBM DB2 11.5
+
+
+
+ l MySQL 8.0
+
+
+
+
+
+
+
+
+ SailPoint Installation Guide 2
+
+===== Page 6/40 =====
+ l MS SQL Server 2022 and 2019
+
+
+
+ l Oracle 19c
+
+
+
+ l PostgreSQL 15
+
+Message Brokers
+
+
+
+ l ActiveMQ 5.17.4
+
+Cloud Platforms
+
+
+
+ l AWS EC2
+
+
+
+ l AWS Aurora
+
+
+
+ l AWS RDS (MySQL, MS SQL, Oracle)
+
+
+
+ l Azure (VM, Azure SQL)
+
+
+
+ l Google Cloud Platform – Google Compute Engine
+
+Java Platform
+
+
+
+ l Sun, Oracle or IBM JDK 11 and JDK 17 for allapplication servers thatsupport those versions
+
+
+
+ l OpenJDK11 is now supported on allenvironments, but we have specificallytested against Adopt OpenJDK 11
+ and 17 forWindows and Red Hat OpenJDK 11 and 17 forLinux
+
+
+
+ l Eclipse Temurin JDK 11, 17
+
+
+
+ l IBM Semeru 17.0.5.0
+
+Browsers
+
+
+
+ l Google Chrome Latest Version
+
+
+
+ l Microsoft Edge Latest Version
+
+
+
+ l Safari 16
+
+
+
+ l Firefox Latest Version
+
+
+
+
+
+
+
+ SailPoint InstallationGuide 3
+
+===== Page 7/40 =====
+Mobile User Interface OS /Browser Support
+
+
+
+ l Android with Chrome 13
+
+
+
+ l iOS withSafari 16
+
+Languages
+
+
+
+ l Brazilian Portuguese
+
+
+
+ l Chinese (Taiwan)
+
+
+
+ l Danish
+
+
+
+ l Dutch
+
+
+
+ l English
+
+
+
+ l Finnish
+
+
+
+ l French
+
+
+
+ l French Canadian
+
+
+
+ l German
+
+
+
+ l Hungarian
+
+
+
+ l Italian
+
+
+
+ l Japanese
+
+
+
+ l Korean
+
+
+
+ l Norwegian
+
+
+
+ l Polish
+
+
+
+ l Portuguese
+
+
+
+ l Simplified Chinese
+
+
+
+ l Spanish
+
+
+
+
+
+
+ SailPoint InstallationGuide 4
+
+===== Page 8/40 =====
+ l Swedish
+
+
+
+ l Traditional Chinese
+
+
+
+ l Turkish
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Installation Guide 5
+
+===== Page 9/40 =====
+Special Considerations
+
+10.2 versions and later ofthe Sqlserver JDBC driver assume that the Sqlserver database is encrypted and the con-
+nection willfailifitisnot.Ifyou wish to connect to an unencrypted sqlserver database, add encrypt=false tothe JDBC
+URLs in the iiq.propertiesfile
+
+Special Java Considerations
+
+JDK 17 Server Configuration
+
+Ifyou are using JDK 17, add the following Java system property. Consult your application server documentation for
+more information.
+
+--add-exports=java.naming/com.sun.jndi.ldap=ALL-UNNAMED
+
+WebLogic users should also add this Java system property:
+
+--add-opens java.base/java.lang=ALL-UNNAMED
+
+--add-exports and/or --add-opens
+
+JVM Arguments
+
+To support connectivity to managed systems through a proxy server, use the Java system properties listedbelow to
+configure the proxy connectivity. The use of these system properties is described inthe java.net Networking Prop-
+ertiesdocumentation that accompanies the Java SDK.
+
+
+
+ l http.proxyHost
+
+
+
+ l http.proxyPort
+
+
+
+ l http.proxyUser
+
+
+
+ l http.proxyPassword
+
+
+
+ l http.nonProxyHosts
+
+
+
+ l https.proxyHosts
+
+
+
+ l https.proxyPort
+
+
+
+ l https.proxyUser
+
+
+
+ l https.proxyPassword
+
+
+
+
+
+
+ SailPoint InstallationGuide 6
+
+===== Page 10/40 =====
+Consult thedocumentation forthe application server inuse to determine the method foradding Java system prop-
+ertiesto the environment. As an example, forApache Tomcat, define a value forthe JAVA_OPTS environment vari-
+able inbin\catalina.bat or bin/catalina.sh ofyour Tomcat installation.
+
+Special Reporting Considerations
+
+ Configure Jasper to Export Reports
+
+To modify the delimiter used in CSV report exports, create a filenamed jasperreports.properties that contains
+
+net.sf.jasperreports.export.csv.field.delimiter=;
+
+and add a Java system property using the method appropriate for the application server in use named net.s-
+f.jasperreports.properties that contains a value of the fullpath tothe jasperreports.properties file.
+This isoften configured in the startup scriptforthe application server by modifying the JAVA_OPTS environment vari-
+able, butcan be configured in the administrative user interface forsome application servers.
+
+ Use Custom Fonts with JasperReports Font Extensions
+
+IdentityIQ uses JasperReports torender some reports.The livereports do not use JasperReports forrendering.
+JasperReports uses a specially packaged jarfileknown as aFont Extension to embed custom fonts in reports,for
+example, fonts not natively available on the host operating system. Creating a Font Extension involves editing an XML
+fileand creating a jararchive filecontaining the configuration and font files.
+
+ 1. Assemble allthe font filesina new directory. There may be multiple filesdepending on allthe different styles
+ available to the font.For example, your font may have plain,bold, bold-italic,and italicversions.
+
+ 2. Create a new XML filecalled fonts.xml inthe same directory with the following structure.
+
+ Note: Replace sections between square brackets [ ]withthe appropriate information.
+
+
+ <?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.s-
+ pringframework.org/dtd/spring-beans.dtd">
+ <beans>
+     <bean id="[unique name of font family e.g. 'myFontFamily']" class-
+ s="net.sf.jasperreports.engine.fonts.SimpleFontFamily">
+         <property name="name" value="[font name as referenced in jasper reports]"/>
+         <property name="normal" value="[file name of normal font]"/>
+         <property name="bold" value="[file name of bold font]"/>
+         <property name="italic" value="[file name of italic font]"/>
+         <property name="boldItalic" value="[file name of bold-italic font]"/>
+         <property name="pdfEncoding" value="Identity-H"/>
+         <property name="pdfEmbedded" value="true"/>
+
+
+
+
+
+
+
+
+
+ SailPoint InstallationGuide 7
+
+===== Page 11/40 =====
+     </bean>
+ </beans>
+
+
+ 3. Create a new fileinthe same directory called jasperreports_extension.properties and populate it
+ with the following.
+
+ Note: This does not need to be edited, unless you change the name offonts.xml
+
+
+ net.sf.jasperreports.extension.registry.factory.fonts=net.sf.jasperreports.exten
+ sions.SpringExtensionsRegistryFactory
+ net.sf.jasperreports.extension.fonts.spring.beans.resource=fonts.xml
+
+
+ 4. Use the Java jar command to package up the fonts and metadata:
+
+ jar cvf myfont.jar *
+
+ This creates a jarfilecalled myfont.jar containing allthe fonts inthe directory as wellas thefonts.xml
+ and jasperreports_extension.properties files.
+
+ 5. Copy myfont.jar intoWEB-INF/lib directory on the IdentityIQ server. The font should now be available to
+ any JasperReport reports.
+
+ 6. In order forany reports to use this new font,the report must be edited toreference the font. This isaccom-
+ plished by modifying the appropriate JRXML object inIdentityIQ. This can be done using the IdentityIQ debug
+ pages or by modifying the .jrxml fileinthe IdentityIQ installationand reimporting the filetoupdate the object
+ in IdentityIQ.
+
+ For example, to change the font used inthe titlestyleto myFont:
+
+
+ <style
+     name="title"
+     isDefault="false"
+     fontName="myFont"
+     fontSize="24"
+     isBold="true"
+     isBlankWhenNull="true"
+ />
+
+
+Using Custom Fonts with JasperReports Pie Charts
+
+For IdentityIQ to use the font that supports thelanguage and character set thatyou need, add the following into the
+system configuration object specifying the font, fontsize, and fontstyle that isdesired:
+
+
+
+
+
+ SailPoint InstallationGuide 8
+
+===== Page 12/40 =====
+ <entry key="chartTitleFontName" value="MingLiU"/>
+ <entry key="chartTitleFontSize" value="12"/>
+ <entry key="chartTitleFontStyle" value="plain"/>
+
+
+ Note: You must add the font size, otherwise the size defaults to 0,which is invisible.The style
+ options include plain, bold, or italic.
+
+Special Messaging and Access History Considerations
+
+With the 8.4 release, the new Data Extract and Access History features thata message broker be available. The mes-
+sage broker can be eitheran Embedded Broker service, or a remote ActiveMQ broker instance.
+
+When an installation isrun, the Embedded Broker service willstartup by default and an embedded ActiveMQ instance
+willbe running and listening on port 61616. However, itisbest practice to disable the Embedded Broker service and
+use an external broker instead. This ispreferred due to enhanced administration capabilities as well as better tracking
+ofmessage throughputs and statistics.
+
+Should you opt to use the embedded broker, please note the following:
+
+
+
+ l The Embedded Broker statisticsare reset each time the IdentityIQ instance isrestarted as well as each time
+ the Embedded Broker Service is restarted.
+
+
+
+ l Ifthe Embedded Broker is used ina multi-IdentityIQ-instance environment, then the cli-
+ entConnectionString should be updated to allow for failover.See ActiveMQ formore information.
+
+
+
+ l Embedded Broker Memory and disk usage can be set in iiq.properties.
+
+
+
+ l Ensure that the Java hostname of the system running IdentityIQ is configured to resolve to127.0.0.1. You can
+ determine the host name from the IdentityIQ Debug/About page, in the Server Information section.
+
+When the messaging feature is enabled, the application server checks to make sure itcan connect toa broker on start
+up. The ClientConnectionString inthe MessageBusConfiguration Configuration object defines how toconnect
+and by default isconfigured tothe embedded ActiveMQ instance. Ifitcan’t connect, the application server willnot start
+up.
+
+Users can choose to disable the Embedded Broker service and use an external broker instead. Ifthisis done, make
+sure the ClientConnectionString is correct for the external broker. The broker must be up and running when the
+app server starts so that the connection check willpass.
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Installation Guide 9
+
+===== Page 13/40 =====
+How to Install and Deploy IdentityIQ
+
+Download and Expand the Installation Files
+
+You must have access to both the identityiq_installation and identityiq_home directories where: identityiq_installation
+isthe directory in which you download the installation filesand identityiq_home isthe directory in which you expand
+the identityiq.war file.
+
+The installationfilesare contained in a .zipfileavailable from SailPoint.
+
+ Note: Only download one instance of the IdentityIQ installation filestothis application server.
+
+Download the IdentityIQ installationfilesto a temporary installation directory on your application server.
+
+For example, C:\identityiq_installation
+
+The IdentityIQ installationfilesand directories are as follows:
+
+
+
+ l identityiq.war
+
+
+
+ l database
+
+
+
+ l doc
+
+
+
+ l integration
+
+ 1. Expand the identityiq.war filetoan IdentityIQ staging directory.
+
+ a. Create an IdentityIQ staging directory.
+ mkdir identityiq_home
+
+ b. Access the IdentityIQ staging directory.
+ cd identityiq_home
+
+ c. Expand the identityiq.war fileto thisdirectory.
+ jar -xvf identityiq_installation\identityiq.war
+ where identityiq_installation isthe directory inwhich you downloaded the installationfiles.
+
+
+ Note: On UNIX platforms, run the following command tomake the IdentityIQ CLI launch script
+ executable: chmod +x WEB-INF/bin/iiq
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Installation Guide 10
+
+===== Page 14/40 =====
+Configure the Number of Extended and Searchable Attributes Allowed
+
+
+ Note: You do not need to perform this procedure ifthe default extended and searchable attrib-
+ utes are sufficient for the needs ofyour enterprise. Ifyou do not need to configure these attrib-
+ utes, continue to Create the IdentityIQ Database and Tables and use the sample scripts
+ provided.
+
+IdentityIQ isconfigured by default to enable the following:
+
+
+
+ l Identity – 10 searchable attributes, 5 indexed
+
+
+
+ l Account – 5 searchable attributes, 1 indexed
+
+
+
+ l Certification – 5 searchable attributes, 1 indexed
+
+
+
+ l Role – 4 extended attributes, 1 indexed
+
+
+
+ l Application – 4 extended attributes, 1 indexed
+
+
+
+ l Managed Attribute – 3 extended attributes, 3 indexed
+
+
+
+ l Target – 1 extended attribute, 1 indexed
+
+
+
+ l Alert – 1 extended attribute, 1 indexed
+
+
+Ifyour enterprise requires more than those configured, you must use the following procedure to add as many addi-
+tional extended and searchable attributes as needed, up to a maximum oftwenty (20). You can also use this pro-
+cedure to set these attributes tobe indexed toenhance search speeds. You should take intoconsideration, however,
+that while indexing these attributes willincrease search speed, itmight reduce processing speed for other IdentityIQ
+functions.
+
+ Note: If you are implementing AI Services, do not remove any default fields from the hbm.xml
+ files.You can add custom fields ifyou wish, but removing any default fields, the AI Services fea-
+ ture willnot function properly. See the IdentityIQ AI Services Guide for more details.
+
+Ifyou make changes to the account attributes you must make the same changes to the certification item attributes.
+This enables searchable attributes from links tobe stored with additional entitlements on certifications to enable
+searching and the display ofaccount status icons.
+
+ Note: See the comments at the top of the IdentityExtended.hbm.xml filefor database-specific
+ considerations on column sizes.
+
+Edit the following files:
+
+
+
+
+
+ SailPoint Installation Guide 11
+
+===== Page 15/40 =====
+ l IdentityExtended.hbm.xml – identityattributes
+
+
+
+ l LinkExtended.hbm.xml – account attributes
+
+
+
+ l CertificationItemExtended.hbm.xml – certificationattributes
+
+
+
+ l ApplicationExtended.hbm.xml – application attributes
+
+
+
+ l BundleExtended.hbm.xml – role attributes
+
+
+
+ l ManagedAttributeExtended.hbm.xml – managed attributes
+
+
+
+ l TargetExtended.hbm.xml – permission targets
+
+
+
+ l AlertExtended.hbm.xml – activityalerts
+
+
+The filesare located in identityiq_home\WEB-INF\classes\sailpoint\object\ where identityiq_
+home isthe directory inwhich you expanded theidentityiq.war file.
+
+ Edit the files
+
+ 1. Open the filewith an XML or texteditor.
+
+ 2. Scrolldown tothe section that appears similar tothe following:
+
+
+ <property name="extended1" type="string" length="450"
+              index="spt_identity_extended1_ci"/>
+
+
+
+ 3. Enter as many additionalattributes as needed, up toa maximum of twenty.
+ Each line<property name="extended2" type="string" length="450"/> represents one exten-
+ ded or searchable attribute.As you add additional attributelines,number them sequentially.
+
+ Example:
+
+
+ <property name="extended2" type="string" length="450"/>
+ <property name="extended3" type="string" length="450"/>
+ <property name="extended4" type="string" length="450"/>
+
+
+ 4. Optional: Specify attributes thatshould be indexed.
+ For example, in the identityfile,add index="spt_identity_extendedN_ci" to each attribute linethat
+
+
+
+
+
+
+
+SailPoint Installation Guide 12
+
+===== Page 16/40 =====
+ should be indexed, where N matches the number ofthe attribute.
+
+ Example:
+
+
+ <property name="extended1" type="string" length="450"
+              index="spt_identity_extended1_ci"/>
+ <property name="extended2" type="string" length="450"
+              index="spt_identity_extended2_ci"/>
+ <property name="extended3" type="string" length="450"
+              index="spt_identity_extended3_ci"/>
+
+
+ 5. Save the file.
+
+
+ Create new database scripts
+
+Use the iiq script torun the schema command tocreate the new database creation scripts based on your changes to
+the .hbm.xml files.For example, do the following to run the schema command:
+
+ 1. Access the proper directory.
+
+ cd identityiq_home\WEB-INF\bin
+
+ 2. Run the command to create the scripts you willuse tocreate the IdentityIQ databases.
+
+ iiqschema
+
+
+Continue with Create the IdentityIQ Database and Tables.
+
+Create the IdentityIQ Database and Tables
+
+
+ Note: Refer to the Advanced InstallationInformation forspecific information about the databases
+ you are using.
+
+The database DDL scripts forthe supported database platforms are located in identityiq_home\WEB-INF\data-
+base where identityiq_home isthe directory inwhich you expanded the identityiq.war file.Use these scripts
+tocreate the IdentityIQ database and tables.
+
+The database directory contains sample database DDL scripts forthe supported database platforms. The scripts that
+correspond to the default extended and searchable attributescontain theproduct version number in the filename, for
+example, create_identityiq_tables-8.4.mysql. Ifyou changed the extended and searchable attributecon-
+figurationby modifying the .hbm.xml configuration filesand ran the iiq schema command, then theappropriate
+sample DDL scriptisin a filewithoutthe product version number in the filename, for example, create_iden-
+tityiq_tables.mysql.
+
+
+
+
+
+
+
+ SailPoint InstallationGuide 13
+
+===== Page 17/40 =====
+ Note: As of 8.4, there isa new identityiqah database, which supports the new Access History fea-
+ ture. The identityiqah database must be created as part of the installation, even ifyou do not
+ intend touse the Access History feature.
+
+ The database for storing Access History data isseparate from the IdentityIQ database. The Iden-
+ tityIQ installand upgrade scripts willcreate separate databases for IdentityIQ and Access His-
+ tory data. The databases can be within the same instance for convenience, but separate
+ database instances are recommended for production environments to avoid an impact on Iden-
+ tityIQ performance. Depending on your environment setup and on the number of daily changes
+ to your identities, the Access History database can be large, and willcontinue to grow.
+
+The scripts are designed to:
+
+
+
+ l create an IdentityIQ application database instance, a plugin database instance, and an access history data-
+ base
+
+
+
+ l create the tables and indexes for each database
+
+
+
+ l create a user with a password for each database
+
+
+
+ l grant the user privileges for accessing the databases
+
+
+With the exception of the Oracle script,the scripts provided are sufficient as they are. The Oracle scriptmust be mod-
+ifiedto specify the DATAFILE location for each database and to un-comment the associated commands that create
+the database instance. For alldatabase types, itislikelythat you willwant to change the database user name and
+password.
+
+The scripts can be modified as required for your environment as long as the table names, column names, and column
+types are maintained.
+
+Take note ofthe following information, you will need itwhen you configure IdentityIQ:
+
+ Note: The users and passwords inthe following listcan be, but do not have to be, the same.
+
+
+
+
+ l Host Name
+
+
+
+ l Database Type
+
+
+
+ l Database Name
+
+
+
+ l User ID /Password for a user that can create tables and modify database schema
+
+
+
+
+
+
+
+
+
+
+SailPoint Installation Guide 14
+
+===== Page 18/40 =====
+ l User ID /Password fora user that IdentityIQ willuse toaccess the IdentityIQ application database. This Iden-
+ tityIQuser must be able to create, modify, and delete objects in the tables thatare created.
+
+
+
+ l User ID /Password fora user that IdentityIQ willuse toaccess the plugin database. This IdentityIQ user must
+ be able tocreate, modify, and delete objects in the tables that are created.
+
+
+
+ l User ID /Password fora user that IdentityIQ willuse toaccess the access history database. This IdentityIQ
+ user must be able to create, modify, and delete objects inthe tables that are created.
+
+A database clientisused to execute the DDL scripts.Example commands forMySQL would look as follows:
+
+mysql -u user -p
+Password:password
+
+
+mysql> source create_identityiq_tables.mysql;
+
+
+— Confirmation output from the SQL commands contained in the script is displayed on
+the screen —
+
+
+mysql> show databases; (optional - verification that the database was created)
+
+
+mysql> quit
+
+where user and password are the credentials for a database user that has permissions to create databases, tables,
+and users.
+
+Create Site-Specific Encryptions Keys
+
+A default encryption key is compiled into the product forease of deployment indemonstration environments. Site-spe-
+cifickeys can be generated and stored ina file-based keystore. Use of site-specifickeys isstrongly recommended to
+ensure that sensitive data cannot be decrypted outside of this installationofIdentityIQ.
+
+For more details, see the System Configuration documentation.
+
+Configure the IdentityIQ Installation
+
+To configure IdentityIQ to use the database you created:
+
+The iiq.properties fileislocated inidentityiq_home\WEB-INF\classes, where identityiq_home isthe
+directory inwhich you expanded the identityiq.war file.
+
+ 1. Access the iiq.properties fileand update the following information forthe application, plugin, and access
+ history databases:
+
+
+
+
+
+
+
+ SailPoint InstallationGuide 15
+
+===== Page 19/40 =====
+ l Host Name
+
+
+
+ l Database Type
+
+
+
+ l Database Name
+
+
+
+ l User ID
+
+
+
+ l Password
+
+ 2. Run the iiq encrypt <password> command from the identityiq_home\WEB-INF\bin directory to
+ create an encrypted password. The password for the database connection can be clear text or encrypted. Itis
+ highly recommended thatyou use an encrypted password.
+
+ 3. Import the initialconfiguration objects intothe IdentityIQ database.
+
+ 4. Launch the IdentityIQ console by running the iiq console command from the identityiq_home\WEB-
+ INF\bin directory. Use the console command import init.xml toimport the configuration objects as shown:
+
+ iiq console
+ > import init.xml
+ > quit
+
+ 5. Start your application server.
+
+Install or Deploy IdentityIQ
+
+
+ Note: IdentityIQ may only be defined once on an application server so that itwillonly be instan-
+ tiated once.
+
+The IdentityIQ application ispackaged in the Java EE standard WAR format inthe identityiq.war file.Use the
+tools provided by your application server for the installation or deployment. The staging directory created inthe steps
+above can be copied into the application server installation orused as an installation source depending on the applic-
+ation server deployment process. Alternatively, the contents of the staging directory can be packaged in a war filefor
+deployment.
+
+When deploying IdentityIQ into an application server as a war fileinstead of a directory containing the expanded war
+file,theconfiguration fileWEB-INF\classes\packtag.properties must be modified to set resources.check-
+timestamps=false. The filecontains a sample configuration linethat must be un-commented and modified to set
+the value.
+
+IdentityIQ requires a high level of class loader isolation so that the third party libraries provided with IdentityIQ are
+used instead ofones provided by the application server. Some ofthe supported application servers require additional
+
+
+
+
+
+ SailPoint Installation Guide 16
+
+===== Page 20/40 =====
+configuration to achieve this isolation. Refer to Advanced Installation Information for specific information about
+your application servers.
+
+ Note: On UNIX platforms, run the following command to make the IdentityIQ CLI launch script
+ executable: chmod +x WEB-INF/bin/iiq
+
+Open IdentityIQ
+
+Open IdentityIQ from your Web browser and continue with the configuration and definition needed foryour enterprise.
+
+See the System Configuration documentation forinformation on configuring IdentityIQ.
+
+ Note: If you purchased SailPoint Lifecycle Manager refer to the Lifecycle Manager doc-
+ umentation for further instruction on how to activate that product.
+
+ 1. Launch a Web browser. See Supported Platforms.
+
+ 2. Point the browser toyour IdentityIQ installation.
+
+ Example:
+
+ Ifyou performed the default Tomcat installation and are accessing IdentityIQ from the same system on which it
+ was installed,use http://localhost:8080/SailPoint.
+
+ 3. Log on tothe IdentityIQ using the default user ID and Password.
+ The default user ID is spadmin and the default password is admin.
+
+ You should change the default password as soon as possible. To change the default password for spadmin:
+
+ a. From the navigation menu bar, click Identities > Identity Warehouse to display the Identities page.
+
+ b. Click spadmin inthe listto display the View Identity page.
+
+ c. Click Change Password to display the password information.
+
+ d. Change and confirm the password, and save your changes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Installation Guide 17
+
+===== Page 21/40 =====
+Advanced Installation Information
+
+
+ Note: Other supplemental components such as password interceptor plugins, Connector Gate-
+ way instances, and connector agents should be updated to match the version of the IdentityIQ
+ server. See the Direct Connectors Administration and Configuration, Integration, and Quick
+ Reference documentation for Gateway Connectors delivered with the product, foradditional
+ details.
+
+Use the advanced installation information to customize IdentityIQ for your enterprise. Use the advanced installation
+instructions to do the following:
+
+
+
+ l Configure Using Oracle
+
+
+
+ l Configure Using Aurora
+
+
+
+ l Configure Using SQL Server
+
+
+
+ l Configure Using Azure SQL
+
+
+
+ l Configure Using MySQL
+
+
+
+ l Configure Using DB2
+
+
+
+ l Deploy Using Tomcat
+
+
+
+ l Deploy Using WebSphere Liberty
+
+
+
+ l Deploy Using JBoss
+
+
+
+ l Deploy Using WebLogic
+
+
+
+ l Install and Register the IQService for Use with Windows
+
+
+
+ l Configure Integration with Third Party Applications
+
+
+
+ l Configure IdentityIQ for Single Sign-on
+
+
+
+ l Synchronize IdentityIQ Server Time
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Installation Guide 18
+
+===== Page 22/40 =====
+Configure Using Oracle
+
+The Oracle JDBC driver implementation isno longer provided inIdentityIQ. You should obtain the JDBC driver thatis
+provided with thedatabase installation.
+
+Ifyou are using the Oracle ojdbc8 driver,you should make a configuration change to your JVM parameters. Disable
+nio by adding -Doracle.jdbc.javaNetNio=false. This prevents issues where the database connection is
+closed in error.
+
+Configure Using Aurora
+
+
+ Note: You must choose a case insensitive collationforthis database.
+
+When using Aurora, you must modify the create user section ofthe create_identityiq_tables.mysql scriptby
+removing the MySQL section and un-commenting the Aurora section. You willthen use that scriptto create your
+tables.
+
+Configure Using SQL Server
+
+
+ Note: You must choose a case insensitive collationforthis database.
+
+The SQL Server JDBC driverimplementation is no longer provided in IdentityIQ. You should obtain the JDBC driver
+thatis provided withthe database installation.
+
+To avoid deadlocking, ensure thatthese settings are set to true foryour SQL Server database:
+
+ALLOW_SNAPSHOT_ISOLATION
+
+READ_COMMITTED_SNAPSHOT
+
+Configure Using Azure SQL
+
+
+ Note: You must choose a case insensitive collationforthis database.
+
+When using Azure SQL, you must firstcreate a login forthe identityiq and identityiqPlugin databases before creating
+new users. Run the following on the master database to create the new databases and logins:
+
+
+ CREATE DATABASE identityiq
+ GO
+ CREATE DATABASE identityiqPlugin
+ GO
+ CREATE LOGIN identityiq WITH password='<PASSWORD>'
+ GO
+ CREATE LOGIN identityiqPlugin WITH password='<PASSWORD>'
+ GO
+
+
+
+
+
+
+ SailPoint InstallationGuide 19
+
+===== Page 23/40 =====
+Next, connect tothe individual databases tocreate the database users and tables as follows:
+
+
+ CREATE USER [identityiq] FOR LOGIN [identityiq] WITH DEFAULT_SCHEMA=[identityiq]
+ GO
+ EXEC sp_addrolemember 'db_owner', 'identityiq';
+ GO
+ GRANT EXECUTE TO identityiq
+ GRANT INSERT TO identityiq
+ GRANT DELETE TO identityiq
+ GRANT UPDATE TO identityiq
+ GRANT SELECT TO identityiq
+ GO
+ CREATE SCHEMA identityiq AUTHORIZATION identityiq
+ GO
+ ALTER DATABASE identityiq SET ALLOW_SNAPSHOT_ISOLATION ON
+ GO
+ ALTER DATABASE identityiq SET READ_COMMITTED_SNAPSHOT ON
+ GO
+
+Then connect tothe AccessHistory database as follows:
+
+
+ CREATE DATABASE identityiqah
+ GO
+ CREATE LOGIN identityiqah WITH password='<PASSWORD>'
+ GO
+
+Once the users and databases are created, proceed with the creation of IdentityIQ tables.
+
+Configure Using MySQL
+
+
+ Note: You must choose acase insensitive collationfor thisdatabase.
+
+File-Per-Table Tablespaces
+
+When using MySQL, IdentityIQ can achieve significant performance improvements by using File-Per-Table
+tablespaces. This enables each table and itsindexes to be initsown data file.
+
+ Note: This settingmust be configured prior tocreating the IdentityIQ tables using theDDL scripts
+ provided as itonly affects behavior during tablecreation
+
+File-Per-Table tablespaces can be enabled by using the innodb_file_per_table MySQL configuration parameter.
+
+ONLY_FULL_GROUP_BY SQL Mode
+
+MySQL 5.7.5 and laterenable the ONLY_FULL_GROUP_BY SQL mode by default, and this settingis incompatible
+with IdentityIQ.To disable thissetting,the sql_mode MySQL configuration parameter must be defined tonot contain
+the ONLY_FULL_GROUP_BY SQL mode.
+
+
+
+
+
+ SailPoint InstallationGuide 20
+
+===== Page 24/40 =====
+Default configurations do not listtheenabled modes, so you can use the following MySQL command toview the cur-
+rent settings.
+
+show variables where variable_name='sql_mode';
+
+MySQL system variable and configuration parameters are configured in the [mysqld] section of my.cnf orother equi-
+valent methods.
+
+For more information, consult the MySQL documentation.
+
+Configure Using DB2
+
+The DB2 JDBC driver implementation is no longer provided in IdentityIQ. To use DB2 as the IdentityIQ repository or
+fora JDBC application thatconnects toa DB2 database, the correct implementation jarfileshould be obtained from
+the DB2 installationor from the IBM web site.
+
+Deploy Using Tomcat
+
+To deploy a Web application using Tomcat unpack the .war fileintoan application directory inthe webapps directory
+ofthe Tomcat installation.
+
+ 1. Access the webapps directory.
+
+ cd Tomcat_home\webapps
+
+ 2. Create an identityiqhome directory.
+
+ mkdir identityiq
+
+ 3. Access the identityiqhome directory.
+
+ cd identityiq
+
+ 4. Expand the identityiq.war filetothisdirectory
+
+ jar -xvf identityiq_home\identityiq.war
+
+ where identityiq_home isthe directory in which you downloaded the installation files.
+
+Tomcat System Properties
+
+
+ Note: SailPoint recommends increasing your cache size to50MB to avoid insufficientfree space
+ warnings.
+
+To enable UTF-8 characters inIdentityIQ installationsusing Tomcat, add the following line toeach Connector element
+inyour Tomcat server.xml.
+
+URIEncoding="UTF-8”
+
+
+
+
+ SailPoint InstallationGuide 21
+
+===== Page 25/40 =====
+The following is an example entry:
+
+<Connector port="8080" protocol="HTTP/1.1" connectionTimeout="20000" redir-
+ectPort="8443"
+
+URIEncoding="UTF-8" />
+
+Deploy Using WebSphere Liberty
+
+When IdentityIQ is deployed inWebSphere Liberty, specific features must be enabled.  Using the featureManager and
+feature tags inthe server configuration defined in server.xml, enable the jsp-2.3 feature and ensure thatno other
+features are enabled. This willautomatically include the required servlet and elfeatures. Features other than these
+three are known to cause conflicts that willprevent IdentityIQ from working properly.
+
+Ifyou have enabled fulltext indexing forIdentityIQ, the location of the fulltextindex should be outside of the IdentityIQ
+installationor application update monitoring should be disabled. See the updateTrigger attribute ofthe applic-
+ationMonitor element in the server configuration documentation foradditional details.
+
+To avoid issues displaying non-English characters in a WebSphere Liberty deployment, the init-param setCon-
+tentEncodingInResponseHeader should be set to"true" in the 'JSON Filter'<filter>setting inweb.xml. The addition to
+web.xml should look like:
+
+<init-param> <param-name>setContentEncodingInResponseHeader</param-name> <param-
+value>true</param-value> </init-param>
+
+Deploy Using JBoss
+
+
+ Note: Previously supported releases of JBoss Application Server required configuration that is
+ no longer required inthe Application Server versions supported inthis release. Ifyou use older
+ unsupported versions ofJBoss, the additional configuration, defined in previous versions of the
+ IdentityIQ Installation Guide, are stillrequired.
+
+JBoss Datasources
+
+When using a container-provided or application server managed datasource for the IdentityIQ database, follow the
+complete instructions provided in the Datasource Management section of the JBoss Configuration Guide for how to
+configure JBoss and IdentityIQ touse the datasource. These instructions include:
+
+
+
+ l Define a JBoss JDBC driver core module for the JDBC driver.
+
+
+
+ l Configure the datasource using the JBoss GUI or CLI.
+
+
+Additionally, you must:
+
+
+
+
+
+
+
+ SailPoint Installation Guide 22
+
+===== Page 26/40 =====
+ l Remove theJDBC driver jarfilefrom the IdentityIQ WEB-INF/lib directory.
+
+
+
+ l Add the JDBC drivercore module as a dependency inthe IdentityIQ WEB-INF/jboss-deployment-struc-
+ ture.xml file.
+
+JBoss System Properties
+
+UTF-8
+
+To enable UTF-8 characters in IdentityIQ installationsusing JBoss, add thefollowing xml afterthe <extensions/>
+element tothe standalone.xml or domain.xml configuration file.
+
+
+ <system-properties>
+   <property name="org.apache.catalina.connector.URI_ENCODING"
+ value="UTF-8"/>
+   <property
+ name="org.apache.catalina.connector.USE_BODY_ENCODING_FOR_QUERY_STRING"
+ value="true"/>
+ </system-properties>
+
+
+Maximum Parameter Requirements
+
+Editing an IdentityIQ application with a large number of schema attributes willnotfunction properly unless you
+increase the maximum number of parameters allowed. Add the following tothe standalone.xml filetoincrease the
+maximum number ofparameters.
+
+
+ <system-properties>
+           <property
+ name="org.apache.tomcat.util.http.Parameters.MAX_COUNT" value="1000"/>
+ </system-properties>
+
+To avoid seeing the HTTP error code 405 on saving a ACF2 application inthe JBOSS environment, add following
+entry inyour server configuration fileand restart the JBOSS server.
+
+
+ <http-listener name="default" socket-binding="http" max-parameters="5000"/>
+
+
+Logging Using log4j
+
+To enable application logging using the log4jlogging facilities,addthe following to standalone.xml todisable per-
+deployment logging:
+
+
+ <system-properties>
+   <property name="org.jboss.as.logging.per-deployment" value="false"/>
+
+
+
+
+
+ SailPoint InstallationGuide 23
+
+===== Page 27/40 =====
+ </system-properties>
+
+
+JBoss EAP 7.2 and Higher
+
+The JBoss Undertow subsystem default behavior isto proactively authenticate HTTP basic authentication headers
+against its internalauthentication system and not pass credentials through to IdentityIQ. This prevents web service
+APIs, such as the SCIM interface, from being used with IdentityIQ credentials.
+
+To use SailPoint IdentityIQ web service APIs with JBoss EAP 7.2 and higher, disable proactive authentication by run-
+ning the following command in the JBoss administrative CLI:
+
+
+ /subsystem=undertow/servlet-container=default:write-attribute(name=proactive-authen-
+ tication,value=false)
+
+
+ Note: For thissetting to take effect, you must restart the application server.
+
+Deploy Using WebLogic
+
+When IdentityIQ is deployed inWebLogic, you must configure the environment before inbound web service requests
+can be received. Inbound service request are required for IdentityIQ RESTful web services and some ofthe pro-
+visioning providers with whom IdentityIQ integrates.
+
+The Security Configuration MBean flagenforce-valid-basic-auth-credentials must be set to false to prevent HTTP
+requests forweb services with embedded authentication information from needing to pass WebLogic Server Iden-
+tityIQauthentication. You can accomplish this by adding the following tothe security-configuration element inthe con-
+fig.xml file.
+
+<enforce-valid-basic-auth-credentials>false</enforce-valid-basic-auth-credentials>
+
+Install and Register the IQService for Use with Windows
+
+The IQService is a native Windows service that enables IdentityIQ to participate in a Windows environment and
+access information only available through Win32 APIs.
+
+After the IQService is installed and running on a Windows machine you can configure tasks inIdentityIQ thatuse the
+service such as Windows activity collection,Windows target collection, Active Directory provisioning, and more.
+
+ Note: Version 4.5 ofMicrosoft .NET is required forinstallation ofthe IQService executable with
+ most configurations of IdentityIQ. Ifyour configuration requires a different version itisnoted in
+ the connector documentation.
+
+
+
+
+
+
+
+
+ SailPoint Installation Guide 24
+
+===== Page 28/40 =====
+ Note: The IQService version must match the IdentityIQ server version including patch versions.
+ When you upgrade one, you must upgrade the other.
+
+InstalltheIQService ina location thatis running Windows.
+
+To installand registerthe IQService, do the following:
+
+ 1. Create a directory inwhich todownload the service.For example, C:\iqservice.
+
+ 2. Copy the IQService.zip filefromthe IdentityIQ installationintothe new directory.The IQService.zip file
+ islocated inidentityiq_home/WEB-INF/bin/win where identityiq_home is thedirectory inwhich
+ you expanded the identityiq.war file.
+
+ 3. Expand the IQService.zip.
+
+ 4. Run IQService.exe -itoinstalla Windows service named IQService.
+
+ 5. Startthe service from the Windows Services Applet or from the command lineby running IQService.exe -s.
+
+ Other command lineoptions with thisservice are:
+
+ -? | h – This help output
+ -d – run in console mode
+ -i – Install a service
+ -k – stop the service
+ -n – (Optional) name of IQService for installing multiple instances. Default:
+ IQService-Instancex, where x is an incremental integer value.
+ -p – (Optional) unique available port number specified at the time of IQService
+ installation. Default: 5050. Incremental based on the next available port.
+ -r – remove the service
+ -s – start the service
+ -t – restart (stop/start) the service
+ -u – uninstall the service. Removes the service components and clears the
+ registry entries
+ -v – print version information
+
+The IQService willpersistconfiguration settingsrelated to theport, tracefile,and trace levelin the Windows registryat
+HKEY_LOCAL_MACHINE\SOFTWARE\SailPoint\IQService. The following keys are used:
+
+
+
+ l -port – port on which to listen
+
+
+
+ l -tracefile – path to the tracefile
+
+
+
+
+
+
+
+SailPoint InstallationGuide 25
+
+===== Page 29/40 =====
+ l - tracelevel – 0 (off),3 (verbose)
+
+
+
+ l - maxTraceFiles – maximum number of Trace log files
+
+
+
+ l - traceFileSize – maximum filesize of a trace filein bytes
+
+Configure Integration with Third Party Applications
+
+SailPoint provides support forintegration with third party vendor applications to automate workflow and enable you to
+leverage the role management, risk assessment, and policy enforcement features ofIdentityIQ.
+
+Integration focuses on the following points:
+
+
+
+ l Automated remediation – provides automated workflow to remediate inappropriate access and policy violations
+ using immediate, real-time execution of provisioning or deprovisioning requests.
+
+
+
+ l Role provisioning – enables you to provision user access to data, applications, and systems based on roles
+ defined within IdentityIQ.
+
+
+
+ l Policy checking foraccess changes – incorporates compliance and risk management by analyzing new user
+ requests and role changes against defined policy within IdentityIQ.
+
+
+
+ l Bulk reprovisioning ofmodified roles – enables third party applications to receive requests from IdentityIQ to
+ bulk modify user accounts ifroles in IdentityIQ have changed.
+
+Integration requires configuration toboth IdentityIQ and the applications with which itisintegrating. This configuration
+ishighly dependent on the applications and on the environment in which they are running. SailPoint provides some
+integration examples inthe integration folder of the installation package, as well as documentation on integration
+and configuration delivered with the product.
+
+Configure IdentityIQ for Single Sign-on
+
+IdentityIQ provides rule-based SSO authentication support. Create the rules and then specify the rule used to drive
+authentication from the Login Configuration pages. A rule approach enables you tohandle any SSO system that uses
+the HTTP header tostore credentials or other identifying information by writing a new rule.
+
+The SSOAuthenticationRule ruleis provided the HttpRequest and a SailpointContext as input and returns
+an identity foruse in the application.
+
+Configure IdentityIQ for Single Sign-on with SiteMinder
+
+An example SiteMinder rulethat illustrates exactly how SiteMinder attributes can be pulled from the header and how
+the sailpoint.api.Correlator can be used toreturn a Link /Identity using an identity attribute likea dn can be
+found inconfig/examplerules.xml filedelivered with your installation package.
+
+
+
+
+
+
+ SailPoint Installation Guide 26
+
+===== Page 30/40 =====
+For SSO to work with SiteMinder, the sm-authdirname from the SiteMinder header must be mapped to an applic-
+ation that isconfigured to work with IdentityIQ and aggregation must have been run on that application so that an Iden-
+tityCube exists with a sm-userdn user value.
+
+After those criteriaare met, the rule specified on the Login Configuration page, performs authentication by matching
+the sm-userdn header variable provided by SiteMinder to an Identity Cube in IdentityIQ.
+
+The rule performs the authentication by pulling the sm-userdn and sm-authdirname from the SiteMinder header
+when itreceives the HttpRequest and a SailPointContext and matching itto an Identity Cube.
+
+Ifthe rule does not return an identity indicating that authentication failed, IdentityIQ displays the standard login page
+formanual authentication.
+
+Synchronize IdentityIQ Server Time
+
+Multiple IdentityIQ servers in the same deployment instance work in a cooperative fashion communicating with each
+other through the IdentityIQ database. Itisimperative that the time set on allservers be synchronized forthis to work
+effectively. Inaccurate times can lead toincorrect detection of server outage, can interfere with object locking
+designed to protect the integrity of system data, can cause distributed sequential operations to be run in incorrect
+order, or can cause distributed concurrent operations tobe run multiple times.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Installation Guide 27
+
+===== Page 31/40 =====
+IdentityIQ Upgrade
+
+IdentityIQ Upgrade
+
+
+Do not perform the upgrade untilyou have completely read the Release Notes. Additional white papers and articles
+thatcan provide additional information toassist with the upgrade procedure are available on Compass, the SailPoint
+online customer and partner community.
+
+Refer to Supported Platforms toensure thatthe requirements have not changed since your previous installation or
+upgrade. Update as needed to ensure that IdentityIQ continues to operate as expected.
+
+ Note: When upgrading, remove alle-fixes currently deployed since they are created for a very
+ specific patch level. The instructions originally provided with the e-fix may provide more detail for
+ thisstep. Updating to the latestpatch in a patch stream or upgrading to a latermajor version may
+ remove the need forsome or alle-fixes. Please check the IdentityIQ Security Vulnerabilities
+ page on Compass forthe listofsecurity e-fixes applicable tothis patch.
+
+Upgrade Considerations
+
+Implementation ofSailPoint IdentityIQ often requires substantial configurations, process changes, customizations,
+defect mitigations, and testing. Upgrades and major releases resolve issues, improve features, and deprecate certain
+functionality.
+
+ Important: Review the latest SailPoint IdentityIQ Release Notes and user documentation,
+ as well as the implementation procedures, to learn about new features, review important
+ upgrade considerations, and understand the impacts of changes to each component.
+
+
+iiq.properties File
+
+ SailPoint strongly recommends that you use the version of the iiq.properties filethatcame with the version
+ ofIdentityIQ to which you are upgrading to avoid complication due to variable changes.
+
+Backing Up iiq.dat and iiq.cfg
+
+ Make sure to store copies ofthe iiq.dat and iiq.cfg filesina safe place so they can be restored afterthe
+ upgrade.
+
+Apache Commons DBCP and Commons Pool versions
+
+ Different Apache Commons DBCP and Commons Pool versions are used by the IdentityIQ server instead ofthe
+ JDBC connector. Refer to important upgrade information inthe Database Connection Pooling and Dialects sec-
+ tionof the Performance Management Guide forIdentityIQ available on Compass, the SailPoint online customer
+ and partner community.
+
+
+
+
+
+ SailPoint Installation Guide 28
+
+===== Page 32/40 =====
+IdentityIQ Upgrade
+
+JDBC Drivers
+
+ Note: SailPoint strongly recommends that you obtain JDBC drivers from your database server vendor that match
+ the database server version inuse.
+
+The following are two specific and distinct upgrades occurring within this process:
+
+
+
+ l Upgrade Procedure – upgrading the software in production requires a specific procedure.
+
+
+
+ l Upgrade Configurations – client implementations ofSailPoint IdentityIQ frequently customize features outside
+ the configuration options that leverage IdentityIQ APIs and /or coding. These features within the configuration
+ and coding APIs of the software change and improve over time. While most ofthese version-to-version
+ changes are backwards compatible, any implementation specific scripts or rules that use the API features need
+ tobe ported, tested, and validated ahead of the actual upgrade procedure when the installation moves into pro-
+ duction.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Installation Guide 29
+
+===== Page 33/40 =====
+How to Upgrade IdentityIQ
+
+
+ Note: You can only upgrade from the latestreleased version of IdentityIQ. This can be from any
+ patch level of the latest release including no patches applied.
+
+Use the following information to upgrade SailPoint IdentityIQ to the latest version. After your upgrade iscomplete refer
+tothe product documentation forinformation on the latestfeatures and functionality.
+
+You must stop allprocesses and shut down IdentityIQ before performing the upgrade. Itisrecommended thatyou
+schedule the upgrade for a time when the application is not being used heavily.
+
+ Note: IfIQService isinstalled, the IQService version must match the IdentityIQ server version. If
+ you upgrade one, you must upgrade the other.
+
+
+ Note: While performing an upgrade, ifAI is enabled, the AI recommendation plugin will auto-
+ matically update to the latest version.
+
+
+ Note: Messaging and Access History features are disabled. Ifthe messaging feature is enabled
+ by a user, a broker connection check willbe performed and must pass. Ifthe check fails,the
+ application server willnot start. For more information, see Special Messaging and Access His-
+ tory Considerations.
+
+The upgrade process contains the following parts:
+
+
+
+ l Shut down IdentityIQ – see Shut Down IdentityIQ
+
+
+ Caution: It is very important that you perform the database and customization backup
+ before performing the upgrade procedure.
+
+
+
+
+
+ l Back up your existing IdentityIQ databases – see Back Up Your Existing Version of IdentityIQ
+
+
+
+ l Download and expand the installation files– see Download and expand the installation Files
+
+
+
+ l Perform the upgrade to the latest version ofIdentityIQ – see Upgrade the IdentityIQ Database, Upgrade the
+ IdentityIQ Configuration andUpgrade the IdentityIQ External Components
+
+
+
+ l Reapply any customization – see Reapply Customization to the Upgraded Installation
+
+
+
+ l Access IdentityIQ – see Access IdentityIQ
+
+
+
+ l Perform the post-upgrade procedures – see Post-upgrade Procedures
+
+
+
+
+
+
+ SailPoint Installation Guide 30
+
+===== Page 34/40 =====
+ Shut Down IdentityIQ
+
+You must stop allrunning processes and shut down IdentityIQ before running the upgrade.
+
+ Note: Some of the items displayed on the Task Results page are approvals that are generated by
+ workflows and are not running processes. These items are managed by IdentityIQ, should not be
+ terminated, and willdisplay on that page after the upgrade procedure iscomplete.
+
+Check the Task Results and Report Results pages toensure that no task-generated processes are running before
+stopping your application server.
+
+Ifthere are task or reports pending, terminate them within IdentityIQ before shutting down your application server. Pro-
+cesses terminated abnormally might not end gracefully.
+
+To terminate a task or report, right-click on the name and select Terminate.
+
+ Back Up Your Existing Version of IdentityIQ
+
+
+ Note: It isvery important that you perform the database and customization backup before per-
+ forming the upgrade procedure.
+
+Back up your IdentityIQ database and any customization you performed on the current installation. Any customization
+involving additions or changes to filesinthe IdentityIQ installation directory isoverwritten by the upgrade procedure
+and willneed to be reapplied when itiscomplete.
+
+Customizations that are stored in the IdentityIQ installation directory can include the .hbm.xml extended attribute con-
+figuration filesin WEB-INF\classes\sailpoint\object and web-based content such as XHTML, JavaScript,
+and images. See How to Upgrade IdentityIQ for more information.
+
+Itisrecommended that you create a custom directory within your IdentityIQ installation directory so that changes are
+not lost during future upgrades of the product. Copy any customized filesinto this directory so that you can copy and
+paste them back into the working directories after the upgrade is complete.
+
+Customization also includes the task definitions, reports, rules, and workflows that are stored in the IdentityIQ data-
+base that were included as part of the product and that are overwritten during the upgrade with the latest version. If
+you have modified any of these, you willneed toreapply your modifications after the upgrade process.
+
+See your database documentation forinformation on the proper backup procedure fordatabase you are using.
+
+Download and Expand the Installation Files
+
+
+ Note: You must have access to both the identityiq_installation and identityiq_home directories
+ where: identityiq_installation is the directory in which you download the installation filesand iden-
+ tityiq_home isthe directory in which you expand the identityiq.war file.
+
+
+
+
+
+
+
+ SailPoint Installation Guide 31
+
+===== Page 35/40 =====
+ Download and expand the installation Files
+
+ 1. Delete any existing IdentityIQ installationfiles before downloading the newest version.
+
+ 2. Download the IdentityIQ installationfiles toa temporary installation directory on your application server. For
+ example, C:\IdentityIQ_installation.
+
+ The installation files are contained in a .zipfile.
+
+ The IdentityIQ installation filesare as follows:
+
+ identityiq.war
+ database
+ doc
+ integration
+
+
+ Note: InStep 3, unlike in a patch release, the new version ofIdentityIQ cannot be expan-
+ ded intothe same directory as an old version. Expanding into the same directory would
+ result infiles thatno longer exist inthe new version not being removed; thiswill create con-
+ flictsthatwill cause unexpected failure.
+
+ 3. Upgrade the IdentityIQ application on your application server.
+ The IdentityIQ upgrade is packaged inthe Java EE standard WAR format in the identityiq.war file.Use
+ the tools provided by your application server for the upgrade.
+
+ Example: This example isusing Tomcat to deploy a Web application by unpacking the .war fileinto an applic-
+ ation directory in the webapps directory ofthe Tomcat installation.
+
+ a. Access the webapps directory.
+ cd Tomcat_home/webapps
+
+ b. Access the IdentityIQ home directory.
+ cd identityiq
+
+ c. Delete the existing files.
+
+ d. Expand the identityiq.war fileto this directory.
+ jar -xvf identityiq_installation_directory\identityiq.war
+ where identityiq_installation_directory is the directory inwhich you downloaded the installation files.
+
+Do not add any previously-used e-fixes inthis upgraded installation. E-fixes are only compatible with the patch level
+forwhich they were delivered.
+
+
+
+
+
+
+
+
+SailPoint Installation Guide 32
+
+===== Page 36/40 =====
+Reapply Customization to the Upgraded Installation
+
+
+ Note: Itisvery important that you perform the database and customization backup before per-
+ forming the upgrade procedure.
+
+Ifyou changed the default number ofextended and searchable identity,account, or certificationitem attributes as part
+ofyour initialinstallation,copy your customized IdentityExtended.hbm.xml, LinkExtended.hbm.xml, and
+CertificationItemExtended.hbm.xml filesinto the new installation.Important notes about defining extended
+attributes inIdentityIQ can be found in IdentityExtended.hbm.xml. The notes there apply toallof the product’s
+extended attributes.
+
+Ifyou make changes to the account attributes. you must make the same changes tothe certification item attributes.
+This enables searchable attributes from linksto be stored with additional entitlements on certificationsto enable
+searching and the display of account status icons.
+
+The upgrade process modifies many different configuration objects in the system. Ifyou have saved the XML rep-
+resentation ofthese objects externally forthe purposes of change control or ease ofdeployment, you must refresh
+those objects by exporting them from the system after the upgrade process iscomplete. Any objects from a previous
+version of IdentityIQ that are imported intothe current version might not have the required changes or enhancements
+applied. This can cause IdentityIQ tooperate abnormally. A listofthe objects that are affected is provided inthe
+Release Notes.
+
+Upgrade the IdentityIQ Database
+
+
+ Note: As ofversion 8.4, there isa new identityiqah database, which supports the new
+ Access History feature. The identityiqah database must be created as partof the upgrade,
+ even ifyou do not intend touse the Access History feature.
+
+ The database for storing Access History data is separate from the IdentityIQ database. The Iden-
+ tityIQinstalland upgrade scripts willcreate separate databases for IdentityIQ and Access His-
+ torydata. The databases can be within the same instance for convenience, but separate
+ database instances are recommended for production environments toavoid an impact on Iden-
+ tityIQperformance. Depending on your environment setup and on the number of dailychanges
+ toyour identities,the Access History database can be large, and willcontinue to grow.
+
+ The identityiqah database isconfigured with new properties in iiq.properties. The
+ new properties include:
+
+ dataSourceAccessHistory.username
+ dataSourceAccessHistory.password
+ dataSourceAccessHistory.url
+ dataSourceAccessHistory.driverClassName
+ sessionFactoryAccessHistory.hibernateProperties.hibernate.dialect
+
+
+
+
+
+ SailPoint Installation Guide 33
+
+===== Page 37/40 =====
+Before running the upgrade script,import the database specific upgrade fileand modify itas required. Modifications
+are required ifthe database name used isdifferent than the default.
+
+Execute the database specific upgrade scriptnamed upgrade_identityiq_tables.database_type. These
+filescontain the DDL statements that modify the existing database schema to have the new columns, tables, etc.
+required forthe newer version.
+
+You must modify the upgrade script inthe same way that the installation script was modified as part of the initialinstall-
+ation. For example, ifyou are using a different database name or database schema name than the default, you must
+modify the script tospecify the alternate names.
+
+ Note: Verify the database clientbeing used is set up to continue on error to ensure a successful
+ upgrade. IfIdentityIQ patches for the previous version were applied, database commands might
+ have already run in the environment. Consult your database client documentation forfurther
+ information on configuration settings.
+
+Ifthe extended attributes of the Identity,Account, or CertificationItem were modified during the previous installation,
+you might need to adjust the upgrade DDL for the spt_identity, spt_link, or spt_certification_item
+tables.
+
+For example, in MySQL do the following:
+
+mysql> source upgrade_identityiq_tables.mysql.
+
+Ifyou want to use plugins that require independent persistence, you must create the plugin database. This database is
+not created as part of the standard database upgrade script.Customize and run the scriptcontained in WEB-
+INF/database/plugins/create_identityiq_plugins_db.database_type using a database client.
+
+Ifyou installed a patch to the previous version of IdentityIQ, you could receive the following errors when running the
+upgrade DDL. Because the patch contains allofthe required changes from the base revision, some ofthe changes
+could have been applied when a patch was installed.
+
+
+
+ l Duplicate column iiqlock
+
+
+
+ l Duplicate index spt_cert_item_att_name_ci
+
+Upgrade the IdentityIQ Configuration
+
+After the database isupgraded, run the IdentityIQ upgrade CLI. This example assumes that no custom modifications
+were made tothe originalinstallation.
+
+ Run the IdentityIQ Upgrade CLI
+
+
+
+
+
+
+
+
+
+
+ SailPoint Installation Guide 34
+
+===== Page 38/40 =====
+ 1. Access the directory in which you extracted the identityiq.war file.
+ cd identityiq_home\WEB-INF\bin
+
+ 2. Run the script and command
+ iiq upgrade
+
+
+ Note: This command applies changes tothe configuration and managed data inthe IdentityIQ
+ database and only needs to be run one time for each installationof IdentityIQ regardless ofthe
+ number ofapplication servers that are inthe installation.
+
+Upgrade the IdentityIQ External Components
+
+Ifexternal components, such as the IQService and Connector Gateway, were deployed, those components should be
+upgraded at the same time as the IdentityIQ server. Additionally, configuration inthird party managed systems
+required for IdentityIQ integration should be upgraded.
+
+ Upgrade the IQService, if it is deployed
+
+ 1. Back up your existing IQService installation.
+
+ 2. Ensure that the service is stopped, either from the Services Applet or from the command line by running IQSer-
+ vice.exe -k
+
+ 3. Uninstall IQService using the command IQService -u
+
+ 4. Extract the latestIQService inthe installationdirectory
+
+ 5. InstallIQService using the command: IQService -i
+
+ 6. Start the service: IQService.exe -s
+
+
+ Note: Ifyou have executed the IQService Public Key Exchange Task for existing IQService, itis
+ recommended that you follow the instructions to installand register a new IQService.
+
+ Upgrade the Connector Gateway, if itis deployed
+
+ 1. Stop the connector gateway.
+
+ 2. Save a copy of the init.xml configuration filelocated in the Connector Gateway installation directory.
+
+
+
+
+
+
+
+
+ SailPoint Installation Guide 35
+
+===== Page 39/40 =====
+ 3. Remove the existing contents ofthe installation directory.
+
+ 4. Extract the ConnectorGateway.zip fileintothe installation directory.
+
+ 5. Move the saved init.xml configuration fileinto the installationdirectory.
+
+ 6. Start the Connector Gateway service.
+
+Access IdentityIQ
+
+ To access IdentityIQ from your Web browser and continue working with IdentityIQ:
+
+ 1. Start the application server (orthe IdentityIQ application ifsupported by the application server).
+
+ 2. Launch a Web browser. See Supported Platforms.
+
+ 3. Point the browser to your IdentityIQ installation.
+
+ Example:
+
+ Ifyou performed the default Tomcat installation and are accessing IdentityIQ from the same machine on which
+ itwas installed, use http://localhost:8080/identityiq.
+
+ 4. Log on to the IdentityIQ using the default user ID and Password. The default user ID isspadmin and the
+ default password isadmin.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Installation Guide 36
+
+===== Page 40/40 =====
+Post-upgrade Procedures
+
+After you complete the IdentityIQ upgrade and the product is up and running, perform the following procedures to
+ensure that allextraneous information isremoved from your database tables and that allofthe new features are con-
+figured to run correctly.
+
+ Clean up IdentityIQ Tables
+
+Clean up the tables, columns, and indexes that are no longer used by IdentityIQ but thatwere required during the
+upgrade procedure with the post_upgrade_identityiq_tables.database_type script.
+
+This can be done at any time, even while the application isrunning. The scriptsfor each database type are located in
+the identityiq_home\WEB-INF\database directory where identityiq_home is the directory where you extrac-
+ted the IdentityIQ files,not the directory where you downloaded the files.
+
+You must modify the post-upgrade script inthe same way that the installation scriptmodified as partof the initialinstall-
+ation.For example, ifyou are using a different database name or database schema name than the default, you must
+modify the scriptto specify the alternate names.
+
+For example, inMySQL do the following:
+
+mysql>source post_upgrade_identityiq_tables.mysql
+
+ Upgrade Data Export Tables
+
+ 1. Modify the script matching the database on which your data export tables are stored. Ifnecessary, alter the
+ database name in the script.The scripts are named upgrade_data_export_tables.* and are stored in WEB-
+ INF/database/dataExport folder ofyour IdentityIQ installation directory.
+
+ 2. Using a database client,run the modified application script to upgrade the data export DDL.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Installation Guide 37

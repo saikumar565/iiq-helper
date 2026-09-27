@@ -1,0 +1,2697 @@
+===== Page 1/45 =====
+ Forms
+
+
+ Version:8.4
+
+ Revised: September 2023
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+This document and the information contained herein isSailPoint Confidential Information
+
+===== Page 2/45 =====
+Copyright and Trademark Notices
+
+Copyright © 2023 SailPoint Technologies, Inc.  All Rights Reserved.
+
+Alllogos, text,content, including underlying HTML code, designs, and graphics used and/or depicted on these written
+materials or in thisInternet website are protected under United States and international copyright and trademark laws
+and treaties, and may not be used or reproduced without the prior express written permission of SailPoint Tech-
+nologies, Inc.
+
+“SailPoint Technologies,” (design and word mark), “SailPoint,” (design and word mark), "Identity IQ,” “IdentityNow,”
+“SecurityIQ,” “Identity AI,” “Identity Cube,” and “SailPoint Predictive Identity” are registered trademarks of SailPoint
+Technologies, Inc. “Identity isEverything,” “The Power of Identity,” and “Identity University” are trademarks of
+SailPoint Technologies, Inc. None of the foregoing marks may be used without the prior express written permission of
+SailPoint Technologies, Inc. Allother trademarks shown herein are owned by the respective companies or persons
+indicated.
+
+SailPoint Technologies, Inc. makes no warranty ofany kind regarding these materials or the information included
+therein, including, but not limited to,the implied warranties ofmerchantability and fitness for a particular purpose.
+SailPoint Technologies shall not be liable for errors contained herein or direct, indirect, special, incidental orcon-
+sequential damages inconnection with the furnishing, performance, or use of thismaterial.
+
+Patents Notice. https://www.sailpoint.com/patents
+
+Restricted Rights Legend. All rights are reserved. No part ofthis document may be published, distributed, reproduced,
+publicly displayed, used to create derivative works, or translated to another language, without the prior written consent
+ofSailPoint Technologies. The information contained inthis document issubject to change without notice.
+
+Use, duplication or disclosure by the U.S. Government is subject to restrictions as set forth insubparagraph (c) (1) (ii)
+ofthe Rights inTechnical Data and Computer Software clause at DFARS 252.227-7013 for DOD agencies, and sub-
+paragraphs (c)(1) and (c)(2) ofthe Commercial Computer Software Restricted Rights clause at FAR 52.227-19 for
+other agencies.
+
+Regulatory/Export Compliance. The export and re-export of this software iscontrolled for export purposes by the U.S.
+Government. By accepting this software and/or documentation, licensee agrees to comply with allU.S. and foreign
+export laws and regulations as they relate to software and related documentation.  Licensee will not export or re-
+export outside the United States software or documentation, whether directly or indirectly, to any Prohibited Party and
+willnot cause, approve or otherwise intentionally facilitate others inso doing. A Prohibited Party includes: a party in a
+U.S. embargoed country or country the United States has named as a supporter of international terrorism; a party
+involved in proliferation; a party identified by the U.S. Government as a Denied Party; a party named on the U.S.
+Department of Commerce’s Entity Listin Supplement No. 4 to 15 C.F.R. § 744; a party prohibited from participation in
+export orre-export transactions by a U.S. Government General Order; a party listed by the U.S. Government’s Office
+ofForeign Assets Control as ineligible to participate in transactions subject toU.S. jurisdiction; or any party that
+licensee knows or has reason toknow has violated or plans to violate U.S. or foreign export laws or regulations.
+Licensee shall ensure that each of itssoftware users complies with U.S. and foreign export laws and regulations as
+they relate to software and related documentation.
+
+===== Page 3/45 =====
+Contents
+
+
+ Forms 1
+
+ Specifying Custom Forms 2
+
+ Role /Application Provisioning Policies 2
+
+ Identity Provisioning Policy 4
+
+ Workflow Forms 4
+
+ Report Forms 6
+
+ Components of a Form Definition 7
+
+ Form 7
+
+ Attributes 7
+
+ Buttons 9
+
+ Sections 9
+
+ Fields 11
+
+ Working with the Form Editor 25
+
+ Detail View 25
+
+ Expandable Tree 25
+
+ Edit Options 26
+
+ Form Examples 30
+
+ Application and Role Provisioning Policy 30
+
+ Identity Provisioning Policy 31
+
+ Workflow Form 34
+
+ Report Forms 35
+
+ Form Models 38
+
+ Identity Model Structure 39
+
+ Accessing Identity Model Attributes 40
+
+ Referencing a Form Model 41
+
+===== Page 4/45 =====
+Forms
+
+Forms
+
+
+Forms are used topresent items to users forinput inseveral components of IdentityIQ. They are used with:
+
+
+
+ l Application and role provisioning policies
+
+
+
+ l Identity provisioning policy (only applicable for installations using Lifecycle Manager)
+
+
+
+ l Data entry and approvals inworkflow steps
+
+
+
+ l Present simplified views for process variable and step argument editing inworkflows
+
+
+
+ l Report filterspecification
+
+
+The form implementation and available features varies slightly in these areas, so some features might apply toone
+use and not to the others. This is noted throughout this section.
+
+For more information about using Forms with IdentityIQ, refer to the forms documents on the SailPoint customer sup-
+port site or contact your support agent for more information.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Forms 1
+
+===== Page 5/45 =====
+Specifying Custom Forms
+
+Specifying Custom Forms
+
+
+Form specification is different for each available use. All types of provisioning policies can be specified through the
+IdentityIQ user interface. Inall cases, some of the more advanced and custom forms for workflows can be generated
+through the Business Process Editor. Some of the more advanced options. however, are only available through sub-
+sequent editing of the XML definition. Workflow forms created through the Business Process Editor are embedded
+within the workflow XML.
+
+Alternatively, they can be defined as independent form objects which can be referenced by multiple workflows, by cre-
+ating them directly in XML and importing them intoIdentityIQ. Report forms must be created as external XML doc-
+uments and imported intoIdentityIQ.
+Role / Application Provisioning Policies
+
+Provisioning forms are presented to a user when a provisioning request cannot be completed without user input. The
+data collection fields that are presented on the form come from the role or application's Provisioning Policy, which is
+defined by the <Form> element inside the Bundle (role)or Application object's XML. The actual form presented tothe
+user during provisioning of roles or application accounts are system-generated at run-time based on skeleton forms
+that are predefined in IdentityIQ. Requests made through LCM are builtwith the Identity Update form. Requests that
+come through the Identity Refresh workflow use the Identity Refresh form. These forms contain a read-only section at
+the top that displays identifying information about the request, forexample, Account ID,First name, and Last name.
+The fields defined inthe provisioning policy forms are added to the form atrun time, when the form is presented to a
+user.
+
+Provisioning policy forms define the fields required for the role or application account tobe provisioned, often including
+a default value or script /rule for calculating a value. When a fieldcannot be calculated by the system during pro-
+visioning of an account orrole, itmust be presented to a user through a form to get the required value. When multiple
+accounts or roles are part of the same provisioning request, the form might display a collection offields pulled from
+various provisioning police forms. On the form, the fieldsare, by default, grouped in sections according to the applic-
+ation or role to which they belong. This grouping can be overridden by specifying a section attribute on each ofthe
+fields,naming the section into which each fieldshould be placed. See the section attribute description inFields.
+
+ Defining Application Provisioning Policy
+
+An application provisioning policy can be defined for an application on the Provisioning Policies tab of the Application
+Configuration page, Applications > Application Definition. Separate policies can be defined forcreate, update, and
+delete requests. Additionally, provisioning policies can be specified forcreating or updating groups.
+
+The required fields should be specified in the policy with the appropriate fieldattributes defined. These attributes can
+include a default value or a script /rule to calculate a default value for the fieldthat can be based on the Identity attrib-
+utes for the Identity for whom the request isbeing made. The field Name should match the corresponding native
+
+
+
+
+
+ SailPoint Forms 2
+
+===== Page 6/45 =====
+Specifying Custom Forms
+
+
+attribute on the application. IfReview Required isselected, the fieldis always presented on a form during pro-
+visioning-request processing, even ifa default value is provided or calculated successfully.
+
+For creation-type operations you can specify dependencies between applications and application attributes that imply
+ordering of the provisioning requests.
+
+ Field Properties and Value Properties
+
+The provisioning policy field attributes are grouped intotwo categories: Field Properties and Value Properties.
+
+Field Properties describe fieldmeta data. This includes the field'sname, display name, tool tiphelp text,type, and
+owner. Italso includes indications of whether the field issingle or multi-valued, read-only, hidden, required, or review
+required. Fields can also be marked with a flag to indicate whether changes tothe fieldvalue should cause the form to
+be reloaded. The Read-Only and Hidden attributes can be set to a static value (True or False) or can be defined pro-
+grammatically through a rule or script. The rule and script options are used to dynamically hide and show the field,or
+change itsedit properties, when the form is reloaded based on changes to values of other fields.
+
+The Value Properties section includes properties specifically related to the field's value. A default value, a set ofper-
+mitted values, and the field'svalidation logic can allbe set here. The Dynamic attribute determines whether the field's
+value should be reevaluated on every form reload, when the form isreloaded based on a change in another field's
+value. Itshould only be selected when the field's value isrule or script based, such that itmight change during the form
+processing based on other field values entered there.
+
+The default value can be specified as a static value or can be calculated programmatically by a rule or script. In an
+account creation provisioning policy, an additional option, Dependent, is available as part ofthe ordered provisioning
+implementation, which isonly available on account create provisioning policies. When the dependent option is selec-
+ted, an application and attribute must also be selected and the value of the field isset to that attribute value for the
+Identity. Only applications on which thisapplication is dependent are available forselection here.
+
+The Allowed Values listcan be specified as a listof values or can be set dynamically by a rule or script. Field val-
+idation is optional and can be managed by a reusable rule or with a script.
+
+ Defining Role Provisioning Policies
+
+Role provisioning policies are specified through the Role Editor: go to Setup > Roles, select the role name, and click
+Edit Role. Then click Add Provisioning Policy and specify the fields for the policy.
+
+Select the application to which the role provisioning policy applies and then specify the fields for the policy. Fields are
+specified for role provisioning policies exactly as they are specified for application provisioning policies. Role pro-
+visioning policies and application provisioning policies are not the same or to be used interchangeably, however.
+
+Role provisioning isnot intended forinitialrole assignment or forthe provisioning of account attributes that are not enti-
+tlements. Using role provisioning and application provisioning interchangeably cause conflicts and should be avoided.
+
+
+
+
+
+
+
+
+ SailPoint Forms 3
+
+===== Page 7/45 =====
+Specifying Custom Forms
+
+
+Role provisioning isdesigned to be used forprofiles that use complex logic, where itisunclear what should be pro-
+visioned or deprovisioned. The role provisioning policy isused to state what to provision, "x and y" or "p and q," and to
+use the contents of the Identity to make that decision.
+
+Identity Provisioning Policy
+
+The Identity Provisioning Policies are optional forms that can be specified to define the fields that must be provided
+when an Lifecycle Manager Create or Edit Identity request is submitted. When no Identity Provisioning Policy is
+defined for the create function, IdentityIQ automatically builds a form that includes the entire set of defined Identity
+attributes (standard and extended) for the installation. The auto-generated update provisioning policy form contains
+only identity attributes marked as editable. An Identity Provisioning Policy can be defined toselect a subset ofthose
+fields,to affect the presentation of those fields, forexample, grouping insections or multi-column layout, or to build in
+some logic to auto-populate some of the fields.
+
+A third identity provisioning policy also exists to support self-service registrations for IdentityIQ. This form is presented
+when self-service registration isenabled and a new user requests an IdentityIQ account. The form prompts the user
+forthe information required to create a new user account for the installation.
+
+To create an Identity Provisioning Policy, go toIdentity Provisioning Policy ofthe Lifecycle Manager configuration
+page. Three policies are available: Create Identity, Update Identity, and Self-service Registration. Ifa policy has
+already been defined, the name is displayed. Click the name toopen and edit the policy. Ifno policy has been defined
+forone of these types, click Add Policy to add a new one. Add fields to the policy, defining field attributes as needed
+on the fielddefinition parallels for an application or role provisioning policy.
+
+Identity Provisioning Policy forms are saved as independent form objects. System Configuration entries (entry key-
+y="createIdentityForm", "updateIdentityForm", and "registerForm") point tothe appropriate forms for each identity pro-
+visioning policy by name. The identity provisioning policy forms are saved as <Form> objects inside the UIConfig
+attributes map under the keys lcmCreateIdentityProvisioningPolicy and lcmUpdateIdentityProvisioningPolicy on the
+IdentityIQ Debug pages. These form definitions can be edited directly to implement some of the presentation options,
+forexample, multi-columns or sections. The configurable option available on the user interface do not include these
+features.
+
+ Note: Form features related to the Section attribute (which includes subdividing the form into sec-
+ tions and creating multi-column form configurations) are not supported through the user inter-
+ face. These must be managed directly inthe Form Object XML. Any fields added through the
+ user interface after dividing the form into sections are automatically added to the firstsection.
+ These fields can be moved to other sections by editing the XML.
+
+Workflow Forms
+
+Several standard work item renderers are provided with IdentityIQ for presenting approvals or other data requests to
+users. These are written as JSF pages. Itis possible to write custom forms inJSF, specifying the JSF page as the
+
+
+
+
+ SailPoint Forms 4
+
+===== Page 8/45 =====
+Specifying Custom Forms
+
+
+renderer forthe approval. This israrely done. Customers who want to use custom forms generally specify these
+through a Form object.
+
+Forms are used in workflows to present data-gathering pages to a user and define data presentation forapproval activ-
+ities.Inmany cases, implementations relyon the standard approval work item forms fornormal approval actions so do
+not need toimplement custom forms fortheirapproval steps, but they stillmightchoose to use custom forms for non-
+approval data-gathering activitiesto which the normal approval forms do not apply. A custom form can be added toa
+workflow through the Business Process Editor (Setup > Business Processes) by right-clicking a step and choosing
+Add Form or by adding a form element toa step in the Workflow XML.
+
+Whether the form isspecified foran approval or a data-gathering activity,theform element must be embedded within
+an approval element in the XML. The user interface auto-creates itwithinan approval element. The workflow XML to
+specify a custom form looks likethis
+
+
+ ?xml version='1.0' encoding='UTF-8'?>
+ <!DOCTYPE SailPoint PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+ <sailpoint>
+ <Workflow  explicitTransitions="true"  libraries="Identity"  name="Example Workflow" type-
+ e="IdentityLifecycle">
+ ...
+   <Step name="Display Form">
+      <Approval name="Please enter some data" owner="admin" return="selectedApprover" send-
+ d="trace ">
+        <Form>
+         ...         <!-- Form content goes here -->
+       </Form>
+     </Approval>
+   </Step>
+
+A custom form can also be created as an independent form object, defined in a separate XML document and imported
+intoIdentityIQ, visiblethrough the console or the Debug pages by viewing the Form objects, and referenced inthe
+approval element as an argument likethis:
+
+
+ <Approval…>
+      <Arg name='workItemForm' value='Custom Form Name'/>
+       ...
+  </Approval>
+
+This option promotes form reuse across workflows. However, these independent form objects cannot be edited
+through the Business Process Editor likethe embedded forms can.
+
+Process Variable and Step Forms in Workflows
+
+While forms added tosteps on the Process Designer tab ofthe Business Process Editor are used torequest data
+required by the process from a user, such as a value for a missing attribute,the process variable and step forms are
+
+
+
+
+
+
+
+ SailPoint Forms 5
+
+===== Page 9/45 =====
+Specifying Custom Forms
+
+
+used to define the information presented on the Basic Views of the Process Variables tab and the Arguments tab of
+the Step Editor.
+
+These forms are created as an independent form object, defined in a separate XML document and imported into Iden-
+tityIQ.They are visiblethrough the console or the Debug pages by viewing the Form objects.
+
+The process variables forms are used tosimplify the information displayed on the Process Variables tab by hiding
+those variables that are rarely,ifever, modified and displaying variables in more logical groups. Changes made in the
+Basic View are persisted to the Advanced View and more complex configuration can be performed there ifneeded.
+
+The step forms are referenced from the workflows or stepLibraries. These forms define the form that ispresented on
+the Arguments tab of the Step Editor panel and works similarly to the process variable forms.
+
+Both ofthese forms are referenced from workflows using the configForm variable. The forms can be defined and
+viewed and edited on the IdentityIQ debug page.
+Report Forms
+
+Report definitions often include a reference toa Form object for displaying the report-specific filteroptions to the report
+user. In the Report XML, the form isreferenced with a <ReportForm> tag:
+
+
+ <ReportForm>
+ <Reference class="sailpoint.object.Form" id="39535985298ff9839ff98dd" name="My Custom
+ Report Form" />
+ </ReportForm>
+
+The Form is defined separately in itsown XML document and imported into IdentityIQ as a Form object. Each section
+within the form iscreated as a separate page in the Edit Report window, where you specify the filtersthat are applied
+tothe report. The report-specific forms are always merged with the Report Form Skeleton, which defines the Standard
+Properties and Report Layout pages that apply toevery report.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Forms 6
+
+===== Page 10/45 =====
+Components of a Form Definition
+
+Components of a Form Definition
+
+
+The basic elements in a Form definition are:
+
+
+ <Form>
+    <Attributes>    (map of name/value pairs that influence the form renderer)
+    <Button>     (determine form processing actions)
+    <Section>    (Subdivision of form; may contain nested Sections and Fields)
+      <Field>    (may contain Attributes map, Script to set value, Allowed Values Defin-
+ ition script, and Validation Script)
+
+Within each of these sections of the form definition,certain attributes might apply to some form uses and not to others.
+The tablebelow provides a high-level overview ofwhich of the available form elements can be specified foreach.
+
+
+
+ Form Component Availability
+ Form Usage
+ Field Button Section Field
+ Application and role provisioning policies (Form) X
+ Identityprovisioning policy X* X* X X
+ Workflow approval X X X X
+ Report X X
+
+*Limitations on the Attribute and Button elements forIdentity provisioning policyare discussed in Attributes and But-
+tons.
+Form
+
+The Form element should contain a single attributeto define the form: a name.
+
+<Form name="My Custom Form">
+
+Ifthe form isstored inthe database as an independent Form object, the name must be unique; no two Form objects
+can share the same name. This restriction does not apply to Forms defined inlinewithin a workflow approval step.
+While a name isrequired for independent Form objects, itisrecommended but isnot required on inlineforms.
+Attributes
+
+Forms can include a map ofattributes that are used by the renderer. These are applicable only to workflow forms and,
+ina limited way, to the identity provisioning policy form.
+
+Attributes are specified with the following keys:
+
+
+
+
+
+ SailPoint Forms 7
+
+===== Page 11/45 =====
+Components of a Form Definition
+
+
+ Key Description
+
+ Title torender attop ofpage, typically larger and a different color than
+ pageTitle the form title;also displayed inbrowser window header bar insome
+ cases
+ title FormTitle, shown attop ofform body
+ subtitle Form subtitle,shown below title
+ <entry key="readOnly= "" value="true""/> makes form
+ readOnly read-only so the fields are rendered as uneditable text or as disabled
+ HTML components
+ hideIncompleteFields="true" hides any fields that do not
+ have all oftheir dependencies met.
+ Usually only set programmatically to control field presentation in pro-
+ visioning policy forms, though can be specified ina workflow form XML.
+ hideIncompleteFields
+ This does not create dynamically displayed fields on forms. Fields are
+ not displayed on a form after their dependency values on the same
+ form are entered. Use the new hidden attribute on Fields and Sections
+ to achieve this dynamic display functionality.
+
+
+ Note: The Boolean attributes are only specified ifthey are true; they default to false when omit-
+ ted.
+
+Attributes maps are specified as shown here:
+
+
+  <Attributes>
+    <Map>
+       <entry key="pageTitle" value="Review Non-Employee Request"/>
+       <entry key="readOnly" value="true"/>
+    </Map>
+ </Attributes>
+
+Attributes do not apply to report forms because the sections in a report form are pulled out of the report's form defin-
+itionand combined into the Report Form Skeleton fordisplay in the user interface. Even ifthey are specified inthe
+report form, these attributes are never applied to the resultant form that isdisplayed to the user.
+
+On an identity provisioning policy form, the pageTitle attribute is ignored because the main page titleis pro-
+grammatically set based on the other action being performed (Create New Identity,Edit Identity Attributes for [User-
+name], or New User Registration). The titleand subtitle attributes are displayed in the user interface when specified in
+the form's attributes map. The readOnly and hideIncompleteFields function on this form type should not be used
+because they do not provide useful functionality forthis type of form.
+
+
+
+
+
+
+
+SailPoint Forms 8
+
+===== Page 12/45 =====
+Components of a Form Definition
+
+Buttons
+
+Buttons enable the user to indicate which action to take next and how toprocess the data on the form. Buttons only
+apply toworkflow forms. Buttons can be specified on identity provisioning policy forms, but the window does not sup-
+port any action on them other than next (submit). Since Submit and Cancel buttons already exist on the window and
+perform the appropriate functions forthe window, additional buttons are unnecessary. They cannot be specified in a
+role or application provisioning policy form, and they are not used by the report executor when itcombines the specific
+report's form with the Report Form Skeleton.
+
+Buttons require two attributes, a label and an action. The label determines the text displayed on the button. The action
+determines what the system does in response to clicking that button. There are four available actions:
+
+
+
+ l next – save (and validate fields with validation scripts where specified) any entered form data and set the work
+ item status to approved. This can then be used in the Transition logic to advance the workflow to the next step
+ (OK/Save/Approve/Submit functionality).
+
+
+
+ l back – save entered form data (no validation isperformed) and set the work item status to rejected. This can
+ then be used in the Transition logic to return toa previous step orany other appropriate action for a rejection.
+ Saved value isredisplayed on thisform ifthe workflow logic process back through this step again.
+
+
+
+ l cancel – close the form, suspend the workflow and return to previous page in user interface. This leaves the
+ work item active, awaiting a different action choice by the user.
+
+
+
+ l refresh – save the entered form data and regenerate the form. Not a state transition, just a redisplay of the
+ form (rarely used).
+
+These are examples of button elements.
+
+
+ <Button label='Submit' action='next'/>
+ <Button label="Cancel" action="cancel"/>
+
+
+Sections
+
+Sections divide a form into logical groupings that are visually marked on the window with boxes around the fields in
+each section. They can be specified inthe XML for allpolicies except application and role provisioning policies. By
+default, a separate section iscreated on the provisioning form for each application (each application's provisioning
+policy form isrendered initsown section). However, fields in a provisioning policy form can be specified with a section
+attribute that causes them to be displayed in different sections from the defaults. Sections are treated differently on
+report forms, each section becomes a separate page on the Edit Report window rather than just a separate section on
+a contiguous form.
+
+
+
+
+
+
+ SailPoint Forms 9
+
+===== Page 13/45 =====
+Components of a Form Definition
+
+
+Sections are specified inthe form object's XML with a <Section> tag and can be modified by the attributes shown in
+the table below.
+
+
+
+ Section Description
+ Attributes
+
+ name Internal name for section (might be referenced by fieldobjects in some forms).
+ Ifnon-null, the label isdisplayed above the section fields ina box on the section bor-
+ der.
+ label For report forms, the label isspecified in the Edit Report window's sections list.
+ Labels can be specified with text, message catalog keys, or variables (specified
+ with $(varName) notation).
+ Rendering type (optional).
+ When no type isspecified, fields in the section are editable fields, displayed one
+ field per row, unless the columns attribute specifies otherwise.
+ Other type options are:
+ type datatable – makes fields inthe section non-editable; generally used to display a
+ read-only informational table to give the form user a context for the form's reques-
+ ted data.
+ text – indicates the section isa block of informational text;ifmultiple fields are
+ included ina textsection, each field isrendered on a separate line with line breaks
+ between them.
+ Number of columns contained inthe form section; fields are placed incolumns left
+ to right, one fieldper column before moving tothe next row.
+
+ columns For example, in a 2 column layout (columns="2"), 4 fieldsare displayed:
+
+ Field 1 Field 2
+ Field 3 Field 4
+
+These are examples ofSection elements in the XML for forms.
+
+
+ <Section name="authorizations" label="Authorizations" type="datatable">
+ <Section columns="2" label="rept_app_section_label" name="customProperties">
+
+Sections contain nested fieldelements and might contain nested sections when sub-groupings are needed.
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Forms 10
+
+===== Page 14/45 =====
+Components of a Form Definition
+
+Fields
+
+Fields are the core element of forms. They are the mechanism by which data gets communicated toand from the user.
+Fields offer options that affect the appearance or functionality ofthe field. Some of these are commonly used and oth-
+ers are used very infrequently. Some of these are specified as inline attributes in the <Field> tag and others are spe-
+cifiedas nested elements within the Field.
+
+ Field attributes appropriate to all
+
+
+ Field Attrib- Description
+ utes
+
+ Name for the fieldthat can be referenced in code as the variable name in which
+ the field'svalue isstored.
+
+
+ Avoid using the following fieldnames:
+
+ accept
+ accept-charset
+ action
+ autocomplete
+ enctype
+ method
+ name
+ novalidate
+ target
+ name As well as global attributes:
+
+
+ accesskey
+ class
+ contenteditable
+ contextmenu,data-*
+ dir
+ draggable
+ dropzone
+ hidden
+ id
+ itemid
+ itemprop
+ itemref
+
+
+
+
+
+
+ SailPoint Forms 11
+
+===== Page 15/45 =====
+Components ofa Form Definition
+
+
+Field Attrib- Description
+utes
+
+ itemscpe
+ itemtype
+ lang
+ spellcheck
+ style
+ tabindex
+ title
+displayName Label forthe field;can be text ora message key.
+ Tool tiphelp text; can be text or a localizable message key.
+
+
+helpKey Example:
+
+
+ <Field name="firstName" displayName="First Name" helpKey-
+ y="Enter the person's first name" />
+ Field datatype; influences the display widget used todisplay the field on a form.
+
+
+ Valid values are:
+ string, int,long, boolean, date, and SailPoint object types (Identity,Bundle, Per-
+ mission, Rule, Application), default isstring.
+
+
+ SailPoint objects are displayed as dropdown listsor combo boxes ifmulti="true"
+ isalso specified.
+
+ Specifying type="boolean" renders the fieldas a checkbox; specifying type-
+type e="date" adds a calendar from which the date can be selected.
+
+
+ To preselect an object inthe list,specify the name ofthe object (not an actual
+ object) as the "value" attribute.
+
+
+ Example:
+
+
+ <Field name="role" displayName="Role" type="Bundle" value-
+ e="TRAKK Basic" />
+ Boolean indicating whether the field ismulti-selectable.
+multi
+
+
+
+
+
+
+
+SailPoint Forms 12
+
+===== Page 16/45 =====
+Components of a Form Definition
+
+
+Field Attrib- Description
+utes
+
+ This attribute isonly appropriate to drop-down lists,which are then displayed as
+ combo boxes. Used this with SailPoint object field types or with a nested
+ AllowedValues / AllowedValuesDefinition element that populates a selection list
+ for the field.
+
+
+ Example:
+
+
+ <Field name="apps" displayName="Applications" type-
+ e="Application" multi="true"/>
+ Boolean indicating that the fieldcannot be edited on the form. The value is dis-
+readOnly played as text, not inan editable box.
+ Not necessary tospecify on fieldsin a datatable section, since they are already
+ read-only.
+ Boolean that,when true, prevents the fieldfrom being displayed on the form.
+
+
+ This attribute isused inreporting to make fields available for inclusion on the
+ report detail grid but not actually include them by default.
+
+
+ This can be used inany form, but might not be commonly implemented:
+
+
+
+ l In role /application provisioning policies, fields are only shown ifthe user
+ needs to enter data, so forcing fieldsto be hidden is not helpful.
+
+
+
+ l In workflows, the hideIncompleteFields attribute on the Form object is
+ more likelyto be used with the dependencies attribute on Field to defer
+hidden field display until dependencies are fulfilled.
+
+
+
+ l In Identity provisioning policy, fields that should be hidden can be omitted
+ from the form instead, however, this could be used forfields that always
+ contain the same value for allusers to set that value and suppress the
+ field from the data entry form. For example, <Field name="status"
+ hidden="true" value="NewHire" /
+
+ Attributes marked hidden are not included in the plan. You must manually add
+ the includeHiddenFields property to the form to include the hidden fieldsin the
+ plan.
+
+
+
+
+
+
+
+SailPoint Forms 13
+
+===== Page 17/45 =====
+Components of a Form Definition
+
+
+Field Attrib- Description
+utes
+
+ <entry key="includeHiddenFields" value="true"/>
+ Boolean indicating whether a value ismandatory forthe field;required="true"
+ marks the fieldwith * on the form toindicate that avalue isrequired, and pre-
+required vents form submission without a value forthe field.
+
+ Example:<Field name="myfield" displayName="My Field"
+ required="true"/>
+ Boolean that, when true, causes the form to refresh when the field'sdata value
+ changes, running any rules or scripts thatrun on form load.
+
+
+ <Field name="application" displayName="Application" type-
+postBack e="Application" postBack="true"/>
+
+
+ Supports conditional display /editing of sections or fieldsbased on other field
+ attributes values, automatic population offields based on other fields,and val-
+ idation of fields based on actions taken on the form. Itonly runs when a field
+ loses focus, so itcan be used on selection fields ortext entry fields.
+ Used when the section is configured with multiple columns; specifies the number
+ of columns the fieldshould span.
+
+
+columnSpan <Section columns="2" label="Identity Info" name-
+ e="identInfo">
+
+ <Field name="fname" displayName="First Name" colum-
+ nSpan="2"/>
+ Used forfields where type isa SailPointObject class to specify a filterto
+ restrict the set ofselectable objects presented inthe drop-down list.
+
+
+ filterStringis specified according tothe filterstringsyntax and should be spe-
+filterString cified insingle quotes, so thatdouble quotes can be used within the string.
+
+
+ Example:
+ <Field displayName="Role" name="role" type="Bundle" fil-
+ terString='name.startsWith("TRAKK")' />
+section Statically defined fieldsin a form's XML are defined within a section element, so
+ any section attributespecified on those fieldsis ignored. However, the section
+
+
+
+
+
+
+SailPoint Forms 14
+
+===== Page 18/45 =====
+Components ofa Form Definition
+
+
+Field Attrib- Description
+utes
+
+ attributecan be used toorganize fieldsin an application or roleprovisioning
+ policy or on a dynamically rendered form.
+
+ Application and role provisioning policy forms do not have section elements, so
+ the section attribute can be used to force fields tobe grouped differentlythan the
+ default (default isby application or by role).
+
+ Example:
+
+ These two fieldsare put on the form inseparate sections, labeled "Important
+ Items" and "Optional Items" respectively.
+
+
+ <Field name="myField" displayName="My Field" sec-
+ tion="Important Items"/>
+
+ <Field name="optField" displayName="Optional Field" sec-
+ tion="Optional Items"/>
+
+
+ The section attribute on fields isalso used indynamically created forms (such as
+ inReports where fields are added tothe form programmatically through an ini-
+ tializationscript).This attribute enables the code to specify the section ofthe
+ form into which the fieldshould be added.
+ Forces string fieldsto display as specified, used only for string fields.
+
+ Valid displayTypes are: radio, combobox, textarea, and label
+
+ displayType="radio" and "combobox" are used to override the default display
+ format for permitted-values fields (radio isthe default for2 options while >2
+ options is rendered as comboBox by default).textarea is used tomake a string
+ fielddisplay as a textarea instead ofa regular entry field.
+
+displayType For label, you can use the fielddisplayName for the text /message key of the
+
+ label.
+ <Field name="dept" displayName="Department"
+ displayType="radio"<AllowedValues>
+ <String>Accounting</String>
+ <String>Manufacturing</String>
+ <String>Engineering</String>
+ </AllowedValues>
+
+
+
+
+
+
+SailPoint Forms 15
+
+===== Page 19/45 =====
+Components of a Form Definition
+
+
+Field Attrib- Description
+utes
+ </Field>
+ <Field name="comments" displayName="Comments"
+ displayType="textarea" />
+ Sets the default /initialvalue for the field.This can be overwritten on the form in
+ most cases, as long as the fieldis not marked readOnly. This is used within sec-
+ tions oftype="text" to specify the textto display
+
+ For application or role provisioning policies, setting a value (whether with this
+ attribute or through a nested <Value>, <RuleRef>, or <Script> element) prevents
+ the fieldfrom being included on the form unless reviewRequired isspecified
+ since provisioning policies only collect values from a user that they cannot
+ determine or calculate independently.
+
+value In workflow approvals, value can be specified by string, rule,script, call,or ref-
+ erence (string is default).
+
+ In reports forms, the value is a reference tothe report taskDefinition's input para-
+ meter from which to retrieve the starting /default value forthe field,forexample,
+ value="ref:applications".
+
+
+ Example:
+
+
+ <Field name="role" displayName="Role" type="Bundle" value-
+ e="TRAKK Basic"/>
+ This attribute performs two separate functions:
+
+ (1) For fields with an AllowedValuesDefinition, delays running of allowed values
+ scripts /rules until the fieldis clicked, instead ofrunning at form load, so itcan
+ make use of other data entered on the form instead of justdata available on ini-
+ tialform load.
+
+
+dynamic (2) During form refresh in response toa value change ofa field marked for
+ postBack, only fields marked as dynamic (dynamic="true") have theirvalue
+ scripts /rules re-run; otherwise, the initialvalue calculated forthe fieldon form
+ load remains in effect as the field's default value.
+
+ Example:
+ <Field name="fullName" displayName="Full Name"
+ dynamic="true">
+
+
+
+
+
+
+SailPoint Forms 16
+
+===== Page 20/45 =====
+Components ofa Form Definition
+
+
+Field Attrib- Description
+utes
+ <Script>
+ <Source>
+ return (firstName + " " + lastName);
+ </Source>
+ </Script>
+ </Field>
+
+ Note: Field value recalculations for fieldsmarked as
+ dynamic are not processed on postBack ifavalue has been
+ entered manually inthe field,based on the assumption that
+ ifauser manually enters a value, they generally do not
+ want that overridden by an automatic process. To override
+ thisbehavior, manually clear thefields using a hidden script
+ elsewhere in the form likethis:
+
+ <Section>
+ <Attributes> <Map>
+ <entry key="hidden">
+ <value> <Script> <Source>
+ boolean hidden = false;
+ // Null out field – add condition here if desired
+ form.getField("nickname").setValue(null);
+ return hidden;
+ </Source> </Script> </value>
+ </entry>
+ </Map> </Attributes>
+ <Field displayName="Nickname" dynamic="true"
+ name="nickname" type="string">
+ <Script><Source>
+ if ("Robert".equal(firstName))
+ return "Bob";
+ </Source></Script>
+ </Field>
+ </Section>
+
+ Attributes that only apply to the application and role provisioning policies
+
+
+
+
+
+
+SailPoint Forms 17
+
+===== Page 21/45 =====
+Components of a Form Definition
+
+
+Field Attributes Description
+
+ List (CSV) of other fieldsthat must be evaluated before this field.
+
+
+ Dependencies on the provisioning policy (form) field cause that field tobe
+ deferred to a subsequent form that ispresented afterthe form on which its
+dependencies dependencies are presented. The field might also be calculated based on
+ those dependencies instead of presenting iton a laterform.
+
+
+ This attribute can also be used with dynamic /allowedValues fields.Values
+ of dependencies fieldsare made available tothe allowedValues script or
+ rule, even ifthe fieldis presented on a different form.
+ Enables a default value to be assigned tothe fieldwhile stillincluding the
+ fieldon the form displayed toa user. This enables the default tobe edited. If
+reviewRequired reviewRequired="true" isnot specified, the provisioning policy form fields
+ with a default value (orvalue script /rule that returns a value) are omitted
+ from the user-facing form and the default value isautomatically used.
+ Boolean that specifies whether the fieldvalue should replace the current
+ value rather than be merged with it.Valid for multi-valued attributes only:
+authoritative
+ <Field name="costCenter" displayName="Cost Center" mul-
+ ti="true" authoritative="true"/>
+
+
+ Fields can also contain nested elements that help control the display or use of the field
+
+
+Nested Elements within Description
+Field Elements
+
+ Field description, used for XML self-documentation. Not displayed in
+ user interface.
+
+Description <Description>
+
+ This field stores the Identity's first name.
+ </Description>
+ Attribute map used to control field rendering, specific to the field type.
+ The most common attributes are height and width which are usually spe-
+Attributes cified fortextarea fields and forentry boxes that need tobe other than
+
+ the default rendering size. Units forheight and width are in pixels.
+
+
+
+
+
+
+
+SailPoint Forms 18
+
+===== Page 22/45 =====
+Components of a Form Definition
+
+
+Nested Elements within Description
+Field Elements
+
+
+ <Attributes>
+ <Map>
+ <entry key="height" value="200"/>
+ <entry key="width" value="100"/>
+ </Map>
+ </Attributes>
+
+
+ Alternative to"value" attributeon <Field>. This is required when spe-
+ cifying complex datatypes such as Map orList.
+
+
+ <Value>
+ <List>
+ <String>Thing 1</String>
+ <String>Thing 2</String>
+ </List>
+ </Value>
+Value
+ Also needed forfields oftype Date, which are specified as the utime rep-
+ resentation of the date:
+
+
+ <Value>
+ <Date>1231971297</Date>
+ </Value>
+
+
+ Can be used tospecify simpler types likeString, Boolean, etc. but not
+ commonly done because value attribute issimpler.
+ Script used to initializethevalue of the field,alternativeto the value ele-
+ ment /attribute.Automatically created for fieldswhose value is set by
+ script through user interface specification.
+
+Script Example:
+
+
+ <Script>
+ <Source>
+
+
+
+
+
+
+SailPoint Forms 19
+
+===== Page 23/45 =====
+Components of a Form Definition
+
+
+Nested Elements within Description
+Field Elements
+
+ [BeanShell code goes here]
+ return [value or variable that contains value to
+ assign to the field];
+ </Source>
+ </Script>
+ Reference to a reusable rule for initializingfieldvalue. Alternative to
+ <Script> (and value attribute). Automatically created for fieldswhose
+ value isset by script through user interface specification.
+
+
+RuleRef <RuleRef>
+ <Reference class="Rule" name="My Rule"
+ id="402839343985ff930d" />
+ </RuleRef>
+ Specifies a set of values from which the user can select toassign the
+ fieldvalue. Automatically created for fieldswith an allowed values prop-
+ erty set toValue (witha listof values specified) through user interface
+ specification.
+
+
+ <Field name="dept" …>
+ <AllowedValues>
+ <String>Accounting</String>
+AllowedValues <String>Manufacturing</String>
+ <String>Engineering</String>
+ </AllowedValues>
+ </Field>
+
+
+ The listrenders as radio buttons when only two options exist (and multi
+ isnot allowed), as a listboxfor more than two options, and as a com-
+ bobox formulti-selectable fields.
+ Populates a listofvalues from which the user can select a value forthe
+ field.This field contains either a<Script> block that specifies the listpro-
+AllowedValuesDefinition grammatically or a <RuleRef> that points to a rulecontaining the bean-
+ shell forgenerating the list.Automatically created for fieldswith an
+ allowed values property set to Script or Rule through user interface spe-
+
+
+
+
+
+
+
+
+SailPoint Forms 20
+
+===== Page 24/45 =====
+Components of a Form Definition
+
+
+Nested Elements within Description
+Field Elements
+
+ cification.
+
+
+ <AllowedValuesDefinition>
+ <Script>
+ <Source>
+ import sailpoint.object.*;
+ List l = new ArrayList();
+ for(WorkItem.State enumItem : WorkItem.State.values
+ ()) {
+ List l2 = new ArrayList();
+ l2.add(enumItem.toString());
+ l2.add(enumItem.getMessageKey());
+ l.add(l2);
+ }
+ return l;
+ </Source>
+ </Script>
+ </AllowedValuesDefinition>
+
+
+ Alternativeto AllowedValues element and more commonly used. The
+ listrendersas radio buttons when onlytwo options exist(and multi is
+ notallowed), as a listboxfor more than two options,and as a combo box
+ formulti-selectable fields.
+ Scriptused toexamine and validate thefieldvalue entered by the user.
+ The value entered ispassed to thevalidation scriptinthe variable
+ named "value."
+
+
+ <ValidationScript>
+ <Source>
+ValidationScript if (value > 10) {
+
+ return "Value must be less than or equal to 10";
+ else
+ return null;
+ </Source>
+ </ValidationScript>
+
+
+
+
+
+
+SailPoint Forms 21
+
+===== Page 25/45 =====
+Components ofa Form Definition
+
+
+Nested Elements within Description
+Field Elements
+
+
+ Returns nullifno errors and an error message (as stringor
+ SailPoint.tools.message object)ifvalidation errorsexist.
+ Reference toreusable ruleforfieldvalidation. This isthe alternativeto
+ ValidationScript.
+
+
+ValidationRule <ValidationRule>
+ <Reference class="Rule" name="My Validation Rule"
+ id="4028392342f5ff9301" />
+ </ValidationRule>
+ Used only forapplication and roleprovisioning policies todetermine the
+ Identityto whom thefields should be presented. This enables spe-
+ cificationofa RuleRef, script,a Value element or a Value attribute:
+
+
+ <OwnerDefinition>
+ <RuleRef>
+ <Reference class="rule" name="My Owner Rule"
+ id="4038293483598523" />
+ </RuleRef>
+ </OwnerDefinition>
+ or
+ <OwnerDefinition>
+OwnerDefinition <Script>
+ <Source>
+ import sailpoint.object.*;
+ Identity myIdentity=context.getObjectByName(Iden-
+ tity,"Walter.Henderson");
+ return myIdentity;
+ </Source>
+ </Script>
+ </OwnerDefinition>
+ or
+ <OwnerDefinition value="IIQApplicationOwner"/>
+
+
+ Can provide either the stringname of owning Identityor the Identity
+
+
+
+
+
+
+SailPoint Forms 22
+
+===== Page 26/45 =====
+Components ofa Form Definition
+
+
+Nested Elements within Description
+Field Elements
+
+ object.
+
+
+ As with Field value, OwnerDefinition value can also be expressed as a
+ nested element. Itcan be a string Identity name or an Identity object:
+
+
+ <OwnerDefinition>
+ <Value>
+ <String>Walter.Henderson</String>
+ </Value>
+ </OwnerDefinition>
+
+ Three special names existthat are translated by IdentityIQ into the
+ appropriate Identity so an OwnerDefinition script is not required for
+ them:
+
+
+
+ l IIQParentOwner – owner of the role orapplication containing the
+ provisioning policy form
+
+
+
+ l IIQApplicationOwner – owner of the application associated with
+ the provisioning policy form
+
+
+
+ l IIQRoleOwner – owner ofthe role containing the provisioning
+ policy form
+
+ <OwnerDefinition value=""/> assigns and presents the field to
+ the access requester.
+
+ The user interface offers these options for setting fieldowners:
+ Requester (sets OwnerDefinition to""),Application Owner (sets to
+ "IIQApplicationOwner"), Role Owner on Role Provisioning Policies
+ (sets to"IIQRoleOwner"), and Rule and Script (save as Own-
+ erDefinition with nested RuleRef or Script, as shown above).
+ Applies only toapplication provisioning policies as part of the ordered
+ provisioning function; sets the value for a fieldbased on the value of an
+AppDependency attribute on another application on which itis dependent.
+
+
+ <Field displayName="Login ID" name="login" type-
+ e="string">
+
+
+
+
+
+
+
+SailPoint Forms 23
+
+===== Page 27/45 =====
+Components of a Form Definition
+
+
+Nested Elements within Description
+Field Elements
+
+ <AppDependency applicationName="LDAP" schem-
+ aAttributeName="employeeNumber"/>
+
+ </Field>
+
+
+ This can only be specified when the application has dependencies
+ declared and can only reference attributes on an application on which
+ the application isdependent. The user interface option forfieldvalue
+ named Dependency creates thiselement in the fielddefinition.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Forms 24
+
+===== Page 28/45 =====
+Working with the Form Editor
+
+Working with the Form Editor
+
+
+The Form Editor provides a graphical user interface enabling you to create and edit forms without having toedit the
+xml directly.
+
+The Form Editor contains the following sections:
+
+
+
+ l Detail View – detailed information about the selected form
+
+
+
+ l Expandable Tree View – provides an ordered, hierarchical view of the form components
+
+
+
+ l Edit Options – the available attributes for the selected form item
+
+Detail View
+
+This section displays the detailinformation about the selected form on clicking the Details button. The following table
+listsdisplayed attributes for the respective Form Type:
+
+
+
+ Form Type Attributes
+
+ Application Provisioning Policy Form Title,Subtitle,Wizard, Owner
+ Role Provisioning Policy Form Title,Subtitle,Wizard, Application, Owner
+ Workflow Form Title,Subtitle,Wizard
+
+Expandable Tree
+
+The expandable tree section provides an ordered and hierarchical view of the form components.
+
+The tree section can be subdivided into the following components:
+
+Action buttons
+
+ Buttons for following actions:
+
+
+
+ l Add Section – adds section tothe expandable tree view
+
+
+
+ l Add Button – adds button tothe bottom ofthe expandable tree view. The Add Button isapplicable to Work-
+ flow Approval Forms.
+
+
+
+ l Preview Form – displays the form layout for allincluded form components inthe editor.Helps to preview
+ the form while developing a form tosee how itrenders on actual operations.
+
+
+
+
+
+
+ SailPoint Forms 25
+
+===== Page 29/45 =====
+Working with the Form Editor
+
+Components in the tree view
+
+ These are the different components of the tree panel:
+
+
+
+ l Section – Multiple sections can be added to the tree panel through the Add Section button. Using + icon
+ Fields and Row with Columns can be added. The Section item can be expanded or collapsed by clicking on
+ them.
+
+
+
+ l Add Field – Fields can be added under the Section.
+
+
+
+ l Add Row with Columns – Rows with a maximum of four columns can be added under the Section
+ using the Choose how many columns in this row dropdown listunder the Edit Options section.
+
+ Note: When using Rows, the columns attribute ofSection and columnSpan attrib-
+ ute ofField would be calculated by Form Editor and existing values would be over-
+ written.
+
+
+
+
+ l Button – Allthe defined Buttons are added atthe end in the treepanel.
+
+Reordering Form Components
+
+Form components can be reordered using the drag /drop feature inthe following way:
+
+
+
+ l Sections – sections can be reordered. Sections cannot have sections within them.
+
+
+
+ l Rows – rows can be reordered within the Section or dragged and dropped into any Section.
+
+
+
+ l Fields – fields can be reordered within Rows or dragged and dropped intoany Section.
+
+
+
+ l Buttons – can be reordered only within Buttons.
+
+
+ Note: For inappropriate moves of the form components the not allowed icon is displayed.
+
+Edit Options
+
+The EditOptions section on the Editor page displays the attributes that must be modified for the respective actions.
+
+Click on the Apply button after the attributes are modified.
+
+ Section
+
+
+
+
+
+
+
+
+
+
+ SailPoint Forms 26
+
+===== Page 30/45 =====
+Working with the Form Editor
+
+
+ Attributes Description
+
+ Basic
+ Name Internal name for section.
+ Label of Section determines Section text on Edit page.
+ Label Labels can be specified as text, message catalog keys, or variables (specified with
+ $(variableName) notation).
+ Subtitle Section subtitle as description (displayed at the top ofthe section, above allfields inthe
+ section).
+ Settings
+ Hidden Boolean that, when true, prevents the field from being displayed on the form.
+ Read Only Section properties are read only.
+ Hide Nulls When set to true, hides fields within the section which have a null value.
+
+
+ Fields and Rows
+
+
+ Attributes Description
+
+ Settings
+ Name Name for the fieldthat can be referenced incode as the variable name in which the
+ fields value is stored
+ Display Name Label for the field; can be text or a message key.
+ Help Text The text that appears when hovering the mouse over the help icon.
+ Select the type of field from the drop down list.Select from the following:
+ Boolean – true or false values field.
+
+ Date – calendar date field.
+
+ Integer – only numerical values field.
+
+ Long – similar to integer but is used for large numerical values.
+ Type Identity – specific identity in IdentityIQ field.
+
+
+ Secret – hidden text field.
+
+ String – text field
+
+ Application – listof existing application
+
+ Role – existing type of bundles
+ Type Settings
+ Multi-Valued Enable this to have more than one selectable value inthis field ofthe generated
+
+
+
+
+
+SailPoint Forms 27
+
+===== Page 31/45 =====
+Working with the Form Editor
+
+
+ Attributes Description
+
+ form.
+ Refresh On Boolean that,when true, causes the form to refresh when the fields data value
+ Change changes, running any rules or scripts that run on form reload.
+ Authoritative Enable to have the fieldvalue override the current value rather than merge with it.
+ Applicable only formultivalued attributes.
+ Boolean indicating whether a value ismandatory forthe field;required="true" marks
+ Required field with * on form to indicate required and prevents form submission without a
+ value for the field.
+ Determine how the read only value is derived:
+
+ True – value based on the selection from the drop down list
+ Read Only
+ Rule – value is based on a specified rule
+
+ Script – value isdetermined by the execution of a script
+ Boolean that,when true, prevents the fieldfrom being displayed on the form.
+
+ True – value based on the selection from the drop down list
+ Hidden
+ Rule – value is based on a specified rule
+
+ Script – value isdetermined by the execution of a script
+ The owner of the field /row. This isdetermined by selecting from the following:
+
+ None – no owner isassigned tothis field/row
+
+ owner Requester – sets the Owner tothis field/row
+
+ Rule – use a rule to determine the owner of this field/row
+
+ Script – use a script to determine the owner of this field/row
+ Value Settings
+ Sets the default /initialvalue for the field /row. This can be overwritten on the form if
+ Value the field /row is not marked as Read Only. Select None, Value, Rule or Script
+ option.
+ Specifies a set of values from which the user can select to assign the fieldvalue.
+ Allowed Val- Automatically created for fields with an allowed values property set toValue (with a
+ ues listof values specified) through user interface specification. Select Value, Rule, or
+ Script.
+ Validation Ability to specify a script or rule for validating the user's value by selecting None,
+ Rule or Script.
+
+
+ Button
+
+
+
+
+SailPoint Forms 28
+
+===== Page 32/45 =====
+Working with the Form Editor
+
+
+ Attributes Description
+
+ Settings
+ Action determines what the system does in response toclicking the associated button.
+ Select one from the drop down list:
+
+ Next – used in the Transition logic toadvance the workflow to the next step
+ Action Back – used inthe Transition logic to return to a previous step or any other appropriate
+ action for a rejection.
+
+ Refresh – save the entered form data and regenerate the form; not a state transition
+ justa redisplay of the form
+ Read Only Determines whether to show a button or not on the form renderer.
+ Skip Val- Determines ifclient-side required item validation is necessary based on the button
+ idation clicked by the user. Validation isrequired ifthe button is not configured to skip val-
+ idation, the action isNEXT and there are required items.
+ Label Determines the text displayed on the button.
+ Parameter Action-parameter ofthe button.
+ Value Action-parameter value.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Forms 29
+
+===== Page 33/45 =====
+Form Examples
+
+Form Examples
+
+
+This section contains examples ofXML specifications forthe various types offorms.
+
+Application and Role Provisioning Policies and Workflow Forms can allbe created through the user interface,though
+some advanced features might require XML editingto implement. All form types are recorded as XML objects thatcan
+be edited through the debug pages as needed. This section reviews the form types intheirXML format and shows
+how they are rendered as a form inthe user interface based on that XML definition.
+Application and Role Provisioning Policy
+
+Application provisioning policiesare specified as <Form> within the <Application> definition.Role provisioning
+polices are <Form> within the <Bundle> definition.Applications might have more than one provisioning policy form
+– one for (account) creation, update, and delete provisioning activitiesplus additional policies forgroup creation and
+update. Roles might only have one forrole assignment to an Identity.
+
+This sample <Form> definitionprovides examples of fieldsslotted intoseparate sections, assigned todifferent own-
+ers by value or by script,with an permitted values set, and with a validation script.Application provisioning policies are
+specified within a<Forms> element that wraps allof the specified provisioning policy forms together.
+
+
+ <?xml version='1.0' encoding='UTF-8'?><!DOCTYPE Form PUBLIC "spt.dtd" "spt.dtd">
+ <Form name="New Acct Policy" type="Create">
+   <Field displayName="Name" name="name" required="true" reviewRequired="true" type-
+ e="string">
+     <OwnerDefinition value="IIQApplicationOwner"/>
+   </Field>
+   <Field displayName="Phone" name="phone" required="true" section="Extra Info" type-
+ e="string">
+     <OwnerDefinition value="IIQApplicationOwner"/>
+   </Field>
+   <Field displayName="Office Number" name="off_no" required="true" section="" type-
+ e="integer">
+     <OwnerDefinition>
+       <Script>
+         <Source>return identity.getManager();</Source>
+       </Script>
+     </OwnerDefinition>
+     <ValidationScript>
+       <Source>
+    try {
+ int number=Integer.parseInt(value);
+ if (number &lt; 100) {
+ return "Office numbers are all 100 or greater.";
+ } else{
+ return null;
+ }
+ } catch (NumberFormatException e) {
+
+
+
+
+
+
+ SailPoint Forms 30
+
+===== Page 34/45 =====
+Form Examples
+
+
+
+ return "Non-numeric value provided; must be numeric.";
+ }
+ </Source>
+     </ValidationScript>
+   </Field>
+   <Field displayName="Region" name="region" required="true" type="string">
+     <AllowedValues>
+       <String>Americas</String>
+       <String>EMEA</String>
+       <String>APAC</String>
+     </AllowedValues>
+   </Field>
+
+Application Provisioning Policies can render on multiple forms, depending on the fieldOwners. Multiple provisioning
+policy forms can be combined intoone form ifa request spans multiple applications or roles that each need to gather
+additional data from the same user.
+Identity Provisioning Policy
+
+The XML below creates an identity provisioning policy which implements many of the available form options, includ-
+ing:
+
+The form includes multiple fieldtypes (:string,object, and secret -.Secret hides enteredthe text).as itisentered.
+Object fieldsare rendered as dropdown listboxes prepopulated with allavailable items ofthat type.
+
+
+
+ l Multi-column configurations
+
+
+
+ l Multi-column spans forsome fields
+
+
+
+ l Allowed values lists
+
+
+
+ l Tool tiphelp prompts
+
+
+
+ l Field validation (runs when user clicksSubmit)
+
+
+
+ l Filter on object listsfor example, show only Manager Identitiesin Manager drop down list
+
+
+
+ l Conditional display of sections based on entered field values
+
+
+
+ l Population of fieldsbased on values entered inother fields
+
+
+The form includes multiple fieldtypes: string, object and secret. Secret hides the text as itis entered. Object fieldsare
+rendered as dropdown listboxes prepopulated with all available items of that type.
+
+
+
+
+
+
+
+
+ SailPoint Forms 31
+
+===== Page 35/45 =====
+Form Examples
+
+
+
+      <?xml version='1.0' encoding='UTF-8'?>
+ <!DOCTYPE Form PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+ <Form name="Identity Create Policy" type="CreateIdentity">
+   <Description>This is the provisioning policy used when creating a new identity thru
+ LCM.</Description>
+   <Section columns="2">
+     <Field displayName="First Name" name="firstname" required="true" reviewRe-
+ quired="true" type="string"/>
+     <Field displayName="Last Name" name="lastname" postBack="true" required="true" type-
+ e="string"/>
+     <Field columnSpan="2" displayName="Username" dynamic="true" helpKey="cube name" name-
+ e="name" required="true" type="string">
+       <Script>
+         <Source>
+            if ((null != firstname) &amp;&amp; (null != lastname)) {
+                return (firstname + "." + lastname);
+            }
+            return null;
+         </Source>
+       </Script>
+       <ValidationScript>
+         <Source>
+             // validation variable comes in as "value"; messages value returned
+             // is displayed on screen below field on validation; success should return
+             // empty messages list
+             import sailpoint.tools.Message;
+             import sailpoint.object.Identity;
+
+             List messages = new ArrayList();
+
+             Identity existing = (Identity)context.getObjectByName(Identity.class,value);
+             if (existing == null) {
+                // No Identity found with that name, so return empty messages -
+                // validation successful
+                return messages;
+             } else {
+                Message msg = new Message();
+                msg.setKey("Username: " + value + " already exists. Modify this name to
+ make it unique.");
+                messages.add(msg);
+                return messages;
+             }
+         </Source>
+       </ValidationScript>
+     </Field>
+     <Field displayName="Password" name="password" reviewRequired="true" type="secret"/>
+     <Field displayName="Password Confirmation" name="passwordConfirm" reviewRe-
+ quired="true" type="secret"/>
+     <Field displayName="Employment Type" displayType="combobox" name="status" postBack-
+ k="true" type="string">
+       <AllowedValues>
+         <String>Employee</String>
+         <String>Contractor</String>
+       </AllowedValues>
+     </Field>
+
+
+
+
+
+
+SailPoint Forms 32
+
+===== Page 36/45 =====
+Form Examples
+
+
+
+   </Section>
+   <Section label="Employee Only Fields">
+     <Attributes>
+       <Map>
+         <entry key="hidden">
+           <value>
+             <Script>
+               <Source>
+                  if ("Employee".equals(status)) {
+                      return false;
+                  } else {
+                      return true;
+                  }
+                 </Source>
+             </Script>
+           </value>
+         </entry>
+       </Map>
+     </Attributes>
+     <Field displayName="Manager" filterString="managerStatus == true" name="manager" type-
+ e="sailpoint.object.Identity"/>
+     <Field displayName="att_email" dynamic="true" name="email" reviewRequired="true" sec-
+ tion="" type="string">
+       <Script>
+         <Source>
+                 if (("Employee".equals(status)) &amp;&amp; (null != firstname) &amp;&amp;
+ (null != lastname)) {
+                     return (firstname + "." + lastname + "@demoexample.com");
+                 }
+                 return null;
+             </Source>
+       </Script>
+     </Field>
+     <Field displayName="Location" name="location" reviewRequired="true" type="string"
+ value="Austin">
+       <AllowedValues>
+         <String>Austin</String>
+         <String>Brazil</String>
+         <String>Munich</String>
+         <String>London</String>
+         <String>Brussels</String>
+         <String>San Jose</String>
+         <String>Chicago</String>
+         <String>Taipei</String>
+         <String>Tokyo</String>
+       </AllowedValues>
+     </Field>
+   </Section>
+ </Form>
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Forms 33
+
+===== Page 37/45 =====
+Form Examples
+
+Workflow Form
+
+This example XML creates acustom form thatdisplays the Identity'sname and asks the user toselect a region to
+which the Identityshould be assigned. Itdemonstrates use of an AllowedValuesDefinition and a ValidationScriptas
+wellas Sections ofallthree types, text,datatable, and default.This form is embedded inthe Workflow XML, as it
+would be ifthe form were created through theBusiness Process Editor Add Form option.The form could alternatively
+be created as a standalone form object and referenced as an argument tothe approval, as described inWorkflow
+Forms.
+
+
+ <Step name="Need Region" posX="359" posY="182">
+   <Approval name="Need Region" owner="ref:launcher" return="region"
+           send="identityName">
+     <Arg name="workItemDescription"
+            value="string:Fill in Region for $(identityName)"/>
+     <Form>
+      <Attributes>
+         <Map>
+           <entry key="pageTitle" value="Get Region"/>
+           <entry key="title" value="Need Region for Identity"/>
+         </Map>
+      </Attributes>
+      <Button action="back" label="Abort"/>
+      <Button action="next" label="Submit"/>
+      <Button action="cancel" label="Return Item to Inbox"/>
+
+      <Section name='userInstructions' type='text'>
+         <Field value="Employees must be assigned to a region.  Please provide the correct
+ region for this employee."
+ />
+      </Section>
+
+      <Section type="datatable">
+        <Field displayName="Employee Name" name="identityName"/>
+      </Section>
+
+      <Section name="Edit These Fields">
+         <Field displayName="Region Value" name="region" required="true"
+           type="String">
+          <AllowedValuesDefinition>
+            <Script>
+              <Source>
+                   import java.util.ArrayList;
+             import sailpoint.api.*;
+             import sailpoint.object.*;
+
+             List regions = new ArrayList();
+             QueryOptions qo = new QueryOptions();
+
+             qo.setDistinct(true);
+             qo.addOrdering("region", true);
+
+
+
+
+
+
+
+ SailPointForms 34
+
+===== Page 38/45 =====
+Form Examples
+
+
+
+             List props = new ArrayList();
+             props.add("region");
+
+             Iterator result = context.search(Identity.class, qo, props);
+             while (result.hasNext()) {
+               Object [] record = result.next();
+             String region= (String) record[0];
+             regions.add(region);
+             }
+             return regions;
+              </Source>
+            </Script>
+          </AllowedValuesDefinition>
+          <ValidationScript>
+              <Source>
+             // validation variable comes in as "value"
+               import sailpoint.tools.Message;
+                List messages = new ArrayList();
+                if(value.length() &lt; 6) {
+                   Message msg = new Message();
+                   msg.setKey("New region must be at least 6 characters.");
+                   messages.add(msg);
+                }
+                return messages;
+
+              </Source>
+          </ValidationScript>
+       </Field>
+     </Section>
+   </Form>
+  </Approval>
+ </Step>
+
+Report Forms
+
+Report forms are used to displayreport-specific filterstotheuser in theEdit Report window. The form must be created
+as an independent Form object and referenced from the report definitionina <ReportForm> element.
+
+Atruntime, the form is combined with the Report Form Skeleton, which defines the Standard Properties and Report
+Layout pages. Each section named in theform iscreated as itsown Report Properties page, displayed between the
+Standard Properties and Report Layout pages. The page name, shown inthe Sections listand atthe top of theform,
+isspecified as theSection's label attribute.
+
+
+    <Form name="Uncorrelated Accounts Report Custom Fields">
+       <Section label="Uncorrelated Accounts Parameters" name="customProperties">
+ <Field displayName="report_input_correlated_apps" filterString="logical==false &amp;&amp;
+ authoritative==false" helpKey="rept_input_uncorrelated_ident_report_correlated_apps"
+ name="correlatedApps" type="Application" value="ref:correlatedApps"/>
+       </Section>
+     </Form>
+
+
+
+
+
+ SailPointForms 35
+
+===== Page 39/45 =====
+Form Examples
+
+
+An example ofa simple report form isshown below. Itcontains only one section, formatted intwo columns with sev-
+eraldatatypes represented (dates, objects, and Boolean). The displayName and helpKey values on thisreport are loc-
+alizablemessage keys. The values are allpulled from the TaskDefinition's input arguments, ifany are provided there,
+toset the fields'defaultvalues.
+
+
+ <?xml version='1.0' encoding='UTF-8'?>
+ <!DOCTYPE Form PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+ <Form created="1346776069392" id="4028460239921ba40139921bf510019a" mod-
+ ified="1346776080142"
+ name="Application Owner Access Review Report Form">
+   <Section columns="2" label="rept_cert_custom_section_title" name="customProperties">
+     <Field displayName="rept_cert_field_create_start" helpKey="rept_cert_help_create_
+ start"
+ name="createStartDate" type="date" value="ref:createStartDate"/>
+     <Field displayName="rept_cert_field_create_end" helpKey="rept_cert_help_create_end"
+ name="createEndDate" type="date" value="ref:createEndDate"/>
+     <Field displayName="rept_cert_field_signed_start" helpKey="rept_cert_help_signed_
+ start"
+ name="signedStartDate" type="date" value="ref:signedStartDate"/>
+     <Field displayName="rept_cert_field_signed_end" helpKey="rept_cert_help_signed_end"
+ name="signedEndDate" type="date" value="ref:signedEndDate"/>
+     <Field displayName="rept_cert_field_due_start" helpKey="rept_cert_help_due_start"
+ name="dueStartDate"
+ type="date" value="ref:dueStartDate"/>
+     <Field displayName="rept_cert_field_due_end" helpKey="rept_cert_help_due_end" name-
+ e="dueEndDate"
+ type="date" value="ref:dueEndDate"/>
+     <Field displayName="rept_cert_field_apps" helpKey="rept_cert_help_apps" multi="true"
+ name="applications" type="Application" value="ref:applications"/>
+     <Field displayName="rept_cert_field_tags" helpKey="rept_cert_help_tags" multi="true"
+ name="tags"
+ type="Tag" value="ref:tags"/>
+     <Field displayName="rept_cert_field_cert_group" helpKey="rept_cert_help_cert_group"
+ multi="true"
+ name="certificationGroups" type="CertificationGroup" value="ref:certificationGroups"/>
+     <Field displayName="rept_cert_field_show_exclusions" helpKey="rept_cert_help_show_
+ exclusions"
+ name="exclusions" type="boolean" value="ref:exclusions"/>
+   </Section>
+ </Form>
+
+This form isrendered as shown inthe Report Properties section ofthe Edit Report window.
+
+Inreport forms, sections can be created without Fielddefinitions,allowing the report's taskDefinition'sinitialization
+rule/scripttocreate the form fields.Several ofthe standard reports, forexample, use an initializationruletogenerate a
+pages ofApplication and/or Identityattributefiltersbased on the installation'ssystem data, the defined standard and
+extended attributes,so the report forms themselves are defined with empty sections. The Privileged Access Report
+form provides an example of a dynamically builtform.
+
+
+ <?xml version='1.0' encoding='UTF-8'?>
+
+
+
+
+
+
+SailPoint Forms 36
+
+===== Page 40/45 =====
+Form Examples
+
+
+
+ <!DOCTYPE Form PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+ <Form created="1346776069392" id="4028460239921ba40139921bf510019a" mod-
+ ified="1346776080142"
+ name="Application Owner Access Review Report Form">
+   <Section columns="2" label="rept_cert_custom_section_title" name="customProperties">
+     <Field displayName="rept_cert_field_create_start" helpKey="rept_cert_help_create_
+ start"
+ name="createStartDate" type="date" value="ref:createStartDate"/>
+     <Field displayName="rept_cert_field_create_end" helpKey="rept_cert_help_create_end"
+ name="createEndDate" type="date" value="ref:createEndDate"/>
+     <Field displayName="rept_cert_field_signed_start" helpKey="rept_cert_help_signed_
+ start"
+ name="signedStartDate" type="date" value="ref:signedStartDate"/>
+     <Field displayName="rept_cert_field_signed_end" helpKey="rept_cert_help_signed_end"
+ name="signedEndDate" type="date" value="ref:signedEndDate"/>
+     <Field displayName="rept_cert_field_due_start" helpKey="rept_cert_help_due_start"
+ name="dueStartDate"
+ type="date" value="ref:dueStartDate"/>
+     <Field displayName="rept_cert_field_due_end" helpKey="rept_cert_help_due_end" name-
+ e="dueEndDate"
+ type="date" value="ref:dueEndDate"/>
+     <Field displayName="rept_cert_field_apps" helpKey="rept_cert_help_apps" multi="true"
+ name="applications" type="Application" value="ref:applications"/>
+     <Field displayName="rept_cert_field_tags" helpKey="rept_cert_help_tags" multi="true"
+ name="tags"
+ type="Tag" value="ref:tags"/>
+     <Field displayName="rept_cert_field_cert_group" helpKey="rept_cert_help_cert_group"
+ multi="true"
+ name="certificationGroups" type="CertificationGroup" value="ref:certificationGroups"/>
+     <Field displayName="rept_cert_field_show_exclusions" helpKey="rept_cert_help_show_
+ exclusions"
+ name="exclusions" type="boolean" value="ref:exclusions"/>
+   </Section>
+ </Form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Forms 37
+
+===== Page 41/45 =====
+Form Models
+
+Form Models
+
+
+Form models are used to simplify that process of passing values between the workflow variables and the form. Form
+models enable the specification ofa Map through which a set of variables can be handed tothe form by the workflow.
+The model isdefined in the workflow (or predefined model is used), enabling the workflow and form to pass a col-
+lection of variables at one time through the specified model. The form renderer isset up to use the model so form
+fieldscan name the desired attribute directly without having to reference the model name as well.
+
+Since actions inworkflows often center around Identities,a map for the identity object, called IdentityModel, isprebuilt
+inIdentityIQ. A workflow library method, getIdentityModel, can be called by a workflow step to create an IdentityModel
+map to use in a subsequent step that renders a form. To create an empty map, callthis method with no arguments. To
+prepopulate the map with an identity's current values, specify an identityname or ID as an argument to the step. This
+method is used with no arguments inthe new self-service registration workflow to prepare tocreate a new identity
+from the data the user enters on the form.
+
+For an example of the simplification offered by a form model: A workflow form needs to display and permit the user to
+edit 10 identity attributes. Without form binding, all10 would have tobe defined as individual business process vari-
+ables and all10 would have to be sent to and returned from the approval inthe workflow. The form would also require
+all10 to be defined as form arguments. With a model, the whole Identity can be automatically stored in a single busi-
+ness process variable with a single method call,only one variable (identityModel) must be passed toand returned
+from the form, and no form arguments need to be defined atall.
+
+Use these steps to use the IdentityModel in a workflow form:
+
+ 1. Go toSetup > Business Process > Process Variables tab.
+
+ 2. Define a process variable in the workflow (identityModel).
+
+ 3. Inan early step inthe workflow, initializeand populate the identityModel by calling the getIdentityModel method
+ inthe IdentityLibrary workflow library. Specify the identityModel process variable as the Result Variable forthat
+ step.
+
+
+ To pass an identity name or ID to the method, specify itas an argument to the step (identityName or identityId).
+
+ 4. Inthe approval that contains the form, create an argument called workItemFormBasePath and specify the iden-
+ tityModel process variable as itsvalue. The form base path is understood by the form renderer and is auto-
+ matically applied to permit the form access to the map fields.This enables the passing of the model to and from
+ the form.
+
+
+
+
+
+
+
+
+
+ SailPoint Forms 38
+
+===== Page 42/45 =====
+Form Models
+
+ 5. Reference the components ofthe identityModel in the form as though they were passed as individual variables,
+ for example, as "firstname," not as "identityModel.firstname."
+
+
+ Note: When a base path is specified as a form argument, the form renderer assumes all
+ fieldson the form are accessed through that base path, so allattributes to be included in
+ the form or returned from itmust be included inthe model.
+
+
+ <Section>
+ <Field displayName="user_name" name="name" required="true" type="string"/>
+ <Field displayName="first_name" name="firstname" required="true" type="string"/>
+ <Field displayName="last_name" name="lastname" required="true" type="string"/>
+ <Field displayName="email" name="email" required="true" type="string"/>…
+
+
+ 6. (Optional) To provision changes to the identity based on the form, call the buildPlanFromIdentityModel()
+ method inthe Identity Library. This examines the versions ofthe model passed to the form and back from it,
+ identifies differences between them, and creates a provisioning plan to make the required changes.
+
+Refer tothe LCM Registration workflow, which ships with IdentityIQ Lifecycle Manager, for a fullexample of imple-
+menting the identityModel.
+
+No other models currently ship with the product, but custom models can be created through some manual coding in
+the initializationstage.
+
+ 1. Declare the model variable as a process variable (same as the identityModel), for example appModel.
+
+ 2. Initializethe model manually, since no librarymethod exists to populate custom models. Instead of a method
+ call inthe initializationstep, the step executes a script or rulewritten topopulate the desired data into a
+ HashMap that isstored in the custom model variable.
+
+ 3. Specify the custom model variable as the workItemFormBasePath argument tothe workflow's form step.
+
+ 4. Reference components in the custom model by name inthe form. As with identityModel, no reference to the
+ base path should be specified in the form fieldnames.
+
+Identity Model Structure
+
+The IdentityModel map delivered with IdentityIQ contains the following entries:
+
+
+
+ l all standard Identity attributes and allextended Identity attributes (most as strings;listswhen multi-valued)
+
+
+
+ l detectedRoles (List)
+
+
+
+ l assignedRoles (List)
+
+
+
+
+
+ SailPoint Forms 39
+
+===== Page 43/45 =====
+Form Models
+
+
+
+ l manager (String name, rather than ID)
+
+
+
+ l info map which contains:
+
+
+
+ l manager map (includes ID,name, and displayName of Manager Identity)
+
+
+
+ l lastRefresh, lastLogin, and passwordExpiration dates
+
+
+
+ l isWorkgroup, managerStatus, correlated, and correlatedOverriden flag values
+
+
+
+ l assignedScope name and controlsAssignedScope flagvalue
+
+
+
+ l transformerOptions (map ofprimer identityName or identityId used to populate the IdentityModel)
+
+
+
+ l class (sailpoint.object.Identity)
+
+
+
+ l transformerClass (sailpoint.transformer.IdentityTransformer)
+
+Accessing Identity Model Attributes
+
+Any identitymodel attributes can be displayed on a form or set based on data entered in aform fieldby supplying the
+model attribute name as the fieldname.
+
+Access any single-valued attribute at the top level by specifying itsname inthe field'sname attribute:
+
+<Field displayName="first_name" name="firstname" type="string"/>
+
+To display the contents ofa multi-valued extended identityattribute, use the following syntax. Multi-value extended
+identityattributes are shown in the identityModel as a listofstring values.
+
+<Field displayName="Cost Centers" multi="true" name="costcenter" type="string"/>
+
+Access any nested attribute, forexample, those with a map within the map, using dot notation:
+
+<Field displayName="Manager ID" name="info.manager.id" type="string"/>
+
+
+ Note: Values inthe info map should not be altered through the form, as they willnot be updated
+ inthe model; they are treated as read-only data that provides supplementary data forthe cor-
+ responding top-level attribute,and they are automatically refreshed based on updates to that
+ top-level attribute.
+
+Display the contents ofan object listinthe map, such as assignedRoles, detectedRoles, or workgroups, on a form by
+creating itas a combo box. Do thisby specifying the type as the correct object type and specifying multi="true":
+
+
+ <Field displayName="Detected Roles" filterString="type==&apos;it&apos;" multi="true" name-
+
+
+
+
+
+ SailPoint Forms 40
+
+===== Page 44/45 =====
+Form Models
+
+
+
+ ="detectedRoles" type="iiq.object.Bundle"/>
+
+
+ <Field displayName="WorkGroups" filterString="workgroup == true" multi="true" name-
+ e="workgroups" type="Identity"/>
+
+The application of a filterStringtothe workgroups listensures that only workgroup identitiesdisplay.
+
+The linkslistcontains a map for each link(account) held by the identity.Access attributes inside that listby referencing
+the name ofthe desired link and using dot notation totraverse the map:
+
+
+ <Field displayName="App Owner" name="links['HR_Employees'].sys.nativeIdentity" type-
+ e="string"/>
+
+Indevelopment and debugging, itcan be helpful to examine the identityModel in XML oras a stringrepresentation to
+clearly see itsstructure. The identityModel isvisible inthe workflowCase forany workflow where itisused and isprin-
+ted tostdout ifthe trace variable is set totrue for the workflow. Itcan be printed as a string from a workflow step with a
+System.out.println(identityModel.toString()); statement.
+Referencing a Form Model
+
+Form models can be accessed by rules and scripts within workflows orforms within workflows using the $() parsing
+tokens, for example, $(identityModel.name). When variables are referenced with thissyntax, the
+ScriptPreParser expands the short hand path references intothe proper MapUtil.get() reference. This notation
+can be used inscripts run from fields,variables, steps, transitions or step actions. The script can explicitly specify the
+fullpath to the variable in the model, forexample, $(identityModel.name), or itcan reference the variable directly
+when a modelBasePath has been defined, forexample $(name).
+
+ Note: In order to set a basePath in a form, an argument named modelBasePath (defined as
+ Rule.MODEL_BASE_PATH) must be set declaring the path to be used for allthe expanded vari-
+ ables in the form. For example, <Arg name='modelBasePath' value='identityModel'/>. The mod-
+ elBasePath does not have to be specified at the top level;for example, itcan point to a listor
+ map within the top-level map such as <Arg name='modelBasePath' value-
+ ='identityModel.links[AD]'/> (thisisthe map representing the user's AD account link).
+
+
+ Note: This $() notation can only be used for retrieving values from the model; itcannot be used
+ toset or change values inthe model.
+
+ Syntax
+
+Use the following syntax rules when writing references within the scripts:
+
+
+
+
+
+
+
+
+ SailPoint Forms 41
+
+===== Page 45/45 =====
+Form Models
+
+
+
+
+ l A dollarsign with parentheses [$()] isused as the parsing token to indicate what contents should be expan-
+ ded. For example, $(foo.bar).
+
+
+
+ l Double quotes are valid when enclosing spaces withinthe variable: $(foo."bar baz"). However an expan-
+ sion token withina quoted stringis not processed: "$(not.expanded)"
+
+
+
+ l Brackets can be used withina variable toaccess elements ina list:$(foo.bar[baz=bingo].buzz)
+ $(foo.bar[baz="path with spaces"].buzz)
+
+
+
+ l When the modelBasePath isset to asub-map or listwithinthe model, the forward slash escape character (/)
+ can be used tojump to theroot of thebasePath. This escape character must be the firstcharacter afterthe
+ expansion token. IfbasePath isset to'identityModel.links[AD]' and the desired reference isfor
+ identityModel.firstname the variable would be writtenas $(/firstname) which would be converted
+ toIIQ.tools.MapUtil.get(identityModel, "firstname"). Otherwise $(firstname) iscon-
+ verted toIIQ.tools.MapUtil.get(identityModel, "links[AD].firstname")
+
+
+
+ l Ifno basePath isset and the variableonly contains asingle word, no expansion occurs and a warning iswritten
+ tothe log indicatinga possible error condition.
+
+ Example Syntax
+
+The following are allvalid:
+
+No base path:
+
+
+
+ l $(foo.bar) —> IIQ.tools.MapUtil.get(foo, "bar")
+
+
+
+ l $(foo."bar baz") —> IIQ.tools.MapUtil.get(foo, "\"bar baz\"")
+
+
+
+ l $(foo.bar[baz="path with spaces"].buzz)—> IIQ.tools.MapUtil.get(foo, "bar[baz-
+ z=\"path with spaces\"].buzz")
+
+Base path = ‘foo’
+
+
+
+ l $(foo.bar) —> IIQ.tools.MapUtil.get(foo, "bar") (assuming basePath is setto 'foo'.This
+ respects the basePath and does not trytofind a"foo" attributewithin the "foo"map)
+
+
+
+ l $(bar)—> IIQ.tools.MapUtil.get(foo, "bar") (assuming basePath isset to 'foo')
+
+
+Base path = ‘foo.bar[AD]’
+
+
+
+ l $(baz)—> IIQ.tools.MapUtil.get(foo, "bar[AD].baz") (assuming basePath is setto 'foo.bar
+ [AD]')
+
+
+
+ l $(/baz)—> IIQ.tools.MapUtil.get(foo, "baz") (assuming basePath issetto 'foo.bar[AD]')
+
+
+
+
+
+SailPoint Forms 42

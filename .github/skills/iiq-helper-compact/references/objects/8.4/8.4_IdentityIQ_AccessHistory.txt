@@ -1,0 +1,1047 @@
+===== Page 1/17 =====
+ IdentityIQ Access History
+
+
+ Version:8.4
+
+ Revised:September2023
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thisdocument and the informationcontained hereinisSailPointConfidentialInformation
+
+===== Page 2/17 =====
+Copyright and Trademark Notices
+
+Copyright © 2023 SailPoint Technologies, Inc.  All Rights Reserved.
+
+Alllogos, text,content, including underlying HTML code, designs, and graphics used and/or depicted on these written
+materials or in thisInternet website are protected under United States and international copyright and trademark laws
+and treaties, and may not be used or reproduced without the prior express written permission of SailPoint Tech-
+nologies, Inc.
+
+“SailPoint Technologies,” (design and word mark), “SailPoint,” (design and word mark), "Identity IQ,” “IdentityNow,”
+“SecurityIQ,” “Identity AI,” “Identity Cube,” and “SailPoint Predictive Identity” are registered trademarks of SailPoint
+Technologies, Inc. “Identity isEverything,” “The Power of Identity,” and “Identity University” are trademarks of
+SailPoint Technologies, Inc. None of the foregoing marks may be used without the prior express written permission of
+SailPoint Technologies, Inc. Allother trademarks shown herein are owned by the respective companies or persons
+indicated.
+
+SailPoint Technologies, Inc. makes no warranty ofany kind regarding these materials or the information included
+therein, including, but not limited to,the implied warranties ofmerchantability and fitness for a particular purpose.
+SailPoint Technologies shall not be liable for errors contained herein or direct, indirect, special, incidental orcon-
+sequential damages inconnection with the furnishing, performance, or use of thismaterial.
+
+Patents Notice. https://www.sailpoint.com/patents
+
+Restricted Rights Legend. All rights are reserved. No part ofthis document may be published, distributed, reproduced,
+publicly displayed, used to create derivative works, or translated to another language, without the prior written consent
+ofSailPoint Technologies. The information contained inthis document issubject to change without notice.
+
+Use, duplication or disclosure by the U.S. Government is subject to restrictions as set forth insubparagraph (c) (1) (ii)
+ofthe Rights inTechnical Data and Computer Software clause at DFARS 252.227-7013 for DOD agencies, and sub-
+paragraphs (c)(1) and (c)(2) ofthe Commercial Computer Software Restricted Rights clause at FAR 52.227-19 for
+other agencies.
+
+Regulatory/Export Compliance. The export and re-export of this software iscontrolled for export purposes by the U.S.
+Government. By accepting this software and/or documentation, licensee agrees to comply with allU.S. and foreign
+export laws and regulations as they relate to software and related documentation.  Licensee will not export or re-
+export outside the United States software or documentation, whether directly or indirectly, to any Prohibited Party and
+willnot cause, approve or otherwise intentionally facilitate others inso doing. A Prohibited Party includes: a party in a
+U.S. embargoed country or country the United States has named as a supporter of international terrorism; a party
+involved in proliferation; a party identified by the U.S. Government as a Denied Party; a party named on the U.S.
+Department of Commerce’s Entity Listin Supplement No. 4 to 15 C.F.R. § 744; a party prohibited from participation in
+export orre-export transactions by a U.S. Government General Order; a party listed by the U.S. Government’s Office
+ofForeign Assets Control as ineligible to participate in transactions subject toU.S. jurisdiction; or any party that
+licensee knows or has reason toknow has violated or plans to violate U.S. or foreign export laws or regulations.
+Licensee shall ensure that each of itssoftware users complies with U.S. and foreign export laws and regulations as
+they relate to software and related documentation.
+
+===== Page 3/17 =====
+Contents
+
+
+ Access History 1
+
+ About Access History 1
+
+ How Access HistoryWorks 1
+
+ Using the Access HistoryUI 6
+
+===== Page 4/17 =====
+Access History
+
+Access History
+
+About Access History
+
+Access History helps organizations track the history of access foridentity objects. This feature benefits:
+
+
+
+ l Auditors who need to confirm that entitlements and access were provisioned or removed as expected
+
+
+
+ l Managers who want to compare access of newly-hired employees against incumbents
+
+
+
+ l Administrators who need to generate a report to document or prove how access stands on a specific date
+
+
+
+ l Application owners who want to know how many identities have entitlements and how they were acquired
+
+
+Access History extracts data. Ifyour needs are beyond that scope and you would liketo learn about using Data
+Extract to code custom extracts forother objects orchange data formats, see About Data Extract inthe System
+Administration Guide.
+How Access History Works
+
+History events related to Access History objects are constructed and published tothe history writer API through a
+scheduled event or ad hoc service. You can configure how frequently Access History runs, but the default is once per
+day.
+
+The Dispatch Access History task determines the set ofIdentityIQ objects to extract from IdentityIQ, which are those
+that haven't been captured previously orhave changed significantly since the lasttime Access History was executed.
+
+NOTE: The initialrun of Dispatch Access History extracts all identityand related objects, and itcan take a long time to
+execute. The following runs of Dispatch Access History are faster because only changed ornew objects willbe extrac-
+ted and processed.
+
+Each extracted object describes all ofthe information about a single IdentityIQ access history object (e.g., identity,
+role,account, etc.).An extracted object can also reference other objects. The extracted objects are formatted into
+JSON and enqueued to the Access History writerservice.
+
+The writer service processes the JSON objects, persisting the information into the tables in the access history data-
+base used specifically by the Access History user interface (UI).
+
+The Access History UI lets you search the access history database. There are also APIs that the UI can use toquery
+against the database, processing Identity,Role, Identity Entitlements, Certifications, Identity Requests, Managed
+Attributes, Capabilities, Accounts, Workgroups, and Policy Violations.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ IdentityIQ Access History 1
+
+===== Page 5/17 =====
+Access History
+
+
+The system identifiesduplicates so they are not processed twice and can distinguish between initialevents and
+change events. Unchanged objects are not processed.
+
+Access History is disabled by default to allow you to configure it.To use this functionality, you need to complete the fol-
+lowing:
+
+1.Setting Up Access History Database and Tables
+
+2.Setting Up Access History Task
+
+3.Scheduling the Access History Task
+
+4.Configuring Access History
+
+Setting Up Access History Database and Tables
+
+The database for storing Access History data is separate from the IdentityIQ database. The IdentityIQ installand
+upgrade scripts create separate databases for IdentityIQ and Access History data. The databases can be within the
+same instance for convenience, but separate database instances are recommended for production environments to
+avoid an impact on IdentityIQ performance. Depending on your environment setup and on the number ofdaily
+changes to your identities,the Access History database can be large, and willcontinue to grow.
+
+The separate IdentityIQ Access History database is required, even when the Access History feature is disabled or is
+not being used. See the IdentityIQ InstallGuide.
+
+On the initialrun, the Dispatch Access History Task gathers allthe objects itneeds and places them into a queue.
+Access History then processes them from the queue and writes them into database tables, so that on an initialfresh
+installor upgrade you willhave a populated access history store towork with.
+
+IdentityIQ Access History database includes the following tables:
+
+
+
+ l spt_hist_account_capture
+
+
+
+ l spt_hist_accounts
+
+
+
+ l spt_hist_assigned_roles
+
+
+
+ l spt_hist_capability
+
+
+
+ l spt_hist_capability_capture
+
+
+
+ l spt_hist_certification
+
+
+
+ l spt_hist_cert_remediation_capture
+
+
+
+ l spt_hist_detected_roles
+
+
+
+
+
+
+ SailPoint IdentityIQ IdentityIQ Access History 2
+
+===== Page 6/17 =====
+Access History
+
+
+
+ l spt_hist_entitlement_capture
+
+
+
+ l spt_hist_entitlements
+
+
+
+ l spt_hist_identity
+
+
+
+ l spt_hist_identity_capture
+
+
+
+ l spt_hist_identity_event
+
+
+
+ l spt_hist_identity_req_capture
+
+
+
+ l spt_hist_identity_req_item_capture
+
+
+
+ l spt_hist_mattr
+
+
+
+ l spt_hist_mattr_capture
+
+
+
+ l spt_hist_mattr_event
+
+
+
+ l spt_hist_object_config_capture
+
+
+
+ l spt_hist_policy_violation_capture
+
+
+
+ l spt_hist_policy_violation_remediation_bundle_ids
+
+
+
+ l spt_hist_policy_violation_remediation_capture
+
+
+
+ l spt_hist_policy_violation_remediation_entitlements
+
+
+
+ l spt_hist_policy_violations
+
+
+
+ l spt_hist_role
+
+
+
+ l spt_hist_role_capture
+
+
+
+ l spt_hist_role_event
+
+
+
+ l spt_hist_workgroup
+
+
+
+ l spt_hist_workgroup_capture
+
+
+
+ l spt_hist_workgroup_event
+
+
+
+
+
+
+ SailPoint IdentityIQ IdentityIQ Access History 3
+
+===== Page 7/17 =====
+Access History
+
+Setting Up Access History Task
+
+There isa preconfigured task named Dispatch Access History. This isa scheduled task that runs every day at mid-
+night by default.
+
+Alternatively, you can create your own Access History task to run on your IdentityIQ instance:
+
+ 1. Navigate toSetup > Tasks.
+
+ 2. Select the New Task dropdown inthe upper right corner.
+
+ 3. From the dropdown list,select Access History.
+
+ 4. On the New Task screen, enter a name foryour task, and add any other optional fieldinformation you would
+ like.
+
+ 5. Under Access History Options, select AccessHistoryExportConfig from the dropdown.
+
+ Note: Ifyou are setting up multiple Access History tasks with slightlydifferenttimings, you
+ need to provide a unique YAML for each and input a unique name here foreach task that
+ you create.
+
+ 6. Select Save, Save & Execute, Cancel, or Refresh.
+
+ a. Executing the task looks at what objects are configured tobe exported, applies the filtercriteriaand any
+ limitsthat you have set and translates allofthose objects intoJSON documents and writes them to a
+ JMS queue.
+
+ b. Ifexecuted, review the Task Results, which display allthe differences as well as the attribute statistics.
+ See Viewing Data Extract Task Results in the System Administration Guide.
+
+Scheduling the Access History Task
+
+Schedule the Dispatch Access History task to run at a time or cadence you choose. See Tasks Overview and How to
+Schedule a Task inthe Tasks Guide.
+
+Configuring Access History
+
+The Access History Configuration page is available under Global Settings for users with the appropriate rights,
+Access History Admin. The page allows you to edit and save the decided options.
+
+ 1. Navigate tothe gear > Global Settings > Access History Configuration page, which includes Access His-
+ tory Controls.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ IdentityIQ Access History 4
+
+===== Page 8/17 =====
+Access History
+
+ 2. Make sure the Enable Access History checkbox is selected.
+
+ 3. Enter a Destination Queue Name.
+
+ See Working with the Data Extract Message Broker inthe System Administration Guide for more inform-
+ ation about message brokers and queues.
+
+ 4. Select Save Changes orCancel.
+
+Additional configuration may be completed in the Debug page, where the following objects are available:
+
+
+
+ l Configuration object "SystemConfiguration"
+
+
+
+ l accessHistoryEnabled
+
+ Set toTrue to enable Access History.
+
+
+
+ l Configuration "AccessHistoryConfiguration"
+
+
+
+ l jsonFormat
+
+ Ifset to PRETTY, JSON strings are stored in an easy-to-read format.
+
+ Ifset to MINIFIED, JSON strings are stored in unformatted JSON with white space removed.
+
+ Ifset to ZIPPED (default), JSON strings are compressed.
+
+ Note: Due to space considerations, itisadvisable toleave jsonFormat set to
+ ZIPPED, unless suggested by support for troubleshooting.
+
+
+
+
+ l maxAllowedPatches
+
+ A patch capture only captures the differences from the previous capture of the object. Itisuseful forsav-
+ ing space.
+
+ IfmaxAllowedPatches > 0, patch document support isenabled. This property identifiesthe number of
+ patch documents that can be saved between fullcaptures, e.g., ifthe value is2, every third capture will
+ be a fullcapture. This pattern can change based on the config property captureMaxAgeInDays.
+
+
+
+ l captureMaxAgeInDays
+
+ Ifa patch document isolder (indays) than the number specified in captureMaxAge, a fullcapture will be
+ taken regardless ofthe number of patch documents.
+
+A default Extract YAMLConfig isavailable for Access History. Ifyou prefer to create a custom configuration, see Con-
+figuring Data Extraction in the System Administration Guide.
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ IdentityIQ Access History 5
+
+===== Page 9/17 =====
+Access History
+
+Troubleshooting Access History Task Failures
+
+Ifthe Access History feature is not enabled, the task completes but the Task Result has a status of Warning and a ban-
+ner states, "The Access History feature must be enabled in order to support history events."
+
+Ifthe Extract YAMLConfig ismissing a message destination, the task status indicates Failand a banner states,
+"Export YAMLConfig ismissing a valid message destination."
+
+Ifthe Extract YAMLConfig contains an invalid message destination, the task status indicates Failand a banner states,
+"Export YAMLConfig message destination could not be created."
+
+Ifthe Extract YAML Config is missing the transform configuration name, the status indicates Fail and a banner states,
+"No transformation configuration name was found inthe Export YAMLConfig."
+
+Ifthe Extract YAMLConfig has a bad value for the transform configuration name, or references one that does not exist,
+the status indicates Fail and a banner states, "Unable tofind YAMLConfig AccessHistoryImageConfig2."
+
+Ifthe Extract YAMLConfig ismissing a value forextracted objects, the status indicates Warning and a banner states,
+"The selected Export YAMLConfig is missing entry forexportedObjects."
+
+Ifthe Transform YAMLConfig has a bad value in the extracted objects list,the status indicates Warning and a banner
+states, "The Transform YAMLConfig ismissing imageConfigDescriptor forexportedObject [object]." Note that other
+extracted objects with valid values willstillbe processed.
+
+Ifthe Transform YAMLConfig ismissing an entry for one of the extracted objects, the status indicates Warning and a
+banner states, "The Transform YAMLConfig is missing ImageConfigDescriptor for importedObject Certification."
+Using the Access History UI
+
+To see the Access History UI, you need to have the spright AccessHistoryViewIdentityHistory. The AccessHis-
+toryExportIdentityHistory rightfurther allows export of the selected Access History data.
+
+ 1. Navigate to Identities > Identity Access History.
+
+ 2. Search for and /or select an identity from the Identity List.
+
+ a. The Identity List shows allidentities by default. Use filtersorsearch to narrow down the options.
+
+ b. Display name and email are both shown for each identity so that in cases where there are duplicate dis-
+ play names, you can more easily select the one you want.
+
+ 3. Select a capture date. By default, the most recent capture is shown forthe selected identity.
+
+ 4. View details inthe Access Items cards, by Accounts, Entitlements, or Roles, and on the event timeline, which
+ listsindividual events affecting the identity from the capture date backwards tothe beginning of Access History
+ data capture.
+
+
+
+
+
+ SailPoint IdentityIQ IdentityIQ Access History 6
+
+===== Page 10/17 =====
+Access History
+
+ a. Select View Profile to view the identity attributes atthe time ofthe capture. See View Profile.
+
+ b. Select Export to export access items and /or events. See Export Access History.
+
+Using the Identity List Search and Filters
+
+Search allows you to find identities in the Access History database. When the search field and filterare blank, alliden-
+titiesare included in the identity listin alphabetical order.
+
+ 1. Select the filter icon next to the search field toopen the Identity Filters panel.
+
+ 2. Filter By Identity, By Role, and / or By Entitlement. (Entitlement filterwillinclude only Managed Attributes.) Com-
+ bine filtersto more easily find what you need. For example, you might choose tosearch by both Identity and
+ Role. Note that filtering on permissions is not supported.
+
+ a. Select the dropdown arrows to select filtercriteria options.
+
+ b. For Identity, select from attributes that have been configured for your implementation such as Manager,
+ Is Manager (set the value to true or false), Is Active, and Identity Type.
+
+ Note: An identity is included in the filterresults ifthe filtervalue has been true for
+ that identity either now or at any time in the past since the beginning of Access His-
+ tory.
+
+ c. For Role and Entitlement, select from the three-way toggle to view All (allroles or entitlements the iden-
+ tityhas ever had), Current (roles or entitlements that the identity currently has), or Previous (roles or
+ entitlements that the identity previously had but does not have now).
+
+ d. For Entitlements, firstselect the application, then the attribute, then the value.
+
+ 3. Select the Apply button to apply your selection(s) or the Clear button to clear values from the filterfields. You
+ may also select Cancel to close the dialog without applying changes to the filters.
+
+ Note: If you have already applied filters,then reopen the filterdialog and make changes to
+ those filters,Cancel willdiscard those changes but the existing filterswill stillapply.
+
+
+—OR—
+
+ 1. In the search field, begin entering a name or email.
+
+ a. The search and filtercapabilities are a "starts with" incremental search inwhich suggested values are
+ filtered in real time as letters are entered.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ IdentityIQ Access History 7
+
+===== Page 11/17 =====
+Access History
+
+ b. Search by display name, firstname, lastname, or email. Select X to clear values from the search field.
+
+ c. Ifnothing matches the value you enter, the identity listis empty.
+
+ Note: Because a person's name may change over time, you may search using any
+ of their names and itwillbring up allresults associated with that historical identity.
+ For example, a person's name of origin and their married or changed name may
+ both appear ina list,but selecting either one displays information forthe same iden-
+ tity.
+
+ 2. The Identity List displays allpotential matches.
+
+ a. At the bottom of the identity list,Of Total shows the totalnumber of identities matching your entered cri-
+ teria.Select Show Next 20 to display more matches.
+
+ 3. Select an identity to view itsdetailed information on the rightside of the screen. Only one identity can be selec-
+ ted at a time.
+
+Selecting a Capture Date
+
+Choose a date on the calendar or timeline forthe selected identity to view data about a specific identity capture.
+
+Use the timeline carousel toselect an access change event.
+
+ 1. Use the toggle above the timeline to scrollby month or day.
+
+ 2. Use the capture selector or arrows to the right and leftof the timeline to scrollchronologically backwards and
+ forwards.
+
+ a. The capture selector above the Month /Day toggle navigates backwards and forwards one capture at a
+ time.
+
+ b. The arrows to the right and leftof the timeline scroll backwards or forwards one week when inDay mode
+ or one year when in Month mode.
+
+ 3. Select a date on the carousel to see information about a specific identity capture.
+
+ a. The filledblue dot indicates the day or month of the currently selected capture.
+
+ b. Empty circles indicate one or more captures on that day. Select the circle to see a listand select a spe-
+ cificcapture.
+
+ c. Gray dots indicate that there was no identity capture on that day and the date may not be selected.
+
+Alternately, you can use the date field or date picker to see an identity's state on a given date.
+
+
+
+
+
+ SailPoint IdentityIQ IdentityIQ Access History 8
+
+===== Page 12/17 =====
+Access History
+
+ 1. Enter a date in the date fieldor select the calendar icon on the upper right side of the timeline to open the date
+ picker.
+
+ a. Select a date from the calendar. A dot under a calendar date indicates that there are captures for that
+ date.
+
+ b. The selected date displays next to the calendar icon.
+
+ 2. Ifthere was an access change on the selected date, the latestcapture data is shown.
+
+ 3. Ifthere was no access change on the selected date, a pop-up message states that no capture events occurred
+ on this date and asks ifyou want to view the closest prior capture.
+
+ a. Select Yes toview information forthe closest prior capture.
+
+ b. Select No to dismiss the pop-up message.
+
+When a date isselected either on the date carousel or using the date picker, the Access Items tilesand Event
+Timeline below update to show data for the selected identity on the selected date. A timestamp above the date carou-
+sel displays the capture date for the information displayed below.
+
+Access Items Tiles
+
+The Access Items panel displays tileswith the identity'scounts ofTotal Access Items, Accounts, Entitlements, and
+Roles. Selecting the Accounts, Entitlements, or Roles tiledisplays a table with more information about items of that
+type. To close the detailtable, select Go back to event timeline.
+
+Use the Search fieldabove the Entitlements and Roles tables to search items in each table. Search results include
+matches in any column. To clear the search, select Clear Search next to the search field.
+
+For Entitlements, you can select the Show only additional entitlements checkbox to filteroutentitlements that were
+gained because ofrole assignments.
+
+Table columns may be configured from the options below. Those marked with an asterisk are sortable.
+
+Accounts:
+
+
+
+ l Application *
+
+
+
+ l Account ID *
+
+
+
+ l Status (Active/Locked/Disabled)
+
+
+Roles:
+
+
+
+
+
+
+
+ SailPoint IdentityIQ IdentityIQ Access History 9
+
+===== Page 13/17 =====
+Access History
+
+
+
+ l Name *
+
+
+
+ l Description
+
+
+
+ l Classifications (multivalued – select the icon to see the classifications list)
+
+
+
+ l Elevated access (Boolean)
+
+
+
+ l Assigned by (identity)
+
+
+
+ l Allowed by (role)
+
+
+
+ l Acquired (assigned / detected)
+
+
+
+ l Role type (business, IT, etc.)
+
+
+
+ l Application (multivalued)
+
+
+
+ l Account name (multivalued)
+
+
+ Note: Blue icons indicate elevated access. Ifa Role has a sunrise and /or sunset date, itdisplays
+ here.
+
+Entitlements:
+
+
+
+ l Attribute *
+
+
+
+ l Entitlement (value)
+
+
+
+ l Classifications (multivalued)
+
+
+
+ l Elevated access (Boolean)
+
+
+
+ l Application *
+
+
+
+ l Account name
+
+
+ Note: Red triangle icons indicate that an entitlement has been disconnected. Ifan Entitlement
+ has a sunrise and /or sunset date, itdisplays here.
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ IdentityIQ Access History 10
+
+===== Page 14/17 =====
+Access History
+
+Event Timeline
+
+The event timeline lets you scrollthrough a reverse chronological listofall changes to access thatoccurred up toand
+including the selected capture date and time. There are also governance event cards for added or removed enti-
+tlements, roles, or identity attributes with additional information about what caused the access or identity attribute
+change.
+
+The most recent 20 events are displayed. Select the Show Next 20 button tosee more.
+
+Listelements include:
+
+
+
+ l Event icon - green + indicates add, red -indicates remove, blue gavel indicates governance events, and left/
+ rightarrows indicate an identitystatus change, identity attribute change, or account attribute change
+
+
+
+ l Event type - types ofevents include:
+
+ o Changed account
+
+
+ o Added account
+
+
+ o Removed account
+
+
+ o Removed entitlement
+
+
+ o Added entitlement
+
+
+ o Removed detected role
+
+
+ o Added detected role
+
+
+ o Removed assigned role
+
+
+ o Added assigned role
+
+
+ o Changed identity
+
+
+ o Changed identity status
+
+
+ o Deleted identity
+
+
+ o Discovered identity
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ IdentityIQ Access History 11
+
+===== Page 15/17 =====
+Access History
+
+
+ o Governance event -Access Request, Certification, or Policy Violation
+
+
+ o Mitigated policy violation
+
+
+
+
+ l Event timestamp - date and time the event was recorded in the Access History database
+
+
+
+ l Type-specific fields or details - configure columns to select which type-specific fieldsyou want to display
+
+Event Timeline Timestamp
+
+The timestamp on an event inthe Events Timeline isthe date that the Access History task was launched, which
+fetched the objects that led to event detection. Itis not the date and time that the event occurred. Therefore, events in
+the Access History database may have a later event date and time than the time at which the access change occurred
+inIdentityIQ. See Setting Up Access History Task.
+
+ Note: Not every object captured in the Access History database results in a new identity capture
+ being created. Changes toobjects in the IdentityIQ database other than identity objects - such
+ as, for example, changes to existing Accounts, Roles, or Entitlements that affect the identity -do
+ NOT trigger a new capture. However, when a new capture istriggered by a change to the Iden-
+ tity,such as an added or removed Entitlement or Role, or a change toan identity attribute, the
+ events forchanges to the non-identity objects willbe included in that capture.
+
+ Therefore, itispossible to retrieve the latest capture foran identity inAccess History, and for
+ there to be some related events (the ones that inand of themselves don't trigger a capture) that
+ are not yet included because those events were recorded after the latest identity capture was cre-
+ ated.
+
+ This isa transitory situation, and no events willbe lost.They willshow up when the next identity
+ capture isgenerated. It'salso possible that even recent identity-related changes may not be
+ included inthe latestcapture, ifthe Dispatch Access History task has not been run since they
+ occurred.
+
+Filtering Events
+
+Select the filtericon at the upper right side of the event timeline to filterevents by:
+
+
+
+ l Access Items – Accounts, Entitlements, Roles
+
+ o Use the three-way toggle to indicate whether you want to view All, Added, or Removed access items
+
+
+
+
+ l Governance Events – Access Requests, Certifications, Policy Violations
+
+
+
+ l Other Events – Identity Attribute Changes, Identity Status Changes, Account Attribute Changes
+
+
+
+
+
+
+ SailPoint IdentityIQ IdentityIQ Access History 12
+
+===== Page 16/17 =====
+Access History
+
+
+Select the Apply button to apply your selection(s) or the Clear button to clear values from the search fields. You may
+also select Cancel to close the dialog without applying changes to the filters.
+
+ Note: Ifyou have already applied filters,then reopen the filterdialog and make changes to those
+ filters,Cancel willdiscard those changes but the existing filterswill stillapply.
+
+View Profile
+
+Select the View Profile button atthe upper right side of the screen to see identity attributes for a selected identity as of
+the selected capture date, such as email, type, cost center, employee ID, department, job title,location, region, region
+owner, and location owner.
+
+Ifyou want View Profile to include extended attributes that your organization has configured, be sure to specify these
+inthe Object configuration. See Configuring Data Extraction inthe System Administration Guide.
+
+Export Access History
+
+Export Access History results to a CSV filefor each type of item exported. The files are zipped together in a filewhose
+name includes the identity name and date of the capture.
+
+ 1. In Access History, select the identity for which you want to export information.
+
+ 2. Select the Export button.
+
+ 3. In the Create Export File window, select the Access Item types you would like toexport – for example,
+ Accounts, Entitlements, or Roles.
+
+ Note: The Search features inthe Entitlement and Roles tables do not operate as filtersfor
+ the Export feature. The entire table will be exported ifthe user requests an export, regard-
+ less ofwhether search has been used and the Entitlements or Roles table filtered.
+
+ 4. Decide whether you want to also export the contents of the Event Timeline and select Yes or No.
+
+ Note: Ifyou have filteredthe Event Timeline, only the filtered events willbe exported. A
+ warning is provided, telling you how many events willbe exported.
+
+ 5. Select Generate.
+
+ 6. A zip filewith all ofthe exported CSV filescan be found inyour downloads.
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ IdentityIQ Access History 13
+
+===== Page 17/17 =====
+Access History
+
+Running Access History from the IdentityIQ Console
+
+Ifyou want tostartIdentityIQ console standalone (without ever startingyour app server) and perform accesshistory
+commands with it,thenyou need tostart as follows:
+ 1 iiq console -e MessageBus,AccessHistoryWriter -j
+This willstartthe message bus broker service as well as the AccessHistoryWriter service, which reads and processes
+export events from the message bus.
+
+ Note: MessageBus should not be included ifa remote ActiveMQ broker isconfigured.
+
+
+ Note: accessHistory console commands are only available afterAccess History isenabled.
+
+Console Commands that do not Support Access History
+
+The following console commands do not support Access History objects:
+
+
+
+ l checkin
+
+
+
+ l delete
+
+
+
+ l rollback
+
+
+
+ l rename
+
+
+
+ l import
+
+
+
+ l lock
+
+
+
+ l unlock
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ IdentityIQ Access History 14

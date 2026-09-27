@@ -1,0 +1,1953 @@
+﻿===== Page 32/149 =====
+IdentityIQ Standard Reports
+
+Certification Properties
+
+The following criteria determines what information isincluded inthis report.You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options inthe listare included inthe
+ report.
+
+
+
+
+ Option Description
+
+ Creation Start The access review creation date range. The report includes allaccess reviews
+ and End Date create on or after the start date and on or before the end date.
+ (s) You can enter the date manually, or click the â€œ...â€ icon to select a date from the
+ calendar.
+ Signed Start The access review signed off on date range. The report includes all access
+ and End Date reviews signed off on, on or after the start date and on or before the end date.
+ (s) You can enter the date manually, or click the â€œ...â€ icon to select a date from the
+ calendar.
+ The access review due date range. The report includes allaccess reviews due
+ Due Start and on or after the start date and on or before the end date.
+ End Date(s) You can enter the date manually, or click the â€œ...â€ icon to select a date from the
+ calendar.
+ The applications to include in the report. Ifno applications are specified, all
+ applications are included.
+ Click the arrow to the right of the suggestion fieldto display a listof allapplic-
+ Applications ations, orenter a few letters in the fieldto display a listof applications that start
+ with that letter string.
+ Only access reviews foraccount groups on the selected applications are
+ included inthe report.
+ Certification To filteraccess reviews based on theirtags, select one or more tags. Ifmultiple
+ Tags tags are selected, only access reviews that match allselected tags are included
+ in thisreport.
+ Certification The type of Account Group access reviews to include inthis report, Membership
+ Groups or Permissions.
+ Show items that were excluded from the certification through a rule or other cri-
+ Show teria.
+ excluded
+ items Note: This option disables the preview grid view and the option to sort by
+ Status, Decision, Decision Maker, Application, or Recommendation.
+
+
+
+ SailPoint IdentityIQ Reports 28
+
+===== Page 33/149 =====
+IdentityIQ Standard Reports
+
+Advanced Access Review Live Report
+
+The Advanced Access Review Live Report includes information on all non-archived advanced access reviews that
+match the criteriaspecified. The purpose of thisreport isto show the decisions made on each item, along with the
+decision makerâ€™s name and comments and the current status of any applicable revocations. Italso includes basic
+identifying information about each line item (account name, identity firstand last name, managerâ€™s name, entitlement
+type and value, application, and instance).
+
+The detailed results of thisreport can be exported to a .csv or PDFÂ file.
+
+The Advanced Access Review Live Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l CertificationÂ Properties. These options are described inthe table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties forbasic information such as naming and descriptions, and forsetting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Certification Properties
+
+The following criteriadetermines what information is included in thisreport. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options inthe listare included in the
+ report.
+
+
+
+
+ Option Description
+
+ Creation The access review creation date range. The report includes allaccess reviews
+ Start and End create on or afterthe startdate and on or before the end date.
+ Date(s) You can enter the date manually, or clickthe â€œ...â€ icon to select a date from the
+ calendar.
+ Signed Start The access review signed offon date range. The report includes allaccess
+ and End Date reviews signed off on, on or after the start date and on or before the end date.
+
+
+
+
+
+ SailPoint IdentityIQ Reports 29
+
+===== Page 34/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ (s) You can enter the date manually, or click the â€œ...â€icon to select a date from the
+ calendar.
+ The access review due date range. The report includes allaccess reviews due
+ Due Start and on or after the start date and on or before the end date.
+ End Date(s) You can enter the date manually, or click the â€œ...â€icon to select a date from the
+ calendar.
+ The groups or populations to include in the report.
+ Click the arrow to the right of the fieldand select Populations, to display a select
+ listof populations, or select a group factory name to display a select listof groups
+ Groups created by that factory.
+ Click on populations and groups from the select liststocreate the inclusion list
+ for this report.
+ Click an item inthe inclusion listtoremove itfrom the report.
+ Certification To filteraccess reviews based on their tags, select one or more tags. Ifmultiple
+ Tags tags are selected, only access reviews that match allselected tags are included
+ in this report.
+ Certification The manager certifications to include inthis report.
+ Group
+ Show items that were excluded from the certification through a rule orother cri-
+ Show teria.
+ excluded
+ items Note: This option disables the preview grid view and the option to sort by
+ Status, Decision, Decision Maker, Application, or Recommendation.
+
+Application Owner Access Review Live Report
+
+The Application Owner Access Review Live Report includes information on all non-archived application owner access
+reviews that match the criteria specified. The purpose of thisreport isto show the decisions made on each item, along
+with the decision makerâ€™s name and comments and the current status of any applicable revocations.
+
+The report includes a summary section at the top which provides summary counts of certifications, access reviews,
+identities,and certification items included inthe report and then illustratescounts of item decisions reported by enti-
+tlement type (role,additional entitlement), representing each decision type(open, approved, and revoked) in a sep-
+arate column in the graph.
+
+The report body shows the decisions made on each item along with the decision makerâ€™s name and comments and
+the current status of any applicable revocations.
+
+The detailed results of this report can be exported to a .csv or PDFÂ file.
+
+
+
+
+
+ SailPoint IdentityIQ Reports 30
+
+===== Page 35/149 =====
+IdentityIQ Standard Reports
+
+
+The Application Owner Access Review Report consists ofthe following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Certification Properties. These options are described in the table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties forbasic information such as naming and descriptions, and forsetting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Certification Properties
+
+The following criteria determines what information is included in this report. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included in the
+ report.
+
+
+
+
+ Option Description
+
+ Creation Start The access review creation date range. The report includes allaccess reviews
+ and End Date create on or afterthe start date and on or before the end date.
+ (s) You can enter the date manually, or click the â€œ...â€ icon to select a date from the
+ calendar.
+ Signed Start The access review signed offon date range. The report includes allaccess
+ and End Date reviews signed off on, on or afterthe start date and on or before the end date.
+ (s) You can enter the date manually, or click the â€œ...â€ icon to select a date from the
+ calendar.
+ The access review due date range. The report includes allaccess reviews due
+ Due Start and on orafter the start date and on or before the end date.
+ End Date(s) You can enter the date manually, or click the â€œ...â€ icon to select a date from the
+ calendar.
+ Applications Select the applications to include in the report. Ifno applications are specified, all
+ applications are included.
+
+
+
+
+
+ SailPoint IdentityIQ Reports 31
+
+===== Page 36/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ Click the arrow to the rightof the suggestion field to display a listof allapplic-
+ ations, or enter a few letters in the field to display a listof applications that start
+ with that letterstring.
+ Only access reviews for the selected applications are included in the report.
+ Certification To filteraccess reviews based on their tags, select one or more tags. Ifmultiple
+ Tags tags are selected, only access reviews that match allselected tags are included
+ in this report.
+ Certification The manager certifications to include in this report.
+ Group
+ Show items that were excluded from the certification through a rule or other cri-
+ Show teria.
+ excluded
+ items Note: This option disables the preview grid view and the option to sort by
+ Status, Decision, Decision Maker, Application, or Recommendation.
+
+Certification Activity by Application Report
+
+The Certification Activity by Application Report includes information activity performed on non-archived certifications
+that match the specified criteria. Itexcludes access reviews from role composition or account group permission cer-
+tifications,since they are not identity-focused certifications. Depending on the filtercriteria,the report may include
+some line items from a certification but omit other line items; forexample, ifan application isspecified, only line items
+from a manager certification that relate to the specified application are included on the report.
+
+The report body shows the decisions made on each item along with the decision makerâ€™s name and comments and
+the current status of any applicable revocations.
+
+The detailed results ofthis report can be exported toa .csv or PDFÂ file.
+
+The Certification Activity by Application Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Certification Properties. These options are described inthe table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set ofstandard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running thisreport:
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 32
+
+===== Page 37/149 =====
+IdentityIQ Standard Reports
+
+
+
+ l Name
+
+
+
+ l Application from the list
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Certification Properties
+
+The following criteria determines what information is included in this report. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options inthe listare included in the
+ report.
+
+
+
+
+ Option Description
+
+ Creation Start The access review creation date range. The report includes allaccess reviews
+ and End Date create on or after the start date and on or before the end date.
+ (s) You can enter the date manually, or click the â€œ...â€ icon to select a date from the
+ calendar.
+ Signed Start The access review signed offon date range. The report includes all access
+ and End Date reviews signed offon, on or after the start date and on or before the end date.
+ (s) You can enter the date manually, or click the â€œ...â€ icon to select a date from the
+ calendar.
+ The access review due date range. The report includes allaccess reviews due
+ Due Start and on or after the start date and on or before the end date.
+ End Date(s) You can enter the date manually, or click the â€œ...â€ icon to select a date from the
+ calendar.
+ Select one application to include in this report, or leave this field blank to include
+ all applications.
+
+ To select an application, clickthe arrow to the right of the suggestion field to dis-
+ Applications play a listof allapplications, or enter a few letters in the field to display a listof
+ applications that start with that letterstring.
+
+ Note:Â Selecting more than one application isnot supported, and causes the
+ report to render no results.
+ Certification To filteraccess reviews based on their tags, select one or more tags. Ifmultiple
+ Tags tags are selected, only access reviews that match all selected tags are included
+ in this report.
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 33
+
+===== Page 38/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ Certification The manager certifications to include in thisreport.
+ Group
+ Show items that were excluded from the certificationthrough a rule or other cri-
+ Show teria.
+ excluded
+ items Note: This option disables the preview grid view and the option to sort by
+ Status, Decision, Decision Maker, Application, or Recommendation.
+
+Entitlement Owner Access Review Live Report
+
+The Entitlement Owner Access Review Live Report includes information on allnon-archived entitlement owner
+access reviews that match the criteriaspecified. The purpose ofthis report is to show the decisions made on each
+item along with the decision makerâ€™s name and comments and the current status of any applicable revocations.
+
+The report includes a summary report at the top which shows a summary table of the number of certifications access
+reviews, identities,and certification items included in the report, along with a graph showing the relative counts of item
+decisions (e.g. open, approved, revoked).
+
+The report body shows the each lineitem with itsdecision details and revocation status.
+
+The detailed results ofthis report can be exported toa .csv orPDFÂ file.
+
+The Entitlement Owner Access Review Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Certification Properties. These options are described in the table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set ofstandard properties for basic information such as naming and descriptions, and forsetting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running thisreport:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Certification Properties
+
+The following criteria determines what information isincluded inthis report. You can use any combination of options to
+build a report.
+
+
+
+
+
+ SailPoint IdentityIQ Reports 34
+
+===== Page 39/149 =====
+IdentityIQ Standard Reports
+
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included in the
+ report.
+
+
+
+
+ Option Description
+
+ Creation Start The access review creation date range. The report includes allaccess reviews
+ and End Date create on or afterthe start date and on or before the end date.
+ (s) You can enter the date manually, or click the â€œ...â€ icon to select a date from the
+ calendar.
+ Signed Start The access review signed offon date range. The report includes allaccess
+ and End Date reviews signed off on, on orafter the start date and on or before the end date.
+ (s) You can enter the date manually, or click the â€œ...â€ icon to select a date from the
+ calendar.
+ The access review due date range. The report includes allaccess reviews due
+ Due Start and on orafter the start date and on or before the end date.
+ End Date(s) You can enter the date manually, or click the â€œ...â€ icon to select a date from the
+ calendar.
+ Select the applications to include in the report. Ifno applications are specified, all
+ applications are included.
+ Applications Click the arrow to the right of the suggestion field to display a listofall applic-
+ ations, or enter a few letters inthe fieldto display a listof applications that start
+ with that letter string.
+ Only access reviews forthe selected applications are included in the report.
+ Certification To filteraccess reviews based on their tags, select one or more tags. Ifmultiple
+ Tags tags are selected, only access reviews that match all selected tags are included
+ in thisreport.
+ Certification The manager certifications to include inthis report.
+ Group
+ Show items that were excluded from the certification through a rule or other cri-
+ Show teria.
+ excluded
+ items Note: This option disables the preview grid view and the option to sort by Status,
+ Decision, Decision Maker, Application, or Recommendation.
+
+Manager Access Review Live Report
+
+The Manager Access Review Report includes information on allnon-archived manager access reviews that match the
+criteriaspecified. The purpose ofthis report isto show the decisions made on each item along with the decision
+
+
+
+
+ SailPoint IdentityIQ Reports 35
+
+===== Page 40/149 =====
+IdentityIQ Standard Reports
+
+
+makerâ€™s name and comments and the current status of any applicable revocations.
+
+The report includes a summary report at the top which shows a summary table of the number of certifications, access
+reviews, identities, and certification items included inthe report, along with a chart illustratingthe counts of item
+decisions by type (e.g. open, approved, revoked, exception allowed), separated into the categories of roles, additional
+entitlements, and policy violations.
+
+The report body shows the decisions made on each item along with the decision makerâ€™s name and comments and
+the current status ofany applicable revocations.
+
+The detailed results of this report can be exported to a .csv or PDFÂ file.
+
+Allreports use a set of standard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+The Manager Access Review Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Certification Properties. These are described in the table below.
+
+
+
+ l Report Layout
+
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Certification Properties
+
+The following criteriadetermines what information is included in this report. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included in the
+ report.
+
+
+
+
+ Option Description
+
+ Creation The access review creation date range. The report includes allaccess reviews
+ Start and End create on or after the start date and on or before the end date.
+ Date(s) You can enter the date manually, or clickthe â€œ...â€icon toselect a date from the
+ calendar.
+ Signed Start The access review signed off on date range. The report includes allaccess
+
+
+
+
+
+ SailPoint IdentityIQ Reports 36
+
+===== Page 41/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ and End Date reviews signed off on, on or after the start date and on or before the end date.
+ (s) You can enter the date manually, or clickthe â€œ...â€icon to select a date from the
+ calendar.
+ The access review due date range. The report includes allaccess reviews due
+ Due Start and on or after the startdate and on or before the end date.
+ End Date(s) You can enter the date manually, or clickthe â€œ...â€icon to select a date from the
+ calendar.
+ The manager listto include inthis report. Ifno managers are specified, access
+ reviews forall managers are included.
+ Managers Click the arrow to the right ofthe suggestion fieldto display a listofall managers,
+ or enter a few letters in the fieldto display a listof managers that start with that let-
+ ter string.
+ Certification To filteraccess reviews based on their tags, select one or more tags. Ifmultiple
+ Tags tags are selected, only access reviews that match allselected tags are included
+ in this report.
+ Certification The manager certifications toinclude in thisreport.
+ Group
+ Show items that were excluded from the certification through a rule or other cri-
+ Show teria.
+ excluded
+ items Note: This option disables the preview grid view and the option to sort by
+ Status, Decision, Decision Maker, Application, or Recommendation.
+
+Role Composition Access Review Live Report
+
+This report includes information about allRole Composition Access Reviews inIdentityIQ. The Role Composition
+Access Review certifies that roles forwhich the reviewer is responsible are composed of the proper permissions and
+entitlements.
+
+The purpose of thisreport isto show the decisions made on each item along with the decision makerâ€™s name and com-
+ments and the current status of any applicable revocations.
+
+The detailed results of thisreport can be exported to a .csv or PDFÂ file.
+
+The Role Composition Access Review Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Certification Properties. These are described inthe table below.
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 37
+
+===== Page 42/149 =====
+IdentityIQ Standard Reports
+
+
+
+ l Report Layout
+
+
+Allreports use a set ofstandard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running thisreport:
+
+
+
+ l Name
+
+
+
+ l Role
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Certification Properties
+
+The following criteria determines what information is included in this report. You can use any combination ofoptions to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included in the
+ report.
+
+
+
+
+ Option Description
+
+ Creation The access review creation date range. The report includes all access reviews
+ Start and End create on or after the start date and on or before the end date.
+ Date(s) You can enter the date manually, or click the â€œ...â€icon to select a date from the
+ calendar.
+ Signed Start The access review signed off on date range. The report includes allaccess
+ and End Date reviews signed off on, on or after the start date and on or before the end date.
+ (s) You can enter the date manually, or click the â€œ...â€icon to select a date from the
+ calendar.
+ The access review due date range. The report includes allaccess reviews due
+ Due Start and on or after the start date and on or before the end date.
+ End Date(s) You can enter the date manually, or click the â€œ...â€icon to select a date from the
+ calendar.
+ The roles toinclude inthe report. Ifno roles are specified, allroles are included.
+ Roles Click the arrow to the right of the suggestion field todisplay a listof all roles, or
+ enter a few lettersin the fieldto display a listof roles that start with that letter
+ string.
+ Certification To filteraccess reviews based on their tags, select one or more tags. Ifmultiple
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 38
+
+===== Page 43/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ Tags tags are selected, only access reviews that match allselected tags are included
+ in thisreport.
+ Certification The type ofrole certifications to include inthis report; Membership or Com-
+ Group position.
+ Show items that were excluded from the certification through a rule or other cri-
+ Show teria.
+ excluded
+ items Note: This option disables the preview grid view and the option to sort by
+ Status, Decision, Decision Maker, Application, or Recommendation.
+
+Role Membership Access Review Live Report
+
+This report includes information about allRole Membership Access Reviews inIdentityIQ. The Role Membership
+Access Review certifiesthat roles for which the reviewer isresponsible are assigned to the correct identities. The
+report's purpose isto show the decisions made on each item, along with the decision makerâ€™s name and comments
+and the current status of any applicable revocations.
+
+The detailed results ofthis report can be exported to a .csv or PDFÂ file.
+
+The Role Membership Access Review Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Certification Properties. These are described in the table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set ofstandard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running thisreport:
+
+
+
+ l Name
+
+
+
+ l Role
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Certification Properties
+
+The following criteria determines what information isincluded in this report. You can use any combination of options to
+build a report.
+
+
+
+
+
+ SailPoint IdentityIQ Reports 39
+
+===== Page 44/149 =====
+IdentityIQ Standard Reports
+
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included inthe
+ report.
+
+
+
+
+ Option Description
+
+ Creation The access review creation date range. The report includes allaccess reviews
+ Start and End create on or after the start date and on or before the end date.
+ Date(s) You can enter the date manually, or click the â€œ...â€ icon to select a date from the
+ calendar.
+ Signed Start The access review signed off on date range. The report includes all access
+ and End Date reviews signed offon, on or after the start date and on or before the end date.
+ (s) You can enter the date manually, or click the â€œ...â€ icon to select a date from the
+ calendar.
+ The access review due date range. The report includes allaccess reviews due
+ Due Start and on or after the start date and on or before the end date.
+ End Date(s) You can enter the date manually, or click the â€œ...â€ icon to select a date from the
+ calendar.
+ The roles to include in the report. Ifno roles are specified, all roles are included.
+ Roles Click the arrow to the right of the suggestion fieldto display a listof allroles, or
+ enter a few letters inthe fieldto display a listof roles that start with that letter
+ string.
+ Certification To filteraccess reviews based on theirtags, select one or more tags. Ifmultiple
+ Tags tags are selected, only access reviews that match allselected tags are included
+ inthis report.
+ Certification The type of role certifications to include in this report; Membership or Com-
+ Group position.
+ Show items that were excluded from the certification through a rule or other cri-
+ Show teria.
+ excluded
+ items Note: This option disables the preview grid view and the option to sort by
+ Status, Decision, Decision Maker, Application, or Recommendation.
+
+Targeted Access Review Live Report
+
+The Targeted Access Review Live Report includes information about alltargeted access reviews in IdentityIQ.
+
+The detailed results of this report can be exported toa .csv or PDFÂ file.
+
+The Targeted Access Review Live Report consists of the following sections:
+
+
+
+
+
+ SailPoint IdentityIQ Reports 40
+
+===== Page 45/149 =====
+IdentityIQ Standard Reports
+
+
+
+ l Standard Report Properties
+
+
+
+ l Certification Properties. These are described inthe table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties forbasic information such as naming and descriptions, and forsetting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Certification Properties
+
+The following criteria determines what information is included in this report. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included in the
+ report.
+
+
+
+
+ Option Description
+
+ Creation The access review creation date range. The report includes all access reviews
+ Start and End create on or after the start date and on or before the end date.
+ Date(s) You can enter the date manually, or clickthe â€œ...â€icon to select a date from the
+ calendar.
+ Signed Start The access review signed offon date range. The report includes allaccess
+ and End Date reviews signed offon, on or after the start date and on or before the end date.
+ (s) You can enter the date manually, or clickthe â€œ...â€icon to select a date from the
+ calendar.
+ The access review due date range. The report includes all access reviews due
+ Due Start and on or after the start date and on or before the end date.
+ End Date(s) You can enter the date manually, or clickthe â€œ...â€icon to select a date from the
+ calendar.
+ Certification To filteraccess reviews based on their tags, select one or more tags. Ifmultiple
+ Tags tags are selected, only access reviews that match allselected tags are included
+ inthis report.
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 41
+
+===== Page 46/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ Certification The type of role certifications to include in this report; Membership or Com-
+ Group position.
+
+Account Group Reports
+
+
+
+ l Account Group Members Report
+
+
+
+ l Account Group Membership Totals Report
+
+Account Group Members Report
+
+The Account Group Members Report includes information about all the members of allthe account groups and applic-
+ation objects. You can filterthisreport toinclude only account groups on a specific application or set of applications.
+
+The detailed results ofthis report can be exported to a .csv or PDFÂ file.
+
+The Account Group Members Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Report Options. These options are described inthe Report Options table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set ofstandard properties forbasic information such as naming and descriptions, and forsetting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+
+ l Application
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Report Options
+
+The following criteria determines what information is included in thisreport. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included in the
+ report.
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 42
+
+===== Page 47/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ Application Select which application(s) to include in the report.
+
+Account Group Membership Totals Report
+
+The Account Group Membership report lists allaccount groups for the selected application(s), and shows the count of
+account group members for each. This report can be filteredto include only account groups on a specific application
+or set of applications. Ifno applications are specified as filters,account groups forall applications are included on the
+report.
+
+The detailed results of this report can be exported to a .csv or PDFÂ file.
+
+The Account Group Membership Report consists ofthe following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Report Options. These options are described in the Report Options table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+
+ l Application
+
+
+
+ l Member Options
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Report Options
+
+The following criteriadetermines what information isincluded inthis report. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included inthe
+ report.
+
+
+
+
+ Option Description
+
+ Application Select which application(s) to include in the report.
+
+
+
+
+ SailPoint IdentityIQ Reports 43
+
+===== Page 48/149 =====
+IdentityIQ Standard Reports
+
+Activity Reports: User Activity Detailed Report
+
+The User Activity Detailed Report includes information on allactivity on the applications monitored by IdentityIQ
+according to the criteria specified. This report is only applicable ifactivity monitoring has been configured in the sys-
+tem See the Application Configuration documentation formore information.
+
+The detailed results ofthis report can be exported toa .csv or PDFÂ file.
+
+The User Activity Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Additional IdentityÂ Properties. These options are described in the table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set ofstandard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running thisreport:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Additional Identity Properties
+
+The following criteria determines what information is included in this report. You can use any combination ofoptions to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included in the
+ report.
+
+
+
+
+ Option Description
+
+ The identity listtoinclude inthis report. If no identities are specified, activity for
+ allidentities isincluded.
+ Identities Click the arrow to the rightof the suggestion field to display a listof allidentities,
+ or enter a few letters inthe fieldto display a listof identities that startwith that let-
+ ter string.
+ Applications Select the applications toinclude inthe report. Ifno applications are specified, all
+ applications configured to track activityare included.
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 44
+
+===== Page 49/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ Click the arrow tothe right of the suggestion fieldto display a listof all applic-
+ ations, or enter a few letters inthe fieldto display a listof applications that start
+ with that letter string.
+ The firstand last date for which activity isreported. The report includes all applic-
+ Start and End ation activity that occurred within the date range specified.
+ Dates You can enter the date manually, or click the â€œ...â€ icon toselect a date from the
+ calendar.
+ Action The actions to include in the report. Only activity ofthe action types selected are
+ included in the report. Use the Ctrl and Shift keys to select multiple actions.
+ Result The activity results to include in the report. Only activities that include the selec-
+ ted result, Success or Failure, are included.
+ Target The specific target on an application to include inthe report. Use the target filter
+ to further narrow the result set for a search on a specific application.
+
+Administration Reports
+
+
+
+ l Capabilities toIdentities Report
+
+
+
+ l Connectivity Information Report
+
+
+
+ l Detailed Provisioning Transaction Object Report
+
+
+
+ l Environment Information Report
+
+
+
+ l Identity to Capabilities Report
+
+
+
+ l Mitigation Report
+
+
+
+ l Provisioning Transaction Object Report
+
+
+
+ l Revocation Live Report
+
+
+
+ l Work Item Archive Report
+
+Capabilities to Identities Report
+
+The Capabilities to Identities Report displays a listof the identities assigned to each capability defined in your enter-
+prise.
+
+The detailed results of thisreport can be exported to a .csv or PDFÂ file.
+
+
+
+
+ SailPoint IdentityIQ Reports 45
+
+===== Page 50/149 =====
+IdentityIQ Standard Reports
+
+
+The Capabilities to Identities Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Capability Properties. These options are described inthe table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Capabilities Properties
+
+The following criteria determines what information isincluded inthis report. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options inthe listare included inthe
+ report.
+
+
+ Option Description
+
+ Capabilities The capabilities to include in the report.
+ Exclude Indirect Cap- Do not include identities that have the capability assigned indirectly,
+ abilities through a workgroup.
+ Exclude Workgroups Do not include workgroups inthe report results.
+
+Connectivity Information Report
+
+The Connectivity Information Report displays allof the information collected about application configurations and stat-
+isticsthat match the specified criteria.
+
+This report collects the following information:
+
+
+
+ l Application configuration attributes and schema from Application xml.
+
+
+
+ l Last aggregation run time for alltype of aggregations such as, Account aggregation, Group aggregation, and
+ Delta aggregation.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 46
+
+===== Page 51/149 =====
+IdentityIQ Standard Reports
+
+
+
+ l Average time taken for alltype of aggregations.
+
+
+
+ l Schedule frequency for alltype ofaggregations.
+
+
+
+ l Provisioning operations statistics such as, number of create, update, and change password.
+
+
+
+ l Total accounts and groups.
+
+
+
+ l Maximum and average entitlements per account.
+
+
+
+ l Maximum and average members per group.
+
+
+ Note:Â Remove sensitive data before exporting.
+
+The detailed results of this report can be exported to a .csv or PDFÂ file.
+
+The Connectivity Information Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Application Filter
+
+
+
+ l Attributes Filter
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Application Filter
+
+Specify applications to exclude from thisreport. You can exclude applications by type or name. For excluded applic-
+ation, only statistical information iscollected. Application configuration details are ignored forexcluded applications.
+
+Attribute Filter
+
+Specify attributes to exclude from this report. The values of the application attributes displayed in the listare not
+included in the report.
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 47
+
+===== Page 52/149 =====
+IdentityIQ Standard Reports
+
+Detailed Provisioning Transaction Object Report
+
+The Detailed Provisioning Transaction Object Report displays information reflected inthe Administrator Console's Pro-
+visioning Transactions table, down to the attribute level of detail.In the Administrator Console UI page (Gear menu >
+Administrator Console), clicking the information button on a given transaction displays these details for that indi-
+vidual line item. This report displays the data in a report format, across multiple transactions at once. For more inform-
+ation on the Provisioning Transaction Table, see the System Administration documentation.
+
+The detailed results ofthis report can be exported to a .csv or PDFÂ file.
+
+The Detailed Provisioning Transaction Object Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Provisioning Transaction Properties. These options are described in the table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set ofstandard properties for basic information such as naming and descriptions, and forsetting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running thisreport:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Provisioning Transaction Properties
+
+The following criteria determines what information isincluded in thisreport. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included in the
+ report.
+
+
+
+
+ Option Description
+
+ The applications listtoinclude inthis report.
+ Application Click the arrow to the right of the suggestion fieldto display a listof allapplic-
+ ations, or enter a few letters inthe fieldto display a listof applications that start
+ with that letter string.
+ Identities The identities listto include in thisreport.
+ Click the arrow to the right of the suggestion fieldto display a listof allidentities,
+
+
+
+
+
+ SailPoint IdentityIQ Reports 48
+
+===== Page 53/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ or enter a few letters in the field to display a list ofidentities that start with that let-
+ ter string.
+ Include provisioning transactions which have been processed through one of the
+ specified write channels (e.g. connector or integration).
+ Channel Click the arrow tothe right of the suggestion field to display a list ofall available
+ channels, or enter a few letters inthe field to display a listof channels that start
+ with that letterstring.
+ Account Limit returned provisioning transactions to those with the account display name
+ begins with value entered inthis field.
+ The events listto include in this report (such as Create, Modify, Disable, etc.)
+ Event Click the arrow tothe right of the suggestion field to display a list ofall available
+ events, or enter a few letters in the field to display a listof events that start with
+ that letter string.
+ The source listto include inthis report.
+ Source Click the arrow tothe right of the suggestion field to display a list ofall available
+ sources, or enter a few letters in the fieldto display a listof sources that start with
+ that letter string.
+ The status listto include inthis report, such as Failed, Success, or Pending.
+ Status Click the arrow tothe right of the suggestion field to display a list ofall available
+ statuses, or enter a few letters in the field to display a listof statuses that start
+ with that letterstring.
+ Select Manual or Auto to limit the results of this report by transaction type. Auto
+ means the original provisioning request was (or isbeing) processed by a con-
+ Type nector or integration. Manual means a manual work item was created to manage
+ the provisioning request because the target application isnot connected to an
+ automated write channel.
+ Transaction
+ Initiation Limit the report results by date range.
+ Date
+ Include only transactions which have previously failed but have been overridden
+ by creating a manual work item to have itprocessed outside ofIdentityIQ's auto-
+ Overridden mated provisioning channels; once a transaction has failed with a non-retryable
+ error, a manual work item is the only option for processing the provisioning
+ request through a channel IdentityIQ willtrack
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Reports 49
+
+===== Page 54/149 =====
+IdentityIQ Standard Reports
+
+Environment Information Report
+
+The Environment Information Report gives detailed information about user activity on each application. Count stat-
+isticsare provided fora number of IdentityIQ objects: identities, applications, accounts, work items, identity requests,
+workgroups, certifications, task schedules, roles, policies, and entitlement catalog. Note that for these objects the
+value column shows counts of objects. Individual identity data isnot included in this report, to ensure that privacy
+requirements are met ifthe report needs to be shared.
+
+The Environment Information Report also shows information about your IdentityIQ environment, such as database
+type, version and driver, JDBC drivers and hosts, processor details, and IdentityIQ version.
+
+The Environment Information Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties forbasic information such as naming and descriptions, and forsetting con-
+trols,such as scoping and requiring sign-off.
+
+There are no filteroptions for this report. Italways reports the fullset of environment data. You must enter the fol-
+lowing before running thisreport:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Identity to Capabilities Report
+
+The Identity to Capabilities Report displays a listof the capabilities assigned to each identity inyour enterprise.
+
+The detailed results of this report can be exported to a .csv or PDFÂ file.
+
+The Capabilities to Identities Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Identity Properties. These are described in the table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties forbasic information such as naming and descriptions, and forsetting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 50
+
+===== Page 55/149 =====
+IdentityIQ Standard Reports
+
+
+
+
+ l Name
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Identity Properties
+
+The following criteria determines what information isincluded inthis report. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options inthe listare included inthe
+ report.
+
+
+
+
+ Option Description
+
+ Identities The identities to include in the report.
+ Include Empty Cap- Include identities that have no assigned capabilities.
+ abilities
+ Exclude Indirect Cap- Do not include capabilities assigned through workgroups in the report
+ abilities results.
+ Exclude Workgroups Do not include workgroups in the report results.
+
+Mitigation Report
+
+This report listspolicy exceptions that have been allowed inthe system. Itcan be used toreview the mitigation
+decisions made by a given actor, tosee the exceptions allowed for certain people or against certain roles, or to review
+exceptions that are set to expire by a given date.
+
+The detailed results of this report can be exported to a .csv or PDFÂ file.
+
+The Mitigation Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Mitigation Properties. These are described in the table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+
+
+
+ SailPoint IdentityIQ Reports 51
+
+===== Page 56/149 =====
+IdentityIQ Standard Reports
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Mitigation Properties
+
+The following criteria determines what information is included inthis report. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included in the
+ report.
+
+
+
+
+ Option Description
+
+ The expiration limiton the exception. Exceptions that expire on dates up toand
+ Expiration including the selected date are included in this report.
+ Date You can enter the date manually, or click the â€œ...â€icon to select a date from the cal-
+ endar.
+ The identities listto include in this report. Ifno identities are specified, mitigation for
+ allidentities are included.
+ Identities Click the arrow to the right of the suggestion field to display a listof allidentities, or
+ enter a few letters in the field to display a listof identities that startwith that letter
+ string.
+ The manager (mitigator) listto include in this report. Ifno managers are specified,
+ mitigations forall managers are included.
+ Actors Click the arrow to the right of the suggestion field to display a listof allmanagers,
+ or enter a few letters in the field to display a listof managers that start with that let-
+ ter string.
+ The roles listto include in this report. Ifno roles are specified, mitigation on all roles
+ Business are included.
+ Roles Click the arrow to the right of the suggestion field to display a listof allroles, or
+ enter a few letters in the field to display a listof roles that start with that letter string.
+
+Provisioning Transaction Object Report
+
+The Provisioning Transaction Object Report shows data reflected inthe Administrator Console's Provisioning Trans-
+actions table. This report captures the summary level of transaction data, which is the same level of information dis-
+played in the Provisioning Transaction table inthe UI. .For more information on the Provisioning Transaction Table,
+see the System Administration documentation.
+
+The Provisioning Transaction Object Report consists ofthe following sections:
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 52
+
+===== Page 57/149 =====
+IdentityIQ Standard Reports
+
+
+
+ l Standard Report Properties
+
+
+
+ l Provisioning Transaction Properties. These are described inthe table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties forbasic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Provisioning Transaction Properties
+
+The following criteriadetermines what information isincluded in this report. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included inthe
+ report.
+
+
+
+
+ Option Description
+
+ Shows only provisioning transactions which impact one of the specified applic-
+ ations.
+ Application Click the arrow to the right of the suggestion fieldto display a listof allapplic-
+ ations, or enter a few letters in the fieldto display a listof applications that start
+ with that letter string.
+ The identities listto include inthis report.
+ Identities Click the arrow to the right of the suggestion fieldto display a listof allidentities,
+ or enter a few letters inthe field todisplay a listof identities that start with that let-
+ ter string.
+ The channels listto include in thisreport.
+ Channel Click the arrow to the right of the suggestion fieldto display a listof allavailable
+ channels, or enter a few letters in the field to display a listof channels that start
+ with that letter string.
+ Account Limit returned provisioning transactions to those with the account display name
+ begins with value entered in this field.
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 53
+
+===== Page 58/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ The events toinclude inthis report, such as Create, Modify, Disable, etc.
+ Event Click the arrow to the right of the suggestion field todisplay a listofall available
+ events, or enter a few letters in the fieldto display a listof events that start with
+ that letter string.
+ List only transactions which came from one of the selected sources in IdentityIQ
+ (e.g. LCM, Identity Refresh, etc.).
+ Source Click the arrow to the right of the suggestion field todisplay a listofall available
+ sources, or enter a few letters in the field to display a listof sources that start with
+ that letter string.
+ The status listto include in thisreport.
+ Status Click the arrow to the right of the suggestion field todisplay a listofall available
+ statuses, or enter a few letters in the field todisplay a listofstatuses that start
+ with that letter string.
+ Select Manual or Auto tolimit the results of this report by transaction type. Auto
+ means the original provisioning request was (or is being) processed by a con-
+ Type nector or integration. Manual means a manual work item was created to manage
+ the provisioning request because the target application is not connected to an
+ automated write channel.
+ Transaction
+ Initiation Limit the report results by date range.
+ Date
+ Include only transactions which have previously failed but have been overridden
+ by creating a manual work item to have itprocessed outside of IdentityIQ's auto-
+ Overridden mated provisioning channels (once a transaction has failed with a non-retryable
+ error, a manual work item isthe only option for processing the provisioning
+ request through a channel IdentityIQ willtrack)
+
+Revocation Live Report
+
+This report shows all access revocation requests made in access reviews which meet the filtercriteria and the current
+status ofthe revocation (open or finished). Italso shows information about the revocation request such as who reques-
+ted it,how the request was (or isbeing) revoked, the name of the person processing the revoke (for work item revoc-
+ations only), the access request ID (for queued automated requests on some systems), the Identity from whom the
+access has been revoked, and any comments entered by the requester. Italso includes the expiration date of the cer-
+tificationin which itwas revoked, along with identifying information about which specific entitlement or role was
+revoked.
+
+The detailed results of thisreport can be exported to a .csv or PDFÂ file.
+
+
+
+
+ SailPoint IdentityIQ Reports 54
+
+===== Page 59/149 =====
+IdentityIQ Standard Reports
+
+
+The Revocation Live Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Certification Item Properties. These are described in the table below.
+
+
+
+ l Report Layout
+
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Certification Items Properties
+
+The following criteria determines what information is included in this report. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options inthe listare included in the
+ report.
+
+
+
+
+ Option Description
+
+ The certification creation date range. The report includes allrevocation inform-
+ Creation Start ation forcertifications create on or after the start date and on or before the end
+ and End Date date.
+ (s) You can enter the date manually, or click the â€œ...â€ icon to select a date from the
+ calendar.
+ The certification signed off on date range. The report includes all revocation
+ Signed Start information for certifications signed off on, on or after the start date and on or
+ and End Date before the end date.
+ (s) You can enter the date manually, or click the â€œ...â€ icon to select a date from the
+ calendar.
+ The certification due date range. The report includes allrevocation information
+ Due Start and for certifications due on or after the start date and on or before the end date.
+ End Date(s) You can enter the date manually, or click the â€œ...â€ icon to select a date from the
+ calendar.
+ Applications Select the applications to include inthe report. Ifno applications are specified, all
+ applications are included.
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 55
+
+===== Page 60/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ Click the arrow to the right ofthe suggestion fieldto display a listof allapplic-
+ ations, or enter a few letters inthe fieldto display a listof applications that start
+ with that letterstring.
+ Select the groups toinclude inthis report.
+ Group Click the arrow to the right ofthe suggestion fieldto display a listof allgroups, or
+ enter a few letters in the field todisplay a listofgroups that start with that letter
+ string.
+ Certification To filteraccess reviews based on their tags, select one or more tags. Ifmultiple
+ Tags tags are selected, only access reviews that match all selected tags are included
+ in this report.
+ Certification The manager certifications to include inthis report.
+ Group
+
+Work Item Archive Report
+
+This report shows the current status ofwork items in the system. Itcan report on active work items, archived work
+items or both (depending on the Included Work Items filter).Itshows the requester, work item owner, type, current
+state, number of reminders and escalations that have occurred for it,and itscurrent status.
+
+The detailed results of thisreport can be exported to a .csv or PDFÂ file.
+
+The Work Item Archive Report consists ofthe following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Work Item Properties. These are described in the table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Work Item Properties
+
+The following criteria determines what information is included in this report. You can use any combination of options to
+build a report.
+
+
+
+
+ SailPoint IdentityIQ Reports 56
+
+===== Page 61/149 =====
+IdentityIQ Standard Reports
+
+
+ Note:Â Selecting NO options from a listindicates that ALL options inthe listare included inthe
+ report.
+
+
+
+
+ Option Description
+
+ The owners of the work items. Only work items belonging tothe selected own-
+ ers are included inthe report.
+ Owners Click the arrow to the right of the suggestion field todisplay a listof allowners,
+ or enter a few letters inthe fieldto display a listof owners that start with that let-
+ ter string.
+ The requestors of the work items. Only work items requested by the selected
+ requestors are included inthe report.
+ Requestors Click the arrow to the right of the suggestion field todisplay a listof all
+ requestors, or enter a few letters inthe fieldto display a listof requestors that
+ start with that letterstring.
+ Work Items Pri- The priority assigned by the requestor of the work item.
+ ority
+ Work Items The work item types to include in this report. Only work items ofthe type selec-
+ Type ted are included inthe report.
+ Use the Shift and Ctrl buttons to select multiple types.
+ Work Item The state of the work items to include in this report. Only work items inthe
+ State selected states are included inthe report.
+ Use the Shift and Ctrl buttons to select multiple states.
+ Included Work Choose to include active or archived work items inthe report.
+ Items
+ Minimum The minimum number of sent reminders that a work item must be associate
+ Reminders with before itisincluded in thisreport.
+ Maximum The maximum number of sent reminders that a work item can be associated
+ Reminders with and stillbe included in this report.
+
+Application Status Report
+
+This report shows statistics about managed applications defined in the system. Specifically, itshows the number of
+accounts aggregated, the last aggregation date, the earliest and latest last refresh dates marked on any account for
+the application (useful for partial or delta aggregations), the total count of entitlements held on the application (Total
+Assignments), and the count of unique entitlements (distinct attribute name-value-type combination) existing on the
+application.
+
+
+
+
+
+ SailPoint IdentityIQ Reports 57
+
+===== Page 62/149 =====
+IdentityIQ Standard Reports
+
+
+This report includes information in the detailed results format that can be exported to Microsoft Excel and used as
+spreadsheets.
+
+The Application Status Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Report Options. These options are described in the table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must assign a name before running this report:
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Report Options
+
+The following criteria determines what information isincluded in thisreport. You can use any combination of options to
+build a report.
+
+
+
+ l Applications:Â Select the applications to include inthe report. Click the arrow to the right of the suggestion field
+ to display a listofall applications, or enter a few letters inthe fieldto display a listof applications that start with
+ that letterstring.
+
+
+ SelNote:Â cting NO options from a listindicates that ALL options in the listare included in the
+ report.
+
+Report Data
+
+The Application Status Report displays the following data:
+
+
+
+ l Application
+
+
+
+ l Number of Accounts
+
+
+
+ l Last Aggregation
+
+
+
+ l Oldest Refresh Time
+
+
+
+ l Newest Refresh Time
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 58
+

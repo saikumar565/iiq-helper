@@ -1,0 +1,619 @@
+===== Page 1/12 =====
+ Classifications
+
+
+ Version:8.4
+
+ Revised:September 2023
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thisdocument and the information contained herein isSailPoint Confidential Information
+
+===== Page 2/12 =====
+Copyright and Trademark Notices
+
+Copyright © 2023 SailPoint Technologies, Inc.  All Rights Reserved.
+
+Alllogos, text,content, including underlying HTML code, designs, and graphics used and/or depicted on these written
+materials or in thisInternet website are protected under United States and international copyright and trademark laws
+and treaties, and may not be used or reproduced without the prior express written permission of SailPoint Tech-
+nologies, Inc.
+
+“SailPoint Technologies,” (design and word mark), “SailPoint,” (design and word mark), "Identity IQ,” “IdentityNow,”
+“SecurityIQ,” “Identity AI,” “Identity Cube,” and “SailPoint Predictive Identity” are registered trademarks of SailPoint
+Technologies, Inc. “Identity isEverything,” “The Power of Identity,” and “Identity University” are trademarks of
+SailPoint Technologies, Inc. None of the foregoing marks may be used without the prior express written permission of
+SailPoint Technologies, Inc. Allother trademarks shown herein are owned by the respective companies or persons
+indicated.
+
+SailPoint Technologies, Inc. makes no warranty ofany kind regarding these materials or the information included
+therein, including, but not limited to,the implied warranties ofmerchantability and fitness for a particular purpose.
+SailPoint Technologies shall not be liable for errors contained herein or direct, indirect, special, incidental orcon-
+sequential damages inconnection with the furnishing, performance, or use of thismaterial.
+
+Patents Notice. https://www.sailpoint.com/patents
+
+Restricted Rights Legend. All rights are reserved. No part ofthis document may be published, distributed, reproduced,
+publicly displayed, used to create derivative works, or translated to another language, without the prior written consent
+ofSailPoint Technologies. The information contained inthis document issubject to change without notice.
+
+Use, duplication or disclosure by the U.S. Government is subject to restrictions as set forth insubparagraph (c) (1) (ii)
+ofthe Rights inTechnical Data and Computer Software clause at DFARS 252.227-7013 for DOD agencies, and sub-
+paragraphs (c)(1) and (c)(2) ofthe Commercial Computer Software Restricted Rights clause at FAR 52.227-19 for
+other agencies.
+
+Regulatory/Export Compliance. The export and re-export of this software iscontrolled for export purposes by the U.S.
+Government. By accepting this software and/or documentation, licensee agrees to comply with allU.S. and foreign
+export laws and regulations as they relate to software and related documentation.  Licensee will not export or re-
+export outside the United States software or documentation, whether directly or indirectly, to any Prohibited Party and
+willnot cause, approve or otherwise intentionally facilitate others inso doing. A Prohibited Party includes: a party in a
+U.S. embargoed country or country the United States has named as a supporter of international terrorism; a party
+involved in proliferation; a party identified by the U.S. Government as a Denied Party; a party named on the U.S.
+Department of Commerce’s Entity Listin Supplement No. 4 to 15 C.F.R. § 744; a party prohibited from participation in
+export orre-export transactions by a U.S. Government General Order; a party listed by the U.S. Government’s Office
+ofForeign Assets Control as ineligible to participate in transactions subject toU.S. jurisdiction; or any party that
+licensee knows or has reason toknow has violated or plans to violate U.S. or foreign export laws or regulations.
+Licensee shall ensure that each of itssoftware users complies with U.S. and foreign export laws and regulations as
+they relate to software and related documentation.
+
+===== Page 3/12 =====
+Contents
+
+
+ Classifications 1
+
+ Where Classification Data Comes From 1
+
+ Working with Classifications inIdentityIQ 2
+
+ Integrating with File Access Manager for Classifications 7
+
+ FileAccess Manager Classification Process 8
+
+===== Page 4/12 =====
+Classifications
+
+Classifications
+
+
+Classifications letyou flag and categorize roles and entitlements, tohelp ensure the security and integrityof your
+access governance practices. Classifications can alert you when requesting, granting, or approving a user's access
+willgive that user access to sensitive, protected, orotherwise significant data.
+
+InIdentityIQ, classifications are typically used toflag access to sensitive data, such as financial, personal, or health-
+related information, but you can use classifications to identify any kind of access your business needs to pay special
+attention to.
+
+Classifications can be used incertifications and policies, to help you monitor and control the access your users have
+tosensitive data. You can configure access requests, approvals, and access reviews toshow a classification icon with
+any role orentitlement that grants access tosensitive data, so that the users responsible for making access decisions
+can quickly and easily see which entitlements allow potentially risky access.
+
+This section includes:
+
+
+
+ l Where Classification Data Comes From
+
+
+
+ l Working with Classifications inIdentityIQ
+
+
+
+ l Integrating with File Access Manager forClassifications
+
+Where Classification Data Comes From
+
+IdentityIQ's classification functions are designed to integrate with SailPoint's File Access Manager module, to provide
+robust and seamless governance ofsensitive data.
+
+You can also implement classifications using data from sources other than File Access Manager, allowing you to tailor
+your classifications solution to your particular business needs.
+
+ File Access Manager Classifications
+
+InFile Access Manager, classification categories are assigned to Business Resources (folders). Classifications typ-
+icallyflag sensitive data, but can flag anything you configure File Access Manager to monitor. In many cases, access
+toclassified data isgranted through account groups – most typically, Active Directory Groups – such that users' mem-
+bership in those groups indirectly grants access to that data. For example, a company's Human Resources group
+might have access to employees' personal data, or a hospital's group of doctors might have access tomedical
+records. When you include File Access Manager's classification data in your IdentityIQ installation, you can see the
+implications of users' existing and requested group memberships, tobetter inform your access governance decisions
+inIdentityIQ.
+
+
+
+
+
+
+
+ SailPoint Classifications 1
+
+===== Page 5/12 =====
+Classifications
+
+
+For more information about how data is classified inFile Access Manager, refer to the FileAccess Manager doc-
+umentation.
+
+ Classifications from Other Sources
+
+You can bring classification data into IdentityIQ from sources other than FileAccess Manager, or define your clas-
+sificationdata independently in IdentityIQ, by importing the classification data as an XML object. To import an XML
+object, use the iiqconsole or the gear menu > Global Settings > Import From File feature.
+
+Here isan example of what a classificationobject might look like.This example includes a name, display name,
+source oforigin forthe data, and localized descriptions for the classification.
+
+
+ <?xml version='1.0' encoding='UTF-8'?>
+ <!DOCTYPE Classification PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+ <Classification id="" name="PHI" displayName="Protected Health Information" ori-
+ gin="MyIndependentDataSource">
+   <Attributes>
+     <Map>
+       <entry key="sysDescriptions">
+         <value>
+           <Map>
+            <entry key="en_US" value="Allows access to Protected Health Information"/>
+            <entry key="fr_FR" value="Permet l’accès aux informations de santé
+ protégées"/>
+           </Map>
+         </value>
+       </entry>
+     </Map>
+   </Attributes>
+ </Classification>
+
+
+Working with Classifications in IdentityIQ
+
+Classifications in IdentityIQ are managed as attributes on entitlements; ifyou are integrating with FileAccess Man-
+ager, these entitlements are most typicallygroup entitlements. For example, a Human Resources group isaggregated
+intoIdentityIQ as a group entitlement; ifthisgroup is categorized inFile Access Manager or some other source as hav-
+ing access to sensitive information, an attributethat flags the Human Resources group entitlement as having this
+access isadded tothe group entitlement. Once you have defined classifications inIdentityIQ, you can apply clas-
+sificationattributes toany entitlement, not just group entitlements.
+
+Entitlements are managed in IdentityIQ,using IdentityIQ's range of compliance and lifecycle management features,
+such as access requests, certificationsand access reviews, policies, and reporting.
+
+You can view and manage classifications in these areas of IdentityIQ:
+
+ Lifecycle Manager Global Setting for Access Requests and Approvals
+
+
+
+
+
+
+ SailPoint Classifications 2
+
+===== Page 6/12 =====
+Classifications
+
+
+A global setting inLifecycle Manager determines whether classification data is shown with the access items (such as
+roles or entitlements) that you can request forusers in the Manage Access feature. This global setting is provided so
+thatyou can choose whether or not to alert requesters to the fact that certain roles or entitlements may allow access to
+sensitive or protected data.
+
+To enable the display of classifications in Access Requests:
+
+ 1. Click the gear menu > Lifecycle Manager.
+
+ 2. On the Configure tab, scroll tothe Manage Classifications Options section.
+
+ 3. Check the Display classifications in Access Request box.
+
+ 4. Save your change.
+
+Ifthissetting isenabled in Lifecycle Manager, roles and entitlements are flagged with relevant classification inform-
+ation inthe Access Requests pages. You can click the Details button forflagged roles and entitlements, tosee more
+information about the classifications.
+
+Classification data also appears in the Approvals page foraccess requests. Classification flags always appear in the
+Approvals page, regardless of the setting in the Lifecycle Manager's Manage Classifications Options section, since
+reviewers always need to know when granting access willallow access tosensitive or protected data.
+
+ Adding Classifications to Roles and Entitlements
+
+For File Access Manager integrations, classifications can be added to entitlements by running a task. This process is
+described inmore detail inIntegrating with File Access Manager forClassifications.
+
+For classifications that come from a source other than File Access Manager, classifications can be added manually to
+roles and entitlements.
+
+ To add classifications to a role:
+
+ 1. Click Setup > Roles.
+
+ 2. To add classifications to existing roles, find the role you want to edit in the Role Viewer, then click Edit Role; for
+ new roles, click New Role > Role.
+
+ 3. In the Role Editor, select the classifications you want to add from the drop-down list.
+
+ 4. Save your changes.
+
+You can also include classifications as criteria inMatch List Assignment Rules forthe role. Assignment Rules are
+used to automatically assign roles to identities during a correlation process.
+
+
+
+
+
+SailPoint Classifications 3
+
+===== Page 7/12 =====
+Classifications
+
+
+Inthe Role Search tab you can include classifications as search criteria.
+
+ To add classifications to an entitlement:
+
+ 1. Click Applications > Entitlement Catalog.
+
+ 2. To add classifications to existing entitlements, use the Filter fieldor Advanced Search to findthe entitlement
+ you want to edit; fornew entitlements, click Add New Entitlement.
+
+ 3. On the Classifications tab, select the classifications you want to assign from the dropdown list,then click Add
+ to assign the classification.
+
+ 4. Save your changes.
+
+Inthe Advanced Search feature of the Entitlement Catalog, you can include classifications as search criteria.
+
+ Classifications in Certifications and Access Reviews
+
+When scheduling a certification campaign, you can opt to show classification data in the campaign's access reviews.
+Classifications can be shown in Manager, Application Owner, Advanced, Role Membership, and Targeted cer-
+tifications.You can also use classifications as a criterion for what to certify,in Targeted certifications.
+
+You can set a global default to show classifications for allyour certification campaigns, and modify the default setting
+inany individual certifications you schedule.
+
+To set the global default forshowing classifications in your certification campaigns:
+
+ 1. Click the gear menu > Compliance Manager.
+
+ 2. In the Behavior section, use the Show Classifications checkbox toenable or disable showing classifications
+ by default.
+
+ Classifications in Policies and Policy Violations
+
+InAdvanced policies, you can use classifications as criteria foryour policy rules.
+
+To add classifications to an Advanced policy rule:
+
+ 1. Click Setup > Policies.
+
+ 2. To add classifications to an existing policy, use the Filter fieldor Advanced Search to findthe policy you want
+ to edit; fornew policies, click New Policy > Advanced Policy.
+
+
+
+
+
+
+
+
+
+SailPoint Classifications 4
+
+===== Page 8/12 =====
+Classifications
+
+ 3. Click Create New Rule, ordouble-click an existing rule you want toedit. Classifications can be used as rule cri-
+ teria in Match List, Rule, Script and Filterrules.
+ Rules and scripts are written in BeanShell, and Filters are an XML specification.
+
+ 4. For Match Listrules:
+
+ a. Under Selection Method, choose Match List.
+
+ b. Click Add Role Attribute or Add Entitlement Attribute.
+
+ c. In the Name fieldchoose Classification.
+
+ d. Choose an operator: Equals, Not Equals, or Is Null.
+
+ e. In Value, type the name of the classification touse. (To find the name of a classification, you can use the
+ Debug pages to open the classification object and find the name value.)
+
+ 5. When you have added allthe classification criteria you want to use, you can run a simulation of the rule, or click
+ Done to save your changes and exit.
+
+ Classifications in Advanced Analytics
+
+Inthe Advanced Analytics page, you can search for roles and entitlements using classifications as search criteria.
+
+ 1. Click Intelligence > Advanced Analytics.
+
+ 2. Choose Role or Entitlement as the Search Type.
+
+ 3. Choose a classification to search on, from the dropdown.
+
+ 4. Ifyou want to see classification details in your search results, select Classifications inthe Fields to Display
+ panel.
+
+ 5. Click Run Search.
+
+
+ Classifications in the Identity Warehouse
+
+To see which entitlements a user has that are flagged with classifications, inthe Identity Warehouse:
+
+ 1. Click Identities > Identity Warehouse.
+
+ 2. Select an identity.
+
+
+
+
+
+
+
+
+SailPoint Classifications 5
+
+===== Page 9/12 =====
+Classifications
+
+ 3. Click the Entitlements tab. Any entitlement or role with a classification assigned toitis flagged with the clas-
+ sifications icon.
+
+ Classifications in the Edit/View Identity Page
+
+The Manage Identity feature shows classifications forentitlements on identities.
+
+ 1. In the Quicklinks menu, clickManage Identity
+
+ 2. Choose Edit Identity or View identity.
+
+ 3. Click on the identity. The Access panel forthe identityshows a classification icon for any entitlements with clas-
+ sifications assigned. Click the classification icon for more details.
+
+ Classifications in Access Requests
+
+The option to make classification flags visible in Access Requests is a configurable option. This option isprovided so
+thatyou can choose whether or not to alertrequesters to the fact that certain roles or entitlements willgiven them
+access to sensitive or protected data. Note that classification flags always appear in Access Approvals, regardless
+ofthe setting forAccess Requests.
+
+ Enabling or Disabling Classification Visibility in Access Requests
+
+ 1. Click the gear menu> Lifecycle Manager.
+
+ 2. On the Configure tab, scroll to the Manage Classifications Options section.
+
+ 3. Check the Display classifications in Access Request box.
+
+ 4. Save your change.
+
+
+ Classifications in Access Approvals
+
+Users responsible forapproving access can see classification information in the approval Ul. Click the classification
+icon to see details about the classification.
+
+Click the Show Details linkin the main Approvals UI toopen a dialog with more details.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Classifications 6
+
+===== Page 10/12 =====
+Integrating with FileAccess Manager forClassifications
+
+Integrating with File Access Manager for Classifications
+
+
+For integration with FileAccess Manager's classification feature, the initialinstallationand configuration involves two
+steps:
+
+ 1. Import the init-fam.xml fileinto IdentityIQ, using the iiqconsole or the gear menu > Global Settings >
+ Import From File feature.
+
+ 2. Click gear menu > Global Settings > File Access Manager Configuration.
+
+
+ Field Name Description
+
+ FileAccess The hostname ofthe FileAccess Manager website. For example, https://web-
+ Manager Host- client.mydomain.com
+ name
+ Choose your method of authenticating with the File Access Manager website. Basic uses a user-
+ name and password. OAuth uses a client ID and clientsecret. Basic authentication can be used for
+ Basic/OAuth identities thatare configured in the File Access Manager Administrative Client as having the API
+ User privilege. OAuth credentials can be retrieved from the File Manager website, through the Set-
+ tings > General > API Authorization menu.
+ Username For Basic authentication: the username for logging into the File Access Manager web client.This
+ identity must have the API User privilege inFile Access Manager.
+ Password For Basic authentication: the password for logging in to the FileAccess Manager web client.
+ Client ID For OAuth authentication: the Client ID forlogging in tothe File Access Manager website. This
+ value isstored inthe File Access Manager website inSettings > General > API Authorization.
+ For OAuth authentication: the Client Secret forlogging into the File Access Manager website. This
+ Client Secret value can be copied from the FileAccess Manager website in Settings > General > API Author-
+ ization.
+ Ifthe correlation logicin your configured applications does not meet your needs forcorrelating File
+ SCIM Cor- Access Manager groups and accounts against IdentityIQ groups, you can use a custom rule toman-
+ relation Rule age correlation. The rule must have a rule type of Correlation in order to appear inthis drop-
+ down.
+ SCIM Cor- Select the applications tocorrelate File Access Manager groups and accounts against. Typically
+ relation Applic- these willbe Active Directory applications.
+ ations
+
+Ifyou are implementing classifications that come from a source other than File Access Manager, you do not need to
+take any special steps to configure the feature. You can import your classification objects directly intoIdentityIQ and
+manage classifications as described inthe sections above.
+
+
+
+
+ SailPoint Classifications 7
+
+===== Page 11/12 =====
+Integrating with File Access Manager for Classifications
+
+File Access Manager Classification Process
+
+Bringing classification data from File Access Manager intoIdentityIQ, and including classifications inyour lifecycle and
+data governance practices, isa multi-step process. An overview of these processes isprovided here.
+
+This section assumes you have already completed the configuration inFile Access Manager toclassify resources and
+identifywhich groups have access to those resources. Italso assumes that you have applications configured inIden-
+tityIQfor aggregating group and account data.
+
+When you work with classifications that originate inFile Access Manager, the assumption is that both the IdentityIQ
+instance and the File Access Manager instance use the same group data. Ifthisis not the case, you may need to con-
+figure rule-based logic to correlate your File Access Manager accounts and groups with your IdentityIQ accounts and
+groups. You can specify a custom correlation rule forthis aggregation in Global Settings > File Access Manager
+Configuration, inthe SCIM Correlation Rule field.
+
+At a high level, these are the steps foraggregating and managing classifications from FileAccess Manager.
+
+ Application Configuration
+
+ 1. Configure the IdentityIQ application(s) that aggregate group data. As part of thisconfiguration, you must spe-
+ cify a correlation key in each application's group schema, to correlate groups inIdentityIQ to groups in File
+ Access Manager.
+ For Active Directory applications, the group schema attribute to set as the correlation key isMsDs-Prin-
+ cipalName.
+
+ 2. In the File Access Manager Configuration (under the gear menu > Global Settings), add each of the applic-
+ ations that aggregate group data tothe SCIM Correlation Application field.
+
+ Run Tasks to Aggregate and Process Classification Data
+
+IdentityIQ uses tasks to aggregate accounts, groups, and FileAccess Manager classification data. Ifyou do not
+already have tasks set up to aggregate accounts and groups, you willneed to set these tasks up as part of imple-
+menting this feature. You must also create and configure a File Access Manager Classification task.
+
+For more information see the Tasks documentation.
+
+These tasks should be run on a recurring basis, to keep your classification data inIdentityIQ current.
+
+ 1. Run a task to aggregate groups. Typically these willbe Active Directory groups.
+
+ 2. Run a File Access Manager Classification task. See the Tasks documentation for more information.
+
+ 3. Optional: Run an Effective Access Indexing task. You only need to run this task ifyou are tracking clas-
+
+
+
+
+
+
+
+ SailPoint Classifications 8
+
+===== Page 12/12 =====
+Integrating with File Access Manager forClassifications
+
+
+ sification data for effective access items. These options are important formanaging classifications on effective
+ access items:
+
+Index classifications
+
+ Use this option toadd an entitlement's classifications to the target association that iscreated when the enti-
+ tlement target is indexed; in the UI, this means that an entitlement's classifications willbe displayed whenever
+ that entitlement occurs as Effective Access. For example, ifan IT role contains EntitlementA, and EntitlementA
+ has a classification, the indexing option will make EntitlementA's classification also appear on that role.
+
+Promote classifications
+
+ Promote isused with applications such as Active Directory that can have "nested" entitlements, to ensure that
+ classifications are adorned to allentitlements along the effective access chain. For example, ifEntitlementA
+ grants you effective access to EntitlementB, and EntitlementB has a classification assigned to it,then with the
+ Promote Classifications option enabled, the classification assigned to EntitlementB will also be displayed in the
+ UI forEntitlementA.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Classifications 9

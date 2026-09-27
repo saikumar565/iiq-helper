@@ -1,0 +1,3294 @@
+===== Page 1/55 =====
+ Application Configuration
+
+
+ Version:8.4
+
+ Revised:September2023
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thisdocument and the informationcontained hereinisSailPointConfidentialInformation
+
+===== Page 2/55 =====
+Copyright and Trademark Notices
+
+Copyright © 2023 SailPoint Technologies, Inc.  All Rights Reserved.
+
+Alllogos, text,content, including underlying HTML code, designs, and graphics used and/or depicted on these written
+materials or in thisInternet website are protected under United States and international copyright and trademark laws
+and treaties, and may not be used or reproduced without the prior express written permission of SailPoint Tech-
+nologies, Inc.
+
+“SailPoint Technologies,” (design and word mark), “SailPoint,” (design and word mark), "Identity IQ,” “IdentityNow,”
+“SecurityIQ,” “Identity AI,” “Identity Cube,” and “SailPoint Predictive Identity” are registered trademarks of SailPoint
+Technologies, Inc. “Identity isEverything,” “The Power of Identity,” and “Identity University” are trademarks of
+SailPoint Technologies, Inc. None of the foregoing marks may be used without the prior express written permission of
+SailPoint Technologies, Inc. Allother trademarks shown herein are owned by the respective companies or persons
+indicated.
+
+SailPoint Technologies, Inc. makes no warranty ofany kind regarding these materials or the information included
+therein, including, but not limited to,the implied warranties ofmerchantability and fitness for a particular purpose.
+SailPoint Technologies shall not be liable for errors contained herein or direct, indirect, special, incidental orcon-
+sequential damages inconnection with the furnishing, performance, or use of thismaterial.
+
+Patents Notice. https://www.sailpoint.com/patents
+
+Restricted Rights Legend. All rights are reserved. No part ofthis document may be published, distributed, reproduced,
+publicly displayed, used to create derivative works, or translated to another language, without the prior written consent
+ofSailPoint Technologies. The information contained inthis document issubject to change without notice.
+
+Use, duplication or disclosure by the U.S. Government is subject to restrictions as set forth insubparagraph (c) (1) (ii)
+ofthe Rights inTechnical Data and Computer Software clause at DFARS 252.227-7013 for DOD agencies, and sub-
+paragraphs (c)(1) and (c)(2) ofthe Commercial Computer Software Restricted Rights clause at FAR 52.227-19 for
+other agencies.
+
+Regulatory/Export Compliance. The export and re-export of this software iscontrolled for export purposes by the U.S.
+Government. By accepting this software and/or documentation, licensee agrees to comply with allU.S. and foreign
+export laws and regulations as they relate to software and related documentation.  Licensee will not export or re-
+export outside the United States software or documentation, whether directly or indirectly, to any Prohibited Party and
+willnot cause, approve or otherwise intentionally facilitate others inso doing. A Prohibited Party includes: a party in a
+U.S. embargoed country or country the United States has named as a supporter of international terrorism; a party
+involved in proliferation; a party identified by the U.S. Government as a Denied Party; a party named on the U.S.
+Department of Commerce’s Entity Listin Supplement No. 4 to 15 C.F.R. § 744; a party prohibited from participation in
+export orre-export transactions by a U.S. Government General Order; a party listed by the U.S. Government’s Office
+ofForeign Assets Control as ineligible to participate in transactions subject toU.S. jurisdiction; or any party that
+licensee knows or has reason toknow has violated or plans to violate U.S. or foreign export laws or regulations.
+Licensee shall ensure that each of itssoftware users complies with U.S. and foreign export laws and regulations as
+they relate to software and related documentation.
+
+===== Page 3/55 =====
+Contents
+
+
+ About Applications and Connectors 1
+
+ Documentation For Specific Connectors 1
+
+ Application Concepts 3
+
+ Configuring an Application 6
+
+ Common Application Configuration Details 6
+
+ Using the Edit Application Page 7
+
+ Application Connection Parameters 29
+
+ Application Schemas 29
+
+ Provisioning Policies 32
+
+ Application Dependencies 33
+
+ Using Rules in Applications 33
+
+ Native Change Detection Configuration 34
+
+ Editing an Application's Configuration in the Application XML 36
+
+ Application Maintenance Windows 37
+
+ Defining a Maintenance Window 37
+
+ Maintenance Windows and Aggregation 37
+
+ Maintenance Windows and Provisioning 37
+
+ Reconfiguring an Application 39
+
+ Application Reconfiguration Considerations 39
+
+ Before Application Reconfiguration 40
+
+ How to Reconfigure an Application 40
+
+ AfterApplication Reconfiguration 41
+
+ File Access Manager Applications 42
+
+ FileAccess Manager Attributes/Configuration 42
+
+ Activity Data Source Configuration 44
+
+ JDBC Collector Settings 45
+
+ Windows Event Log Collector Settings 46
+
+ Log File Collector Settings 47
+
+ RACF Audit Log Collector 49
+
+===== Page 4/55 =====
+CEF Log File 50
+
+===== Page 5/55 =====
+About Applications and Connectors
+
+About Applications and Connectors
+
+
+IdentityIQ uses configured applications to connect to your enterprise’s target systems and read data from those applic-
+ations into IdentityIQ. This data is used forcreating/updating Identity Cubes, building IdentityIQ’s entitlement catalog,
+and bringing information about users' accounts and group membership intoIdentityIQ. Many, but not all,applications
+can also write information back to target systems, toreflect changes made within IdentityIQ.
+
+Although the terms "application" and "connector" sometimes seem to be used interchangeably, it'simportant tounder-
+stand the differences:
+
+Connectors are how IdentityIQ provides the base functionality forcommunication with the target system. Connectors
+are in essence templates for connecting to target systems. They define how connectivity to the target system isaccom-
+plished, provide the abilityto connect to a source, toread from and (insome cases) write to the source, and to create a
+normalized resource object representing the data read from the source.
+
+Applications are configured instances of connectors. They contain specific information for connecting to specific tar-
+get systems, such as a unique name, connection parameters forconnecting to a particular system, and a specific
+account schema. For example, you may need toaggregate data from several different delimited files.Using the delim-
+itedfileconnector, you can create many unique delimited fileapplications, each pointing toa particular file,and using
+a specific schema that defines the data to be aggregated from the file.
+Documentation For Specific Connectors
+
+This guide provides general concepts and common practices thatare applicable to allconnectors. For more detailed
+information about specific connectors, use SailPoint's connector-specific guides. These guides are available online
+and inPDF format, and provide details such as supported features, connection parameters, account schema details,
+and more, foreach connector.
+
+Online connector documentation: documentation for the current version of each of the connectors supplied by
+SailPoint is available online on SailPoint's documentation portal. Guides for IdentityIQ connectors are located here.
+
+PDF and legacy connector documentation: you can download PDF versions of the connector guides from
+SailPoint's Compass Community. Connector guide PDFs are updated with each patch toIdentityIQ. Ifyou need con-
+nector documentation forolder versions of IdentityIQ, use the Supported Connectors for IdentityIQ page on Compass;
+be sure tolocate the correct documentation zip fileforyour specific version and patch.
+
+ Additional Resources for Connectors
+
+These other SailPoint resources can be useful sources ofadditional information on connectors:
+
+
+
+
+
+
+
+
+
+
+ SailPoint Application Configuration 1
+
+===== Page 6/55 =====
+About Applications and Connectors
+
+
+
+
+ l Compass – inSailPoint's Compass Community, you can engage with peers and experts to ask questions and
+ share answers, submit ideas, read wiki articles and technical white papers, watch webinars, and more.
+
+
+
+ l SailPoint's Customer Support knowledge base – you can search here fortechnical notes about specific con-
+ nectors, from SailPoint's Customer Support team.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Application Configuration 2
+
+===== Page 7/55 =====
+Application Concepts
+
+Application Concepts
+
+
+Here are some general concepts you should be familiar with as part of planning your application onboarding and con-
+figuring your applications.
+
+ Aggregation
+
+Aggregation is the process wherein information that resides on the target system isdiscovered and read into Iden-
+tityIQ.The specific information that isbrought into IdentityIQ through aggregation will vary depending on the type and
+purpose of the target system, what data is available inthe target system, and how the application is configured.
+
+For example, when reading from a system of record such as an Human Resources system, you might want toaggreg-
+ate a lotof information about each user, such as fullname, department, job title,manager, and location. For a busi-
+ness-specific system such as an Accounts Payable system, you may aggregate only a limited set ofinformation, such
+as which groups your users belong to, and which features each user has access to.
+
+While the details of what is aggregated is largely defined by your application configuration, the actual work ofaggreg-
+ation isaccomplished by the Account Aggregation and Account Group Aggregation tasks. These tasks have
+many configuration options that allow you tofine-tune the behavior of the aggregation for each application. For more
+information, see:
+
+
+
+ l Tasks overview inthe IdentityIQ Tasks Guide
+
+
+
+ l Account Aggregation inthe IdentityIQ Tasks Guide
+
+
+
+ l Account Group Aggregation in the IdentityIQ Tasks Guide
+
+
+ Correlation
+
+Correlation is the process ofmatching aggregated accounts to existing identities.When you aggregate from an author-
+itativesource, IdentityIQ creates an Identity Cube foreach account on that source. When you aggregate from a non-
+authoritative source, correlation logic helps match aggregated accounts to an authoritative Identity Cube.
+
+Correlation logic can be implemented several ways:
+
+
+
+ l Through direct mapping of attributes – for example, the application's account attribute "mail" is mapped dir-
+ ectly tothe identity'sattribute "email." Attribute mapping can be defined both inthe application configuration fea-
+ ture and inthe Rapid Setup feature.
+
+
+
+ l Using conditions that assign application accounts to existing identities by defining attribute conditions. For
+ example, the root account on Unix typically does not have any identifying attributes that can help when trying to
+ correlate itto an existing identity using direct attribute mapping, so you can use a condition, such as whether
+
+
+
+
+
+
+
+ SailPoint Application Configuration 3
+
+===== Page 8/55 =====
+Application Concepts
+
+
+ the identity isa Unix application owner, to drive the correlation. Condition-based correlation can only be defined
+ inthe application configuration feature. The correlation configurations you define based on conditions can be
+ saved and shared across multiple applications.
+
+
+
+ l Through rules – custom BeanShell rules letyou create your own specialized logic for correlation. Rules for
+ account and manager correlation are specified inthe Rules tab ofthe application. Rules can be built outside of
+ IdentityIQ and imported as XML objects, or can be defined using the rule editor that can be opened in the applic-
+ ation configuration Rules tab. For more information on working with rules, see the Rules and Scripts in Iden-
+ tityIQ section of the IdentityIQ System Administration Guide.
+
+Resolving Uncorrelated Accounts
+
+The correlation logic you define in the application does not always successfully match newly-aggregated accounts to
+Identity Cubes. For example, accounts belonging to employees who are no longer part of your organization, or mis-
+matched accounts that use variations on an employee's name, can result in accounts without a clear association to an
+existing identity.
+
+The Identity Correlation feature lets you manually correlate these accounts to specific identities. Manual correlations
+are permanently retained; IdentityIQ does not change these correlations during subsequent aggregations. Ifa manual
+correlation has been made in error, itcan be changed inthe Identity Warehouse on the relevant Identity Cube's
+Application Account tab. For more information, see the Identity Correlation section of the IdentityIQ Identity Man-
+agement Guide.
+
+ Provisioning
+
+Provisioning isthe process of writing information (that is,the attributes and values you want to update) back to your tar-
+get system, based on changes made within IdentityIQ. For example, an access request managed inIdentityIQ may
+create a new account for the user ina target system, or a policy violation may result in a user having certain access on
+the target system revoked. Provisioning propagates these changes to target systems, using a Provisioning Policy as
+the instruction ora template for what to include as part of provisioning; thisincludes the creation ofnew accounts
+when new access isgranted on a target system where a user does not already have an account.
+
+Each application can have itsown configurations that specify which attributes to include inprovisioning, and how to
+set their values.
+
+You can configure distinct provisioning policies for different actions, such as creating accounts, updating accounts,
+and deleting accounts.
+
+Only some connectors support provisioning. For more information about specific connectors, refer tothe IdentityIQ
+Connectors documentation on SailPoint's documentation portal.
+
+For more information, see the IdentityIQ Provisioning Guide.
+
+ Attribute Synchronization
+
+
+
+
+
+ SailPoint Application Configuration 4
+
+===== Page 9/55 =====
+Application Concepts
+
+
+Attribute synchronization is an automated process of pushing changes inidentity attributes (such as name, email, or
+department) to target systems. These identity attribute changes often come from aggregation from an authoritative
+source, but they also might come from edits made to identities directly in IdentityIQ.
+
+Attribute synchronization is configured globally for IdentityIQ, inthe gear menu > Global Settings > Identity Map-
+pings UI.
+
+When you set your identity mappings, you willselect which configured application(s) are updated, and which attributes
+(defined inthe configured application schema) store the values to be synchronized.
+
+When an attribute change comes through aggregation, attribute synchronization is initiatedthrough a refresh task that
+has the Synchronize Attributes option selected. See the Identity Refresh task for information about configuring and
+running this task.
+
+For more information, see Attribute Synchronization in the IdentityIQ Provisioning Guide.
+
+ Rapid Setup
+
+Rapid Setup provides an alternative way of defining application behavior and the events and processes formanaging
+identities,in user-friendly, guided UI.
+
+Rapid Setup letsyou separate the technical and IT-centric steps of onboarding and configuring applications (such as
+defining connection parameters and schemas) from the business-centric steps of defining the business processes the
+application should follow (such as how to onboard applications and handle common identity management scenarios
+such as joiner, mover, leaver, and terminating identities). Itprovides preconfigured processes that follow best prac-
+tices formanaging identities.
+
+Rapid Setup also provides a simple UI for defining attribute-based account and manager correlation.
+
+For more information, see the IdentityIQ Rapid Setup guide.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Application Configuration 5
+
+===== Page 10/55 =====
+Configuring an Application
+
+Configuring an Application
+
+
+An application in IdentityIQ an instance of a configured IdentityIQ connector, that includes allof the configuration and
+connection details required to connect IdentityIQ to a thirdparty application forthe purposes ofgoverning and pro-
+visioning access to these applications. Applications can be read-only, or read-write.
+
+There are two types ofconnector in IdentityIQ: application-type connectors that collect account information, and activ-
+ity-type connectors that collect activityinformation. IdentityIQ uses the information from both types tomaintain Identity
+Cubes.
+
+To configure applications, from the menu bar, clickApplications > Application Definition.
+
+ Application List Page
+
+The Application List page displays allof the applications currently configured. The Application List contains the fol-
+lowing information:
+
+ Column Description
+
+ Name The name of the application.
+ Host Host where the application resides.
+ Type The application type, such as LDAP or JDBC.
+ Modified The date when the application was last modified.
+
+
+Click on an existing application or click New Application to open the Edit Application page. See Using the Edit Applic-
+ation Page.
+Common Application Configuration Details
+
+The Details tab for each application includes options that are common to allapplications.
+
+ Application Type
+
+The Application Type listcontains allthe connectors that are enabled foryour instance of IdentityIQ. Many of the
+application types are specific to particular target systems, such as Workday or Box. Others are more general-use
+types that can be used on various systems or sources, such as JDBC and SCIM 2.0.
+
+The application type determines which configuration options appear inthe application configuration UI. Some options
+are unique to the selected application type.
+
+Note that some connectors may not be enabled by default in your instance and so may not appear in the application
+type list;ifyou do not see an application type listed here that you think you should have access to, contact your Cus-
+tomer Success Manager or Professional Services resource.
+
+
+
+
+
+
+ SailPoint Application Configuration 6
+
+===== Page 11/55 =====
+Configuring an Application
+
+
+For more information about specific connectors, refer to the IdentityIQ Connectors documentation on SailPoint's doc-
+umentation portal.
+
+ Owner
+
+The owner specified here istypically the business owner of the system, who isfamiliar with the system, itsenti-
+tlements, and who should have access itit.The owner responsible for access reviews for this application from applic-
+ation owner certifications, account group permissions certifications, and account group membership certifications.
+The application owner can also be selected as an approver in targeted certifications.
+
+By default, the application owner is also responsible for approving access requests for entitlements associated with
+thisapplication, although this behavior can be modified in the business process that manages access requests.
+
+ Tip:
+ An application owner can be either an individual or a workgroup; itisa best practice to set a work-
+ group as the owner of the application. Assigning ownership to a workgroup makes itpossible for
+ multiple people toshare responsibility formanaging application-related activities that must be
+ performed by someone, but do not necessarily need to be owned or performed by a specific per-
+ son. See Workgroups in the Roles, Groups, and Populations guide.
+
+ Revoker
+
+Ifyou want to designate a user or workgroup that isresponsible specifically forhandling requests to revoke access
+(which typically occur as a result ofa certification decision or policy violation), enter that identity or workgroup here. If
+no user is specified inthis field,allrevocation requests are assigned to the application owner by default.
+
+ Authoritative Application
+
+An authoritative application isa target system that represents the primary and most trusted information foremployee
+information for your enterprise, such as a human resources application. When this option isselected, designating this
+application as an authoritative one, the IdentityIQ aggregation process willcreate an authoritative Identity Cube for
+each account in thisapplication.
+
+For applications that are not marked as authoritative, IdentityIQ will attempt to correlate aggregated accounts to exist-
+ing authoritative identities.
+
+Your organization can have multiple target systems designated as authoritative sources.
+
+For more information, see the Authoritative and Non-Authoritative Data Sources section in the IdentityIQ Applic-
+ation Management Guide.
+
+Using the Edit Application Page
+
+Use the Edit Application page toconfigure applications foryour enterprise.
+
+
+
+
+
+ SailPoint Application Configuration 7
+
+===== Page 12/55 =====
+Configuring an Application
+
+
+ Note: Do not open multiple tabs orbrowsers. Making and saving a change inone tab might over-
+ write changes made inanother.
+
+The Edit Application page opens to the Details page and includes these tabs.
+
+ Note: Some tabs only appear after an application has been defined and configured.
+
+
+
+
+ l Configuration Tab
+
+
+
+ l Correlation Tab
+
+
+
+ l Accounts Tab
+
+
+
+ l Risk Tab
+
+
+
+ l Activity Data Sources Tab
+
+
+
+ l Unstructured Targets Tab
+
+
+
+ l Rules Tab
+
+
+
+ l Password Policy Tab
+
+
+
+ l Tiers Tab. This tab is available only for Logical application types. See detailed information about configuring
+ Logical applications inthe IdentityIQ connectors documentation.
+
+The information on each tab is determined by the type ofapplication specified on the Application Type dropdown list.
+Use these tabs to define how each application interacts with IdentityIQ.
+
+The Edit Application page also listsany extended attributes that were configured foryour deployment of IdentityIQ;
+these are displayed atthe bottom of the tab.
+
+For each application enter or edit the following information:
+
+ Edit Application Details Fields
+
+ Name
+
+ The name of the application. This is the named used to identify the application throughout IdentityIQ.
+
+
+ Note: IdentityIQ does not support applications names that start with a numeric value or that are
+ longer than 31 characters.
+
+ Owner
+
+
+
+
+
+SailPoint Application Configuration 8
+
+===== Page 13/55 =====
+Configuring an Application
+
+
+ The owner specified here istypically the business owner of the system, who is familiar with the system, itsenti-
+ tlements, and who should have access itit.The owner responsible for access reviews forthis application from
+ application owner certifications, account group permissions certifications, and account group membership cer-
+ tifications.The application owner can also be selected as an approver in targeted certifications.
+
+ Application ownership can be assigned to an individual identity or a workgroup. Ifthe application ownership is
+ assigned to a workgroup, allmembers share certification responsibilities, are assigned certification request asso-
+ ciated with the application and allcan take action on those requests.
+
+ Application Type
+
+ The application type, forexample, LDAP or JDBC.
+ The Application Type dropdown listcontains the types of application to which IdentityIQ can connect. This list
+ can grow and change as new application types are developed for IdentityIQ, and as existing application types
+ are updated or deprecated.
+
+ Description
+
+ A brief description of the application.
+
+ Ifyour instance of IdentityIQ is configured tosupport multiple languages, you can use the language selector to
+ enter description in multiple languages. The dropdown listdisplays any languages supported by your instance of
+ IdentityIQ. The description displayed throughout the product is dependent on the language associated with the
+ user's browser. Ifonly one description is entered, that is the description used by default.
+
+ Note: You must Save the description before changing languages to enter another description.
+
+ Revoker
+
+ The default IdentityIQ user or workgroup to be assigned revocation requests associated with entitlements on this
+ application. Ifno user is specified in thisfield, allrevocation requests are assigned to the toapplication owner by
+ default.
+
+ Proxy Application
+
+ A proxy application isan application that handles the processing (aggregation and provisioning) on behalf of
+ your application. Configuring a proxy application isoptional.
+
+ Here are some examples of proxy applications:
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Application Configuration 9
+
+===== Page 14/55 =====
+Configuring an Application
+
+
+
+
+ l Multiplex applications: In this case you define an application and, most often, a build map rule that sorts the
+ data out inmultiple sub-applications. In that case, the sub-applications have the main application as the
+ proxy.
+
+
+
+ l Similar to the multiplex applications are the connectors for legacy identity management systems such as,
+ BMC, Novell/NetIQ, IBM Tivoli,and Sun/Oracle Waveset.
+
+
+
+ l The Cloud Gateway connector tunnels allaggregation and provisioning requests to the gateway inanother
+ network. The gateway then acts on behalf of IdentityIQ. All applications that livein the remote network need
+ to have the cloud gateway connector set as the proxy.
+
+ Profile Class
+
+ This is an optional class used to associate this application with a larger set of applications, for role modeling pur-
+ poses.
+
+ For example, you might set a profile class of XYZ on allof the applications where any user that has read account
+ privileges should be assigned the role XYZ Account Reader. You can then create a single profile forthat role
+ instead of a separate profile for each instance ofthe applications. During the correlation process any user with
+ read account privileges on any of the applications with the profile class XYZ is assigned the role XYZ Account
+ Reader.
+
+ Scope
+
+ This field isonly visible ifscoping isenabled foryour instance of IdentityIQ. When a scope isassigned, only the
+ owner ofthe application or users that control the designated scope can work with thisapplication.
+
+ Objects associated with this application, such as entitlements in a certification request, are visible to a user with
+ any or no controlled scope, but ifa new object isbeing created (forexample, a certification schedule), this applic-
+ ation does not appear on the select listunless the creator controls the scope assigned.
+
+ Depending on configuration settings, objects with no scope assigned might be visible to all users with the correct
+ capabilities.
+
+ Authoritative Application
+
+ An authoritative application is a target system that represents the primary and most trusted information for
+ employee information for your enterprise, such as a human resources application. When this option is selected,
+ designating this application as an authoritative one, the IdentityIQ aggregation process willcreate an author-
+ itativeIdentity Cube foreach account inthis application. Note that your organization can have multiple author-
+ itativeapplications.
+
+ Case Insensitive
+
+
+
+
+
+SailPoint Application Configuration 10
+
+===== Page 15/55 =====
+Configuring an Application
+
+
+ Use to cause case insensitive comparisons ofaccount attribute values when evaluating provisioning policy.
+
+ Native Change Detection
+
+ Select thisoption ifthisapplication should be included when IdentityIQ performs native change detection during
+ aggregation.
+
+ For more detailed information about configuring native change detection, see Native Change Detection Con-
+ figuration.
+
+ Native Change Definitions
+
+
+Native Change Operations
+
+ Select which operations are included when detecting native changes. Ifno operations are selected, native
+ change detection isdisabled.
+
+Attributes to Detected
+
+ Indicates which attributes are compared when accounts are modified. Ifthe Entitlement option isselected, all
+ entitlement attributes are included. Ifyou select User Defined, enter the name ofthe attributes to compare inthe
+ Attribute Names box.
+
+ Maintenance: Take an application offline for maintenance
+
+
+Maintenance Enabled
+
+ When maintenance is enabled, the application isexcluded from provisioning and aggregation during the defined
+ maintenance period. See Application Maintenance Windows formore information.
+
+Maintenance Expiration
+
+ The date at which the maintenance willend. Ifno date is defined, this application willbe in maintenance indef-
+ initely.
+
+After adding the application information, clickSave to save your changes and return to the Application List page.
+
+Configuration Tab
+
+The information displayed on the Configuration tab changes depending on the application type specified.
+
+ Note: The terms account group and application object are use interchangeably inthis document
+ but have the same meaning. Some application can have multiple application objects. An account
+ group can be the name of one ofthose objects.
+
+
+
+
+ SailPoint Application Configuration 11
+
+===== Page 16/55 =====
+Configuring an Application
+
+ Settings Tab
+
+The Settings tab contains the information that IdentityIQ uses toconnect and interact with the target system. Each
+application type requires different connection information and the fields on this tab are changed accord-
+ingly.
+For more information on connection parameters, see Application Connection Parameters.
+
+For more information about specific connectors, refer tothe IdentityIQ Connectors documentation on SailPoint's doc-
+umentation portal.
+
+Ifyour enterprise isgoing to use partitioning foraccount aggregations, identity refreshes, and manager certification,
+you must enable that function here. Each application type requires different partitioning information.
+
+This is also where you enable an application for data merging and delta aggregation.
+
+Enter the information on this tab as required by the application type being configured. Click Test Connection to verify
+the information iscorrect.
+
+ Adding Object Types
+
+For most application types you see account and group object types. Certain application types, however, enable you to
+create multiple application object types, each with theirown schema. These application object types are sometimes
+referred to as account groups and those term might be used interchangeably indiscussion around this feature.
+
+Click at the top of the page to add a new object type. This function isonly available forifthe application type is asso-
+ciate with a connector that is enable to handle multiple application object types, or multiple schema.
+
+This button is also displayed ifyou recently upgraded your instance ofIdentityIQ and the application type now sup-
+ports multiple schemas. Inthat case you must add the supported application object type here and then run the
+Account Group Aggregation task to import the new information.
+
+Multiple application object types can be directly correlated, forexample an application object type is also an attribute
+inthe schema of another, or they can be indirectly associated, forexample they are both objects (schemas) inthe
+same application. These objects and theirassociations are tracked throughout IdentityIQ and appear in place such as
+reports, policy violations, searches, and certifications.
+
+ Credential Cycling
+
+A note isdisplayed at the top of this tab ifthe application isconfigured to use credential cycling. For those applications,
+the credentials are stored and maintained on a Privileged Access Management (PAM) module, and verification isper-
+formed using existing hook points that support the retrieval ofpasswords from application credential management
+solutions such as, CyberArk Application Identity Manager (AIM) or BeyondTrust PowerBroker Password Safe. Refer
+tothe IdentityIQ Privileged Account Management guide for more information.
+
+
+
+
+
+
+
+
+
+SailPoint Application Configuration 12
+
+===== Page 17/55 =====
+Configuring an Application
+
+
+
+ Note: To enable credential cycling, BeyondTrust PowerBroker Password Safe application
+ passwords must be configured inthe JSON format:
+ {"bt_user":"MyUserName","bt_password":"MyPasswordValue"}
+
+
+ Schema Tab
+
+The Schema tab is used to define the attributes for each object type in the application being configured. Use the fol-
+lowing fieldsto define attributes for use with the IdentityIQ application. The fieldcontent isdependent on the applic-
+ation being configured.
+
+For more details on configuring schema information, see Application Schemas.
+
+For more information about specific connectors, refer to the IdentityIQ Connectors documentation on SailPoint's doc-
+umentation portal.
+
+When initiallyconfiguring applications, click Add New Schema Attribute to define the attributes for each object. Most
+application types include a default set of schema attributes. For more dynamic application types (JBDC orDelim-
+itedFile),schemas should be defined manually. Click Edit to display the Advanced Properties dialog.
+
+ Important: A schema attribute name must not duplicate any extended attribute names that have
+ been defined inyour IdentityIQ instance. Ifan schema attribute name matches an extended
+ attribute name, there is a risk that attribute values willnot be updated correctly during an aggreg-
+ ation.
+
+
+The connectors for some application types enable the automatic discovery of the base schema attributes forthose
+applications. For those application types, click Discover Schema Attributes to automatically populate your schema
+tables. After using the automatic discovery function you must designate the Identity Attribute and Display Attribute for
+the application.
+
+Click Preview to test the respective schema configuration. A pop-up sample table displays toindicate a successful
+configuration. These tables automatically update when you make changes so that you can use this feature before
+committing your changes. Only one table can be open at one time. Failures result inan error message specifying the
+point of failure,for example, a filepath and name.
+
+ Note: The Preview function does not apply to applications which do not support aggregation.
+
+
+ Fields Descriptions
+
+ LDAP default types are iNetOrgPerson and groupOfUniqeNames for groups.
+ Native Object This isa required field.
+ Type
+ The type ofobject with which the attributes are associated. For example, User
+
+
+
+
+
+
+SailPoint Application Configuration 13
+
+===== Page 18/55 =====
+Configuring an Application
+
+
+ Fields Descriptions
+
+ and Group forActive Directory LDAP or DBA_USER and DBA_ROLES for
+ Oracle.
+ This is a required field.
+ Identity Attrib- Do not change the identity attribute on connectors with pre-defined schema.
+ ute
+ The attribute that is used by the IdentityIQ application to identify the object.
+ Select thisfunction to automatically add directPermissions to the schema. This
+ Include Per- option is available for any application that has DIRECT_PERMISSIONS in the
+ missions featureString, for example, Oracle, DelimitedFile, and sybase HR. With this
+ option activated, IdentityIQ correctly pulls inpermission data for identities.
+ This is a required field.
+ Display Attrib-
+ ute The attribute that is used as the object name as itappears throughout the Iden-
+ tityIQ application.
+ Instance Attrib- The attribute that uniquely identifies a specific instance ofan application.
+ ute Instance Attributes are not supported for Managed Attributes.
+
+ Accounts that are remediation modifiable can have their values and per-
+ missions modified from the Certification Report page for the identity being cer-
+ tified.
+
+ Remediation Specify the method of modification for thisattribute:
+ Modifiable
+ l Select – display a select listof allpossible values or permissions for this
+ attribute.
+
+
+
+ l Free text – display a text fieldin which a certifiercan enter any value.
+
+ Additional Group Attributes:
+ Used during group aggregation to indicate which of the group attributes isused
+ Description to populate the corresponding ManagedAttribute description.
+ Attribute The value set here overwrites any set during the Account Group Aggregation
+ task.
+ Group Mem-
+ bership Attrib- The attribute that is used by the IdentityIQ application to identify the group.
+ ute
+ Attributes:
+ Name Attribute names cannot begin with IIQ_. Attributes with names that begin with
+ IIQ_ are considered internal, reserved attributes and are not displayed inthe
+
+
+
+
+
+
+SailPoint Application Configuration 14
+
+===== Page 19/55 =====
+Configuring an Application
+
+
+ Fields Descriptions
+
+ product.
+
+ The name of the attribute.
+ Description A brief description of the attribute.
+ Type The type of attribute being defined. For example, string or boolean. Select from
+ the dropdown list.
+ Properties: Click Edit to open the Advanced Properties dialog to edit the attribute prop-
+ erties.
+ Specify attributes to promoted to a first-class object in the IdentityIQ database
+ so that they can be associated with other objects with that value, for example a
+ description or an owner. Any attribute can become managed: department, loc-
+ Managed ation, title,but the most common attribute to be managed isthe one holding
+ group memberships.
+
+ Managed attributes can be viewed and managed from the Entitlement Catalog
+ page.
+ Specify attributes to be used as entitlements on this application.
+
+ Attributes specified as entitlements are used by IdentityIQ as follows:
+
+
+
+ l As additional entitlements during certification.
+
+ Entitlement l When creating profiles based on exiting users on this application. Pro-
+ files are created on the IdentityIQ Modeler and are used to create roles.
+
+
+
+ l In account group certifications.
+
+
+
+ l In Lifecycle Manager.
+
+ Specify attributes for which multiple values might be returned during aggreg-
+ ation.
+
+ Attributes flagged as multi-valued are stored as a list.Even objects that have a
+ single value for a multi-value attribute are stored as a single-item list.
+
+ Multi-Valued Multi-valued attributes are used for queries throughout the product.
+
+ Before multi-valued attributes are available for use in searches, they must be
+ mapped on the Edit Account Attribute page.
+
+ Refer to the IdentityIQ system configuration documentation for information on
+ how to add or edit account attributes.
+
+
+
+
+
+
+
+SailPoint Application Configuration 15
+
+===== Page 20/55 =====
+Configuring an Application
+
+
+ Fields Descriptions
+
+ Specify attributes that IdentityIQ can use to correlate activity discovered in the
+ activity logs for this application with information stored in identity cubes.
+
+ For example, activity logs might contain the fullname of users instead ofunique
+ Correlation account ids. Therefore, correlation between the activity discovered by an activ-
+ Key ityscan and the identity cube of the user that performed the action must key off
+ of the user's fullname.
+
+ Correlation Key isonly used during activity aggregation. Ifactivity aggregation is
+ not being used, Correlation Key should not be selected.
+ Specify attributes for use during role and profile creation.
+ Minable When creating roles and profiles itispossible to mine applications for attributes
+ and permissions to use in those objects rather than manually entering the val-
+ ues. Only attributes designated as minable are returned by those searches.
+ Attributes that are remediation modifiable can have their values and per-
+ missions modified from the Certification Report page forthe identity being cer-
+ tified.
+
+ Remediation Specify the method of modification for this attribute:
+ Modifiable
+ l Select – display a select listof all possible values or permissions for this
+ attribute.
+
+
+
+ l Free text – display a text field inwhich a certifier can enter any value.
+
+
+ Provisioning Policies Tab
+
+Provisioning Policies are used to define application object attributes that must be managed due to a Lifecycle Man-
+ager request. With a provisioning policy in place, when a role or entitlement isrequested the user must input specified
+criteriainto a generated form before the request can be completed. A policy can be attached to an IdentityIQ applic-
+ation object or role and is used as part of the provisioning process.
+
+For more details on Provisioning Policies, see Provisioning Policies.
+
+For applications that support multiple application objects, each object isdisplayed ina separate table containing the
+provisioning policies those objects support. Not allapplication objects support allof the provisioning policies listed
+below.
+
+Inorder to be able toprovision to a DN with a backslash (\)to an Active Directory application through the Cloud Gate-
+way you willneed to set the following properties in catalina.sh or catalina.bat on the Cloud Gateway instance:
+
+
+
+
+
+
+
+
+ SailPoint Application Configuration 16
+
+===== Page 21/55 =====
+Configuring an Application
+
+
+
+ set CATALINA_OPTS=%CATALINA_OPTS%
+ -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true
+ set CATALINA_OPTS=%CATALINA_OPTS%
+ -Dorg.apache.catalina.connector.CoyoteAdapter.ALLOW_BACKSLASH=true
+
+Setting the dependencies between applications and accounts implies ordering inprovisioning.
+
+IdentityIQ includes the following types of provisioning policies:
+
+
+
+ l Create
+
+
+
+ l Update
+
+
+
+ l Delete
+
+
+
+ l Enable Account
+
+
+
+ l Disable Account
+
+
+
+ l Unlock Account
+
+
+
+ l Change Password
+
+
+
+ l CreateGroup
+
+
+
+ l UpdateGroup
+
+
+Click an existing provisioning policy or click Add Policy to create a new one using the Provisioning Policy Editor or to
+reference an existing policy. Only one ofeach policy types issupported.
+
+Use the Application Dependencies dropdown listto create the listofapplications where this application isdepend-
+ent forprovisioning. If no account isdetected on an application where this application isdependent, an account
+request isadded to the provisioning plan and the provision policy for thisapplication is processed as expected.
+
+The Provisioning Policy Editor panel contains the following information:
+
+ Field Name Description
+
+ Name The name of your provisioning policy.
+ Description A brief description of the provisioning policy.
+ The owner ofthe provisioning policy. This is determined by select-
+ Owner ing from the following:
+
+
+
+ l None – no owner isassigned to this provisioning policy.
+
+
+
+
+
+
+SailPoint Application Configuration 17
+
+===== Page 22/55 =====
+Configuring an Application
+
+
+ Field Name Description
+
+
+ l Application Owner – identity assigned as owner ofthe
+ application in which the provisioning policy resides.
+
+
+
+ l Role Owner – identity assigned as owner of the role in
+ which the provisioning policy resides.
+
+
+
+ l Rule – use a rule to determine the owner ofthis provisioning
+ policy.
+
+
+
+ l Script – use a script to determine the owner of this pro-
+ visioning policy
+ Edit Provisioning Policy Fields Panel
+
+ Use the Edit Provisioning Policy Fields panel to customize the look and function of the form fields
+ generated from the provisioning policy.
+ Name The name of the field.
+ Display Name The name displayed for the field inthe form generated by the pro-
+ visioning policy.
+ Help Text The text you wish toappear when hovering the mouse over the help
+ icon.
+ Select the type offield from the dropdown list.Choose from the fol-
+ lowing:
+
+
+
+ l Boolean – true or false values field
+
+
+
+ l Date – calendar date field
+
+
+
+ l Integer – only numerical values field
+ Type
+ l Long – similar to integer but is used for large numerical val-
+ ues
+
+
+
+ l Identity – specific identity in IdentityIQ field
+
+
+
+ l Secret – hidden text field
+
+
+
+ l String – text field
+
+ Multi Valued Choose this to have more than one selectable value inthis fieldof
+ the generated form. Click the plus sign to add another value.
+
+
+
+
+
+
+
+SailPoint Application Configuration 18
+
+===== Page 23/55 =====
+Configuring an Application
+
+
+Field Name Description
+
+ Determine how the read only value is derived:
+
+
+
+ l Value – value based on the selection from the drop-down list
+
+Read Only
+ l Rule – value isbased on a specified rule
+
+
+
+ l Script – value isdetermined by the execution ofa script
+
+ Determine how the hidden value isderived:
+
+
+
+ l Value – value based on the selection from the drop-down list
+
+Hidden
+ l Rule – value isbased on a specified rule
+
+
+
+ l Script – value isdetermined by the execution ofa script
+
+ The owner of this provisioning policy field.This isdetermined by
+ selecting from the following:
+
+
+
+ l None – no owner is assigned to thisprovisioning policy.
+
+
+
+ l Application Owner – identity assigned as owner of the
+ application inwhich the provisioning policy resides.
+Owner l Role Owner – identity assigned as owner of the role in
+
+ which the provisioning policy resides.
+
+
+
+ l Rule – use a rule to determine the owner of this provisioning
+ policy.
+
+
+
+ l Script – use a scriptto determine the owner of thispro-
+ visioning policy
+Required Choose whether or not to have the completion of this fielda require-
+ ment for submitting the form.
+Review Required Choose whether or not to require the person who isapproving the
+ workflow item to approve this field.
+Refresh Form on Change Select this option to have the form associated with this policy
+ refresh to reflex changes to thispolicy.
+Display Only Set this fieldas display only.
+Authoritative Boolean that specifies whether the fieldvalue should completely
+ replace the current value rather than be merged with it;applicable
+
+
+
+
+
+
+SailPoint Application Configuration 19
+
+===== Page 24/55 =====
+Configuring an Application
+
+
+ Field Name Description
+
+ only for multi-valued attributes
+ Determine how the value is derived. Select from the following:
+
+
+
+ l Literal – value is based on the information you provide
+
+ Value
+ l Rule – value isbased on a specified rule
+
+
+
+ l Script – value isdetermined by the execution of a script
+
+ Gives the ability tospecify a script or rule forvalidating the user's
+ Validation value. For example, a script that validates that a password is 8 char-
+ acters or longer.
+
+Correlation Tab
+
+Use the correlation tab to configure how application accounts are assigned to identities within IdentityIQ using account
+and identity information.
+
+To configure Account Correlation you can select an existing correlation configuration from the listorcreate a new con-
+figuration using the correlation wizard. The correlation wizard walks you through both attribute and condition based
+correlation.
+
+In the manager correlation section, configure how assigned managers should be resolved to identities using existing
+information.
+
+Attribute Based Correlation
+
+ Use attributes of the application's account to find identities based on attribute values stored on Identity objects.
+ This ishow accounts are typically correlated toIdentities. For example, you can correlate the application's
+ account attribute "mail" with an identity's attribute "email."
+
+Condition Based Correlation
+
+ Assigns application accounts to existing identities by defining attribute conditions. Service and Administrator
+ accounts might be handled using condition based correlation. For example, the root account on Unix typically
+ does not have any identifying attributes that can help when trying correlate itto an existing identity. In cases
+ where the account owner is known because they are the application owner, a direct mapping can be used.
+
+To configure Manager Correlation you must select two attributes, the Application Attribute and the Identity Attribute.
+
+Application Attribute
+
+ The name of the application's account attribute that holds the reference to the manager.
+
+
+
+
+
+ SailPoint Application Configuration 20
+
+===== Page 25/55 =====
+Configuring an Application
+
+Identity Attribute
+
+ The name of the identity attribute touse when searching for managers.
+
+For example, ifthe application has an attribute managerEmail with the value set as the email address of the man-
+ager ofevery user with an account on the application, and you have an identity attribute email configured within Iden-
+tityIQwith the value set as the email address forevery identity cube, you would correlate the application attribute
+managerEmail with the identity attribute email to perform manager correlation.
+
+Accounts Tab
+
+
+ Note: This tab isonly visible after an application is defined and configured.
+
+The Accounts Tab lists the following information for the selected account:
+
+
+
+ l Account ID
+
+
+
+ l Account Name
+
+
+
+ l Status
+
+
+
+ l Last Refresh
+
+
+
+ l Identity Name
+
+
+Click the down arrow next to an account name to view details about the account, such as the last login time and date.
+
+Risk Tab
+
+The application Risk tab provides a current application riskscore and a detailed view of the raw and compensated risk
+score foreach category used to derive that score. This page also provides a listof the top composite score con-
+tributors providing further information on how the score was derived and providing clues on the areas of highest risk.
+These scores are based on the latest information discovered by IdentityIQ.
+
+IdentityIQ uses a combination ofbase access riskand compensated scoring to determine the overall application risk
+scores, or composite risk score, used throughout the application.
+
+Allscores are calculated by firstdetermining the percentage of accounts that have the qualities tested by the com-
+ponent score. For example, if10 out of100 accounts are flagged as service accounts, then the raw percentage is ten
+percent (.10). This number isthen multiplied by a sensitivity value which can be used to increase or decrease the
+impact of the original percentage. The default sensitivity value is 5 making the adjusted percentage fiftypercent (.50).
+This final percentage isthen applied to the score range of 1000 resulting in a component score of500.
+
+
+
+
+
+
+
+
+ SailPoint Application Configuration 21
+
+===== Page 26/55 =====
+Configuring an Application
+
+
+After the component score iscalculated a weight, or compensating factor, isapplied toeach component score to
+determine the amount each contributes tothe overall risk score for the application. For example, a few violator
+accounts might increase riskmore than many inactive accounts.
+
+Service, Inactive, and Privileged component scores look for links that have a configured attribute. For example, the
+component service with a configured value true.
+
+The Dormant Account score looks fora configured attribute that is expected to have a date value, for example
+lastLogin. This algorithm has an argument, daysTillDormant, that defaults to thirty (30). Ifthe last login date is
+more than thirty(30) days prior to the current date, the account is considered dormant and isfactored into the risk
+score.
+
+The Risky Account score looks for links whose owning identity has a composite risk score greater than a configured
+threshold. The default threshold is fivehundred (500).
+
+The Violator Account score looks for links whose owning identity has a number of policy violations greater than a con-
+figured threshold. The default threshold isten (10).
+
+Activity Data Sources Tab
+
+The Activity Data Source tab is used to configure the data sources from which activityinformation iscollected. The
+information collected from these sources is normalized and then stored by IdentityIQ and used to monitor activity
+information for users and applications. Activity information is collected and correlated using the Activity Aggregation
+task. Activity information displayed on the or returned by activity searches isbased on the information stored by Iden-
+tityIQsince the lastaggregation and correlation tasks were run.
+
+The Activity Data Sources table contains the following information:
+
+Name
+
+ A descriptive name for the activity data source from which the activity data iscollected.
+
+Type
+
+ The activity data source type, forexample JDBC Collector, Log File, CEF Log Fileor Windows Event Log Col-
+ lector.
+
+Modified
+
+ The date when the activity data source was last modified.
+
+Right-click a data source and select Edit or click New Activity Data Source to access the Activity Data Source Con-
+figuration page.
+
+Right-click a data source and select Delete to remove an activitydata source.
+
+See Activity Data Source Configuration.
+
+
+
+
+
+ SailPoint Application Configuration 22
+
+===== Page 27/55 =====
+Configuring an Application
+
+Unstructured Targets Tab
+
+Unstructured target information isused todefine unstructured data sources from which the connector is toextract
+data. Unstructured data isany data that is stored ina format that is not easily readable by a machine. For example,
+information contained inan Excel spread sheet, the body of an email, a Microsoft Word document, or an HTML fileis
+considered unstructured data. Unstructured targets pose a number of challenges for IdentityIQ connectors, because
+not only is the data stored in a format that ishard to extract from, the systems and directory structures in which the files
+reside are often difficultto access.
+
+The most common unstructured data type supported by IdentityIQ isan operating system's filesystem permissions.
+
+This target collector requires a the IdentityIQ Service to be installed on a machine that has visibilityto the directory or
+share to include inthe target scan. See the Installation documentation for information on installing and registering the
+IQService.
+
+The unstructured targets defined on this tab are used by the Target Aggregation task to correlate targets with per-
+missions assigned to identities and account groups for use in certifications.
+
+Each of the Target Source Types require unique details or attributes for theirconfiguration, but share some basic
+information.
+
+The Unstructured Targets tab contains the following basic information for each of the Target Source Types:
+
+Name
+
+ The name ofthis unstructured target configuration.
+
+Description
+
+ A brief description ofthis configuration.
+
+Rules
+
+ Specify the rules used to transform and correlate the targets.
+
+ Note: Click the [...]icon tolaunch the Rule Editor to make changes to your rules ifneeded.
+
+Creation Rule
+
+ The rule used todetermine how the unstructured data extracted from data source istransformed into data that
+ can be read by IdentityIQ.
+
+Correlation Rule
+
+ The rule used todetermine how to correlate account information from the application with identity cubes in Iden-
+ tityIQ.
+
+
+
+
+
+ SailPoint Application Configuration 23
+
+===== Page 28/55 =====
+Configuring an Application
+
+Provisioning Action
+
+ The provisioning action used to pass information to the affected applications.
+
+Rules Tab
+
+These are the rules that can be customized to handle data the manipulation requirements of the aggregation or pro-
+visioning processes for each application. Rules are specific to connectors and are used throughout the product. You
+can write more than one of each type and select the rule touse from dropdown lists.
+
+A filecontaining an example of each rule type is included in the IdentityIQ installation package. The exampler-
+ules.xml fileislocated inthe IdentityIQ_HOME/WEB-INF/config directory.
+
+Many rule types apply toall applications and are called by the aggregation process. Other connectors may include
+additional rule options that are specific tothe connector type.
+
+For an overview of developing and using rules in IdentityIQ, see the IdentityIQ System Administration guide.
+
+ Aggregation Rules
+
+These rules define behavior when aggregating data from the application. Aggregation Rules are used during part of
+the aggregation process that occurs after the connector has created valid ResourceObjects for the accounts or groups
+being aggregated, which occurs after the defined connector rules have all been run.
+
+Correlation Rule
+
+ This rule type is used to define identity correlation for applications whose accounts cannot be correlated toIden-
+ titiesthrough a simple attribute match ina correlation configuration. A correlation rule is required ifthe logic to
+ correlate accounts is more complex than a correlation configuration willsupport (forexample, correlating based
+ on multiple attributes taken together).
+
+Creation Rule
+
+ This rule isonly run when a new identity is being created during the aggregation. Some examples of operations
+ which might be performed ina creation rule include setting an identity's password, changing the name of aggreg-
+ ated identities, orsetting an attribute toall caps. Typically, this rule isonly used for authoritative applications,
+ though one could be specified for a non-authoritative application ifneeded.
+
+Manager Correlation Rule
+
+ A manager correlation specifies how one identity should be linked to another in a Manager – Direct-report rela-
+ tionship. This can often be accomplished with a simple attribute mapping correlation on the Correlation tab, but
+ when a more complex matching algorithm isrequired, this rule type can be used.
+
+
+
+
+
+
+
+
+
+ SailPoint Application Configuration 24
+
+===== Page 29/55 =====
+Configuring an Application
+
+
+Customization Rule
+
+ This isan open-ended rule which isavailable to allapplication types in IdentityIQ for manipulating or customizing
+ the aggregated data before the account (or group) is saved to the database. This rule type ismost often used for
+ manipulating data on application types which do not offer Connector Rules, since forthose applications, this rule
+ is the only account-manipulation rule offered.
+
+Managed Entitlement Customization Rule
+
+ The Managed Entitlement Customization rule is called during creation of Managed Entitlements inan aggreg-
+ ation or refresh task, or in the Missing Managed Entitlements Scan task. This rule can modify the Managed Enti-
+ tlement as itisbeing created, to set fields such as owner, requestable, or descriptions before they are saved.
+ "Managed Entitlements" are "ManagedAttribute" objects, which are Entitlement Catalog entries.
+
+ Provisioning Rules
+
+These rules run during the processing of provisioning requests. Some are connector specific and some apply for all
+connectors, as indicated intheir descriptions. Provisioning-related rules which apply to allapplication types are:
+
+Before Provisioning
+
+ The BeforeProvisioning rule isexecuted immediately before the connector's provisioning method is called. This
+ gives customer the abilityto customize or react toanything in the ProvisioningPlan before the requests are sent
+ to the underlying connectors used inprovisioning. This rule is not connector-specific; itruns forallapplications
+ regardless of connector type.
+
+After Provisioning
+
+ An application's AfterProvisioning rule isexecuted immediately after the connector's provisioning method is
+ called, but only ifthe provisioning result isin a committed or queued state. This gives customers the abilityto cus-
+ tomize or react to anything in the ProvisioningPlan that has been sent out tospecific applications after the pro-
+ visioning request has been processed. This rule isnot connector-specific; itruns for allapplications regardless of
+ connector type.
+
+ Schema Rules
+
+Schema rules vary by connector and are used for customization. Schema rules allow you tosegregate business logic
+account and group objects respectively, avoiding the need to check whether the resourceobject represents an
+account ornon-account object.
+
+ Connector Rules
+
+
+
+
+
+
+
+
+ SailPoint Application Configuration 25
+
+===== Page 30/55 =====
+Configuring an Application
+
+
+Connector rules are used during aggregation from specific connectors, such as Delimited File,JDBC, and SAP. Con-
+nector rules generally run before Aggregation rulesin the aggregation process. These rules are used to implement
+pre-processing ofdata, implement post-processing ofdata, and manipulate, merge, or otherwise transform the incom-
+ing data as itisbeing read. Connector rules vary by connector type.
+
+Password Policy Tab
+
+Use the password policy tab toselect and create password policies which apply to specified applications.
+
+The password policy panel contains the following:
+
+Name
+
+ The name of your password policy.
+
+Description
+
+ A briefdescription ofthe password policy.
+
+Click an existing password policy to edititor clickCreate New Policy to configure one from scratch.
+
+ Password Policy Options:
+
+
+Password Policy Name
+
+ The name of your password policy.
+
+Password Policy Description
+
+ A briefdescription ofthe password policy.
+
+Minimum number of characters
+
+ The minimum number of characters required fora valid password.
+
+Maximum number of characters
+
+ The maximum number ofcharacters allowed fora valid password.
+
+Minimum number of letters
+
+ The minimum number of lettersrequired fora valid password.
+
+Minimum number of character type constraints to meet
+
+ The minimum number of character types (digits,upper case, lower case, special) allowed fora valid password.
+
+
+
+
+
+
+ SailPoint Application Configuration 26
+
+===== Page 31/55 =====
+Configuring an Application
+
+
+Minimum number of digits
+
+ The maximum number ofnumerical digits allowed fora valid password.
+
+Minimum number of uppercase letters
+
+ The minimum number of uppercase letters required fora valid password.
+
+Minimum number of lowercase letters
+
+ The minimum number of lowercase lettersrequired for a valid password.
+
+Minimum number of special characters
+
+ The minimum number of special characters required fora valid password.
+
+Number of repeated characters allowed
+
+ The maximum number ofconsecutive repeated characters allowed ina valid password. For example, ifthis
+ option is set to2, "cloudd" and "cclooud" are valid, but "clouddd," "cloooud" and "cccloud" are invalid.This value
+ also sets the maximum number of occurrences of repeated characters allowed in a valid  password. For
+ example, ifthisoption isset to 2,"happy123" is valid,however, "happy22" and "happpy123" are not.
+
+ In thisexample, when "cclooudd" is an invalid password, the following error message isdisplayed: Password
+ should not contain more than 2 occurrence(s) of the repeated characters. When "clouddd" is an invalid pass-
+ word, the following error message is displayed: Password should not contain more than 2 consecutive repeated
+ characters.
+
+ Setting this value tozero has the same effect as leaving this fieldblank, allowing any number of repeated and
+ consecutive characters.
+
+ To prevent the use of any consecutive repeated characters, set thisvalue to 1. Setting the value to 1does not
+ prevent using a character more than once, as long as the characters are not consecutive. For example, with a
+ value of1, "kitkat"is validbut "kitten"is not.
+
+Password history length
+
+ The number of past passwords that cannot be used again.
+
+Triviality check against old password
+
+ Ensure that the shorter of the old and new password is not a substring of the other.
+
+ Both passwords are changed to upper case prior tothe check.
+
+
+
+
+
+
+
+
+
+ SailPoint Application Configuration 27
+
+===== Page 32/55 =====
+Configuring an Application
+
+
+Minimum number of characters by position
+
+ The minimum number of unique characters by position the new password. Can be used toensure that not just
+ the firstorlast character is being changed.
+ Select Case sensitive check to ensure that more than justthe case is changing inthe new password.
+
+Validate passwords against the password dictionary
+
+ Select thisoption todisallow the use of any password defined inthe password dictionary. The password dic-
+ tionary is aconfigurable listofterms unavailable foruse as passwords. The passwordDictionary.xml file
+ located inIdentityIQ/WEB-INF/config/.
+
+Validate passwords against the identity's list of attributes
+
+ Select todisallow the use ofIdentity attribute values as passwords.
+
+Validate password against the account's display name
+
+ Select todisallow the use ofthe account's display name as the password (exact match by default).
+
+ Enter a Minimum word length todefine the minimum length of a substring of the account’s display name
+ allowed in the password.
+
+Validate password against account ID
+
+ Select todisallow the use ofthe account's ID as the password (exact match by default).
+
+ Enter a Minimum word length todefine the minimum length of a substring of the display name of the account
+ allowed in the password.
+
+Validate passwords against the identity's account attributes
+
+ Select todisallow the use ofIdentity link attributevalues as passwords.
+
+ Enter a Minimum word length todefine the minimum length of a substring of the account's ID allowed inthe
+ password.
+
+Configure Password Filter
+
+ Select a filterthatselects the identities to which thispassword policy applies. Select from the following filters:
+
+
+
+ l All – allidentities have this password policy applied
+ Match List– only identitieswhose criteria match that specified inthe list.The criteriaisconfigured using the
+ tools provided. Add identity attributes, application attributes and application permissions. Customize further
+
+
+
+
+
+
+
+
+
+ SailPoint Application Configuration 28
+
+===== Page 33/55 =====
+Configuring an Application
+
+
+ by creating attributegroups to which thispassword policy applies.
+
+ Note: IfIs Null isselected, the associated value text box isdisabled. When the isnull
+ match is processed, the term matches users on the chosen application who have a null
+ value for that attribute/permission.
+
+
+
+
+ l Filter – use an XML filteror compound filterto determine the identities towhich thispassword policy applies.
+
+
+
+ l Script – use a BeanShell script to determine the identities to which this password policy applies.
+
+
+
+ l Rule – use a rule to determine the identities to which this password policy applies.
+
+
+
+ l Population – select a population to which this password policy applies.
+
+Application Connection Parameters
+
+Connection parameters define how the application willconnect to and communicate with the target system. For
+example, fora delimited fileapplication, you willneed to specify the name and location of the delimited file,as well as
+what the delimiter is,and any fileencoding. For a JDBC application, your connection parameters willinclude the data-
+base URL, the JDBC driver, and a username and password for the connection.
+
+The required configuration parameters vary by connector, based on the specific requirements of the target system.
+
+For more information about specific connectors, refer to the IdentityIQ Connectors documentation on SailPoint's doc-
+umentation portal.
+Application Schemas
+
+For every application, you must define the specific data you want to aggregate from the target system. The target sys-
+tem may have dozens or hundreds of attributes for each user, not allof which may be relevant for your identitygov-
+ernance program, and which therefore do not need tobe brought into IdentityIQ. The schemas you define forthe
+application specify which attributes toinclude when aggregating data from the target system.
+
+Most connectors include predefined default schemas, which you can use as a starting point fordefining the schemas
+you need. When a connector supports a predefined schema, you willsee the attributes listedand defined for you on
+the Configuration > Schema tab. You can add or remove attributes from a predefined schema as needed.
+
+ Account Schemas
+
+Every configured application must include an account schema, which defines which data about accounts to read from
+the target application and identifies the accounts you want tomanage.
+
+The account schema must designate one of the attributes as the Identity Attribute, which isthe unique identifierfor
+the account on the source.
+
+
+
+
+
+ SailPoint Application Configuration 29
+
+===== Page 34/55 =====
+Configuring an Application
+
+ Group Schemas
+
+For many applications, account entitlements are memberships ingroups. Many connectors also support the use of
+group schemas, allowing the application toaggregate additional details about the group structures from the target sys-
+tem.
+
+Once a group schema is defined, you will need to connect the account schema tothe group schema so IdentityIQ can
+recognize thatthe account entitlements identify group memberships. This is done by setting the Type for the enti-
+tlement attribute inthe account schema to a value that matches the Native Object Type of the group schema. This
+value is often "group"; however, some connectors support multiple group schemas or offer more flexible options for
+schema definitions, so insome cases this may be a value other than "group."
+
+Values for the entitlement attribute on accounts willbe mapped to the Identity Attribute selected for the group schema
+toassociate the groups with those users.
+
+Some connectors support only a single group schema, and others support multiple group schemas.For more inform-
+ation about specific connectors, refer to the IdentityIQ Connectors documentation on SailPoint's documentation
+portal.
+
+Properties of Attributes in Account and Group Schemas
+
+Attribute properties determine how attributes are used and managed in IdentityIQ. For example, you may want some
+attributes to support multiple values, or to be included in the Entitlement Catalog. Select Edit to open the Advanced
+Properties dialog toedit the attribute properties for accounts and groups.
+
+Entitlement
+
+ Marking an attribute as an entitlement indicates that thisis an access right you want to track for your identities
+ (forexample, to use in certifications).Ifyou want this attributeto be able to be requested, to have an owner, and
+ to have a description and display name, you must mark also mark itas Managed.
+
+Managed
+
+ Attributes designated as Managed can be viewed and managed from the Entitlement Catalog page. Managed
+ attributes can be made requestable, can be assigned an owner (forapprovals or entitlement certifications),and
+ can have display names and descriptions that willhelp users identifyand understand them. They can also be
+ used in policies and riskcalculations.
+
+ When you do a group aggregation, allgroups read from the aggregation are automatically included inthe enti-
+ tlement catalog as managed attributes.
+
+Multi-valued
+
+ For some attributes, multiple values might be returned during aggregation (for example, an attribute indicating
+ group membership). These should be marked as Multi-valued. Values for attributes flagged as multi-valued are
+
+
+
+
+ SailPoint Application Configuration 30
+
+===== Page 35/55 =====
+Configuring an Application
+
+
+ stored as a list.Even objects that have a single value fora multi-value attribute are stored as a single-item list.
+
+Correlation Key
+
+ The Correlation Key flagis only used foractivity and unstructured data aggregation. Ifactivityaggregation isnot
+ being used, Correlation Key should not be selected. This flag specifies attributes that IdentityIQ can use to cor-
+ relate activity discovered in the activitylogs forthis application with information stored inIdentity Cubes. For
+ information about correlating aggregated accounts to existing identities,see Correlation inApplication Con-
+ cepts.
+
+ For example, activitylogs might contain the fullname of users instead of unique account ids.Therefore, cor-
+ relation of the activity discovered by an activityscan and the Identity Cube ofthe user that performed the action
+ must key offof the user's fullname.
+
+Minable
+
+ Attributes that you want touse for role and profilecreation should be marked as minable. This allows the Role
+ Mining feature to mine applications for attributes and permissions when creating roles and profiles, rather than
+ requiring manual entry of the values. Only attributes designated as minable are returned by those searches.
+
+Remediation Modifiable
+
+ Attributes that are remediation modifiable can have their values and permissions modified as part of a cer-
+ tification,for the identity being certified.Options are:
+
+
+
+ l Select – inthe certification,display a select listof allpossible values or permissions for thisattribute.
+
+
+
+ l Free text – inthe certification,display a text fieldin which a certifiercan enter any value.
+
+
+
+ l Readonly – the value cannot be modified.
+
+Discovering Schemas
+
+Some connectors support the discovery ofschemas. For those application types, you can select Discover Schema
+Attributes to automatically populate your schema information inthe Schema page.
+
+Previewing Data for a Schema
+
+Each defined schema offers a Preview button; this is useful for checking the schema against a small sampling ofthe
+source system's data before aggregating.
+
+Avoiding Conflicts Between Schema Attributes and Extended Attributes
+
+Ifyour IdentityIQ instance makes use ofextended attributes, you should ensure that the names of your extended attrib-
+utes names do not duplicate any attribute names inyour application's schema(s). Ifan extended attribute name
+
+
+
+
+ SailPoint Application Configuration 31
+
+===== Page 36/55 =====
+Configuring an Application
+
+
+matches a schema attribute name, there isa risk that attribute values willnot be updated correctly during an aggreg-
+ation.
+
+For more information on extended attributes, refer to the IdentityIQ System Configuration Guide.
+Provisioning Policies
+
+Provisioning policies inan application configuration define the set of attributes which are needed to complete a pro-
+visioning request, whether that request isto create an account, modify an account, add a role to an identity, etc. In
+some cases, values forthe attributes can be auto-calculated based on the field'sdefinition in the provisioning policy; in
+other cases, the fields are presented to a user who can provide their values. When auto-calculation ispossible, itis
+encouraged as a best practice, because itis typically more efficient and less error-prone than user-provided values.
+
+Provisioning policies are implemented as forms that specify which attributes to include inprovisioning requests, and
+how the values of those attributes are provided – manually by an IdentityIQ user, or in an automated manner, either
+through a staticvalue, or a value that IdentityIQ calculates using a script or rule.
+
+For example, ifyou are provisioning a new account on an LDAP application, the provisioning policy should provide the
+minimum required attributes (such as user name and email) to successfully create a new account on the LDAP applic-
+ation.
+
+In addition, optional attributes can be included in the provisioning policy toset additional values as needed.
+
+Provisioning policies can be configured so that allvalues are provided automatically by IdentityIQ. Alternatively, attrib-
+utes can be specified without a value but marked as required, so that IdentityIQ willprompt a user to provide the data
+manually.
+
+In thisexample, the values forFirst, Last, and Login are auto-calculated based on identity attributes; values for Status
+and Locked are specified as static values.
+
+ Attribute Value
+
+ First return identity.firstname
+ Last return identity.lastname
+ Login return identity.name
+ Status A
+ Locked N
+
+Based on thispolicy, IdentityIQ can automatically build a provisioning plan to pass the required values to the con-
+nector to create a new account on the target system.
+
+For some connector types, the provisioning policy for creating accounts ispre-defined; however, predefined policies
+can be modified as needed, according to your business needs.
+
+
+
+
+
+
+
+
+ SailPoint Application Configuration 32
+
+===== Page 37/55 =====
+Configuring an Application
+
+
+When a user submits a Lifecycle Manager request, such requesting a business role or unlocking an account on a tar-
+get system, IdentityIQ pulls the listof required attributes from the provisioning policy, and includes those attributes and
+theirvalues in the provisioning plan.
+
+Using the Form Editor for Configuring Provisioning Policies
+
+A provisioning policy isessentially a collection of fields.These fields are defined in a form editor UI. For each field,you
+can define a variety of settings that determine what type of information is required and how IdentityIQ provides it.
+
+The provisioning policy's Name fieldshould match the corresponding native attribute on the application.
+
+IfReview Required is selected for a field,the fieldis always presented on a form during provisioning-request pro-
+cessing, even ifa default value is provided or calculated successfully.
+
+For more information on working with form fields,see the IdentityIQ Forms Guide.
+Application Dependencies
+
+Your business may have dependency requirements, where a user's access to one application isdependent on access
+toanother application. For direct-connection applications, you can define Application Dependencies on the Pro-
+visioning tab, tospecify that a user must have an account on one system before they can have an account on
+another system. When an Application Dependency has been defined, IdentityIQ's provisioning process will check to
+see ifthere isan account on the application(s) listed.Ifnot, when IdentityIQ processes a provisioning request for a
+new account, a request forthe an account on specified system(s) isadded.
+
+When Application Dependencies have been defined, you can use values from these applications as part ofyour Pro-
+visioning plans. When you select Value Settings inthe provisioning form, you willsee dependent as an option. You
+can choose the application and the attribute toretrieve from itin your form.
+Using Rules in Applications
+
+Rules in applications allow the addition of custom business logic toextend the functionality of IdentityIQ inaggregating
+from or provisioning to the application.
+
+Some rules are applicable to and can be used in allapplications. Other connector types support rules that are specific
+tothe connector type. For more information on connector-specific rules, see Rules Tab.
+
+When implementing rules for applications, be aware of potential performance impacts. Complex rules thatact on
+every record being processed by IdentityIQ can have a significant performance impact.
+
+For general information about implementing rules, see the IdentityIQ System Administration Guide.
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Application Configuration 33
+
+===== Page 38/55 =====
+Native Change Detection Configuration
+
+Native Change Detection Configuration
+
+
+Native change detection isa mechanism inIdentityIQ's application connectors that can detect changes made in
+account information outside ofIdentityIQ's control. The native change detection can detect newly created accounts,
+deleted accounts, or modified accounts. The changes are detected on aggregation by comparing stored information
+with newly read information. Ifany changes are detected, actions can be taken to respond to these changes. These
+actions include automatic recertification, approval, notifications or even automatically reverting the changes.
+
+Native change detection isenabled on each application separately.
+
+Once enabled, aggregation willstart detecting changes (while filteringSailPoint requested items) and storing them
+with other Lifecycle Events on the identity.Ifyou make native changes you willsee them being stored on the Identity
+object.
+
+ Note: For Native Change Detection to operate you must have both a lifecycle event defined and
+ the application enabled.
+
+To configure IdentityIQ to detect native changes during aggregation, do the following:
+
+ 1. Run an aggregation to obtain the baseline information for the application.
+
+ 2. Configure a Native Change lifecycle event on the Lifecycle Events page.
+
+There are two lifecycle change events included with IdentityIQ and you can configure your own as needed:
+
+Lifecycle Event – Email manager for allnative changes
+
+Sends a formatted email to the manager describing the changes detected.
+
+Lifecycle Event – Manager Approval for allnative changes
+
+Generates an approval work item foreach change detected. Any items rejected are undone /reversed and pro-
+visioned. This business process also creates an access request within IdentityIQ so that once the changes are made
+they willbe visiblefrom the Access Request page.
+
+ 1. Go to Applications > Application Definition and select an application.
+
+ 2. Select Native Change Detection on the Details panel of the application configuration UI.
+
+ 3. Define the operations to include when detecting native changes – Create, Modify, Delete.
+
+ 4. Define the attributes to compare when detecting native changes:
+ Entitlements: Allentitlement attributes
+ User Defined: Manually enter the names of the attributes tocompare, one per line.
+
+
+
+
+
+ SailPoint Application Configuration 34
+
+===== Page 39/55 =====
+Native Change Detection Configuration
+
+ 5. Run orschedule aggregations to detect and store any changes.
+
+ 6. Run an Identity Refresh task with the Process Events option enabled to trigger the lifecycle events for any
+ changes detected since the last time the events were processed.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Application Configuration 35
+
+===== Page 40/55 =====
+Editing an Application's Configuration inthe Application XML
+
+Editing an Application's Configuration in the Application
+XML
+
+
+The majority of the options you willuse to create and configure an application are available inIdentityIQ's UI. Each
+configured application is stored in IdentityIQ as an application object. These objects can be viewed in the Debug
+pages, and they can be exported for modification and testing, then imported to implement these changes inyour pro-
+duction environment. Only users with system administrator or similar elevated rights inIdentityIQ have access tothe
+Debug pages.
+
+Insome limited cases, specific behaviors for certain connectors can only be configured by editing the application's
+XML. Where these occur, they are described inthe specific connector guides. For more information about specific con-
+nectors, refer to the IdentityIQ Connectors documentation on SailPoint's documentation portal.
+
+ Important:
+ Use caution when editing application objects inthe Debug pages, as there is no mechanism in
+ the Debug pages for rolling back changes once they have been saved. Itisa best practice
+ to export the application object, editthe XML outside of IdentityIQ, and then import the updated
+ object to a test environment forvalidation before importing into your production instance. This
+ also allows you tomanage your application changes in a source control system, to facilitateroll-
+ back.
+
+ For modifying a single application, the iiqconsole checkout command ispreferable to the
+ export command, because checkout lets you write a copy ofa single object, whereas export
+ willwrite allobjects of the class you specify. For more information, see the IdentityIQ Console
+ Guide.
+
+
+Only users with system administrator or similar elevated rights inIdentityIQ have access tothe Debug pages.
+
+To access an application object inthe Debug pages:
+
+ 1. In the IdentityIQ menu, select the wrench icon > Object.
+
+ 2. In the Object Browser, select the Application object.
+
+ 3. The configured applications are listedalphabetically. Scroll or use the search box to locate the application
+ object.
+
+ 4. Double-click the object toopen the application XML.
+
+
+
+
+
+
+
+
+
+
+ SailPoint Application Configuration 36
+
+===== Page 41/55 =====
+Application Maintenance Windows
+
+Application Maintenance Windows
+
+
+Applications may need to be taken offline formaintenance atvarious points and forvarious reasons. You can set a
+maintenance window in IdentityIQ forany application; maintenance windows are timeframes you specify when an
+application offline.During a maintenance window, aggregation tasks and provisioning operations are suspended for
+the application untilthe maintenance window ends.
+Defining a Maintenance Window
+
+To set a maintenance window for an application:
+
+ 1. Navigate to Applications > Application Definition and open the application you want to edit.
+
+ 2. On the Details tab,check Maintenance Enabled. To set the timeframe forthe maintenance window, you can
+ either:
+
+
+
+ l Set a specific date and time when the maintenance window should end and the application should return
+ toonline status.
+
+
+
+ l Leave the expiration fieldblank tokeep the application inmaintenance mode untilyou are ready to bring
+ itback online. In thiscase, you can return tothe application definitionto manually clear the Main-
+ tenance Enabled checkbox when the maintenance window isover.
+
+ 3. Save your changes.
+
+Maintenance Windows and Aggregation
+
+During amaintenance window, IdentityIQ automatically skips the application when running aggregations. A warning
+message is recorded inthe TaskResult for skipped applications.
+Maintenance Windows and Provisioning
+
+When an application is ina maintenance window, any provisioning operations (which might be launched by Identity
+Refresh tasks, certifications,LCM business processes, orcustom business processes) are prevented from running for
+the application. A status of "retry"isautomatically returned for any provisioning requests to the applications.
+
+Inprocesses that are launched by a business process, the provisioning willuse the standard "retry" behavior con-
+figured forthe workflow, to attempt toprovision again later.
+
+Intask-based provisioning processes (such as an IdentityRefresh task), retriesare handled through Request objects
+thatare created each time the process runs. These are automatically re-processed through the built-inRequest Pro-
+
+
+
+
+
+
+
+ SailPoint Application Configuration 37
+
+===== Page 42/55 =====
+Application Maintenance Windows
+
+
+cessor retry logic. For example, ifyou have an Identity Refresh task scheduled to run twice per day, and an application
+isin a maintenance window for 5 days, IdentityIQ willcreate 10 Request objects for that action.
+
+Certification remediations willalso generate retry Request objects when the target application is in a maintenance
+window.
+
+Ifyou want to change the retry behavior, you can do so in these ways:
+
+
+
+ l Itispossible, but not recommended, to modify business process retrybehavior through the Provision with
+ retries subprocess. Refer tothe LCM Subprocess Workflows white paper on Compass for more information.
+
+
+
+ l Inthe Identity Refresh task, you can select the "Do not schedule retry requests during application maintenance
+ windows" option to prevent retries.
+
+
+
+ l For certifications, there isnot an option to turn retries off;certification remediations need to be set for retry,
+ because certification cannot be simply "rerun" in the way that tasks and business processes can be.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Application Configuration 38
+
+===== Page 43/55 =====
+Reconfiguring an Application
+
+Reconfiguring an Application
+
+
+The application reconfiguration option enables you to change the application type without losing history associated
+with the application or having to create a new application. For example, ifyou firstdeployed your instance of IdentityIQ
+using a flatfileconnection, but now want to use some ofthe more advance features, such as provisioning. The type
+defines the way in which IdentityIQ connects to the application.
+
+Application types that have the same value format for identityand group attributes in the original and reconfigure tar-
+get are best suited for reconfiguration.
+
+The following application types can be reconfigured:
+
+ Note: Even in the following scenarios, there might be some connectors that do not re-configure
+ correctly. See Application Reconfiguration Considerations.
+
+
+
+
+ l Delimited fileto the corresponding direct connector (Delimited File to Active Directory – Direct)
+
+
+
+ l JDBC connector to corresponding direct connector (JDBC to Oracle Applications – Direct)
+
+
+
+ l Agent based connector todirect connector (Active Directory – Full to Active Directory – Direct)
+
+
+
+ l To a rewritten connector forbetter performance or more functional support (Google Apps – Direct)
+
+Application Reconfiguration Considerations
+
+Take the following points intoconsideration before deciding to reconfigure an application.
+
+Do the identity attribute of account and group in the original application match the identity attribute of
+account and group in the reconfigured application?
+
+For example:
+
+
+
+ l Two application types (Delimited File and Active Directory – Direct) use distinguishedName as the identity
+ attribute ofaccount, and use the same identityattribute for group. Since both of these applications refer to the
+ same identity attribute of both account and group, they would be good candidates for reconfiguration.
+
+
+
+ l Two application types (Oracle Application – FULL and Oracle Application – Direct) use different identity attrib-
+ utes for account, USER_ID in one and USER_NAME in the other and, USER_ID and USER_NAME differin
+ format. These are not good candidates for reconfiguration.
+
+
+ Note: If there are special attributes (native identity, managed attribute, entitlement) that splitinto
+ multiple attributes in the new application type, reconfiguration is not recommended.
+
+
+
+
+
+
+ SailPoint Application Configuration 39
+
+===== Page 44/55 =====
+Reconfiguring an Application
+
+
+
+ l Profiles inSAP–Full refer toboth profiles and groups in the managed system, whereas in SAP–Direct, profile
+ refers toprofiles and group refers tothe groups in the managed system. These are not good candidates for
+ reconfiguration.
+
+Before Application Reconfiguration
+
+Perform the following actions before you begin the reconfiguration process:
+
+
+
+ l Backup the application xml and application type specific customizations such as rules and business processes.
+
+
+
+ l Plan the attribute mapping of the original and new applications for accounts and group schema. Ifthere are
+ attributes inthe original application type that are not in the reconfigured application type, you might lose some
+ configuration and historical data.
+
+
+
+ l Check the provisioning policies of the target application and decide which policy to use, the policy from the ori-
+ ginal application type or the policy from the reconfigured application type.
+
+How to Reconfigure an Application
+
+
+ Note: While reconfiguring an application the target application must have a staticschema and
+ not a dynamic schema likeJDBC or DelimitedFile connectors. There isthe button named Dis-
+ cover Schemas to generate the schema.
+
+ 1. Go toApplications > Application Definition and select an application.
+
+ 2. On the Application Configuration page, click the Reconfigure button to display the Select New Application
+ Type dialog.
+
+ 3. Select an application type from the New Application Type dropdown listand click Save.
+
+ 4. Confirm your selection togo tothe Application Configuration page in edit mode.
+
+ 5. The tabs that contain information requiring attention are marked with an red asterisk.
+
+ 6. Go tothe Attributes tab and enter the valid configuration attribute settings and test the connection.
+
+ 7. Go tothe Schema Mapping tab and map the Previous Schema Attributes to the New Application Type Schema
+ Attributes for the Account and Group.
+
+ Use the Add Missing Attributes and Keep Extra Attributes options toselect to add missing attributes from
+ the old (original)application type to the new application type, and to keep attributes that are on the new applic-
+ ation type but were not on the original application type.
+
+
+
+
+
+
+ SailPoint Application Configuration 40
+
+===== Page 45/55 =====
+Reconfiguring an Application
+
+ 8. Go to the Provisioning Policy tab and select the provisioning policy to use forthe reconfigured application.
+
+ Itisrecommended that you use the policy that corresponds tothe application type ofthe newly reconfigured
+ application. You can use a different policy, but you must manually edit that policy to match the changes made
+ during the reconfiguration process.
+
+ 9. Save the reconfigured application.
+
+After Application Reconfiguration
+
+Check the reconfigured application forthe following when the process iscomplete:
+
+
+
+ l Attributes that were not mapped might not work, and the values might not get populated.
+
+
+
+ l Unmapped attributes affect configurations (for example, policy or business roles), and context based his-
+ toricaldata (for example, viewing certification history), that isbased on a population that relieson the
+ attribute.
+
+
+
+ l Related populations might not be populated with identities.
+
+
+
+ l Pending provisioning operations that contain that attribute might fail.
+
+
+
+ l Verify other places that use the attribute, such as identity mapping, account mapping, roles, policies,
+ and policy violations.
+
+
+
+ l Verify the application definition for unwanted entries like build map rules or provisioning rules
+
+
+
+ l Run the account and account group aggregation task
+
+
+
+ l Run the refresh Identity Cube task
+
+
+
+ l Run a task toprune the Identity Cubes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Application Configuration 41
+
+===== Page 46/55 =====
+FileAccess Manager Applications
+
+File Access Manager Applications
+
+
+FileAccess Manager enables enterprises to discover and govern access to sensitive data and better address the
+security threat to unstructured data. As a key component of SailPoint's Identity Governance strategy organizations
+can take a comprehensive approach to govern access across allusers, applications and data with enhanced visibility
+while reducing risk.
+
+Use FileAccess Manager to:
+
+
+
+ l Identify and govern access to exposed sensitive data found within cloud and on-premises filestores.
+
+
+
+ l Enable business users to manage access todata they know best, alleviatingIT burden and over-permissioned
+ access.
+
+
+
+ l Leverage a comprehensive identitygovernance solution that extends tounstructured data throughout the enter-
+ prise.
+
+When you create a new application oftype FileAccess Manager, this application by default willstartwith an alert
+schema, as well as unstructured and associations schemas. The unstructured and associations schemas are used to
+define the makeup the Target and TargetAssociation respectively.
+
+For more information, you can also refer to the File Access Manager documentation.
+File Access Manager Attributes/Configuration
+
+Schemas are defined on the Configuration tab. Ifan alertschema isdefined, thiswillinclude the configuration needed
+toset up the Alerts.Ifthe Unstructured schema isdefined, thiswillinclude the configuration needed toset up the Tar-
+get /Target Permissions.
+
+ Connection Settings
+
+
+
+
+ l Database URL – the jdbc connection URL for the File Access Manager database.
+
+
+
+ l Driver Class –the SQLServer JDBC Driver class to use forthe connection. This should be the appropriate jar
+ for the version of SQLServer you are using with FileAccess Manager. Itmust be contained inthe cor-
+ responding jdbc SQLServer jar file,and located inyour IdentityIQ installation's \lib directory.
+
+
+
+ l UserName – the database user name
+
+
+
+ l Password – password for the configured user name
+
+
+
+ l Schema – schema used forthe File Access Manager database
+
+
+
+
+
+
+ SailPoint Application Configuration 42
+
+===== Page 47/55 =====
+File Access Manager Applications
+
+ General Settings
+
+
+Referenced Applications
+
+ This isa listof applications to which the given permission are correlated. The target permissions are correlated
+ to either a Link orManagedAttribute belonging to one of the applications in the list.
+
+Aggregate Inherited
+
+ True to aggregate inherited permissions. Ifset to true,the dataset willbe much larger. Iffalse, only the top level
+ permissions are aggregated, and inheritance is assumed as defined on the native source.
+
+Target Hosts
+
+ The File Access Manager Business Application Monitors (BAMs) from which to aggregate permissions.
+
+Target Host Paths
+
+ This isa CSV of paths from which to aggregate. This aggregation starts atthe given root paths, and discovers all
+ permissions under these paths. Ifnot specified, alltarget /target permissions for the specified BAM are aggreg-
+ ated.
+
+ Rules
+
+The rules tab within the Application Definition user interface enables the defining ofrules forgiven object types. The
+Application level rules and schema level rules, forschemas that allow them, are shown with the ability to select /edit
+(based off of correct capabilities) the given rules. The unstructured schema support Cor-
+relation/Creation/Customization/Refresh rules on the schema level.
+
+Creation rules forunstructured schema will be of Rule Type TargetCreation
+
+Refresh rules for unstructured schema willbe of Rule Type TargetRefresh
+
+Correlation rules forunstructured schema will be of Rule Type TargetCorrelation
+
+ Note: Customization rules might run multiple times, updating the same ResourceObject. For
+ example, once for the provisioning result, once forthe result inthe provisioning plan, and once
+ for the result in the account request.
+
+Customization rules for unstructured schema willbe of Rule Type ResourceObjectCustomization
+
+The unstructured /associations schema AttributeDefinitions are used to define the columns to include in the query.
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Application Configuration 43
+
+===== Page 48/55 =====
+Activity Data Source Configuration
+
+Activity Data Source Configuration
+
+
+Use the Activity Data Source Configuration page to add or editactivity data sources. Activity collectors access activity
+data sources such as event or audit logs, collect the activityinformation that is to be monitored, and transform that
+data into a format that can be read by IdentityIQ. These Activity Data Sources are use for allactivity aggregation and
+reporting.
+
+Changes made on this page are not committed until a save isperformed on the application with which they are asso-
+ciated. For example, ifyou add or delete a data source on this page and click Save, you do not see that change reflec-
+ted on the application untilyou clickSave on the application page and commit the change.
+
+For each activity data source enter or edit the following:
+
+
+
+ l The general data source information in Activity Data Source Configuration.
+
+
+
+ l Activity target information found on the ActivityTarget tab foreach source type, see Activity Targets.
+
+
+
+ l The unique connection and query setting for each activity data source type.
+
+
+
+ l JDBC Collector Settings
+
+
+
+ l Windows Event Log Collector Settings
+
+
+
+ l Log File Collector Settings
+
+
+
+ l RACF Audit Log Collector
+
+
+
+ l CEF Log File
+
+ Activity Data Source Fields
+
+
+Name
+
+ A short, descriptive name for the activity data source.
+
+Description
+
+ A brief description of the activitydata source.
+
+Transformation Rule
+
+ The transformation rule required to convert the data collected from the data source intoa format that can be used
+ by IdentityIQ.
+
+
+
+
+
+ SailPoint Application Configuration 44
+
+===== Page 49/55 =====
+Activity Data Source Configuration
+
+
+ Note: Click the [...]iconto launch the Rule Editor to make changes toyour rules ifneeded.
+
+Correlation Rule
+
+ The correlation rule that should be used to correlate the activity data collected with identities.
+
+ Note: Click the [...]iconto launch the Rule Editor to make changes toyour rules ifneeded.
+
+Activity Data Source Type
+
+ The type of data source from which the activity isbeing collected.
+ The Activity Data Source Type dropdown listcontains the types of data source from which activity information
+ can be collected. This listwillgrow and change to meet the needs ofIdentityIQ users.
+
+ Note: When CEF Log File is selected from the dropdown list,the Transformation Rule and Cor-
+ relation Rule fields are displayed with the following respective values:
+ - Transformation Rule: CEFTransformRule
+ - Correlation Rule: CEFActivityCorrelation
+
+ Activity Targets
+
+The Activity Targets tab isused to specify targets within this data source for use in activity searches. A target is a spe-
+cificobject within a data source that is acted upon. For example, a target might be a machine name for a login action,
+or a filename for a create action.
+
+The targets specified here are used to populate listson the Activity Search page. These targets can be grouped with
+targets specified on other applications to create categories of targets. For example, ifyou have inventory applications
+atthree different locations and a procurement database on each, you can set each procurement database as a target,
+create a Procurement category, and then collect activityfor allthree procurement databases using a single activity
+search.
+
+On the Activity Targets tab you can add activity targets forthe data source with which you are working. Type the name
+ofthe activitytarget inthe fieldat the bottom of the listand clickAdd Activity Target. To remove activity targets, use
+the selection boxes on the leftof the table and click Delete.
+
+JDBC Collector Settings
+
+ JDBC Connection Settings
+
+IdentityIQ uses the connection settings to access the activity data source.
+
+
+
+
+
+
+
+
+ SailPoint Application Configuration 45
+
+===== Page 50/55 =====
+ActivityData Source Configuration
+
+
+Connection User
+
+ A valid JDBC user with access to the data source being accessed by thiscollector.
+
+Connection Password
+
+ The password associated with the Connection User ifa password isrequired.
+
+ The password is encrypted and isnot displayed with the activitydata source information.
+
+Database URL
+
+ The fullURL to the activitydata source. For example, jdbc:mysql://localhost/db
+
+JDBC Driver
+
+ The driver class of the activitydata source. For example, com.mysql.jdbc.Driver
+
+ Query Settings
+
+The query settings are used to control the activityinformation thatis collected when an Activity Aggregation task is
+run.
+
+SQL Statement
+
+ The SQL statement used to query activityfrom the database.
+
+Condition Builder
+
+ Transforms the data mapped in the rule selected as the Position Builder into a SQL statement used by sub-
+ sequent queries to determine startposition.
+
+Position Builder
+
+ Rule thatconverts the lastrow inthe result set returned by the query into a configuration map thatis persisted
+ intothe IdentityIQ database.
+
+ The data that ismapped in thisrule isused by the condition builder tocreate a SQL statement used in future quer-
+ ies todetermine the start location. This enables IdentityIQ to perform scheduled activityaggregations without
+ having toscan entire data sets with each subsequent aggregation.
+
+Windows Event Log Collector Settings
+
+
+ Note: Before you can use the Windows Event Log Collector, the IQService must be installed and
+ registered. See the Installation documentation forinformation on installingand registering the
+ IQService.
+
+
+
+
+
+ SailPoint Application Configuration 46
+
+===== Page 51/55 =====
+Activity Data Source Configuration
+
+Event Log Settings
+
+SailPoint IdentityIQ uses the connection settings to access the activity data source and the query settings to control
+the activityinformation that iscollected when an Activity Aggregation task is run.
+
+User
+
+ Valid Windows user name with access tothe event log containing the activitydata.
+
+Password
+
+ The password associated with the user specified.
+
+IQ Service Host
+
+ The host name where the IQ service is running.
+
+IQ Service Port
+
+ The listening port of the IQ service.
+
+Event Log Server
+
+ The server where the activity data source resides.
+
+Query String
+
+ The MQL query use to specify the activity data to collect during the activityaggregation.
+
+Block Size
+
+ The number of events to retrieve with each activity aggregation performed on thisactivity data source.
+Log File Collector Settings
+
+ Transport Settings
+
+The transportation settings are used to access the server where the log filecontaining the activity data resides.
+
+Transport Type – depending on the transport type selected you will see the following:
+
+local
+
+ Ifthe log filecontaining the activity data ison the same server as IdentityIQ, no further connection-type inform-
+ ation isrequired.
+
+
+
+
+
+
+
+
+ SailPoint Application Configuration 47
+
+===== Page 52/55 =====
+Activity Data Source Configuration
+
+
+ftp
+
+ FTP User – a valid user name with authentication access to the FTP host.
+
+ FTP Password – the password associated with the FTP user.
+
+ FTP Host – the host where the log fileresides.
+
+scp
+
+ SCP User – a valid user name with authentication access to the SCP host.
+
+ SCP Password – the password associated with the SCP user.
+
+ SCP Host – the host where the log fileresides.
+
+ SCP Private Key – the private key that isused to encrypt the collected data.
+
+ Log File Settings
+
+The log filesettings are used todefine the query used to collect the activity data on.
+
+File Name
+
+ The name of the log filecontaining the activity data.
+
+Lines to Skip
+
+ The number of lines to skip before starting the scan for activityinformation.
+
+Filter Nulls
+
+ Skip lines that don't conform to the defined format.
+
+Multi-lined Data
+
+ A single record in this filespans multiple rows.
+
+Regular Expression
+
+ A regular expression groups that can be used totokenize each record inthe file.
+
+ Log Fields
+
+The log fieldsettings are used to create the log fieldsbased on the column headings inthe log file.
+
+Name
+
+ The name of the log fieldto create based on a column name from the log file.
+
+
+
+
+
+
+ SailPoint Application Configuration 48
+
+===== Page 53/55 =====
+Activity Data Source Configuration
+
+
+Trim Value
+
+ Remove white space around the column name before creating the log field.
+
+Drop Nulls
+
+ Ifthe column by this name isnull, ignore this record. For example, ifthe user fieldisnull, then the record cannot
+ be correlated to a IdentityIQ identityand, therefore, cannot be used by IdentityIQ.
+
+
+
+RACF Audit Log Collector
+
+ Transport Settings
+
+The transportation settings are used to access the server where the log filecontaining the activity data resides.
+
+Transport Type – depending on the transport type selected you willsee the following:
+
+local
+
+ Ifthe log filecontaining the activity data is on the same server as IdentityIQ, no further connection-type inform-
+ ation isrequired.
+
+ftp
+
+ FTP User – a valid user name with authentication access tothe FTP host.
+ FTP Password – the password associated with the FTP user.
+ FTP Host – the host where the log fileresides.
+
+scp
+
+ SCP User – a valid user name with authentication access to the SCP host.
+
+ SCP Password – the password associated with the SCP user.
+
+ SCP Host – the host where the log fileresides.
+
+ SCP Private Key – the private key thatis used to encrypt the collected data.
+
+ Log File Settings
+
+The log filesettings are used to define the query used to collect the activitydata.
+
+File Name
+
+ The name of the log filecontaining the activity data.
+
+
+
+
+
+ SailPoint Application Configuration 49
+
+===== Page 54/55 =====
+Activity Data Source Configuration
+
+
+Lines to Skip
+
+ The number of lines to skip before starting the scan for activityinformation.
+
+Filter Nulls
+
+ Skip linesthat don't conform to the defined format.
+
+CEF Log File
+
+ CEF Log File Transport Settings
+
+The transportation settings are used to access the server where the log filecontaining the activitydata resides.
+
+Transport Type – depending on the transport type selected you willsee the following:
+
+local
+
+ Ifthe CEF log filecontaining the activity data is on the same server as IdentityIQ, no further connection-type
+ information is required.
+
+ftp
+
+ FTP User – a valid user name with authentication access tothe FTP host.
+ FTP Password – the password associated with the FTP user.
+ FTP Host – the host where the log fileresides.
+
+scp
+
+ SCP User – a valid user name with authentication access to the SCP host.
+ SCP Password – the password associated with the SCP user.
+ SCP Host – the host where the log fileresides.
+ SCP Private Key – the private key that isused to encrypt the collected data.
+
+ CEF Log File Settings
+
+The log filesettings are used todefine the query used to collect the activity data.
+
+File Name
+
+ The name of the CEF log filecontaining the activity data.
+
+Lines to Skip
+
+ The number of lines to skip before starting the scan for activityinformation.
+
+
+
+
+
+
+ SailPoint Application Configuration 50
+
+===== Page 55/55 =====
+Activity Data Source Configuration
+
+
+Filter Nulls
+
+ Skip lines that do not conform to the defined format.
+
+Multi-lined Data
+
+ A single record in this filespans multiple rows.
+
+Regular Expression
+
+ A regular expression groups that can be used to tokenize each record in the file.The format of CEF Log File. For
+ example, (\w\w\w\s\d\d\s\d\d:\d\d:\d\d)\s(.*)CEF:(.*)\|(.*)\|(.*)\|(.*)\|(.*)\|(.*)\|(.*)\|(.*)(.*)
+
+ CEF Log Fields
+
+The log field settings are used to create the log fields based on the column headings inthe log file.
+
+Name
+
+ The name ofthe CEF log fieldto create based on a column name from the CEF log file.
+
+Trim Value
+
+ Remove white space around the column name before creating the CEF log field.
+
+Drop Nulls
+
+ Ifthe column by this name is null,ignore this record. For example, ifthe user fieldis null,then the record cannot
+ be correlated to a IdentityIQ identity and, therefore, cannot be used by IdentityIQ.
+
+IdentityIQ uses connectors toextract data and transform itintoa format itcan read. A connector isa Java class that
+extends the IdentityIQ AbstractConnector class and implements the IdentityIQ Connector interface. Connectors
+provide the means by which IdentityIQ communicates with targeted platforms, applications and systems. Each applic-
+ation type requires different information to create and maintain a connection. For detailed connector information refer
+to the connector documentation delivered with IdentityIQ.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Application Configuration 51

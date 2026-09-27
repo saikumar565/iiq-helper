@@ -1,0 +1,534 @@
+﻿===== Page 83/91 =====
+Populations and Groups
+
+
+Groups Based on Common Entitlements
+
+Groups based on common entitlements within an application are defined by shared access and are listed under role.
+An entitlement is either a specific value for an account attribute ora permission. A role is a collection of entitlements
+that enable an identity to perform certain operations within your enterprise. When the role group attribute is created
+and enabled, each role becomes a group consisting of allidentities that share the entitlements that make up that role.
+Identities assigned entitlements that do not combine to match the criteria of a role are assigned to the group No role.
+Th Global group contains all identities.
+
+Group Tab
+
+The Groups table contains a listof the high-level containers, or group factories, that contain the actual groups used
+within IdentityIQ. Each group factory is associated with either an identity attribute or an entitlement within an applic-
+ation. These group factories are not groups themselves, but are used to define, maintain, and enable groups.
+
+The Group tab contains the following information:
+
+ Column Description
+ Name
+
+ Name The name assigned to the group factory when itwas created.
+ Attribute The attribute used to define the groups within the group factory.
+ Description Description ofthe group factory or the groups contained within.
+ The status ofthe groups within the group factory, enable (check mark) or disabled
+ Status (exclamation mark).
+ This status controls allof the groups contained within this group factory.
+
+Click on a group factory orright-click and select edit todisplay the Edit Group page. The Edit Group page contains the
+group factory information from the table and a listof the groups associated with the group factory. For example, for a
+Manager group factory the table contains a row forevery value assigned tothe manager attribute in IdentityIQ. See
+Edit Group Page.
+
+To create a new group, click Create New Group to open the Edit Group page.
+
+To delete a group factory, right-click and select Delete.
+
+Edit Group Page
+
+This page isused toenable or disable allof the groups contained within a group factory, recreate a group factory that
+has been deleted, and view the groups that make up a group factory. Creating multiple group factories ofthe same
+type produces identical results when a task isrun that updates group information. For example, ifyou create three (3)
+group factories, X, Y, and Z and specify the Department attribute foreach, you receive identical results for allthree
+group factories when you run a task that updates group information.
+
+The Edit Group page contains the following information:
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 80
+
+===== Page 84/91 =====
+Populations and Groups
+
+ Group Information:
+
+
+Name
+
+ The name assigned to the group factory when itwas created.
+
+Group Attribute
+
+ The attribute used to define the groups within the group factory.
+
+Description
+
+ Description ofthe group factory or the groups contained within.
+
+Enabled/Disabled
+
+ The status ofthe groups within the group factory, Enabled or Disabled.
+ This status controls allof the groups contained within this group factory.
+ Enable â€” the groups are active and available for use and activitysearching.
+ Disabled â€” the groups exist, but are not included instatistical tracking or available on the search pages.
+
+Scope
+
+ The scope forthis group factory. Ifscope isassigned, only the users that control the designated scope can see
+ this group factory in select listson pages such as the Certification Schedule or Search pages.
+
+
+ The sub-groups associated with thisapplication are visible toa user with any or no controlled scope.Depending
+ on configuration settings, objects with no scope assigned might be visibleto allusers with the correct cap-
+ abilities.
+
+ Sub-Group Information:
+
+This information isnot displayed untilgroup aggregation isperformed by a task.
+
+Name
+
+ The name of the group, or the value assigned to the specified attribute.
+
+Member Count
+
+ The number of identities matching the group criteria.
+
+Policy Violations
+
+ The totalnumber of policy violations for members of the group.
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 81
+
+===== Page 85/91 =====
+Populations and Groups
+
+
+Composite Score
+
+ The average composite riskscores ofeach member of the group.
+
+Owner
+
+ The owner of the sub-group, ifone isassigned.
+
+Last Updated
+
+ The last time a task was run that updated the group information.
+
+Populations Tab
+
+The Populations tab contains a listofpopulations that either you created from identity searches or that were created
+by other users and defined as public. Populations are query based groups created from the results of searches run
+from the Identity Search page. Searches that result in interesting populations of identitiescan be saved as populations
+forreuse. Members ofa population might not share any of the same identity attributes or account group membership.
+Population membership isbased entirely on identity search parameters.
+
+The Populations tab contains the following information:
+
+ Column Description
+ Name
+
+ Name The name assigned to the population when itwas created.
+ Description Description of the population.
+ Ifthe population is Private or Public.
+ Visibility Private â€” only visible to the user that created them.
+ Public â€” available to any user with access to pages on which they are used and
+ control of the correct scope, ifscoping is active.
+ Owner The name of the population owner, ifone isassigned.
+ The status of the population, enable (check mark) or disabled (exclamation mark).
+ Status Enable â€” the populations are active and available foruse in activitysearching.
+ Disabled â€” the populations exist, but are not included in statisticaltracking or
+ available on the search pages.
+
+Click on a population or right-click and select edit to display the Edit Population page. The Edit Population page con-
+tains the population information and a listof associated identities. See Edit Population Page.
+
+To delete a population, right-clickand select Delete.
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 82
+
+===== Page 86/91 =====
+Populations and Groups
+
+Edit Population Page
+
+This page isused toedit population information, enable or disable populations, mark populations as private or public,
+set the scope forthe population, and view the identities that make up a population.
+
+ Note: Any user that has access toa public population can make changes on that population.
+
+
+ Note: Ifyou mark a public population as private, and you are not the creator of that population,
+ you can no longer see that population.
+
+Click on an identity to display the View Identity page forthat user.
+
+That Edit Population page contains the following information:
+
+ Group Information:
+
+
+Name
+
+ The name assigned to the population when itwas created.
+
+Description
+
+ Description of the population.
+
+Private
+
+ Select or clear the check-box to specify ifthe population isprivate ornot private.
+ Private â€” only visible to the user that created itfrom the search results page.
+ Not Private â€” available to any user with access to pages on which they are used and control of the correct
+ scope, ifscoping isactive.
+
+Enabled/Disabled
+
+ Select or clear the check-box to specify ifthe population enabled ornot enabled.
+ Enable â€” the populations are active and available foruse inactivity searching.
+ Not Enabled â€” the populations exist,but are not included instatistical tracking oravailable on the search
+ pages.
+
+Scope
+
+ The scope forthis population. Ifscope is assigned, only the users that control the designated scope see this pop-
+ ulation in select listson pages such as the Certification Schedule or Search pages. This scope only applies to the
+ population, not the identities contained within.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 83
+
+===== Page 87/91 =====
+Populations and Groups
+
+
+Owner
+
+ Assign an owner for the population.
+
+ Population Information:
+
+
+Population Count
+
+ The number of identities inIdentityIQ matching the populations search criteria.
+
+Name
+
+ The value ofthe accountId attribute for the identity.
+
+First Name
+
+ The value ofthe firstname attribute forthe identity.
+
+Last Name
+
+ The value ofthe lastname attributefor the identity.
+
+Manager
+
+ The value ofthe manager attribute for the identity.
+
+Last Refresh
+
+ The date on which the identity was last refreshed.
+
+Workgroups Tab
+
+The Workroups tab contains a listof workgroups enable the assignment ofobject ownership, certification,revocations
+and work items to pre-defined listsofidentities. In addition to grouping Identitiesyou are also able to assign cap-
+abilitiesand scope to these groups of identities so that you do not have to assign the same scopes and capabilities to
+each individual member of the group.
+
+The Workgroups tab contains the following information:
+
+ Column Name Description
+
+ Name The name assigned to the workgroups.
+ Description A short description of the workgroup.
+ Modified The date and time the workgroup was last modified.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 84
+
+===== Page 88/91 =====
+Populations and Groups
+
+
+Click on a workgroup or right-clickand select edit to display the Edit Workgroup page. The Edit Workgroup page con-
+tains the group information and a listof capabilities and members. See Edit Workgroups Page.
+
+To create a new workgroup, clickCreate Workgroup to open the Edit Workgroup page.
+
+To delete a workgroup from the list,right-clickand select Delete.
+
+Edit Workgroups Page
+
+This page is used to editworkgroup information and view the capabilities, scope and members thatmake up a group.
+
+That Edit Workgroup page contains the following information:
+
+ Group Information:
+
+
+Name
+
+ The name assigned tothe workgroup.
+
+Owner
+
+ The owner assigned to this group.
+
+Description
+
+ Description of the group.
+
+Scope
+
+ The scope for thisworkgroup. Ifscope is assigned, only the users that control the designated scope can see this
+ workgroup in select listson pages such as the Certification Schedule or Search pages. This scope only applies
+ to the workgroup, not the capabilities oridentities contained within.
+
+Group Email
+
+ Specify the email address assigned to this workgroup. A workgroup email address should be a distribution list.If
+ no address isspecified here, notifications are sent to each member of the group. A workgroup email account
+ needs to be created inyour email system.
+
+Notification Setting
+
+ Specify to whom notifications should be delivered.
+
+ Ifyou select Notify members and group email and the group email isa distribution list,the members receive the
+ notification twice.
+
+ Notify members and group email - send notifications to each group member and the group email address.
+ Notify group email only -send notifications tothe group email address but not the individual group members.
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 85
+
+===== Page 89/91 =====
+Populations and Groups
+
+
+ Notify members only -send notifications to each group member, but not the group email address.
+ Disable notifications - send no notifications to this group. This restriction only applies toitems assigned to the
+ workgroup.
+
+ Rights:
+
+
+Capabilities
+
+ The IdentityIQ capabilities available. The capabilities currently assigned to the workgroup are highlighted on the
+ list.Each member of the group assumes the capabilities of the group, even ifdifferent capabilities were assigned
+ to them individually. Use the Ctrl and Shiftkeys to select multiple capabilities.
+
+Authorized Scope
+
+ The scopes controlled by this workgroup. Scope isused todetermine the objects to which the members of this
+ group have access.
+ Control determines access. Ifscoping isactive, the workgroup members can only see objects that are within the
+ scopes controlled by the group.
+
+
+ Assign scopes to the workgroup using the suggestion fieldat the top ofthe Authorized Scopes listbox. Click the
+ arrow to the right of the suggestion field todisplay a listof allscopes defined. Enter a few lettersin the suggestion
+ fieldto display a listof allscopes that startwith that letterstring.
+
+ Depending on configuration, objects with no scope assigned might be visible to allusers with the correct cap-
+ abilities.
+
+Can Access Assigned Scope
+
+ Select this option to enable the workgroup members to control the scope to which they are assigned. Ifthis
+ option iscleared, the users do not have access to objects within the scope to which the workgroup is assigned.
+ Control determines access. Ifscoping isactive, identities can only see objects that are within the scopes they
+ control.
+
+ Members:
+
+The listofmembers of the workgroup. Use the drop-down listat the bottom ofthe table to select identities and the click
+Add Member to add members tothe workgroup. Use the select boxes to select members and clickRemove Mem-
+bers to remove members from the workgroup.
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 86
+
+===== Page 90/91 =====
+Populations and Groups
+
+Using Populations and Groups
+
+Groups and Populations are used to apply actions inIdentityIQ to specific sets ofIdentities, rather than to every Iden-
+tityinthe system. They can be used inthese areas:
+
+
+
+ l Filterson Identity Refresh and Policy Scan Tasks
+
+
+
+ l Advanced and Targeted Certification selection criteria
+
+
+
+ l Advanced Analytics: Access Review and Activity Search query criteria
+
+
+
+ l Report Filters
+
+
+
+ l ITRole Mining Filters
+
+
+Using Populations or Groups as filtersfor these activitiesmakes itpossible torun these queries and processes for
+select sets of Identities, allowing for targeted data analysis and more efficientsystem processing.
+
+ As Task Filters
+
+Populations and Groups can be used as filterson Identity Refresh and Policy Scan tasks. These include allcustom
+tasks created based on the Identity Refresh and Policy Scan task templates.
+
+ In Certifications
+
+Advanced and Targeted Certifications can generate Access Reviews for specific Populations. Advanced Cer-
+tificationscan also generate Access Reviews forspecific Groups. In Advanced Certifications, Population(s) or Group
+(s)are selected in the What to Certify section ofthe Basic page. In Targeted Certifications, Populations are selected
+inthe Who to Certify section.
+
+ As Advanced Analytics Criteria
+
+Two of the Advanced Analytics query types allow Populations to be used as search criteria:Access Review Search
+and Activity Search. The Access Review Search filterresultsin inclusion of only Access Reviews that were gen-
+erated forthe specified Population or Group. The Activity Search only allows Populations (not Groups) to be used as a
+filterlimitsthe returned set of Identities to ones that are part of the selected Population.
+
+ As Report Filters
+
+Populations and Groups can be used as filterson several of the pre-configured IdentityIQ reports, including the
+Advanced Access Review Report, the Identity Effective Access Report, the Identity Risk Report, and the Identity Role
+Report. The Advanced Access Review Report filtermeans the report isrun only for Access Reviews created for the
+selected Population or Group. For the other reports, the filterallows only Identities that are part of the selected
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 87
+
+===== Page 91/91 =====
+Populations and Groups
+
+
+Population or Group to be included on the report.
+
+ In IT Role Mining
+
+Populations can be used as Identity selection criteriafor IT Role Mining activities.Groups cannot be used for IT Role
+Mining.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Role, Group, and Population Management 88

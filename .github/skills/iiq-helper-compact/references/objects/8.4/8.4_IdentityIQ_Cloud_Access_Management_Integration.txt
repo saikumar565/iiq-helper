@@ -1,0 +1,1553 @@
+===== Page 1/25 =====
+ Cloud Access Management
+ Integration
+
+
+ Version:8.4
+
+ Revised:September2023
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thisdocument andtheinformationcontainedhereinisSailPointConfidentialInformation
+
+===== Page 2/25 =====
+Copyright and Trademark Notices
+
+Copyright © 2023 SailPoint Technologies, Inc.  All Rights Reserved.
+
+Alllogos, text,content, including underlying HTML code, designs, and graphics used and/or depicted on these written
+materials or in thisInternet website are protected under United States and international copyright and trademark laws
+and treaties, and may not be used or reproduced without the prior express written permission of SailPoint Tech-
+nologies, Inc.
+
+“SailPoint Technologies,” (design and word mark), “SailPoint,” (design and word mark), "Identity IQ,” “IdentityNow,”
+“SecurityIQ,” “Identity AI,” “Identity Cube,” and “SailPoint Predictive Identity” are registered trademarks of SailPoint
+Technologies, Inc. “Identity isEverything,” “The Power of Identity,” and “Identity University” are trademarks of
+SailPoint Technologies, Inc. None of the foregoing marks may be used without the prior express written permission of
+SailPoint Technologies, Inc. Allother trademarks shown herein are owned by the respective companies or persons
+indicated.
+
+SailPoint Technologies, Inc. makes no warranty ofany kind regarding these materials or the information included
+therein, including, but not limited to,the implied warranties ofmerchantability and fitness for a particular purpose.
+SailPoint Technologies shall not be liable for errors contained herein or direct, indirect, special, incidental orcon-
+sequential damages inconnection with the furnishing, performance, or use of thismaterial.
+
+Patents Notice. https://www.sailpoint.com/patents
+
+Restricted Rights Legend. All rights are reserved. No part ofthis document may be published, distributed, reproduced,
+publicly displayed, used to create derivative works, or translated to another language, without the prior written consent
+ofSailPoint Technologies. The information contained inthis document issubject to change without notice.
+
+Use, duplication or disclosure by the U.S. Government is subject to restrictions as set forth insubparagraph (c) (1) (ii)
+ofthe Rights inTechnical Data and Computer Software clause at DFARS 252.227-7013 for DOD agencies, and sub-
+paragraphs (c)(1) and (c)(2) ofthe Commercial Computer Software Restricted Rights clause at FAR 52.227-19 for
+other agencies.
+
+Regulatory/Export Compliance. The export and re-export of this software iscontrolled for export purposes by the U.S.
+Government. By accepting this software and/or documentation, licensee agrees to comply with allU.S. and foreign
+export laws and regulations as they relate to software and related documentation.  Licensee will not export or re-
+export outside the United States software or documentation, whether directly or indirectly, to any Prohibited Party and
+willnot cause, approve or otherwise intentionally facilitate others inso doing. A Prohibited Party includes: a party in a
+U.S. embargoed country or country the United States has named as a supporter of international terrorism; a party
+involved in proliferation; a party identified by the U.S. Government as a Denied Party; a party named on the U.S.
+Department of Commerce’s Entity Listin Supplement No. 4 to 15 C.F.R. § 744; a party prohibited from participation in
+export orre-export transactions by a U.S. Government General Order; a party listed by the U.S. Government’s Office
+ofForeign Assets Control as ineligible to participate in transactions subject toU.S. jurisdiction; or any party that
+licensee knows or has reason toknow has violated or plans to violate U.S. or foreign export laws or regulations.
+Licensee shall ensure that each of itssoftware users complies with U.S. and foreign export laws and regulations as
+they relate to software and related documentation.
+
+===== Page 3/25 =====
+Contents
+
+
+ Getting Started 1
+
+ Setup 2
+
+ Installation 2
+
+ Configuration 2
+
+ Operating Verification 4
+
+ Cloud Based Search Options 5
+
+ Cloud Based Locations 8
+
+ Cloud Tab Locations 8
+
+ Cloud Classifications 14
+
+ Associations 15
+
+ Targeted Certifications Cloud Filtering 16
+
+ Updating the CAMSync Service 18
+
+ CAMSync Service 18
+
+ Troubleshooting 19
+
+ Wrong Hostname 19
+
+ Wrong Client ID 19
+
+ Additional Configuration Details 20
+
+ Logging 21
+
+ Module Status 22
+
+===== Page 4/25 =====
+Getting Started
+
+Getting Started
+
+
+Cloud Access Management isa governance offering formulti-cloud environments. Use itquickly todiscover who has
+access to what, how that access isbeing granted, and implement pre-configured policies that automate detection of
+compliance violations.
+
+Within IdentityIQ, you can view additional detailed Cloud Access Management-based information about entitlements
+from identity warehouse, access requests, entitlement catalog, advanced analytics, and certifications. You can search
+forentitlements using Cloud Access Management-based values from entitlement catalog, manage access, advanced
+analytics, certifications, and targeted certification editor.
+
+Whenever a summary of an entitlement isshown (e.g. in a table), there willbe an easy, at a glance 'hint'toknow ifthe
+entitlement has any cloud access.
+
+When integrating Cloud Access Management with IdentityIQ, the following application types are supported:
+
+
+
+ l AWS
+
+
+
+ l Azure Active Directory
+
+
+To install and configure Cloud Access Management with IdentityIQ, see Setup.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Cloud Access Management Integration 1
+
+===== Page 5/25 =====
+Setup
+
+Setup
+
+
+The Cloud Access Management integration feature willhave to be installedand then configured to integrate with Iden-
+tityIQ.
+
+For more information, see:
+
+
+
+ l Installation
+
+
+
+ l Configuration
+
+
+
+ l Operating Verification
+
+Installation
+
+Use the following information toactivate your Cloud Access Management installation.
+
+ 1. Log on toyour instance of IdentityIQ as an administrator.
+
+ 2. Click on gear menu > Global Settings and select Import from File Page.
+
+ 3. Click Browse and browse to the following directory: identityiq_home\WEB-INF\config where iden-
+ tityiq_home isthe directory inwhich you extracted the identityiq.war fileduring the IdentityIQ installationpro-
+ cedure.
+
+ 4. Select the init-cam.xml fileand click Import.
+
+ 5. When the import is complete, click Done.
+
+
+ Note: A restart ofcurrently running application servers is required afterinit-cam.xml isinstalled.
+
+Configuration
+
+Use the Cloud Access Management configuration page to connect IdentityIQ toCloud Access Management Services.
+To access thispage, click gear menu > Global Settings > Cloud Access Management Configuration.
+
+Enter your connection and configuration settings. Be sure to Save your changes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Cloud Access Management Integration 2
+
+===== Page 6/25 =====
+Setup
+
+Connection Information for Cloud Access Management Services
+
+CAM Hostname
+
+ The hostname of the Cloud Access Management website for your organization. For example, https://<or-
+ g>.cam.sailpoint.com.
+
+OAuth Token Hostname
+
+ The hostname of your IdentityNow tenant, which isused to create the Cloud Access Management access token
+ using the ClientID/Secret. For example, https://<org>.api.identitynow.com
+
+Client ID /Client Secret
+
+ The Client ID isthe identifierassociated with the Cloud Access Management API service. The Client Secret is
+ the OAuth secret associated with the Cloud Access Management API service.
+
+ To obtain a personal access token from IdentityNow, see Managing Personal Access Tokens. To obtain a per-
+ sonal access token from the API, see the API docs fordetails.
+
+Advanced
+
+Read Timeout
+
+ The maximum time in seconds to wait fora response from Cloud Access Management APIs before failing.
+
+Connect Timeout
+
+ The maximum time in seconds to wait fora connection to succeed to Cloud Access Management APIs before fail-
+ ing.
+
+Testing the Connection
+
+Once your configuration detailshave been entered, you can clickTest Connection toverify thatthe connection
+information isvalid and thatIdentityIQ can successfully connect to Cloud Access Management.
+
+Ifyou are using an HTTP or HTTPS proxy forIdentityIQ's communications, and you want to make an exception for con-
+necting to Cloud Access Management Services, you can configure your Cloud Access Management connection to
+bypass the proxy connection by adding this key tothe CAMConfiguration object:
+
+<entry key="ignoreProxyProperties" value="true" />
+
+Event Properties
+
+AfterCloud Access Management has been installed and configured, itcan startreceiving events. By clicking thisbut-
+ton,Cloud Access Management isnotified tostartsending data. After the data has initiallybeenreceived, Initiate
+
+
+
+
+
+ SailPoint Cloud Access Management Integration 3
+
+===== Page 7/25 =====
+Setup
+
+
+Events can be clicked again to request alldata.
+
+
+Operating Verification
+
+To verify Cloud Access Management was installed and configured correctly, complete the following steps:
+
+ 1. Navigate to the gear menu and clickon Administrator Console.
+
+ 2. Select Environment.
+
+ 3. Click SailPoint Modules & Extensions.
+
+ Here, allthe integrated modules can be viewed along with theirstatus, host name, and lastping totheir server.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Note: The default interval for the monitoring is fiveminutes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Cloud Access Management Integration 4
+
+===== Page 8/25 =====
+Cloud Based Search Options
+
+Cloud Based Search Options
+
+
+When Cloud Access Management isenabled, additional fieldswillbe present inthe Entitlement Catalog Advanced
+Search, the Manage Access Page, and the Advanced Analytics page.
+
+For the Entitlement Catalog, the new fields under Effective Cloud Access are Cloud URI, Cloud Display Name, and
+Cloud Provider. These fieldswill search fordata stored in IdentityIQ through Cloud Access Management Events.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+For Manage Access, new filtersare added forthe Manage Access Page to search formanaged attributes which are
+cloud based by classifications. This filterismulti-valued and liststhe differentclouds (AWS, Azure, etc).The two new
+fieldsare Role Classifications and Entitlement Classifications.
+
+ Note: There is an additional field titledEntitlement Cloud Provider.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Cloud Access Management Integration 5
+
+===== Page 9/25 =====
+Cloud Based Search Options
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Also for Manage Access, the Search Access has a powerful searching capability. When Cloud Access Management is
+enabled, searches that match the Cloud Display Name orCloud URI (mentioned above) with any of the three cloud
+access types, willresult in allroles and groups within that hierarchy.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Cloud Access Management Integration 6
+
+===== Page 10/25 =====
+Cloud Based Search Options
+
+
+For Advanced Analytics, the new fieldsunder Effective Cloud Access are Cloud URI, Cloud Display Name, and Cloud
+Provider. These fieldswillsearch fordata stored in IdentityIQ through Cloud Access Management Events.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Cloud Access Management Integration 7
+
+===== Page 11/25 =====
+Cloud Based Locations
+
+Cloud Based Locations
+
+
+After the Cloud Access Management module is integrated, IdentityIQ willretrieve at display time additional entitlement
+details from Cloud Access Management and display them in a new Cloud tab.
+Cloud Tab Locations
+
+This section highlights allthe locations of IdentityIQ where the new cloud tab willdisplay when dealing with enti-
+tlements.
+
+Entitlement Catalog
+
+ When searching for entitlements within the Entitlement Catalog, select the desired cloud enabled entitlement.
+ Next, select the Cloud tab.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Identity Warehouse
+
+ After selecting an identity within the Identity Warehouse, navigate tothe Entitlements tab and select a cloud
+ enabled entitlement. The Cloud tab willshow similar data as the Cloud tab forthe Entitlement Catalog.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Cloud Access Management Integration 8
+
+===== Page 12/25 =====
+Cloud Based Locations
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Application Definition
+
+ When selecting an application within Application definition, navigate to the Accounts tab. Expand the user details
+ having the cloud enabled entitlement.
+
+ Select the desired group for an identity.
+
+ The Object Details dialog willdisplay. Click the Cloud tab.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Cloud Access Management Integration 9
+
+===== Page 13/25 =====
+Cloud Based Locations
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Delegated Work Items
+
+ After selecting a work item, clickon the entitlement. The same dialog as the IdentityWarehouse willdisplay.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Challenge Work Items
+
+ When a challenge phase isenabled, the cloud can be viewed on the particular entitlement in the Challenge Work
+ Item.
+
+
+
+
+ SailPoint Cloud Access Management Integration 10
+
+===== Page 14/25 =====
+Cloud Based Locations
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Manage User Access
+
+ When selecting an identityto add orremove access from, scroll tothe desired entitlement and clickthe Details
+ option. The Cloud tab willdisplay in thiswindow.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Access Request
+
+ When adding an entitlement, thisCloud tab can be seen within Track My Requests.
+
+
+
+
+
+
+
+
+ SailPoint Cloud Access Management Integration 11
+
+===== Page 15/25 =====
+Cloud Based Locations
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Request Violation
+
+ This Cloud tab willdisplay when viewing a request violation work item. Ifa created policy conflicts between two
+ cloud entitlements, this tab willdisplay.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Access Review
+
+ This Cloud tab willdisplay when scheduling a certification. Choose the desired cloud application, then click on
+ Account to view the Cloud tab.
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Cloud Access Management Integration 12
+
+===== Page 16/25 =====
+Cloud Based Locations
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Identity Details Access Page
+
+ Navigate to the Manage Identity dropdown and choose either View Identity or Edit Identity. Then, click on the
+ Access tab to see the listofentitlements.
+
+ Note: The cloud tab willonly be visible in the Details dialog ifit'sa cloud supported managed
+ attribute /entitlement.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Cloud Access Management Integration 13
+
+===== Page 17/25 =====
+Cloud Based Locations
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Cloud Classifications
+
+Cloud Access Management classifications willbe visible forcloud based entitlements. The classifications correspond
+tothe cloud provider forwhich the entitlements are associated. The classifications for a cloud access group enti-
+tlement willalso include the classifications ofits cloud access roles. These classifications willdisplay in the Clas-
+sification column within the Entitlement Catalog (and other tables within IdentityIQ) as shown below.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Cloud Access Management Integration 14
+
+===== Page 18/25 =====
+Associations
+
+Associations
+
+
+Click the Cloud tab to retrieve information from the Cloud API. The following associations can be determined from the
+information retrieved from Cloud Access Management:
+
+
+
+ l Federated Group – a Cloud Access Management group that has associated Cloud Access Management role
+ (s)
+
+
+
+ l Native Group –a Cloud Access Management group having no Cloud Access Management roles but isasso-
+ ciated with Cloud Access Management services
+
+
+
+ l Cloud Access Management Role association
+
+ Federated Groups
+
+For federated and hybrid groups, two panels willdisplay when looking at the Cloud Access Management details.
+
+The leftpanel willdisplay allassociated role in an accordion style. When opened, the associated scope(s) with that
+rolewill listedunder.
+
+When a scope isselected, the right panel willpopulate with the associated Cloud Access Management service(s).
+These services are also listed inan accordion style. When a service is selected, the associated CAM resource(s) will
+be listed.
+
+ Native Groups
+
+Only services are listed inone panel.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Cloud Access Management Integration 15
+
+===== Page 19/25 =====
+Targeted Certifications Cloud Filtering
+
+Targeted Certifications Cloud Filtering
+
+
+When integrated with IdentityIQ, Cloud Access Management allows the user to define a Targeted Certification to spe-
+cifycloud specific selection criteria forRoles and Additional Entitlements.
+
+The selection criteriafor Targeted Certifications is used todecide which entitlements and /or roles willbe included as
+certifiableswhen the certification isgenerated.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Note: New search criteria have been added for Additional Entitlements. All new search criteria
+ willappear as a pull-down option. They willonly appear ifCloud Access Management isenabled.
+
+
+
+
+ l Cloud Access Scopes – matches ManagedAttributes which have any of the given scopes indirectlyfrom their
+ Cloud Access Manager groups or roles.
+
+
+
+ l Cloud Access Roles – matches ManagedAttributes which map to any ofthe given roles directly or indirectly
+ from their Cloud Access Manager groups.
+
+
+
+ l Cloud Access Groups – matches ManagedAttributes which map to any of the given groups.
+
+
+
+ l Cloud Provider – matches ManagedAttributes which have a Cloud Access Manager group or (indirectly)a
+ Cloud Access Manager role with any ofthe given clouds set directly.
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Cloud Access Management Integration 16
+
+===== Page 20/25 =====
+Targeted Certifications Cloud Filtering
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Cloud Access Management Integration 17
+
+===== Page 21/25 =====
+Updating the CAMSync Service
+
+Updating the CAMSync Service
+
+
+This section provides information about the CAMSync service and the cloud access hints.
+CAMSync Service
+
+The cloud based search capability and cloud classifications rely on the new service CAMSync. The CAMSync service
+isresponsible for synchronizing Cloud Access Management data into IIQ toenhance searching and classifications.
+
+Ina multi-server deployment, synchronization with the Cloud Access Management willonly occur from the CAMSync
+service on one of the hosts. The active CAMSync service host willbe chosen automatically, and automatic failover is
+supported.
+
+As described in Configuration, the InitiateEvents button under Gear menu > Global Settings > Cloud Access Man-
+agement Configuration must be clicked once toinitiatethe flow from Cloud Access Management intoIdentityIQ via
+the CAMSync service. All data from Cloud Access Management willbe received, and futurechanges to the data will
+then arrive upon occurrence. However, for unusual circumstances, an additional click on the InititateEvents button
+can be done toforce a fullrefresh of alldata from Cloud Access Management again.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Cloud Access Management Integration 18
+
+===== Page 22/25 =====
+Troubleshooting
+
+Troubleshooting
+
+
+The following are acouple of errors thatmay appear depending on ifinformation was entered correctly.
+Wrong Hostname
+
+When configuring Cloud Access Management within Global Settings, iftheCloud Access Management hostname
+was entered incorrectly, the following errorwilldisplay when clickingthe cloud tab withinEdit Group.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Wrong Client ID
+
+When configuring Cloud Access Management within Global Settings, iftheCloud Access Management ClientID was
+entered incorrectly,the following error willdisplay when clicking thecloud tab within EditGroup.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Cloud Access Management Integration 19
+
+===== Page 23/25 =====
+Troubleshooting
+
+
+
+
+
+
+
+
+
+
+
+
+
+Additional Configuration Details
+
+The SystemConfiguration Configuration object contains the following key when Cloud Access Management is
+installed:
+
+
+
+ l <entry key="camEnabled" value="true"/>
+
+
+The CAMConfiguration Configuration object contains the following keys:
+
+ Key String Description
+
+ clientId string OAuth clientid
+ clientSecret string OAuth clientsecret (encrypted)
+ hostname string Cloud Access Management hostname
+ oauthHostname string OAuth access token hostname
+ Maximum time inseconds to wait fora con-
+ nection tosucceed to Cloud Access Man-
+ connectTimeoutSeconds integer agement APIs before failing.
+
+ default = 10
+ Maximum time inseconds to wait fora
+ response from Cloud Access Management
+ readTimeoutSeconds integer APIs before failing
+
+ default = 60
+ eventAcknowledgeEndpoint string default = /tqr/v1/messages/acknowledge
+ groupsEndpoint string default = /v1/resources/groups
+ messagesEndpoint string default = /tqr/v1/messages
+
+
+
+
+
+
+ SailPoint Cloud Access Management Integration 20
+
+===== Page 24/25 =====
+Troubleshooting
+
+
+ Key String Description
+
+ rolesEndpoint string default = /v1/resources/roles
+ scopesEndpoint string default = /v1/resources/scopes
+ servicesEndpoint string default = /v1/resources/services
+ subscribersEndpoint string default = /tqr/v1/subscribers
+ subscriptionsEndpoint string default = /tqr/v1/subscriptions
+ By default, AWS and Azure applications are
+ supportedAppTypes map supported.
+
+
+ Default offalse. Upon clicking the Event Ini-
+ tialization button, this is set to true. When
+ true, a CAMSync iteration willrequest an
+ doInitialization boolean event initialization(getting alldata). When
+ the event initialization request has com-
+ pleted (whether success or failure), this is
+ set back to false.
+ Default ofnull. The firsttime the CAMCon-
+ figBean is instantiated (i.e. -whenever the
+ eventGroupId string CAMConfiguration is queried or modified the
+ firsttime in Identity IQ), this is set to iiq_
+ <uuid>, where uuid isgenerated.
+ Default ofnull. Ifan error occurs during the
+ initializationError string initialization request, itisset in this field.A
+ non-null initializationError will display on the
+ CAM Configuration UI page.
+ initializationHost string Default ofnull. This isset to be the host that
+ requests an event initialization.
+ initializedDate date Default ofnull. This isset to the date of an
+ event initialization.
+
+Logging
+
+The following logs can be helpful to troubleshoot the Cloud Access Management integration:
+
+# CAMSync service top-level
+
+ logger.camsyncservice.name=sailpoint.server.CAMSyncService
+
+ logger.camsyncservice.level=debug
+
+
+
+
+ SailPoint Cloud Access Management Integration 21
+
+===== Page 25/25 =====
+Troubleshooting
+
+# Calls to Cloud Access Management APIs
+
+ logger.camservice.name=sailpoint.cam.CAMService
+
+ logger.camservice.level=info
+
+# CAMSync service event director
+
+ logger.cameventdir.name=sailpoint.cam.CAMEventDirector
+
+ logger.cameventdir.level=debug
+
+# CAMSync service event persistence
+
+ logger.cloudaccessorizer.name=sailpoint.cam.CloudAccessorizer
+
+ logger.cloudaccessorizer.level=debug
+
+# CAMSync service event listening
+
+ logger.camsynch.name=sailpoint.server.CAMSynchronizer
+
+ logger.camsynch.level=debug
+
+# Request CAM event data when creating new entitlements
+
+ logger.camstats.name=sailpoint.api.aggregation.CAMStatisticsCommand
+
+ logger.camstats.level=DEBUG
+
+# Filters to search for Cloud Access Management based entitlements
+
+ logger.camurisearch.name=sailpoint.search.CloudAccessUriFilterBuilder
+
+ logger.camurisearch.level=debug
+
+ logger.camdnsearch.name=sailpoint.search.CloudAccessDisplayNameFilterBuilder
+
+ logger.camdnsearch.level=debug
+Module Status
+
+The status of the Cloud Access Management integration can be viewed under Gear icon > Administrator Console >
+Environment > SailPoint Modules & Extensions, and then clickon the CAMServices name inthe list.
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Cloud Access Management Integration 22

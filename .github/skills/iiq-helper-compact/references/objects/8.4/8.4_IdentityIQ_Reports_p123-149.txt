@@ -1,0 +1,1639 @@
+﻿===== Page 123/149 =====
+Developing Custom Reports
+
+
+ <Reference class="sailpoint.object.Rule" id="4028460238ed9b8e0138ed9beff90900"
+name="MyReport Options Rule"/></OptionsRule>
+
+Java DataSource
+
+A Java datasource is the next most commonly used report datasource type. The XML to specify this isfairlysimple
+and straightforward; the java class itcallscan be as simple or as complex as isrequired to generate the desired report
+contents.
+
+The java datasource class must implement the sailpoint.reporting.datasource.JavaDataSource interface, as
+described in the IdentityIQ javadocs. This interface defines allthe methods that must be coded. Allattributes in the
+taskDefinition attribute map (including allinput attributes from the Signature) are passed to the Java class in an argu-
+ments map.
+
+The <DataSource> element inthe XML specifies these attributes:
+
+
+
+ DataSource Attrib- Usage
+ ute
+
+ dataSourceClass The fullyqualified java class name
+ objectType The primary object against which searches are performed in the java code
+ type Java (tellsthe report executor this isa Java Datasource)
+ defaultSort Optional field;sorts the returned data by the named fieldifno sort column is
+ specified through the UI or taskDefinition attributes map
+
+
+ Note:Â Many ofthe standard reports were written with a Java Datasource and several examples of
+ thissyntax are available. Most of the standard reports use a QueryParameters element to pass
+ data to the DataSource, which allowed the report writer to take advantage of the reportHelper
+ class in the reporting architecture to reuse existing code. However, this isnot strictlynecessary
+ and isnot commonly done in the field.Because the entire taskDefinition attributes map, including
+ allinput attributes from the <Signature>) ispassed to the java class inan arguments map, they
+ do not need to be specified as QueryParameters. The class can build the QueryOptions object
+ needed to retrieve the data without passing the values through QueryParameters.
+
+HQL DataSource
+
+An HQL datasource isused in rare circumstances but is available for implementers who need toexecute queries that
+hitHibernate directly.This should only be used when the report developer isvery knowledgeable about HQL. The
+HQL query must be custom written by the report developer.
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 119
+
+===== Page 124/149 =====
+Developing Custom Reports
+
+
+Likethe Filterdatasource, the HQL datasource can specify itsquery using these types ofnested elements: Query,
+QueryScript, and QueryParameters. The Query and QueryParameters elements function somewhat differentlyin an
+HQL datasource, though, so itisimportant tounderstand theway they are processed.
+
+The Account Group Membership Totals Report provides an example ofan HQL datasource.
+
+
+ <LiveReport title="Account Group Membership Totals Report">
+ Â Â Â <DataSource type="Hql">
+ Â Â Â Â Â Â <Query>from ManagedAttribute m where group=true</Query>
+ Â Â Â Â Â Â <QueryParameters>
+ Â Â Â Â Â Â Â Â Â Â <Parameter argument="application" property="application_id"/>
+ Â Â Â Â Â Â </QueryParameters>
+ Â Â Â Â Â Â <QueryScript>
+ Â Â Â Â Â Â Â Â Â <Source>
+ Â Â Â Â Â Â Â Â Â Â Â Â import java.util.*;
+
+ Â Â Â Â Â Â Â Â Â Â Â Â List applications = args.get("application.id");
+ Â Â Â Â Â Â Â Â Â Â Â Â if (applications != null &amp;&amp; !applications.isEmpty()){
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â query = query + " and application.id in(:application_id) ";
+ Â Â Â Â Â Â Â Â Â Â Â Â }
+ Â Â Â Â Â Â Â Â Â Â Â Â return query;
+
+ Â Â Â Â Â Â Â Â Â Â </Source>
+ Â Â Â Â Â Â </QueryScript>
+ Â Â Â </DataSource>
+ Â Â Â <Columns>
+ Â Â Â Â Â Â Â Â <ReportColumnConfig field="accountGroupName" header="rept_app_account_grp_memb_
+ col_name" property="value" sortable="true"/>
+ Â Â Â Â Â Â Â Â <ReportColumnConfig field="accountGroupDisplayName" header="rept_app_account_grp_
+ display_name" property="displayName" sortable="true"/>
+ Â Â Â Â Â Â Â Â <ReportColumnConfig field="application" header="rept_app_account_grp_memb_app"
+ property="application.name" sortable="true"/>
+ Â Â Â Â Â Â Â Â <ReportColumnConfig field="total" header="rept_app_account_grp_memb_col_members"
+ property="(select count(*) from IdentityEntitlement ie where ie.value = m.value and ie.ap-
+ plication = m.application and ie.name = m.attribute and ie.aggregationState = &apos;Con-
+ nected&apos;)"/>
+ Â Â Â </Columns>
+ </LiveReport>
+
+
+
+
+Inan HQL datasource, the<Query> element must specify theFrom clause forthe query. The objectType isnot
+required foran HQL datasource and is ignored ifitisprovided.
+
+ Query
+
+The Query element can also specify some orallof thewhere clause. As on a FilterDataSource, the Query element
+can specify any hard-coded attributeevaluations (i.e.no variable substitutionavailable) and multipleconditions can
+be specified withâ€œandâ€ or â€œorâ€relationships.
+
+ <Query>from ManagedAttribute m where group=true</Query>
+
+
+
+
+
+
+
+SailPoint IdentityIQ Reports 120
+
+===== Page 125/149 =====
+Developing Custom Reports
+
+ QueryScript
+
+The HQL DataSource <QueryScript> element works just likethe FilterDatasource QueryScript. Itcontains beanshell
+thatreturns a filterstring(appending tothe Query's string and returning the combined string value). However, the dif-
+ference inQueryParameter processing changes the way variables are processed inthe script. The queryScript has
+access to the task argument map (in itsâ€œargsâ€ variable), so conditional processing can be done on those arguments in
+determining how tobuild the filterstring.However, the contents of those variables do not need to be builtinto the
+actual query string inthe queryScript; they can be referenced as variable names that are passed to the search through
+QueryParameters. In an HQL datasource, the search is performed based on the query string builtin the query and
+queryScript elements; the parameters specified as QueryParameters are passed to the search method along with that
+query string and are substituted into the query where variable names are found.
+
+Inthe example below (from the Account Group Membership Totals Report), the QueryScript examines the applic-
+ation.idvalue from the args listand ifitisnon-null, itappends â€œand application.id in (:application_id) â€œÂ tothe query
+string.The QueryParameter application_id allows the listofapplications from the task argument listtobe substituted
+forthe :application_id variable inthat query string when the search isexecuted.
+
+
+ <QueryParameters>
+ Â Â Â Â <Parameter argument="application" property="application_id"/>
+ </QueryParameters>
+ <QueryScript>
+ Â Â Â Â <Source>
+ Â Â Â Â Â Â Â import java.util.*;
+
+ Â Â Â Â Â Â Â List applications = args.get("application.id");
+ Â Â Â Â Â Â Â if (applications != null &amp;&amp; !applications.isEmpty()){
+ Â Â Â Â Â Â Â Â Â Â // :application_id
+ Â Â Â Â Â Â Â Â Â Â query = query + " and application.id in(:application_id) ";
+ Â Â Â Â Â Â Â }
+ Â Â Â Â Â Â Â return query;
+
+ Â Â Â Â </Source>
+ </QueryScript>
+
+
+ QueryParameters
+
+As explained inthe QueryScript section above, the QueryParameters in an HQL datasource do not make up filtercom-
+ponents in theirown rightbut instead provide variables forsubstitution into the query string atthe time the search is
+executed.
+
+The Parameter elements within the QueryParameters for an HQL datasource is usually only specified with an argu-
+ment and a property. The property is the variable name used in the query string and the argument is the argument
+map key inwhich the value to be used in the search is stored. A defaultValue or a valueScript (as described in the Fil-
+terdatasource's QueryParameters section) can also be used to provide the value for the property, ifdesired. The Para-
+
+
+
+
+
+
+
+SailPoint IdentityIQ Reports 121
+
+===== Page 126/149 =====
+Developing Custom Reports
+
+
+meter's QueryScript option (which returns aQueryOptions object) cannot be used foran HQL datasource, as itdoes
+not provide a value for substitution;HQL datasources do not use a QueryOptions object in theirsearches.
+
+ ReportColumnConfigs
+
+Just as with the other report types, the ReportColumnConfigs within the report's <Columns> element specify the attrib-
+utes toretrieve from the query for display inthe report detailgrid -the â€œSelectâ€ portion of the query. The property attrib-
+utes name thefields toretrieve. The finalReportColumnConfig -the â€œtotalâ€column - inthe Account Group
+Membership Totals Report shows an example of how toinclude a sub query inthe HQL select clause. This provides
+additional levelsof flexibilityinreflectingdata on the report. A calculated fieldlikethiscannot be marked as sortable.
+
+
+ <ReportColumnConfig field="total" header="rept_app_account_grp_memb_col_members" prop-
+ erty="(select count(*) from IdentityEntitlement ie where ie.value = m.value and ie.ap-
+ plication = m.application and ie.name = m.attribute and ie.aggregationState =
+ &apos;Connected&apos;)"/>
+
+
+Columns/ReportColumnConfig: Report Grid Presentation
+
+The <ReportColumnConfig> elements within the <Columns> element specify which values should be returned from
+the query and also define how those values are presented inthe report grid.
+
+
+ <Columns>
+ <ReportColumnConfig field="username" header="rept_uncorrelated_ids_grid_username" prop-
+ erty="nativeIdentity" sortable="true" />
+
+ <ReportColumnConfig field="firstName" header="rept_uncorrelated_ids_grid_firstName" prop-
+ erty="identity.firstname" sortable="true" />
+
+ <ReportColumnConfig field="lastName" header="rept_uncorrelated_ids_grid_lastName" prop-
+ erty="identity.lastname" sortable="true" />
+
+ <ReportColumnConfig field="applicationName" header="rept_uncorrelated_ids_grid_appName"
+ property="application.name" sortable="true" />
+ Â </Columns>
+
+Attributes ofReportColumnConfig include:
+
+
+
+ Attribute Usage
+
+
+ field Unique name for thereport column inthis report
+ header Column label touse inthe report body; can be astring or a localizable message key
+ property Object property from which thedata ispulled; thisvalue isused inthe query spe-
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 122
+
+===== Page 127/149 =====
+Developing Custom Reports
+
+
+Attribute Usage
+
+
+ cification
+ Boolean value indicating whether the report body should be sortable by thiscolumn;
+sortable determines whether the column isselectable inthe Sort By and Group By fieldsin the
+ report specification and whether the report can be sorted by this column in preview
+ mode
+ Boolean value indicating whether the column should be omitted from the report grid by
+ default. Columns marked as hidden (hidden=â€trueâ€) appear inthe left-side ofthe
+ Columns liston the report template's Report Layout page, which makes them avail-
+hidden able forinclusion. However, by default they are not included on the report. Any report
+ instances that were configured todisplay these fields inthe report gridoverride this
+ hidden attribute by including the column name in theirreportColumnOrder attribute,
+ causing the column to appear in the report output regardless of thisattribute's value.
+ Optional property to use ifthe value ofthe object property isnullor empty;See Enti-
+ tlement Owner Access Review Live Report's accountName fieldforan example:
+
+
+ifEmpty <ReportColumnConfig field="accountName" header="rept_data_
+ owner_col_account_name" ifEmpty-
+ y="exceptionEntitlements.nativeIdentity" prop-
+ erty="exceptionEntitlements.displayName" sortable="true"
+ width="110"/>
+ Used formulti-valued properties to show the values as a listof comma-separated val-
+ ues instead ofmultiple rows in the report. Specifying a subQueryKey automatically
+ renders the column as a subquery that selects the property from the dataSource
+sub- objectType matching on the subsQueryKey attribute.An example exists in the Man-
+QueryK- ager Access Review Live Report's tags field:
+ey
+ <ReportColumnConfig field="tags" header="rept_cert_col_tags"
+ property="parent.certification.tags.name" subQueryKey="id"
+ width="110"/>
+ A set of fieldsby which the data should be sorted instead of sorting by the selected
+sortEx- column. This attribute allows a column that isnot sortable tosort the data by columns
+pres- related to the selected column.
+sion See the following example ofthe permission column on the Account Group Per-
+ missions Access Review Live Report.
+
+
+
+
+
+
+
+SailPoint IdentityIQ Reports 123
+
+===== Page 128/149 =====
+Developing Custom Reports
+
+
+Attribute Usage
+
+
+
+
+ <ReportColumnConfig field="permissions" header="rept_cert_col_
+ account_group_permission" prop-
+ erty-
+ ="e-
+ xcep-
+ tionEn-
+ title-
+ ments"sortEx-
+ pres-
+ sion-
+ ="e-
+ xcep-
+ tionAp-
+ plication,exceptionPermissionTarget,exceptionPermissionRight"
+ sortable="true" width="110">
+ <RenderScript>
+ <Source>
+ return sailpoint.api.EntitlementDescriber.summarize(value);
+ </Source>
+ </RenderScript>
+ </ReportColumnConfig>
+ A CSV listofadditionalpropertiestopass to a column's RenderScript; see the status
+ fieldfromthe PolicyViolationReport foran example. The renderScriptthen accesses
+ these values through itsscriptArgsvariable(as shown inthisexample).
+
+
+ <ReportColumnConfig field="status" header="rept_viol_grid_col_
+scriptAr- status" property="status" scriptAr-
+gument- guments="identity,policyName,constraintName,created" sort-
+s able="true" width="110">
+ <RenderScript>
+ <Source>
+ import sailpoint.object.*;
+ â€¦
+ String identityId = scriptArgs.get("identity").id;
+
+
+
+
+
+
+SailPointIdentityIQ Reports 124
+
+===== Page 129/149 =====
+Developing Custom Reports
+
+
+ Attribute Usage
+
+
+ â€¦
+ </Source>
+ </RenderScript>
+ valueCl- Defines the class for the property so itcan be displayed appropriately; omitted for
+ ass stringvalues
+ skipLoc- Indicate that the column contains reserved words thatshould not be translated.
+ alization Examples include Names orAccount names that could contain reserved keywords.
+
+Inthe standard reports, the only time the â€œhiddenâ€ attribute isused on a ReportColumnConfig iswhen the column is
+added to the available set by an ExtendedColumnScript or ExtendedColumnRule (as described inExtended Column
+Script or Rule). Generally, ifa column isrelevant toa report, itisdisplayed on the report by default, though itcan be
+removed from the detail gridby a user ifthey do not wish to see that data on theircustomized version of the report.
+
+ Strings and Java constants specified in ReportColumnConfig attributes are evaluated firstas
+ message keys for automatic localization;ifthey do not match a defined message key, the given
+ stringvalue is used.
+
+RenderScript and RenderRule
+
+Ifthe value returned from the query needs tobe manipulated into a more user-friendly format for display on the report,
+thiscan be accomplished with a RenderScript or RenderRule. A RenderRule isused to encapsulate the beanshell into
+a reusable rule -useful when the same manipulation might apply to several reports. A RenderScript specifies the bean-
+shellinline within a <Source> element. The column's property attribute ispassed into the script inthe variable â€œvalueâ€.
+
+This example RenderScript (taken from the Revocation Live Report) displays a different localized message key
+depending on whether the action.remediationCompleted flag istrue or false so that the report column shows an
+easier-to-interpret â€œStatusâ€ instead ofa True/False flag.
+
+
+ <ReportColumnConfig field="status" header="rept_remediation_progress_grid_col_status"
+ property="action.remediationCompleted" sortable="true" width="110">
+ Â Â Â <RenderScript>
+
+ Â Â Â Â Â Â <Source>
+
+ Â Â Â Â Â Â Â Â Â import sailpoint.tools.Message;
+
+ Â Â Â Â Â Â Â Â Â import sailpoint.web.messages.MessageKeys;
+
+ Â Â Â Â Â Â Â Â Â return value == true ? Message.localize(MessageKeys.WORK_ITEM_STATE_FINISHED) :
+ Message.localize(MessageKeys.WORK_ITEM_STATE_OPEN);
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 125
+
+===== Page 130/149 =====
+Developing Custom Reports
+
+
+
+ Â Â Â Â Â </Source>
+
+ Â Â Â Â Â Â Â Â Â </RenderScript>
+ </ReportColumnConfig>
+
+A RenderRule would be specified likethis:
+
+Rendered columns are sorted by the property attribute, not by the displayed value, so the order of rows might not
+appear alphabetical by the display value. At a minimum, sorting by the column groups allofthe rows with the same
+column value together. Some properties might not be sortable, such as a property that is an object. These columns
+should be marked as sortable="false" even though the displayed value might seem sortable. Alternatively, a sortEx-
+pression can be specified to drive data sorting for these columns.
+
+
+ <ReportColumnConfig field="status" header="rept_remediation_progress_grid_col_status"
+ property="action.remediationCompleted" sortable="true" width="110">
+ Â Â Â <RenderRule>
+ Â Â Â Â Â Â <Reference class="sailpoint.object.Rule" id="4028460238ed9b8e0138ed9bf61300de" name-
+ e="Status Message RenderRule"/>
+ Â Â Â </RenderRule>
+ </ReportColumnConfig>
+
+Initialization Script or Rule
+
+The initializationscriptand rule allow the report developer tocustomize a report toaddress an installation'sunique
+reporting requirements. These scripts/rules are fairlyopen-ended and should generally be considered tools forexpert-
+level report creation.
+
+Most often, initializationscripts and rules are used to customize the forms presented to the user for filterspecification.
+For example, several standard reports use an initializationrule to build dynamic forms topresent allofthe installation's
+configured Identity attributes - both standard and extended -as filteroptions on some forms. Another form cus-
+tomization usage might be to change the set offiltersavailable based on other filterselections; for example, a report
+might present a â€œprivilegedâ€ account filteroption only when the application selected forthe â€œApplicationâ€ filterhas priv-
+ileged accounts.
+
+For an overview of developing and using rules inIdentityIQ, see the IdentityIQ SystemÂ Administration guide.
+
+An InitializationScript isspecified inline within a <Source> element:
+
+
+ <InitializationScript>
+ Â Â Â <Source>
+ Â Â Â Â Â import sailpoint.object.*;
+ Â Â Â Â Â import sailpoint.reporting.ReportingLibrary;
+ Â Â Â Â Â â€¦ (initialization code goes here; see rule example below)
+ Â Â Â </Source></InitializationScript>
+
+An InitializationRule isspecified as a rule reference with the code encapsulated inthe named rule:
+
+
+
+
+ SailPoint IdentityIQ Reports 126
+
+===== Page 131/149 =====
+Developing Custom Reports
+
+
+
+ <InitializationRule>
+ Â Â Â Â <Reference class="sailpoint.object.Rule" id="4028460238ed9b8e0138ed9bf6130000" name-
+ e="Identity Report Form Customizer"/>
+ </InitializationRule>
+
+The ruleshown below isused inseveral of the standard reports (such as the User Detail Report and IdentityRoles
+Report) tocustomize a form based on the standard and extended Identityattributesconfigured for theinstallation.Sim-
+ilarrulesexisttocreate custom forms forother reports.
+
+
+ <Rule language="beanshell" type="ReportCustomizer" name="Identity Report Form Cus-
+ tomizer">
+ Â <Description>
+ Â Â Â Â This rule populates a form with fields for the standard and extended identity attrib-
+ utes.
+ Â Â </Description>
+ Â Â <Signature returnType="Map">
+ Â Â Â Â <Inputs>
+ Â Â Â Â Â Â <Argument name="locale">
+ Â Â Â Â Â Â Â Â <Description>
+ Â Â Â Â Â Â Â Â Â Â The current user's locale
+ Â Â Â Â Â Â Â Â </Description>
+ Â Â Â Â Â Â </Argument>
+ Â Â Â Â Â Â <Argument name="report">
+ Â Â Â Â Â Â Â Â <Description>
+ Â Â Â Â Â Â Â Â Â Â The base report
+ Â Â Â Â Â Â Â Â </Description>
+ Â Â Â Â Â Â </Argument>
+ Â Â Â Â </Inputs>
+ Â Â Â Â <Returns>
+
+ Â Â Â Â </Returns>
+ Â Â </Signature>
+ Â Â <Source>
+ Â Â Â Â Â <![CDATA[
+ Â Â Â Â Â import sailpoint.object.*;
+ Â Â Â Â Â import sailpoint.reporting.ReportingLibrary;
+
+ Â Â Â Â Â ObjectConfig identityConfig = ObjectConfig.getObjectConfig(Identity.class);
+ Â Â Â Â Â // Add standard attributes to the form
+
+ Â Â Â Â Â List standardAttributes = new ArrayList();
+ Â Â Â Â Â standardAttributes.add(identityConfig.getObjectAttributeMap().get("firstname"));
+ Â Â Â Â Â standardAttributes.add(identityConfig.getObjectAttributeMap().get("lastname"));
+ Â Â Â Â Â standardAttributes.add(identityConfig.getObjectAttributeMap().get("displayName"));
+ Â Â Â Â Â standardAttributes.add(identityConfig.getObjectAttributeMap().get("email"));
+ Â Â Â Â Â standardAttributes.add(identityConfig.getObjectAttributeMap().get("manager"));
+ Â Â Â Â Â standardAttributes.add(identityConfig.getObjectAttributeMap().get("inactive"));
+
+ Â Â Â Â Â ReportingLibrary.addAttributes(context, report, Identity.class, standardAttributes,
+ null, "Identity Attributes", locale);
+
+ Â Â Â Â Â // add extended attributes to the form (multi-valued and regular)
+
+
+
+
+
+
+SailPoint IdentityIQ Reports 127
+
+===== Page 132/149 =====
+Developing Custom Reports
+
+
+
+
+ Â Â Â Â Â List extendedAttrs = new ArrayList();
+ Â Â Â Â Â for(ObjectAttribute att : identityConfig.getSearchableAttributes()){
+ Â Â Â Â Â Â Â if (!att.isStandard())
+ Â Â Â Â Â Â Â Â Â extendedAttrs.add(att);
+ Â Â Â Â Â }
+
+ Â Â Â Â Â for(ObjectAttribute att : identityConfig.getMultiAttributeList()){
+ Â Â Â Â Â Â Â Â Â extendedAttrs.add(att);
+ Â Â Â Â Â }
+
+ Â Â Â Â Â ReportingLibrary.addAttributes(context, report, Identity.class, extendedAttrs, null,
+ "Identity Extended Attributes", locale);
+
+ Â Â Â Â ]]>
+ </Source>
+ </Rule>
+
+The methods in the ReportingLibrary (like the one used inthis example rule) are documented inthe IdentityIQ
+Javadocs. The addAttributes method, for example, does the following:
+
+ 1. Determines the form page where the attributes should be displayed (selects by section name, creates a new
+ page based on the section name ifnot found, or selects the firstpage after Standard Properties ifno section is
+ specified)
+
+ 2. Adds each attribute as an extended argument to the LiveReport object
+
+ 3. Adds each attribute to the datasource QueryParameters listas a Parameter
+
+ 4. Defines a Field object for each attribute and adds ittothe Section
+
+These methods can be used in custom report development, but note thatitis possible thatthey could change infuture
+versions of IdentityIQ, requiring those reports that relyon them to be revisited and modified. Alternatively, the code to
+add the attributes to the query parameters and form fieldslistcan be explicitlywritten by the datasource developer.
+
+ Note:Â When an initializationscript/rule isin place, ifany of the functionality depends on the value
+ of a specific form field,that field must be specified with the postBack attribute set to true
+ (postBack= "true"); thiscauses the form to submit and reload when that value changes, and
+ causes the initializationruleor script to execute again, picking up the new value forthe field.
+
+Signature Extended Arguments
+
+When the initializationscript or ruleadds new fieldsto a report form, the values must be saved forany report instance
+forwhich they were specified, and they must be passed to the report at runtime to be used as report filters.This is
+done by adding them as extended arguments in the report definition; from there, they are automatically stored in the
+report instance's argument map when the report instance's TaskDefinition issaved. Even though these arguments do
+
+
+
+
+
+ SailPoint IdentityIQ Reports 128
+
+===== Page 133/149 =====
+Developing Custom Reports
+
+
+not exist inthe report template's signature, they are generated at runtime by the initializationscriptand the values from
+the template's argument map are applied forthe report's execution.
+
+ Note:Â This only works for these initialization-generated attributes;allstatic form fieldsmust be
+ explicitlyspecified in the report template's signature for them to be used in the report generation.
+ Attributes that are included in the report instance's attribute map that do not exist in the report sig-
+ nature and are not generated by the initializationscriptor rule isnot applied to the report as filters
+ atruntime.
+
+Extended Column Script or Rule
+
+An extended column script or rulecan be used toadd additional columns toa form based on other attributes selected.
+For example, the script shown below adds application-attribute columns tothe setof available columns based on the
+application selected on the form (forexample, ifan application has aâ€œprivilegedâ€ orâ€œserviceâ€ account attribute, these
+can be optionally included in the report output when that application isselected as a filterforthe report while they
+would not be available ifa different application that did not have these attributes were selected). The exten-
+dedColumnScript or Rule should return a listofReportColumnConfig objects; these are automatically added tothe
+Columns listas â€œhiddenâ€ columns - available for inclusion on the report but not included in the report detail gridby
+default.
+
+This script comes from the User Account Attributes Report and isused to add columns tothe report output based on
+which application is selected as a filterforthe report.
+
+
+ <ExtendedColumnScript>
+ Â Â Â <Source>
+
+ Â Â Â import java.util.*;
+ Â Â Â import sailpoint.reporting.*;
+ Â Â Â import sailpoint.object.*;
+
+ Â Â Â List newCols = new ArrayList();
+ Â Â Â Map formValues = form.getFieldValues();
+ Â Â Â if (formValues != null &amp;&amp; formValues.containsKey("application") &amp;&amp;
+ formValues.get("application") != null){
+ Â Â Â Â Â Â Â newCols = ReportingLibrary.createApplicationAttributeColumns(context, formVal-
+ ues.get("application"));
+ Â Â Â }
+
+ Â Â Â return newCols;
+
+ Â Â Â </Source>
+ </ExtendedColumnScript>
+ An ExtendedColumnRule is specified as a rule reference with the code encapsulated in the
+ named rule:
+ <ExtendedColumnRule>
+ Â Â Â Â <Reference class="sailpoint.object.Rule" id="4028460238ed9b8e0138ed9bf6130000" name-
+ e="Application Extended Column Rule"/>
+ </ExtendedColumnRule>
+
+
+
+
+
+ SailPoint IdentityIQ Reports 129
+
+===== Page 134/149 =====
+Developing Custom Reports
+
+
+ Note:Â When an extended column script/ruleis inplace, the fieldon which itsfunctionality
+ depends must be specified with the postBack attribute set to true (postBack= "true");this causes
+ the form to submit and reload when that filterfield'sdata value changes, causing the Exten-
+ dedColumnRule to fireand detect the required condition fordisplaying the columns.
+
+When columns are added to the report as a result of thisrule, they firstappear as â€œhiddenâ€ columns - available for inclu-
+sion in the report output but not selected for it.While they are stillhidden, they are not saved in the report instance's
+XML but are regenerated as hidden columns by thisrule every time the report specification isedited. Once the user
+adds the columns to the report detail'scolumn list,the columns are saved inthe customized report instance's attrib-
+utes map inthe ReportColumnOrder element, prefixed with the associated application's ID; ifthe report islater edited
+toreference a different application, these columns are automatically deleted from the report.
+
+Validation Script or Rule
+
+A validation ruleor script isused tovalidate the data entered on a report form. For example, ifa value is required for a
+specific filterforthe report to run, that fieldcan be validated as being non-null by a ValidationRule or ValidationScript.
+
+A Validation script contains the code inline, wrapped in a <Source> element.
+
+
+ <ValidationScript>
+ Â Â Â Â <Source>
+ Â Â Â Â Â Â Â Â import java.util.*;
+ Â Â Â Â Â Â Â Â import sailpoint.reporting.*;
+ Â Â Â Â Â Â Â Â import sailpoint.object.*;
+ Â Â Â Â Â Â Â Â List messages = new ArrayList();
+ Â Â Â Â Â Â Â Â â€¦ (validation code goes here - see rule example below)
+ Â Â Â Â Â Â Â Â return messages;
+ Â Â Â Â </Source>
+ </ValidationScript>
+
+A validation Rule is called by reference:
+
+
+ <ValidationRule>
+ Â Â Â Â <Reference class="sailpoint.object.Rule" id="4028460238ed9b8e0138ed9bf61300ff" name-
+ e="Privileged Access Report Validation Rule"/>
+ </ValidationRule>
+
+This validation rule checks the field on the Privileged Account Attributes form for a null (orempty) value; the report
+requires that a value be specified forthis field,so an error message isdisplayed and the report does not run ifthisfield
+does not pass this validation. A validation scriptor rule returns a listofmessages; ifthe form passes validation, this list
+should be empty.
+
+
+ <Rule language="beanshell" type="ReportValidator" name="Privileged Access Report Val-
+ idation Rule">
+ Â Â Â <Description>
+
+
+
+
+
+ SailPoint IdentityIQ Reports 130
+
+===== Page 135/149 =====
+Developing Custom Reports
+
+
+
+ Â Â Â Â Â Â This rule validates the Privileged Access Report Form
+ Â Â Â Â </Description>
+ Â Â Â Â <Signature returnType="java.util.List">
+ Â Â Â Â Â Â <Inputs>
+ Â Â Â Â Â Â Â Â <Argument name="context">
+ Â Â Â Â Â Â Â Â Â Â <Description>
+ Â Â Â Â Â Â Â Â Â Â Â Â A sailpoint.api.SailPointContext object that can be used to query the data-
+ base if necessary.
+ Â Â Â Â Â Â Â Â Â Â </Description>
+ Â Â Â Â Â Â Â Â </Argument>
+ Â Â Â Â Â Â Â Â <Argument name="report">
+ Â Â Â Â Â Â Â Â Â Â <Description>
+ Â Â Â Â Â Â Â Â Â Â Â Â The report object
+ Â Â Â Â Â Â Â Â Â Â </Description>
+ Â Â Â Â Â Â Â Â </Argument>
+ Â Â Â Â Â Â Â Â <Argument name="form">
+ Â Â Â Â Â Â Â Â Â Â <Description>
+ Â Â Â Â Â Â Â Â Â Â Â Â The submitted sailpoint Form object.
+ Â Â Â Â Â Â Â Â Â Â </Description>
+ Â Â Â Â Â Â Â Â </Argument>
+ Â Â Â Â Â Â </Inputs>
+ Â Â Â Â Â Â <Returns>
+ Â Â Â Â Â Â Â Â <Argument name="messages">
+ Â Â Â Â Â Â Â Â Â Â <Description>
+ Â Â Â Â Â Â Â Â Â Â Â Â A list of error messages.
+ Â Â Â Â Â Â Â Â Â Â </Description>
+ Â Â Â Â Â Â Â Â </Argument>
+ Â Â Â Â Â Â </Returns>
+ Â Â Â Â </Signature>
+ Â Â Â Â <Source>
+ Â Â Â Â Â Â <![CDATA[
+ Â Â Â Â Â Â Â import java.util.*;
+ Â Â Â Â Â Â Â import sailpoint.object.*;
+ Â Â Â Â Â Â Â import sailpoint.tools.Message;
+ Â Â Â Â Â Â Â List messages = new ArrayList();
+
+ Â Â Â Â Â Â Â Form.Section section = form.getSection("Priviledged Account Attributes");
+ Â Â Â Â Â Â Â boolean found = false;
+ Â Â Â Â Â Â Â for(FormItem item : section.getItems()){
+ Â Â Â Â Â Â Â Â Â Field field = (Field)item;
+ Â Â Â Â Â Â Â Â Â if(field.getValue() != null && field.getValue() != "") {
+ Â Â Â Â Â Â Â Â Â Â Â found = true;
+ Â Â Â Â Â Â Â Â Â }
+ Â Â Â Â Â Â Â }
+
+ Â Â Â Â Â Â Â if (!found)
+ Â Â Â Â Â Â Â Â Â Â Â Â messages.add(Message.localize("rept_priv_access_err_no_attr"));
+
+ Â Â Â Â Â Â Â return messages;
+ Â Â Â Â Â Â ]]>
+ Â Â </Source>
+ </Rule>
+
+
+
+
+
+
+
+
+SailPoint IdentityIQReports 131
+
+===== Page 136/149 =====
+Developing Custom Reports
+
+ReportSummary: Summary Table
+
+The <ReportSummary> element describes the summary table inthe summary section of the report.
+
+The table header isspecified inthe titleattribute.
+
+<ReportSummary title="Uncorrelated Account Details">
+
+The report summary has itsown datasource; itdoes not use the same datasource as the report detail grid.The data-
+source forthe report summary can be specified as a scriptor a rule. A scriptis most commonly used, but the data-
+source beanshell can be encapsulated in a rule forreusability ifdesired. Both are expressed as nested elements
+(<DataSourceScript> or<DataSourceRule>).
+
+The DataSourceScript or DataSourceRule forthe ReportSummary ispassed these parameters:
+
+
+
+ DataSourceScript or Contents/Purpose
+ Rule Parameters
+
+ Context A SailPoint Context object for executing the search
+ reportArgs The TaskDefinition argument/attribute map
+ Report The entire LiveReport report definition
+ The from and where clause used in the report detail search ifthe report
+ baseHql DataSource was an HQL datasource; nullifDataSource type was not
+ HQL
+ The QueryOptions (specifying the â€œwhereâ€ clause criteria)used in the
+ baseQueryOptions report detail search ifthe report DataSource was a Filterdatasource; null
+ ifDatasource type was not Filter
+
+The summary table is usually builtfrom data retrieved through one or more database queries that are specified and
+executed by the scriptor rule through the context (SailPointContext object), passing ita QueryOptions object pop-
+ulated with the necessary Filterobjects. The example here illustrateshow this isdone.
+
+
+ <ReportSummary title="Uncorrelated Account Details">
+ Â Â Â Â <DataSourceScript>
+ Â Â Â Â Â Â Â <Source>
+
+ Â Â Â Â Â Â Â Â Â Â import java.util.*;
+ Â Â Â Â Â Â Â Â Â Â import sailpoint.tools.Util;
+ Â Â Â Â Â Â Â Â Â Â import java.lang.Math;
+ Â Â Â Â Â Â Â Â Â Â import sailpoint.object.*;
+ Â Â Â Â Â Â Â Â Â Â import sailpoint.api.ObjectUtil;
+
+ Â Â Â Â Â Â Â Â Â Â QueryOptions ops = new QueryOptions();
+ Â Â Â Â Â Â Â Â Â Â ops.addGroupBy("correlated");
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 132
+
+===== Page 137/149 =====
+Developing Custom Reports
+
+
+
+
+ Â Â Â Â Â Â Â Â Â Â String sources = "";
+ Â Â Â Â Â Â Â Â Â Â // retrieve list of apps in reportArgs argument map; add IDs to
+ Â Â Â Â Â Â Â Â Â Â // filter and names to CSV list to display as summary's "Sources" value
+ Â Â Â Â Â Â Â Â Â Â if (reportArgs.containsKey("correlatedApps")){
+ Â Â Â Â Â Â Â Â Â Â Â Â Â List apps = reportArgs.getList("correlatedApps");
+ Â Â Â Â Â Â Â Â Â Â Â Â Â if (apps != null){
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â ops.addFilter(Filter.in("links.application.id", apps));
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â List appNames = ObjectUtil.convertIdsToNames(context, Application.class,
+ apps);
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â sources = Util.listToCsv(appNames);
+ Â Â Â Â Â Â Â Â Â Â Â Â Â }
+ Â Â Â Â Â Â Â Â Â Â }
+
+ Â Â Â Â Â Â Â Â Â Â List fields = new ArrayList();
+ Â Â Â Â Â Â Â Â Â Â fields.add("correlated");
+ Â Â Â Â Â Â Â Â Â Â fields.add("count(*)");
+
+ Â Â Â Â Â Â Â Â Â Â int correlated = 0;
+ Â Â Â Â Â Â Â Â Â Â int uncorrelated = 0;
+
+ Â Â Â Â Â Â Â Â Â Â // get counts per Identity with links on the named applications,
+ Â Â Â Â Â Â Â Â Â Â // subdivided by "correlated" flag
+ Â Â Â Â Â Â Â Â Â Â Iterator results = context.search(Identity.class, ops, fields);
+ Â Â Â Â Â Â Â Â Â Â while(results.hasNext()){
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Object[] row = results.next();
+ Â Â Â Â Â Â Â Â Â Â Â Â Â int count = Util.otoi(row[1]);
+
+ Â Â Â Â Â Â Â Â Â Â Â Â Â // add counts to correlated or uncorrelated totals based on correlated
+ Â Â Â Â Â Â Â Â Â Â Â Â Â // flag
+ Â Â Â Â Â Â Â Â Â Â Â Â Â if ((Boolean)row[0]){
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â correlated += count;
+ Â Â Â Â Â Â Â Â Â Â Â Â Â } else {
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â uncorrelated += count;
+ Â Â Â Â Â Â Â Â Â Â Â Â Â }
+ Â Â Â Â Â Â Â Â Â Â }
+ Â Â Â Â Â Â Â Â Â Â // calculate percentage of accounts that are correlated
+ Â Â Â Â Â Â Â Â Â Â float percent =Â Â correlated != 0 ? (float)uncorrelated/correlated : 0;
+ Â Â Â Â Â Â Â Â Â Â String percentString = ((int)Math.floor(percent * 100)) +Â Â "%";
+
+ Â Â Â Â Â Â Â Â Â Â // add values to hashmap; these name/value pairs are displayed in the
+ Â Â Â Â Â Â Â Â Â Â // report summary through the XML's LiveReportSummaryValue elements
+ Â Â Â Â Â Â Â Â Â Â Map map = new HashMap();
+ Â Â Â Â Â Â Â Â Â Â map.put("sources", sources);
+ Â Â Â Â Â Â Â Â Â Â map.put("correlatedIdentities", correlated);
+ Â Â Â Â Â Â Â Â Â Â map.put("uncorrelatedIdentities", uncorrelated);
+ Â Â Â Â Â Â Â Â Â Â map.put("totalIdentities", correlated + uncorrelated);
+ Â Â Â Â Â Â Â Â Â Â map.put("percentCorrelated", percentString);
+
+ Â Â Â Â Â Â Â Â Â Â return map;
+
+ Â Â Â Â Â Â Â </Source>
+ Â Â Â Â </DataSourceScript>
+
+A datasource rule would be specified as a nested element (<DataSourceRule>) that contains arule reference.
+
+
+
+
+SailPoint IdentityIQReports 133
+
+===== Page 138/149 =====
+Developing Custom Reports
+
+
+
+ <DataSourceRule>
+ <Reference class="sailpoint.object.Rule" id="4028460238ed9b8e0138ed9beff9090f" name-
+ e="UncorrelatedAcct Report Summary Rule"/>
+ </DataSourceRule>
+
+The datasource scriptor rulereturns a hashMap of values that are used topopulate the corresponding LiveRe-
+portSummaryValue elements (based on theirname attributes)inthe ReportSummary's Values list.The LiveRe-
+portSummaryValue elements each include a unique name and alabel attribute.The labelcan be specified as a string
+ora localizable message key and isdisplayed alongside the value inthe Report's summary section.<ReportSum-
+mary title="Uncorrelated Account Details">
+
+
+
+
+ Â Â Â Â <DataSourceScript>
+ Â Â Â Â Â Â Â <Source>
+ Â Â Â Â Â Â Â Â Â Â â€¦
+ Â Â Â Â Â Â Â Â Â Â Map map = new HashMap();
+ Â Â Â Â Â Â Â Â Â Â map.put("sources", sources);
+ Â Â Â Â Â Â Â Â Â Â map.put("correlatedIdentities", correlated);
+ Â Â Â Â Â Â Â Â Â Â map.put("uncorrelatedIdentities", uncorrelated);
+ Â Â Â Â Â Â Â Â Â Â map.put("totalIdentities", correlated + uncorrelated);
+ Â Â Â Â Â Â Â Â Â Â map.put("percentCorrelated", percentString);
+
+ Â Â Â Â Â Â Â Â Â Â return map;
+ Â Â Â Â Â Â Â </Source>
+ Â Â Â Â </DataSourceScript>
+ Â Â Â Â <Values>
+ Â Â Â Â Â Â Â <LiveReportSummaryValue label="rept_uncorrelated_ids_grid_label_auth_sources" name-
+ e="sources"/>
+ Â Â Â Â Â Â Â <LiveReportSummaryValue label="rept_uncorrelated_ids_summary_correlated" name-
+ e="correlatedIdentities"/>
+ Â Â Â Â Â Â Â <LiveReportSummaryValue label="rept_uncorrelated_ids_summary_uncorrelated" name-
+ e="uncorrelatedIdentities"/>
+ Â Â Â Â Â Â Â <LiveReportSummaryValue label="rept_uncorrelated_ids_summary_total_ids" name-
+ e="totalIdentities"/>
+ Â Â Â Â Â Â Â <LiveReportSummaryValue label="rept_uncorrelated_ids_summary_percent" name-
+ e="percentCorrelated"/>
+ Â Â Â Â </Values>
+ </ReportSummary>
+
+Chart: Report Graph
+
+The Chart element defines the graph thatisdisplayed inthe Summary section of the report.The chart can be rep-
+resented as apie chart or as a column or linegraph. The chart data isbased on the dataset forthe report detailgrid
+(theDataSource element) unless a DataSourceRule or Scriptisspecified for the chart.Commonly, the chart rep-
+resents the report body's data, grouped and counted by groupings (i.e.â€œvalueâ€is a count, grouped by the category
+and/or series).
+
+Attributesavailable to define the chart are listedinthistable:
+
+
+
+
+ SailPoint IdentityIQReports 134
+
+===== Page 139/149 =====
+Developing Custom Reports
+
+
+
+
+ Attribute Usage
+
+ title Name to display above the chart
+ type Identifies the type of chart to display (pie, column, or line)
+ category Defines the X axis in line or column graphs; defines the separate sections of
+ a pie graph
+ value Defines the Y axis in line or column graphs; defines the portion (fraction) of
+ the pie that belongs to each section in a pie graph; often a count
+ series Defines the separate columns or lines on lineor column graphs; ignored for
+ pie charts
+ groupBy String value of column name (or CSV listof column names) to group data by
+ for graphing counts
+ sortBy List of sort columns fordata; seldom used since groupBy can specify mul-
+ tiple fields in a CSV list
+ Limits the number of records examined forthe graph; seldom used, unless a
+ limit similar limitwas imposed on the report detail data, because the graph
+ should generally represent all ofthe data inthe report detail
+ script Used to define a datasource for the chart other than the report detail data;
+ script contains a <Source> element with BeanShell content
+ dataSourceRule Used to define a datasource for the chart other than the report details data;
+ contains a reference to a rule where the BeanShell has been encapsulated
+ Label todisplay ifthe series value (x-axis) isnull (for example, a null cer-
+ nullSeries tification action status means "Open" so that should be the label for the
+ group of certifications whose action.status is null)
+ nullCategory Label todisplay for data group when the category value is null
+
+Inmost cases, the chart iscreated by selecting the value, category, and series fields from the object queried by the
+report detail datasource using the exact same filtercriteria used by that datasource. The table below describes how
+the chart data is retrieved by default (when a dataSourceRule or Script are not specified forthe chart).
+
+
+
+ Report Detail
+ DataSource Default Chart Query
+ Type
+
+ Filter DataSource's objectType object is queried using the queryOptions built from the
+ DataSource Query, QueryScript, and QueryParameters elements
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 135
+
+===== Page 140/149 =====
+Developing Custom Reports
+
+
+ Report Detail
+ DataSource Default Chart Query
+ Type
+
+ Requires the DataSource class tohave implemented the getBaseQueryOptions
+ method; this method should return the QueryOptions used in the report detail
+ Java query; also requires that the objectType isspecified on the DataSource;
+ retrieves the data for the chart from the objectType object using the QueryOp-
+ tions returned by getBaseQueryOptions()
+ HQL Uses the same query stringemployed by the report detail query, which specifies
+ both the From and the Where clauses, to retrieve the chart's data
+
+Standard Chart Examples
+
+This example pie chart from the Uncorrelated Accounts Report examines the uncorrelated account data pulled from
+Links, groups itby application.id and counts the number ofuncorrelated accounts on each application. The graph rep-
+resents the number ofuncorrelated accounts from each application (in thiscase, one uncorrelated account was found
+per application).
+
+
+ <Chart category="application.name" groupBy="application.id" title="rept_uncorrelated_ids_
+ chart_title" type="pie" value="count(*)"/>
+
+The Manager Access Review Report contains an example of a Column graph that shows the count of certification
+items that are open, approved, or revoked (reflected inthe action.status attribute),separated by roles and additional
+entitlements ifapplicable (reflected inthe type attribute).
+
+
+ <Chart category="type" groupBy="action.status,type" nullSeries="cert_action_open" series-
+ s="action.status" title="rept_cert_chart_title" type="column" value="count(*)"/>
+
+
+Chart Script and DataSourceRule
+
+The scriptand dataSourceRule elements can provide the report writer more flexibilityincreating charts based on any
+data. However, these are generally used only in rare cases in custom reports. The standard reports do not use a
+Script or DataSourceRule fortheir charts.
+
+When either ofthese is used, the BeanShell within them isprovided the following parameters:
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 136
+
+===== Page 141/149 =====
+Developing Custom Reports
+
+
+ DataSourceRule or Contents/Purpose
+ Script Parameters
+
+ context A SailPoint Context forexecuting the search
+ args The TaskDefinition Arguments map
+ report The entire LiveReport report definition
+ The from and where clause used in the report detailsearch ifthereport
+ baseHql DataSource was an HQL datasource; null ifDataSource type was not
+ HQL
+ The QueryOptions (specifying the â€œwhereâ€ clause criteria)used in the
+ baseQueryOptions report detail search ifthe report DataSource was a Filterdatasource; null
+ ifDatasource type was not Filter
+
+The code must return a listofmaps (List<Map<String, Object>>) with each map representing the value, category, and
+series foreach component of the chart. Ifthere isno series, the â€œseriesâ€ should be recorded as empty string ("")rather
+than null.
+
+For example:
+
+ {[("value","23"), ("category","ADAM"),("series","")],
+
+ [("value","5"), ("category","Financials"),("series","")],
+
+ [("value","12"), ("category","PeopleSoft"),("series","")]}
+
+The ruleor script can add onto the existing criteriafrom the report detail'sDataSource by modifying the baseHql or
+baseQueryOptions or itcan build the chart data with completely independent criteria.The BeanShell is responsible for
+specifying the desired columns and search criteria,executing the database search toretrieve the data, formatting the
+data into the listofmaps, and returning thatlist.
+Report Forms
+
+The layouts and contents ofreport-specific form pages are specified within a Form object,referenced by the report
+XML in a <ReportForm> element, nested within the <LiveReport> report definition.The Form object must be created
+and imported intoIdentityIQ separately and is referenced by name.
+
+Each <Section> defines a separate page on the Edit Report window. The page name, shown inthe Sections listand at
+the top ofthe form, isspecified as the Section's label attribute.
+
+
+ Â Â Â <Form name="Uncorrelated Accounts Report Custom Fields">
+ Â Â Â Â Â Â <Section label="Uncorrelated Accounts Parameters" name="customProperties">
+ <Field displayName="report_input_correlated_apps" filterString="logical==false &amp;&amp;
+ authoritative==false" helpKey="rept_input_uncorrelated_ident_report_correlated_apps" name-
+ e="correlatedApps" type="Application" value="ref:correlatedApps"/>
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 137
+
+===== Page 142/149 =====
+Developing Custom Reports
+
+
+
+ Â Â Â Â Â Â </Section>
+ Â Â Â Â </Form>
+
+Reports with large numbers ofavailable parameters often include multiple report-specific-parameter pages, specified
+as multiple Sections inthe Form XML, togroup the parameters by category.
+
+
+ Â <Form name="Identity Report Options Form Skeleton">
+ Â Â Â Â <Section columns="2" label="rept_priv_access_section_priv_account_attrs" name-
+ e="Priviledged Account Attributes">
+ Â Â Â Â Â Â Â <Attributes>
+ Â Â Â Â Â Â Â Â Â Â <Map>
+ Â Â Â Â Â Â Â Â Â Â Â Â <entry key="subtitle" value="rept_priv_access_section_instructions"/>
+ Â Â Â Â Â Â Â Â Â Â </Map>
+ Â Â Â Â Â Â Â </Attributes>
+ Â Â Â Â Â </Section>
+ Â Â Â Â <Section columns="2" label="rept_priv_access_section_account_props" name="Account
+ Properties">
+ Â Â Â Â Â Â Â Â <Field columnSpan="1" displayName="rept_identity_roles_field_app" helpKey="rept_
+ identity_roles_helpN_app" multi="true" name="applications" type="Application" value-
+ e="ref:applications"/>
+ Â Â Â Â </Section>
+ Â Â Â Â <Section columns="2" label="rept_priv_access_section_identity_props" name="Identity
+ Properties"/>
+ Â Â Â Â <Section columns="2" label="rept_priv_access_section_identity_extended_props" name-
+ e="Identity Extended Properties"/>
+ </Form>
+
+
+ Several of the sections in thisexample XML do not contain any Field definitions.This isbecause
+ thisreport uses an initializationruleto create the form fieldsfor those sections based on system
+ data. See InitializationScriptor Rule formore information on these dynamic forms.
+
+These are the attributes thatcan be specified for the Section element.
+
+
+
+ Section Usage
+ Attribute
+
+ label The label forthe form; can be a string or a localizable message key
+ name Name forthe section; must be unique per form; used programmatically but notdis-
+ played on the UI EditReport window
+ Used tospecify the number of columns inwhich fieldsshould be displayed; fields
+ are displayed inthe order they are listedwithin the section, with one fieldadded to
+ Columns each column ina repeating pattern; forexample, ina 2-column layout, 5 fields
+ would be displayed likethis:
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Reports 138
+
+===== Page 143/149 =====
+Developing Custom Reports
+
+
+ Section Usage
+ Attribute
+
+ Field 1 Field 2
+ Field 3 Field 4
+ Field 5
+
+
+ This attribute can be omitted for a one-column display.
+
+Fields on each form are specified as nested <Field> elements within each <Section>. Important report-form attributes
+on the Field element are described below.
+
+
+ Field displayName="report_input_correlated_apps"
+
+ filterString="logical==false &amp;&amp; authoritative==false" helpKey="rept_input_uncor-
+ related_ident_report_correlated_apps" name="correlatedApps" type="Application" value-
+ e="ref:correlatedApps"/>
+
+
+
+
+ Field Attribute Usage
+
+ displayName The label for the field.Can be a string or a localizable message key.
+ helpKey The tool tipfor the field.Can be a string or a localizable message
+ key.
+ name Name forthe field and must be unique per form.
+ Field type. If thisentry isan object, itisautomatically created as a
+ type suggest, allowing the user to select from the system's existing
+ objects of that type.
+ A filterstring that restrictsthe set ofobjects presented to the user for
+ filterString selection. Only applies to objects that are presented as suggest
+ boxes.
+ A reference to the XML input parameter from which to retrieve the
+ starting /default value forthe field. This ishow the saved values in
+ customized report instances are populated on the form when those
+ value instances are viewed inthe Edit Report window. Input parameters to
+ the TaskDefinition XML are specified in itssignature, as described
+ in Report Signature: Passing Data from Saved Report Instances
+ below.
+ postBack A flag indicating ifthe form should be submitted when the fieldvalue
+ changes.This causes the form to be reloaded and any initialization
+
+
+
+
+
+SailPoint IdentityIQ Reports 139
+
+===== Page 144/149 =====
+Developing Custom Reports
+
+
+ FieldAttribute Usage
+
+ actions tobe performed. This flag isimportant ifan ini-
+ tializationScriptor Rule oran ExtendedColumnScript or Rule needs
+ to run to add or remove fieldson the form or columns on thereport
+ based on thisfieldvalue.
+ This is specified as a nested element to provide a listofvalues from
+ which the form user can select. See the User ActivityReport foran
+ example (excerpted below).
+
+
+ <Field columnSpan="1" displayName="label_action"
+ helpKey="rept_input_app_activity_report_action"
+ multi="true" name="action" type="string" value-
+ e="ref:action">
+
+ <AllowedValuesDefinition>
+
+ <Script>
+
+ <Source>
+
+ import sailpoint.object.*;
+
+
+ AllowedValuesDefinition
+ List items = new ArrayList();
+
+ for(ApplicationActivity.Action action : Applic-
+ ationActivity.Action.values()) {
+
+ List l2 = new ArrayList();
+
+ l2.add(action.toString());
+
+ l2.add(action.getMessageKey());
+
+ items.add(l2);
+
+ }
+
+ return items;
+
+ </Source>
+
+ </Script>
+
+ </AllowedValuesDefinition>
+
+
+Custom report forms are presented tousers inthe Edit Report window, along with the Standard Properties page and
+theReport Layout page. The Standard Properties and Report Layout pages are standard components of the report
+architecture and are automatically presented for any standard or custom report that implements the LiveReport archi-
+tecture,whether ornot the report references a custom form for report-specific parameters. The Standard Properties
+
+
+
+
+SailPoint IdentityIQ Reports 140
+
+===== Page 145/149 =====
+Developing Custom Reports
+
+
+page isalways presented firstand the Report Layout page isalways last;report-specific form pages are inserted
+between these two on the Edit Report window.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Reports 141
+
+===== Page 146/149 =====
+Reports DataSource Example
+
+Reports DataSource Example
+
+
+The following sample report uses a Java data source. This sample displays Identities'name, display name, and man-
+ager statusand can be filteredbythe manager towhom theIdentitiesreport and applications on which the Identities
+have accounts. Both ofthese filtersaremulti-selectable.
+
+ Java data source example:
+
+
+ <TaskDefinition name="Sample Report" executor="sailpoint.reporting.LiveReportExecutor"
+ Â Â subType="Identity Reports" resultAction="Rename"
+ Â Â progressMode="Percentage" template="true" type="LiveReport">
+ Â Â Â <Description>Sample report</Description>
+ Â Â Â <RequiredRights>
+ Â Â Â Â Â Â Â <Reference class="sailpoint.object.SPRight"
+ Â Â Â Â Â Â Â Â Â name="FullAccessBusinessRoleMembershipReport"/>
+ Â Â Â </RequiredRights>
+ Â Â Â <Attributes>
+ Â Â Â Â Â Â <Map>
+ Â Â Â Â Â Â Â Â <entry key="report">
+ Â Â Â Â Â Â Â Â Â Â Â <value>
+ Â Â Â Â Â Â Â Â Â Â Â Â Â <LiveReport title="Manager Status Report">
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â <DataSource type="Java"
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â dataSourceClass="sailpoint.reporting.datasource.SampleDataSource"
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â defaultSort="name">
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â <QueryParameters>
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â <Parameter argument="applications"
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â property="links.application.id"/>
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â <Parameter argument="managers" property="manager.id"/>
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â </QueryParameters>
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â </DataSource>
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â <Columns>
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â <ReportColumnConfig field="name" header="Identity Name" property="name"
+ sortable="true"/>
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â <ReportColumnConfig field="displayName" header="Display Name" sort-
+ able="true"/>
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â <ReportColumnConfig field="managerStatus" header="Is Manager" prop-
+ erty="managerStatus" sortable="true"/>
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â </Columns>
+ Â Â Â Â Â Â Â Â Â Â Â Â Â </LiveReport>
+ Â Â Â Â Â Â Â Â Â Â Â </value>
+ Â Â Â Â Â Â Â Â </entry>
+ Â Â Â Â Â Â </Map>
+ Â Â Â </Attributes>
+ Â Â Â <Signature>
+ Â Â Â Â Â Â Â <Inputs>
+ Â Â Â Â Â Â Â Â Â Â <Argument multi="true" name="applications" type="Application"/>
+ Â Â Â Â Â Â Â Â Â Â <Argument multi="true" name="managers" type="Identity"/>
+ Â Â Â Â Â Â Â </Inputs>
+ Â Â Â </Signature>
+ </TaskDefinition>
+
+
+
+
+
+
+ SailPointIdentityIQReports 142
+
+===== Page 147/149 =====
+Reports DataSource Example
+
+
+ThisJava datasource buildsand runs the query for thisreportbased on the filterstheuserspecifies.
+
+ SampleDataSource.java
+
+
+ /* (c) Copyright 2012 SailPoint Technologies, Inc., All Rights Reserved. */
+ package sailpoint.reporting.datasource;
+
+ import net.sf.jasperreports.engine.JRException;
+ import net.sf.jasperreports.engine.JRField;
+ import sailpoint.api.sailpointContext;
+ import sailpoint.object.Attributes;
+ import sailpoint.object.Filter;
+ import sailpoint.object.Identity;
+ import sailpoint.object.LiveReport;
+ import sailpoint.object.QueryOptions;
+ import sailpoint.object.Sort;
+ import sailpoint.task.Monitor;
+ import sailpoint.tools.GeneralException;
+ import sailpoint.tools.Util;
+
+ import java.util.Arrays;
+ import java.util.Iterator;
+ import java.util.List;
+
+ public class SampleDataSource implements JavaDataSource {
+
+ Â Â Â Â private Monitor monitor;
+
+ Â Â Â Â private sailpointContext context;
+ Â Â Â Â private QueryOptions baseQueryOptions;
+ Â Â Â Â private Integer startRow;
+ Â Â Â Â private Integer pageSize;
+
+ Â Â Â Â private Object[] currentRow;
+ Â Â Â Â private Iterator<Object[]> iterator;
+
+ Â Â Â Â public void initialize(sailpointContext context, LiveReport report, Attrib-
+ utes<String, Object> arguments, String groupBy, List<Sort> sort) throws GeneralException
+ {
+ Â Â Â Â Â Â Â Â this.context = context;
+
+ Â Â Â Â Â Â Â Â baseQueryOptions = new QueryOptions();
+
+ Â Â Â Â Â Â Â Â if (arguments.containsKey("applications")){
+ Â Â Â Â Â Â Â Â Â Â Â Â List<String> applicationIds = arguments.getList("applications");
+ Â Â Â Â Â Â Â Â Â Â Â Â baseQueryOptions.add(Filter.in("links.application.id", applicationIds));
+ Â Â Â Â Â Â Â Â }
+
+ Â Â Â Â Â Â Â Â if (arguments.containsKey("managers")){
+ Â Â Â Â Â Â Â Â Â Â Â Â List<String> managersIds = arguments.getList("managers");
+ Â Â Â Â Â Â Â Â Â Â Â Â baseQueryOptions.add(Filter.in("manager.id", managersIds));
+ Â Â Â Â Â Â Â Â }
+
+ Â Â Â Â Â Â Â Â if (sort != null){
+
+
+
+
+
+
+SailPoint IdentityIQReports 143
+
+===== Page 148/149 =====
+Reports DataSource Example
+
+
+
+ Â Â Â Â Â Â Â Â Â Â Â Â for(Sort sortItem : sort) {
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â baseQueryOptions.addOrdering(sortItem.getField(), sortItem.isAscending
+ ());
+ Â Â Â Â Â Â Â Â Â Â Â Â }
+ Â Â Â Â Â Â Â Â }
+
+ Â Â Â Â Â Â Â Â if (groupBy != null)
+ Â Â Â Â Â Â Â Â Â Â Â Â baseQueryOptions.setGroupBys(Arrays.asList(groupBy));
+ Â Â Â Â }
+
+ Â Â Â Â private void prepare() throws GeneralException{
+ Â Â Â Â Â Â Â Â QueryOptions ops = new QueryOptions(baseQueryOptions);
+
+ Â Â Â Â Â Â Â Â if (startRow != null && startRow > 0){
+ Â Â Â Â Â Â Â Â Â Â Â Â ops.setFirstRow(startRow);
+ Â Â Â Â Â Â Â Â }
+
+ Â Â Â Â Â Â Â Â if (pageSize != null && pageSize > 0){
+ Â Â Â Â Â Â Â Â Â Â Â Â ops.setResultLimit(pageSize);
+ Â Â Â Â Â Â Â Â }
+
+ Â Â Â Â Â Â Â Â iterator = context.search(Identity.class, ops, Arrays.asList("name", "dis-
+ playName", "managerStatus"));
+ Â Â Â Â }
+
+ Â Â Â Â public boolean next() throws JRException {
+
+ Â Â Â Â Â Â Â Â if (iterator == null){
+ Â Â Â Â Â Â Â Â Â Â Â Â try {
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â prepare();
+ Â Â Â Â Â Â Â Â Â Â Â Â } catch (GeneralException e) {
+ Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â Â throw new JRException(e);
+ Â Â Â Â Â Â Â Â Â Â Â Â }
+ Â Â Â Â Â Â Â Â }
+
+ Â Â Â Â Â Â Â Â if (iterator.hasNext()){
+ Â Â Â Â Â Â Â Â Â Â Â Â currentRow = iterator.next();
+ Â Â Â Â Â Â Â Â Â Â Â Â return true;
+ Â Â Â Â Â Â Â Â }
+
+ Â Â Â Â Â Â Â Â return false;
+ Â Â Â Â }
+
+ Â Â Â Â public Object getFieldValue(String field) throws GeneralException {
+ Â Â Â Â Â Â Â Â if ("name".equals(field)){
+ Â Â Â Â Â Â Â Â Â Â Â Â return currentRow[0];
+ Â Â Â Â Â Â Â Â } else if ("displayName".equals(field)){
+ Â Â Â Â Â Â Â Â Â Â Â Â return currentRow[1];
+ Â Â Â Â Â Â Â Â } else if ("managerStatus".equals(field)){
+ Â Â Â Â Â Â Â Â Â Â Â Â return currentRow[2];
+ Â Â Â Â Â Â Â Â } else {
+ Â Â Â Â Â Â Â Â Â Â Â Â throw new GeneralException("Unknown column '"+field+"'");
+ Â Â Â Â Â Â Â Â }
+ Â Â Â Â }
+
+
+
+
+
+
+SailPoint IdentityIQReports 144
+
+===== Page 149/149 =====
+Reports DataSource Example
+
+
+
+
+ Â Â Â Â public void setLimit(int startRow, int pageSize) {
+ Â Â Â Â Â Â Â Â this.startRow = startRow;
+ Â Â Â Â Â Â Â Â this.pageSize = pageSize;
+ Â Â Â Â }
+
+ Â Â Â Â public int getSizeEstimate() throws GeneralException {
+ Â Â Â Â Â Â Â Â return context.countObjects(Identity.class, baseQueryOptions);
+ Â Â Â Â }
+
+ Â Â Â Â public void close() {
+
+ Â Â Â Â }
+
+ Â Â Â Â public Object getFieldValue(JRField jrField) throws JRException {
+ Â Â Â Â Â Â Â Â String name = jrField.getName();
+ Â Â Â Â Â Â Â Â try {
+ Â Â Â Â Â Â Â Â Â Â Â Â return getFieldValue(name);
+ Â Â Â Â Â Â Â Â } catch (GeneralException e) {
+ Â Â Â Â Â Â Â Â Â Â Â Â throw new JRException(e);
+ Â Â Â Â Â Â Â Â }
+ Â Â Â Â }
+
+ Â Â Â Â public void setMonitor(Monitor monitor) {
+ Â Â Â Â Â Â Â Â this.monitor = monitor;
+ Â Â Â Â }
+
+ Â Â Â Â public QueryOptions getBaseQueryOptions() {
+ Â Â Â Â Â Â Â Â return baseQueryOptions;
+ Â Â Â Â }
+
+ Â Â Â Â /**
+ Â Â Â Â Â * Unused since this is not an hql report.
+ Â Â Â Â Â */
+ Â Â Â Â public String getBaseHql() {
+ Â Â Â Â Â Â Â Â return null;
+ Â Â Â Â }
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQReports 145

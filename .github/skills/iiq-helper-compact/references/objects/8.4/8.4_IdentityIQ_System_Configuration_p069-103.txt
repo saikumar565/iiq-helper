@@ -1,0 +1,2092 @@
+﻿===== Page 69/120 =====
+ 5. Click Save to save your changes and return to the Edit Role Configuration page.
+
+Edit Role Types
+
+Use the Edit Role Type Definition page to create and edit types touse with roles. Role type isused to configure roles
+toperform different functions within your business model. For example, type might be used to control inheritance or
+automatic assignment of roles.
+
+Role modeling also uses the concept ofpermission to enable you to grant users permission to specific roles without
+assigning them the role orincorporating itintheir role hierarchy. For example, while a non-IT user with a business-
+type role might need access to the entitlements contained within an IT-type role, they probably do not need tohave
+that roleassigned to them or included as part oftheir hierarchal role structure.
+
+ The Edit Role Type Definition page contains the following information:
+
+
+Type Name
+
+ The name of the role type.
+
+Display Name
+
+ The display name ofthe role type used throughout the product.
+
+Description
+
+ A brief description of the role type.
+
+Icon Path
+
+ The path tothe iconic representation ofthis role type.
+ See How to Add or Edit Role Types
+
+Disallow inheritance of other roles
+
+ Do not allow roles ofthis type to inherit other defined roles.
+
+Disallow other roles from inheriting this role
+
+ Do no allow roles of thistype tobe inherited.
+
+No automatic detection with profiles
+
+ Do not automatically detect and assign this role toidentities during aggregation and correlation.
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 66
+
+===== Page 70/120 =====
+No automatic detection with profiles unless assigned
+
+ Do not automatically detect and assign a role during aggregation and correlation unless itisrequired or per-
+ mitted by an identityâ€™s assigned roles.
+
+No entitlement profiles
+
+ Do not enable the direct assignment of profiles tothis role type.
+ For example, a roles used to create hierarchy in your business model might only gain access to entitlement pro-
+ filesthrough permitted IT roles.
+
+No automatic assignment with rule
+
+ Do not allow a rule to automatically assign roles of thistype toidentities.
+
+No assignment rule
+
+ Do not display the Assignment Rule panel inthe Role Modeler for rules of thistype.
+
+No manual assignment
+
+ Do not allow roles ofthis type to be assigned manually from the Identities User Rights tab.
+
+No permitted roles list
+
+ Do not display the Permitted Roles panel in the Role Modeler for rules ofthis type.
+
+Disallow this role from being on a permitted roles list
+
+ Do not display roles ofthis type on the select listof the Permitted Roles panel of any other role.
+
+No required roles list
+
+ Do not display the Required Roles panel inthe Role Modeler for rules of this type.
+
+Disallow this role from being on a required roles list
+
+ Do not display roles ofthis type on the select listof the Required Roles panel of any other role.
+
+Disallow Granting of IdentityIQ User Rights
+
+ Do not allow the granting of IdentityIQ capabilities or scopes based on role assignment. Ifthis option isselected,
+ the Granted IdentityIQ User Rights table isnot displayed on the Role Editor page.
+
+ How toAdd orEdit Role Types
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 67
+
+===== Page 71/120 =====
+How to Add or Edit Role Types
+
+ 1. Click New Type or clickan existing type to display the Edit Role Type Definition page.
+
+ 2. Enter or change the name and display name.
+
+ 3. Enter an icon path to linkto the iconic image associated with roles of thistype inthe Role Modeler.
+
+ To assign an icon to a role type, do the following:
+
+ a. Add two icon images toiiq_home/images/icons folder ofyour IdentityIQ installation,one for the role and
+ one forthe roleas itisundergoing analysis or approval. For example:
+ .itIcon {
+ background-image: url("../images/icons/modeler_application_16.png")
+ !important;
+ background-repeat: no-repeat;
+ }
+ .itIconPendingbusiness process {
+ background-image: url("../images/icons/modeler_application_approval_16.png")
+ !important;
+ background-repeat: no-repeat;
+ }
+
+ b. Reference the images from the iiq-custom.css fileinthe iiq_home/css directory.
+
+ 3. Optional: Select configuration options for the role type.
+
+ 4. Click Save tosave your changes and return to the Edit Role Configuration page.
+
+Scopes
+
+Scope is used to determine the objects to which a user has access. Ifscoping is active,identities can only see objects
+thatthey created or thatare within the scopes they control. IdentityIQ capabilities control the components within the
+product towhich a user has access. Scope controls access to the individual objects within those components. For
+example, auser might be able to access the IdentitySearch page, however, the Application and Role drop-down lists
+only display application and roles that are contained within a scope they control.
+
+Scope is referred to intwo ways, Controlled Scope and Assigned Scope. Assigned scope is the scope assigned toan
+identityor object manually, automatically, or through aggregation and correlation. Controlled scopes refer to the
+scopes to which an identity has access. You can only see objects that are within your controlled scopes, that you cre-
+ated, or possibly that have no scope assigned. Controlled scope ishierarchical. Ifyou control a parent scope, you con-
+trolany child scopes contained within.
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 68
+
+===== Page 72/120 =====
+Use the Configure Scoping page tocreate new scopes, editexisting scopes, and configure scoping for your enter-
+prise.
+
+ Note:Â Ifyou manually create scopes they should be associated with existing identity attributes or
+ be defined in a scope correlation rule.
+
+ Create and Edit Scopes
+
+To create a new scope, right-click Scopes and select New to display the Create Scope page. Enter the scope name
+and clickCreate toreturn tothe Scope page. Use the Scope Correlation Rule to correlate identities with the correct
+scopes.
+
+To edit an existing scope, right-clickthe scope and select Edit to display the Edit Scope page. You can only edit the
+display name.
+
+Drag and drop existing scopes to create a scope hierarchy.
+
+ Delete Scopes
+
+To delete a scope, right-clickthe scope and select Delete to display the Delete Scope page. The Delete Scope page
+contains the following:
+
+Assigned Scope Replacement
+
+ Reassign objects toa different scope upon deletion.
+
+Authorized Scope Replacement
+
+ Assign an authorized scope to replace the one to be deleted.
+
+Delete Child Scopes
+
+ Delete allchild scopes in the scope hierarchy.
+
+ Configure Scoping
+
+Use the Configure Scoping page toconfigure scope assignment and correlation. The Configure Scoping page con-
+tains the following:
+
+ Note:Â You must run an identity refresh task with the refresh scope option enabled before scope
+ configuration changes are visible.
+
+
+ Enable Scoping
+
+
+ Note: De-selecting this option is useful in troubleshooting performance issues.
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 69
+
+===== Page 73/120 =====
+ When checked, scoping mechanisms are enabled. Scopes do not take effect untilthis isenabled, even ifthe
+ scopes are already defined and assigned.
+
+ Scope Identity Attribute
+
+ Select an identity attribute from the drop-down listto use forscoping.
+
+ A scope iscreated foreach value of the selected attribute aggregated during the identity refresh task. This attrib-
+ ute is used to correlate identities to assigned scope.
+
+ Scope Correlation Rule
+
+ Select a rule to use to correlated scopes and identities during aggregation and refresh task. Ifa scope isnot
+ found that correlates to the value returned by an attribute, one iscreated.
+
+ Scope correlation rules enable more flexibilityinscope assignment than specifying a single identity attribute.
+
+ Click the ...icon tolaunch the Rule Editor to make changes to your rules ifneeded.
+
+ See Using the Rule Editor
+
+ Scope Selection Rule
+
+ Select a selection rule touse ifthe identity attribute or scope correlation rule return more then one value for the
+ assigned scope ofan identity.
+
+ For example, ifdepartment is specified as the scope identity attribute and the identity aggregation task returns
+ more then on value fordepartment for an identity, thisrule determines which value to use as the assigned scope.
+
+ Click the ...icon tolaunch the Rule Editor to make changes to your rules ifneeded.
+
+
+ See Using the Rule Editor
+
+ Unsloped Objects Globally Accessible
+
+ When selected, all objects thatdo not have an assigned scope are available to allusers.
+ When cleared, allobjects that do not have an assigned scope are only available to system administrators.
+
+ Identity Controls Assigned Scope
+
+ When selected, identities automatically control the scope to which they are assigned.
+
+Time Periods
+
+Use the Configure Time Periods page to specify the time periods used for activitysearching. Setting time periods for
+your enterprise enables you to track who isaccessing your sensitive applications and when they are accessing it.
+
+
+
+
+ SailPoint IdentityIQ System Configuration 70
+
+===== Page 74/120 =====
+Access at unusual times can indicate a security issue that requires investigation. Time periods include things such as
+officehours, holidays, and weekends. Because each time period is set individually, you can customize the setting to
+meet the needs of your enterprise.
+
+The following are the available time periods:
+
+
+
+ l Date ranges â€” a range of specific dates that define things such as fiscal quarters.
+
+
+
+ l Time ranges â€” a range ofhours, or times, that define office hours and non-office hours.
+
+
+
+ l Date listsâ€” a listofdates that define enterprise holidays.
+
+
+
+ l Day listsâ€” a listofdays that define week days and weekends.
+
+
+To edit a time period, click a time period in the Time Periods column toaccess the Configure Time Period page and
+make the required changes.
+
+ Configure Time Period
+
+The configuration options on the Configure Time Period page are based on the type of time period to be edited.
+
+ Date Ranges:
+
+For date ranges, specify the Begins on and Ends on dates forthe time period to be defined. For these date ranges you
+can enter dates manually of clickthe... icon and select a date from the calendar.
+
+ Time Ranges:
+
+For time ranges, specify the starting at and ending at times. Time ranges are used todefine working and non-working
+hours.
+
+ Date Lists:
+
+Use the date listtospecify a listofholidays, or regularly schedule dates on which your enterprise business would not
+normally conduct business. This listdoes not include weekends. Weekends are defined separately from a day list.
+You can enter dates manually of clickthe â€œ...â€iconand select a date from the calendar. Use the Add and Delete but-
+tons to add or remove dates from the list.
+
+ Day Lists:
+
+Use the day liststo specify week days from weekend days. Select the correct days using the selection boxes on the
+rightof the table and deselect, or DE-activate, the days that should not be included.
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ System Configuration 71
+
+===== Page 75/120 =====
+Audit Configuration
+
+Use the Audit Configuration page to specify the actions that are collected for audit logs. Since collecting event inform-
+ation and storing itin the audit logs affects performance, a system administrator must specify the actions that are
+audited. Before any data is collected by the audit logs for use inan audit search, IdentityIQ must be configured for
+auditing.
+
+The Audit Configuration page contains the following types of actions:
+
+
+
+ l General Actions â€” typical action performed while using IdentityIQ. For example, running a task and signing off
+ on a certification are general actions.
+
+
+
+ l Link Attribute Changes â€” changes made to any assigned linkattributes.
+
+
+
+ l Identity Attribute Changes â€” changes to assigned roles, capabilities, authorized scopes, and controlled
+ scopes, and changes tothe password. This listmight also include extended identity attributes.
+
+
+
+ l Class Actions â€” action taken on the underlying classes used toconfigure the way in which IdentityIQ operates.
+ For example, editing a role,creating a policy, specifying the default email template, and adding attachments
+ are class actions.
+
+
+
+ l SCIM Resource Actions â€” action taken on any SCIM resource, for example, create, read, update, and delete.
+
+Electronic Signatures
+
+Electronic signatures provide proof of a decision. You can set up electronic signatures to be used forCertifications,
+Policy Violations, and Approvals. Use the Electronic Signatures page to set the meaning or textthat is displayed tothe
+end user when they perform an electronic signature.
+
+ Warning:Â Electronic Signatures have legal implications. They should explicitlystate each action
+ and consequence, to ensure that end users understand what they are signing.
+
+
+Electronic Signature Meanings
+
+The Electronic Signature Meanings page displays a table of configured meanings. Click New Meaning toopen the
+New Electronic Signature Meaning window. Provide a Name, Display Name, and Meaning. The Meaning isthe text
+ofthe electronic signature that the user willagree to when signing. Then click Save.
+
+Ifyour IdentityIQ instance isconfigured to support Multi-Language Descriptions, you can supply Meanings for the elec-
+tronic signatures in any of the languages IdentityIQ is configured tosupport. For more information see the Multi-Lan-
+guages Descriptions section in the Miscellaneous tab.
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 72
+
+===== Page 76/120 =====
+Electronic Signature Authentication
+
+The method that end users willuse forauthenticating when they perform an electronic signature is determined by Iden-
+tityIQâ€™slogin configuration (under the gear menu > Global Settings > Login Configuration).
+
+IfSAML Based SSO isenabled and configured, the user performing an electronic signature willbe routed toyour
+SAML provider for authentication, then returned to the IdentityIQ UI tocomplete the signature. Ifyou are using rule-
+based SSOÂ for authentication toIdentityIQ, electronic signature uses an SSO rule to complete the electronic sig-
+nature process. Inother cases, basic authentication with the userâ€™s IdentityIQ credentials isused. See SSO Con-
+figuration.
+
+Auditing SAML-Based Electronic Signatures
+
+IfSAML is enabled, SAML details for electronic signatures can be included inauditing. To enable this, check the
+Login option inthe Audit Configuration. You can use Advanced Analytics to search for and view details about
+SAMLÂ authentication forelectronic signatures, including the SAML Assertion ID, SAMLÂ Issue Instant, SAMLÂ Issuer,
+SAMLÂ NameID and Sign-Off Validity.
+
+For more information about Advanced Analytics, see the IdentityIQ Advanced Analytics documentation.
+
+API Authentication
+
+IdentityIQ supports the use of OAuth 2.0 (clientcredentials) as a token-based protocol forAPI authentication. Use this
+feature to create and manage OAuth clients that you use with the IdentityIQ API.
+
+ Note:Â You can set up a proxy user that connects on behalf of the user toavoid exposing sensitive
+ user data. Inorder forthe proxy user tohave correct rights tomake API calls,you must assign
+ capabilities to thatproxy user.
+
+OAuth Client Management
+
+The OAuth Client Management tab is where you create and edit OAuth clients.
+
+ How To Create An OAuth Client
+
+ 1. From the top menu, navigate to the Gear icon > Global Settings > API Authentication.
+
+ 2. On the OAuth Client Management tab, clickCreate.
+
+ 3. In the OAuth Client dialog enter a unique name forClient Name and then enter auser name or select a user
+ from the drop-down listforthe Proxy User.
+
+ 4. Click Save to save your new OAuth client.
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 73
+
+===== Page 77/120 =====
+After your create an OAuth client, you can use itwith the associated secret to log in and access the token for that
+proxy user.
+
+The OAuth Client Management tab also gives you these controls forediting the OAuth client and displaying the secret:
+
+
+
+ l Secret Details icon: click todisplay the secret forthe OAuth client.
+
+
+
+ l Edit icon:Â clickto edit the Client Name orProxy User.
+
+
+
+ l Delete icon:Â clickto delete the OAuth client.You willbe prompted to confirm the deletion.
+
+
+
+ l Regenerate icon: click togenerate a new secret for the OAuth client.Generating a new secret willprevent new
+ tokens from being issued using the existing secret.
+
+General Settings
+
+
+
+ l Access Token Expiration in Seconds:Â set the number of seconds that the OAuth token isvalid for.
+
+Token Settings
+
+
+
+ l Access Token Authentication Scope: The expected scope ofthe API access token issuer; forexample,
+ GetToken.
+
+
+
+ l Access Token Authentication Audience: A suffix that identifies the service or system to which the callis dir-
+ ected; for example /iiq/api. The validator willensure the SSO audience claim ends with this value.
+
+
+
+ l Access Token Authentication Issuers: Identification ofthe SSO token provider; forexample, https://st-
+ s.windows.net/{{tid}}/.
+
+
+
+ l Correlation Variable: The SSO claim used match the requesting user with an existing IdentityIQ user; for
+ example oid.
+
+Ifyou want to remove any required data from these fields, use the Clear and Exit option. This allows you to reset your
+identityauthorization token settings by removing them even though they are required.
+
+Configuring AI Services
+
+Use the AI Services Configuration page toconnect IdentityIQ toAI Services. From the gear icon, select Global Set-
+tings > AI Configuration. Note that the AIÂ Configuration option does not appear inthe Global Settings page untilyou
+have completed the steps in Integrating SailPoint AI Services.
+
+ Note:Â Websphere and IBM JDK:Â Connections to AI Services using the IBM JDK require a
+ JVMÂ argument to support TLS version 1.2. Ifyou deploy IdentityIQ on WebSphere, or other
+ application servers using the IBM JDK, you must specify the JVM argument -
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 74
+
+===== Page 78/120 =====
+ Dcom.ibm.jsse2.overrideDefaultTLS=true foryour Java process. To do this in
+ WebSphere, add the JVMÂ argument to the Generic JVM arguments at: Servers > Java and Pro-
+ cess Management > Process Definition > Java Virtual Machine > Generic JVM arguments.
+
+For general information on getting started with AIÂ Services, see Getting Started with AI-Driven IdentitySecurity for
+IdentityIQ.
+
+ Connection Information for AI Services
+
+
+AI Services Hostname
+
+ The host name ofthe AI Services recommendation API.
+ For example, https://<org>.api.identitynow.com
+
+Client ID
+
+ OAuth client ID forthe AI Services recommendation API. See Generating Client Credentials inYour IdentityNow
+ Tenant fordetails on how togenerate thiscredential.
+
+Client Secret
+
+ OAuth client secret for the AIServices recommendation API. See Generating Client Credentials in Your Iden-
+ tityNow Tenant fordetails on how to generate thiscredential.
+
+ Advanced
+
+
+Read Timeout
+
+ The number ofseconds IdentityIQ willwait to read recommendations from AI Services before reporting afailure.
+
+Connect Timeout
+
+ The number ofseconds IdentityIQ willwait to connect to AI Services before reporting a failure.
+
+ Testing Your Connection
+
+Once your configuration details have been entered, you can click Test Connection toverify that the connection
+information isaccurate and operating.
+
+Ifyou are using an HTTPÂ or HTTPS proxy for IdentityIQ's communications, and you want to make an exception for con-
+necting to AI Services, you can configure your AIÂ Services connection tobypass the proxy connection by adding this
+key to the IdentityAIConfiguration object:
+
+<entry key="ignoreProxyProperties" value="true" />
+
+Save your settings before leaving the page.
+
+
+
+
+ SailPoint IdentityIQ System Configuration 75
+
+===== Page 79/120 =====
+File Access Manager Configuration
+
+IdentityIQ can integrate with FileAccess Manager to bring key data governance features tothe IdentityIQ business
+user. A Data Governance menu inIdentityIQ provides direct access to the FileAccess Manager website, and dash-
+board widgets provide the context needed tomake informed access decisions.
+
+You can also use the FileAccess Manager Configuration settings toconfigure correlation logic formapping File
+Access Manager objects to IdentityIQ identities.
+
+ To install and configure the File Access Manager integration:
+
+ 1. Import the init-fam.xml fileintoIdentityIQ, using the iiqconsole or the gear menu > Global Settings >
+ Import From File page.
+
+ 2. Click the gear menu > Global Settings > File Access Manager Configuration.
+
+ Connection Information for File Access Manager:
+
+
+File Access Manager Hostname
+
+ The host name of the File Access Manager server. This isthe host where the FileAccess Manager website is
+ installed.
+
+ Ifyou are using an HTTPÂ or HTTPS proxy for IdentityIQâ€™s communications, and you want tomake an exception
+ forconnecting toFile Access Manager, you can configure your FileAccess Manager connection tobypass the
+ proxy connection by adding thiskey tothe FAMConfiguration object:
+
+ <entry key="ignoreProxyProperties" value="true" />
+
+Basic /OAuth
+
+ Choose your method of authenticating with the FileAccess Manager website. Basic uses a username and pass-
+ word. OAuth uses a clientID and client secret.
+
+ Basic authentication can be used for identitiesthat are configured inthe File Access Manager Administrative Cli-
+ ent as having the API User privilege.
+
+ OAuth credentials can be retrieved from the File Manager website, through the Settings > General > API
+ Authorization menu.
+
+Username
+
+ For Basic authentication, enter the username foran identitythat has the API User privilege inFile Access Man-
+ ager.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 76
+
+===== Page 80/120 =====
+Password
+
+ For Basic authentication, enter the password for an identity that has the API User privilege in File Access Man-
+ ager.
+
+Client ID
+
+ For OAuth authentication, enter the OAuth clientID for File Access Manager
+
+Client Secret
+
+ For OAuth authentication, enter the OAuth clientsecret forFile Access Manager
+
+ Correlation Information for File Access Manager:
+
+
+SCIM Correlation Rule
+
+ Ifthe correlation logic in your configured applications does not meet your needs forcorrelating FileAccess Man-
+ ager groups and accounts toIdentityIQ groups, you can use a custom rule tomanage correlation. The rule must
+ have a rule type of Correlation in order to appear inthis drop-down.
+
+SCIM Correlation Applications
+
+ Select the application(s) to use forcorrelating File Access Manager objects toIdentityIQ identities.Selecting an
+ application here means thatthe correlation logic defined forthe application willdetermine how FileAccess Man-
+ ager objects are correlated to identities.
+
+Use Test Connection to verify that the connection information isaccurate and functional.
+
+ Data Governance Menu
+
+Once the FileAccess Manager integration is configured, a Data Governance menu is available in IdentityIQ. The Data
+Governance menu provides direct access tofeatures in the File Access Manager website.
+
+The Data Governance menu is available only to users who have the IdentityIQ FAM Administrator capability, or any
+capability that includes the ViewFAMNavigationMenu SPright.
+
+For more information about Data Governance in FileAccess Manager, referto the IdentityIQ FileAccess Manager
+documentation.
+
+ Dashboard Widgets
+
+Once the FileAccess Manager integration is configured, widgets that show data about Sensitive Data Exposure and
+Sensitive Resources Missing Owners are available on the IdentityIQ home page.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 77
+
+===== Page 81/120 =====
+The widgets display read-only information about sensitive data that ismonitored in File Access Manager. Each widget
+shows counts for resources, and an overall compliance score. The compliance score iscolor-coded to indicate risk,0-
+5 isconsidered high risk,5.1-7.5 medium risk,and 7.6-10 low risk.
+
+The widgets do not provide direct access to the File Access Manager website; inother words, users cannot clickthe
+widgets for more detailed information, or to access the File Access Manager website.
+
+These widgets are available to users who have the IdentityIQ FAM Administrator capability, or any capability that
+includes the ViewFAMAdminWidgets SPright.
+
+Users can click Edit on the home page to add, remove, or move these widgets.
+
+For more information about Sensitive Data Exposure and Data Ownership in File Access Manager, refer tothe File
+Access Manager documentation.
+
+Import From File
+
+Use the Import From File page to import filesinto IdentityIQ. For example, use thispage to import custom rules or scor-
+ing pages.
+
+ Note:Â Imported filesmight not be immediately available. Some filecontents might require an
+ application restart.
+
+
+ Note:Â Any include directives in the import fileinclude filesfrom the application server filesystem
+ and not that of the client browser.
+
+Use the Browse button to navigate toa fileor enter the path manually and clickImport to begin the download process.
+
+Select No role events generated for role propagation to avoid event generation during role propagation.
+
+When the import is complete the results are displayed on the Import from File Results page. Click Import Another
+File to go back to the Import from File page, or Done to return to the Global Settings page.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 78
+
+===== Page 82/120 =====
+Compliance Manager
+
+
+ Note:Â Most of the fieldson this page enable you to configure default settings that a user can
+ change on certifications they are reviewing or scheduling. Those fields that behave differently
+ are described as such.
+
+From the Navigation bar, click the gear icon and then select Compliance Manager. Use the Compliance Manager
+page to configure control and default settings for certifications.
+
+
+
+ l Select to enable email notifications to users that have items revoked.
+
+
+
+ l Input the number of selected items which require additional confirmation for bulk revocations.
+
+
+
+ l Enable the certifierto provision missing role requirements from within an access review.
+
+
+
+ l Select the actions to enable from the Worksheet/Identity view and the Detail view. The actions include the fol-
+ lowing:
+
+
+
+ l Exclude entitlements on tierapplication accounts from the access review.This only applies to logicalapplic-
+ ations. Tier applications are those application that make up a logicalapplication.
+
+
+
+ l Notification Templates
+
+Lifecycle
+
+ Notify Users of Revocations
+
+ Select toenable email notifications to users that have items revoked.
+
+ Certification Escalation Rule
+
+ Select a rule from the drop-down listas the default rule that the system uses when an access review isescal-
+ ated.
+
+ When Exceptions Expire
+
+ Select the action performed on a mitigation when itexpires
+
+ Active Period Duration
+
+ Input the number of units and unittype (hours, days, weeks or months) to use as the default active period dur-
+ ation.
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 79
+
+===== Page 83/120 =====
+ Enable Challenge Period
+
+ Select toenable default challenge period and itsdefault duration.
+ The challenge period enables users to challenge requests from certifiersto remove access privileges.
+
+ Enable Revocation Period
+
+
+ Note:Â Select toenable the default revocation period and itsdefault duration. The revocation
+ period places a limiton the amount of time a revoker has to act on a revocation request before
+ that request work item isescalated.
+
+ Ifthe revocation period isdisabled, the certificationis not scanned forcompleted revocations and revocation
+ status might not be accurately reflected throughout the product.
+
+ Default Revoker
+
+ Select the user towhom allbulk remediation requests are to be sent.
+ Bulk revocation requests are made during the certificationprocess. You can select an item from the Select Bulk
+ Action drop-down liston the Certification Report worksheet view or click Revoke All on the Certifications
+ Decision tab.
+ Ifthis fieldisleft blank, the remediator isspecified as part of the request process.
+
+ Enable Automatic Closing
+
+ Specifies that the remediation period should be enabled, during which IdentityIQ periodically scans users to
+ determine whether the requested remediations have been carried out.Use the following options to configure the
+ details of thisprocess.
+
+ Time After Certification Expiration â€” Select the amount of time following this access review expiration
+ date that IdentityIQ should wait before attempting to automatically close it.
+
+
+ Closing Rule â€” Select the rule that IdentityIQ runs atthe beginning ofthe automatic closing process.
+
+
+ Action Taken On Undecided Items â€” The action that IdentityIQ assigns toany undecided items when auto-
+ matically closing thisaccess review. Choose from Approve, Revoke, or Allow Exception.
+
+
+ Comments â€” Input the comments that IdentityIQ adds to any undecided items when automatically closing
+ this access review.
+
+
+ Signer â€” Select the identity who signs off on automatically closed access reviews. This setting is only con-
+ figurable at the system setup level. Individuals who are scheduling certifications cannot define the signer.
+
+
+
+
+
+
+SailPoint IdentityIQ System Configuration 80
+
+===== Page 84/120 =====
+Behavior
+
+ Selection Count Requiring Bulk Revoke Confirmation
+
+ Input the number of selected items which require additional confirmation forbulk revocations.
+
+ Prompt for Sign Off
+
+ Select to display a pop-up window when an access review iscomplete and ready for sign off.
+
+ Require Electronic Signature
+
+ Select to require that,by default, allcertificationsrequire an electronic signature.
+
+ Require Subordinate Completion
+
+ Require that,by default, allsubordinate access reviews be completed before the parent access review can be
+ completed.
+
+ Automatically Sign Off When Nothing to Certify
+
+ Automatically sign offthe certificationwhen assignee has nothing tocertify.
+
+ Suppress Notification When Nothing to Certify
+
+ Suppress notification ofcertificationwhen assignee has nothing to certify.
+
+ Require Reassignment Completion
+
+ Require that,by default, allreassigned access review items be completed before the parent access review can
+ be completed.
+
+ Return Reassignments to Original Access Review
+
+ Specify that,by default,the content ofreassigned access reviews be returned tothe parent access review upon
+ sign off.
+ Use this option to ensure thatthe original content of an access review request ispreserved fortracking and
+ reporting purposes.
+
+ Automatically Sign Off When All Items Are Reassigned
+
+
+ Note:Â This item isnot available iftheRequired Reassignment Completion or the Return Reas-
+ signments to Original Access Review options are selected.
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 81
+
+===== Page 85/120 =====
+ Specify thatan access review be automatically signed off on when allitems inthat access review are reas-
+ signed.
+
+ Require Comments for Approval
+
+ Require that allcertifiersenter comments for each item they approve inan access review request.
+
+ Require Comments When Allowing Exceptions
+
+ Require certifierto include comments when a certificationdecision is made.
+
+ Require Comments For Revocation
+
+ Require certifierto include comments when a certificationdecision is made.
+
+ Require a review on delegated certification items
+
+ Select to require thatall access review approvers review the decision made on any user, role, entitlement, or
+ policy violation that they delegated to another approver before they can complete the access review containing
+ that delegation.
+
+ Require delegated certification items to be completed
+
+ Select to require thatall items in a delegation work item have a decision associated with them before the work
+ item can be marked as complete. This setting isonly configurable at the system setup level. Individuals cannot
+ change the value of this setting fora single certification.
+
+ Disable Delegation Forwarding
+
+ Select to disallow the forwarding of a work item that a different user delegated.
+
+ Allow Self Certification For
+
+ Choose which users may self-certify -that is,be the certifierfortheir own access, either by forwarding or reas-
+ signing an access review: Allcertifiers,Certification and System Administrators, System Administrators only.
+
+ Self Certification Violation Owner
+
+ For users that are not allowed to self-certify,this isthe identity or workgroup that willreceive any items that would
+ require a self-certification -that is,when the reviewer and the user whose access isunder review are the same
+ person. Ifa Self Certification Violation Owner is not specified, any items that require self-certificationwill be read-
+ only to the reviewer.
+
+ Limit Reassignments
+
+
+
+
+
+SailPoint IdentityIQ System Configuration 82
+
+===== Page 86/120 =====
+ The limitreassignment feature allows you to limitthe number of times the users within the certificationcampaign
+ can reassign a certificatation item.
+
+ Reassignment Limit
+
+
+ Note:Â Certification isnot forwarded orreassigned when the reassignment limitisreached.
+
+ Set the number of reassignments allowed.
+
+ Show Classifications
+
+ Set the global default to show classification data incertification access reviews. Classifications can be shown in
+ Manager, Application Owner, Advanced, Role Membership, and Targeted certifications.This setting also determ-
+ ines whether classification information isshown in Separation of Duties (SOD) policy violations, inthe dialog for
+ correcting violations by revoking access.
+
+Decisions
+
+ Enable Provisioning Of Missing Role Requirements
+
+ Enable the certifierto provision missing role requirements from within an access review.
+
+ Enable Line Item Delegation
+
+ Enables certifiersto delegate individual access review items, such as a single role orentitlement, rather than the
+ entire identity tobe reviewed.
+
+
+ This option also enables the delegation ofpolicy violations, either from inside an access certification orfrom the
+ Manage -> Policy Violations page.
+
+ Enable Account Revocation
+
+ Allow users tobulk revoke allentitlements fora given account.
+
+ Enable Identity Delegation
+
+ Enable certifiersto delegate entire identities from a certificationrequest.
+
+ Enable Allow Exceptions (applies only to non-policy violation items)
+
+ Enables certifiersto allow exceptions on access review items such as roles or entitlements, that are not policy
+ violations. Allowing an exception means the user should not have access indefinitely,but can retain access fora
+ specified period of time.
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 83
+
+===== Page 87/120 =====
+ Deprovision Items When Exception Expires (applies only to non-policy violation items)
+
+ Enables automatic deprovisioning of access when the allowed exception period has expired. This setting applies
+ only toitems such as roles or entitlements, that are not policy violations.
+
+ Enable Allow Exception Popup
+
+ Enables certifiersto view the Allow Exception pop-up and manually set expiration dates.
+
+ Default Duration for Exceptions
+
+ Set the time period during which exceptions should be allowed. Input the number of units and unit type (hours,
+ days, weeks ormonths) to use as the exception duration.
+
+ Default Operation for Remediation Modifiable Attributes
+
+ Set the default operation shown on the revocation dialog for remediation-modifiable attributes.
+
+ Show Recommendations
+
+
+ Note:Â This option is only visibleifyou have purchased and activated the SailPoint AI Services
+ product.
+
+ Enable recommendations from AI Services todisplay inaccess reviews.
+
+ Automatically Approve Recommended Items
+
+
+ Note:Â This option is only visibleifyou have purchased and activated the SailPoint AI Services
+ product.
+
+ Enable access review items to be automatically marked as approved by AIServices and move tothe Access Cer-
+ tificationReview tab forfinal approval.
+
+Bulk Actions
+
+Select the actions toenable from the Worksheet/Identity view and the Detail view. The actions include the following:
+
+
+
+ l Enable Bulk Approve
+
+
+
+ l Enable Bulk Revocation
+
+
+
+ l Enable Bulk Allow Exceptions
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 84
+
+===== Page 88/120 =====
+ l Enable Bulk Reassignment
+
+
+
+ l Enable Bulk Account Revocation
+
+
+
+ l Enable Bulk Clear Decisions
+
+Certification Contents
+
+ Exclude Logical Tier Entitlements
+
+Exclude entitlements on tier application accounts from the access review.
+This only applies to logical applications. Tier applications are those application that make up a logicalapplication.
+
+ Generate Certification(s)
+
+Specify whether, by default, access review requests should generate an access review request for the specified man-
+agers, or for the specified managers and allemployees below them inthe reporting hierarchy.
+Ifyou select For the specified manager(s) only, the Flatten Hierarchy option isdisplayed. Select the Flatten Hier-
+archy option to include allof the employees that report directory to the selected managers and the employees that
+report to theirsubordinate managers on the access review request.
+
+Notification Templates
+
+Much ofthe communication performed during the access review process is done through notifications that are sent
+automatically by IdentityIQ as an access review proceeds through itslifecycle.Â Notifications can be sent as emails, or
+as notifications in Microsoft Teams.
+
+Use thissection to choose the template touse for each certification-related notification.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 85
+
+===== Page 89/120 =====
+Define Home Page Quicklinks
+
+Define Home Page Quicklinks
+
+
+Quicklinks are objects inIdentityIQ thatenable you toplace customized linkson the IdentityIQ Home page and in the
+Quicklinks menu available on every page. Quicklinks are defined when IdentityIQ is deployed and are based on the
+needs of your enterprise. You can determine the behavior and availabilityofthese linksfor differentusers. For
+example, IdentityIQ can be set up to limitaccess based on the user capabilities,rights, orworkgroup membership.
+
+Three objects control links.QuickLink objects define the links,the DynamicScope object controls who can view those
+links,and theQuickLinkOption object references the firsttwo to create the Quicklinks within the product.
+
+ QuickLinkOption
+
+The QuickLinkOption object iscreated when a quicklink population, or DynamicScope object, iscreated on the
+Quicklink Populations page and associated with one or more QuickLink objects. The QuickLinkObjects objects do
+not control quicklink populations, nor the targets ofthe QuickLink objects, they are containers holding references to
+both.
+
+<QuickLinkOptions allowSelf="true" created="1443970828183"
+id="2c90900950335ce70150335e4797010e">
+
+
+ <DynamicScopeRef>
+
+
+ <Reference class="sailpoint.object.DynamicScope"
+id="2c90900950335ce70150335e4783010c" name="Everyone"/>
+
+ </DynamicScopeRef>
+
+ <QuickLinkRef>
+
+ <Reference class="sailpoint.object.QuickLink"
+id="2c90900950335ce70150335e478a010d" name="Access Reviews"/>
+
+ </QuickLinkRef>
+
+</QuickLinkOptions>
+
+ DynamicScope
+
+The DynamicScope object define groups of users, quicklink populations, based on capability, rights,indirect cap-
+abilitiesand rights granted by a workgroup, population, or any attribute ofthe identity.These objects are defined on
+the Quicklinks Populations page. Refer to the system administration documentation formore information.
+
+DynamicScope objects are referenced by name orID in a QuickLinkOption object. Ifthe quicklink population applies
+toan identity,the Quicklink isvisible to thatidentity.Only System Administrators can view Quicklinks with no scopes.
+
+
+
+
+ SailPoint IdentityIQ System Configuration 86
+
+===== Page 90/120 =====
+Define Home Page Quicklinks
+
+
+ DynamicScope objects are used todefine the population of people who can view and run the
+ Quicklink. DynamicScope objects are not the group ofidentities orobjects thatthe Quicklink inter-
+ acts with after the linkisclicked.
+
+ Examples
+
+The product ships with a DynamicScope that represents the allowAll option. The name of the DynamicScope is
+named Everyone. You can associate this option with any Quicklinks you want to enable the entire user population to
+view or use. The following QuickLinkOptions reference thisDynamicScope by default:
+
+
+
+ l Access Reviews
+
+
+
+ l Approvals
+
+
+
+ l Signoffs
+
+
+
+ l Work Items
+
+
+
+ l Policy Violations
+
+
+<DynamicScope allowAll="true" created="1443970828163"
+id="2c90900950335ce70150335e4783010c" name="Everyone"/>
+
+The following XML example of aDynamicScope restrictsvisibilitytoaspecified Quicklink. Visibilityisenabled for
+users in the ITdepartment or who have the Help Desk Personnel capability. Visibilityisalso enabled foridentitiesin
+the Inclusion list.Because Barbara.Wilson isinthe Inclusions list,shecan always see the Quicklink regardless of her
+capabilitiesor department.
+
+
+ <DynamicScope created="1443973952475" id="2c90900950335ed60150338df3db000a" name-
+ e="MyDynamicScope">
+ Â Â <Description></Description>
+ Â Â <Inclusions>
+ Â Â Â Â <Reference class="iiq.object.Identity" id="2c90900950336e720150336f0797010d" name-
+ e="Barbara.Wilson"/>
+ Â Â </Inclusions>
+ Â Â <PopulationRequestAuthority allowAll="true"/>
+ Â Â <Selector>
+ Â Â Â Â <IdentitySelector>
+ Â Â Â Â Â Â <MatchExpression>
+ Â Â Â Â Â Â Â Â <MatchTerm name="capabilities" value="Help Desk Personel"/>
+ Â Â Â Â Â Â Â Â <MatchTerm name="Department" value="IT"/>
+ Â Â Â Â Â Â </MatchExpression>
+ Â Â Â Â </IdentitySelector>
+ Â Â </Selector>
+ </DynamicScope>
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 87
+
+===== Page 91/120 =====
+Define Home Page Quicklinks
+
+
+
+By default, IdentityIQ assumes that any linkdefined as a top-level QuickLink object is fora non-Lifecycle Manager
+action which does not operate on a target identity,so no user selection options are presented.
+
+EmailTemplate Nested Elements
+
+The components listedare generally expressed as nested elements due to theircomplexity and length.
+
+<subject>
+
+ Subject linefor the email message
+
+<body>
+
+ Body, ormain content, of the email message
+
+<signature>
+
+ Hashmap of arguments to the email template
+ The signature for each template cannot be changed through the XML. Arguments toeach template vary based
+ on the associated system activityto which they apply. Properties and methods belonging toany object passed
+ as an argument are available to include in the message, but other objects that are not part ofthe template sig-
+ nature cannot be retrieved to use in the email message.
+
+<Inputs>
+
+ Nested element within Signature, signifying the input arguments to the template
+
+<Argument>
+
+
+ HTML cannot be passed into a template as an argument value. AllHTML must be included as
+ partof the base template.
+
+ Nested element within Signature and Inputs. This element names and specifies the type of each input argument
+ tothe template
+
+<Description>
+
+ Indicates descriptive information forthe reader of the XML. Describes the element in which itisnested
+ For example:
+ <Description> within <Argument> describes the argument usage.
+ <Description> within the <EmailTemplate> describes the purpose and usage of the template
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 88
+
+===== Page 92/120 =====
+Define Home Page Quicklinks
+
+
+ At the most basic level, the contents of these elements and attributes can be written as straight text values with
+ no variable substitutions. However, the real flexibilityand usefulness of these templates is found when custom
+ text issubstituted into the message body, subject, and other attributes. This substitution is managed by the
+ Apache Velocity Engine.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ System Configuration 89
+
+===== Page 93/120 =====
+IdentityIQ Email Templates
+
+IdentityIQ Email Templates
+
+
+Many events in IdentityIQ generate email notifications tonotify users ofactions required by them or actions taken that
+directlyaffects them. These email messages are created based on email templates. Basic templates are provided
+with the product to construct messages corresponding to each of the email-generating events, and these messages
+can be customized to meet your specific needs.
+
+ Note:Â The default email templates should not be modified directly because they might be over-
+ written during the IdentityIQ release upgrade process.
+
+To customize any of these templates, copy and rename the template using a unique name.
+
+ 1. Copy and rename the template using a unique name.
+
+ 2. Associate the customized template tothe email-generating event through the IdentityIQ user interface or con-
+ figuration XML. See Importing Email Templates into IdentityIQ.
+
+Accessing the Templates
+
+The default email templates that ship with the product are located in the following area:
+
+
+
+ l Directory â€” iiq_installation_directory/WEB-INF/config directory
+ where iiq_installation_directory is the location where you expanded the IdentityIQ installation
+ media
+
+
+
+ l Files â€” emailtemplates.xml and lcmemailtemplates.xml
+
+
+A thirdfile,named emailtemplatesSample.xml, contains additional example templates that are not loaded into
+IdentityIQ during the initialload process. These templates describe how to create HTML email messages. Any of the
+templates in these filescan be cloned tocreate custom templates.
+
+After the email templates are loaded into IdentityIQ, either during the initialloador using the console or user interface
+import option, the templates are stored as XML objects. The templates can be viewed or modified through the Iden-
+tityIQDebug pages. The default templates should not be modified from here because the template are overwritten dur-
+ing any IdentityIQ version update. However, customized templates can be edited directly through the Debug pages, if
+the organization's source code control procedures allows.
+
+To view the listofemail templates from the Debug pages, select EmailTemplate from the object listand clickList.
+Select the desired template toview or edititsXML representation.
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 90
+
+===== Page 94/120 =====
+IdentityIQ Email Templates
+
+Importing Email Templates into IdentityIQ
+
+When email templates are edited outside of IdentityIQ, they must be imported into the system before they can be used
+forany notifications. Email templates can be imported through the IdentityIQ user interface or console.
+
+To import a template through the user interface, navigate to the Gear icon -> Global Settings -> IdentityIQ Con-
+figuration -> Import from File. Click Browse to select the email template's XML filefrom the filesystem and click
+Import. IdentityIQ parses the XML during the import process and recognizes the file'scontents as an EmailTemplate
+object. The import failsifthe XML isinvalid.
+
+ Note:Â Import filescan contain one or more EmailTemplate objects. However, ifa filecontains
+ more than one object, the import methods expect the set ofobjects to be wrapped ina <sail-
+ point></sailpoint> block.
+
+To import the email template through the IdentityIQ console:
+
+ 1. Navigate to the IdentityIQ_Installation/WEB-INF/bin directory.
+
+ 2. Start the console and use the console import command to import the file.The import issuccessful only ifthe
+ XML is valid.Any errors encountered are reported to the console.
+
+Associating Templates with Events
+
+Email templates are associated totheir respective email-generating events in several places inthe IdentityIQ user
+interface and configuration XML. The information below shows the notification type, the default template name, and
+theirassociation location. To use a custom template forany of these notifications, specify the custom template name
+inplace of the default template inthat notification configuration.
+
+For details about the arguments which are provided by default toall instances of email messages sent as part ofIden-
+tityIQ'score processes, see the Email Template Arguments technical white paper on Compass.
+
+ Note:Â HTML cannot be passed into a template as an argument value. AllHTML must be included
+ as part of the base template.
+
+
+ Note:Â Different email templates accept and use different arguments. The selection listsin the
+ user interface for each notification listsallemail templates, no matter what arguments they
+ require. Because IdentityIQ provides a fixed set of arguments for each notification type, only tem-
+ plates whose arguments listmatches the provided arguments work correctly to create a useful
+ event notification.Refer to the default template XML to see the arguments (names and variable
+ types) for each notification, and ensure that the selected template's argument listmatches the
+ default template's arguments.
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 91
+
+===== Page 95/120 =====
+IdentityIQ Email Templates
+
+
+
+ l IdentityIQ Global Notification Templates
+
+
+
+ l Compliance Notification Email Templates
+
+
+
+ l Reminder orEscalation Email Templates
+
+
+
+ l Report Sign-off Email Template
+
+
+
+ l Workflow Email Templates
+
+
+
+ l XML Email Templates
+
+ IdentityIQ Global Notification Templates
+
+The following templates can be configured inthe Gear icon > Global Settings > IdentityIQ Configuration > Noti-
+fication Settings > NotificationsTemplates section.
+
+Server Root Path
+
+The rootpath of the server, including the scheme, server name [port],and rootdirectory. For example, ifthe value was
+set toâ€˜https://localhost:80/iiqâ€™,then the expected URL would look like<serverrootpath>/example.jsf or https://-
+localhost:80/iiq/example.jsf
+
+Templates
+
+For reminder notices
+
+ Work Item Reminder
+
+For escalation notices
+
+ Work Item Escalation
+
+For work item comment notices
+
+ Work Item Comment
+
+For work item forwarding notices
+
+ Work Item Forward
+
+For policy violation notices
+
+ Policy Violation
+
+For task and report signoff notices
+
+ Task Result Signoff
+
+
+
+
+ SailPoint IdentityIQ System Configuration 92
+
+===== Page 96/120 =====
+IdentityIQEmail Templates
+
+
+For work item assignment notices
+
+ Work Item Assignment
+
+For work item assignment removal notices
+
+ Work Item Assignment Removal
+
+For remediation item assignment notices
+
+ Remediation Item Assignment
+
+For remediation item assignment removal notices
+
+ Remediation Item Assignment Removal
+
+For delegation notices
+
+ Delegation
+
+For delegation finished notices
+
+ Delegation Finished
+
+For delegation revocation notices
+
+ Delegation Revocation
+
+For remediation work item notices
+
+ Remediation Work Item
+
+For certification reminder notices
+
+ CertificationReminder
+
+For policy violation delegation notices
+
+ Policy Violation Delegation
+
+For open certifications notices
+
+ Open Certifications
+
+For access request reminder notices
+
+ Access Request Reminder
+
+
+
+
+
+
+ SailPointIdentityIQ System Configuration 93
+
+===== Page 97/120 =====
+IdentityIQ Email Templates
+
+
+For notice of deprovisioning of sunsetted roles and entitlements
+
+ Sunset Expiration Reminder
+
+ Compliance Notification Email Templates
+
+These notifications are used with Certifications. Navigate to gear icon > Compliance Manager and scrolldown to
+the Notification Templates section.
+
+ Note:Â When the challenge period is enabled, Challenge-related notification email templates can
+ be overwritten for individual certifications on the Lifecycle page ineach certification con-
+ figuration.
+
+
+ Note:Â InitialNotification and Bulk Reassignment notices can be overwritten for each certification
+ on the Notifications page in each certification configuration.
+
+Suppress Initial Notifications
+
+Check thisoption ifyou do not want to send initialnotificationemails to certifiers.This sets the default initialnotification
+behavior at a global level, but you can stillchange itforan individual certification campaign as needed.
+
+Templates
+
+Initial Notification Email Template
+
+ Certification
+
+Exceptions Expiration Notices
+
+ Mitigation Expiration
+
+Bulk Reassignment Modification notices
+
+ Bulk Reassignment
+
+Challenge Period Start Notices to Challengers
+
+ Challenge Period Start
+
+Challenge Period End Notices to Certifiers
+
+ Challenge Period End
+
+Challenge Creation Notices to Challengers
+
+ Challenge Creation Notification
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 94
+
+===== Page 98/120 =====
+IdentityIQ Email Templates
+
+
+Challenged Decision Notices to Certifiers
+
+ CertificationDecision Challenged Notification
+
+Challenge Expiration Notices to Challengers
+
+ Challenge Expiration
+
+Challenge Decision Expiration Notices to Challengers and Certifiers
+
+ Challenge Decision Expiration
+
+Challenge Accepted Notices to Challengers
+
+ Challenge Accepted
+
+Challenge Rejected Notices to Challengers
+
+ Challenge Rejected
+
+Sign-off Approval Notices to Approvers
+
+ CertificationSign-off Approval
+
+ Reminder or Escalation Email Templates
+
+These are setin the Notificationsstep ineach certificationconfiguration when the associated reminder orescalation
+option isenabled.
+
+Reminder Email Template
+
+ Work Item Reminder
+
+Escalation Email Template
+
+ Work Item Escalation
+
+(Revocation) Reminder Email Template
+
+ Work Item Reminder
+
+(Revocation) Escalation Email Template
+
+ Work Item Escalation
+
+ Report Sign-off Email Template
+
+
+
+
+
+
+
+ SailPointIdentityIQ System Configuration 95
+
+===== Page 99/120 =====
+IdentityIQ Email Templates
+
+
+ Note:Â Because thisis cumbersome, you might choose toedit the Default Report Template dir-
+ ectlyrather than cloning it.This customization must be reapplied after any IdentityIQ version
+ upgrade, as itisoverwritten during the upgrade process.
+
+Not specified inthe user interface. When a report is defined, itsXML can be edited toadd an emailTemplateId argu-
+ment to change the email message template.
+
+Configured inreport specification ifRequire Signoff is selected when the report isdefined.
+
+Report signoff initial notification
+
+ Task Result Signoff
+
+Report signoff reminder notice
+
+ No default inUI but argument listmatches Work Item Reminder
+
+Report signoff escalation notice
+
+ No default inUI but argument listmatches Work Item Escalation
+
+Send PDF of report to someone
+
+ Default Report Template
+
+ Workflow Email Templates
+
+Email templates may be specified within workflow definitions in Setup >Business Processes as a process variable,
+step argument, or work item configuration email notification template.
+
+ Note:Â For templates referenced from a workflow, allworkflow variables, and allsteps arguments
+ and approval arguments defined for the step that invokes the email template are also available
+ foruse inthe email message (subject, body, cc, etc.)
+
+Various Process Variables and Step Arguments
+
+ LCM Requester Notification
+
+ LCM Manager Notification
+
+ LCM User Notification
+
+Approval Work Item Configuration Email Notification Template
+
+ LCM IdentityUpdate Approval
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 96
+
+===== Page 100/120 =====
+IdentityIQ Email Templates
+
+
+The following workflows (including sub-processes) use these templates:
+
+
+
+ l IdentityCorrelation
+
+
+
+ l Do Manual Actions
+
+
+
+ l Do Provisioning Forms
+
+
+
+ l Assimilate Provisioning Form
+
+
+
+ l Provisioning Approval Subprocess
+
+
+
+ l IdentityRequest Notify
+
+
+
+ l IdentityRequest Provision
+
+
+
+ l LCM Create and Update
+
+
+
+ l LCM Manage Passwords
+
+
+
+ l LCM Provisioning
+
+
+
+ l Lifecycle Event -Leaver
+
+
+
+ l Lifecycle Event Reinstate
+
+
+
+ l Role Modeler -Impact Analysis
+
+
+
+ l Role Modeler -Owner Approval
+
+The following templates do not include a Type in their XML definitions, so they may be used in
+various workflows:
+
+
+
+ l LCM Pending Manual Changes
+
+
+
+ l LCM Password Change Notification
+
+
+
+ l Pending Manual Changes
+
+
+
+ l Account Selection Notification
+
+
+
+ l Provisioning Form Notification
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 97
+
+===== Page 101/120 =====
+IdentityIQ Email Templates
+
+
+
+
+ l Role Modeler -Approval
+
+
+
+ l Role Modeler -Impact Analysis Review
+
+
+ XML Email Templates
+
+XMLÂ email templates cannot be configured through the user interface, they can only be edited through the email tem-
+plate'sXML
+
+From IdentityIQ Debug Pages >Â Object Browser, select the EmailTemplate object, then select the individual tem-
+plate toedit.
+
+ Important:Â There isno rollback mechanism for edits to objects that are saved in the Debug
+ pages. Although objects can be viewed and edited inthe Debug pages, itisa best practice to
+ export or check out the object, edit the XML as needed outside of IdentityIQ, and then import the
+ updated object toa test environment forvalidation before importing into your production
+ instance. This also allows you to manage your changes in a source control system, to facilitate
+ rollback. Use caution when editing objects inthe Debug pages, as there is no mechanism in the
+ Debug pages for rollingback changes once they have been saved.
+
+
+To edit a template's value in your implementation, select the Configuration object, then System Configuration and
+search the XMLÂ for these email template names or key values:
+
+key=delegationEmailTemplate
+
+ Delegation
+
+key=delegationRevocationEmailTemplate
+
+ Delegation Revocation
+
+key=delegationFinishedEmailTemplate
+
+ Delegation Finished
+
+key=remediationEmailTemplate
+
+ Remediation Work Item
+
+key=remediationNotificationEmailTemplate
+
+ Remediation Notification
+
+ Sent when Notify Users of Revocations isselected in acertification configuration.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 98
+
+===== Page 102/120 =====
+IdentityIQ Email Templates
+
+
+key= certificationReminderEmailTemplate
+
+ CertificationReminder
+
+ Sent on demand from certification.
+
+key= policyViolationDelegationEmailTemplate
+
+ Policy Violation Delegation
+
+key= AccountGroupPermissions. challengeGenerationEmailTemplate
+
+ Account Group Challenge Creation Notification
+
+ Specialized form of the Challenge Creation Notificationemail
+
+key= accessRequestReminderEmailTemplate
+
+ Access Request Reminder
+
+ Sent on demand from the Access Requests page
+
+key=openCertsEmailTemplate
+
+ Open Certifications
+
+Email Template XML
+
+The Email Template XML consists ofan <EmailTemplate> element with a setof attributesand nested elements that
+specify thebasic components ofan email message, such as sender, subject, message body, etc.
+
+These sections describe the attributes and nested elements.
+
+
+
+ l Email Template Attributes
+
+
+
+ l EmailTemplate Nested Elements
+
+Email Template Attributes
+
+The following liststhecomponents thatare generally expressed as attributeson the Email Template.
+
+Example:
+ <EmailTemplate name="Work Item Reminder" cc="$identity.Manager.email" >
+ <From>administrator@XYZCorp.com</From>
+ <Body>
+ ....
+
+
+
+
+
+
+
+ SailPointIdentityIQ System Configuration 99
+
+===== Page 103/120 =====
+IdentityIQ Email Templates
+
+name
+
+ Short but descriptive name fortemplate that uniquely identifies email template
+
+cc, bcc
+
+
+ Note:Â The to attribute isnot specified inthe email template because itisdetermined pro-
+ grammatically as the email issent and would be overridden
+
+ Carbon Copy and Blind Carbon Copy recipients forthe email
+
+from
+
+ Sender email address. Ifthis entry isnot specified in template, the default sender specified on the Global Set-
+ tings > IdentityIQ Configuration > Notification Settings > Default From Address isused.
+
+
+Apache Velocity Engine
+
+IdentityIQ email templates are processed through an open-source engine called Apache Velocity. Velocity is a Java-
+based template engine that allows web page designers to reference methods defined inJava code. IdentityIQ email
+templates make use of the Velocity Template Language to dynamically specify the email messages' contents and gen-
+erate custom email messages specific to the recipient, work item, and action involved.
+
+The Velocity Template Language (VTL) isa fairlysimple to use. Highlights are included below, and fulldocumentation
+on the syntax is available in the Apache Velocity User Guide orReference Guide.
+
+References
+
+Directives (Commands)
+
+VTL vs. $(variableName) Notation
+
+References
+
+As IdentityIQ prepares tosend an email notification,the appropriate email template is loaded and itsargument vari-
+ables are passed intothe VelocityContext where they can be accessed through VTL reference syntax. The contents of
+different variable types can be accessed through the syntax described inbelow.
+
+Variables
+
+ $identityName${identityName}$!identityName
+
+ These three syntaxes are generally interchangeable in VTL. Shorthand notation (the firstexample) isthe most
+ commonly used, but each of the other two is required inspecial cases. Refer to the Velocity User Guide formore
+ information.
+
+
+
+
+ SailPoint IdentityIQ System Configuration 100
+

@@ -1,0 +1,1503 @@
+﻿===== Page 1/91 =====
+ IdentityIQ Role, Group, and
+ Population Management
+
+
+ Version:8.4
+
+ Revised:September2023
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ThisdocumentandtheinformationcontainedhereinisSailPointConfidentialInformation
+
+===== Page 2/91 =====
+Copyright and Trademark Notices
+
+Copyright Â© 2023 SailPoint Technologies, Inc.Â  All Rights Reserved.
+
+Alllogos, text,content, including underlying HTML code, designs, and graphics used and/or depicted on these written
+materials or in thisInternet website are protected under United States and international copyright and trademark laws
+and treaties, and may not be used or reproduced without the prior express written permission of SailPoint Tech-
+nologies, Inc.
+
+â€œSailPoint Technologies,â€ (design and word mark), â€œSailPoint,â€ (design and word mark), "Identity IQ,â€ â€œIdentityNow,â€
+â€œSecurityIQ,â€ â€œIdentity AI,â€ â€œIdentity Cube,â€ and â€œSailPoint Predictive Identityâ€ are registered trademarks of SailPoint
+Technologies, Inc. â€œIdentity isEverything,â€ â€œThe Power of Identity,â€ and â€œIdentity Universityâ€ are trademarks of
+SailPoint Technologies, Inc. None of the foregoing marks may be used without the prior express written permission of
+SailPoint Technologies, Inc. Allother trademarks shown herein are owned by the respective companies or persons
+indicated.
+
+SailPoint Technologies, Inc. makes no warranty ofany kind regarding these materials or the information included
+therein, including, but not limited to,the implied warranties ofmerchantability and fitness for a particular purpose.
+SailPoint Technologies shall not be liable for errors contained herein or direct, indirect, special, incidental orcon-
+sequential damages inconnection with the furnishing, performance, or use of thismaterial.
+
+Patents Notice. https://www.sailpoint.com/patents
+
+Restricted Rights Legend. All rights are reserved. No part ofthis document may be published, distributed, reproduced,
+publicly displayed, used to create derivative works, or translated to another language, without the prior written consent
+ofSailPoint Technologies. The information contained inthis document issubject to change without notice.
+
+Use, duplication or disclosure by the U.S. Government is subject to restrictions as set forth insubparagraph (c) (1) (ii)
+ofthe Rights inTechnical Data and Computer Software clause at DFARS 252.227-7013 for DOD agencies, and sub-
+paragraphs (c)(1) and (c)(2) ofthe Commercial Computer Software Restricted Rights clause at FAR 52.227-19 for
+other agencies.
+
+Regulatory/Export Compliance. The export and re-export of this software iscontrolled for export purposes by the U.S.
+Government. By accepting this software and/or documentation, licensee agrees to comply with allU.S. and foreign
+export laws and regulations as they relate to software and related documentation.Â  Licensee will not export or re-
+export outside the United States software or documentation, whether directly or indirectly, to any Prohibited Party and
+willnot cause, approve or otherwise intentionally facilitate others inso doing. A Prohibited Party includes: a party in a
+U.S. embargoed country or country the United States has named as a supporter of international terrorism; a party
+involved in proliferation; a party identified by the U.S. Government as a Denied Party; a party named on the U.S.
+Department of Commerceâ€™s Entity Listin Supplement No. 4 to 15 C.F.R. Â§ 744; a party prohibited from participation in
+export orre-export transactions by a U.S. Government General Order; a party listed by the U.S. Governmentâ€™s Office
+ofForeign Assets Control as ineligible to participate in transactions subject toU.S. jurisdiction; or any party that
+licensee knows or has reason toknow has violated or plans to violate U.S. or foreign export laws or regulations.
+Licensee shall ensure that each of itssoftware users complies with U.S. and foreign export laws and regulations as
+they relate to software and related documentation.
+
+===== Page 3/91 =====
+Contents
+
+
+ Introduction to Roles, Workgroups, Populations, and Groups 1
+
+ Roles 2
+
+ Role Management 2
+
+ Role Management Concepts 3
+
+ Global Configuration and Settings for Roles 16
+
+ Role Modeling 16
+
+ Multiple Role and Account Assignment 64
+
+ Propagating Role Changes 67
+
+ Certifying Roles 70
+
+ Versioning Roles 71
+
+ Workgroups 73
+
+ Responsibility Sharing 73
+
+ Managing IdentityIQ Access 74
+
+ Creating Workgroups 74
+
+ Populations and Groups 75
+
+ Creating Populations 75
+
+ Creating Groups 78
+
+ Managing Groups and Populations 79
+
+ Using Populations and Groups 87
+
+===== Page 4/91 =====
+Introduction to Roles, Workgroups, Populations, and Groups
+
+Introduction to Roles, Workgroups, Populations, and
+Groups
+
+
+IdentityIQ offers several ways to group Identities into sets, based on shared characteristics. Each type ofgrouping has
+a distinctpurpose and offers unique capabilities. They include:
+
+Roles
+
+ Roles model the organization's job functions, structure, and system entitlements, and present entitlement data in
+ a way that is readily understood by non-technical reviewers .Through roles, entitlements can be grouped
+ together and presented as a logical unit,such as a job function, rather than as a detailed and often difficult-to-
+ interpret listof access rights.
+
+Workgroups
+
+ Workgroups associate sets ofIdentities to make itpossible to share responsibilities within IdentityIQ ;these
+ responsibilities can include certification access reviews and ownership ofapplication entitlements, among oth-
+ ers.
+
+Populations
+
+ Populations are query-generated listsof Identities that share a common set of attributes, such as location, depart-
+ ment, risk score, et cetera; populations can be used to filterthe set ofidentities that are included in a certification,
+ task, or report.
+
+Groups
+
+ Groups are sets of Identities created based on the value of a single identity attribute; groups can be used to filter
+ the set of identities that are included in a certification, task, or report.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 1
+
+===== Page 5/91 =====
+Roles
+
+Roles
+
+
+IdentityIQ roles are used tomodel a company's structure and business operations. Roles are designed to be highly
+flexible and can be customized to model a wide array of business structures and functions.
+
+By default, there are four types of roles configured inIdentityIQ:
+
+Organizational
+
+ Organize and manage the role hierarchy; typically do not perform any function other than creating a nesting struc-
+ ture in the Role Modeler.
+
+Business
+
+ Identify job functions or titles,or other attributes by which users can be grouped together.
+
+IT
+
+ Encapsulate sets ofsystem entitlements from one or more applications to be grouped together into a single role.
+ IT roles should encapsulate groups of related entitlements that are shared by one or more business roles.
+
+Entitlement
+
+ Represent individual system entitlements; entitlement roles were originally created torepresent a single enti-
+ tlement on a single application; currently, Entitlement Roles exist for backward compatibility with versions 5.x
+ and earlier of IdentityIQ, and are not recommended forcurrent/new installations.
+
+Custom Role types can be created to model a structure that does not easily fitintothe IdentityIQ default model. In addi-
+tion,the existing Role types can be configured to function differently from their default behavior to meet each organ-
+ization's business needs.
+Role Management
+
+IdentityIQ provides robust role management features that helps customers to implement an enterprise role model, to
+simplify compliance and provisioning processes for line-of-business users. Ithelps enterprises align low-level IT priv-
+ileges with their corporate structure and business operations by grouping individual entitlements intohigher-level busi-
+ness functions, and itabstracts business users from the underlying complexity of IT authorization models.
+
+The sections here willhelp you learn how tobuild and manage a robust role model inIdentityIQ.
+
+Role Management Concepts â€” Important terms and concepts to help you understand how best to use IdentityIQâ€™s
+role management features
+
+Global Configuration and Settings for Roles â€”Global Configuration and Settings for RolesSet global configurations
+and global defaults for roles and role behavior.
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 2
+
+===== Page 6/91 =====
+Roles
+
+
+Role Modeling â€” Create and maintain the roles that define your enterprise.
+
+Multiple Role and Account Assignment â€” Roles can be assigned to the same identity multiple times, and roles can be
+applied to multiple accounts on the same application.
+
+Automated Propagation of Role Changes to Role Members â€” When a roleis changed or deleted, that change
+propagates to allidentitiesthat are currently assigned tothe role.
+Role Management Concepts
+
+The sections below outline some important terms and concepts regarding roles and how they are managed inIden-
+tityIQ.
+
+
+
+ l Benefits of Roles
+
+
+
+ l Role Types
+
+
+
+ l IdentityIQâ€™s Two-Tier Role Model
+
+
+
+ l Linking IT Roles to Business Roles:Â Required and Permitted Access
+
+
+
+ l Role Inheritance
+
+
+
+ l How Roles are Created
+
+
+
+ l How Roles are Assigned
+
+
+
+ l Reviewing and Monitoring Roles and Role Assignments
+
+
+
+ l Role Based Access Control (RBAC)
+
+Benefits of Roles
+
+A major benefit of implementing roles isusing them to translate entitlement data into terms that can be more clearly
+understood by business managers and other employees, as they request, assign, and review access. Through roles,
+entitlements can be grouped together and presented as a logical unit,such as a job function, rather than as a detailed
+and often difficult-to-interpretlistofaccess rights.
+
+Insome cases, the way entitlements are named or described can make itdifficultfora reviewer to understand what
+the entitlement means. For example, groups names may use acronyms or numeric values which do not offer a great
+deal of contextual information to the layperson; even when names are more descriptive, inclusion ofDN data in the
+group name may obscure the important values, atleast at firstglance. Roles can be used tosimplify and clarifyhow
+the data is presented tothe business user.
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 3
+
+===== Page 7/91 =====
+Roles
+
+
+Sometimes a single job function may require multiple system entitlements, either allon the same application, or
+across multiple resources. Without roles, the reviewing manager needs to know about allof the required pieces â€“ both
+tounderstand why an employee has access to each of these, and to ensure that employees have allthe access they
+need to do the job. With roles, allof these permissions can be encapsulated in a single role and presented to the
+reviewer as a unit,both clarifying and simplifying the reviewing process.
+
+Similarly, encapsulating entitlements into roles also makes itpossible for a manager to automatically provision the
+required entitlements for a new employee, simply by assigning that person the appropriate role.
+
+Role Types
+
+By default, there are four types of roles configured in IdentityIQ:
+
+ Organizational Roles
+
+Organizational roles are designed for organizing the role hierarchy inthe IdentityIQ UI for easier management. By
+default, they do not perform any function other than creating a nesting structure in the Role Modeler. Organizational
+roles can be defined inany hierarchical structure desired. Possible structures could include:
+
+
+
+ l A hierarchy matching the corporate org structure for organizing business roles into easily managed groupings
+
+
+
+ l A set of container roles forholding collections ofIT roles based on commonalities between them
+
+
+
+ l A set of container roles grouping other roles by application
+
+
+
+ l A set of container roles grouping other roles alphabetically
+
+
+
+ l Any combination ofthese structures (or others)
+
+
+The key isto use organizational roles to simplify navigation through the role structure foradministrators who willbe
+tasked with managing the roles.
+
+ BusinessÂ Roles
+
+Business roles generally represent job functions, titles,orresponsibilities. They are usually tied tothe organizational
+structure and are assigned to users based on their functions in the business â€“ such as â€œTreasury Analystâ€ or
+â€œAccounts Payable Clerkâ€. Business roles define the desired state fora userâ€™s access: what do you want someone
+with this job function to be able todo, or not do?
+
+For example, within the Accounts Payable department, there might be an AP Supervisor, 3 AP Lead Accountants, and
+30 Accounting Clerks. This would require the creation of 3 business roles:
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 4
+
+===== Page 8/91 =====
+Roles
+
+
+
+
+ l AP Supervisor
+
+
+
+ l AP Lead Accountant
+
+
+
+ l AP Clerk
+
+
+However, ifallclerks donâ€™t do the same basic job, itmay help tocreate additional roles to further divide them into sub-
+units.For example, perhaps the mailroom clerks are tasked with opening, stamping, and digitally scanning invoices
+while other clerks are responsible foraccounting system data entry and reporting. In that case, the department might
+implement four business roles:
+
+
+
+ l AP Supervisor
+
+
+
+ l AP Lead Accountant
+
+
+
+ l AP Entry Clerk
+
+
+
+ l AP Mailroom Clerk
+
+
+Insome cases, business roles may be defined by the managerial hierarchy inplace at the company. For example,
+there may be a stricthierarchy of managerial and supervisory job titlesthat is replicated within any division or depart-
+ment, such as
+
+
+
+ l Vice President
+
+
+
+ l Director
+
+
+
+ l Manager
+
+
+
+ l Supervisor
+
+
+
+ l Lead
+
+
+Business roles are assigned tousers directly, either automatically via attribute matching on things likejob titleor
+department, or via request, which may come from the user himself or from someone else, like a manager or an applic-
+ation owner.
+
+ IT Roles
+
+ITRoles encapsulate sets of system entitlements. They are tied to actual permissions within an application or target
+system. IT roles represent the actual state of the user's access, such as an account, entitlement, or permission. IT
+roles should encapsulate groups ofrelated entitlements that are shared by one or more business roles. Iftoo many
+entitlements are grouped together, each IT role may only apply to one business role and lose any potential reuse
+
+
+
+
+
+SailPoint IdentityIQ Role, Group, and Population Management 5
+
+===== Page 9/91 =====
+Roles
+
+
+benefits. Iftoo few are grouped into each IT role,each business role willhave to be connected to large numbers of IT
+roles to provide the required system access for the job; thiscan also result inrole proliferation that makes role man-
+agement an overly cumbersome activity, reducing their value to the organization. The goal therefore is toencapsulate
+as many entitlements into each role as possible without over-grouping.
+
+A userâ€™s IT roles can be detected inIdentityIQ based on the entitlements that user has. Access can also be pro-
+visioned in IdentityIQ through IT roles.
+
+ Entitlement
+
+Entitlement roles were originally created to represent a single entitlement on a single application; currently, Enti-
+tlement Roles exist for backward compatibility with versions 5.x and earlier of IdentityIQ, and are not recommended
+forcurrent/new installations.
+
+ Custom Roles
+
+Custom role types can be created to model a structure that doesnâ€™t easily fitinto the IdentityIQ default model. In addi-
+tion,existing role types can be configured tofunction differently from their default behaviors. Because there are so
+many ways roles can be customized, this document only discusses IdentityIQâ€™s role structure in the default con-
+figuration.
+
+IdentityIQâ€™s Two-Tier Role Model
+
+IdentityIQ by default uses a two-tier role model, to facilitatematching a userâ€™s business responsibilities totheir actual
+access. Although you are not required to implement your roles using this two-tier model, itis helpful to understand the
+benefit of this model as you plan your implementation.
+
+Inthe two-tier model, IT roles are linked to business roles, to tieactual access to your defined job functions and titles.
+This allows end users such as managers or access reviewers to work with familiar, user-friendly business roles rather
+than having tounderstand and act on every individual entitlement that ismanaged inIdentityIQ. IT roles can be shared
+by multiple business roles, as needed.
+
+Linking IT Roles to Business Roles:Â Required and Permitted Access
+
+When IT roles are linked to business roles, IdentityIQ uses the IT role definitions to know what access itshould pro-
+vision for a user when they are assigned the business role. Business roles and ITroles are linked using two types of
+relationships: required and permitted.
+
+IT roles are connected to business roles through the Required Roles and Permitted Roles lists.
+
+
+
+ l Required roles refer to the set of access that someone with a given role must have. Someone with an
+ Accounts Payable business role, forexample, will always need have to have read and write access tothe
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 6
+
+===== Page 10/91 =====
+Roles
+
+
+ accounting system.
+
+
+
+ l Permitted roles mean the access isdiscretionary â€“ these are permissions or entitlements a user may be
+ allowed to have, but isnâ€™t required to have. When permitted access is included with a business role, the enti-
+ tlements are essentially â€œpre-screenedâ€ â€“ we know that a user with this role isallowed tohave the permitted
+ access. For example, perhaps allemployees are allowed to have VPN access but arenâ€™t automatically given
+ thisaccess unless they or theirmanager requests it.
+
+The required IT role connection is used as the driving force for provisioning entitlements based on role assignment.
+When a business role is assigned to an Identity, requiring entitlements the Identity does not have, the entitlements for
+the required IT roles will be provisioned for the Identity. Depending on how provisioning isconfigured, this process can
+range from entirely manual to fullyautomated.
+
+These require and permitted connections also help identifymissing entitlements during the certification process.
+When a user ismissing required entitlements for the IT roles under business roles assigned to them, the access
+review can reflectthis to bring itto the reviewer's attention. Correction of that state isnot done in the certification pro-
+cess itself;thatis leftto the refresh process or some other out-of-band process.
+
+Role Inheritance
+
+Insome organizations, business roles or IT roles can be efficiently modeled using an inheritance-based role structure.
+
+ Business roles
+
+Business roles can be modeled with inheritance when a set of business roles can be defined by increasingly specific
+criteria.Consider a Help Desk team made up of three support levels (business roles). Each higher numbered level
+may be able to do allthe same activities as the lower numbered group(s) but also have extra tasks that the lower
+numbered groups do not do.
+
+For example:
+
+ Help Desk Level 1
+
+
+
+ l Answer calls,troubleshoot basic issues
+
+
+
+ l Route complex problems to Level 2
+
+
+ Help Desk Level 2
+
+
+
+ l Diagnose problems routed from Level 1
+
+
+
+ l Refer problems not resolved within 24 hours toLevel 3
+
+
+
+ l Answer calls and engage in basic troubleshooting when time available
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 7
+
+===== Page 11/91 =====
+Roles
+
+
+ Help Desk Level 3
+
+
+
+ l Resolve problems referred from Level 2
+
+
+
+ l Assist with Level 2 issues when time available
+
+
+
+ l Answer calls and engage in basic troubleshooting when time available
+
+
+Perhaps the organization is structured so that allHelp Desk personnel are assigned to the Department â€œHelp Deskâ€.
+Additionally, allLevel 2 and Level 3 Help Desk personnel are in the Denver location (while Level 1 personnel are not).
+Further, Level 3 personnel must hold the job titleâ€œSenior Engineer.â€
+
+These increasingly-specific shared attributes can be used to create the assignment rules for each of the inherited
+roles. When IdentityIQ applies the assignment rules to an inherited role structure, the role assigned to each Identity is
+the deepest one in the inheritance hierarchy that applies.
+
+When the assignment rules run, Identities are assigned to only one of the roles inan inheritance structure. Only the
+most specific role â€“ the deepest level inthe hierarchy â€“ that applies to the Identity is assigned. In other words, ifan
+Identityâ€™s attributes meet the criteria forLevel 1 and Level 2, Level 2 isassigned; ifthey match allthree Levelsâ€™ criteria,
+Level 3 isassigned.
+
+ IT roles
+
+IT roles are modeled with inheritance when entitlement access for one set of Identities is a superset of the access
+grant to another set of Identities. For example, perhaps allEngineering users have access to the bug tracking system
+and project planning tool,but only Developers have access to the version control system. The Developer IT role could
+inherit from the Engineering IT role. Detection of IT roles in an inheritance structure operates on the same basic
+premise as assignment of inheritance-based business roles: an Identity will only have one role inthe hierarchy detec-
+ted for itand itwillbe the deepest one that applies tothat Identity. In the Engineering example, an Identity that has the
+Developer IT role detected for itwillnot also have the Engineering IT role detected. However, the Developer IT role is
+only detected ifallentitlements for both roles are found on the Identity.
+
+Limitations of Role Inheritance
+
+Itisimportant to note that iforganizational roles are interspersed with business roles in a hierarchy, the organizational
+rolesâ€™ presence willdisrupt the inheritance functionality. Inheritance of these traitsonly applies to roles of the same
+type that inherit from each other in a hierarchy that is not interrupted by other role types.
+
+The direct inheritance of an IT role directly ina Business or Container role isnot supported.
+
+Understanding Relationships Between Roles and Entitlements/Permissions
+
+Roles bundle sets of access (entitlements and permissions) together so that access can be more easily managed and
+governed. Entitlements, which typically take the form of an account on an application or membership in a group,
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 8
+
+===== Page 12/91 =====
+Roles
+
+
+control access to a system or application, and encompass actions the user with the entitlement can take in the applic-
+ation. Permissions represent direct access, independent of account or group membership, toan action a user can
+take in a system or application.
+
+The access allowed by roles can be direct or indirect. For example, an Accountant role can give direct access to the
+Accounting system, in the form ofan account on the system. Indirect access istypically granted through nested
+groups or a set of inherited roles; forexample, an Accounting Supervisor role may inherit the Accountant role, and
+thereby be indirectlygranted allthe access an Accountant would have on the Accounting system.
+
+Part of maintaining an efficient and functional role model is understanding and monitoring the connections between
+roles and the entitlements and permissions they allow.
+
+For example, ifyou are making changes to the set of entitlements defined in your Active Directory application, itâ€™s
+important to understand which roles will be affected by those changes. Or, ifyou want toexamine your role model to
+see where different roles may overlap in terms of the access they grant, itâ€™suseful to be able to see exactly which enti-
+tlements and permissions are included within multiple roles. Ifan application is going tobe retired, itâ€™suseful to review
+ahead oftime which roles include access to the application, so that the role can be changed accordingly.
+
+IdentityIQ provides many tools to help you monitor and manage the relationships between roles and enti-
+tlements/permissions. You can examine roles todiscover which entitlements and permissions they grant, and you can
+also examine entitlements and permissions to see which roles include them.
+
+Establishing Connections Between Roles and Access
+
+An IdentityIQ task called Role-Entitlement Associations builds a table of relationships between roles and access,
+ensuring referential integrityin your role model. This task only needs to be run one time to establish role associations
+toentitlements and permissions; once ithas been run, IdentityIQ automatically updates the relationship table any time
+changes are made to roleprofiles.
+
+This task isrun by default when upgrading from an earlier version ofIdentityIQ to the current version; inan upgrade
+scenario, you do not need to run the task independently ofthe upgrade process inorder to establish these rela-
+tionships.
+
+Although there is no requirement to run the Role-Entitlement Associations task again after itisfirstrun, you can
+choose to run itifyou want toâ€“ for example, ifyou have onboarded many applications in a short timeframe and want
+totake extra care to ensure thatyour relationship table is up to date.
+
+Examining Roles: What Access Do They Provide?
+
+The Role Profiles Composition report letsyou see which entitlements and permissions are included in specific
+roles. See the IdentityIQÂ Roles documentation.
+
+The Advanced Analytics Role search includes criteriato search forroles by access profile,for entitlements, per-
+missions, or both. See the IdentityIQ Search documentation.
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 9
+
+===== Page 13/91 =====
+Roles
+
+
+The Role Viewer (Setup > Roles) lets you drillinto Role Statistics details about individual entitlements; the detail
+view listsAssociated Roles where relevant. See The Role Viewer Tab.
+
+Examining Entitlements and Permissions: Which Roles Include Them?
+
+The Roles by Entitlement report listsallroles that grant particular entitlements or permissions.Â See the IdentityIQ
+Reports documentation.
+
+The Role Member report includes entitlement and permission criteria,that lets you see which users are members of
+roles that grant specific access. See the IdentityIQ Reports documentation.
+
+The Advanced Analytics Role search includes criteriato search forroles by access profile,for entitlements, per-
+missions, or both. See the IdentityIQ Search documentation.
+
+You can drilldown to Role Association information for entitlements and permissions in these areas of IdentityIQ:
+
+
+
+ l The Entitlement Catalog includes an Associated Roles tab listing the roles that provide direct access to the
+ entitlement. See the IdentityIQ Application Management documentation.
+
+
+
+ l Inthe Identity Warehouse, you can clickon individual entitlements to see Associated Roles that provide direct
+ access to the entitlement forthis user. See the IdentityIQ Identity Management documentation.
+
+
+
+ l Inthe Application Definition, the Accounts tab for the application listsusers with accounts on the applic-
+ ation. You can clickthe arrow next to a user tosee specific entitlements, then clickon an entitlement to see
+ details that include Associated Roles where applicable. See the IdentityIQÂ Application Configuration doc-
+ umentation.
+
+
+
+ l Work items for access review challenges or decisions include an option to drilldown into specific entitlements
+ tosee Associated Roles where applicable. See the IdentityIQ Work Items documentation.
+
+
+
+ l InTargeted Certifications, the What do you want to certify? section letsyou enter criteriafor selecting
+ roles. Source Application, Source Attribute, and Source Value filteringattributes letyou refine which roles are
+ included in the certification by the entitlement access granted by the roles. See the IdentityIQ Certifications
+ and Access Reviews documentation.
+
+
+
+ l When adding or removing access using the Manage User Access Quicklink, you can filteraccess based on
+ the Role Source Application, Role Source Attribute, or Role Source value. You can also click the Details button
+ on access items and drilldown into the Entitlement Profile to see Associated Roles for the item.
+
+
+
+ l When approving access, you can click the information icon (?) forany access item, and drilldown into the Role
+ Hierarchyâ€™s Entitlement Profiles, to see Associated Roles for the access item.
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 10
+
+===== Page 14/91 =====
+Roles
+
+How Roles are Created
+
+IdentityIQ provides a comprehensive set of role engineering tools in the Role Management UI, to help your organ-
+ization rapidly build and deploy an enterprise role model. These tools include an interactive role modeling interface as
+well as business and IT role mining capabilities.
+
+Business roles and IT roles can be manually created through the Role Management user interface.
+
+You can also use the role mining feature togenerate business and IT roles; role mining can often do the task more effi-
+ciently than a manual process. Roles created through role mining can then be manually modified.
+
+Inbusiness role mining, roles are identified based on one or more identity attributes in IdentityIQ. For example, ifJob
+Titleis one ofthe identity attributes, a business role can be created based on each unique Job Title.
+
+InIT role mining, IT roles are generated based on system access current employees already have.
+
+Both the Role Management UI and the Role Mining feature are discussed in detaillater in thissection.
+
+How Roles are Assigned
+
+Business roles can be assigned in a couple of ways. Roles can be assigned automatically based on attribute match-
+ing,using assignment rules in the business role. This istypically used forbirthright provisioning â€“ that is,simply
+because someone is an employee, they automatically get some set of business roles; furthermore, ifthey are in the
+Accounting department (as indicated by an attribute defining their department), they get another business role; and if
+they are also a manager, they may get yet another business role.This can allbe done automatically when an identity
+iscreated, or when itisupdated with, for example, a change of department or a change of manager status. Birthright
+roles are frequently marked as not requestable; they also could be excluded from the certification process, since we
+expect users to be granted these roles simply by virtue of who they are.
+
+Roles can also be requestable â€“ that is,a role can be assigned to a user based on a request forthe role from, for
+example, the userâ€™s manager, an application manager, or from the user himself. Part of designing your role model
+includes determining who may request roles, and who willapprove the rolerequests. When you define your roles, you
+can specify role attributes that determine what the approval process is.
+
+Using Assignment Rules to Assign Business Roles to Identities
+
+Automatic role assignment isdone based on the Assignment Rule forthe role. When roles are created through Role
+Mining, the Assignment Rule isautomatically generated to match the selection criteriathat created the role.
+
+When the Assignment Rule is executed, the appropriate Identitiesare automatically assigned thatbusiness role. To
+execute the rolesâ€™assignment rules, run an Identity Refresh task with the Refresh assigned, detected roles and
+promote additional entitlements option selected. See the Tasks documentation for more information.
+
+Manually created roles must have an Assignment Rule written for them to allow them to be assigned to Identities auto-
+matically. The assignment rule for each role can be defined through any of these constructs:
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 11
+
+===== Page 15/91 =====
+Roles
+
+
+
+ l Match List: checks for a match in one or more identity or application attribute values
+
+
+
+ l Filter: specifies matching criteriain a <CompoundFilter> XML representation.
+
+
+
+ l Script /Rule: BeanShell code that sets the criteriafor assigning the role; usually used when the conditions for
+ the assignment rule are too complex for the simpler constructs
+
+
+
+ l Population: saved set ofsearch criteriaidentifying a population of identities;Populations are created from
+ Advanced Analytics searches.
+
+Ifrole-mining-generated roles are manually modified, the assignment rules generated forthem may no longer apply.
+Inthat case, the assignment rules must be edited as well to prevent them from being incorrectly assigned to Identities.
+
+For an overview of developing and using rules in IdentityIQ, see the IdentityIQ SystemÂ Administration guide.
+
+Reviewing and Monitoring Roles and Role Assignments
+
+Review ofroles and roleassignments isan essential part of successful roles program. Tools formonitoring role assign-
+ments include:
+
+Manager and Targeted Certifications
+
+ These certifications allow managers to review roles assigned to theiremployees.
+
+Role Membership Certifications
+
+ These certifications letthe owner(s) of the role itselfreview allthe users who have that role.
+
+Role Composition Certifications
+
+ These certifications allow the role owner (or others) to review the access that makes up the role,to ensure that
+ roles are accurate and current.
+
+These options are discussed indetail in the IdentityIQÂ Certifications and Access Reviews documentation.
+
+Role Based Access Control (RBAC)
+
+Role-based access control (RBAC) isan approach to access security that relies on a personâ€™s rolewithin an organ-
+ization todetermine what access they have. A role isa collection ofpermissions, and users receive permissions
+through the roles they have been assigned. Permissions or access in thisdefinition can mean many things, such as
+the abilityto perform certain tasks, permission to view, edit, or create files,or holding superuser privileges on sensitive
+applications, togive justa few examples. This allows roles within an organization to remain relatively stable while
+users and permissions can change rapidly.
+
+One of the main goals of RBAC isto grant employees only the access they need to do their jobs, and to prevent them
+from having access that is not relevant tothem. A well-designed RBAC system also simplifies and streamlines the
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 12
+
+===== Page 16/91 =====
+Roles
+
+
+administration ofaccess, by grouping sets of access ina logical and intuitive way, based on things likedepartment,
+job function ortitle,region, or manager level. Grouping access permissions into roles provides a secure and efficient
+way of managing access, and helps keep things simple for administrators, certifiers, and the users requesting access.
+
+Full versus Partial RBAC
+
+RBAC isoften talked about as a comprehensive system, but inactual practice itcan be implemented as a partialsolu-
+tion.As you plan your organizationâ€™s RBAC strategy, donâ€™t get too caught up inthe idea that allaccess must be man-
+aged only through roles. A partial RBAC solution that manages some but not allaccess through roles can stillprovide
+a great deal of value. Trying to achieve 100% coverage for allaccess can easily result ina proliferation of roles, includ-
+ing the creation of roles which may have only one person inthem. This can ultimately undercut the goal of making
+access easier and more efficientto manage.
+
+Some job profiles are particularly well suited to an RBAC approach, such as jobs that involve a high degree ofstand-
+ardization, high turnover, seasonal employment, or a need forparticularly rapid onboarding. Other job profiles,such
+as those in an IT department that involve highly privileged and specialized access, may not be good candidates for
+RBAC.
+
+Implementing RBAC in IdentityIQ
+
+IdentityIQ provides many features and tools that support implementation ofRBAC: role editing and modeling, role min-
+ing,entitlement analysis, certifications forrole membership and role composition, and workflows for governing
+changes.
+
+Here are some key IdentityIQ concepts you should be familiar with as you plan your implementation of RBAC:
+
+
+
+ l IdentityIQâ€™s Two-Tier Role Model
+
+
+
+ l Linking IT Roles toBusiness Roles:Â Required and Permitted Access
+
+
+
+ l How Roles are Assigned
+
+
+
+ l Reviewing and Monitoring Roles and Role Assignments
+
+Maintaining Roles
+
+An RBAC system is successful only to the extent thatthe roles itrelies on are current, relevant, and appropriately
+scoped. In addition to monitoring who has a role,you have to monitor what isin a role.Within your organization, the
+types ofavailable access can change, job descriptions can change, new applications can get added, et cetera. People
+inyour organization must have confidence thatroles are meaningful and current, or they may stop using them.
+
+IdentityIQ offers some features tohelp you maintain your roles.
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 13
+
+===== Page 17/91 =====
+Roles
+
+
+
+ l The The Role Editor Page supports creating and editing roles. You can configure roles such thata change or
+ editto the role will trigger a workflow for approvals and notifications before the role ispromoted into production.
+
+
+
+ l The Role Composition Certification allows the role owner (or others) toreview the access that makes up the
+ role.This certification isan essential part ofa role program, for keeping roles accurate and current.See How
+ To Perform a Role Composition Access Review in the IdentityIQ Certifications and Access Reviews Guide.
+
+Best Practices for Defining and Creating Roles for RBAC
+
+As you set about defining the roles forRBAC, you need a clear picture of the business roles in your organization, and
+ofthe entitlements. Part ofthis exercise is determining where to startimplementing RBAC. Itmay not be realistic to try
+toset up RBAC for your entire organization allat once, and where you startwill depend a loton your type of business
+and your organization.
+
+Here are some best practices for defining and creating roles:
+
+
+
+ l Include business experts in the planning. Itâ€™sessential to work with your organization's subject matter
+ experts â€“ managers, IT and security teams, human resources, application owners, et cetera, who have a clear
+ idea of what their team members do and how people use various applications â€“ to help you determine which
+ segments ofyour organization are most in need ofRBAC. These business experts can also help identify pat-
+ terns of access, define job responsibilities, and evaluate access options.
+
+
+
+ l Monitor the big picture. In addition to the business experts who will provide input on the needs of specific
+ departments or applications, you also need someone with oversight over the entire role hierarchy tospot organ-
+ ization-wide patterns and see the big picture, in order tohelp you avoid role proliferation or duplication. There
+ may be some overlap of access needs among disparate teams, so inorder to avoid duplication of roles, you will
+ need someone keeping track of the overall, top-level view of your role model.
+
+
+
+ l Familiarize yourself with IdentityIQâ€™s tools for role development. IdentityIQ provides a number of tools to
+ help with role creation: Entitlement Analysis ,Role Mining forBusiness and IT Roles, and Role Modeling allsup-
+ port analysis ofthe data which has been onboarded into IdentityIQ, and can create roles based on thatana-
+ lysis.You can export role mining data and ad hoc queries into a report format foryour analysts to evaluate.
+
+
+
+ l Work with a meaningful entitlement catalog. Before developing your roles in IdentityIQ, ithelps to have a
+ meaningful entitlement catalog from which tobuild roles. The Entitlement Analysis feature is one of the most
+ useful ways ofidentifying patterns of access and spotting â€œred flagsâ€ or outliers with singular access assign-
+ ments. The usefulness of the analysis depends on an entitlement catalog that completely and correctly rep-
+ resents the access you want tomanage.
+
+
+
+ l Use meaningful names and descriptions for business roles. When you create business roles, keep in
+ mind that itâ€™simportant to use meaningful names and descriptions for the roles. These are available to people
+ requesting and reviewing access and can be very valuable information to help users understand what each
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 14
+
+===== Page 18/91 =====
+Roles
+
+
+ business roleis for,and what itincludes.
+
+
+
+ l Define your IdentityIQ team appropriately. The people who analyze and define the roles and the access
+ that goes with them do not have tobe the same people who work in IdentityIQ to set roles up. Choose the right
+ team of people for working on the role model in IdentityIQ so that your definition and implementation efforts are
+ secure and efficient.
+
+
+
+ l Create a process to approve role creation. Plan foran approval process for role creation. Roles can be set
+ up to trigger workflows for approval and notification. Putting new roles, or changes toroles, through an
+ approval process protects against role proliferation/duplication.
+
+RBAC Project Tips
+
+Here are some pointers based on the experience of customers, partners, and SailPoint solution architects who have
+implemented RBAC in the field.While your own project requirements may vary and willdepend on your business
+needs, these are things to consider as you plan your RBAC strategy:
+
+
+
+ l Take a pragmatic approach. Think of RBAC as an ongoing program, not a project. Donâ€™t expect to achieve
+ 100% coverage of allaccess via RBAC as you implement it.A comprehensive RBAC solution could take
+ months or even years to complete. Itisrealistic and acceptable to implement RBAC in steps or phases.
+
+
+
+ l Know what youâ€™re trying to accomplish. Are you trying to make certifications easier? Ifso, your primary
+ focus will be on evaluating and organizing current access. Is your goal to make access requests easier? In that
+ case, you may want to focus on the Lifecycle Manager side of IdentityIQ, using roles to help users more easily
+ findand select the roles they want to request.
+
+
+
+ l Look for groupings of role types. Use the IdentityIQ features such as Role Mining and Entitlement Analysis
+ toidentify patterns and groupings of access and role types. This willhelp you avoid role proliferation.
+
+
+
+ l Enforce least privilege. Define roles so that you donâ€™t give people access they donâ€™t need. Setting up roles for
+ the least privilege is a best practice for reducing security risk,both from malicious intent and from user errors.
+
+
+
+ l Expect exceptions to RBAC. In most enterprises, itisdifficultor impossible to entirely avoid individual enti-
+ tlements, especially in areas ofhighly specialized access needs, such as an IT department. Donâ€™t assume you
+ have to force allentitlements and allaccess models into roles.
+
+
+
+ l Make roles reusable. Ifonly one person in the whole organization has some particular role, maybe that
+ access shouldnâ€™t be managed via a role. Make sure the roles you define are applicable togroups of people; oth-
+ erwise your role model willbe unwieldy and willnot deliver the goals ofefficiency and simplification.
+
+
+
+ l Involve the business experts. People within your organization who know the business are often the best
+ resource for what the access patterns are and how should you structure your roles.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 15
+
+===== Page 19/91 =====
+Roles
+
+
+
+ l Test and verify your roles. Roles need as much testing and verificationas other functionality â€“ maybe more.
+ Ifyou define roles sub-optimally at the outset and put them into production, you can end up with a lotof users
+ who lack the access they need or who have more access than they should. There can be a big cleanup effortif
+ you rollout a role structure that has not been set up and tested properly.
+
+
+
+ l Develop processes for role maintenance. Roles evolve, and you need to keep them up to date. Plan forperi-
+ odic review and certification ofyour roles to make sure theyâ€™re stillcurrent and accurate. You should also plan
+ for how to retireroles when they are no longer needed. Regular certificationof role composition and rolemem-
+ bership should be part ofyour ongoing RBAC strategy.
+
+Global Configuration and Settings for Roles
+
+System administrators can set global configurations and global defaults for roles and role behavior. These functions
+are available through the administrator â€œgearâ€ menu in IdentityIQ. For more information, see the System Con-
+figuration documentation. Here isa brief overview ofthe administrator options for roles, and where to findthem inthe
+administrator UIs:
+
+ gear > Global Settings > IdentityIQ Configuration > Roles tab
+
+On thistab you can enable the use of,and default settings for, sunrise and sunset dates forroles. Sunrise and sunset
+dates let you make roles and entitlements temporary, to control when a role(or an individual user's access to a role or
+an entitlement) becomes active, and when itbecomes inactive. Ifyou want to use sunrise and sunset dates for roles,
+you must enable the feature globally here before setting sunrise and sunset dates on specific roles inthe Role Man-
+agement UI.
+
+ gear > Global Settings > Role Configuration
+
+Use the Edit Role Configuration page todefine custom extended roleattributes and role types. The extended attrib-
+utes are displayed with the rest ofthe role information throughout IdentityIQ. An example of a extended role attribute
+might be role status. Role type isused to configure roles to perform different functions within your business model. For
+example, type might be used to control inheritance or automatic assignment of roles.
+
+ gear > Global Settings > Forms
+
+Here, you can create forms for gathering user input atthe time a role isrequested.
+
+ gear > Lifecycle Manager Configuration > Configure tab
+
+On thistab, you can select the roletypes that are available forrole requests.
+
+Role Modeling
+
+To access the Role Management page, clickSetup > Roles.
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 16
+
+===== Page 20/91 =====
+Roles
+
+
+Role modeling isused to create and maintain the roles that define your enterprise. These roles are used tocategorize
+and manage users based on job function. Roles also provide a translation between business and IT functions, ease
+the provisioning and the request process for new access, simplify auditing, and the access review and certification pro-
+cess.
+
+Terms used in role modeling:
+
+ Role Mining
+
+ Role mining enables you to create new roles within IdentityIQ by analyzing data within the system using pattern-
+ matching algorithms. IdentityIQ supports role mining to create both business and IT roles. Business roles typ-
+ icallymodel how users are grouped by business function, including functional hierarchies, project teams, or geo-
+ graphic location. IT roles typically model how application entitlements (or permissions) are logically grouped for
+ streamlined access. See Role Mining formore information.
+
+ Business Role Mining
+
+ Within IdentityIQ, business role mining facilitates the creation of organizational groupings based on identity attrib-
+ utes â€“ forexample department, cost center or job title.The business role mining supports multiple configuration
+ options to assist users in generating new roles. After the mining task iscompleted, the new roles are added to
+ the Role Viewer where they can be modified as necessary. See Business Role Mining for more information.
+
+ Entitlement Analysis
+
+ IdentityIQ also supports the creation of roles based on the mining of entitlements within the enterprise. These
+ roles typically model the IT privileges required to perform a specific function within an application or other target
+ system. Using a configurable algorithm, IdentityIQ searches foraccess patterns to determine logical groupings
+ of entitlements. See Entitlement Analysis formore information.
+
+ When you define roles based on entitlements from the applications being monitored by IdentityIQ, the aggreg-
+ ation and correlation process discovers the entitlements, matches them to the roles you defined, and assigns
+ those roles to the users who have those entitlements. Ifyou create a hierarchical structure of roles using the
+ inheritance function of the Role Viewer, users are assigned the lowest level role discovered during aggregation.
+ For example, ifrole A is a member of role B, and role B is a member of role C, and an identity isdiscovered that is
+ assigned allof the entitlements that defined roles C, B, and A, they are assign role A. Assigning the lowest level
+ role enables operations such as certifications tobe performed on one role instead of on each entitlement
+ assigned to the user.
+
+ Role type
+
+ Role type isused to configure roles to perform different functions within your business model. For example, type
+ might be used to control inheritance or automatic assignment of roles. Role types are configured on the System
+ Setup page.
+
+
+
+
+
+SailPoint IdentityIQ Role, Group, and Population Management 17
+
+===== Page 21/91 =====
+Roles
+
+
+ Role management also uses the concept of permissions to enable you to grant users permission tocertain
+ roles without assigning them the role or incorporating itin theirrole hierarchy. For example, while a non-IT user
+ with a business-type role might need access to the entitlements contained within an IT-type role, they probably
+ do not need to have that role assigned to them or included as part of theirhierarchal rolestructure.
+
+ Role archiving
+
+ Role archiving enables you tostore versions of roles that have changed over time. This function enables you to
+ roll-back to previous versions of the role ifnecessary. Ifrollapproval isrequired inyour enterprise, role roll-backs
+ also require approval. Role archiving iscontrolled through business processes and isenabled during the con-
+ figuration of the IdentityIQ product.
+
+ Role activation events
+
+ Role activation events enable you to use business processes to automatically activate or deactivate roles based
+ on dates you configure forthe role. Role activation business processes can be configured to automatically
+ refresh identities toinclude or exclude the impacted roles.
+
+ IdentityIQ user rights
+
+ Granting IdentityIQ user rights enables you toassociate specific IdentityIQ capabilities and scopes toroles.
+ Those capabilities and scopes are then granted to identitieswhen they are assigned the role and the Identity
+ Cube Refresh task isrun with the Provision assigned roles option selected. By default thisfunction is dis-
+ abled in IdentityIQ and must be turned on during the deployment and configuration process.
+
+The Role Viewer Tab
+
+
+ Note: The RoleNavigation panel can display roles that are outside ofyour assigned scope. You
+ cannot editthose roles.
+
+The Role Viewer tab of the Role Manager listsyour existing roles, displays detailed information about each role, and
+letsyou add, edit,and delete roles. The Role Viewer tab lets you work with these IdentityIQ components:
+
+
+
+ l Roles â€” See The Role Editor Page
+
+
+
+ l Archived Roles â€” See Role Editor - Archived Role Panel
+
+
+
+ l Profiles â€” See Role Editor -Edit Entitlement Panel
+
+ Viewing Role Information
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 18
+
+===== Page 22/91 =====
+Roles
+
+
+The Role Navigation panel of the Role Viewer tab displays your existing roles. The listofroles can be organized in a
+top down, bottom up, or grid format. The grid shows a simple listof roles in alphabetic order. Ifyou expand a role in the
+Top Down view you see the roles that are members of the expanded role. Ifyou expand a role inthe Bottom Up view
+you see the roles in which the expanded role isa member. Use filtering tolocate specific roles inthe Top Down and
+Bottom Up views.
+
+Click the arrow icon on the top, right side to contract or expand the Role Navigation panel. Contracting the panel
+provides more screen space to view role details in the Role Information panel.
+
+Click a role to display detailed information in the Role Information panel of the Role Viewer.
+
+Ifapproval and impact analysis are active, roles and profiles that have changes pending approval or are undergoing
+impact analysis are displayed with a red square surrounding their icon. Role analysis and role approval are an import-
+ant part of the overall role life-cyclemanagement. Role analytics and approval for new, modified, or rolled-back roles
+are controlled thought business processes configured for your implementation of IdentityIQ.
+
+Inactive roles that are not pending approval or analysis are displayed with a gray icon.
+
+The Role Information panel contains allof the information associated with the selected role.Some of the sections lis-
+ted in the table below may not be available for allrole types. Ifthere is information associated with a role that is not sup-
+ported by the assigned role type, the information isdisplayed with a warning message.
+
+Roles in which activation rules are enabled display a notice in the upper right-hand corner of the information panel con-
+taining activation or deactivation information.
+
+ Role Information Panel:
+
+
+Name
+
+ The name of the role.
+
+Display Name
+
+ The name to be used throughout IdentityIQ.
+
+Owner
+
+ The owner assigned to the role.
+
+Scope
+
+ The scope of thisrole. Scope is used to determine the objects to which a user has access. Ifscoping isactive,
+ identities can only see objects that they created or that are within the scopes they control. The scope option is
+ only displayed ifthe scope feature isenabled.
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 19
+
+===== Page 23/91 =====
+Roles
+
+
+Type
+
+ The type of role being displayed. Role type definitions are customizable and created as part of the configuration
+ process.
+
+Description
+
+ A short description ofthe role.
+
+Classification
+
+ Classifications categorize and flag a role, to identify itas potentially allowing access to sensitive, privileged, or
+ otherwise significant data.
+
+Elevated Access
+
+ This willbe set to true or false depending on ifthe role has elevated access.
+
+Extended Attributes
+
+ Any extended role attributes configured foryour enterprise and marked as searchable are displayed with the role
+ information. For example, Identity Attribute, Date Attribute, Rule Attribute.
+
+Role Statistics
+
+ The Role Statistics panel displays detailed statistical information on the users and entitlements a given role.
+ Click each applicable category to view a window containing item-specific statistical information. Available Iden-
+ tityIQ categories include the following:
+
+
+ Members â€“ Number of Identities assigned the role.Click to view a grid displaying those identities.
+
+ Members with Additional Entitlements â€“ Number of Identities that have entitlements which are not permitted
+ or required by this role or any other role they have been assigned. This applies to Business Roles provided by
+ IdentityIQ, not to custom roles.
+
+ Members with Missing Required Roles â€“ Number of Identities that are missing roles which are required by
+ this one. This applies to Business Roles provided by IdentityIQ, not tocustom roles.
+
+ Identities Detected â€“ Number of Identities whose entitlements indicate that they have this role. Click to view a
+ grid displaying those identities. This applies toIT and Entitlement Roles provided by IdentityIQ, not to custom
+ roles.
+
+ Identities Detected to be Exceptions â€“ Number of Identities whose entitlements indicate that they have this
+ role, even though they have not been assigned any roles that permit or require this one. Click to view a grid dis-
+ playing those identities. This applies to IT and Entitlement Roles provided by IdentityIQ, not to custom roles.
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 20
+
+===== Page 24/91 =====
+Roles
+
+
+ Provisioned Entitlements â€“ Number of Entitlements that would be provisioned ifthisrole were tobe assigned
+ to and/or required by a new Identity. This applies to Business, IT, and Entitlement Roles provided by IdentityIQ,
+ not to custom roles.
+
+ Permitted Entitlements â€“ Number of Entitlements that would be provisioned in order for an Identity tomatch all
+ roles permitted by this one. This applies to Business Roles provided by IdentityIQ, not to custom roles.
+
+
+ Click the Refresh button at the bottom of the panel of each roleyou wish to view the statistics.
+
+
+ -OR-
+
+
+ Run the Refresh Role Scorecard task to populate and display the statisticaldata by default on all roles.
+
+
+
+ Note: The Refresh role metadata option must be selected in the Refresh Identity Cubes task in
+ order forRole Statistics panel todisplay any information.
+
+Scheduled Events
+
+ The events scheduled for thisrole.
+ Activate â€“ the date on which the role becomes active.
+ Deactivate â€“ the date on which the date is to be deactivated.
+
+Archived roles
+
+ Previous, ordifferent, versions ofthis role. Ifarchiving isactive, each time a change ismade to a role definition a
+ version of the role is stored. This enables you to roll-back toprevious versions ifrequired.
+
+Assignment Rule
+
+ The rule used to automatically assign roles toidentities during a correlation process. Roles assigned either manu-
+ ally on the identities pages or through an assignment rule are considered Assigned Roles.
+
+Inherited Roles
+
+ The roles in which this role isa member.
+
+Permitted Roles
+
+ Roles to which users have access ifthey are assigned this role.
+
+Required Roles
+
+ The roles to which the user must have access ifthey are tobe assigned this role.
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 21
+
+===== Page 25/91 =====
+Roles
+
+
+Entitlements
+
+ The rules and permissions (targets and rights) that define the profiles contained within the role. The entitlements
+ are grouped by application.
+
+Inherited Entitlements
+
+ The entitlement details forthe entitlements that define the roles to which this role isa member. The included enti-
+ tlements are grouped by application.
+
+Granted IdentityIQ User Rights
+
+ The IdentityIQ capabilities and scopes associated with role.These rights are granted to the identities to whom
+ this role isassigned. These capabilities and scopes are not assigned untila Identity Cube Refresh task is run
+ with the Provision assigned roles option selected.
+
+ Adding Roles from the Role Viewer
+
+To add a new role,click Add or New Role > Role toopen the Role Editor page. Right-click an existing role and select
+Clone tocreate a new role based on the existing one. For more information on adding roles, see How to Create or Edit
+a Role From the Role Management Page.
+
+ Deleting Roles in the Role Viewer
+
+To delete a role, right-clickthe role and select Delete, then confirm the deletion request.
+
+The Role Editor Page
+
+Use the Role Editor todefine the roles foryour enterprise. A role is a collection of entitlements orprofiles that enable
+an identity to perform certain operations. For example, one role might enable an identity to request a purchase order
+and another might enable an identity to approve purchase requests. Use roles to monitor identity entitlements, identify
+policy violations, and compile identity riskscores toenable you tomaintain compliance.
+
+See How to Create or Edit a Role From the Role Management Page for information on how to work with roles the Role
+Editor.
+
+ Note: When adding new roles, the listof attributes changes to reflectthe currently selected role
+ type. When editing a role, ifthe role type changes, any attributes from the original role are pre-
+ served and the user is prompted with the warning message â€œThis attribute does not apply tothe
+ current roletypeâ€.
+
+Roles that are awaiting approval are displayed with a red square around the role icon. You can edit roles with approval
+or analysis pending, but a notice displays at the top of the page alerting you that â€œAn approval or impact analysis work
+item is pending on this role.â€Ifyou change and submit a role with changes pending, the original work item isdeleted
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 22
+

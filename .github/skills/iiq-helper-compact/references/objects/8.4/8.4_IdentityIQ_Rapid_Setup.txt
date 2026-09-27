@@ -1,0 +1,1779 @@
+===== Page 1/30 =====
+ IdentityIQ Rapid Setup
+
+
+ Version:8.4
+
+ Revised:September2023
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thisdocument and theinformation contained hereinisSailPoint ConfidentialInformation
+
+===== Page 2/30 =====
+Copyright and Trademark Notices
+
+Copyright © 2023 SailPoint Technologies, Inc.  All Rights Reserved.
+
+Alllogos, text,content, including underlying HTML code, designs, and graphics used and/or depicted on these written
+materials or in thisInternet website are protected under United States and international copyright and trademark laws
+and treaties, and may not be used or reproduced without the prior express written permission of SailPoint Tech-
+nologies, Inc.
+
+“SailPoint Technologies,” (design and word mark), “SailPoint,” (design and word mark), "Identity IQ,” “IdentityNow,”
+“SecurityIQ,” “Identity AI,” “Identity Cube,” and “SailPoint Predictive Identity” are registered trademarks of SailPoint
+Technologies, Inc. “Identity isEverything,” “The Power of Identity,” and “Identity University” are trademarks of
+SailPoint Technologies, Inc. None of the foregoing marks may be used without the prior express written permission of
+SailPoint Technologies, Inc. Allother trademarks shown herein are owned by the respective companies or persons
+indicated.
+
+SailPoint Technologies, Inc. makes no warranty ofany kind regarding these materials or the information included
+therein, including, but not limited to,the implied warranties ofmerchantability and fitness for a particular purpose.
+SailPoint Technologies shall not be liable for errors contained herein or direct, indirect, special, incidental orcon-
+sequential damages inconnection with the furnishing, performance, or use of thismaterial.
+
+Patents Notice. https://www.sailpoint.com/patents
+
+Restricted Rights Legend. All rights are reserved. No part ofthis document may be published, distributed, reproduced,
+publicly displayed, used to create derivative works, or translated to another language, without the prior written consent
+ofSailPoint Technologies. The information contained inthis document issubject to change without notice.
+
+Use, duplication or disclosure by the U.S. Government is subject to restrictions as set forth insubparagraph (c) (1) (ii)
+ofthe Rights inTechnical Data and Computer Software clause at DFARS 252.227-7013 for DOD agencies, and sub-
+paragraphs (c)(1) and (c)(2) ofthe Commercial Computer Software Restricted Rights clause at FAR 52.227-19 for
+other agencies.
+
+Regulatory/Export Compliance. The export and re-export of this software iscontrolled for export purposes by the U.S.
+Government. By accepting this software and/or documentation, licensee agrees to comply with allU.S. and foreign
+export laws and regulations as they relate to software and related documentation.  Licensee will not export or re-
+export outside the United States software or documentation, whether directly or indirectly, to any Prohibited Party and
+willnot cause, approve or otherwise intentionally facilitate others inso doing. A Prohibited Party includes: a party in a
+U.S. embargoed country or country the United States has named as a supporter of international terrorism; a party
+involved in proliferation; a party identified by the U.S. Government as a Denied Party; a party named on the U.S.
+Department of Commerce’s Entity Listin Supplement No. 4 to 15 C.F.R. § 744; a party prohibited from participation in
+export orre-export transactions by a U.S. Government General Order; a party listed by the U.S. Government’s Office
+ofForeign Assets Control as ineligible to participate in transactions subject toU.S. jurisdiction; or any party that
+licensee knows or has reason toknow has violated or plans to violate U.S. or foreign export laws or regulations.
+Licensee shall ensure that each of itssoftware users complies with U.S. and foreign export laws and regulations as
+they relate to software and related documentation.
+
+===== Page 3/30 =====
+Contents
+
+
+ About Rapid Setup 1
+
+ Rapid Setup Joiner Overview 1
+
+ Rapid Setup Mover Overview 2
+
+ Rapid Setup Leaver Overview 3
+
+ Rapid Setup Configuration 5
+
+ General Information for Rapid Setup Configuration 5
+
+ Prerequisites forConfiguring and Using Rapid Setup 6
+
+ Joiner Configuration 6
+
+ Mover Configuration 8
+
+ Leaver Configuration 10
+
+ IdentityOperations Configuration 12
+
+ Miscellaneous Configuration 13
+
+ Defining Trigger Filters 15
+
+ Using IdentityProcessing Thresholds forError Prevention 17
+
+ Using Rapid Setup 18
+
+ Aggregation inRapid Setup 19
+
+ Joiner Processing inRapid Setup 21
+
+ Mover Processing in Rapid Setup 23
+
+ Leaver Processing inRapid Setup 23
+
+ Terminating Identities with Rapid Setup 26
+
+ Rapid Setup Troubleshooting 27
+
+===== Page 4/30 =====
+About Rapid Setup
+
+About Rapid Setup
+
+
+Rapid Setup is a business-user-friendly interface that offers a streamlined way to onboard applications and handle
+common identity management scenarios such as joiner,mover, leaver, and terminating identities. Itprovides pre-con-
+figured processes thatfollow best practices for managing identities.
+
+Rapid Setup lets you separate the technical and IT-centric steps of onboarding and configuring applications (such as
+defining connection parameters and schemas) from the business-centric steps ofdefining the business processes the
+application should follow. Rapid Setup removes the complexity ofimplementation by providing a guided experience
+fornon-technical users.
+
+Rapid Setup does not replace existing IdentityIQ functions for onboarding applications and managing identities.
+Instead, itprovides an alternative way ofdefining application behavior and the events and processes for managing
+identities,in a configurable and guided way, and in a single, centralized UI.
+
+Some of Rapid Setup's behavior and options are set globally and willapply to allapplications that are onboarded with
+Rapid Setup. Other options can be set at the application level, so that you can customize processes for each applic-
+ation.
+
+Applications that you want to onboard with Rapid Setup must have connection parameters and schemas already
+defined. To make application onboarding easier for your business users, itishelpful to also pre-define elements such
+as email templates, business processes, any rules you may want to use, and other event-specific drivers of identity
+processing. For more details, see Prerequisites forConfiguring and Using Rapid Setup.
+
+For more overview information see:
+
+
+
+ l Rapid Setup Joiner Overview
+
+
+
+ l Rapid Setup Mover Overview
+
+
+
+ l Rapid Setup Leaver Overview
+
+
+For information on configuring Rapid Setup's global options, see Rapid Setup Configuration.
+
+Rapid Setup comes included inLifecycle Manager and does not need to be installed separately.
+Rapid Setup Joiner Overview
+
+The Joiner process defines the operations that are run when a new user joins your organization.
+
+These can include:
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Rapid Setup 1
+
+===== Page 5/30 =====
+About Rapid Setup
+
+
+
+ l Building a provisioning plan which includes:
+
+
+
+ l Assigning birthrightroles. Birthright roles are any business roles thatall employees have simply
+ because they are employees, The Rapid Setup Joiner process uses assignment rules to determine how
+ these roles are assigned to identities.
+
+
+
+ l Creating a new account on each application that has account-only provisioning enabled (ifno account
+ exists yet). Account-only provisioning is used when there are no roles or entitlements that require the cre-
+ ation of accounts, but you want an empty account created on the application for the user anyway.
+ Account-only creation will occur only ifthe identity meets the creation criteria that isconfigured in the
+ Joiner process for that application.
+
+
+
+ l Executing the provisioning plan. The provisioning business process forJoiners is configured at a global level
+ forRapid Setup. See Rapid Setup Configuration.
+
+
+
+ l Notifying the manager with results of provisioning.
+
+
+
+ l Optionally, notifying the manager when a temporary password isgenerated.
+
+
+
+ l Running an optional post-joiner rule.
+
+
+The Joiner process must be enabled globally before users can configure and use iton a per-application basis. See
+Rapid Setup Configuration for details about global configuration.
+Rapid Setup Mover Overview
+
+The Mover process defines the operations that are launched when an identity moves within your organization. What
+constitutes a "move" can be defined according toyour organization's needs, in the global settings forRapid Setup.
+Some common examples of moves are change ofmanager and change oflocation.
+
+Mover processes can include:
+
+
+
+ l Generating a certification for the identity that is moving, before mover processing begins. Settings at the applic-
+ ation level can determine whether or not to certify additional entitlements. A global setting can be configured to
+ bypass certifications during mover processing.
+
+
+
+ l Perform a joiner-type provisioning on the moving identity. When joiner processing isenabled, birthright roles
+ willalways be assigned or removed as appropriate. Settings at the application level can determine whether or
+ not to perform account-only provisioning during mover processing. Global settings can be configured to bypass
+ joiner-type provisioning.
+
+
+
+ l Running an optional post-mover rule.
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Rapid Setup 2
+
+===== Page 6/30 =====
+About Rapid Setup
+
+
+The Mover process must be enabled globally before users can configure and use iton a per-application basis. See
+Rapid Setup Configuration for details about global configuration.
+Rapid Setup Leaver Overview
+
+The Leaver process defines the operations that are launched when someone leaves your organization. The criteriafor
+how "leaving" is defined isconfigured according to your organization's needs, in Rapid Setup's global configuration.
+
+Leaver processes can include:
+
+
+
+ l Reassigning ownership of artifacts(such as tasks, applications, and policies) currently owned by the leaving
+ identity.
+
+
+
+ l Notifying the manager of the leaving identity about reassigned artifacts.
+
+
+
+ l Reassigning the administration of identities that are currently administered by the leaving identity. This option is
+ typically used for service account or RPA type identities that the leaver is responsible foradministering.
+
+
+
+ l Notifying the manager of the leaving identity about the reassigned identities.
+
+
+
+ l Auto-rejecting requests targeted forthe leaving identity.
+
+
+
+ l Running an optional post-leaver rule.
+
+
+
+ l Updating links which may need updating due to a move.
+
+
+The Leaver process can build an immediate provisioning plan to:
+
+
+
+ l Remove of the identity's assigned roles
+
+
+
+ l For each application on which identity has an account, and forwhich Leaver processing isenabled, determine
+ which of these actions to perform, and whether to perform each one immediately orto defer the action:
+
+
+
+ l Removal ofthe identity'sentitlements (unless they are excluded from removal).
+
+
+
+ l Scrambling the identity'spassword on the application.
+
+
+
+ l Adding a comment to an account attribute.
+
+
+
+ l Moving the account to a different OU on a container-based application.
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Rapid Setup 3
+
+===== Page 7/30 =====
+About Rapid Setup
+
+
+
+ l Disabling the account.
+
+
+
+ l Deleting the account.
+
+
+
+ l Execute the immediate provisioning plan.
+
+
+
+ l Notify the manager with results of the immediate provisioning.
+
+
+The Leaver process must be enabled globally before users can configure and use iton a per-application basis. See
+Rapid Setup Configuration for details about global configuration.
+
+You can also define processes for the immediate termination of identities, that can be distinct from your other leaver
+processes. Some ofthe termination behavior is configured globally as part of Identity Operations Configuration; you
+can also define application-specific termination behavior as part of leaver processing.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Rapid Setup 4
+
+===== Page 8/30 =====
+Rapid Setup Configuration
+
+
+Rapid Setup Configuration
+
+
+Use the Rapid Setup configuration to setglobal options for Rapid Setup. Rapid Setup global configuration is accessed
+through the Gear Icon > Global Settings > Rapid Setup Configuration.
+
+Configuring Rapid Setup includes defining:
+
+
+
+ l which processes are enabled system-wide
+
+
+
+ l how identities are selected forjoiner, mover, and leaver processes
+
+
+
+ l which business processes touse forthe joiner, mover, and leaver processes
+
+
+
+ l whether touse rules as part of processing identities, and which rules to use
+
+
+
+ l the email templates to use for notifying managers orworkgroups about processing events
+
+
+
+ l other options that are specific to the various processes.
+
+
+Each process is enabled and configured on itsown tab:
+
+
+
+ l Joiner Configuration
+
+
+
+ l Mover Configuration
+
+
+
+ l Leaver Configuration
+
+
+
+ l Identity Operations Configuration - thisiswhere options for immediate termination are configured. See Ter-
+ minating Identities with Rapid Setup for more information.
+
+
+
+ l Miscellaneous Configuration - options for business processes and email message formatting and delivery
+
+General Information for Rapid Setup Configuration
+
+
+
+ l Red asterisks indicate required fieldsor options.
+
+
+
+ l Be sure to save your changes as you configure each process. A solid dot on a tab titleindicates that changes
+ were made on the current tab and have not been saved. When you save your changes, a checkmark appears
+ on the dot,to indicate that changes have been saved.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Rapid Setup 5
+
+===== Page 9/30 =====
+Rapid Setup Configuration
+
+Prerequisites for Configuring and Using Rapid Setup
+
+Rapid Setup is included with the Lifecycle Manager component of IdentityIQ. Itsfeatures are activated as part of activ-
+ating Lifecycle Manager. See the Lifecycle Manager Activation guide for more information.
+
+Rapid Setup can be used with applications that have basic connection and schema parameters already defined.
+These are set inthe application definition (Applications > Application Definition), on the application’s Con-
+figuration tab. For more details,see the Application Configuration documentation.
+
+Rapid Setup administrators and users can choose drivers of application behavior such as rules, email templates, pro-
+visioning policies, business processes, roles, and populations, as part ofonboarding an application. Rapid Setup
+provides some out-of-the-box business processes and email templates that are designed foruse with Rapid Setup,
+but your organization can define any ofthese items according to your own requirements.
+
+Although itis not a requirement tohave allthese artifacts developed before implementing Rapid Setup, itwillspeed up
+the implementation process and make Rapid Setup easier and more powerful for your business users to work with if
+they are already defined.
+
+Sample Rules for Rapid Setup
+
+Rapid Setup can use BeanShell rules toprovide custom business logic.Joiner, mover, leaver, and aggregation oper-
+ations can alluse rules todrive specific behavior.
+
+A set of sample rules is provided with Rapid Setup. You can use these sample rules as templates for developing your
+own Rapid Setup rules. The sample rules file,rsexamplerules.xml, is located in the \WEB-INF\-
+config\rapidsetup directory ofyour IdentityIQ installation.
+Joiner Configuration
+
+The Joiner process defines the operations that are run when a new user joinsyour organization.
+
+Move the sliderto enable Joiner Processing. Then configure global behavior forjoiner processing.
+
+ Note: See Sample Rules forRapid Setup forinformation about sample rules included with
+ Rapid Setup.
+
+
+ Option Description
+
+ Enable thisoption ifthe joiner process should include approvals. The approval
+ Generate path isdefined in the Joiner Business Process you specify below.
+ Approvals Note that the default RapidSetup - Joiner business process delegates
+ approvals to the LCM Provisioning business process.
+ Automatically Enable thisoption toinclude new identities that have no accounts in joinerpro-
+
+
+
+
+
+
+ SailPoint IdentityIQ Rapid Setup 6
+
+===== Page 10/30 =====
+Rapid Setup Configuration
+
+
+ Option Description
+
+ cessing. When this option isenabled, any Trigger Filters you set below for
+ Join New selecting identities are bypassed fornew identities.
+ Empty Identities
+ See Defining Trigger Filters formore information.
+ Exclude Uncor- Exclude uncorrelated identities from joiner processing. A correlated identity is
+ related Iden- an identity that has an account on an authoritative application.
+ tities
+ Alternative Ifyou want to send email notifications to a workgroup rather than the manager
+ Workgroup for of the joining identity, choose the workgroup here.
+ Joiner Com-
+ pleted Noti- The workgroup you choose here will also be the recipient ofthe Temporary
+ fication Email Password email, ifyou opt to send one.
+
+ Joiner Com- Choose an email template to use for notification emails.
+ pleted Noti-
+ fication Email For more information on email templates, see the System Configuration doc-
+ Template umentation.
+
+ Enable this option to send an email notification with temporary password info
+ to whoever is responsible for managing the new identity's access.
+
+ Send Tem- By default this is the identity's manager, but ifyou choose an Alternative Work-
+ porary Pass- group (above) for notification emails, the email will go to that group.
+
+ word Email Ifneither a manager or an alternative workgroup isdefined for an identity,this
+ email willgo to a workgroup that isresponsible foridentities with no manager.
+ You can choose a "no manager" workgroup specifically forRapid Setup oper-
+ ations inMiscellaneous Configuration.
+ Post Joiner Rules can drive custom actions outside of the standard joiner processes. Ifyou
+ Rule want to run a rule as the final step of the joiner process, choose the rule here.
+ Rules of type PostLifecycle are available to select for this option.
+ Identity Processing Thresholds stop lifecycle events before they are fully pro-
+ cessed, incase ofaccidentally-triggered workflows, To enable an Identity Pro-
+ Threshold Type cessing Threshold, choose from Fixed orPercentage.
+
+ For more information, see Using Identity Processing Thresholds for Error Pre-
+ vention.
+ Threshold Enter a value to use inconjunction with the Threshold Type, for Identity Pro-
+ cessing Thresholds.
+ Joiner Business Choose a business process for the joiner processing.
+
+
+
+
+
+
+
+SailPoint IdentityIQ Rapid Setup 7
+
+===== Page 11/30 =====
+Rapid Setup Configuration
+
+
+ Option Description
+
+ Process
+ You can set a Trigger Filter to identify which identities are considered joiners if
+ you have a specific attribute (or set of attributes) that identify new identities in
+ Trigger Filters your system. Ifnot, use the Automatically Join New Empty Identities option
+ to run joiner processing on allnew identities.
+
+ See Defining Trigger Filters for more information.
+
+Mover Configuration
+
+The Mover process defines the operations that are launched when an identity moves within your organization.
+
+Move the slider to enable Mover Processing. Then configure global behavior formover processing.
+
+ Note: see Sample Rules for Rapid Setup forinformation about sample rules included with
+ Rapid Setup.
+
+
+ Option Description
+
+ Enable this option ifthe mover process should include approvals. The
+ approval path isdefined in the Mover Business Process you specify
+ Generate Approvals below.
+
+ Note that the default RapidSetup - Mover business process delegates
+ approvals to the LCM Provisioning business process.
+ Exclude Uncor- Exclude uncorrelated identities from mover processing. A correlated iden-
+ related Identities tityis an identity that has an account on an authoritative application.
+ Launch a targeted certification campaign as part of mover processing. By
+ default, the approver forthis certification isthe identity'smanager; in cases
+ where the move results ina change of manager for the identity, the new
+ manager is the approver. You can add the identity's current (thatis, pre-
+ Launch a Targeted move) manager to the approval process by enabling the Include Pre-
+ Certification vious Manager as a Certifier option, below.
+
+ Ifyou are enabling joiner processing as part of the mover process, this cer-
+ tificationcampaign must reach completion before joiner processing will
+ begin.
+ Staging isan optional phase you can use to testor validate a certification
+ Stage the Cer- before sending itto reviewers.
+ tification
+ See the Phases of a Certification information inthe Certifications and
+
+
+
+
+
+ SailPoint IdentityIQ Rapid Setup 8
+
+===== Page 12/30 =====
+Rapid Setup Configuration
+
+
+ Option Description
+
+ Access Reviews documentation for more information.
+ Include Birthright Include any birthright roles that were previously assigned tothis user in the
+ Roles certification.
+ Certification Owner The identity or group responsible for the certification campaign.
+ Backup Certifier The identity or workgroup that willbe responsible for access reviews, ifthe
+ primary certifieris unable to certify or cannot be identified.
+ Include Previous Ifthe move includes a change of manager, add the identity's previous man-
+ Manager as a Cer- ager as an additional approver inthe certification process.
+ tifier
+ Run the joiner process as part of mover processing, in order to perform
+ Joiner Processing basic access assignment such as the addition or removal of birthright roles
+ and, ifenabled at the application level, performing account-only pro-
+ visioning ifno account exists for the identity.
+ Rules can drive custom actions outside of the standard mover processes.
+Post Mover Rule Ifyou want torun a rule as the finalstep of the mover process, choose the
+ rule here. Rules oftype PostLifecycle are available to select for this
+ option.
+ Identity Processing Thresholds stop lifecycle events before they are fully
+ processed, in case of accidentally-triggered workflows, To enable an Iden-
+ Threshold Type tityProcessing Threshold, choose from Fixed or Percentage.
+
+ For more information, see Using Identity Processing Thresholds for Error
+ Prevention.
+ Threshold Enter a value to use in conjunction with the Threshold Type, forIdentity
+ Processing Thresholds.
+ Mover Business Pro- Choose the business process formover processing.
+ cess
+ Trigger filtersdefine what isconsidered a "mover" in your organization.
+
+ For example, ifa change to an identity's manager should trigger mover pro-
+ cessing, you can set a Trigger Filter using the "Manager" attribute with the
+ operator "Changed" to select identities.
+Trigger Filter You can use attributes, populations, or a combination of both to define
+ your moving identities. You can use "And" and "Or" conditions for filtering,
+ and the gear icon to the right of your criteria letsyou move, duplicate, or
+ delete rows.
+
+ For more information, see Defining Trigger Filters.
+
+
+
+
+
+SailPoint IdentityIQ Rapid Setup 9
+
+===== Page 13/30 =====
+Rapid Setup Configuration
+
+Leaver Configuration
+
+The Leaver process defines the operations that are launched when someone leaves your organization.
+
+Move the slider to enable Leaver Processing. Then configure global behavior for leaver processing.
+
+ Note: see Sample Rules forRapid Setup for information about sample rules included with
+ Rapid Setup.
+
+
+ Option Description
+
+ Enable this option ifthe leaver process should include approvals. The
+ Generate approval path isdefined in the Leaver Business Process you specify below.
+ Approvals Note that the default RapidSetup - Leaver business process delegates
+ approvals to the LCM Provisioning business process.
+ Exclude Uncor- Exclude uncorrelated identities from joiner processing. A correlated identity is
+ related Iden- an identity that has an account on an authoritative application.
+ tities
+ Remove Remove assigned roles from an identity during leaver processing.
+ Assigned Roles
+ Reassign Arti- Reassign objects, such as applications, workgroups, or policies, that are
+ facts owned by a leaving user.
+ Reassignment Choose which types of object should be reassigned, ifthe current owner is the
+ Artifacts Types leaving identity.
+ Reassign Arti-
+ facts to Man- Reassign the objects selected above to the manager of the leaving identity.
+ ager
+ Handle reassignment ofobject using a rule. Ifthe Reassign Artifacts to Man-
+ Reassign Arti- ager option is also enabled, the leaver process willfirstattempt to assign
+ facts Rule objects to the manager, then willuse the rule chosen here, ifno manager can
+ be determined.
+ Reassign Arti- Reassign objects to thisidentity ifnone were discovered for manager or by the
+ facts Alternate reassignment rule.
+ Reassign Iden- Ifthe leaving identity is the owner or administrator ofother identities, such as
+ tities service accounts or RPA/bot identities,enable this option to reassign those
+ identities to another identityor workgroup.
+ Reassign Iden-
+ titiesto Man- Reassign the identities to the manager of the leaving identity.
+ ager
+
+
+
+
+
+ SailPoint IdentityIQ Rapid Setup 10
+
+===== Page 14/30 =====
+Rapid Setup Configuration
+
+
+Option Description
+
+Reassign Iden- Handle reassignment of managed identities using this rule, ifa manager can-
+tities Rule not be determined, or ifthe Reassign Identities to Manager option is not
+ enabled.
+Reassign Iden- Reassign managed identities tothis identity, ifno identity was discovered as a
+tities Alternate manager or by the reassignment rule.
+Send Leaver Select a workgroup to receive leaver notification emails, rather than a man-
+Notification to ager.
+this Workgroup
+Ownership Email template to compose the email notification regarding reassignments
+Reassignment (used for both artifactand identity reassignment).
+Notification For more information on email templates, see the System Configuration doc-
+Email Template umentation.
+
+Leaver Com- The template to use fornotification emails.
+pleted Noti-
+fication Email For more information on email templates, see the System Configuration doc-
+Template umentation.
+
+Post Leaver Rules can drive custom actions outside of the standard leaver processes. If
+Rule you want to run a rule as the final step of the leaver process, choose the rule
+ here. Rules of type LeaverReassignment are available to select here.
+ Identity Processing Thresholds stop lifecycle events before they are fullypro-
+ cessed, in case of accidentally-triggered workflows, To enable an Identity Pro-
+Threshold Type cessing Threshold, choose from Fixed orPercentage.
+
+ For more information, see Using Identity Processing Thresholds forError Pre-
+ vention.
+Threshold Enter a value to use inconjunction with the Threshold Type, forIdentity Pro-
+ cessing Thresholds.
+Leaver Busi- Choose the business process for leaver processing.
+ness Process
+ Trigger filtersdefine what is considered a "leaver" in your organization.
+
+ For example, ifchange in an identity'sstatus from "active" to "inactive" should
+Trigger Filter trigger leaver processing, you can set a Trigger Filter using the
+ "Inactive" attribute with the operator "Changed To" set to a value of "True" to
+ select leaver identities.
+
+ You can use attributes, populations, or a combination of both to define your
+
+
+
+
+
+
+SailPoint IdentityIQ Rapid Setup 11
+
+===== Page 15/30 =====
+Rapid Setup Configuration
+
+
+ Option Description
+
+ leaving identities. You can use "And" and "Or" conditions forfiltering,and the
+ gear icon to the rightof your criterialets you move, duplicate, or delete rows.
+
+ For more information, see Defining Trigger Filters.
+
+Identity Operations Configuration
+
+The Identity Operations process defines how toprocess operations such as immediate termination.
+
+Move the slider to enable Terminate Processing. Then configure global behavior for termination processing.
+
+ Options Description
+
+ Enable this option ifthe terminate process should include approvals. The
+ approval path isdefined in the Terminate Business Process you specify
+ Generate below.
+ Approvals
+ Note that the default RapidSetup - Leaver business process delegates
+ approvals to the LCM Provisioning business process.
+ Remove Remove assigned roles from an identity during terminate processing.
+ Assigned Roles
+ Reassign Arti- Reassign objects, such as applications, workgroups, or policies, that are
+ facts owned by a terminated user.
+ Reassignment Choose which types of object should be reassigned, ifthe current owner is the
+ Artifacts Types terminated identity.
+ Reassign Arti-
+ facts to Man- Reassign the objects selected above to the manager of the terminated identity.
+ ager
+ Handle reassignment ofobject using a rule. Ifthe Reassign Artifacts to Man-
+ Reassign Arti- ager option is also enabled, the terminate process will firstattempt toassign
+ facts Rule objects to the manager, then willuse the rule chosen here, ifno manager can
+ be determined.
+ Reassign Arti- Reassign objects tothis identity, ifno identity was discovered as a manager or
+ facts Alternative by the reassignment rule.
+ Reassign Iden- Ifthe terminated identityis the owner or administrator ofother identities, such
+ tities as service accounts or RPA/bot identities, enable this option toreassign those
+ identities to another identity or workgroup.
+ Reassign Iden- Reassign the identities to the manager of the terminated identity.
+ titiesto Man-
+
+
+
+
+
+
+ SailPoint IdentityIQ Rapid Setup 12
+
+===== Page 16/30 =====
+Rapid Setup Configuration
+
+
+ Options Description
+
+ ager
+ Reassign Iden- Handle reassignment of managed identities using thisrule.
+ titiesRule
+ Reassign Iden- Handle reassignment of managed identities using thisrule, ifa manager can-
+ titiesAlternative not be determined, or ifthe Reassign Identities to Manager option is not
+ enabled.
+ Send Terminate Select a workgroup toreceive termination notification emails, rather than a
+ Notification to manager.
+ thisWorkgroup
+ Ownership Email template forthe email notification regarding reassignments of artifacts
+ Reassignment and identities.
+ Notification For more information on email templates, see the System Configuration doc-
+ Email Template umentation.
+
+ Terminate Com- The template touse for notification emails.
+ pleted Noti-
+ ficationEmail For more information on email templates, see the System Configuration doc-
+ Template umentation.
+
+ Post Terminate Rules can drive custom actions outside of the standard terminate processes. If
+ Rule you want to run a rule as the final step of the terminate process, choose the
+ rule here. Rules oftype LeaverReassignment are available toselect here.
+ Terminate Busi- Choose the business process for termination processing.
+ ness Process
+
+Miscellaneous Configuration
+
+Use the Miscellaneous tab toconfigure Rapid Setup options for business processes and email message formatting
+and delivery.
+
+ Identity Selec- Description
+ tion
+
+ Business Pro- Select an identity touse as the requester for RapidSetup lifecycle business pro-
+ cess cesses. This is the workgroup or identitywho isresponsible for the overall
+ Requester Rapid Setup processes and isused primarily forinformational and auditing pur-
+ poses.
+ Alternative Select a workgroup to receive notification emails incases where an identity does
+ Workgroup not have a manager.
+
+
+
+
+
+ SailPoint IdentityIQ Rapid Setup 13
+
+===== Page 17/30 =====
+Rapid Setup Configuration
+
+
+Identity Selec- Description
+tion
+
+ The default workgroup, RapidSetup No Manager, is an empty workgroup. You
+for Rapid can add people tothis workgroup, or select a different one.
+Setup Noti-
+fication For information on how to add people toa workgroup, see the Role, Group, and
+ Population Management documentation.
+ Select a workgroup to be notified ofRapid Setup errors by email. The default
+Workgroup to group, Rapid Setup Error Notification, is an empty workgroup. You can add
+Receive Error people to thisworkgroup, or select a different one.
+Notifications
+Email For information on how to add people toa workgroup, see the Role, Group, and
+ Population Management documentation.
+Notification
+Style Sheet Select a style sheet for notification emails.
+Email Tem- Style sheets can be edited in the Debug pages.
+plate
+Notification Select a template to use forthe header of notification emails.
+Header Email
+Template Style sheets can be edited in the Debug pages.
+
+Notification Select a template to use forthe footer of notification emails.
+Footer Email
+Template Style sheets can be edited in the Debug pages.
+
+ Rapid Setup lets you use a specific role type toidentify birthright roles. Roles des-
+ ignated as birthrights are automatically assigned, through Rapid Setup joiner
+ and mover processes, toidentities that match the trigger criteria inthe joiner and
+ mover processes.
+
+ IdentityIQ provides a default role type, rapidSetupBirthright, to identify
+Role Types to these roles.
+Treat as A role'stype is set inthe Role Editor (under the Setup > Roles menu). To des-
+Rapid Setup ignate a role as a Rapid Setup birthright role, set the role's type tothe type you
+Birthright have chosen here. You can edit existing roles to change their type to birthright,
+Roles but ifyou are working with an established role model, itis a good practice to cre-
+
+ ate new roles to handle birthrightaccess.
+
+ For information on editing a role's type, see the Role, Group, and Population
+ Management documentation.
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Rapid Setup 14
+
+===== Page 18/30 =====
+Rapid Setup Configuration
+
+Defining Trigger Filters
+
+Trigger filtersare the core of what drives joiner, mover, and leaver processes within Rapid Setup. Trigger filtersare
+the constraint logic that determines which identities are subject to joiner, mover, and leaver business processes. Trig-
+ger filtersuse identity attributes or populations, coupled with operators and values, to choose identities to act on.
+
+ Important: These filters are called "trigger" filtersbecause they define what should trigger each
+ process. When setting up a trigger filterformovers or leavers, it'simportant toinclude criteria
+ that identifies a change in an identity's status or condition; otherwise you risk running mover or
+ leaver processes repeatedly on identities that have not changed.
+
+
+
+ Important: For example, you might want to trigger a leaver process any time an identity changes
+ from "Active" to "Inactive" status. Ifyou create a filterusing the logic "Inactive Equals True" you
+ willselect allinactive identities every time the leaver process runs, regardless of whether they
+ became inactive today or have been inactive for weeks. A better filterinthis case would be "Inact-
+ ive Changed to True"
+
+
+Trigger filtersare defined globally through a query builder in the Rapid Setup configuration pages forjoiner, mover,
+and leaver processes. The filtersyou set in the configuration page for each type of process willapply to all applications
+that use Rapid Setup.
+
+Here is an example of a simple trigger filterthat willselect allidentities whose manager has changed:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+You can build filters using multiple criteria,choosing "AND" or "OR" processing. For example, to select allidentities
+with a change ineither Manager or in Location, your query could look like this. Note that the OR operator is selected; if
+the AND operator had been selected, the filterwould select only those identities who have changes to both Manager
+and Location.
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Rapid Setup 15
+
+===== Page 19/30 =====
+Rapid Setup Configuration
+
+
+
+
+
+
+
+
+
+
+
+
+You can also group sets of criteria,to allow formore complex filtering,by clicking Add Group. For example, ifyou
+wanted to select allidentities that have a type of "Contractor" who have had a change to either Manager or Location,
+you would add a group tocontain the Manager and Location filters,and your filtermight look likethis. Note that the
+AND condition applies to the Contractor type and to the group below it;within the grouping, an OR condition applies to
+the Manager and Location criteria.
+
+
+
+
+
+
+
+
+
+
+
+
+For more complex filtering,you may wish to create populations to use as filteringcriteria.Populations are created
+using the Intelligence > Advanced Analytics feature tosearch for identities using a wide variety ofcriteria, which
+can include things like roles and risk scores inaddition to attributes. You can save the results of these searches
+as populations, which are then available to use as trigger filtersin Rapid Setup. When you use a population as a filter,
+you can choose whether you want to select identities that are included inthis population, or that are not.
+
+For example, suppose you wanted to exempt both your senior executives and your Unix system administrators from
+standard mover processing. In thiscase you could use Advanced Analytics to create and save populations that filter
+on job titleor department to identify your executives, and on role assignments to identify your Unix administrators.
+Then you can use those populations as filtercriteriato exclude the identities in either of those populations from a
+standard mover process that isbased on a change in manager.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Rapid Setup 16
+
+===== Page 20/30 =====
+Rapid Setup Configuration
+
+
+
+
+To move criteria up or down, duplicate criteria rows, or delete groups or rows, use the gear icons at the right of each
+row and group of your criteria.
+
+ Note: If you are using date fields as part of your filtercriteria,you can enter day, month, and year;
+ actions that are triggered by date criteria willtake place on midnight (local time) of the date spe-
+ cified.
+
+Using Identity Processing Thresholds for Error Prevention
+
+Identity processing thresholds letyou stop lifecycle events (such as joiner, mover, and leaver) before they are fully pro-
+cessed, to protect against dangerous or accidentally-triggered workflows from completing. For example, ifsomeone
+makes a change in the Human Resources database that accidentally changes the status ofan entire department's
+employees to "terminated", the identity processing threshold can stop IdentityIQ from running a Leaver workflow for
+hundreds of employees.
+
+Thresholds can be set either as a fixed number, or as a percentage of identities.When a threshold is set, the Identity
+Refresh task will terminate when the threshold ismet, without updating any identities.
+
+Identity processing thresholds can be configured in Rapid Setup (as global setting), and in Lifecycle Events for spe-
+cificworkflows.
+
+Inthe Identity Refresh task, the Process events option must be enabled in order foridentity processing threshold
+option to take effect. Ifyou want toprocess events for other purposes but disable the identityprocessing threshold fea-
+ture, you can check the Disable identity processing threshold option.
+
+Ifthe processing threshold istriggered, the task result willinclude a notification that the task has failed, and a localized
+message provides feedback.
+
+Ifyou are using partitioning in the Identity Refresh task, the threshold works as a cumulative value of allevents
+triggered across allof the partitions.
+
+For more information, see the Tasks, Certifications and Access Reviews, and Lifecycle Manager documentation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Rapid Setup 17
+
+===== Page 21/30 =====
+Using Rapid Setup
+
+Using Rapid Setup
+
+
+Users can configure Aggregation, Joiner, Mover, and Leaver processes forapplications from Applications > Rapid
+Setup. Note that business users can only access the Rapid Setup processes that have been enabled and configured
+inRapid Setup Configuration
+
+ Note: Ifyou enabled Terminate Processing in your Rapid Setup Configuration, that process is
+ accessed through the Identities > Identity Operations menu. See Identity
+ Operations Configuration and Terminating Identities with Rapid Setup formore details.
+
+Choose an Application
+
+ Choose the application you want toconfigure for Rapid Setup processes. The applications you can choose from
+ the drop-down listareapplications thathave been defined inyour IdentityIQ instance through the Applications
+ > Application Definition option. Before you begin, define the application schema, perform a test connection,
+ and identifywhether the application isauthoritative.
+
+ See the Application Configuration documentation for more information.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Rapid Setup 18
+
+===== Page 22/30 =====
+Aggregation in Rapid Setup
+
+The Aggregation feature ofRapid Setup letsyou set options forhow data is aggregated into IdentityIQ for the selected
+application. While Rapid Setup does not introduce new aggregation functions, itapproaches itina slightly different
+manner.
+
+ Note: see Sample Rules forRapid Setup forinformation about sample rules included with
+ Rapid Setup.
+
+Create Entitlements That Cannot Be Requested
+
+Use thisoption ifyou want the aggregation process for thisapplication to create entitlements that willnot be
+requestable inIdentityIQ from the Entitlement Catalog or in Access Requests.
+
+Disable Account / Lock Account
+
+The Disable Account and Lock Account filtersonly display forapplications that do not natively support Disable/Lock.
+
+
+
+ l An Account can be Disabled/Locked with an Aggregation Customization Rule.
+
+
+
+ l Filters defined here take precedence over aggregation customization rules defined elsewhere in IdentityIQ.
+
+
+
+ l Ifthe Disable Account or Lock Account filtersmatch an account during aggregation, then the account willbe
+ marked in IdentityIQ as disabled or locked, respectively.
+
+Account and Manager Correlation
+
+Account Correlations determine how application accounts are assigned to identities within IdentityIQ, using account
+and identityinformation. Manager Correlations configure how managers should be matched to identities.
+
+InRapid Setup, you can configure only one method of correlation foraccounts, and one for managers, foreach applic-
+ation. Rapid Setup does not support multiple correlation rules for a single application.
+
+Ifcorrelation logic has already been defined in the Application Definition for thisapplication, thatcorrelation logic will
+be populated by default in this tab.You can modify existing correlation logic as needed, or create a new correlation
+configuration.
+
+Account Correlation
+
+To create or editaccount correlation logicfor thisapplication:
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Rapid Setup 19
+
+===== Page 23/30 =====
+ 1. Inthe drop-down liston the left,choose the application attribute you are configuring that can uniquely identify
+ the account on the application. The application schema that has been defined inthe Application Configuration
+ determines which attributes are available for you to select here.
+
+ 2. Choose an operator. In most cases, your only option here is"Equals"
+
+ 3. Inthe drop-down liston the right,choose the IdentityIQ attribute that uniquely defines the identity.
+
+Manager Correlation
+
+To create or edit manager correlation logic for this application:
+
+ 1. Inthe drop-down liston the left,choose the application attribute you are configuring that identifies the man-
+ ager forthis identity. The application schema that has been defined inthe Application Configuration determines
+ which attributes are available for you toselect here.
+
+ 2. Choose an operator. In most cases, your only option here is"Equals"
+
+ 3. Inthe drop-down liston the right,choose the IdentityIQ attribute that uniquely defines the identity. This is typ-
+ icallythe same attribute you use to define the identity for account correlation.
+
+Service Account and RPA Account Correlation in Rapid Setup
+
+The correlation filtersforService Accounts and RPA (Robotic Process or "bot" Applications) let you identify service
+and RPA accounts in IdentityIQ, based on attributes from the application you are onboarding.
+
+To correlate service accounts:
+
+
+
+ l When the Service Account filteristrue, the identity attribute Type is set to Service Account, and the Application
+ attribute Identity_Type is set to Service.
+
+To correlate RPA accounts:
+
+
+
+ l When the RPA Account filteristrue, the identity attribute Type isset to RPA/BOTS, and the Application attrib-
+ ute Identity_Type is set to RPA.
+
+Ifyou set correlation filtersforboth Service and RPA accounts:
+
+
+
+ l When the Service Account filterand RPA Account filterare both true for the same identity, the Identity_Type
+ willbe set toService Accounts.
+
+
+
+ l When the Service Account filterisdeleted, and the RPA Account filteriscreated, the Identity_Type isset to
+ RPA.
+
+You can configure only one method of correlation for service accounts, and one RPA accounts, for each application.
+
+
+
+
+
+ SailPoint IdentityIQ Rapid Setup 20
+
+===== Page 24/30 =====
+Joiner Processing in Rapid Setup
+
+The Joiner section iswhere you configure application behavior and processes when a new user joins your organ-
+ization.
+
+Although populations, birthright roles, and provisioning policies do not have tobe created at thispoint, forfeatures
+within joinerto work effectively, the user isadvised tocreate them before configuring joiner processing
+
+ Note: Leaver events take priorityover joiner events. Ifan identity iseligible forboth a leaver
+ event and a joiner event, the joiner event willnot be launched.
+
+
+ Option Description
+
+ Perform Account-Only Create an account forthe joining identity on thisapplication, even ifno
+ provisioning entitlements exist forthe account.
+ This option is used only ifPerform Account-Only Provisioning has
+ been enabled. Identity Selction lets you choose which identities should
+ be provisioned with accounts only:
+
+
+
+ l Everyone – Provision all identities with accounts only.
+
+
+
+ l Filter – Use an XML filterto select identities for
+ account-only provisioning. Enter the filter XML in the
+ text box. See XML Filter Example for more details.
+
+ Identity Selection
+ l Script – Use a BeanShell script to select identities.
+ Enter the BeanShell source in the text box.
+
+
+
+ l Rule – Use a rule to select identities. You can select
+ from existing rules of type IdentitySelector.
+
+
+
+ l Population – Use a population to select
+ identities. Populations are defined under Intelligence
+ > Advanced Analytics.
+ During aggregation, ifa new identity iscreated, automatically start
+ Automatically Start joinerprocessing on it.
+ Joiner Processing for
+ Newly Created Iden- This option is not available for non-authoritative accounts when the
+ tities global joiner configuration isset up to Exclude Uncorrelated Iden-
+ tities.See Joiner Configuration.
+
+
+
+
+
+
+ SailPoint IdentityIQ Rapid Setup 21
+
+===== Page 25/30 =====
+ Option Description
+
+ Use this fieldto add any application-specific instructions to the Joiner
+ Completed notification email that issent to the manager or workgroup
+ Joiner Email Instruc- responsible forthe identity'saccess.
+ tions
+ See Joiner Configuration formore information about joiner notification
+ emails.
+ Use this fieldto add any application-specific instructions to the end of
+ the Joiner Temporary Password notificationemail that issent to the
+ Joiner Email Password manager or workgroup responsible for the identity'saccess.
+ Instructions
+ See Joiner Configuration formore information about joiner temporary
+ password emails.
+
+XML Filter Example
+
+You can use an XML-based compound filterinthe Identity Selection box tofilteridentities.The filtershould include
+property values and logicaloperators forselecting identities.
+
+Here isan example of a compound filterthatwill select allidentities inthe Accounting department that are NOT in
+either the Europe or Americas regions:
+
+ Compound FilterFor Selecting Identities
+
+ <CompoundFilter>
+ <CompositeFilter operation="AND">
+   <CompositeFilter operation="NOT">
+     <CompositeFilter operation="OR">
+       <Filter operation="EQ" property="region" value="Europe" />
+       <Filter operation="EQ" property="region" value="Americas" />
+     </CompositeFilter>
+   </CompositeFilter>
+   <Filter operation="EQ" property="department" value="Accounting" />
+ </CompositeFilter>
+ </CompoundFilter>
+
+For more information on using compound filters,refer tothese articles on Compass (login required):
+
+
+
+ l Compound Filters
+
+
+
+ l Filters and FilterStrings
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Rapid Setup 22
+
+===== Page 26/30 =====
+Mover Processing in Rapid Setup
+
+The mover processing that can be configured atthe application level consists of certifying the changes in access that
+can arise when an identity moves within your organization. There are other mover behaviors that can be configured
+globally in Mover Configuration. At the application level,some additional certification and account creation behavior
+can be defined.
+
+ Note: Joiner and leaver events take priorityover mover events. Ifan identity iseligible for a joiner
+ event or a leaver event, the mover event willnot be launched.
+
+
+ Option Description
+
+ Enable this option ifyou want the certification to include entitlements
+ Include Additional Enti- that are not contained in a role.
+ tlements in a Cer-
+ tificationfor This If certifications are not enabled globally for mover processing, this
+ Application option is ignored. A message above the configuration options indic-
+ ates when certifications are not globally enabled.
+ Enable this option ifyou want the certification to include the actions a
+ Include Targeted Per- user can perform on an Unstructured Target such as a fileshare or
+ missions ina Cer- folder
+ tificationfor This If certifications are not enabled globally for mover processing, this
+ Application option is ignored. A message above the configuration options indic-
+ ates when certifications are not globally enabled.
+ Perform Account-Only Create an account for the moving identity on this application, even if
+ Provisioning no entitlements exist for the account.
+
+Leaver Processing in Rapid Setup
+
+
+ Note: Provisioning policies fordeleting/disabling/unlocking accounts, and a password policy for
+ password scrambling, should be created before thisprocess is configured.
+
+The leaver feature gives the user the option to configure the leaver plan by either using a rule or by selecting options to
+configure a plan. Ifyou opt to configure your processes, you can set up separate processes for ordinary leaver events,
+and forterminations. Ifyou choose to use a rule for leaver processing, you will select one rule to manage both leaver
+and termination processing.
+
+
+
+ l To use a rule for leaver processing, select Use rule, and choose a rule from the drop-down list.
+
+
+
+ l To configure a leaver plan, select Configure, and use the options below to determine leaver and termination
+ processing behavior.
+
+
+
+
+ SailPoint IdentityIQ Rapid Setup 23
+
+===== Page 27/30 =====
+ Note: No other Rapid Setup event takes priorityover leaver processing. Ifan identityis eligible
+ for leaver event as well as a joiner or mover event, the leaver event willbe launched, and the
+ other events willnot.
+
+Leaver Options
+
+Leaver options are for managing identities that leave your organization in circumstances other than immediate
+termination. Immediate termination options are configured separately.
+
+ Option Description
+
+ To delete a leaving identity'saccounts, enable this option. Then choose when
+ the accounts should be deleted:
+
+ Delete l Choose Now to delete accounts immediately.
+
+ Account
+ l Choose Later to set a number of days before accounts should be deleted.
+ When you choose Later, you have additional options forhandling
+ accounts before they are deleted, as described below.
+ Send a request todisable the account. Choose Now to disable accounts imme-
+ Disable diately,or Later to postpone the disabling.
+ Account When you choose Later, use the Days to Delay fieldto set the number ofdays
+ towait before disabling accounts.
+ Scramble the value of the password account attribute. This option is used when
+ the application does not natively perform password maintenance.
+ Scramble
+ Password Choose Now to scramble passwords immediately, or Later to postpone the
+ action. Ifyou choose Later, use the Days to Delay field toset the number of
+ days towait before the action occurs.
+ This option isonly used forActive Directory applications.
+ Move Account Enter the fullOU to the container where leaving identitiesshould be moved. You
+ can set this option torun Now or Later.
+ Choose whether to remove entitlements as part of the leaver process. You can
+ set thisoption to run Now or Later.
+ Remove Enti-
+ tlements Ifyou enable thisoption, you can use the Entitlement Exceptions filterto
+ choose any entitlements that you do not want to remove as part ofthe leaver pro-
+ cess.
+ Add Com- Add Comment lets you enter comments to be added to the application account
+ ment forthe leaving identity.
+
+
+
+
+
+
+ SailPoint IdentityIQ Rapid Setup 24
+
+===== Page 28/30 =====
+ Option Description
+
+ The Comment Attribute is the attribute in the application where comments are
+ stored.
+
+ The Comment fieldis where you enter the comment to be stored in the Com-
+ ment Attribute on the application.
+
+Terminate Options
+
+Use this section toconfigure how termination events should be processed. Termination processes are enabled, and
+have some global behavior configured, through Identity Operations Configuration. When termination processing is
+enabled and configured, terminations for individual identities are initiatedthrough the Identities > Identity Oper-
+ations menu. See Terminating Identities with Rapid Setup formore information.
+
+To configure Terminate Options that are specific to this application:
+
+
+
+ l Ifyou want termination processing to follow all the same processes you have configured for Leaver Options,
+ choose Use the same settings as leaver options
+
+
+
+ l Ifyou want toset up different processes forterminations than those you have configured forLeaver options, dis-
+ able the Use the same settings as leaver options slider.Then you can configure termination-specific beha-
+ vior;the fields for configuring termination options are identical to the ones forleaver options. Refer to the table
+ above for information about these fields.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Rapid Setup 25
+
+===== Page 29/30 =====
+Terminating Identities with Rapid Setup
+
+
+Terminating Identities with Rapid Setup
+
+
+Rapid Setup's Identity Operations feature letsyou immediately terminate access foran identity,without approvals.
+This is done by immediately processing the Leaver workflow for a selected identity.
+
+The terminate option isenabled and configured globally using IdentityOperations Configuration. In addition, you can
+set application-specific termination processes inLeaver Processing in Rapid Setup.
+
+To terminate an identity:
+
+ 1. Click Identities > Identity Operations.
+
+ 2. Select the identity to terminate. Only one identitycan be selected at a time.
+
+ Note: You can use the Search fieldand filtersto findspecific identities.
+
+ 3. Click Next.
+
+ 4. Choose Terminate.
+
+ 5. Enter a Reason for the termination. This is a required field.
+
+ 6. Click Next.
+
+ 7. Review the information, then click Submit to complete the process.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Rapid Setup 26
+
+===== Page 30/30 =====
+Rapid Setup Troubleshooting
+
+Rapid Setup Troubleshooting
+
+
+To help withtroubleshooting any issues inRapid Setup, add these entries tothe log4j2.propertiesfile:
+ logger.rapidsetup.name=sailpoint.rapidsetup
+ logger.rapidsetup.level=debug
+ logger.rapidsetuplib.name=sailpoint.workflow.RapidSetupLibrary
+ logger.rapidsetuplib.level=debug
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPointIdentityIQRapid Setup 27

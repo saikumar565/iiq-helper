@@ -1,0 +1,1616 @@
+===== Page 1/25 =====
+ Plugins
+
+
+ Version:8.4
+
+ Revised:September 2023
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+This document and the information contained herein is SailPoint Confidential Information
+
+===== Page 2/25 =====
+Copyright and Trademark Notices
+
+Copyright © 2023 SailPoint Technologies, Inc.  All Rights Reserved.
+
+Alllogos, text,content, including underlying HTML code, designs, and graphics used and/or depicted on these written
+materials or in thisInternet website are protected under United States and international copyright and trademark laws
+and treaties, and may not be used or reproduced without the prior express written permission of SailPoint Tech-
+nologies, Inc.
+
+“SailPoint Technologies,” (design and word mark), “SailPoint,” (design and word mark), "Identity IQ,” “IdentityNow,”
+“SecurityIQ,” “Identity AI,” “Identity Cube,” and “SailPoint Predictive Identity” are registered trademarks of SailPoint
+Technologies, Inc. “Identity isEverything,” “The Power of Identity,” and “Identity University” are trademarks of
+SailPoint Technologies, Inc. None of the foregoing marks may be used without the prior express written permission of
+SailPoint Technologies, Inc. Allother trademarks shown herein are owned by the respective companies or persons
+indicated.
+
+SailPoint Technologies, Inc. makes no warranty ofany kind regarding these materials or the information included
+therein, including, but not limited to,the implied warranties ofmerchantability and fitness for a particular purpose.
+SailPoint Technologies shall not be liable for errors contained herein or direct, indirect, special, incidental orcon-
+sequential damages inconnection with the furnishing, performance, or use of thismaterial.
+
+Patents Notice. https://www.sailpoint.com/patents
+
+Restricted Rights Legend. All rights are reserved. No part ofthis document may be published, distributed, reproduced,
+publicly displayed, used to create derivative works, or translated to another language, without the prior written consent
+ofSailPoint Technologies. The information contained inthis document issubject to change without notice.
+
+Use, duplication or disclosure by the U.S. Government is subject to restrictions as set forth insubparagraph (c) (1) (ii)
+ofthe Rights inTechnical Data and Computer Software clause at DFARS 252.227-7013 for DOD agencies, and sub-
+paragraphs (c)(1) and (c)(2) ofthe Commercial Computer Software Restricted Rights clause at FAR 52.227-19 for
+other agencies.
+
+Regulatory/Export Compliance. The export and re-export of this software iscontrolled for export purposes by the U.S.
+Government. By accepting this software and/or documentation, licensee agrees to comply with allU.S. and foreign
+export laws and regulations as they relate to software and related documentation.  Licensee will not export or re-
+export outside the United States software or documentation, whether directly or indirectly, to any Prohibited Party and
+willnot cause, approve or otherwise intentionally facilitate others inso doing. A Prohibited Party includes: a party in a
+U.S. embargoed country or country the United States has named as a supporter of international terrorism; a party
+involved in proliferation; a party identified by the U.S. Government as a Denied Party; a party named on the U.S.
+Department of Commerce’s Entity Listin Supplement No. 4 to 15 C.F.R. § 744; a party prohibited from participation in
+export orre-export transactions by a U.S. Government General Order; a party listed by the U.S. Government’s Office
+ofForeign Assets Control as ineligible to participate in transactions subject toU.S. jurisdiction; or any party that
+licensee knows or has reason toknow has violated or plans to violate U.S. or foreign export laws or regulations.
+Licensee shall ensure that each of itssoftware users complies with U.S. and foreign export laws and regulations as
+they relate to software and related documentation.
+
+===== Page 3/25 =====
+Contents
+
+
+ About IdentityIQ Plugins 1
+
+ Plugin Framework 2
+
+ Working with Plugins in IdentityIQ 3
+
+ Configure Plugins Page 3
+
+ Working with Plugins from the IdentityIQ Console 4
+
+ Developing Plugins 8
+
+ Plugin Manifest File 9
+
+ Plugin Build File 12
+
+ Plugin Database Scripts 13
+
+ Plugin User Interface Elements 14
+
+ Plugin Authorization 14
+
+ Plugin XML Artifacts 15
+
+ Plugin Java Classes 15
+
+ SailPoint Angular Components 20
+
+ Internationalization 21
+
+ Plugin Installation and Removal 21
+
+===== Page 4/25 =====
+About IdentityIQ Plugins
+
+About IdentityIQ Plugins
+
+
+The SailPoint Plugin Framework isan extension framework model for IdentityIQ. Itenables third parties to develop
+richapplication and service-level enhancements tothe core SailPoint platform. Itenables plugins to extend the stand-
+ard user interface, deliver custom REST endpoints, and todeliver custom background services.
+
+A plugin can be a simple REST service or a fullpage application on top of IdentityIQ. A plugin can include one orall of
+the following:
+
+
+
+ l A clientside frontend
+
+
+
+ l REST web services
+
+
+
+ l ServiceDefinition, PolicyDefinitions, and TaskDefinition implementations
+
+
+
+ l Java classes available for scripting
+
+
+
+ l Custom plugin configuration
+
+
+
+ l Database tables
+
+
+During your initialinstallation,IdentityIQ isset up to work with plugins. A separate plugin table, identityiqPlugin,
+iscreated as part ofthe database schema creation scripts and the plugins.runSqlScripts, plu-
+gins.importObjects, and plugins.enabled properties are set to true in the iiq.properties file.
+
+To disable plugins completely inIdentityIQ, set the plugin property values to false.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Plugins 1
+
+===== Page 5/25 =====
+Plugin Framework
+
+Plugin Framework
+
+
+The plugin framework manages the installationand loading of plugins. Itprovides:
+
+Class path isolation on the server side
+
+ Implementers are free to use any third-party libraries ortechnology they choose, as long as itcan be served from
+ a REST end point, a background service, or a Java class called from scripts.
+
+JavaScript isolation on the client side
+
+ Implementers are free to use any third-party client side libraries.
+
+Core code protection
+
+ The framework insures and certifiesno plugin overrides or changes backend product code behavior. Essential
+ forsecurity and upgrading.
+
+Web service extensions
+
+ Implementers can define custom REST end points to push and pulldata between their plugin and the SailPoint
+ data model.
+
+Plugin installation and removal
+
+ Plugins can be dynamically loaded to provide drag and drop installationand removal, or you can choose to
+ require installation prior toapplication startup.
+
+A plugin’s user interface can be as simple as a piece of JavaScript or text injected on an existing page or a fullpage
+plugin. The behavior isdefined by the manifest.xml inthe plugin’s root directory.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Plugins 2
+
+===== Page 6/25 =====
+Working with Plugins in IdentityIQ
+
+Working with Plugins in IdentityIQ
+
+
+The plugin feature must be enabled in IdentityIQ and you must have the proper access, such as System Administrator
+or Plugin Administrator capabilities, before thispage can be displayed.
+
+The Installed Plugins page displays and enables you to manage your plugins from within IdentityIQ. Open the page
+by selecting Plugins from the listunder the gear icon.
+
+From the Installed Plugins page you can install,uninstall, enable, disable, and configure your plugins.
+
+
+
+ l Install — clickNew and either drag and drop a zip fileonto the page, or navigate to the directory containing the
+ plugins.
+
+
+
+ l Enable/Disable — click the power button icon toenable ordisable plugins. You willbe asked toconfirm your
+ decision.
+
+
+
+ l Uninstall — click the xicon touninstall a plugin. See Plugin Installation and Removal formore information on
+ removing a plugin.
+
+See Configure Plugins Page
+Configure Plugins Page
+
+Each plugin can include a Configuration option, which is accessed through a button on the Plugin card on the gear
+icon > Plugins page.
+
+The Configuration page enables you to view detailed information about the plugin, including itsversion, installation
+date, and certificationlevel.
+
+This page also enables you to change the values ofthe Settings objects for the plugin, based on the object type. Ifno
+Setting objects were defined when the plugin was created, none willdisplay on the Configuration page.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Plugins 3
+
+===== Page 7/25 =====
+Working with Plugins from the IdentityIQ Console
+
+Working with Plugins from the IdentityIQ Console
+
+
+The IdentityIQ Console (iiq console) provides several commands for managing plugins, as well as for performing
+scripted installation of multiple plugins. See the IdentityIQ Console documentation for more information.
+
+The iiqconsole includes these plugin commands:
+
+ plugin install
+
+Installa single plugin or multiple plugins. Either a path to the zip fileof the plugin or a directory containing multiple plu-
+gin zip files can be specified. Ifa directory is specified, any zip filein that directory is installed.
+
+Flags:
+
+
+
+ l file— path to a plugin file
+
+
+
+ l dir— the directory containing the plugin zip fileto install
+
+
+
+ l no-cache — the plugin should not be cached after install
+
+
+ plugin upgrade
+
+
+ Note: For versioning information, see Developing Plugins.
+
+Upgrade to a newer version of a plugin. Upgrading a plugin to the same version or a previous version is not supported.
+While developing a plugin, this behavior can be disabled for easier testing. To do so, include a "-dev" suffix on the ver-
+sion, forexample, 2.0-dev.
+
+The version of a plugin can either be officialor development.
+
+Development versions end with the suffix '-dev,'for example, 2.0-dev, and bypass most version checks so that the plu-
+gin can be recompiled, upgraded and tested easily.
+
+Officialversions drop the '-dev'suffix and can only be installed over a development version or an earlier officialver-
+sion. The minimum upgradeable version must also be valid.
+
+Valid upgrade paths:
+
+
+
+ l 1.0 -> 2.0-dev
+
+
+
+ l 2.0-dev -> 2.0-dev
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Plugins 4
+
+===== Page 8/25 =====
+Working with Plugins from the IdentityIQ Console
+
+
+
+
+ l 2.0-dev -> 2.0
+
+
+
+ l 1.0 -> 2.0
+
+
+Invalidupgrade paths:
+
+
+
+ l 2.0 -> 2.0
+
+
+
+ l 2.0 -> 1.0
+
+
+Flags:
+
+
+
+ l file— path toa plugin file
+
+
+
+ l no-cache — the plugin should not be cached after the upgrade
+
+
+ plugin uninstall
+
+Uninstall a plugin.
+
+Flags:
+
+
+
+ l id — plugin id
+
+
+
+ l name — plugin name
+
+
+ plugin enable
+
+Enable the plugin.
+
+Flags:
+
+
+
+ l id — plugin id
+
+
+
+ l name — plugin name
+
+
+
+ l no-cache — the plugin should not be cached after being enabled
+
+
+ plugin disable
+
+Disable a plugin.
+
+Flags:
+
+
+
+
+
+
+
+
+SailPoint Plugins 5
+
+===== Page 9/25 =====
+Working with Plugins from the IdentityIQ Console
+
+
+
+
+ l id— plugin id
+
+
+
+ l name — plugin name
+
+
+ plugin export
+
+Export a single orall installed plugins to their respective zip filesand, optionally, a specified directory.
+
+Flags:
+
+
+
+ l id— plugin id
+
+
+
+ l name — plugin name
+
+
+
+ l *— export all installed plugins
+
+
+
+ l dir— the directory inwhich tosave the zip files.Ifthe directory does not exist, the command willattempt to cre-
+ ate one. Ifnone is specified, the filesare save to the current working directory.
+
+ plugin status
+
+The enabled status ofa single plugin, allinstalled plugins or the system-wide enabled status of plugins.
+
+Flags:
+
+
+
+ l id— plugin id
+
+
+
+ l name — plugin name
+
+
+
+ l *— view the status of all plugins
+
+
+
+ l no flag — system-wide status of plugins as defined in iiq.properties
+
+
+ plugin list
+
+A listof allinstalled plugins.
+
+ plugin classes
+
+The listofthe classes available (from a plugin or allplugins), and the intended use for each class.
+
+Flags:
+
+
+
+
+
+
+
+
+
+
+ SailPoint Plugins 6
+
+===== Page 10/25 =====
+Working with Plugins from the IdentityIQ Console
+
+
+
+
+ l id — plugin id
+
+
+
+ l name — plugin name
+
+
+
+ l * — the listof allavailable classes from allplugins
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Plugins 7
+
+===== Page 11/25 =====
+Developing Plugins
+
+Developing Plugins
+
+
+IdentityIQ stores the .ziparchive fileof the Plugin inthe IdentityIQ database in a data LONGBLOB inthe spt_file_
+bucket table. The data inthe spt_file_bucket table is referenced ID toan entry in the spt_persisted_file
+table.
+
+Plugins are loaded from this.zip fileafter installationor after an application server restart.The .zip fileisextracted, and
+allimportant filesare cached for lateruse. There are several accessor methods toreference the cached files,but they
+can also be referenced by the url prefix /identityiq/plugin/pluginName followed by the path found inthe build structure.
+Compiled java classes are loaded and cached from the .ziparchive using the PluginClassLoader class.
+
+ Plugin Versioning Requirements
+
+
+ Note: The single exception to these requirements are version numbers with -dev appended to
+ the end. This suffixcauses version number validation tobe bypassed.
+
+To provide better support for upgrading plugins, plugin version numbers must be numeric, contain no alphabetic or
+other characters, and must separate the elements of the version number with decimal points. Within each segment of
+the version number, the values between the decimal points, the values are cast as integers, and leading zeroes are
+trimmed.
+
+For example:
+
+
+
+ l 04 and 00004 are both interpreted as 4
+
+
+
+ l A segment containing any non-numeric values is interpreted as 0
+
+
+
+ l 1.004.alpha is parsed as 1.4.0
+
+
+
+ l 2.3.4a is parsed as 2.3.0
+
+
+ Plugin Object Model
+
+A plugin is defined inIdentityIQ by the Plugin XML object. This object defines the parameters of the plugin, such as
+REST Resources, Snippets, Widgets, and Settings. This Plugin object is defined inthe manifest.xml file.The Plugin
+Object isan XML object that defines the features of the plugin. This object tellsIdentityIQ what features are in your plu-
+gin by defining them as attributes of a Plugin Object. In the Plugin Object you also define items such as the name of
+the plugin, the rights required forusing the plugin, version, snippets, and REST resources.
+
+These attributes are included inthe plugin model:
+
+
+
+
+
+
+
+
+ SailPoint Plugins 8
+
+===== Page 12/25 =====
+Developing Plugins
+
+
+ Attribute Name Description
+
+ name Unique Name of the plugin
+ installDate Date thatplugin isinstalled
+ displayName Display Name for the plugin
+ disabled Status of the plugin
+ rightRequired What SPRIGHT is required for thisplugin
+ version The version of the plugin
+ minSystemVersion The minimum version ofIdentityIQ that the plugin willrun on
+ maxSystemVersion The maximum version of IdentityIQ that the plugin willrun on
+ attributes List of configurable attributes
+ file Reference to the persisted filein the database
+
+
+ Plugin Structure
+
+A plugin can include the following components:
+
+
+
+ l Manifest file
+
+
+
+ l Build file(s)
+
+
+
+ l Database Scripts
+
+
+
+ l UI Elements
+
+
+
+ l XML Artifacts
+
+
+
+ l Java Classes
+
+
+
+ l Java JAR libraries
+
+
+Not all ofthese components are required fora plugin -itcan be as basic as the manifest, and some javascript/xhtml
+pages. In order tounderstand how a plugin operates, and how best to create one, itis important to understand what
+each of these components does, and how they interact.
+
+Plugin Manifest File
+
+A plugin isdefined in IdentityIQ by the Plugin XML object that defines the parameters of the plugin. For example, fea-
+tures such as REST resources, Snippets, Settings. The Plugin object isdefined in the manifest.xml file.This is a
+required artifact.
+
+
+
+
+
+
+ SailPoint Plugins 9
+
+===== Page 13/25 =====
+Developing Plugins
+
+
+For more complex plugins that require support for other field types, and more dynamic behavior, such as drop down
+listsor password fields,use the advanced plugin settings to define a form or reference a custom plugin configuration
+file.
+
+Dynamic behavior might include showing or hiding additional fieldsdepending on previous selections. For example, if
+a user chooses basic authentication, a username and password field would appear, but, ifoauth authentication is
+chosen, itmight be more appropriate to show an access token field.
+
+ Plugin Settings
+
+
+ Note: Ifyour plugin requires more than simple input fields, string, boolean or intvalues, you must
+ use the plugin advanced settings.
+
+Plugin settings are attributes that are available for modification as part of the installation. Click Configure to display
+the configuration settings page. Settings are displayed as a form. Ifthe plugin does not use the plugin advanced set-
+tings, the form iscreated automatically.
+
+Settings from the manifest fileare listed, inorder, on the plugin settings page.
+
+The Plugin setting object can be used to represent a single setting on the configuration settings page fora Plugin.
+Each object is used to represent a single configurable setting on the settings page.
+
+
+
+ Attribute Name Description
+
+ allowedValues List of allowed values for population ofa dropdown
+ dataType The type of the setting, forexample, "string" or "int"or "boolean"
+ defaultValue The default value for the setting
+ helpText Associated help text forthe setting
+ label Label tobe displayed for the setting
+ name Name of the current setting
+ value Value for the setting
+
+Plugin Advanced Settings
+
+Plugin advanced settings are used to define forms or reference a custom plugin configuration fileto define more com-
+plex plugins.
+
+
+
+ l settingsForm — define a plugin using a form
+
+
+
+ l settingsPage — reference a custom HTML/JS file
+
+
+settingsForm
+
+
+
+
+
+ SailPoint Plugins 10
+
+===== Page 14/25 =====
+Developing Plugins
+
+
+To use a form for plugin configuration, you can build a form using the form builder then copy and paste that form into
+the manifest file,or you can build the form directly into the manifest.
+
+Values entered into a form can be accessed using the FormData.values. FormService has functions to assist with val-
+idating required fields and displaying errors. Additional validations are built into the HTML and AngularJS code based
+on the form design, which means Angular willset a field to undefined ifitisnot valid. These validations can be used to
+prevent a form from being submitted and show error messages ifnecessary.
+
+settingsPage
+
+Develop your own configuration settings page by providing the required HTML and javascript. You can use whatever
+frameworks you prefer for your settings, but they need to fitinwith whatever IdentityIQ has loaded. For example, angu-
+laris not required, but you can use it.
+
+To use angular frameworks, see SailPoint Angular Components.
+
+Use the settingsPage setting to specify the name of your custom configuration settings page, forexample, con-
+fig.xhtml.
+
+ Snippets
+
+Snippets are small, configurable snippets of code that can be injected into the rendering of normal IdentityIQ user inter-
+face pages. For example, you can insert a menu option, a button, or even a larger set ofinterface components into an
+IdentityIQ page.
+
+Snippets must be specified in the plugin’s manifest file.They use a regular expression pattern to identify the IdentityIQ
+pages where the snippet should execute, and therefore appear.
+
+You can have multiple snippet components inthe same plugin, some that apply globally, and some that apply to spe-
+cifictargeted pages. You need to define a separate js fileforeach location a snippet applies, and then specify a sep-
+arate snippet in the manifest filewith the right regexPattern to run iton the appropriate pages.
+
+The details for the user interface component’s contents, and itsplacement within the page, are specified inthe
+JavaScript file.
+
+A snippet contains four equally important components:
+
+
+
+ Component Description
+ Name
+
+ regexPattern This isa regular expression pattern that is run against the current URL in the
+ browser - ifthe URL matches the pattern, the Snippet willattempt todisplayed
+ rightRequired This determines the scope of users allowed to view the Snippet element - should
+ reference an IdentityIQ SPRight object
+
+
+
+
+
+
+
+SailPoint Plugins 11
+
+===== Page 15/25 =====
+Developing Plugins
+
+
+ Component Description
+ Name
+
+ This is a listofthe scripts to run when a particular URL matches the regexPattern.
+ scripts Normally thiswill consist ofinjecting an element into the DOM of the page. The
+ example hearder.js fileuses JQuery
+ styleSheets Listof any css filesthat are required by Snippet Scripts
+
+
+ Widgets
+
+A Widget isa targeted snippet – one that inserts a block of user interface components into a fixed area of the Home
+page that can be added selectively fordifferent users, as a unit.
+
+Widgets can be configured to appear on the Home page for any or allIdentityIQ users.
+
+The firstthing you need, to implement a plugin Widget, isthe Widget object itself.When you import that object into
+IdentityIQ during plugin installation, itdefines the existence of the Widget making itavailable for any user.
+
+Widget objects are simple, the only details about the user interface component that get defined in the object are its
+name and title.
+
+Widgets require a snippet definition in the manifest filefor this plugin. This snippet defines the home page hook forthe
+widget. The regular expression pattern for the widget snippet must specify the IdentityIQ home page.
+
+The rest of the snippet definition has IdentityIQ execute the contents of the specified JavaScript filewhen itloads
+pages that meet the regex pattern.
+
+The contents ofthe JavaScript filethen define both the user interface layout, inthe form of a directive, and the con-
+trollerfor the Widget. Because the home page isan Angular page, this JavaScript must specify an Angular controller
+forthe widget.
+
+The name given to this directive must follow a fixed naming convention. Itmust be specified in relation to the name
+given tothe widget object. Specifically, the widget object name must be prefixed with sp and suffixed with Widget. So
+the Search widget object requires a directive called spWidgetNameWidget.
+
+The directive references the controller forthe widget. That controller is also defined within the widget’s JavaScript file
+and defines the variables that serve as the model for the view elements and performs the required operations toset
+theirdata values.
+
+Plugin Build File
+
+Apache Ant isa readily available tool that can be used to package plugins prior to deployment and distribution. To
+provide build specific values, the standard is toalso include a build.properties filewith a simple key-value pair
+forall build specific tokens.
+
+
+
+
+
+
+ SailPoint Plugins 12
+
+===== Page 16/25 =====
+Developing Plugins
+
+
+The following example illustrateshow a properties filecan be leveraged to enable multiple developers touse the same
+build process, despite having dissimilar build environments. The actual build.xml fileisresponsible forcreating the
+build directory, compiling any Java classes, packaging those compiled classes into a .jararchive, and archiving in .zip
+format the complete plugin.
+
+
+  jdk.home.1.7=/Library/Java/JavaVirtualMachines/jdk1.8.0_66.jdk
+     iiq.home=/usr/local/apache-tomcat-8.0.30/webapps/identityiq/
+     pluginName=TodoPlugin
+     version=2.0.0
+
+Note that complications can arise when the plugin isbuilt using a different version of Java than the version deployed
+on the application servers hosting IdentityIQ. Parameterize the javac argument inthe build.xml filewith the most
+compatible Java version available. To do this,add the property target to the javac directive, and set equal to
+whatever version isbeing targeted.
+
+
+For example:
+
+
+<javac srcdir="${pluginSrc}" destdir="${pluginClasses}"
+ includeantruntime="false" target="1.7">
+Plugin Database Scripts
+
+Plugins that require persistence of data outside of that allowed by the IdentityIQ object model require at minimum the
+creation, updating, and deletion ofunique tablespace. The plugin framework creates a database named iden-
+tityiqPlugin. The creation of thisdatabase ishandled by the installation scripts packaged with every download of
+IdentityIQ, in the WEB-INF/database folder. Additionally, a default user identityiqPlugin iscreated to perform oper-
+ations, installation and deletion of plugins, on thisnew database. Similar tothe base IdentityIQ username and pass-
+word, these can be modified and updated inthe IdentityIQ iiq.properties filelocated inWEB-
+INF/classes/iiq.properties.
+
+When creating a plugin, you must create a folder named db in your project directory. This folder should be further sub-
+divided into three operation specific folders: install, uninstall, and upgrade.
+
+The scripts placed inthese folders are automatically run when a plugin isinstalled or deleted. Itisrecommended that
+you include scripts for the four major database types supported by IdentityIQ, MySQL, SQLServer, DB2, and Oracle,
+or note in your documentation which databases are supported. Database specific scripts must include the database
+type as the fileextension, forexample .mysql. The upgrade folder should contain any deltas intable definitions from
+priorversions ofthe plugin.
+
+
+
+
+
+
+
+
+
+
+ SailPoint Plugins 13
+
+===== Page 17/25 =====
+Developing Plugins
+
+Plugin User Interface Elements
+
+Most plugins have some additional user interface component that appears in IdentityIQ. Images, CSS files,HTML tem-
+plates, and JavaScript can allbe used to provide the interactions and views required by the plugin. Plugins that use a
+fullPage element look for a filecalled page.xhtml inthe build.
+
+To extend the classes loaded with your plugin tothe rest ofIdentityIQ, you must specifically declare those classes in
+the manifest file.
+Plugin Authorization
+
+To prevent unauthorized access to your new endpoints, each should be guarded with an authorization mechanism.
+You can constrain which users can see and access the user interface components, and you can secure the REST end-
+points you build into your plugin.
+
+When you define snippets, including widget plugin components, in the manifest filefora plugin, you can specify a
+rightRequired attribute to constrain access. This attribute names a SailPoint SPRight which users must be assigned
+forthe component to appear intheir IdentityIQ instance.
+
+You can also specify a rightRequired at the Plugin object level, inthe manifest file,which will specify the required
+SPRight for a user to be able to access the full-page component of the plugin.
+
+Ifyou leave these rightRequired attributes off, allIdentityIQ users willbe able to access those plugin components.
+
+SPRights are the most granular permission object in IdentityIQ. Inmost cases, users are assigned SPRights in Iden-
+tityIQby attaching those rights to one or more Capability objects and then granting the Capability to the appropriate
+users.
+
+Ifthe plugin contains a full-page component that users can access through a quicklink, the Quicklink access will be
+governed by Quicklink Populations, like any other IdentityIQ Quicklink.
+
+User must also be authorized to the fullpage itself,with the rightRequired specified in the plugin manifest, to be able to
+view the page.
+
+Other authorization points of note. First, whether or not you explicitlyauthorize system administrators to these com-
+ponents, they willhave fullvisibilityand access to them. Second, when you include a widget in your plugin, the widget
+willappear inthe listofavailable widgets forall users when they are editing their home page and deciding which con-
+tent toinclude there. However, ifthey are not authorized to the widget’s snippet, and they add that widget to their
+Home page, IdentityIQ will add an empty widget and they willneither be able tosee nor interact with any of itsfunc-
+tional elements.
+
+To secure the endpoints the plugin framework use Annotations. In Java, an annotation is a syntactic metadata that is
+added, often before a method signature, that describes the parameters used inthat method.
+
+An annotation should have at least three parts
+
+
+
+
+
+
+ SailPoint Plugins 14
+
+===== Page 18/25 =====
+Developing Plugins
+
+
+
+ l The HTTP method (GET, POST, PUT, DELETE, etc)
+
+
+
+ l The path or endpoint -this can be parametrized which isuseful forpulling back a single record. The above
+ example uses parameterization by adding the variable within {}tags to the end of the URL, and also declaring
+ the @PathParam appName inthe input arguments of the method signature
+
+
+
+ l The authorization of the method - the allowed values are:
+
+
+
+ l @AllowAll -this allows anyone tointerrogate the endpoint
+
+
+
+ l @RequiredRight("<SPRight>") -allows users who possess the named SPRight to access the end-
+ point
+
+
+
+ l @SystemAdmin -system administrator access only
+
+
+
+ l @Deferred -Authorization is deferred to the method. When this option is selected, you must also create
+ an Authorizer class that implements the sailpoint.authorization.Authorizer interface. The Authorizer
+ class should overwrite the authorize(UserContext) method of the base Authorizer interface. Inside of the
+ REST resource method, the author would then call authorize().
+
+Plugin XML Artifacts
+
+Any IdentityIQ objects that are required as part of a plugin need to be represented in XML artifacts.This could be
+something as small as a single new SPRight object or a complex workflow orrule. The mechanism that isused for
+importing these artifacts during installation is the same as any IdentityIQ object import, so the normal import actions
+are also available, merge, include, execute, logConfig.
+
+Development ofthese XML artifacts can be done directly in the build folder, or inthe IdentityIQ user interface and
+either exported using the console or copy and pasted from debug intothe build.
+
+When developing in the user interface and then migrating to your build folder using cut and paste, you must remove
+the idattribute assigned by Hibernate and any other hibernate ID value references. For this reason, itispreferable to
+export the artifactsusing the IdentityIQ console command ./iiq export -clean.
+
+Everything inthe import folder is imported The objects can be separated intoindividual files,or combined into a
+single file.When a plugin isuninstalled, the XML artifactsthat were imported remain inthe IdentityIQ database, but
+the .zip archive from which the plugin fileswas loaded, isremoved from the spt_file_bucket and spt_per-
+sisted_file tables.
+Plugin Java Classes
+
+Plugins are a powerful productivity-enabler, that give users the abilityto extend both the IdentityIQ user interface and
+server in a well-defined manner.
+
+
+
+
+
+ SailPoint Plugins 15
+
+===== Page 19/25 =====
+Developing Plugins
+
+ Plugin Java Classes - REST Classes
+
+The plugin framework relies heavily on REST web services integration for the majority of CRUD (create, read, update,
+and delete) operations. To create a custom REST Resource:
+
+
+
+ l Extend the BasePluginResource class
+
+
+
+ l Secure the new endpoints
+
+
+ Extend BasePluginResource
+
+The BasePluginResource class should be used as the base class forallresources. Itprovides access toutilitymeth-
+ods for accessing plugin settings, getting database connections, and more.
+
+
+
+ l getConnection – gets connection to the datasource specified inthe iiq.properties fileforthe plugins
+
+
+
+ l getPluginName – this method should be overwritten toreturn the correct name of the plugin
+
+
+
+ l getSettingBool – gets value of boolean plugin setting forplugin name returned by getPluginName()
+
+
+
+ l getSettingInt – gets value of intplugin setting forplugin name returned by getPluginName()
+
+
+
+ l getSettingString – gets value ofString plugin setting for plugin name returned by getPluginName()
+
+
+
+ l prepareStatement – convenient security method forgetting Java PreparedStatement object forany database
+ queries that are required
+
+
+
+ l Signature is prepareStatement(Connection, String, Object...) where the String would be
+ the SQL statement you want to execute
+
+
+
+ l Object... a listofthe parameters values, ifany, to be used
+
+
+
+ l authorize – should be overwritten by implementers, but by default only ensures that SystemAdministrator can
+ see everything
+
+Introduce additional methods tohandle the various endpoints required by the plugin.
+
+ Plugin Java Classes - Plugin Executors
+
+The plugin framework enables you toinclude custom task implementations or services with your plugin. These items
+relyon executor classes that contain the business logic for these services. The following executors are currently avail-
+able:
+
+
+
+
+
+
+
+
+SailPoint Plugins 16
+
+===== Page 20/25 =====
+Developing Plugins
+
+
+
+
+ l Service Executors
+
+
+
+ l Task Executors
+
+
+
+ l Policy Executors
+
+
+You must specifically declare the classes to be exported for each of the executors. Only classes specifically declared
+are accessible from the rest of IdentityIQ. Ifa class isnot declared, itwill failtoinstantiate when you open the plugin.
+Classes are declared in the manifest.xml file.
+
+Use the following attributes todeclare classes:
+
+
+
+ l serviceExecutor
+
+
+
+ l taskExecutor
+
+
+
+ l policyExecutor
+
+
+For example:
+
+
+ <entry key="taskExecutors">
+   <value>
+     <List>
+       <String>com.acme.TaskExecutor1</String>
+       <String>com.acme.TaskExecutor2</String>
+     </List>
+   </value>
+ </entry>
+
+
+Plugin Object Properties
+
+When defining your plugin object you must provide the listofservice executors that are included. The listlivesinside
+an attributes map under the key serviceExecutors.
+
+
+
+ l Plugin Helper methods
+
+
+
+ l All inherited Service methods
+
+
+
+ l BasePluginTaskExecutor
+
+
+
+ l Plugin Helper methods
+
+
+
+ l All inherited TaskExecutor methods
+
+
+
+
+
+
+
+ SailPoint Plugins 17
+
+===== Page 21/25 =====
+Developing Plugins
+
+
+
+
+ l BasePluginPolicyExecutor
+
+
+
+ l Plugin Helper methods
+
+
+
+ l Allinherited PolicyExecutor methods.
+
+Plugin Helper Methods
+
+The listofmethods that are included with the BasePlugin classes are as follows:
+
+
+
+ l getPluginName() – returns a string value of the name ofthe plugin
+
+
+
+ l getConnection() – returns a Connection object used to query the database
+
+
+
+ l getSettingString(String settingName) – returns a String setting value from the Plugin Settings
+
+
+
+ l getSettingBool( String settingName) – returns a boolean value from the Plugin Settings
+
+
+
+ l getSettingInt(String settingName) – returns a integer value from the Plugin Settings
+
+
+You can think of the BasePlugin classes as foundation for creating your specific objects. By using them you gain
+access to the Plugin Helper Methods, but you are not required to use the BasePlugin classes. You can extend directly
+from the parent class object.
+
+Implementing a Plugin Service Definition
+
+To implement a Plugin Service there are two parts. The service class, containing the business logic that you want the
+service toactually do, and the service definition xml, that isloaded into IdentityIQ.
+
+
+
+ l BasePluginService Class – an abstract class that extends the Service class, as well as implements the Plu-
+ ginContext interface. You can use this class as the foundation foryour custom Plugin Service
+
+
+
+ l Service Definition – specify a pluginName attribute. This tellsIdentityIQ to use the plugin class loader for this
+ executor. Ifthis attribute isnot specified the executor class willnot be found
+
+Implementing a Plugin Task Executor
+
+To implement a Plugin Task Executor there are have two parts. The Task Executor class, which handles the business
+logic foryour task, and the TaskDefinition xml object, which gets loaded into IdentityIQ.
+
+
+
+ l BasePluginTaskExecutor Class – an abstract class that extends the AbstractTaskExecutor class, as well as
+ implements the PluginContext interface. You can use this class as the foundation foryour custom Plugin
+
+
+
+
+
+
+
+
+ SailPoint Plugins 18
+
+===== Page 22/25 =====
+Developing Plugins
+
+
+ Executor task
+
+
+
+ l TaskDefinition – include the pluginName attribute, as this attribute tellsIdentityIQ to use the plugin class loader
+ instead of default class loader. Ifthe attribute isnot specified the executor class willnot be found
+
+Implementing a Policy Executor
+
+To implement a Policy Executor there are have two parts. The Policy Executor class, which handles the business logic
+foryour policy, and the Policy xml object, which gets loaded intoIdentityIQ.
+
+
+
+ l BasePluginPolicyExecutor Class – an abstract class that extends the AbstractPolicyExecutor class, as well as
+ implements the PluginContext interface. You can use thisclass as the foundation for your custom Plugin Policy
+ Executor
+
+
+
+ l Policy XML – include the pluginName attribute, as thisattribute tells IdentityIQ touse the plugin class loader
+ instead of default class loader. Ifthe attribute isnot specified the executor class willnot be found.
+
+ Plugin Java Classes - Script Classes
+
+
+ Note: BeanShell executions are referred to as scripting inthis document.
+
+The classes installed forplugins can be made available to allBeanShell executions. BeanShell (rules, scriptlets, work-
+flows) scripting invocations are able to use allJava classes, from allplugins, that are declared as exported for script-
+ing. The scripts should failto load classes which are inplugins, but which are not explicitly exported.
+
+BeanShell executions include:
+
+
+
+ l Rules
+
+
+
+ l Workflow steps (rules and scripts)
+
+
+
+ l Scriptlets
+
+
+Use the scriptPackages attribute to declare the Java packages exported for use by scripts as follows:
+
+
+ <entry key="scriptPackages">
+   <value>
+     <List>
+       <String>com.acme.classy.util</String>
+     </List>
+   </value>
+ </entry>
+
+
+
+
+
+
+
+
+
+ SailPoint Plugins 19
+
+===== Page 23/25 =====
+Developing Plugins
+
+Example: Using Plugin Classes From a Rule
+
+This isa simple example ofhow tocall the plugin classes from a rule.
+
+The example Java class named com.acme.classy.util.ClassyUtil can be used from a rule ifdeclared properly in the
+manifest.xml using the scriptPackages entry shown above.
+
+
+ <?xml version='1.0' encoding='UTF-8'?>
+ <!DOCTYPE Rule PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+ <Rule language="beanshell" name="ClassyRule" >
+   <Description>Returns the current timestamp by calling class from
+                        ClassyPlugin</Description>
+   <Signature returnType="string"/>
+   <Source>
+ import com.acme.classy.util.ClassyUtil;
+ long now = ClassyUtil.now();
+ return "The current timestamp is: " + now;
+  </Source>
+ </Rule>
+
+
+SailPoint Angular Components
+
+To implement the SailPoint-styled angular components, your project needs to include the SailPointBundleLibrary
+JavaScript file.There are specific directive dependencies on this librarywhen you use the SailPoint-styled com-
+ponents.
+
+Widgets and snippets donot require thislibrary inthe plugin project, because for those, the plugin architecture auto-
+matically references thislibrary from your IdentityIQ instance. But ifyou are going to use these in a fullpage plugin
+implementation, your plugin needs toinclude a copy of thisJavaScript library,copied from your IdentityIQ version.
+Plus, your page.xhtml component needs to explicitlyreference the JavaScript fileina script element so IdentityIQ
+can resolve the SailPoint Angular directives you are be using. This libraryneeds tomatch the version ofIdentityIQ
+where the plugin willbe deployed.
+
+Your angular module definitionneeds to specify any other modules that your module has dependencies on. This list
+willvary, depending on the elements you include. For example, ifyou are using modal boxes, you need to include
+sailpoint.modal, tree components rely on sailpoint.tree, and so on. Ifyour user interface only contains
+some of the more basic of the fieldtypes, you need fewer modules in your dependency list.
+
+An example plugin that demonstrates the different components that are part of the SailPoint Angular bundle, called
+the Kitchen Sink plugin isinstalled with IdentityIQ. The plugin isavailable fordownload from Compass. Once the plu-
+gin isdownloaded, you can install and view the plugin through IdentityIQ to see how the different fieldtypes behave.
+Then you can examine the HTML and JavaScript filestosee the directives involved and how they are populated.
+
+The librarycontains a wide array of fieldtypes, justlike you might see throughout core product pages. For example,
+selection lists,plain text entry fieldsor fields where you can enter multiple separate textvalues as a list,dropdown list
+
+
+
+
+
+ SailPoint Plugins 20
+
+===== Page 24/25 =====
+Developing Plugins
+
+
+boxes where you can select from a set ofchoices, and a special directive for when the choices should be Boolean
+true-false values, date pickers, checkboxes, and radio buttons.
+
+The libraryoffers SailPoint styled buttons, and the demo plugin shows how you can use them to attach logicto do
+things like open modal boxes of various types, post an alert notification to the page or navigate the user to another
+page in IdentityIQ while preserving navigation history.
+
+Beyond the simpler field types and buttons, there are a few components that create more complex elements. For
+example, a tree directive for showing nested relationships in data, a directive fordisplaying a listof cards that iscon-
+figured for paging when result sets are large, and a directive for a data table that matches the tables in the Angular
+pages of IdentityIQ.
+Internationalization
+
+Message catalog filesare specified per language with the two character abbreviation for the corresponding language,
+or the four-character options when you have locale-specific message catalogs, for example, TrainingPlugin_fr_
+ca.properties forCanadian French. These filesshould be recorded inthe messages folder of your plugin project.
+
+To guard against collisions with IdentityIQ base product message key names, or message keys from other plugins,
+the best practice is toname your plugin’s message keys with a prefix thatmakes them unique to your plugin. For
+example, consider using your plugin’s name as a prefix.
+
+Both the user interface and server side code can access the provided catalogs.
+
+Inthe user interface, fullpage plugins and widget plugins use two different mechanisms, because of differences in lib-
+rary support that are included inthe pages.
+
+Ina Full page plugin component, the HTML uses the msgs function to translate the text.
+
+InWidgets or other snippets that display text,the spTranslate function inthe SailPoint Bundle Library does the
+translation, by piping the message key through it.
+
+Itispossible to use thissyntax ina fullpage plugin, but only ifyou have included the SailPoint Angular Bundle Library
+and have declared a dependency for your angular module on the sailpoint.i18n module. The spTranslate
+function is part of that module.
+
+Inserver-side code, localization is done with the Message object’s localize method, passing itthe message catalog
+key to look up and translate.
+Plugin Installation and Removal
+
+To install a plugin, clickthe gear icon and select Plugins to navigate to the Installed Plugins page. Click New and drag
+and drop or upload the plugin .zip file.
+
+Ifyou downloaded a plugin, the .zip fileshould be included with the download. Ifyou developed the plugin yourself,
+the .zip fileisin your project directory under build/your plugin name/dist.
+
+
+
+
+
+ SailPoint Plugins 21
+
+===== Page 25/25 =====
+Developing Plugins
+
+
+When a plugin isinstalled, the database scripts from the db/install folder run, which creates any tables necessary
+forthe plugin, the XML configuration filesare imported into the IdentityIQ database from the import/install folder,
+any compiled classes are loaded into the unique plugin classloader, and the manifest fileisimported creating the Plu-
+gin object.
+
+Remove a plugin by clicking X on the appropriate Plugin card on the Installed Plugins page. Database scripts in
+charge of cleaning up data run from the db/uninstall folder and the manifest file(the Plugin object) isremoved.
+
+Additional steps might need to be taken toedit the System Configuration fileto remove objects created by the plugin,
+such as quicklinks, or to remove tables created in the plugin database.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Plugins 22

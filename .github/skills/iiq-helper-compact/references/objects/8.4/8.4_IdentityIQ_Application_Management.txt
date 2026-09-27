@@ -1,0 +1,1470 @@
+===== Page 1/24 =====
+ Application Management
+
+
+ Version:8.4
+
+ Revised:September2023
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thisdocument and theinformationcontained herein isSailPointConfidentialInformation
+
+===== Page 2/24 =====
+Copyright and Trademark Notices
+
+Copyright © 2023 SailPoint Technologies, Inc.  All Rights Reserved.
+
+Alllogos, text,content, including underlying HTML code, designs, and graphics used and/or depicted on these written
+materials or in thisInternet website are protected under United States and international copyright and trademark laws
+and treaties, and may not be used or reproduced without the prior express written permission of SailPoint Tech-
+nologies, Inc.
+
+“SailPoint Technologies,” (design and word mark), “SailPoint,” (design and word mark), "Identity IQ,” “IdentityNow,”
+“SecurityIQ,” “Identity AI,” “Identity Cube,” and “SailPoint Predictive Identity” are registered trademarks of SailPoint
+Technologies, Inc. “Identity isEverything,” “The Power of Identity,” and “Identity University” are trademarks of
+SailPoint Technologies, Inc. None of the foregoing marks may be used without the prior express written permission of
+SailPoint Technologies, Inc. Allother trademarks shown herein are owned by the respective companies or persons
+indicated.
+
+SailPoint Technologies, Inc. makes no warranty ofany kind regarding these materials or the information included
+therein, including, but not limited to,the implied warranties ofmerchantability and fitness for a particular purpose.
+SailPoint Technologies shall not be liable for errors contained herein or direct, indirect, special, incidental orcon-
+sequential damages inconnection with the furnishing, performance, or use of thismaterial.
+
+Patents Notice. https://www.sailpoint.com/patents
+
+Restricted Rights Legend. All rights are reserved. No part ofthis document may be published, distributed, reproduced,
+publicly displayed, used to create derivative works, or translated to another language, without the prior written consent
+ofSailPoint Technologies. The information contained inthis document issubject to change without notice.
+
+Use, duplication or disclosure by the U.S. Government is subject to restrictions as set forth insubparagraph (c) (1) (ii)
+ofthe Rights inTechnical Data and Computer Software clause at DFARS 252.227-7013 for DOD agencies, and sub-
+paragraphs (c)(1) and (c)(2) ofthe Commercial Computer Software Restricted Rights clause at FAR 52.227-19 for
+other agencies.
+
+Regulatory/Export Compliance. The export and re-export of this software iscontrolled for export purposes by the U.S.
+Government. By accepting this software and/or documentation, licensee agrees to comply with allU.S. and foreign
+export laws and regulations as they relate to software and related documentation.  Licensee will not export or re-
+export outside the United States software or documentation, whether directly or indirectly, to any Prohibited Party and
+willnot cause, approve or otherwise intentionally facilitate others inso doing. A Prohibited Party includes: a party in a
+U.S. embargoed country or country the United States has named as a supporter of international terrorism; a party
+involved in proliferation; a party identified by the U.S. Government as a Denied Party; a party named on the U.S.
+Department of Commerce’s Entity Listin Supplement No. 4 to 15 C.F.R. § 744; a party prohibited from participation in
+export orre-export transactions by a U.S. Government General Order; a party listed by the U.S. Government’s Office
+ofForeign Assets Control as ineligible to participate in transactions subject toU.S. jurisdiction; or any party that
+licensee knows or has reason toknow has violated or plans to violate U.S. or foreign export laws or regulations.
+Licensee shall ensure that each of itssoftware users complies with U.S. and foreign export laws and regulations as
+they relate to software and related documentation.
+
+===== Page 3/24 =====
+Contents
+
+
+ Aggregation 1
+
+ Aggregation and Applications 1
+
+ What Data IsAggregated? 1
+
+ Authoritative and Non-Authoritative Data Sources 2
+
+ Partitioned Aggregation 2
+
+ Delta Aggregation 3
+
+ Tasks forAggregation 4
+
+ Correlation 6
+
+ Entitlement Catalog 7
+
+ What Is Included inthe Entitlement Catalog 7
+
+ Requestable Attributes 8
+
+ Viewing the Entitlement Catalog 9
+
+ Adding or Editing Entitlement Parameters 12
+
+ Approvals for Changes toEntitlements 12
+
+ Deleting a Managed Entitlement 13
+
+ Importing and Exporting Managed Attributes 13
+
+ Activity Target Categories 16
+
+ Elevated Access 17
+
+ Role Configuration 17
+
+ Entitlement Configuration 17
+
+ Supporting Active Directory Native Move /Rename 19
+
+===== Page 4/24 =====
+Aggregation
+
+Aggregation
+
+
+Aggregation is the process by which data about identitiesand their access isread from your enterprise systems into
+IdentityIQ. IdentityIQ aggregates Account data (which includes information about identities and their accounts and
+entitlements on the outside systems) and Account Group data (which includes account groups and application object
+types that are the basis for creating entitlements that represent group membership).
+
+IdentityIQ uses configured applications to connect tothese enterprise systems, and uses tasks to do the work of read-
+ing the data intoIdentityIQ and correlating itto identities stored inIdentityIQ
+Aggregation and Applications
+
+A configured Application isthe component that letsIdentityIQ communicate with an enterprise system. The enterprise
+system is the source of information about accounts and account groups, which willbe read into IdentityIQ.
+
+Applications use a system-specific connector type (such as JDBC, LDAP, Active Directory, Azure, Workday, etc.) to
+set up a connection to the system that isthe source of the data. The configuration options are flexible;many elements
+ofthe configuration depend on the connector type, but they allhave several things in common:
+
+
+
+ l Connection parameters – the information IdentityIQ needs inorder to communicate with the data source.
+ This typically includes a path to the data source and credentials for logging in/authenticating, but may include
+ more.
+
+
+
+ l Account schema – how IdentityIQ defines and organizes the data that is being read in.
+
+
+
+ l Correlation logic – how IdentityIQ maps data from the source system to what isstored in IdentityIQ.
+
+
+For more information on configuring applications, see the IdentityIQ Application Configuration Guide and the Con-
+nectors & Integrations section on the SailPoint Product Documentation portal.
+What Data Is Aggregated?
+
+Account aggregation is the process through which account data from a configured application isread into IdentityIQ
+and stored in Link (account) objects connected to Identities.Aggregation isan integral part of every IdentityIQ install-
+ation. Account aggregation reads ininformation about identities,which typicallyincludes:
+
+
+
+ l Account information – the accounts the identityhas on the system being aggregated.
+
+
+
+ l Entitlements – the access the identityhas on the systems that ithas accounts on.
+
+
+
+ l From authoritative sources – information about the identity, such as name, department, email address, etc.
+
+
+
+
+
+
+ SailPoint IdentityIQ Application Management 1
+
+===== Page 5/24 =====
+Aggregation
+
+
+Account Group aggregation is used to create entitlements (managedAttributes) representing an application's group
+objects. See Entitlement Catalog.
+Authoritative and Non-Authoritative Data Sources
+
+The enterprise systems that provide information about identities and their access may be numerous, and information
+about identities may not always be synchronized across all systems. For thisreason, some sources of data are des-
+ignated as authoritative sources. An authoritative source isany repository foremployee information foryour enter-
+prise that represents the primary and most trusted information about identities, such as a human resources
+application. This isin contrast to non-authoritative sources that may contain some accurate information about iden-
+titiesbut isnot considered the system ofrecord for information about the identity itself.
+
+A simple example is when an employee's name changes – Pat Smith becomes Pat Jones. In thisexample, Human
+Resources willchange the employee's name, and perhaps the email address, in an authoritative source, such as Act-
+ive Directory. The changes then need tobe propagated out to other accounts that the user has, such as JIRA, Sales
+Force, Outlook, etc.
+
+A system isdesignated as an authoritative source by checking the Authoritative Application flag in the application
+configuration for that source. For more information, see the IdentityIQ Application Configuration Guide.
+
+Note that your organization can have multiple authoritative sources.
+Partitioned Aggregation
+
+Partitioning can increase processing throughput and speed of data processing, by breaking operations into multiple
+pieces, orpartitions, allowing data processing to splitacross multiple hosts, and across multiple threads per host.
+Aggregation is one ofthe areas inIdentityIQ where partitioning can be used to improve performance.
+
+Partitioned aggregation can occur ateither the application level orthe task level.
+
+ Application Configuration for Partitioning
+
+Some connector types support partitioning at the application level. To use partitioning foraccount and account group
+aggregation, you must configure the application for partitioning, and enable partitioning when defining an account
+aggregation or identity refresh task.
+
+Application-level partitioning requires connector support and some use of partitioning statements toobtain mutually-
+exclusive data sets for parallelprocessing. This creates multiple connections to a target system and also spreads
+aggregation processing across the task servers.
+
+Partitioning is supported by many but not all connectors, and can be enabled as part of the application's configuration.
+The way partitioning is configured varies by connector. For the most current information about a particular connector's
+partitioning support, refer to the IdentityIQ Connectors documentation on SailPoint's documentation portal.
+
+ Aggregation Task Configuration for Partitioning
+
+
+
+
+
+ SailPoint IdentityIQ Application Management 2
+
+===== Page 6/24 =====
+Aggregation
+
+
+Task-level partitioning is an alternative when application-level partitioning is not available or is undesirable. This vari-
+ation pulls data from the target system intoIdentityIQ using a single connection and multi-threads the processing
+across the task servers. The best practice isto use application-level partitioning whenever possible, as ithas superior
+throughput potential when compared to task-level partitioning or traditional single-threaded aggregation, which uses a
+single thread for both data source connection and data processing within IdentityIQ.
+
+Activating partitioning on an aggregation task only requires selecting the Enable Partitioning option in the task defin-
+itionuser interface page. This must be enabled foreach aggregation task which willuse partitioning, as this setting is
+disabled by default.
+
+In addition, you can configure the number of objects per partition.This option sets the maximum number of records to
+include ineach partition. IdentityIQ divides the accounts from the data source into as many partitions as required to
+create mutually-exclusive segments, with each containing no more than the specified number of accounts.
+
+Only some tasks support partitioning: account aggregation, account group aggregation, identity refresh, identity
+request maintenance, propagate role changes, and system maintenance.
+
+Delta Aggregation
+
+Delta aggregation is the process of only aggregating accounts or account groups that have changed since the last
+aggregation.
+
+Delta aggregation can be run as an alternative to a fullaggregation, which brings in allaccounts or account groups,
+regardless of whether they are unchanged since the last aggregation.
+
+Using delta aggregation to bring in only the changes can be much faster than fullaggregations, and can allow pro-
+cesses tooccur at a much more rapid pace.
+
+The option to enable delta aggregation is set inthe aggregation task. You can set this option in the tasks for aggreg-
+ating accounts and for aggregating account groups. However, delta aggregation requires support by the connector;
+not allconnector types support delta aggregation.
+
+Partitioning in Delta Aggregation
+
+Delta aggregation can in some cases support partitioning. Partitioning in delta aggregation relies on the connector hav-
+ing partitioning implemented; ifthe connector does not include partitioning functionality, the partitioning option willbe
+ignored and delta aggregation willwork inthe default, singled-threaded mode.
+
+For the most current information about a particular connector's partitioning support, refer to the IdentityIQ Connectors
+documentation on SailPoint's documentation portal.
+
+For more information on aggregation tasks, see Tasks for Aggregation .
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Application Management 3
+
+===== Page 7/24 =====
+Aggregation
+
+Tasks for Aggregation
+
+Tasks drive the actual work of retrieving info from the data source. There is a task type foraggregating accounts, and
+a task type foraggregating groups. You use the task type as a template to set up your own specific tasks, and you can
+have many defined tasks foreach type – for example, ittypical to have a separate account aggregation task for each
+one ofyour source systems.
+
+You can also have more than one aggregation task for a given system – forexample, one that runs daily to only pick
+up changes from that day (Delta Aggregation ), and a more thorough one that runs monthly to refresh allyour data
+from that specific source.
+
+The aggregation tasks can be configured with options that determine which of the task's available actions are per-
+formed in the aggregation.
+
+An Account aggregation task is responsible for:
+
+
+
+ l Reading the account data from the designated data source
+
+
+
+ l Creating a Link object to represent the account or updating an existing Link object with any data changes for
+ the account
+
+
+
+ l Associating the accounts (Links) to an existing Identity inthe system or creating new Identities tohold the
+ accounts
+
+There are several additional options that an Account aggregation task can be configured to perform, such as:
+
+
+
+ l Deleting any Links for accounts that no longer exist
+
+
+
+ l Recalculating active scopes for the installation when scoping is enabled
+
+
+
+ l Executing some ofthe Identity Refresh task options
+
+
+An Account Group aggregation task aggregates information about groups. Group aggregation can only be done for
+applications which have a group schema defined. IdentityIQ aggregates group data from one application ata time,
+repeating this process foreach application specified in the aggregation task (inthe "applications" parameter of the
+task).
+
+Other tasks make updates based on aggregated data, and therefore should be run after aggregation:
+
+
+
+ l Identity Refresh: This task scans allidentities to ensure that allidentity information isup-to-date and accurate.
+ Identity Refresh scans are also used todetect and report on policy violations, which may arise due to changes
+ inaccount or group associations.
+
+
+
+ l Effective Access Indexing: Effective Access isany indirect access that was granted through another object,
+
+
+
+
+
+
+ SailPoint IdentityIQ Application Management 4
+
+===== Page 8/24 =====
+Aggregation
+
+
+ such as a nested group, an unstructured target, or another role. This task indexes effective access so that it
+ can be shown on a single view ofan identity.
+
+For more information, see the IdentityIQ Tasks Guide.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Application Management 5
+
+===== Page 9/24 =====
+Correlation
+
+Correlation
+
+
+Correlation refers to how IdentityIQ maps data from the source system to authoritative identities stored in IdentityIQ.
+Correlation logic can be implemented ina variety of ways, including:
+
+
+
+ l Through direct mapping of attributes – forexample, the application's account attribute "mail" is mapped directly
+ to the identity's attribute "email."
+
+
+
+ l Using conditions that assign application accounts to existing identities by defining attribute conditions. For
+ example, the root account on Unix typically does not have any identifying attributes that can help when trying to
+ correlate itto an existing identity using direct attribute mapping, so you can use a condition, such as whether
+ the identity is a Unix application owner, todrive the correlation.
+
+
+
+ l Through rules – custom BeanShell rules let you create your own specialized logic for correlation.
+
+
+
+ l Manually – the Identity Correlation feature lets you select an application, retrieve a listofall uncorrelated
+ accounts for that application, then select a target identity to correlate the uncorrelated account to.
+
+For more information about correlation, see the IdentityIQ Application Configuration Guide, the IdentityIQ Identity Man-
+agement Guide, and the IdentityIQ Rapid Setup Guide.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Application Management 6
+
+===== Page 10/24 =====
+Entitlement Catalog
+
+Entitlement Catalog
+
+
+
+ Note: The terms "account group" and "application object" are use interchangeably in thisdoc-
+ ument but have the same meaning. Some applications can have multiple application objects. An
+ account group can be the name of one of those objects.
+
+Use the Entitlement Catalog page toview and manage allof your managed attributes including entitlements, account
+groups / application objects, and permissions.
+
+Managed attributes can be specific to one application orshared among multiple applications of the same type. Man-
+aged attributes can also be defined in multiple languages.
+
+A managed attribute is the value of an account attribute that has been promoted to a first-class object in the IdentityIQ
+database so the system can track other data related to these attributes, such as a description or an owner. Any attrib-
+ute can become managed, but the most common attribute to be managed is one holding group memberships.
+What Is Included in the Entitlement Catalog
+
+The Entitlement Catalog liststhe managed attributed in your IdentityIQ instance. A managed attribute isindicated by
+checking the Managed box for the attribute, inthe account schema on the Application Definition page.
+
+As accounts are aggregated, IdentityIQ detects the values for each managed attribute and promotes these toMan-
+agedAttribute objects. For example, ifLocation is managed, and you aggregate three accounts with locations Austin,
+Dallas, and Houston, there willbe three ManagedAttribute objects forthose values. Ifthe attribute is multi-valued,
+such as groups or memberOf, IdentityIQ creates one ManagedAttribute for each value inthe list.
+
+The expectation isthat most of the attributes that are managed are entitlement attributes, which usually means a
+group attribute. Because of this,the language inthe product isoriented around the word entitlement. For example, we
+refer to"managing entitlements" and the "Entitlement Catalog." Itispossible, however, to have managed attributes
+that are not entitlements, but itisunusual.
+
+Managed attributes that are also groups have additional features. Ifthe connector supports group aggregation, Iden-
+tityIQcan import the definitions of those groups and store them in the ManagedAttribute object. Managed attributes for
+groups have editable tabs that contain the definition ofthe group that can, optionally, be used for provisioning. Ifa
+groups managed attribute isavailable for provisioning, any change made on the Object Properties tab is sent to a con-
+nector tomodify the target application.
+
+ Note: The additional Object Properties tab is only available ifLifecycle Manager is installed and
+ the Enable Account Group Management options was selected during Lifecycle Manager con-
+ figuration. See the Lifecycle Manager documentation formore information.
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Application Management 7
+
+===== Page 11/24 =====
+Entitlement Catalog
+
+Requestable Attributes
+
+When Lifecycle Manager is enabled, items in the Entitlement Catalog can be flagged as Requestable by checking the
+Requestable option in the item's standard properties. The Entitlement Catalog shows a check icon in
+this Requestable column for allattributesthat can be requested. See Standard Properties Tab.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Application Management 8
+
+===== Page 12/24 =====
+Viewing the Entitlement Catalog
+
+To access the Entitlement Catalog, select Applications > Entitlement Catalog.
+
+From this page you can add new managed attributes and edit the existing manage attributes. You can also use this
+page to import listsof managed attributes intoIdentityIQ or export them back out to other applications.
+
+ Column Description
+
+ Application The application towhich the managed attribute belongs.
+ Attribute The attribute (inthe case of an Entitlement or Group) or target (in the case of a
+ Permission) that the managed attribute represents.
+ Display name of the managed attribute. Ifno display name was defined, this
+ fielddisplays the value of the attribute.
+ Display Name
+ When an application has Elevated Access, the display name willhave the Elev-
+ ated Access icon next to it.
+ Name The raw attributevalue for the managed attribute. This column is hidden by
+ default.
+ The type of managed attribute that isshown. There are two types: Entitlement
+ and Permission. However, entitlements can be marked with the boolean group
+ Type property ifthey represent a group object type forthe application. Since applic-
+ ations can have more than one group object type, the object type name, for
+ example Group or Role, is shown here for those managed attributes.
+ Description The description forthe locale that isspecified in the combination box between
+ the search area and the grid.
+ Owner The Identity who owns the managed attribute.
+ Requestable Any managed attribute that can be requested has a check icon in this column.
+ Last The date and time that the managed attribute was last modified. This column is
+ Refreshed hidden by default.
+
+Viewing Entitlement Details
+
+To see details of an entitlement, double-click it,or right-clickitand choose Edit. The Edit view forentitlements
+includes these tabs.
+
+
+
+ l Standard Properties Tab
+
+
+
+ l Members Tab
+
+
+
+
+
+
+
+
+ SailPoint Application Management 9
+
+===== Page 13/24 =====
+ l Access Tab
+
+
+
+ l Classifications Tab
+
+
+
+ l Associated Roles Tab
+
+Standard Properties Tab
+
+The Standard Properties tab is common to allmanaged attributes, regardless of type.
+
+ Field Description
+
+ Application The application associated with the attribute.
+ Type Application object type.
+ This fieldis read-only when editing an existing managed attribute.
+
+ This fieldhas different behavior based on the selected type:
+
+
+
+ l Entitlement – this field islabeled Attribute, and the input isa
+ suggest box populated with allattributes inthe selected applic-
+ ation's account schema.
+ Attribute
+
+ l Group – this fieldis also labeled Attribute, but no input choice is
+ provided. The attribute is set to the reference attribute defined in
+ the application's group schema.
+
+
+
+ l Permission – this field islabeled Target and the input isa free-
+ form text box.
+ This fieldis only displayed for groups and entitlements. This field is
+ read-only when editing an existing managed attribute. For groups with
+ Value provisioning enabled, this fieldcontains information on how the value
+ was derived.
+
+ The attribute value represented by the managed attribute.
+ This fieldis only displayed for groups and entitlements.
+
+ The value used to concisely represent this managed attribute inIden-
+ Display Value tityIQ. In many cases, this isthe same as the value. Sometimes (when
+ the value is an LDAP domain, for instance) this only contains a small,
+ relevant portion of the value.
+
+ No provisioning is launched when this fieldis changed.
+ Requestable This option isonly displayed ifyou have SailPoint Lifecycle Manager
+ enabled.
+
+
+
+
+
+ SailPoint Application Management 10
+
+===== Page 14/24 =====
+ Field Description
+
+ Indicates whether or not the entitlement can be requested from the Life-
+ cycle Manager.
+ Elevated Access When editing an entitlement, select Elevated Access todisplay when
+ an entitlement has this feature.
+ A localized description.
+
+ You must Save the description before changing languages to enter
+ another description.
+
+ Description Use the language selector to enter description in multiple languages.
+ The dropdown listdisplays any languages supported by your instance
+ of IdentityIQ. The description displayed throughout the product is
+ dependent on the language associated with the user's browser. Ifonly
+ one description isentered, that will be the description used by default.
+ Owner The owner of the managed attribute.
+ No provisioning islaunched when thisfield ischanged.
+ This tab might contain additional extended attributes that were defined as part of the con-
+ figuration process. Extended attributes only apply to IdentityIQ's representation of the managed
+ attribute and no provisioning is launched by them.
+
+Members Tab
+
+This is a read-only tab that listsallof the Identities with detected roles with profiles that match the edited managed
+attribute. This tab only pertains to Group type managed attributes.
+
+Access Tab
+
+This is a read-only tab that listsany effective access for the entitlement.
+
+Classifications Tab
+
+This tab listsany classifications that have been assigned to the entitlement. Classifications flag and categorize enti-
+tlements, most typically to identify entitlements that permit access to sensitive or protected data such as financial, per-
+sonal, or health-related information. You can also add and remove classifications on this tab.
+
+To add classifications to the entitlement, choose the entitlement(s) from Assign Classifications to this Entitlement
+and clickAdd. You can add as many classifications to the entitlement as you wish.
+
+To remove classifications from the entitlement, check the classifications to remove, then click Remove Selected.
+
+For more information, see the IdentityIQ Classifications documentation.
+
+
+
+
+
+
+ SailPoint Application Management 11
+
+===== Page 15/24 =====
+Associated Roles Tab
+
+The Associated Roles tab is included forany entitlement that is directlyprovisioned by a role.Itliststhe roles that dir-
+ectlyprovision the entitlement, showing the Display Name and Description of the role.
+
+For more information on Associated Roles and how they can help you visualize the relationship between roles and the
+access they provide, see the section on Understanding Relationships Between Roles and Enti-
+tlements/Permissions in the IdentityIQ Role, Group, and Population Management Guide.
+Adding or Editing Entitlement Parameters
+
+
+ Note: You can only add new managed attributes oftype Entitlement.
+
+Open the Edit page by clicking Add New Entitlement or clicking on an existing managed attributefrom the list.
+
+The Editpage enables you to change properties on a managed attribute.The titleand content of thispage varies
+depending on the type ofattribute being edited.
+
+The Save button at the bottom of the page launches a business process that persists the changes to the managed
+attribute.Ifnecessary, the business process launches provisioning.
+
+By default, changes to entitlements must be approved. See Approvals for Changes to Entitlements.
+Approvals for Changes to Entitlements
+
+Beginning with version 8.2 of IdentityIQ, the default behavior isto require an approval when an entitlement is changed.
+The approval path is managed by the Entitlement Update business process.
+
+This business process identifiesan approver, which by default isthe owner of the entitlement. Ifno owner has been
+specified for the entitlement, the approval is routed to the fallback approver, which by default is the owner of the
+application that isthe source for the entitlement.
+
+Disabling Approvals for Changes to Entitlements
+
+Ifyou don't want to require approvals for changes to entitlement, you can edit the business process todisable
+approvals:
+
+ 1. Click Setup > Business Processes.
+
+ 2. Select the Entitlement Update business process.
+
+ 3. Click the Process Variables tab.
+
+ 4. Edit the approver variable toset the InitialValue toString. Make sure that the Value fieldisblank.
+
+
+
+
+
+
+ SailPoint Application Management 12
+
+===== Page 16/24 =====
+ 5. Save the change. Note that ifyou reopen the approver value to verifyyour changes, no type ofInitial Value
+ willshow as selected.
+
+ 6. Edit the fallbackApprover variable in the same manner, changing InitialValue to String and making sure the
+ Value field isblank.
+
+ 7. Save your change.
+
+For more information on IdentityIQ business processes, see the IdentityIQ Business Processes documentation.
+Deleting a Managed Entitlement
+
+To delete an entitlement, right-clickon the entitlement and choose Delete, then confirm the deletion.
+
+Deleting a managed entitlement does not directlyremove the entitlement from the product. Instead, a group update
+business process is launched as a task.
+
+You can track the progress ofthis task on the Setup > Tasks > Task Results tab.
+Importing and Exporting Managed Attributes
+
+Use the Import and Export buttons to import new managed attributes from a CSV file,orto export existing managed
+attributes toa CSV file.Each option opens a dialog with instruction on how tocontinue.
+
+Defining Import Data
+
+The import data filemust be in a CSV format, with a comment lineat the top ofthe fileto define the contents. The com-
+ment lineshould contain set ofcomma-separated of values, to define the properties corresponding to the values on
+subsequent lines. The imported Entitlements' properties willbe set accordingly.
+
+Here isan example of a comment linedefining the properties of a CSV file:
+
+#value, displayName, owner, application
+
+The properties on thislinecan be any of the following:
+
+
+
+ l application
+
+
+
+ l attribute
+
+
+
+ l value
+
+
+
+ l displayName
+
+
+
+ l requestable
+
+
+
+
+
+
+
+ SailPoint Application Management 13
+
+===== Page 17/24 =====
+ l owner
+
+
+
+ l scope
+
+
+
+ l classifications
+
+
+
+ l iiqElevatedAccess
+
+Specifying Default Values When Importing Entitlements
+
+You can specify default values forthe imported Entitilements' properties by including an assignment statement inthe
+comment linethat defines the file'scontents.
+
+Here isan example ofan assignment statement inthe comment line:
+ # application=Active_Directory
+Special Considerations for Importing Descriptions
+
+When importing attribute descriptions, you must include the description's locale(s) in the comment line;use locale(s)
+instead of the description property to ensure that descriptions are imported correctly.
+
+Here isan example ofa comment line that includes US English (en_US) and Canadian French (fr_CA) descriptions:
+
+#type, attribute, en_US, fr_CA
+
+You can also get an example of thisformatting by exporting existing data, and including languages in your export. .
+
+To export a filethatincludes an example ofthe description format:
+
+ 1. Go to the Entitlement Catalog page, Applications > Entitlement Catalog.
+
+ 2. Select Export.
+
+ 3. Choose eitherAll Applications, or uncheck the All Applications box and choose one or more specific applic-
+ ations from the dropdown list.
+
+ 4. For Export Type, choose Descriptions.
+
+ 5. Use the Choose description languages to export dropdown to choose the locale(s) you want to include in
+ the export. The listshows alllocales thathave been enabled in your installation.
+
+ 6. Select Export.
+
+
+ Note: There might be a size limitset on the imported entitlement description during the con-
+ figuration ofIdentityIQ. Ifyou run into issues, contact your administrator.
+
+
+
+
+
+
+ SailPoint Application Management 14
+
+===== Page 18/24 =====
+A message isdisplayed at the bottom ofthe browser window when the export is complete. From there, you can view
+orsave the exported descriptions.
+
+For more information on locales and enabling multi-language descriptions inIdentityIQ, see the IdentityIQ System
+Configuration documentation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Application Management 15
+
+===== Page 19/24 =====
+Activity Target Categories
+
+Activity Target Categories
+
+
+Use this page to create or edit target categories that point to the activity targets defined on your applications.
+
+A target is a specific object within a data source that isacted upon. For example, a target might be a machine name for
+a login action, or a filename for a create action.
+
+The targets specified here are used topopulate listson the ActivitySearch page. These targets can be grouped with
+targets specified on other applications to create categories oftargets. For example, ifyou have inventory applications
+atthree different locations and a procurement database on each, you can set each procurement database as a target,
+create a Procurement category, and then collect activityfor allthree procurement databases using a single activity
+search.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Application Management 16
+
+===== Page 20/24 =====
+Elevated Access
+
+Elevated Access
+
+
+IdentityIQ has the capability ofprotecting sensitive access with the Elevated Access feature. Administrators, applic-
+ation owners, or entitlement owners can classify specific roles orentitlements as having elevated access.
+
+Classifying a role or entitlement as allowing elevated access provides clear visibilityto users when they request, cer-
+tify,orapprove the role or entitlement. When a role or an entitlement has elevated access, itisdisplayed with a badge
+(a check mark inside a shield icon) to alertthe user to the elevated access status. This helps ensure that the item is
+treated with appropriate care.
+
+A property on these items makes itpossible to include them in reports, to facilitateauditing and to help identify high
+riskareas. Audit activities can focus on thisaccess by leveraging these reports.
+
+You can create workflows to handle elevated access items, by incorporating the "iiqElevatedAccess" property from a
+role orentitlement.
+Role Configuration
+
+ 1. To add the elevated access flag toroles, navigate toSetup > Roles. Once atthe Role Management screen,
+ find the appropriate role that needs Elevated Access.
+
+ 2. Scroll to the bottom of the Role Information and click Edit Role.
+
+ 3. Select Elevated Access.
+
+ 4. Click Submit.
+
+Entitlement Configuration
+
+ 1. To add the elevated access flag toentitlements, navigate to Applications > Entitlement Catalog. Once at the
+ Entitlement Catalog screen, select the appropriate entitlement.
+
+ 2. Select Elevated Access.
+
+ 3. Click Save.
+
+The following are locations where a user can see or edit elevated access:
+
+
+
+ l Manage User Access
+
+
+
+ l Access Reviews
+
+
+
+
+
+
+
+
+ SailPoint Application Management 17
+
+===== Page 21/24 =====
+Elevated Access
+
+
+
+ l Targeted Certification: Additional Settings
+
+
+
+ l Identity Warehouse
+
+
+
+ l Identity Details
+
+
+
+ l Entitlement Catalog – Advanced Search
+
+
+
+ l Role Editor
+
+
+
+ l Entitlement Details Dialog
+
+
+
+ l Role Details Dialog
+
+
+
+ l Work Items
+
+
+
+ l Role Search Criteria
+
+
+
+ l Reports
+
+
+
+ l Match List
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Application Management 18
+
+===== Page 22/24 =====
+Supporting Active Directory Native Move /Rename
+
+Supporting Active Directory Native Move / Rename
+
+
+Inmany places inIdentityIQ, the default identifierforActive Directory accounts and groups isDistinguished Name
+(DN). Some native changes, such as when an account orgroup is moved withinthe Active Directory OU or when a per-
+son's name changes, result ina change tothe DN.
+
+Beginning with version 8.3,IdentityIQ uses the Active Directory GUID, a globally unique identifier,todetermine when
+an account or group object's DN has changed. When a change is detected, the object isupdated, and the change is
+propagated toallDN references throughout IdentityIQ.
+
+When a changed DN isupdated on aggregation, IdentityIQ creates an event topropagate the changes tothese areas:
+
+
+For account groups:
+
+
+
+ l Bundle/Profile
+
+
+
+ l Policy
+
+
+
+ l Form
+
+
+
+ l Rule
+
+
+
+ l GroupDefinition
+
+
+
+ l Identity
+
+
+
+ l Dynamic Scope
+
+
+
+ l PasswordPolicy/PasswordPolicyHolder
+
+
+
+ l Widgets
+
+
+For accounts:
+
+
+
+ l Form
+
+
+
+ l Rule
+
+
+
+ l GroupDefinition
+
+
+
+ l Identity
+
+
+
+
+
+
+
+
+ SailPoint Application Management 19
+
+===== Page 23/24 =====
+Supporting Active Directory Native Move /Rename
+
+
+To process the event, a Native IdentityChange Propagation Request is created, which propagates changes tothe
+appropriate destinations based on the event type. After allpropagations to the destinations have completed suc-
+cessfully,the event is marked as DONE. Ifthe event failsfor any reason, the event and request are both marked as
+FAILED.
+
+ Failed events can be restarted orpruned from your system using the Reset Failed Nat-
+ iveIdentityChangeEvents task. For more information on using thistask, see the IdentityIQ Tasks
+ Guide.
+
+
+IfaDN has been updated in response toa native move or rename, the DN is also replaced with the new one inthe Pro-
+visioning plan at provisioning time, to ensure that there willbe no errors on provisioning.
+
+ Disabling the Propagation of DN Changes
+
+The propagation behavior isenabled by default. Ifyou want to disable it,toprevent the propagation ofchanges
+throughout IdentityIQ, follow these steps.
+
+ 1. Navigate togear icon > Global Settings > IdentityIQ Configuration > Miscellaneous tab.
+
+ 2. In the Native Identity Change Event Propagation Settings section, uncheck the Enable Native Identity
+ Change Event propagation checkbox.
+
+ 3. Save your changes.
+
+
+ Customizing How DN Changes Are Propagated
+
+System administrators can customize the areas where DN changes are propagated by editing the Native Identity
+Change Propagation object in the Debug pages. This object isa Request Definition object.
+
+ Rename Detection in the Account Aggregation Task
+
+The Account Aggregation task includes an option to Enable rename detection on managed attributes This option
+affects aggregation from Active Directory. Itenables IdentityIQ todetect when an account group DN has changed due
+tobeing renamed. IdentityIQ determines whether a DN is new or isa rename of an existing DN, by examining the rel-
+evant account group's GUID or UUID. Enabling this option can prevent unintended changes to access that isbased on
+assignment rules which use DN as assignment criteria.
+
+Note that when a change ismade in Active Directory toan OU which contains accounts or groups (such as renaming
+ormoving it),adelta aggregation does not pick up the changes. This is due to a limitation inMicrosoft DirSync Con-
+trol.Toavoid thisissue, perform a fullaggregation tocapture the changes and update the childobjects. You might
+have todo thisregularly to ensure the data isup todate.
+
+For more information, see the IdentityIQ Tasks documentation.
+
+
+
+
+
+
+SailPoint Application Management 20
+
+===== Page 24/24 =====
+Supporting Active Directory Native Move /Rename
+
+ Handling Duplicate Distinguished Names in Active Directory
+
+During aggregation, ifIdentityIQ detects two Active Directory accounts or account groups with the same Distinguished
+Name but different UUIDs, itwillupdate the UUID to the most recent value, and treat the two accounts or account
+groups as the same. This handles the case where an account or group is accidentally deleted and re-added. Con-
+sequently, itisnot advisable toreuse the same DN with a differentmeaning. IdentityIQ willnot detect thisas an
+account or account group change toany attribute but UUID.
+
+ Handling Future Actions
+
+Ifthere are future actions that may be impacted by a DN move or rename, such as a sunset date on an entitlement, or
+amitigation end date for a policy violation, be cautious about pruning events. Otherwise, ifa DN changes for an
+account included a sunrise /sunset action, IdentityIQ may not perform the provisioning action because itwillcontain
+the "old"DN. This isparticularly important for dates farin the future.
+
+Inpolicy violation mitigations, ifthe DN on an account changes during the mitigation period, the next time Check
+Policy Violations isrun, the policy violation can reappear and need to be mitigated again.
+
+ Pruning Native Identity Change Events in the System Maintenance Task
+
+You can also use the System Maintenance task to prune Native Identity Change Events. Use the Prune Native Identity
+Change Events to include thisaction as part of your system maintenance task. This task willprune events that are
+older than the age specified in your system configuration.
+
+The age value isset in the <entry key="nativeIdentityChangeMaxAge" value="0"/> key inyour system
+configuration. The value is the age, in days, ofevents to be pruned. Note that a value of zero means that no events will
+be pruned, ever.
+
+ Events that are processed successfully are retained in your IdentityIQ instance. Use thistask and
+ option to prune allevents, not just failedevents.
+
+
+ DN Changes Initiated within IdentityIQ
+
+Changes made to Distinguished Name that are initiatedwithin IdentityIQ (forexample, through Rapid Setup or cus-
+tomizations) result inappropriate updates toallIdentityIQ objects. These changes are not treated as new identities,
+but are recognized as moves or renames.
+
+A "noCustomRenamePropagation" argument can be set to true in the provisioning plan to disable thisfunc-
+tionality.
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Application Management 21

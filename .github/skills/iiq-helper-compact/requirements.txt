@@ -1,0 +1,52 @@
+# iiq-helper — System Requirements
+# --------------------------------------------------------------------
+# This is a documentation-only Agent Skill. There is no executable
+# runtime, no compiled artifact, and nothing to import.
+#
+# DO NOT run `pip install`, `npm install`, `bundle install`, or any
+# other package-manager command against this directory. There are no
+# dependencies to resolve.
+#
+# To use the skill, just place this folder in a skills directory
+# discovered by your AI agent (see README.md → Installation).
+# --------------------------------------------------------------------
+
+
+# REQUIRED — runtime (one of these agents must be installed)
+# --------------------------------------------------------------------
+# Visual Studio Code        >= 1.99   (with GitHub Copilot Chat extension)
+# GitHub Copilot CLI        >= 0.0.20 (any Agent Skills-compatible build)
+# Claude Code               >= any    (reads SKILL.md natively)
+# Any other agent that implements the Agent Skills standard (agentskills.io)
+
+
+# REQUIRED — disk space
+# --------------------------------------------------------------------
+# ~38 MB on disk
+#   ~28 MB  references/JavaDocs/8.4   (IIQ 8.4 JavaDocs HTML, 793 classes)
+#   ~10 MB  references/objects/8.4    (30 official IIQ 8.4 object guides as .txt)
+#  < 50 KB  SKILL.md + recipes.md + navigation/standards docs
+
+
+# REQUIRED — host OS
+# --------------------------------------------------------------------
+# Any OS supported by your chosen agent. The skill is pure Markdown +
+# HTML reference content; no platform-specific binaries.
+
+
+# OPTIONAL — only if you want to regenerate the bundled indices
+# --------------------------------------------------------------------
+# Used only by the one-time scripts in .tools/  (you almost certainly
+# do not need this — the indices are committed to the repo).
+#
+# PowerShell                >= 5.1    (Windows PowerShell or PowerShell 7+)
+#                                     for .tools/gen-class-manifest.ps1
+#                                         .tools/gen-object-toc.ps1
+#                                         .tools/split-big-guides.ps1
+
+
+# NOT REQUIRED
+# --------------------------------------------------------------------
+# Python, Node.js, Java, a SailPoint IdentityIQ installation, network
+# access, API keys, or any external service. The skill works entirely
+# offline against the bundled reference files.

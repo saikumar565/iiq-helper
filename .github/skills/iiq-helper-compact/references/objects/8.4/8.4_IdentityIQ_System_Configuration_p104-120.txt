@@ -1,0 +1,1048 @@
+﻿===== Page 104/120 =====
+IdentityIQ Email Templates
+
+Hash table values
+
+ $customer.Address
+
+ Returns the value corresponding to the Address key in acustomer hash table
+
+Object properties
+
+ $identity.DisplayName
+
+ Invokes the getDisplayName() method on the identityobject
+
+ Note:Â Property notation resolves tothe getter method corresponding to the property name, not to
+ an instance variable.Nested object properties can also be retrieved with thisnotation.
+ Example: $item.Certification.Name invokes the getName() method on the Certification object
+ retrieved through the getCertification() method on the item object
+
+Object methods
+
+ $identity.getBundles($application)$identity.hasRole($role,'true')
+
+ Used forallnon-getter methods and forany methods that require arguments
+
+Directives (Commands)
+
+These are the key commands of the Velocity Template Language that are most frequently used in IdentityIQ email
+templates to dynamically determine the textthat isprinted in each email message.
+
+#Ifâ€¦ #elseifâ€¦ #elseâ€¦ #end
+
+ Conditional evaluation
+
+ #if($requester) requested by $requester.displayableName. #{end}
+
+#foreachâ€¦ #end
+
+ Loop through a listofobjects
+
+ #foreach ($attrReq in $acctReq.attributeRequests) Operation: $attrReq.operation
+ Attribute:$attrReq.name Value(s): $attrReq.value#end
+
+#set
+
+ Establish the value ofa reference
+
+ #set ($identityName = â€œJohn.Smithâ€)#set ($book.Title = â€œWar and Peaceâ€)
+
+Refer to the Velocity User Guide foradditional information on the language, including the syntax forless commonly
+used directives.
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 101
+
+===== Page 105/120 =====
+IdentityIQ Email Templates
+
+VTL vs. $(variableName) Notation
+
+The VTL reference syntax must not be confused with the $(variableName) notation used forvariable referencing in
+other IdentityIQ XML objects, such as Workflows. Velocity does not recognize this syntax and is unable to parse text
+thatuses it.When IdentityIQ detects this syntax inany element ofan email template, that portion ofthe message is not
+passed to Velocity forrendering at all.Instead, itscontents are rendered by a simpler mechanism that is capable of
+doing the variable substitution based on the template's arguments. However, none of the Velocity directives are inter-
+preted. Any Velocity commands included inthe same element with a variable that uses the $(variableName) notation
+istreated as normal text and printed as-is inthe finalmessage.
+Incorporating VTL in Email Template XML
+
+Allinput arguments inthe template signature are automatically loaded intothe VelocityContext and are therefore
+accessible through the VTL reference notation forinclusion inthe message text. Additionally, Velocity commands can
+be used in determining the textto print inthe messages. Excerpts from the default email templates inIdentityIQ are
+used as examples throughout the rest of thissection to illustratehow reference variables and various command syn-
+taxes can be used.
+
+Where toUse VTL
+
+Reference Variables
+
+Conditional Statements
+
+Method Calls
+
+SpTools Function Library
+
+CDATA Blocks
+
+Where to Use VTL
+
+The Velocity Template Language syntax can be specified inany attribute or element that isused to build the email
+message. Most commonly, this means the <Subject> and <Body> elements of the message, but the cc and bcc recip-
+ients (as well as the from email address) are often dynamically specified through reference variables as well.
+
+Reference Variables
+
+
+ Note:Â For HTML contained within variables, refer to HTMLÂ Escaping.
+
+When a variable name is referenced within the textfor any of the message elements, itsvalue is substituted intothe
+textin itsplace.
+
+Example:
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 102
+
+===== Page 106/120 =====
+IdentityIQ Email Templates
+
+
+
+ <Body>$certifierName has accepted the challenge for '$challengeItem' and will change the
+ decision.
+ </Body>
+
+Variable substitution results inthe email message content:
+
+John Smith has accepted the challenge for 'Entitlements on Financials' and will change the decision.Velo-
+citycan also access data values in fields within objects passed as arguments and replace the variable notation with
+those values. Consider the <subject> and <body> elements shown below. The argument listfor thisemail template
+includes a Certification object (named certification)and an Identity object (named certifier).
+
+
+ <Subject>$certification.name requires approval</Subject>
+ <Body>$certification.name was signed by $certifier.displayableName and requires your
+ approval.
+ Login and view your work item inbox to complete this request.
+ </Body>
+
+To resolve these variable references, Velocity calls the getName() method on the certificationobject and the getDis-
+playableName() method on the certifier'sidentity object. When the substitutions are made, the finalemail message
+looks like this:
+
+
+
+ Subject: Manager Access Review for Catherine Simmons requires approval
+
+ Manager Access Review forCatherine Simmons was signed by Catherine Simmons and
+ requires your approval.
+
+ Login and view your work item inbox to complete this request.
+
+
+
+
+Any attribute ormethod on any of a template's input arguments can be accessed through the reference variables.
+
+Extended attributes on IdentityIQ objects can be accessed through the attributes hash map or by providing the attrib-
+ute name as an argument to the appropriate getter method. Identity extended attributes, for example, are accessible
+through the Identity's attributes hash map or through the getAttribute() method on the Identity object (e.g. $cer-
+tifier.attributes.regionand $certifier.getAttribute(â€œregionâ€) both return the value in the â€œregionâ€ extended attribute).
+
+ Note:Â The listofavailable methods for IdentityIQ objects (Identity,Certification, Pro-
+ visioningPlan, etc.) can be found in the SailPoint JavaDocs that ship with the IdentityIQ product.
+ These can be viewed through a browser atURL: [IdentityIQ base URL]/doc/javadoc/.
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ System Configuration 103
+
+===== Page 107/120 =====
+IdentityIQ Email Templates
+
+HTMLÂ Escaping
+
+
+ Note:Â HTMLÂ escaping isapplied toHTML that ispassed into aHTML email template using a vari-
+ able.
+
+HTML escaping, or encoding, is the process ofreplacing any HTML reserved characters in a string,such as < or >,
+with theirnon-interpretable HTML entityrepresentation. This is done toprevent unvalidated data from being included
+ina template and distributed through an email.
+
+For example this:
+
+
+ <a href=â€http://www.sailpoint.comâ€ onclick=â€steal_passwords();return falseâ€>Click here to
+ approve</a>
+
+istransformed intothis when HTML-escaped :
+
+
+ &lt;a href=&rdquo;http://www.sailpoint.com&rdquo;onclick=&rdquo;steal_passwords();return
+ false&rdquo;&gt;Click here to approve&lt;/a&gt;
+
+HTML content thatis part ofthe template body itselfisnot escaped, itisrendered by any HTML email clientcorrectly.
+
+For security reasons, allHTML strings passed intoa HTML email template using variables have theirHTML escaped.
+
+Re-factoring HTML Email Templates
+
+Ifyou have already defined email templates to use HTML supplied by variables, they must be re-factored so that all
+HMTL iscontained within the email template itself.
+
+For example ifyou have the following email template:
+
+
+ <html>
+ <body>
+ $header
+
+ You have a pending work item that requires attention. Work Item: $workItemDescription
+
+ --------------------------------------------------------------------------------
+ $!comment
+ </body>
+ </html>
+
+Where the $header is a variable containing HTML, such as <h2>Hello, $identityname</h2>, the HTML part
+ofthe string needs to be moved directly intothe email template.
+
+For example:
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 104
+
+===== Page 108/120 =====
+IdentityIQ Email Templates
+
+
+
+ <html>
+ <body>
+
+ <h2>Hello, $identityName</h2>
+
+ You have a pending work item that requires attention. Work Item: $workItemDescription
+
+ --------------------------------------------------------------------------------
+ $!comment
+ </body>
+ </html>
+
+
+
+Where $header isan $identityName variable which contains only the name.
+
+$(â€¦) Variable Syntax
+
+The $(â€¦) variable syntax pre-dates the use ofVelocity VTL templates. Ifyou have templates that contain the $(â€¦)
+variable syntax, two changes inIdentityIQ might affect you:
+
+
+
+ l HTML passed to a template using $(â€¦) syntax is escaped justlikeVTL.
+
+
+
+ l VTL and the $(â€¦) syntax can not co-exist inthe same template. Ifthe $(â€¦) syntax isfound anywhere in the
+ template, the entire template stringis passed to IdentityIQâ€™s non-Velocity resolver and any VTL scripting code
+ or velocity reference variables are not be processed. SailPoint-provided context variables are stillresolved as
+ expected.
+
+For example, ifyour email template contains VTL as follows:
+
+
+ #if (
+ !$workItem.get("fromSource").equalsIgnoreCase("QuickLink"))
+ $workflow.get("launcherDisplayName")
+ #else
+ $(managerName)
+ #end
+
+The VTL if/else statements is not processed because ofthe existence of $(managerName), but instead
+rendered as literalstrings.
+
+InVTL, you should change any ofthe $(variableName) syntax to use the VTL $variableName syntax.
+
+Conditional Statements
+
+Conditional statements can be used to determine whether textshould be included in the message or to choose altern-
+ate wording based on attributevalues.
+
+Whole paragraphs can be included or omitted based on conditional tests.
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 105
+
+===== Page 109/120 =====
+IdentityIQ Email Templates
+
+
+
+ #if ($remindersRemaining > 0)
+ This work item will escalate after $remindersRemaining more reminder(s).
+ #end
+
+Additionally, parts ofa paragraph or sentence can be suppressed or altered based on conditional evaluations. In this
+example, if$requester isnull,the portion of the textâ€œrequested by $requester.displayableName, andâ€ issuppressed.
+Specifying the #ifstatement in-line with the restof the text prevents extra linebreaks in the middle ofthe sentence in
+the resulting email message.
+
+
+ <Body>This is your $ordinalNumReminders reminder that the work item $workItemName #if($re-
+ quester)requested by $requester.displayableName, and #{end}created on
+ â€¦
+
+Attribute values can also be evaluated todetermine which ofmultiple textselections toinclude ina message:
+
+
+ #if (Â $launcher != $identityName )
+ $launcher requested the following password changes be made to your account(s).
+ #else
+ The following password changes were made to your account(s) at your request.
+ #end
+
+Method Calls
+
+Methods within object arguments can be accessed directly through the method reference syntax.
+
+
+ #if($expiration)
+ #if($expiration.getTime() > $nowDate.getTime())
+ is due on $spTools.formatDate($expiration,3,1).
+ #{else}
+ was due on $spTools.formatDate($expiration,3,1).
+ #{end}
+ #{else}
+ was due on $spTools.formatDate($oldDueDate,3,1).
+ #{end}
+
+ #if (Â $item.level )
+ Â Â Â Â Â Â Â Â Â Â Â Priority: $item.level
+ #else
+ Â Â Â Â Â Â Â Â Â Â Â Priority: Normal
+ #end
+
+This block checks tosee if$expiration is null.Ifitisnot null,itprints â€œisdue onâ€¦â€ or â€œwas due onâ€¦â€ based on whether
+the expiration date/time isbefore or afterthe current date/time. If$expiration isnull,this isan older expired work Item
+so the message uses the $oldDueDate field as work item due date inthe message. Italso checks to see ifthe priority
+was set in.Ifthe $item.level is null,the priorityisset to Normal.
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 106
+
+===== Page 110/120 =====
+IdentityIQ Email Templates
+
+
+Throughout this example, the printed date/time isformatted with the spTools.formatDate() method. The spTools ref-
+erence variable isdiscussed in the next section.
+
+ Note:Â This example was altered from itsoriginal format in the default Work Item Reminder email
+ template. In the template, this#if statement was specified in-line toprevent unwanted line breaks
+ inthe message. Line breaks have been inserted here forreadability and should not be included
+ inthe message body unless they are desired in the resulting message text.
+
+SpTools Function Library
+
+Immediately before any template issubmitted for evaluation by the Velocity engine, the spTools argument isadded
+tothe VelocityContext so the template can access itsmethods. SpTools is a function library thatcontains a few loc-
+alization utilitymethods to help with message formatting --primarily date formatting. The methods available within
+spTools are listedbelow:
+
+String formatDate(Object date)
+
+ Formats the passed-in date object toa string representation using the IIQ default date and time styles (both the
+ java.util.dateformat SHORT formats), formatted per the norms ofthe server's default locale and timezone
+
+String formatDate(Object date, Integer dateStyle, Integer timeStyle)
+
+ Formats the passed-in date object toa string representation using the specified date and time styles, formatted
+ per the norms of the server's default locale and timezone
+
+ NOTE: The styles are represented by constant values:
+ SHORT = 3
+ MEDIUM = 2
+ LONG = 1
+ FULL = 0
+ dateStyle and timeStyle correspond to java.text.DateFormat constants. See the Sun Javadocs for
+ details
+
+String formatDate(Object date, String formatString)
+
+ Formats the date according to the specified formatString (uses the java.text.SimpleDateFormat method)
+
+String getMessage(String key)
+
+ Returns an internationalized message from the message catalog corresponding to the provided key
+
+String escapeHtml(String string)
+
+ Converts HTML special characters to their entityequivalents
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 107
+
+===== Page 111/120 =====
+IdentityIQ Email Templates
+
+
+ Example:
+ escapeHtml('<div class="article">This is an article</div>')
+
+
+ Returns:
+ &lt;div class="article"&gt;This is an article&lt;/div&gt;
+
+Inthe out-of-the-box email templates, the most commonly used method from thislibraryisthe formatDate()
+method that takes a date object and two integers as arguments:
+
+$spTools.formatDate($expiration,3,1)
+
+Afterthe reference shown above isresolved by Velocity, thedate/time value inthe expiration argument isprinted in
+the email message inMM/dd/yy hh:mm:ssPM format (orthe appropriate equivalent for the server'slocale).
+
+CDATA Blocks
+
+When any component of the email message (body, subject, cc, etc.)contains characters thatare illegalinXML text
+(e.g.characters like< and & that are interpreted by the parser as the startof an XML element or character entity,
+respectively),the entire component must be expressed in a CDATA block to prevent itfrom being parsed. For
+example, any message body written as HTML must be contained withina CDATA section.
+
+
+ <Body><![CDATA[
+ <html>
+ <body style="background:#FFF;margin:0;padding:0;text-align:left;">
+ <p style="margin:20px 0 0;padding:0;color:#333;font:bold 10pt
+ Arial;line-height:15pt;">$!{workItem.owner.firstname},</p>
+ <p style="margin:0 0 20px;padding:0;color:#333;font:normal 10pt
+ Arial;line-height:15pt;">As part of our periodic compliance efforts, you are
+ responsible for certifying the access your employees have to enterprise applications.
+ </p>
+ <p style="margin:0;padding:0;color:#333;font:normal 10pt Arial;line-height:15pt;">A
+ specific access certification is named <b>$!{workItemName}</b> has been created for
+ you, and is due on <strong>$spTools.formatDate(
+ $certification.expiration,3,3)</strong>. <a
+ href="http://localhost:8080/iiq/manage/certification/entityList.jsf?certificationId
+ =$!{certification.id}">Click here to get started on this task.</a></p>
+ </body>
+ </html>
+ ]]> </Body>
+
+The marked up textcan then be passed to Velocity forvariable substitution and can be rendered as an HTML email
+message.
+Sending an Email from a Rule
+
+Some installationsmay requirenotifications tobe sent based on events that are not covered by theautomated system
+notifications.Rules can oftenbe used to drivethese notifications.The example below shows how tosend an email
+from a rule.
+
+
+
+
+ SailPoint IdentityIQSystem Configuration 108
+
+===== Page 112/120 =====
+IdentityIQEmail Templates
+
+
+
+ <?xml version='1.0' encoding='UTF-8'?>
+ <!DOCTYPE sailpoint PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+ <sailpoint>
+ <Rule language="beanshell" name="Test Email Sending" type="BuildMap">
+ Â Â <Description>Debugging Tool - Sends a sample email out via the email serv-
+ er.</Description>
+ Â Â <Signature returnType="Map">
+ Â Â Â Â <Inputs>
+ Â Â Â Â Â Â <Argument name="log">
+ Â Â Â Â Â Â Â Â <Description>
+ Â Â Â Â Â Â Â Â Â Â The log object associated with the SailPointContext.
+ Â Â Â Â Â Â Â Â </Description>
+ Â Â Â Â Â Â </Argument>
+ Â Â Â Â Â Â <Argument name="context">
+ Â Â Â Â Â Â Â Â <Description>
+ Â Â Â Â Â Â Â Â Â Â A sailpoint.api.SailPointContext object that can be used to query the database
+ if necessary.
+ Â Â Â Â Â Â Â Â </Description>
+ Â Â Â Â Â Â </Argument>
+ Â Â Â Â </Inputs>
+ Â Â Â </Signature>
+ Â Â Â <Source>
+ Â Â Â Â Â Â Â // Library inclusions for BeanShell
+ import sailpoint.api.*;
+ import sailpoint.object.*;
+ import sailpoint.tools.*;
+
+ import java.util.*;
+ import java.lang.*;
+ import java.text.*;
+
+ // Point this to the "To" email address
+ String emailDest = "adam.hampton@example.com";
+
+ // Specify the email template name in tplName
+ String tplName = "SailPoint - Test Email Sending";
+ EmailTemplate template = context.getObjectByName(EmailTemplate.class, tplName);
+ if (null == template) {
+ Â Â Â log.error("ERROR: could not find email template [Â " + tplName + "]");
+ Â Â Â return;
+ }
+ template = (EmailTemplate) template.deepCopy(context);
+ if (null == template) {
+ Â Â Â log.error("ERROR: failed to deepCopy template [Â " + tplName + "]");
+ Â Â Â return;
+ }
+ Map args = new HashMap();
+ // Add all args needed by the template like this
+ args.put("testField1", "This is a test of template parameters.");
+
+ EmailOptions ops = new EmailOptions(emailDest, args);
+ context.sendEmailNotification(template, ops);
+
+ return;
+
+
+
+
+
+
+SailPoint IdentityIQSystem Configuration 109
+
+===== Page 113/120 =====
+IdentityIQ Email Templates
+
+
+
+ Â </Source>
+ Â </Rule>
+ </sailpoint>
+
+The BeanShell from thisexample rule can be used as a template forsending an email from any defined rule. Simply
+change the email template name, recipient, and template arguments to create the desired notification.
+
+Using a Rule to Test Templates and Email Configuration
+
+For an overview of developing and using rules in IdentityIQ, see the IdentityIQ SystemÂ Administration guide.
+
+Using a Rule to Test Templates and Email Configuration
+
+This example rulecan also be used to test the email server configuration or totest any email template. Complete
+these steps to use the rule fortesting purposes:
+
+ Note:Â To test email templates independently from the email server configuration without actually
+ sending emails through the server, choose Email Notification Type: Redirect to File.This writes
+ the email text tothe specified file.
+
+ 1. Set up an email server on Gear icon > Global Settings > IdentityIQ Configuration > Notification Settings.
+
+ 2. Edit an email template to contain the desired message and import it.
+
+ 3. Edit the â€œTest Email Sendingâ€ rule to include the desired â€œToâ€ email address, email template, and arguments,
+ and import the rule. (Rules are imported the same way as templates, as described in Importing Email Tem-
+ plates into IdentityIQ.)
+
+ 4. Run the â€œTest Email Sendingâ€ rule from the IdentityIQ console to send the email.
+
+
+ > rule â€œTest Email Sendingâ€
+
+ 5. Examine the resultant email (eitherin the recipient's inbox or the redirect email file)to verifythat the message
+ appears as expected.
+
+For an overview of developing and using rules in IdentityIQ, see the IdentityIQ SystemÂ Administration guide.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 110
+
+===== Page 114/120 =====
+Data Encryption
+
+Data Encryption
+
+
+Data encryptions isdone using four basic concepts: the keystore, master password, encrypted data synchronization,
+and the keystore console.
+
+
+
+ l KeyStore â€” the location where the encryption keys used by IdentityIQ are persisted.
+
+
+
+ l Master Password â€” the entire keystore can be encrypted with an asciipassword. This isthe keystore or mas-
+ ter password. You can change the keystore password using the keystore console command. Only one master
+ password can exist. When the master password changes the entire keystore and master password fileare re-
+ encrypted and rewritten.
+
+
+
+ l Encryped Data Synchronization â€” the process of re-encrypting existing data with the newest key in the key-
+ store.
+
+
+
+ l Keystore Console â€” the tool(spt keystore) used tomanage the keystore and master password.
+
+
+The keystore and master password are filebased and secured by the filesystem. They are stored in two separate
+files.The filescan be located inthe IdentityIQ deployment directory or placed in an alternative directory during con-
+figuration.By default the filesare stored inthe following location:
+ keystorePassword = WEB-INF/classes/iiq.cfg
+ keystore = WEB-INF/classes/iiq.dat
+An alternate keystore filelocation,password file,orjustpassword inclear text can be specified in the iiq.prop-
+erties fileunder these keys:
+ keyStore.file
+ keyStore.passwordFile
+spt KeyStore Console Commands
+
+Encrypted Data Synchronization
+
+Using IdentityIQ KeyStore
+spt KeyStore Console Commands
+
+The iiqkeystore command isthe interface to update the keystore and keystore password. A master password can to
+be entered into the console or generated when itisbeing updated.
+
+The keyStore console supports the following commands:
+
+use KeyStoreFilemasterFile
+
+
+ Note:Â Ifyou do not callthe use command, the changes are positioned inthe configured paths.
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 111
+
+===== Page 115/120 =====
+Data Encryption
+
+
+ Specify the keystore and master fileto use when interacting with an alternate keystore.
+
+
+ The keyStoreFile argument in position 1 specifies the path tothe fileto be used when creating/updating the
+ keystore. Ifthis argument isnot specified the command uses $SPHOME/WEB-INF/classes/iiq.dat.
+
+
+ The masterFile argument inposition 2 specifies the path and filename used tostore the master file.
+
+
+ The use command gives you the abilityto buildthe keystores outside your operating running environment and
+ merge them in when scheduled.
+
+addKey [ -q ]
+
+
+ Ifno argument isincluded, you are prompted forconfirmation before the key is generated.
+
+ Generate a new encryption key, the key is securely generated and random.
+
+
+ -q as argument inposition 1 generatesa new key without prompting forconfirmation.
+
+list
+
+ Listthe contents of the keystore.
+
+master [newPasswordnewPasswordConfirmation]
+
+
+ Note:Â Passwords must be at least 8 characters.
+
+ Change the master password and re-encrypt the keystore using the new password.
+
+ Note:Â If no argument is included, you are prompted for confirmation.
+
+ IfnewPassword and newPasswordConfirmation are inargument position 1 and 2, you are not prompted for
+ confirmation.
+
+
+ -g is inargument position 1 a new password isgenerated without confirmation.
+
+about
+
+ Specifies the two filesthat being modified.
+Encrypted Data Synchronization
+
+The Encrypted Data Synchronization task goes over the objects re-encrypting the values using the newest key.
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 112
+
+===== Page 116/120 =====
+Data Encryption
+
+
+ Note:Â The Encrypted Data Synchronization task is not enabled upon installation,you must create
+ the task from the New Task drop-down menu.
+
+The task encrypts the following attributes/types by default:
+
+
+
+ l Application secret configuration attributes
+
+
+
+ l User passwords
+
+
+
+ l Password history
+
+
+
+ l Users challenge questions
+
+
+
+ l Activity/Target source configurations
+
+
+
+ l Integration configuration password attributes
+
+
+Incases such as integration configuration and unstructured target sources the task looks forencrypted values with the
+password in the name. You can also add a configuration attribute, IIQSecretAttributes, toeither type names to
+define which attributes are targeted during a re-synchronization.
+ <entry key="IIQSecretAttributes">
+ <value>
+ <List>
+ <String>mySecret1</String>
+ <String>mySecret2</String>
+ <String>password</String>
+ </List>
+ </value>
+ </entry>
+The task enables you do disable the following three categories of objects:
+
+
+
+ l Applications â€” which enabled application, activityand target source updates
+
+
+
+ l Identity
+
+
+
+ l Integration configuration
+
+Using IdentityIQ KeyStore
+
+
+ Note:Â Make sure to store copies of the iiq.dat and iiq.cfgfilesin a safe place. When you upgrade
+ or reinstallIdentityIQ, the filesare readily available to be restored.
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 113
+
+===== Page 117/120 =====
+Data Encryption
+
+
+ Note:Â Make sure that the filepermissions are set to allow access only by the application server
+ that runs IdentityIQ.
+
+Ina standard installation ofIdentityIQ, passwords are allencrypted using the same encryption secret. Encrypted pass-
+words used inone installationcan be reused (decrypted) by any other installation ofIdentityIQ. The keystore feature
+enables the use ofa site specifickey. With the keystore feature enabled, a password used on one site cannot be
+decrypted on another site without having the site specific encryption keys.
+
+Configuration
+
+Key Creation
+
+Re-Encrypt Passwords
+
+Using the Different Encryption Keys
+
+Configuration
+
+The keystore is stored in WEB-INF/classes/iiq.dat with an accompanying configuration fileWEB-INF/-
+classes/iiq.cfg.
+
+The iiq.properties fileprovides two options tospecify an alternative location for iiq.dat and iiq.cfg. In the
+default iiq.properties, these options (keyStore.file and keyStore.passwordFile) are commented out.
+
+
+ # IIQ Keystore and Master Password properties
+ #
+
+ # file location of the IIQ keystore
+ # (override of the default $SPHOME/WEB-INF/classes/iiq.dat )
+ #
+ #keyStore.file = /example/path/filename
+
+ # file location of the IIQ master password file
+ # (override of the default $SPHOME/WEB-INF/classes/iiq.cfg )
+ #
+ #keyStore.passwordFile = /example/path/filename
+
+To put the filesin an alternative location, forexample /etc/identityiq, enable and change these options as fol-
+lows.
+
+ You may need tomodify your application server orJava sandbox security settings to allow
+ access tothe key filesoutside the application server installation directories.
+
+
+ # IIQ Keystore and Master Password properties
+ #
+
+ # file location of the IIQ keystore
+ # (override of the default $SPHOME/WEB-INF/classes/iiq.dat )
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 114
+
+===== Page 118/120 =====
+Data Encryption
+
+
+
+ #
+ Â keyStore.file = /etc/access governance suite/iiq.dat
+
+ # file location of the IIQ master password file
+ # (override of the default $SPHOME/WEB-INF/classes/iiq.cfg )
+ #
+ Â keyStore.passwordFile = /etc/access governance suite/iiq.cfg
+
+Key Creation
+
+To create or manage the keystore: navigate to the WEB-INF/bin folder and startthe IdentityIQ KeyStore console
+with thekeystore command:
+
+ 1. Navigate to the WEB-INF/bin folder and startthe IdentityIQ Keystore console with the keystore command.
+
+ iiq keystore
+ 2. The console displays a prompt similarto the IdentityIQ console. Use the help tolistallaccepted KeyStore Con-
+ sole commands. For example, use the addKey command to create a new key and the listcommand to view
+ the contents ofthe keystore.
+
+ > addKey
+ Generate a new encryption key (y/n)?
+ y
+ Generating a new encryption key for keystore
+ [/var/tomcat/webapps/identityiq/WEB-INF/classes/spt.dat].
+ New encrpytion key successfully saved to keystore.
+ All application servers must be restarted for changes to take effect.
+ >
+
+ Note:Â Ifthe keystore filedoes not exist, itiscreated and a new, randomly generated key is
+ added.
+
+ 3. The listcommand displays the newly created key:
+
+ > list
+ Listing contents for keystore
+ [/var/tomcat/webapps/iiq6/WEB-INF/classes/iiq.dat].
+ KeyAlias Algorithm Format Object
+
+ 2 AES RAW javax.crypto.spec.SecretKeySpec@fffe81cd
+ >
+ 4. Use the exitcommand toleave theconsole.
+
+ 5. Restart your application server.
+ After you restartthe application server,any newly setpassword is encrypted using the new encryption key.
+
+
+
+
+
+ SailPoint IdentityIQ System Configuration 115
+
+===== Page 119/120 =====
+Data Encryption
+
+
+ Without the filesiiq.dat and iiq.cfg, passwords cannot be decrypted by IdentityIQ.
+ Ifyou run more than one instance of IdentityIQ, you must place the following filesinthe WEB-INF/-
+ classes folder of each instance, or in the location specified iniiq.properties.
+
+Re-Encrypt Passwords
+
+The new encryption key is used fornewly encrypted passwords. However, because existing passwords can also be
+decrypted using the default method on any system, you must re-encrypt existing passwords. Ro re-encrypt existing
+password, you must create a new Encrypted Data Synchronization Task in IdentityIQ.
+
+ 1. From the Navigation menu bar, select Intelligence -> Tasks.
+
+ 2. From the New Task drop-down listselect Encrypted Data Synchronization Task from the drop-down list.
+
+ 3. Enter a name forthe new task.
+
+ 4. OPTIONAL: Ifneeded, you can exclude types such as applications, identities or integration configurations from
+ processing.
+
+ 5. Save and Execute to immediately run the task.
+
+After the task has completed, allselected encrypted data is changed. A password encrypted with the default key is pre-
+fixed with 1.Items encrypted with the new encryption key are prefixed with 2 or another number ifmultiple encryption
+keys are stored.
+
+For example, when you look up the Administrator's password inthe console, the displays issimilar to the following:
+ > search identity password where name admin
+ 2:WpTZ2hmNaInTAJzeK9Swcw==
+Using the Different Encryption Keys
+
+After a new key is added to the keystore, the key isused as the default encryption key. Everything encrypted inside
+IdentityIQ then uses the new key. For example:
+ $Â ./iiq console
+ > encrypt test
+ 2:bt7YJA6iovzF5Uu6RIjueg==
+ >
+There isone exception. The command iiq encrypt, continues touse the original default encryption key:
+ $Â ./iiq encrypt test
+ 1:8zJwAXqvK5/b92JbPXLLKw==
+ $
+Although the syntax reported by the bare command does not indicates this,the command accepts an extra parameter
+toselect the encryption key to use. For example:
+ iiq encrypt string [key]
+
+
+
+ SailPoint IdentityIQ System Configuration 116
+
+===== Page 120/120 =====
+Data Encryption
+
+
+ Note:Â The encrypt command inthe iiq console does NOT accept thisextra parameter.
+
+The key is the number that displays in the listcommand and used as prefixfor the keys.
+
+
+
+ l To select the newly created key, use 2. Ifmultiple keys are in the keystore, use any available higher number.
+
+
+
+ l To select the original default key use 1 or nothing.
+
+
+For example:
+ $Â ./iiq encrypt test 1
+ 1:8zJwAXqvK5/b92JbPXLLKw==
+ $Â ./iiq encrypt test 2
+ 2:bt7YJA6iovzF5Uu6RIjueg==
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ System Configuration 117

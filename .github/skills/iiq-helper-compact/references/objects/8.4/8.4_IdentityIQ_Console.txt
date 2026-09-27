@@ -1,0 +1,4005 @@
+===== Page 1/67 =====
+ IdentityIQ Console
+
+
+ Version:8.4
+
+ Revised:September2023
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thisdocument and the information contained herein isSailPointConfidential Information
+
+===== Page 2/67 =====
+Copyright and Trademark Notices
+
+Copyright © 2023 SailPoint Technologies, Inc.  All Rights Reserved.
+
+Alllogos, text,content, including underlying HTML code, designs, and graphics used and/or depicted on these written
+materials or in thisInternet website are protected under United States and international copyright and trademark laws
+and treaties, and may not be used or reproduced without the prior express written permission of SailPoint Tech-
+nologies, Inc.
+
+“SailPoint Technologies,” (design and word mark), “SailPoint,” (design and word mark), "Identity IQ,” “IdentityNow,”
+“SecurityIQ,” “Identity AI,” “Identity Cube,” and “SailPoint Predictive Identity” are registered trademarks of SailPoint
+Technologies, Inc. “Identity isEverything,” “The Power of Identity,” and “Identity University” are trademarks of
+SailPoint Technologies, Inc. None of the foregoing marks may be used without the prior express written permission of
+SailPoint Technologies, Inc. Allother trademarks shown herein are owned by the respective companies or persons
+indicated.
+
+SailPoint Technologies, Inc. makes no warranty ofany kind regarding these materials or the information included
+therein, including, but not limited to,the implied warranties ofmerchantability and fitness for a particular purpose.
+SailPoint Technologies shall not be liable for errors contained herein or direct, indirect, special, incidental orcon-
+sequential damages inconnection with the furnishing, performance, or use of thismaterial.
+
+Patents Notice. https://www.sailpoint.com/patents
+
+Restricted Rights Legend. All rights are reserved. No part ofthis document may be published, distributed, reproduced,
+publicly displayed, used to create derivative works, or translated to another language, without the prior written consent
+ofSailPoint Technologies. The information contained inthis document issubject to change without notice.
+
+Use, duplication or disclosure by the U.S. Government is subject to restrictions as set forth insubparagraph (c) (1) (ii)
+ofthe Rights inTechnical Data and Computer Software clause at DFARS 252.227-7013 for DOD agencies, and sub-
+paragraphs (c)(1) and (c)(2) ofthe Commercial Computer Software Restricted Rights clause at FAR 52.227-19 for
+other agencies.
+
+Regulatory/Export Compliance. The export and re-export of this software iscontrolled for export purposes by the U.S.
+Government. By accepting this software and/or documentation, licensee agrees to comply with allU.S. and foreign
+export laws and regulations as they relate to software and related documentation.  Licensee will not export or re-
+export outside the United States software or documentation, whether directly or indirectly, to any Prohibited Party and
+willnot cause, approve or otherwise intentionally facilitate others inso doing. A Prohibited Party includes: a party in a
+U.S. embargoed country or country the United States has named as a supporter of international terrorism; a party
+involved in proliferation; a party identified by the U.S. Government as a Denied Party; a party named on the U.S.
+Department of Commerce’s Entity Listin Supplement No. 4 to 15 C.F.R. § 744; a party prohibited from participation in
+export orre-export transactions by a U.S. Government General Order; a party listed by the U.S. Government’s Office
+ofForeign Assets Control as ineligible to participate in transactions subject toU.S. jurisdiction; or any party that
+licensee knows or has reason toknow has violated or plans to violate U.S. or foreign export laws or regulations.
+Licensee shall ensure that each of itssoftware users complies with U.S. and foreign export laws and regulations as
+they relate to software and related documentation.
+
+===== Page 3/67 =====
+Contents
+
+
+ IdentityIQConsole 1
+
+ Launching the Console 2
+
+ Viewing the Listof Commands 3
+
+ Command-Line Parameters 7
+
+ Piped Commands in the IdentityIQConsole 8
+
+ Sample Unix Piped Commands 8
+
+ Sample Windows Piped Commands 8
+
+ Command Syntax 9
+
+ Syntax forRedirecting Command Output 10
+
+ IIQ Console Commands 11
+
+ General Commands 11
+
+ Object Commands 12
+
+ IdentitiesCommands 21
+
+ Task Commands 23
+
+ CertificationCommands 25
+
+ Group Commands 27
+
+ Workflow Commands 28
+
+ Test Commands 30
+
+ Plugin Commands 34
+
+ Recommender Commands 35
+
+ Other Commands 36
+
+ Access History Console Commands 51
+
+ Data ExtractConsole Commands 58
+
+===== Page 4/67 =====
+IdentityIQ Console
+
+IdentityIQ Console
+
+
+The IdentityIQ Console isthe command lineutilityforinterfacing with IdentityIQ. This section liststhe console com-
+mands and theirdescriptions.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Console 1
+
+===== Page 5/67 =====
+Launching the Console
+
+Launching the Console
+
+
+The IdentityIQ Console (iiqconsole) islaunched by running the iiq.bat filefound in the installation Dir-
+ectory/WEB-INF/bin directory. From a command prompt, launch the console with the command as shown for
+each operating system type:
+
+Windows: iiq console
+
+Unix: ./iiq console -j
+
+The iiqconsole requires the System Administrator capability.
+
+By default, the iiqconsole triesto authenticate with the default user/password spadmin / admin. Ifauthentication
+fails,you are prompted fora user name and password. Specify the user name and password on the command line.
+
+For example:
+
+iiq console -u amy.cox -p mypassword
+
+The console prompts foruser input ifthe password isomitted, and willnot launch ifthe credentials supplied are not
+associated with an identitythat has console access.
+
+Authentication is disabled ifthere are no identities. This case isencountered during IdentityIQ setup, before init.xml is
+imported.
+
+The -j option turns on the JLine Java libraryfor handling console input, enabling some ease-of-use functions such as
+command history recall. Command history recall isenabled inWindows without this library,so this parameter isnot
+required inthe Windows environment.
+
+The > prompt character indicates that the console isrunning and ready to accept commands.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Console 2
+
+===== Page 6/67 =====
+Viewing the List ofCommands
+
+Viewing the List of Commands
+
+
+The help command displays a listofallcommands available inthe console along with a short description of each. At
+the command prompt, enter help or? to see this fulllistofavailable commands.
+
+
+
+ Command Description
+
+ ? Display command help
+ help Display command help
+ echo Display a line oftext
+ quit Quit the shell(same as exit)
+ exit Exit the shell (same as quit)
+ source Execute a fileofcommands
+ properties Display system properties
+ time Show how much time a command takes to run
+ xtimes Run acommand x times
+ about Show application configuration information
+ threads Show active threads
+ logConfig Reload log4j configuration
+ Objects
+ dtd Create dtd
+ summary Summarize objects
+ classes List available classes
+ list List objects
+ count Count objects
+ get View an object
+ checkout Checkout an object to a file
+ checkin Checkin an object from a file
+ delete Delete an object
+ rollback Rollback toa previous version
+ rename Rename an object
+ import Import objects from a file
+ importManagedAttributes Import managed attribute definitionsfrom a CSV file
+ export Export objects toa file
+
+
+
+
+
+
+ SailPoint IdentityIQ Console 3
+
+===== Page 7/67 =====
+Viewing the List of Commands
+
+
+Command Description
+
+exportManagedAttributes Export managed attribute definitions toa CSV file
+exportJasper Exports only the jasperReport xml contained ina Jasper-
+ Template object
+associations Show target associations for an object
+Identities
+identities List identities
+snapshot Create an identity snapshot
+score Refresh compliance scores
+listLocks List allclass locks
+breakLocks Break allclass locks
+Tasks
+tasks Display scheduled tasks
+run Launch a background task
+runTaskWithArguments Launch a task synchronously with arguments
+terminate Terminate a background task
+terminateOrphans Detect and terminate orphaned tasks
+restart Restart a failed task ifpossible
+send command Send an out-of-band task command
+taskProfile Display task profilingreport
+Certifications
+certify Generate an access certificationreport
+cancelCertify Cancel an access certification report
+archiveCertification Archive and delete an access certification report
+decompressCertification Decompress an access certification archive
+Groups
+refreshFactories Refresh group factories (but not groups)
+refreshGroups Refresh groups (but not factories)
+showGroup Show identities in a group
+Workflow
+workflow Start a generic workflow
+validate Validate workflow definition
+workItem Describe a work item
+approve Approve a work item
+
+
+
+
+
+
+
+SailPoint IdentityIQ Console 4
+
+===== Page 8/67 =====
+Viewing the List of Commands
+
+
+Command Description
+
+reject Reject a work item
+wftest Run the workflow test harness
+Tests
+rule Run a rule
+parse Parse an XML file
+warp Parse an XML object and print the re-serialization
+notify Send an email
+authenticate Test authentication
+authenticateWithOptions Test authentication with options
+simulateHistory Simulate trend history
+search Run a simple query
+textsearch Run a fulltextsearch
+certificationPhase Transition a certification into a new phase
+impact Perform impact analysis
+event Schedule an identity event
+ Immediately expire a workitem that has an expiration configured.
+expire Ifthe workitem is type Event it'llalsopush the event forward with
+ the workflower
+connectorDebug Call one of the exposed connector methods using the specified
+ application
+encrypt Encrypt a string.
+sql Execute a SQL statement
+hql Execute a search based on a Hibernate Query Language state-
+ ment.
+updateHql Update the hql search.
+ Displays the current system date/time and itsUTIME (universal
+date time) value (Optional UTIME parameter causes the command to
+ display the date/time corresponding to the provided UTIME
+ value.)
+shell Escapes out to the command lineand run the command spe-
+ cified.
+ Toggles metering on and off;while metering is on, the console
+meter reports some timing statistics foreach command executed.
+ Meter information isdisplayed afterthe results ofeach com-
+
+
+
+
+
+
+SailPoint IdentityIQ Console 5
+
+===== Page 9/67 =====
+Viewing the Listof Commands
+
+
+Command Description
+
+ mand as itisexecuted.
+compress Compress the contents ofa filetoa string that can be included
+ within an XML element.
+uncompress Return a compressed, Base64-encoded filetoitsuncompressed
+ format.
+clearEmailQueue Remove any queued emails thathave not been sent
+provision Evaluate a provisioning plan
+lock Lock an object
+unlock Break a lock on an object
+showLock Show lock details
+clearCache Clear the object cache
+service Service management
+oconfig Analyze ObjectConfigs
+plugin Installand manage plugins
+recommender Manage and test recommendations
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Console 6
+
+===== Page 10/67 =====
+Command-Line Parameters
+
+Command-Line Parameters
+
+
+You can use parameters with the iiqconsole commands to manage command behavior.
+
+
+
+ Command Description
+
+ Run the console using the supplied username and password for authen-
+ tication.
+ -u<user-
+ name> -p Example: -u mary.johnson -p mypwd
+ <password>
+ Ifyou provide a username but omit the password, the iiqconsole prompts for
+ the password value.
+ -j Used in Unix systems only.Adds improved command editing and history sup-
+ port.Use cursor-up and cursor-down tonavigate console command history.
+ -h<host- Override the hostname used forthe console.
+
+ name> Example: -h consoleA
+
+ Run the given command, and then exit.
+ -c<command>
+ Example: -c "list Certification"
+ Run the commands read from the provided file,thenexit.
+ -f<filename>
+ Example: -f myCommands.txt
+ -e<CSV of ser- Automatically startthe services specified inthe provided comma-separated list.
+
+ vices tostart> Example: -e Heartbeat,Task,Reanimator
+
+ -heartbeat Force the Heartbeat service to automatically start.This is the equivalent to -e
+ Heartbeat
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Console 7
+
+===== Page 11/67 =====
+Piped Commands in theIdentityIQ Console
+
+Piped Commands in the IdentityIQ Console
+
+
+The iiqconsole commands can use piping as a usefulway tofilterorredirectoutput.
+
+You can use standard Unix or Windows commands to process the output ofyour iiqconsole commands. You must
+use the commands (Unix or Windows) that areappropriate to your own operating system. Unix commands willnot
+work ina Windows environment, and vice versa.
+Sample Unix Piped Commands
+
+Listonlymanual workitems:
+
+ list workitem | grep manual
+
+Get a count ofallyour policies:
+
+ list policy | wc -l
+
+Listpolicies,excluding any SOD (separation of duties)policies,sortthem inreverse order, and writethe output toa
+textfile:
+
+ list policy | grep -v SOD | sort -r | > MyNonSODPoliciesInReverseOrder.txt
+
+Sample Windows Piped Commands
+
+Listonlymanual workitems:
+
+ list workitem | findstr manual
+
+Listpoliciesand directthe listoutputto theclipboard:
+
+ list policy | clip
+
+Listallthe"Example" rules inyour system, and writethe output toa textfile:
+
+ list rule | findstr Example | > AllExampleRules.txt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPointIdentityIQConsole 8
+
+===== Page 12/67 =====
+Command Syntax
+
+Command Syntax
+
+
+The syntax forany console command that requires parameters can be determined by entering thatcommand with no
+arguments.
+
+> workflow
+
+usage: workflow name [varfile]
+
+Command names are case sensitive and must be entered as shown inthe command list.Parameters are not case
+sensitive.
+
+Some commands take no arguments and execute ifentered. This table contains a listofthe commands thatrequire
+no arguments.
+
+
+
+ Command Action
+
+ ? or help Lists allavailable console commands
+ quit or exit Exits the console shell
+ classes Lists allclasses
+ refreshGroups Refresh group indexes (Optional group name or ID can be specified)
+ refreshFactories Refresh set of GroupDefinitions fora GroupFactory (Optional factory
+ name or ID can be specified)
+ logConfig Reloads log4j configuration from log4j2.properties file
+ summary Lists allclasses and the count ofobjects of that class in the system
+ properties Displays Java properties of the server where IdentityIQ is installed
+ about Displays application configuration information
+ threads Shows a listof active threads
+ tasks Writes a listofallcurrently scheduled tasks, in a columnar layout, tothe
+ console (stdout)
+ identities Writes the Name, Manager, Roles, and Links for each Identity inthe sys-
+ tem tothe console (stdout)
+ Displays the current system date/time and itsUTIME (universal time)
+ date value (Optional UTIME parameter causes the command todisplay the
+ date/time corresponding tothe provided UTIME value.)
+ status Reports current running status of the task and request schedulers
+ meter Toggles metering on and off;while metering is on, the console reports
+ some timing statisticsfor each command executed. Meter information is
+
+
+
+
+
+ SailPoint IdentityIQ Console 9
+
+===== Page 13/67 =====
+Command Syntax
+
+
+ Command Action
+
+ displayed afterthe resultsof each command as itisexecuted.
+ clearEmailQueue Deletes allqueued but unsent email messages
+ clearCache Clears the IdentityIQ object cache
+
+Syntax for Redirecting Command Output
+
+Most of the commands report data orerror messages to theconsole or standard out(stdout) forthe system. The out-
+put forany command can be redirected toa fileby specifying > filename at theend ofthe command.
+
+This example redirects the output from the get command toa file:
+
+> get identity Adam.Kennedy > c:\output\AdamKennedyID.xml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPointIdentityIQ Console 10
+
+===== Page 14/67 =====
+IIQ Console Commands
+
+IIQ Console Commands
+
+
+These sections listand document the syntax and actions of the iiqconsole commands.
+General Commands
+
+ Help and ?
+
+These two commands listallthe available console commands.
+
+ Syntax ?
+ help
+ > ?
+ Examples
+ > help
+ Result Lists allcommands available in the console
+
+
+ Exit and Quit
+
+These two commands exit the console shell, returning the user tothe operating system command prompt.
+
+ Syntax exit
+ quit
+ > exit
+ Examples
+ > quit
+ Result Exits console shelland returns user to the operating system command prompt
+
+
+ Source
+
+The source command runs commands from a scriptfile.The commands on each linein the fileareexecuted by the
+console sequentially.
+
+ Syntax source filename
+ Examples source c:\data\cmdfile.txt
+ Result Runs the console commands inthe c:\data\cmdfile.txtfilesequentially
+
+
+ Echo
+
+The echo command displays a lineof text,returning back what you enter. May be useful for debug situations.For
+example, ifyou have a fileexecuting some console commands, you can import itinto the console and then send the
+
+
+
+
+
+ SailPoint IdentityIQConsole 11
+
+===== Page 15/67 =====
+IIQ Console Commands
+
+
+output to a file.Placing echo statements inwith the other commands can give the interested party an idea how things
+went during the execution of the commands.
+
+ Syntax echo <text>
+ > echo blah
+ Example blah
+
+ Result Echoes back the text you entered.
+
+
+ GetDependancyData
+
+The getDependancyData command isused by IQService based connectors, to verifyconnectivity to the configured
+IIQService and UpdateService services, and to return information such as theirports, communication channels (TLS
+ornon-TLS), and .NET Version. This command isalso triggered during the doHealthCheck/ testConfiguration oper-
+ations.
+
+
+Object Commands
+
+ List
+
+The listcommand listsallobjects of the specified class, constrained by any specified filter.Ifthiscommand isspe-
+cifiedwithout arguments, the command syntax is displayed, followed by a listof allavailable classes whose objects
+can be listed.This ishelpful in locating objects within the system and in identifyingobject names touse as parameters
+on other commands.
+
+ listclassname [filter]
+
+ filter: xxx - names beginning with xxx
+
+ Syntax xxx* - names beginning with xxx
+
+ *xxx - names ending with xxx
+
+ *xxx* - names containing xxx
+ Examples > list application ent*
+ Result Lists allapplication objects whose names begin with ent
+
+
+ Get
+
+The get command displays the XML representation ofthe named object.
+
+ Syntax get classname<objectnamere or ID>
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Console 12
+
+===== Page 16/67 =====
+IIQ Console Commands
+
+
+ Examples > get identity Adam.Kennedy
+ Result Displays the Adam.Kennedy Identity inXML format
+
+This command only displays the object to the console (stdout), itdoes not export the object. The output can be redir-
+ected to a fileifthe user has write access to the server's filesystem.
+
+> get identity Adam.Kennedy > c:\output\AdamKennedyID.xml
+
+Other alternatives for getting the XML representation ofan object into a textfileinclude:
+
+
+
+ l Copying and pasting contents of this command's stdout into a text file
+
+
+
+ l Retrieving the object's XML from the IdentityIQ Debug pages
+
+
+
+ l Using the checkout command (described next) to write the XML representation of an object
+ to a text file
+
+ Checkout
+
+The checkout command writes a copy of the XML representation ofthe requested object tothe specified filename.
+The filecan be used for review or formoving objects from one environment toanother, for example, from the user
+acceptance testing environment toproduction. Organizations doing custom development on rules, workflows, etc.
+might use checkout toextract any of these objects to a fileformodification.
+
+ Syntax checkout class name <objectname orID> file[-clean [=id,created…]]
+ Examples > checkout rule “Cert Signoff Approver” certrule.xml
+ Result Writes a copy of the Cert Signoff Approver rule'sXML representation tothe filecer-
+ trule.xml
+
+The -clean option can be used to remove allvalues that do not transfer between IdentityIQ instances, such as created
+and modified dates as well as globally unique ID values (GUIDs). Specifying the -clean option with no qualifiers
+cleans the id,created, modified, and lastRefresh attributes.The -clean option can also be used to explicitlyclear spe-
+cificfieldsby name. The fieldsto clear must be listedin a comma separated list.
+
+ Checkin
+
+The checkin command reads a filecontaining an object's XML representation and saves the object into the database.
+Ifthe object isa workItem, the command invokes the workflower to process the workItem. Ifthe object is a bundle
+(role)and the approve parameter isspecified, a roleapproval workflow is launched. For allother object types, and for
+bundles that are submitted without the approve parameter, the object issaved into the database.
+
+The command's syntax parsing allows the approve parameter tobe specified for any object but itonly impacts the pro-
+cessing on Bundle objects.
+
+
+
+
+
+SailPoint IdentityIQ Console 13
+
+===== Page 17/67 =====
+IIQ Console Commands
+
+
+ Syntax checkin filename [approve]
+ > checkin newRole.xml approve
+ Examples
+ > checkin bobSmithID.xml
+ First example saves Identity Bob Smith, as represented by the XML in
+ bobSmithID.xml, into to the database; overwrites existing or adds new record
+ Result
+ Second example launches an approval workflow forthe bundle object represented
+ by the XML in newRole.xml
+
+Ifan Import fileisspecified as the input fileforthis command, only the firstobject inthe fileis checked in;the rest are
+ignored and a warning message isdisplayed to the console (stdout).
+
+ Note: The checkin command isnot supported for Access History.
+
+ Delete
+
+This action cannot be undone and should be used with extreme caution and only in rare circumstances.
+
+The delete command deletes the named object and removes allof itsowned, orsubordinate, objects. In a production
+environment, thisis not recommended unless specificallydirected by IdentityIQ Support.
+
+ Syntax delete classname <objectname orID>
+ Examples > delete identity bob.smith
+ Result Removes Identity Bob Smith and allof his associated objects from the system
+
+Wildcards can be used on the <object name or ID> argument:
+— *– allobjects of the specified class (use with extreme caution!)
+— xxx – allobjects whose name orID contains xxx
+
+ Note: The delete command isnot supported for Access History.
+
+ Import
+
+The import command imports objects into IdentityIQ from an XML file.This command can be used on a filethat con-
+tainsa Jasper report, a IdentityIQ import file,oran object ofone of the standard object classes. The filecontents are
+evaluated and processed based on the firsttag in the file:
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Console 14
+
+===== Page 18/67 =====
+IIQ Console Commands
+
+
+
+
+ l JasperReport: Jasper report
+
+
+
+ l IdentityIQ: IdentityIQ import object; can contain multiple regular objects in one fileas well as
+ an ImportAction tag that directs how the contents of the file are processed, for example,
+ merge, include, execute, logConfig.
+
+
+
+ l Anything else: assumed to be a single regular object
+
+
+
+
+ Syntax import [-noids]filename
+ > import init.xml
+ Examples
+ > import -noids init.xml
+ The firstexample Imports the contents of the fileinit.xmlinto the IdentityIQ data-
+ base.
+ Result
+ In the second example, allID attributes are removed before parsing occurs.
+
+ This action isa normal part of the initializationprocess for IdentityIQ.
+
+
+ Syntax import [-noids][-noroleevents] filename
+ > import -noids bundles.xml
+ Examples
+ > import -noids -noroleevents bundles.xml
+ The firstexample allows user to import the events. Itremoves allID attributes
+ before parsing.
+
+ Result The second example disables generation ofrole change events forrole propaga-
+ tion.
+
+ Select the option toAllow Role Propagation from the Global Settings > IdentityIQ
+ Configuration > Roles option inUI.
+
+This isone of the most commonly used commands. Installations who manage their workflows and rules in an external
+source code control system, forexample, use thiscommand tobring changes to those objects into IdentityIQ once
+they have been modified intheir external XML representations.
+
+ Note: The import command isnot supported forAccess History.
+
+ Export
+
+
+
+
+
+
+SailPoint IdentityIQ Console 15
+
+===== Page 19/67 =====
+IIQ Console Commands
+
+
+The export command writes allobjects of a given class to a specified filename. This iscommonly used ingathering
+objects from IdentityIQ todeliver to IdentityIQ Support as resources in resolving tickets. Itisalso used for moving sets
+ofobjects between environments and for managing objects outside of IdentityIQ, such as storing workflows and rules
+ina source code control system.
+
+More than one class can be exported ata time tothe same fileby specifying allthe desired class names as arguments
+tothe command. Ifthe export command is specified without any class names, allobjects of allclasses are exported to
+the specified filename.
+
+ Syntax export [-clean[=id,created...]] filename [classnameclassname …]
+ > export -clean workflows.xml workflow
+ Examples > export IdLink.xml identity link
+
+ The firstexample exports the entire set ofworkflow objects from IdentityIQ to the
+ fileworkflows.xml, removing values from the id,created, modified, and lastRefresh
+ Result attributes.
+
+ The second example exports allidentitiesand links to a single file.
+
+
+ DTD
+
+The DTD command writes the IdentityIQ DTD (Document Type Definition) to the specified file.
+
+ Syntax dtd filename
+ Examples > dtd c:\DTD\IdentityIQ.dtd
+ Result Writes the IdentityIQ DTD to the filec:\DTD\IdentityIQ.dtd
+
+
+ Classes
+
+The classes command listsallclasses accessible from the console. These are frequently used as parameters to
+other commands so this listcan be helpful in entering correct arguments on those commands.
+
+ Syntax classes
+ Examples > classes
+ Result Lists class names forallclasses accessible to the console
+
+
+ Count
+
+The count command returns a count of the objects of the specified class.
+
+ Syntax count classname
+ Examples > count identity
+ Result Displays the count ofIdentity objects inthe system
+
+
+
+
+
+SailPoint IdentityIQ Console 16
+
+===== Page 20/67 =====
+IIQ Console Commands
+
+ ImportManagedAttributes
+
+The importManagedAttributes command isused to set managed attributevalues, includinglocalized descriptions,
+through a CSV fileimport.This can be used to update existing managedAttributes orto create new ones.
+
+The filename can be specifiedwith an absolute path orcan be specifiedrelativeto the currentworking directory.
+These are the specificrequirements forthe import filecontents:
+
+
+
+ l The firstline in the filemust be a comment line (starting with #) that contains the column
+ names for the data records. Column names must be specified in a comma-separated format.
+ All column names must match managedAttribute standard or extended attributes or specify a
+ locale/supported language.
+
+
+
+ l Subsequent comment lines can be used to specify default values for attributes that are not
+ contained in the data records. For example, ifthe whole file relates to a single application,
+ the application name could be set as a default through a single comment line.
+
+
+
+ l Blank lines are permitted in the file,and are ignored, but cannot precede the firstcomment
+ line.
+
+
+
+ l The data records must consist of comma-separated data values.
+
+Only types Entitlement and Permission arevalid.Group managedAttributes are stored in IdentityIQas a subcategory
+ofEntitlement type managedAttributes.
+
+
+
+ l Required attributes are type, application, attribute, and value. If type isnot specified in the
+ file,type Entitlement isassumed. The others three properties must be specified in the file.
+ Type, application, and attribute can be specified through the data columns or with a single
+ default value inextra comment lines. The value attribute must be in the data columns and
+ cannot have a default value.
+
+
+
+ l The data values inthe columns named to match supported languages should contain the
+ description to use forthat locale.
+
+Example FileContents:
+
+
+ # value, displayName, en_US, owner
+ #     owner=Jeff.Wilson
+ # application=AD
+
+
+
+
+
+
+
+SailPoint IdentityIQ Console 17
+
+===== Page 21/67 =====
+IIQ Console Commands
+
+
+
+ # attribute=MemberOf
+ # type=Entitlement
+ # "CN=administrators,CN=Roles,DC=iiq,DC=com", Admins, "Administrators group",
+ # "CN=VPN,CN=Roles,DC=iiq,DC=com", VPN, "Remote Workers", Bob.Smith
+
+The test option causes the command to parse and validate the filewithout saving changes tothe database.
+
+ Syntax importManagedAttributes filename [test]
+ Examples > importManagedAttributes “c:\data\managedattributes.csv”
+ Result Imports managed attributedata from the filec:\data\managedattrbutes.csv, updat-
+ ing existing attributes orcreating new ones from the data
+
+
+ ExportManagedAttributes
+
+The exportManagedAttributes command exports either object properties or descriptions formanagedAttributes to a
+CSV file.This is used tomake mass changes to the managed attributes definitions or for collecting allthe managed
+attributes inone filetoreview as a group.
+
+ Syntax exportManagedAttributes filename [application] [language]
+ Examples > exportManagedAttributes “c:\data\AdamManAttrDesc.csv” ADAM
+ en_US
+ Result Exports the managed attribute description on ADAM application tothe file
+ c:\data\AdamManAttrDesc.csv.
+
+Application and language are both optional arguments and can be specified ineither order. At most one application
+and one language can be specified at a time. Ifno application name isspecified, managed attributes forall applic-
+ations are exported. Ifa language is specified, only the core identifying properties of the managed attributes (type,
+application, attribute,value) and the descriptions for the specified locale are exported. Ifa language is not specified,
+allother object properties except descriptions are exported.
+
+The fileformat generated by this command can be used inthe importManagedAttribute command, so thiscommand
+can be used towrite values to a fileforediting and reimporting. When an application name isspecified on the export
+command, the application isnot shown in the data rows but isspecified as a default in the fileheader comments, as
+described and illustratedin the command details.
+
+ Properties
+
+The properties command displays system properties.
+
+ Syntax properties
+ Examples > properties
+ Result Displays Java properties ofthe server on which IdentityIQ is installed
+
+
+
+
+
+SailPoint IdentityIQ Console 18
+
+===== Page 22/67 =====
+IIQ Console Commands
+
+ Time
+
+The time command reports the duration of another command.
+
+ Syntax time command
+ Examples > time run “refresh risk scores”
+ Result Initiatesthe run command and then indicates how much time ittook to run. Most
+ useful for long-running commands
+
+
+ Xtimes
+
+The xtimes command repeats a single command as many times as specified in the firstargument. This command is
+used forperformance testing purposes. Running a command numerous time provides a more accurate indication of
+how long a process takes than running itonce.
+
+ Syntax xtimes xcommand
+ Examples > xtimes 3 run “refresh risk scores”
+ Result Runs the refresh risk scores task three times ina row
+
+This command can be combined with the time command to report timing statisticson the performance test. By spe-
+cifyingthis command first(forexample, xtimes 20 time run taskname), the time taken foreach command run isrepor-
+ted.By specifying the time command first(forexample, time xtimes 20 run taskname), the totaltime for allof the
+sequential runs is reported.
+
+ About
+
+The about command displays IdentityIQ's application configuration information.
+
+ Syntax about
+ Examples > about
+ Result Lists application configuration specifics for the IdentityIQ instance (version, data-
+ base, host, memory, etc.)
+
+
+ Threads
+
+The threads command displays allactive threads inthe instance.
+
+ Syntax threads
+ Examples > threads
+ Result Lists allactive threads
+
+
+ LogConfig
+
+
+
+
+
+SailPoint IdentityIQ Console 19
+
+===== Page 23/67 =====
+IIQ Console Commands
+
+
+The logConfig command reloads the log4j configuration intothe instance.
+
+ Syntax logConfig
+ Examples > logConfig
+ Result Reloads the log4j configuration from the log4j2.properties file
+
+
+ Rollback
+
+The rollback command can undo a change to a role by restoring itfrom itsBundleArchive object. BundleArchive
+objects are created when role archiving isenabled forIdentityIQ. Role archiving tracks changes made to a role by stor-
+ingthe pre-modification state in a BundleArchive object when the Bundle object isupdated. This command only
+applies to the BundleArchive class.
+
+ Syntax rollback classname <objectname orid>
+ Examples > rollback BundleArchive “Contractor-IT”
+ Result Restores the Contractor-IT roleto the pre-modification state stored inits
+ BundleArchive object
+
+
+ Note: The rollback command is not supported forAccess History.
+
+ Rename
+
+The rename command changes the name of an object from itsexisting name to the value specified by the newname
+parameter.
+
+ Syntax rename classname <objectname or ID> newname
+ Examples > rename application ADAM ADAM-Production
+ Result Changes the name ofthe ADAM application to ADAM-Production
+
+The object can be found using its old Name or itsID value, but in either case, the newname value isused to update the
+Name attribute forthe object.
+
+ Note: The rename command isnot supported forAccess History.
+
+ ExportJasper
+
+The exportJasper command creates a JasperReport XML filefrom a JasperTemplate object in IdentityIQ. Jasper
+Report isa third party user interface forreport writing. JasperReport XML isnot compatible with IdentityIQ's XML so
+the JasperReport XML is wrapped in a JasperTemplate object when saved inIdentityIQ. The JasperTemplate must be
+exported to create a filethat can be used directly with the Jasper user interface before itcan be reformatted.
+
+
+
+
+
+
+
+SailPoint IdentityIQ Console 20
+
+===== Page 24/67 =====
+IIQ Console Commands
+
+
+ Syntax exportJasper filename <JasperTemplateName or ID>
+ Examples > exportJasper c:\data\AggResRpt.xml AggregationResults
+ Result Exports the Jasper XML from the AggregationResults JasperTemplate object into
+ the filec:\data\AggResRpt.xml
+
+The import command can be used tore-import a JasperReport object intothe database. The import wraps the XML in
+a JasperTemplate.
+
+ Summary
+
+The summary command listsallclasses and the count of objects ofeach class. Changes inthese counts forsome
+objects (for example, auditConfig) can indicate potential problems or areas of concern.
+
+ Syntax summary
+ Examples > summary
+ Result Lists class name and count ofobjects foreach class inthe system
+
+
+ Associations
+
+The associations command isa simple way to listthe TargetAssociation objects fora given object.
+
+ associations <class> <name>
+ Syntax
+ associations <id>
+ > associations bundle "Product Developer - IT"
+ Examples
+ > associations c0a80143853f11288185a7f03d051d52
+ Target Type Target
+
+ -----------------------------------------
+
+ P Eclipse
+
+ Result P Subversion
+
+ Target Type Target
+
+ -----------------------------------------
+
+ P masterPrivileges
+
+Identities Commands
+
+ ListLocks
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Console 21
+
+===== Page 25/67 =====
+IIQ Console Commands
+
+
+The listLocks command listsalllocks held on any objects ofthe named class. At thistime, Identity isthe only class for
+which this command operates.
+
+ BreakLocks
+
+This command should be used with caution. Locks are useful in maintaining data integrity, and breaking them at the
+wrong time can potentially permit conflicting updates that can result in data corruption.
+
+The unlock command can be used tobreak a single lock whereas this command breaks all locks held on any object in
+the specified class.
+
+Ifa process is holding a lock but isunable toperform the required action, the lock can cause problems in other pro-
+cesses' performance as well.The breakLocks command can be used torelease locks forcibly. At this time, Identity is
+the only class forwhich thiscommand functions.
+
+ Syntax breakLocks classname
+ Examples > breakLocks identity
+ Releases all locks held on any identity object inthe system and reports to the con-
+ Result sole the identity name, lock holder, and UTIME value for the lock date /time and
+ the lock expiration date /time.
+
+
+ Identities
+
+The identities command liststhe Name, Manager, Roles, and Links for each identity in the system. By default, this
+information prints to the console (stdout) and can be difficulttoread due to screen wrapping. Ifthe output isredirected
+toa file,itisprinted in the filein an easy-to-read style.
+
+ Syntax identities
+ > identities
+ Examples
+ > identities > identities.txt
+ The firstexample writes the Name, Manager, Roles, and Links for each identity in
+ Result the system to the console (stdout).
+
+ The second example redirects that information to the fileidentities.txt.
+
+
+ Snapshot
+
+The snapshot command takes a snapshot of the named identity as itexists atthat moment and archives itinthe data-
+base as an IdentitySnapshot object. This object provides a historical record of the state of Identity objects at various
+points in time. Automatic snapshotting can be enabled and configured to create IdentitySnapshot objects at specified
+intervals or based on system activities (weekly, on aggregation change, etc.).The configuration of this feature can
+negatively impact system performance.
+
+
+
+
+
+
+SailPoint IdentityIQ Console 22
+
+===== Page 26/67 =====
+IIQ Console Commands
+
+
+ Syntax snapshot <identityname or ID>
+ Examples > snapshot Alan.Bradley
+ Creates an IdentitySnapshot object forthe identityAlan.Bradley, capturing his Iden-
+ Result tityAttributes,Roles (Bundles), Entitlements Outside Roles, Links, and Scorecard
+ information atthat moment intime
+
+
+ Score
+
+The score command refreshes the identityscore for thenamed identityand updates thatscore inthe database. Score
+updates are more commonly executed through the IdentityIQ user interface.
+
+ Syntax score <identityname or ID>
+ Examples > score Alan.Bradley
+ Result Recalculates therisk scores for Alan.Bradley and updates his Scorecard with the
+ new risk scores
+
+Task Commands
+
+ Run
+
+The run command startsexecution ofa task that requires and accepts no arguments. Three optional parameters can
+be specified forthiscommand: trace, profile,and sync.
+
+
+
+ l Trace – writes to the console (stdout) a trace of what happens as the task is run, depending
+ on how the task's tracing code is written.
+
+
+
+ l Profile – displays the timing of certain phases of the task, the details displayed depend on
+ the task's profile code.
+
+
+
+ l Sync – runs the task in synchronous execution mode, as opposed to scheduling itto run in
+ background. Ifsync is specified, the control returns to the console only after the task has com-
+ pleted and any error messages are written to the console. Ifsync is not specified, the task is
+ launched in the background and the results of the task are viewable in the taskResults object
+ and are accessible from the console or from the user interface under Setup > Tasks > Task
+ Results.
+
+ Syntax run taskname [trace][profile][sync]
+ Examples > run "Refresh Risk Scores"
+ Result Runs the Refresh Risk Scores task inbackground
+
+
+
+
+ SailPoint IdentityIQConsole 23
+
+===== Page 27/67 =====
+IIQ Console Commands
+
+ RunTaskWithArguments
+
+The runTaskWithArguments command starts execution of a task that requires arguments. These tasks are always
+run insynchronous execution mode. This can only be used for tasks that accept arguments of simple data types; spe-
+cifyingan object as an argument is not possible here.
+
+ Syntax runTaskWithArguments taskname [arg1=val1,arg2=val2,…]
+ Examples > runTaskWithArguments "IdentityRefresh" refreshLink-
+ s=True,promoteAttributes=False
+ Result Runs the Identity Refresh task, refreshing Links forthe Identities
+
+
+ Restart
+
+The restart command restarts execution of a task that failed.
+
+ Syntax restart taskResultName
+ Examples > run "Refresh Risk Scores"
+ Result Restarts the Refresh Risk Scores task in background ifpossible
+
+
+ Tasks
+
+The tasks command liststhe Name, State, Next Execution, and Cron Strings forallcurrently scheduled tasks in the
+system.
+
+ Syntax tasks
+ Examples > tasks
+ Result All currently scheduled tasks are written to the console (stdout)
+
+
+ TerminateOrphans
+
+The terminateOrphans command sets the completion status of any open taskResult objects to Terminated. While
+tasks are running, their taskResults should be ina pending state, but occasionally task results can become orphaned
+and remain inthis non-completed state when the task has finished (or has otherwise been terminated). This command
+can be used toclean up those orphaned taskResults but itmust only be executed when there are no tasks running on
+the application server or the taskResults foractively running tasks are terminated along with any orphaned results.
+
+This command requires no arguments forexecution but an artificialargument please has been added to prevent acci-
+dentally running thiscommand.
+
+ Syntax terminateOrphans please
+ Examples > terminateOrphans please
+ Result Sets allopen taskResults for the application server to the Terminated status
+
+
+
+
+
+SailPoint IdentityIQ Console 24
+
+===== Page 28/67 =====
+IIQ Console Commands
+
+ Terminate
+
+The terminate command terminates a given background task. After running a terminate command, go toTask Res-
+ultslistinSetup >Tasks >Task Results to see the task with a Canceled status. You can select the canceled Task Res-
+ultto see more details,including a warning that itwas terminated by user request.
+
+ Syntax terminate <TaskResult name>
+ Example > terminate ADDirectAccountAggregation
+ A termination request is sent to the task.
+
+ Result The Task Results listinSetup > Tasks > Task Results shows the task with Can-
+ celled status.
+
+ Details show that the task was terminated by user request.
+
+
+ Send Command
+
+The sendCommand command sends an out-of-band task command to manually reset crashed requests. This isuse-
+fulforimplementations that do not use the Reanimator service.
+
+ Syntax sendCommand <TaskResult name> <command>
+ > sendCommand ADDirectAccountAggregation reanimate
+ Examples
+ command: terminate | reanimate |stack |<customCommand>
+ Ifthe given task has any uncompleted partitionrequests which are ina zombie
+ Result state, the requests willbe reset, allowing them toresume execution. Ifthe given
+ task isan unpartitioned task, the zombie task willbe marked as terminated.
+
+Certification Commands
+
+ Certify
+
+The certify command creates a manager or application certification.The certification isgenerated using the install-
+ation'sdefault settings /parameters. This command is primarily used fortesting purposes.
+
+ Syntax certify [managerName |application]
+ Examples > certify Catherine.Simmons
+ Result Generates a manager certification formanager Catherine Simmons
+
+The command syntax help indicates that thiscommand can generate an application owner certificationwhen an
+application is specified as acommand argument, but this feature has not been updated as the certificationcom-
+ponents of the product have changed over time. As a result, the application argument forthis command isnot cur-
+rentlyusable.
+
+
+
+
+
+ SailPoint IdentityIQ Console 25
+
+===== Page 29/67 =====
+IIQ Console Commands
+
+ CancelCertify
+
+This command isnot recommended. Use the delete command toremove certificationobjects.
+
+The cancelCertify command can be used to delete a certification object from the system.
+
+ Syntax cancelCertify <certificationName or ID>
+ Examples > cancelCertify "Manager Access Review for William Moore"
+ Result Delete the named certification (the command failsifmore than one certification
+ object with the same name exists)
+
+
+ ArchiveCertification
+
+The archiveCertification command archives the specified certification(creates a certificationArchive object) and
+deletes itas an active certification.
+
+ Syntax archiveCertification <certificationName or ID>
+ Examples > archiveCertification "Manager Access Review for William Moore"
+ Result Creates a certificationArchive object and delete the certification from the system
+
+
+ DecompressCertification
+
+The decompressCertification command retrieves the named certificationArchive object and prints ittothe console
+(stdout) in the Certification object's XML format.
+
+ Syntax decompressCertification <certificationArchiveName or ID>
+ Examples > decompressCertification "Manager Access Review for William
+ Moore"
+ Result Prints the named certificationarchive to the console (stdout) in certificationXML
+ format
+
+
+ CertificationPhase
+
+The certificationPhase command transitions the specified certification to the specified phase. This command fails if
+the certificationis on or past the requested phase.
+
+The certificationis advanced tothe next enabled phase afterthe requested phase ifthe specified phase isnot enabled
+forthe certification. For example, ifa certification has neither a Challenge nor a Remediation phase enabled but the
+command requests that itbe advanced to the Challenge phase, the certification isadvanced to the End phase.
+
+The certificationis sequentially advanced through all enabled phases until itreaches or passes the requested phase.
+Any business logic that should occur during each phase transition (period enter rules, period end rules, etc.) is
+executed during the phase advancement.
+
+
+
+
+
+
+SailPoint IdentityIQ Console 26
+
+===== Page 30/67 =====
+IIQ Console Commands
+
+
+ Syntax certificationPhase <certificationName or ID> [Challenge |Remediation |End]
+ Examples > certificationPhase "Catherine Simmons Access Review" Challenge
+ Advances the "Catherine Simmons Access Review" certificationfrom itscurrent
+ Result phase (Active) to the Challenge phase. Ifthis review isnot configured fora Chal-
+ lenge phase, itis transitioned to the Remediation or End phase (depending on con-
+ figuration).
+
+Group Commands
+
+ RefreshFactories
+
+The refreshFactories command can be specified with no arguments torefresh allgroup factories or with a specific
+GroupFactory name. Refreshing the group factory means identifying the group values that define each ofthe groups
+(orGroupDefinition objects). Itdoes not refresh the listofIdentities that make up each group or the statisticsgathered
+foreach group – just the listofgroups themselves.
+
+ Syntax refreshFactories [<factorname or ID>]
+ Examples > refreshFactories
+ Result Refreshes the GroupDefinition listassociated with each GroupFactory inthe sys-
+ tem
+
+
+ RefreshGroups
+
+The refreshGroups command refreshes the group indexes for allgroups or for the specified group named as a com-
+mand argument. The group indexes are collections of statisticsforidentities that are part of the group. The statistics
+include number ofmembers, number of certifications due forcertification owners in the group, number of certifications
+owned and completed on time by members of the group, and riskscore information for members of the group.
+RefreshGroups only applies to GroupDefinitions that are indexed (attribute indexed="True").
+
+ Syntax refreshGroups [groupname or ID]
+ Examples > refreshGroups
+ Result Refreshes index information for allindexed groups
+
+
+ ShowGroup
+
+The showGroup command shows the membership (Identities)of the group named as an argument to the command.
+
+ Syntax showGroup <groupname or ID>
+ Examples > showGroup Finance
+ Result Lists allIdentities who are members of the Finance group.
+
+
+
+
+
+ SailPoint IdentityIQ Console 27
+
+===== Page 31/67 =====
+IIQ Console Commands
+
+Workflow Commands
+
+ Workflow
+
+The workflow command launches the workflow specifiedas acommand parameter. Input variables must be entered
+ina variable filetoget passed tothe workflow. A variablefileisspecified as an XML Map. The filename isthen also
+passed as a parameter to thecommand. When the workflow issuccessfully launched, theXML forthe workflowCase
+isprinted tothe console (stdout).
+
+ Syntax workflow <workflowname or ID> [varfile]
+ Examples > workflow "LCM Provisioning" c:\data\provFile.xml
+ Result Runs the LCM Provisioning workflow, passing itsinput variables through the file
+ c:\data\provFile.xml
+
+The varfileshould contain an attributesmap likethe example shown below. This example map passes an identity
+name and aprovisioning plan objectto the workflow.
+
+
+ <?xml version='1.0' encoding='UTF-8'?>
+ <!DOCTYPE Attributes PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+ <Attributes>
+   <Map>
+     <entry key="identityName" value="Adam.Kennedy"/>
+     <entry key="plan">
+       <value>
+         <ProvisioningPlan>
+           <AccountRequest application="IIQ" nativeIdentity="Adam.Kennedy" op="Modify">
+             <AttributeRequest name="assignedRoles" op="Add" value="PRISM User">
+               <Attributes>
+                 <Map>
+                   <entry key="comments" value="req A"/>
+                 </Map>
+               </Attributes>
+             </AttributeRequest>
+           </AccountRequest>
+           <AccountRequest application="IIQ" nativeIdentity="ABC_12345" op="Modify">
+             <AttributeRequest name="assignedRoles" op="Add" value="Test Role B2">
+               <Attributes>
+                 <Map>
+                   <entry key="comments" value="req B"/>
+                 </Map>
+               </Attributes>
+             </AttributeRequest>
+           </AccountRequest>
+         </ProvisioningPlan>
+       </value>
+     </entry>
+    </Map>
+ </Attributes>
+
+
+
+
+
+
+
+ SailPointIdentityIQ Console 28
+
+===== Page 32/67 =====
+IIQ Console Commands
+
+ Validate
+
+The validate command can validate a workflow or a rule. Input variables must be entered in the variable filetobe
+passed to a workflow orrule. The variable fileisspecified as an XML map and the filename is passed as a parameter
+tothe command. Validation errors are printed tothe console (stdout).
+
+ Syntax validate <rule or workflow name or ID> [varfile]
+ Examples > validate "LCM Provisioning" c:\data\provFile.xml
+ Result Validates the LCM Provisioning workflow, passes the input variables through
+ c:\data\provFile.xml, and displays any validation errors
+
+See Workflow foran example of the varfileformat.
+
+ Wftest
+
+The wftest command is used to one or more workflows. The WorkflowTestSuite can be the name of a Work-
+flowTestSuite object or a filecontaining one.
+
+ Syntax wftest WorkFlowTestSuite name | filename
+ Examples > wftest c:\test\workflowTest.xml name | c:\test\workflowTestOut.xml
+ Result Tests the workflows and sends the outcome to the workflowTestOut file.
+
+
+ WorkItem
+
+The workItem command displays certain details (Owner, Create Date, Expiration Date) forthe specified workItem.
+
+This command requires the workItem ID or name value as an input parameter. The workItem ID value (a long hexa-
+decimal number) isobtained using the IdentityIQ console's listworkItem command. The workItem Name isnot the
+descriptive name for the workitem, itisa numeric value assigned when the workItem iscreated. The value isfound in
+the XML representation of each workItem through the Debug pages.
+
+ Syntax workItem <workItemID orName>
+ Examples > workItem 40288f0132b155ad0132b58a4e3f018e
+ Result Displays the Owner, Created Date, and Expiration Date for the specified workItem
+
+
+ Approve
+
+The approve command sets the specified workItem to a Finished state (indicating that itwas approved), adds any spe-
+cifiedcompletion comments to the workItem, and submits the workItem to the workflower to move ittothe next appro-
+priatestage.
+
+This command requires the workItem ID or name value as an input parameter. You can obtain the workItem ID value
+(along hexadecimal number) using the IdentityIQ console listworkItem command. The workItem Name is not the
+
+
+
+
+
+SailPoint IdentityIQ Console 29
+
+===== Page 33/67 =====
+IIQ Console Commands
+
+
+descriptive name for the workitem, itisa numeric value assigned when the workItem iscreated. The value is found in
+the XML representation of each workItem through the Debug pages.
+
+ Syntax approve <workItemID or Name> [comments]
+ Examples > approve 40288f0132b155ad0132b58a4e3f018e "Access approved"
+ Marks the specified workItem as approved, adds the comment "Access approved"
+ Result to the workItem's completion comments, and submits the workItem for evaluation
+ of the next appropriate step (another approval, provisioning, etc.)
+
+
+ Reject
+
+The reject command sets the specified workItem to a Rejected state, adds any specified completion comments tothe
+workItem, and submits the workItem to the workflower tomove itto the next appropriate stage.
+
+This command requires the workItem ID or name value as an input parameter. The workItem ID value (along hexa-
+decimal number) isobtained using the IdentityIQ console's listworkItem command. The workItem Name isnot the
+descriptive name for the workitem, itisa numeric value assigned when the workItem iscreated. The value is found in
+the XML representation of each workItem through the Debug pages.
+
+ Syntax reject <workItemID or name> [comments]
+ Examples > reject 40288f0132b155ad0132b58a4e3f018e "Access conflicts with
+ AP data entry entitlement"
+ Marks the specified workItem as rejected, adds the comment "Access conflicts
+ Result with AP data entry entitlement" to the workItem's completion comments, and sub-
+ mits the workItem for evaluation of the next appropriate step (another approval,
+ etc.)
+
+Test Commands
+
+ Rule
+
+The rule command runs a rule defined inthe system. The rule to run isspecified as a command parameter. Ifany
+input variables must be passed tothe rule, they must be entered ina variable file,specified as an XML Map. The file
+name isthen also passed as a parameter tothe command.
+
+This command can be used fortesting or executing existing system rules. Itcan also be used to run any BeanShell
+code snippet against the IdentityIQ database. The code is created as a rule and loaded intothe system and then
+executed from the console. Support uses rules likethisfor data cleanup.
+
+ Syntax rule <rulename orID> [varfile]
+ Examples > rule "Check Password Policy" c:\data\pwdParams.xml
+
+
+
+
+
+
+ SailPoint IdentityIQ Console 30
+
+===== Page 34/67 =====
+IIQ Console Commands
+
+
+ Result Runs the Check Password Policy rule,passing itsinput variables through the file
+ c:\data\pwdParams.xml
+
+
+ Parse
+
+The parse command validates an XML file.Ifitisin valid form and itstags match the IdentityIQ DTD, itruns suc-
+cessfully and no information is printed tothe console (stdout). If errors are encountered, a runtimeException is printed
+tothe console describing the error.
+
+ Syntax parse filename
+ Examples > parse c:\data\newWorkflow.xml
+ Result Validates the XML inthe filec:\data\newWorkflow.xml and reports any errors to the
+ console
+
+
+ SQL
+
+The sql command executes a SQL statement. Itcan execute SQL specified inline with the command or itcan read the
+SQL from a file.Only one SQL statement can be executed ata time. The output can be printed to the console (stdout)
+orredirected to a file.Select, update, and delete SQL statements can be executed. Update and delete actions cannot
+be undone.
+
+ Syntax sql sqlStatement |-finputFileName
+ > sql "select * from sptr_identity" > c:\data\Identities.dat
+ Examples
+ > sql -fc:\sql\SelectIdentities.sql
+ The firstexample executes the specified select statement and writes the results to
+ c:\data\Identities.dat.
+ Result
+ The second example reads the SQL from c:\sql\SelectIdentities.sql, prints the SQL
+ to the console (stdout), and displays the query results to the console (stdout).
+
+
+ Warp
+
+The warp command parses an XML filetocreate an object and then displays the object's XML representation in the
+console (stdout). Ifitis not in valid form or itstags do not match the IdentityIQ DTD, a runtimeException isprinted to
+the console describing the error.
+
+ Syntax warp filename
+ Examples > warp c:\data\newWorkflow.xml
+ Result Parses the XML in the filec:\data\newWorkflow.xml and displays the XML rep-
+ resentation of the object in the console, or reports any errors to the console.
+
+
+
+
+
+
+SailPoint IdentityIQ Console 31
+
+===== Page 35/67 =====
+IIQ Console Commands
+
+ Notify
+
+The notify command sends an email message to the specified identity using the email template specified. This com-
+mand does not accept any other parameters thatcan be passed to the template, so itcan only be used fortemplates
+whose messages do not rely on variable substitutions tobuild the content. This command ismost often used for test-
+ingpurposes.
+
+The toAddress argument can contain an identity name orID oran email address. Ifitcontains an identity name or ID,
+the email address isretrieved from the identity record.
+
+ Syntax notify <emailTemplateName or ID> toAddress
+ Examples > notify Certification Alan.Bradley
+ Result Sends an email to Alan.Bradley's email address using the Certification email tem-
+ plate.
+
+
+ Authenticate
+
+The authenticate command authenticates a username and password against the pass-through authentication source
+orthe internal IdentityIQ records. No results are returned ifthe values are authenticated. Ifthe password isincorrect or
+the user name cannot be found, an error message isdisplayed inthe console (stdout).
+
+ Syntax authenticate usernamepassword
+ Examples > authenticate Alan.Bradley s53n659#@5a!
+ Result Authenticates username Alan.Bradley and the provided password against the
+ authentication source (pass-through orinternal)
+
+
+ SimulateHistory
+
+The simulateHistory command is used togenerate a fake, randomly-generated group index oridentity score history
+forone or more groups oridentities. Used for generating testdata ina development environment.
+
+
+
+ Syntax simulateHistory Identity|Group <groupName or ID>|<identityName or ID>|all
+ > simulateHistory Identity all
+ Examples
+ > simulateHistory Group Finance
+ First example generates fake risk scorecards forall identitiesin the system.
+ Result
+ Second example generates fake groupIndex information forthe Finance group.
+
+
+ Expire
+
+
+
+
+
+
+
+SailPoint IdentityIQ Console 32
+
+===== Page 36/67 =====
+IIQ Console Commands
+
+
+The expire command immediately expires a work item that has an expiration configured. Ifthe work item istype
+Event, italso pushes the event forward with the workflow.
+
+ Syntax expire <id>
+ Examples > expire [sample id]
+ Result The work item immediately expires.
+
+
+ UpdateHql
+
+The updateHql command allows you to run a Hibernate query language (Hql) command to update an object inthe
+IIQ database.
+
+ Syntax updateHql < statement>
+ Examples > update Identity set type = 'employee' when name = 'Aaron.Nich-
+ ols'
+ Result The given objects are changed in the database. The IIQ console returns a count of
+ rows thatwere updated.
+
+
+ CloudAccess
+
+Use the cloudAccess command tomanage and test the Cloud Access Management (CAM) integration.This com-
+mand requires a subcommand.
+
+ Note: CAM needs to be enabled forthese commands tobe successful. IfCAM isnot enabled, a
+ message displays stating, "cloudAccess requires CAM feature to be enabled." After importing
+ init-cam.xml, commands should run as expected without requiring a restart.
+
+Syntax:
+
+cloudAccess subcommand
+
+Get
+
+The get subcommand isused to get information from the configured cloudAccess server.
+
+Syntax: cloudAccess get subcommand
+
+Get Subcommands:
+
+
+
+ l healthStatus
+
+ Use cloudAccess get healthStatus to get the health status of the Cloud Access server
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Console 33
+
+===== Page 37/67 =====
+IIQ Console Commands
+
+
+ Example:
+
+ > cloudAccess get healthStatus
+
+
+
+ l role -nativeId
+
+ Use cloudAccess get role -nativeId <id> [-cspType <cspType>] toget the CAM role from the Cloud
+ Access server
+
+ Example:
+
+ > cloudAccess get role -nativeId arn:aws:iam::332420946437:role/823649857953_
+ Admin -cspType AWS
+
+
+
+ l group -nativeId
+
+ Use cloudAccess get group -nativeId <id> [-idpType <idpType>] to get the CAM group from the Cloud
+ Access server
+
+ Example:
+
+ > cloudAccess get group -nativeId f85e95c6-37d9-4a41-ba70-447e77b0470e -idpType
+ AZURE
+
+Results: As described above. When a group isnot found, returns the message "No results." When getrole finds no
+results,the returned JSON includes the 404 message. When invalidinput isgiven forthe required -idpType or-
+cspType, a listofvalid values displays.
+
+Event
+
+The event subcommand isused toget event subscriber information from theconfigured cloudAccess server.
+
+Syntax: cloudAccess event subscribers [list][delete<subscriberId>]
+
+Usage:
+
+Use cloudAccess event subscribers listtolistthe CAM Event Subscribers.
+
+Use cloudAccess event subscribers delete <subscriberId> to delete the specified CAM Event Subscriber.
+
+Results:
+
+Displays a listofCAM event subscribers with columns for subscriberId, groupId, and active (status).
+
+
+Plugin Commands
+
+See Working with Plugins from the IdentityIQ Console inthe Plugins Guide.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Console 34
+
+===== Page 38/67 =====
+IIQ Console Commands
+
+Recommender Commands
+
+Use the following recommender commands to manage and testrecommendations. This command may be truncated
+toreco.
+
+ Reco list
+
+The reco listcommand listsallrecommender definitions.
+
+ Syntax reco list
+ Examples > reco list
+ Listsallrecommender definitions, along with names and statuses (In Use, Avail-
+ Result able, Unavailable). Ifno recommender definitionsare available, a message dis-
+ plays "No RecommenderDefinitions Installed."
+
+
+ Reco use
+
+The reco use command letsyou select the active recommender. This should match your System Configuration.
+
+ Syntax reco use <name>
+ > reco use [recommender_name]
+
+ Examples Note: Ifthe recommender name contains whitespaces, be
+ sure toinclude those in the Recommender_Name.
+
+ The active recommender is set and displayed here. Ifyou enter a recommender
+ Result name thatdoes not exist,a message displays "Unable tofind recommender with id
+ or name: <name>."
+
+The reco use --command clears out the recommender selection and displays the message "Clearing recommender
+selection."
+
+ Reco run
+
+The reco run command fetches recommendations fora given identityor a given work item. Ifthese commands are
+run when a recommender isnot in use, a message displays "No recommender isselected. Use 'recommender use
+<name>' tomake selection."
+
+Syntax
+
+reco run -id<identId> -ent <entId>
+
+reco run [-update] -workitem <workItemId>
+
+reco run [-bulk]-requestfile <requestfile path>
+
+
+
+
+
+
+ SailPoint IdentityIQ Console 35
+
+===== Page 39/67 =====
+IIQ Console Commands
+
+
+reco run [-bulk]-jsonrequest <listof requests as JSON string>
+
+Results
+
+Use recommender run -id <identId> -ent <entId> toget the recommendation forthe given identity.
+
+Use recommender run [-update] -workitem <workItemId> to get the recommendations forthe given
+workitem.
+
+Use recommender run [-bulk] -requestfile <requestfile path> toget the recommendations forthe
+requests(s).
+
+Use recommender run [-bulk] -jsonrequest <list of requests as JSON string> toget the recom-
+mendations forthe request(s).
+
+Use recommender run -recommendAccess -id <identId> to get the recommendations forthe request(s).
+
+Use recommender run -catalog <translationKey> [-catalogType <recommender | accessRe-
+commender> ]] [-languageTag <languageTag>] toget the translation using the given localelanguage tag.
+The default is the server locale.
+
+Options
+
+Options include bulk, update, requestfile, and -jsonrequest:
+
+•-bulk performs as a bulk request. Ifthis option isspecified, allrecommender requests willbe combined intoa single
+bulk recommender request. Ifthisoption isomitted, each request willbe submitted individually.
+
+•-update updates the object with the recommendation.
+
+•-requestfile returns a JSON filecontaining alistof RecommendationRequests.
+
+•-jsonrequest to use a JSON string tolistrequests
+
+Other Commands
+
+ Rolerelationship
+
+The rolerelationship command letsyou view, search, and rebuildrelationships between roles and theirentitlement
+profiles,required roles, inherited roles,and permitted roles.
+
+Syntax
+
+This command requires a subcommand tospecify the particular action you want the command to take.
+
+Details about subcommands and their options are provided below; the general syntax forrunning the command with a
+subcommand is:
+
+rolerelationship subcommand
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Console 36
+
+===== Page 40/67 =====
+IIQ Console Commands
+
+Help
+
+This subcommand returns help details about other subcommands and theirusage details.
+
+Syntax: rolerelationship help
+
+Index
+
+This subcommand builds Bundle Profile Relation records, based on the provided role name, ID or type. Bundle Profile
+Relation records provide a snapshot-level view of a role and itsrelationships to entitlements, required roles, inherited
+roles,permitted roles, and managed attributes.This command runs the Refresh Role-Entitlement Associations task,
+with the filtersthatare specified inthe command syntax applied.
+
+Note thatthe only function currently supported isthe build function, which must be included in the command syntax.
+
+Syntax: rolerelationship index [function] [filter]
+
+Two filteroptions can be used with the index subcommand. Wildcards are not supported in these filters.
+
+
+
+ l role_name : The role name or ID.Role names that include a space must be enclosed insingle quotes (for
+ example, 'Payroll Approver').
+
+
+
+ l role_type : The role type, such as business orit
+
+
+Examples
+
+rolerelationship index build -role_name 'Payroll Approver'
+
+rolerelationship index build -role_type it
+
+rolerelationship index build -role_name 'Tax Manager' -role_type business
+
+Search
+
+This subcommand searches for roles using search filtersand parameters. You can use a variety offiltersand fixed-
+value parameters to search for roles and role relationships. The -loption returns results ina listview, suppressing enti-
+tlement and status information in the results, so thatrelationship data is not displayed.
+
+Syntax:rolerelationship search [filter] [-l]
+
+Filters for the Search Subcommand
+
+Use filterstosearch forroles based on a variety of criteria.Filterscan be combined with fixed values (which are
+described in a latertable) torefine your searches.
+
+applications
+
+ Syntax is-app <app_name_or_id> or -app_status <app_status>.
+
+ - app <app_name_or_id> returns allroles that have entitlements from the provided application.
+
+
+
+
+ SailPoint IdentityIQ Console 37
+
+===== Page 41/67 =====
+IIQ Console Commands
+
+
+ -app_status <app_status> returns allroles that have entitlements from the provided application with this
+ type of status.
+
+roles
+
+ Syntax is-role_name <role_name_or_id> or -role_type <role_type>
+
+ -role_name <role_name_or_id> returns roles matching the provided role name or id.
+
+ -role_type <role_type> returns roles ofthis type. Options are it,business, assignOrDetect, rap-
+ idSetupBirthright, or any custom role types that are requestable.
+
+ Roles supports wildcard search using %
+
+entitlements
+
+ Syntax is-ent_attr <attribute> or -ent_value <value>
+
+ -ent_attr <attribute> filtersbytype of profile= entitlement. Options are group, groupmbr, and mem-
+ berOf.
+
+ -ent_value <value> filtersby type of profile= entitlement and returns only entitlements thatcontain this
+ value.
+
+ Entitlements supports wildcard search using %
+
+permissions
+
+ Syntax is-perm_right <right> or -perm_target <target>
+
+ -perm_right <right> filtersby type of profile= permission. Options are create, delete, execute, read,
+ and update.
+
+ -perm_target <target> filterbytype ofprofile = permission (options are targets defined on entitlement per-
+ missions).
+
+ Permissions supports wildcard search using %
+
+relationships
+
+ Syntax is-inheritance <inheritance> or -rel2role <relationship_to_role>
+
+ -inheritance <inheritance> filtersby relationship and inheritance. Options are SELF_ONLY which
+ defines privileges derived from role only (directly),or INHERITED_ONLY which defines privileges derived only
+ through inheritance.
+
+ -rel2role <relationship_to_role> filtersby relationship ofthe profile tothe role. Options are:
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Console 38
+
+===== Page 42/67 =====
+IIQ Console Commands
+
+
+
+
+ l ANY ignores allrelationships and displays all
+
+
+
+ l SELF_ONLY only shows roles thathave the entitlements / permissions directlyon them
+
+
+
+ l SELF_AND_SPECIFIC_RELATED shows roles that have the entitlements /permissions directly on
+ itOR a specificrelationship (inherited, permitted, required).
+
+
+
+ l ALL_RELATED_ONLY only shows roles that have the entitlement /permission through a specific
+ relationship (relationship cannot be selected in additional filters),noton the roledirectly, only via
+ derived roles.
+
+
+
+ l SPECIFIC_RELATED_ONLY only shows roles that have the entitlement /permission through a
+ specific relationship (relationship can be selected inadditional filters),noton the role itself.
+
+
+
+ l The -rel2role options [ ANY |SELF_ONLY |ALL_RELATED_ONLY ]are incompatible with spe-
+ cified [ inheritance |req_perm_type ] filtersother than ANY.
+
+relationship types
+
+ Syntax is-ent_perm_type <relation_type>
+
+ Filterby type of entitlement within role.Options are entitlement orpermission.
+
+ Value ofpermission is incompatible with ent_attr and ent_value criteria.
+
+ Value ofentitlement is incompatible with perm_right and perm_target criteria.
+
+required or permission
+
+ Syntax is-req_perm_type <req_perm_type>
+
+ Filterby required orpermitted. This filterisonly applicable when the -rel2role fixed value is setto SELF_
+ AND_SPECIFIC_RELATED or SPECIFIC_RELATED_ONLY
+
+ The options for -req_perm_type are:
+
+
+
+ l ANY – required or permitted role
+
+
+
+ l REQUIRED_ONLY – required only
+
+
+
+ l PERMITTED_ONLY – permitted only
+
+
+
+ l NEITHER – neither required nor permitted
+
+
+Fixed Values for the Search Subcommand
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Console 39
+
+===== Page 43/67 =====
+IIQ Console Commands
+
+
+Fixed value options in the Search subcommand letyou search forroles using specific values. Fixed values can be
+combined with filterstorefine your searches.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Console 40
+
+===== Page 44/67 =====
+IIQ Console Commands
+
+
+<rel2role> (relationship to role)
+
+
+
+ l ANY
+
+
+
+ l DIRECT_ONLY – only show where privilege is derived directly from the role
+
+
+
+ l DIRECT_SELECTED_INDIRECT – show direct relationships, and any specified indirectrelationships
+
+
+
+ l ALL_INDIRECT – only show where privilege isderived indirectlyfrom other roles
+
+
+
+ l SELECTED_INDIRECT – only show where privilege isderived indirectlyfrom selected other roles,using
+ entitlement /permission filters
+
+<relation_type>
+
+
+
+ l ANY
+
+
+
+ l ENTITLEMENT – entitlements only
+
+
+
+ l PERMISSION – permissions only
+
+<inheritance>
+
+
+
+ l ANY
+
+
+
+ l SELF_ONLY – privileges derived from the role only
+
+
+
+ l INHERITED_ONLY – privilege derived from inheritance only
+
+<app_status>
+
+
+
+ l APP_NOTFOUND – application is not found, role isorphaned
+
+
+
+ l ENT_NOTFOUND – entitlement not found
+
+
+
+ l OK – application exists
+
+<req_perm_type>
+
+
+
+ l ANY
+
+
+
+ l REQUIRED_ONLY – only Required is setto true
+
+
+
+ l PERMITTED_ONLY – only Permitted isset to true
+
+
+
+
+
+ SailPoint IdentityIQ Console 41
+
+===== Page 45/67 =====
+IIQ Console Commands
+
+
+
+
+ l NEITHER – neither Required nor Permitted are set to true
+
+
+
+ l BOTH – both Required and Permitted are set to true
+
+
+Notes on the Search Subcommand
+
+
+
+ l The <rel2role> (relationship_to_role) options [ ANY |DIRECT_ONLY | ALL_INDIRECT ]are incompatible
+ with specified [ inheritance |req_perm_type ] filtersotherthan ANY
+
+
+
+ l ent_perm_type value ofpermission isincompatible with ent_attr and ent_value criteria
+
+
+
+ l ent_perm_type value ofentitlement isincompatible with perm_right and perm_target criteria
+
+
+
+ l role_name, ent_attr, ent_value, perm_right,and perm_target support wildcard search with %
+
+
+Examples
+
+rolerelationship search
+
+Returns usage /help information forthe Search subcommand.
+
+rolerelationship search -app ExampleRoleApp
+
+Returns allroles thathave entitlements from the ExampleRoleApp application, indirectlyor directly.
+
+rolerelationship search -app ExampleRoleApp -role_name 'MyCompany IT Role'
+
+Returns alldirectentitlements inthe ExampleRoleApp forthe MyCompany IT Role.
+
+rolerelationship search -app ExampleRoleApp -role_type business
+
+Returns allroles oftype business that have entitlements in the ExampleRoleApp application, indirectlyor directly
+
+rolerelationship search -app Oracle_DB_oasis -ent_perm_type permission -perm_target
+AP_Logins -perm_right create
+
+Returns roles inthe Oracle_DB_oasis app that have create permissions on the AP_Logins target.
+
+Show
+
+This subcommand returns details about entitlements and status forthe requested role. A rolename or ID must be
+provided as an argument. Ifthere are any spaces in the rolename, the role name must be enclosed insingle quotes
+(forexample, 'Payroll Approver'). Wildcards are not supported forthe show subcommand.
+
+Syntax: rolerelationship show [Role Name or ID] [-l]
+
+The -l option returns results ina listview, suppressing entitlement and status information in theresults, so that rela-
+tionship data isnot displayed.
+
+Examples
+
+
+
+
+
+ SailPoint IdentityIQ Console 42
+
+===== Page 46/67 =====
+IIQ Console Commands
+
+
+rolerelationship show -role_name 'Payroll Approver'
+
+rolerelationship show -role_name TaxManager -l
+
+rolerelationship show -role_name 7f0000017e731ebe817e73cf168a0398
+
+ Provision
+
+The provision command processes the specified provisioning plan forthe specified identitybut does not save the
+information. This isused totest a connector orto testa provisioning plan.Errors are reported to the console. Ifthe pro-
+visioningaction would succeed, nothing isreported tothe console.
+
+ Syntax Provision <identityname or ID> provisioningPlanFfilename
+ Examples > provision Adam.Kennedy c:\data\provFile.xml
+ Result Tests the provisioning plan contained in c:\data\provFile.xml against Identity
+ Adam.Kennedy and reports any exceptions to the console
+
+The provisioning plan fileshould contain a provisioning plan inXML format. For example:
+
+
+ <?xml version='1.0' encoding='UTF-8'?>
+ <!DOCTYPE ProvisioningPlan PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+ <ProvisioningPlan>
+    <AccountRequest application="IIQ" nativeIdentity="ABC_12345" op="Modify">
+      <AttributeRequest name="assignedRoles" op="Add" value="Test Role B1">
+        <Attributes>
+           <Map>
+            <entry key="comments" value="req A"/>
+          </Map>
+        </Attributes>
+      </AttributeRequest>
+    </AccountRequest>
+    <AccountRequest application="IIQ" nativeIdentity="ABC_12345" op="Modify">
+      <AttributeRequest name="assignedRoles" op="Add" value="Test Role B2">
+        <Attributes>
+          <Map>
+            <entry key="comments" value="req B"/>
+          </Map>
+        </Attributes>
+      </AttributeRequest>
+    </AccountRequest>
+ </ProvisioningPlan>
+
+
+ Lock
+
+The lock command obtains a persistence lock on an object. The object's class and ID orname must be specified.By
+default,the lock isissued to the username Console, but a differentusername can be specified in the command's lock-
+Name parameter. The lock automatically expires after5 minutes.
+
+
+
+
+
+
+
+SailPoint IdentityIQ Console 43
+
+===== Page 47/67 =====
+IIQ Console Commands
+
+
+ Syntax lock classname <objectID or name> [lockName]
+ Examples > lock identity John.Smith
+ Result Obtains a persistence lock for Console on the identity record forJohn.Smith
+
+Identity objects are the only objects that can be locked. Attempts tospecify a different object type inthis command res-
+ultsin a syntax error exception.
+
+ Note: The lock command isnot supported for Access History.
+
+ Unlock
+
+The unlock command releases the lock on an object. The object's class and ID orname must be specified. Ifthe
+object is not locked, the message "Object is not locked" is displayed. Ifitis locked, the lock is released and the mes-
+sage "Lock has been broken" isdisplayed.
+
+ Syntax unlock classname <objectID or name>
+ Examples > unlock identity John.Smith
+ Result Breaks the lock on the identity record for John.Smith
+
+
+ Note: The unlock command is not supported for Access History.
+
+ ShowLock
+
+The showLock command liststhe lock owner, locked date / time, and lock expiration date /time fora locked object.
+The object's class and ID or name must be specified toview its lock information. The message Object isnot locked is
+displayed ifthe object isnot currently locked. Ifthe lock has expired, the lock information isshown but isprefaced with
+the message Lock has expired.
+
+ Syntax showLock classname <objectID or name>
+ Examples > showLock identity John.Smith
+ Result Displays lock information (owner, date / time, expiration date /time) on the identity
+ record forJohn.Smith or displays Object is not locked.
+
+
+ Oconfig
+
+The oconfig command listallextended attributes defined for each class that supports extended attributes. The list
+indicates the extended attribute numbers and corresponding attribute names on each class. Identity extended attrib-
+utes which link to other Identities are stored separately in extended identity attribute fields, so those are listedin a sep-
+arate Extended Identity Attributes sub-listunder the Identity ObjectConfig. The objectConfig detail displays No
+attributes defined ifno extended attributes are defined for a given class. An Object not found message isdisplayed if
+
+
+
+
+
+
+SailPoint IdentityIQ Console 44
+
+===== Page 48/67 =====
+IIQ Console Commands
+
+
+no objectConfig exists for the class.
+
+ Syntax oconfig
+ Examples > oconfig
+ Displays each objectConfig and its extended attributes, numbered according to the
+ extended attribute number that corresponds toeach
+ ObjectConfig: Identity
+ 1 region
+ 2 Department
+ 3 location
+ 4 empId
+ 5 jobtitle
+ Extended Identity Attributes:
+ 1 regionOwner
+ 2 locationOwner
+ ObjectConfig: Link
+ Result 1 inactive
+ 2 service
+ 3 privileged
+ 4 lastLogin
+ ObjectConfig: Application
+ 1 DeployDate
+ ObjectConfig: Bundle
+ No attributes defined
+ ObjectConfig: ManagedAttribute
+ 1 authorization
+ 2 email
+ 3 rank
+ ObjectConfig: CertificationItem
+ Object not found
+
+
+ TextSearch
+
+The textsearch command enables command-line execution of fulltext searches as they are done through the LCM full
+textsearch. The class name must be either ManagedAttribute orBundle, since those are the only indexed classes.
+This command searches forthe specified string in the fullTextIndex created for the specified class and returns a map
+representation of the objects in which the string isfound. Ifa filterattribute and value are specified, the search is fur-
+ther constrained to entries that correspond to that attribute name-value pair. The filterisalways treated as an equals
+operation. The filterName must be an attribute that isindexed in the FullTextIndex object for the specified class.
+
+
+
+
+
+SailPoint IdentityIQ Console 45
+
+===== Page 49/67 =====
+IIQ Console Commands
+
+
+ Syntax textsearch classname string [filterName filterValue]
+ Examples > textsearch Bundle manager type business
+ Returns a map of data values for each Bundle (role)of type=business thatcontains
+ Result the string manager inany analyzed field.Analyzed fieldsin the Bundle FullTex-
+ tIndex marked as analyzed=true.
+
+
+ Search
+
+The search command looks up an object based on specified criteria,similar to a simplified SQL /HQL interface. A
+single class name isspecified with a listof the attributes todisplay from thatclass. Following the where keyword,
+search filterscan be specified in name value sets. All filtervalues are used in a likecomparison. The record is returned
+iftherecord's fieldvalue contains the specified value string.
+
+ search className [attributeName…] where [filter…]
+ Syntax
+ filter:attributeNamevalue
+ Examples > search identity name manager.name region where name kat
+ Returns the name, manager's name, and region for allidentitieswhose name con-
+ tains the string kat.
+ Result
+ For example, records forKatherine.Jones, John.Kato, and Tammy.Erkatz are
+ returned by thissearch.
+
+
+ Impact
+
+The impact command reads an XML filecontaining a Bundle (role)object and performs role impact analysis forthe
+role.The command parses the XML to itsobject form. Impact analysis is not performed ifthat object is not a Bundle.
+
+ Syntax impact filename
+ Examples > impact c:\data\ContractorRole.xml
+ Result Performs role impact analysis forthe Bundle object represented by the XML in
+ c:\data\ContractorRole.xml
+
+
+ Event
+
+The event command schedules a workflow to run, passing in an Identity name as an argument. By default, the work-
+flow isscheduled 1 second after the command isissued, but a delay can be specified in seconds as a command argu-
+ment.
+
+ Syntax event <identityName or ID> <workflowName or ID> [seconds]
+ Examples > event Catherine.Simmons "Identity Refresh" 60
+
+
+
+
+
+
+SailPoint IdentityIQ Console 46
+
+===== Page 50/67 =====
+IIQ Console Commands
+
+
+ Result Schedules an Identity Refresh workflow to run for Catherine.Simmons 60 seconds
+ after the command isissued.
+
+
+ ConnectorDebug
+
+The connectorDebug command is used totest a connector or troubleshoot application aggregation issues. Its
+method parameters determine what istested and how.
+
+ Syntax connectorDebug <applicationName or ID> <method> [methodArgs…]
+
+The specific syntax foreach of the "methods" is shown below.
+
+ Method test
+ Purpose Test whether a connection can be established with the application through itscon-
+ nector
+ Syntax connectorDebug <applicationName or ID> test
+ Example > connectorDebug ADAM test
+ Result Returns "Test Succeeded" on success, reports an error in the console on failure.
+
+
+ Method iterate
+ Purpose Iterate through the application's account or group records
+ Syntax connectorDebug <applicationName or ID> iterate [account|group (default =
+ account)] [-q (for"quiet mode")]
+ Example > connectorDebug ADAM iterate -q
+ > connectorDebug ADAM iterate account
+ First example iterates allaccount records natively inthe ADAM application and
+ returns only the count ofiterated objects and how many milliseconds ittook to run.
+ Result
+ Second example iteratesaccount records natively in the ADAM application and
+ returns a ResourceObject representation of each account tothe console.
+
+
+ Method get
+ Purpose Test whether a connection can be established with the application through itscon-
+ nector
+ Syntax connectorDebug <applicationName or ID> get account|group nativeIdentity
+ Example > connectorDebug ADAM get account "CN=Willie.Gomez,DC=sailpoint,DC=com"
+ Result Returns the XML representation of the ResourceObject for that nativeIdentity on the
+ application
+
+
+
+
+
+
+
+SailPoint IdentityIQ Console 47
+
+===== Page 51/67 =====
+IIQ Console Commands
+
+
+ Method auth
+ Purpose Test pass-through authentication against the specified application (The fea-
+ turesString inits application definition must contain AUTHENTICATION.)
+ Syntax connectorDebug <applicationName or ID> auth usernamepassword
+ Example > connectorDebug ADAM auth administrator Pa$$w0rd
+ Result Returns "Authentication Successful" when user is authenticated ordisplays the
+ exception message to the console ifauthentication fails.
+
+
+ Encrypt
+
+The encrypt command isused toencrypt a string. This command isgenerally only useful fortest purposes. Itcan gen-
+erate an encrypted password which can be passed inother console commands, forexample, the authenticate com-
+mand.
+
+ Syntax encrypt string
+ Examples > encrypt MyPa$$w0rd
+ Result Returns the encrypted equivalent forthe specified string.
+
+
+ HQL
+
+The hql command executes a search based on a Hibernate Query Language statement. The command syntax
+matches the SQL command's syntax, but thiscommand can select but not update data.
+
+ Syntax hql hqlStatement |-finputFileName
+ > hql "select name, manager.name from Identity" > c:\data\Iden-
+ Examples tities.dat
+
+ > hql -f c:\hql\SelectIdentities.hql
+ The firstexample executes the specified HQL select statement and writes the res-
+ ults tothe filec:\data\Identities.dat.
+ Result The second example reads the HQL from the filec:\hql\SelectIdentities.hql, prints
+ the HQL to the console (stdout), and displays the query results to the console
+ (stdout).
+
+
+ Date
+
+The date command shows the current date and time for the application server or the date and time value fora spe-
+cifiedutime (universal time) value.
+
+ Syntax date [utime]
+
+
+
+
+
+
+
+SailPoint IdentityIQ Console 48
+
+===== Page 52/67 =====
+IIQ Console Commands
+
+
+ > date
+ Examples
+ > date 1338820492484
+ The firstexample displays the command syntax and the current date /time and cur-
+ Result rent UTIME value.
+
+ The second example returns the date /time value for the specified UTIME value.
+
+
+ Shell
+
+The shell command escapes out to the command lineand runs the command specified.
+
+ Note: This command does not work properly ina Windows environment, but does work inUNIX.
+
+ Syntax shell commandLine
+ Examples > shell ls
+ Result Lists the contents ofthe UNIX filesystem directory from which the console was
+ run.
+
+
+ Meter
+
+The meter command toggles metering on or off.While metering is on, the console reports some timing statistics for
+each command executed. Meter information isdisplayed after the results of each command as itis executed.
+
+ Syntax meter
+ Examples > meter
+ Toggles metering on and off.When turned on, allsubsequently issued commands
+ report timing statistics.
+ Result Meter information displayed includes: number of calls,total number of mil-
+ liseconds, maximum time for one call,minimum time for one call,and average time
+ per call.
+
+
+ Compress
+
+The compress command isdesigned to compress the contents of a filetoa string that can be included within an XML
+element. Itcompresses the fileand then encodes itto Base64 and writes that textto the specified output file.This res-
+ultantfilecan then be used in an XML element stored in the database. This has limited usefulness within IdentityIQ
+since no part of the application is designed toread these compressed strings, but custom rules can be used topro-
+cess them as needed or they can simply be stored in the database tobe retrieved and uncompressed foruse by an
+external application at a latertime.
+
+
+
+
+
+
+
+SailPoint IdentityIQ Console 49
+
+===== Page 53/67 =====
+IIQ Console Commands
+
+
+ Syntax compress inputFilenameoutputFilename
+ Examples > compress file1.txt file2.txt
+ Result Compresses the contents offile1.txt,encodes that into Base64, and writes the res-
+ ultant textstring to file2.txt
+
+
+ Uncompress
+
+The uncompress command functions inexactly the opposite way ofthe compress command, taking a compressed,
+Base64-encoded fileand returning itsuncompressed format.
+
+ Syntax uncompress inputFilenameoutputFilename
+ Examples > compress file2.txt file3.txt
+ Result Reverses the compressing process to return the original,uncompressed version of
+ the text,writing that tothe filefile3.txt.
+
+
+ ClearEmailQueue
+
+The clearEmailQueue command deletes allqueued but unsent email messages from the IdentityIQ email queue.
+This includes any new messages that have not yet been sent and messages that have encountered problems that pre-
+vented successful delivery.
+
+ Syntax clearEmailQueue
+ Examples > clearEmailQueue
+ Result Deletes allunsent emails from the email queue.
+
+
+ ClearCache
+
+The clearCache command removes objects from the Hibernate object cache. This can be used when debugging
+Hibernate issues.
+
+ Syntax clearCache
+ Examples > clearCache
+ Result Clears the Hibernate object cache.
+
+
+ Service
+
+The service command provides information about the background services running in the console. The services
+include:
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Console 50
+
+===== Page 54/67 =====
+IIQ Console Commands
+
+
+
+
+ l Cache – periodically refreshes cached objects
+
+
+
+ l SMListener – listens for change events from PE2 change interceptors
+
+
+
+ l ResourceEvent – looks for change events added to a queue and processes them
+
+
+
+ l Heartbeat – maintains a Server object for each IdentityIQ instance and periodically updates it
+ so you can tell ifan instance is stillrunning
+
+
+
+ l Task – the Quartz task scheduler
+
+
+
+ l Request – the IdentityIQ request processor – stopping the Request service also stops par-
+ titioned tasks
+
+ Syntax service list|start|stop |run
+ Examples > service list
+ Result Lists background services running inthe console.
+
+Access History Console Commands
+
+
+ Note: Not allconsole commands support Access History.See Console Commands that do
+ not Support Access History inthe Access History Guide.
+
+ AccessHistory
+
+Entering accessHistory with no additional supplied subcommands returns an error and displays usage information.
+
+Syntax: This command requires a subcommand tospecify the particularactionyou want the command totake.
+Detailsabout subcommands and theiroptions are provided below; thegeneral syntax forrunning the command with a
+subcommand is:
+
+accessHistory <subcommand>
+
+ Help
+
+The help subcommand returns help detailsabout other subcommands and theirusage details.
+
+Syntax:
+
+accessHistory help
+
+ CreateEvent
+
+
+
+
+
+
+
+ SailPointIdentityIQ Console 51
+
+===== Page 55/67 =====
+IIQ Console Commands
+
+
+The createEvent subcommand pulls attributeinformation forthe given object and displays the JSON forthe
+ExportEvent. The accessHistory createEvent command may be abbreviated ac c.
+
+The output tothe screen is the attributeinformation forthe type being created, i.e.the identity,application, bundle,
+managed attribute, certification,identityrequest, or work item attributesmeet the attributes listedinthe standard
+accessHistoryExport.xml file,which currently include empID, type, lastname, password, department, location, and
+region.
+
+Identity
+
+Syntax:
+
+accessHistory createEvent <identity> <identity name_or_id>
+
+Example:
+
+> ac c identity ac10293181aa1e5a8181aa8eec400150
+
+Application
+
+Syntax:
+
+accessHistory createEvent <application> <application name_or_id>
+
+Example:
+
+> ac c application ac10293181aa1bff8181aa8d667c0368
+
+Bundle
+
+Syntax:
+
+accessHistory createEvent <bundle> <bundle name_or_id>
+
+Example:
+
+> ac c bundle ac10293181aa1bff8181aa8d6e6c038d
+
+ManagedAttribute
+
+Syntax:
+
+accessHistory createEvent <managedattribute> <managedattribute_or_id>
+
+Example:
+
+> ac c managedattribute ac10293181aa1bff8181aa8d7c370497
+
+Certification
+
+Syntax:
+
+
+
+
+ SailPoint IdentityIQ Console 52
+
+===== Page 56/67 =====
+IIQ Console Commands
+
+
+accessHistory createEvent <certification> <certification_or_id>
+
+Example:
+
+> ac c certification ac10293181aa10168181aad16a4d1629
+
+Identity Request
+
+Syntax:
+
+accessHistory createEvent <identityrequest> <identityrequest_or_id>
+
+Example:
+
+> ac c identityrequest ac10293181aa10168181aad809fa199f
+
+Work Item
+
+Syntax:
+
+accessHistory createEvent <workitem> <workitem_or_id>
+
+Example:
+
+> ac c workitem ac10293181aa1e5a8181aa9338902231
+
+ PostEvent
+
+The postEvent subcommand should be used inconjunction withthe readEvent command. The accessHistory
+postEvent command may be abbreviated ac po.
+
+Afterposting an event, a statusof Success is returned or a message displays on the console confirming that the event
+failedtopost.
+
+Identity
+
+Syntax:
+
+accessHistory postEvent <identity> <identityname_or_id>
+
+Example:
+
+> ac po identity ac10293181aa1e5a8181aa8eec400150
+
+Application
+
+Syntax:
+
+accessHistory postEvent <application> <application name_or_id>
+
+Example:
+
+
+
+
+
+
+ SailPoint IdentityIQConsole 53
+
+===== Page 57/67 =====
+IIQ Console Commands
+
+
+> ac po application ac10293181aa1bff8181aa8d667c0368
+
+Bundle
+
+Syntax:
+
+accessHistory postEvent <bundle> <bundle name_or_id>
+
+Example:
+
+> ac po bundle ac10293181aa1bff8181aa8d6e6c038d
+
+Managed Attribute
+
+Syntax:
+
+accessHistory postEvent <managedattribute> <managedattribute_or_id>
+
+Example:
+
+> ac po managedattribute ac10293181aa1bff8181aa8d7c370497
+
+Certification
+
+Syntax:
+
+accessHistory postEvent <certification><certification_or_id>
+
+Example:
+
+> ac po certification ac10293181aa10168181aad16a4d1629
+
+Identity Request
+
+Syntax:
+
+accessHistory postEvent <identityrequest> <identityrequest_or_id>
+
+Example:
+
+> ac po identityrequest ac10293181aa10168181aad809fa199f
+
+Work Item
+
+Syntax:
+
+accessHistory postEvent <workitem> <workitem_or_id>
+
+Example:
+
+> ac po workitem ac10293181aa1e5a8181aa9338902231
+
+ ReadEvent
+
+
+
+
+ SailPointIdentityIQConsole 54
+
+===== Page 58/67 =====
+IIQ Console Commands
+
+
+The readEvent subcommand reads events posted by createEvent commands from the queue and should be used in
+conjunction with the postEvent or multiPostEvent. The accessHistory readEvent command may be abbreviated ac
+re.
+
+ Syntax accessHistory readEvent --follow
+ Examples > ac re --follow
+ Result After allevents are returned, the message “No message in queue” is returned.
+
+
+ MultiPostEvent
+
+The multiPostEvent subcommand should be used inconjunction with the readEvent. The accessHistory mul-
+tiPostEvent command may be abbreviated ac m.
+
+Use any Type above (i.e.Identity,Application, Bundle, Managed Attribute, Certification,Identity Request, Work Item)
+and a number indicating the item count that you want returned.
+
+ Note: If no count isadded, then a default of10 willbe returned.
+
+ Syntax accessHistory multiPostEvent <type> [number]
+ Examples > ac m Identity 5
+ Result Returns the given number ofthe type ofitems indicated.
+
+
+ Snapshot
+
+The snapshot subcommand isused to show the details ofthe specified snapshot.
+
+ Syntax accesshistory snapshot <identity> <snapshot>
+ > ac snapshot amy.cox 2022-07-08T14:10:38.465
+ Examples
+ > ac snapshot ac10293181de1a868181defec5dc09b1 2022-07-08T14:10:38.465
+ Result Displays details of the specified snapshot.
+
+
+ CreateExtractedObject
+
+This command creates an Extracted Object with a name or an ID.
+
+ Syntax createExtractedObject <type> <name_or_id>
+ Examples > accessHistory createExtractedObject capability
+ Result Create and dump an ExtractedObject for the given object with name/id. Displays
+ the JSON for the ExtractedObject.
+
+
+ PostExtractedObject
+
+
+
+
+
+SailPoint IdentityIQ Console 55
+
+===== Page 59/67 =====
+IIQ Console Commands
+
+
+This command creates and post an Extracted Object with the given name or ID.
+
+ Syntax postExtractedObject <type> <name_or_id>
+ Examples > accessHistory postExtractedObject certification
+ Result Create and post an ExtractedObject for the given object with name /ID. Displays
+ success or fail.
+
+
+ MultiPostExtractedObject
+
+This command creates and posts multiple Extracted Objects foran object type.
+
+ Syntax multiPostExtractedObject <type> [count]
+ Examples > accessHistory multiPostExtractedObject identityEntitlement 10
+ Result Create and post multiple ExtractedObject objects for a given object type. The
+ default is10.
+
+
+ ReadQueue
+
+This command reads and displays the JSON for one Extracted Object.
+
+ Syntax readQueue [--follow]
+ Examples > accessHistory readQueue --follow
+ From the destination queue, read and display the JSON fora single Extrac-
+ Result tedObject, ifany. The --follow option willcontinuously read / display until inter-
+ rupted by using a return key or exiting the console.
+
+
+ SetPretty
+
+This command enables or disables the Pretty Printing feature. A message willdisplay confirming the JSON pretty print-
+ing command has been enabled.
+
+ Syntax setPretty [<on |off>]
+ Examples > accessHistory setPretty on
+ Result Turns pretty printing on / offfor JSON output. The default ison.
+
+
+ GetImage
+
+This command creates an image for the Extracted Object.
+
+ Syntax getImage <type> <name_or_id>
+ Examples > accessHistory getImage identityEntitlement
+
+
+
+
+
+
+SailPoint IdentityIQ Console 56
+
+===== Page 60/67 =====
+IIQ Console Commands
+
+
+ Result Generates an ExtractedObject for the type and name/id then displays the JSON for
+ the contained Image object.
+
+
+ Timeline
+
+This command captures a set timeline.
+
+ timeline <type> <name_or_id> [--startIndex number] [--startDate yyyyMM or
+ Syntax yyyyMMdd] [--startEpoch number] [--itemsPerPage number] [--intervalday or
+ month]
+ Examples >accessHistory timeline managedAttribute
+ ac1029318790138c8187900a3b8a04c6 --startDate 2023
+ Result Query captures timeline and displays the JSON.
+
+
+ ShowCapture
+
+This command shows details of a specified capture.
+
+ Syntax showCapture <type> <name_or_id> <dateTime>
+ Examples > accessHistory showCapture workGroup ac1029318799178481879a6c5fcd02b3
+ 2023-04-19T11:50:21.369
+ Result Retrieves the details of the specified capture. Displays the JSON.
+
+
+ DiffCapture
+
+This command shows the difference between the last two captures. Including date and time is optional.
+
+ Syntax diffCapture <type> <name_or_id> <dateTime> <dateTime>
+ Examples > accessHistory diffCapture identity amy.cox.
+ Result Shows the differences between two captures.
+
+
+ ApplyPatches
+
+This command allows comparison tothe latestextract.
+
+ Syntax applyPatches <type> <name_or_id> [-v]
+ Examples > accessHistory applyPatch identitydebbie.smith
+ Result Given the entity type and name/id, apply patches to the latest fullcapture and com-
+ pare tocurrent extract and state ifthey are equal. Use -vflag to printJSON details.
+
+
+ Clear
+
+
+
+
+
+SailPoint IdentityIQ Console 57
+
+===== Page 61/67 =====
+IIQ Console Commands
+
+
+This command clears alltables within the database.
+
+ Syntax clear
+ Examples > accessHistory clear
+ Result Clear /reset allaccess history data.
+
+Data Extract Console Commands
+
+ Data Extract
+
+Entering dataextract atthe console listsallofthe Data Extract commands thatcan be used.
+
+Syntax: This command requires asubcommand tospecify the particular action you want the command to take.Ifno
+subcommand issupplied, usage forsubcommands is listedfollowed by the message
+
+"dataextract requires a subcommand."
+
+Details about subcommands and their options are provided below; the general syntax forrunning thecommand with a
+subcommand is:
+
+dataExtract subcommand
+
+ Extract
+
+The dataextract extract command letsyou view extractedObjects based on the specific Extract YAMLConfig.
+
+ Caution: extract does not write a message to a queue unless a --write argument issupplied,
+ see below.
+
+
+Syntax:
+
+dataextract extract --config <extract config name> [--type <type>] [--write] [--
+timestamp]
+
+The --config argument is required.
+
+The --type option can be used to define the type of objects to extract.Ifomitted, alltypes willbe extracted.
+
+The --write option can be used towrite the data to the configured output queue. By default, itwritesto the screen.
+
+The --timestamp option updates the timestamp.
+
+Example:
+
+> dataextract extract --config AccessHistoryExportConfig
+
+ Generateextract
+
+
+
+
+
+
+ SailPoint IdentityIQ Console 58
+
+===== Page 62/67 =====
+IIQ Console Commands
+
+
+The dataextract generateextract command generates a default Extract YAMLConfig foran object or set ofobjects.
+This convenience gives you a faster start tocreating your Extract YAMLConfigs. You can generate a configuration,
+then use itorcustomize itforyour needs.
+
+Syntax:
+
+dataextract generateextract [--classes <classes>] [--write <config name>] [--force]
+[--destination <queue name>] [--transformConfigurationName <transform config name>]
+[--interceptdeletes <'none', 'brief' or 'full'>]
+
+Example:
+
+> dataextract generateextract --classes Identity,ManagedAttribute,Capability --des-
+tination queue://dataExtractDestinationName --transformConfigurationName testTrans-
+formName
+
+You may specify a listofclasses – note thatifyou write the config file,itwillreplace anything that isalready there, it
+doesn't do any merging. Ifyou do not specify alistof classes then allmajor classes willbe added, with the exclusions
+ofthe following classes that are prevented from being generated:
+
+
+
+ l HistoricalCapability.class
+
+
+
+ l HistoricalCapabilityCapture.class
+
+
+
+ l HistoricalCertification.class
+
+
+
+ l HistoricalEntitlementCapture.class
+
+
+
+ l HistoricalIdentity.class
+
+
+
+ l HistoricalIdentityCapture.class
+
+
+
+ l HistoricalIdentityEvent.class
+
+
+
+ l HistoricalWorkgroup.class
+
+
+
+ l HistoricalWorkgroupCapture.class
+
+
+
+ l HistoricalWorkgroupEvent.class
+
+
+
+ l HistoricalManagedAttribute.class
+
+
+
+ l HistoricalManagedAttributeCapture.class
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Console 59
+
+===== Page 63/67 =====
+IIQ Console Commands
+
+
+
+
+ l HistoricalManagedAttributeEvent.class
+
+
+
+ l HistoricalRole.class
+
+
+
+ l HistoricalRoleCapture.class
+
+
+
+ l HistoricalRoleEvent.class
+
+
+
+ l InterceptedDelete.class
+
+
+This configuration willjust be displayed unless you add --write.
+
+Ifyou try towrite a configuration filewith the same name as the existing one, you willget an error unless you use the -
+-force option.
+
+You must provide a message destination.
+
+You must provide a transformConfigurationName.
+
+You can specify the level of intercepted delete data for allobjects generated.
+
+ Generatetransform
+
+The dataextract generatetransform command generates a default Transform YAMLConfig forany firstclass object.
+This convenience gives you a faster start tocreating your Transform YAMLConfigs. You can generate a configuration,
+then use itas isor customize itfor your needs.
+
+Syntax:
+
+dataextract generatetransform [--classes <classes>] [--write <destination>]
+
+Example:
+
+> dataextract generatetransform --classes Application,Identity --write AllOb-
+jectsXform
+
+By default, with no arguments, this command generates a transform configuration for a predetermined set of objects.
+
+The --classes option outputs a config to the console for the listedclass(es) only; for example, including --
+classes Application outputs a config forthe Application class only. Ifyou do not specify a listofclasses, then all
+major classes willbe added, with the exclusion of the following classes that are prevented from being generated:
+
+
+
+ l HistoricalCapability.class
+
+
+
+ l HistoricalCapabilityCapture.class
+
+
+
+ l HistoricalCertification.class
+
+
+
+
+
+
+
+SailPoint IdentityIQ Console 60
+
+===== Page 64/67 =====
+IIQ Console Commands
+
+
+
+
+ l HistoricalEntitlementCapture.class
+
+
+
+ l HistoricalIdentity.class
+
+
+
+ l HistoricalIdentityCapture.class
+
+
+
+ l HistoricalIdentityEvent.class
+
+
+
+ l HistoricalWorkgroup.class
+
+
+
+ l HistoricalWorkgroupCapture.class
+
+
+
+ l HistoricalWorkgroupEvent.class
+
+
+
+ l HistoricalManagedAttribute.class
+
+
+
+ l HistoricalManagedAttributeCapture.class
+
+
+
+ l HistoricalManagedAttributeEvent.class
+
+
+
+ l HistoricalRole.class
+
+
+
+ l HistoricalRoleCapture.class
+
+
+
+ l HistoricalRoleEvent.class
+
+
+
+ l InterceptedDelete.class
+
+
+ Note: Workgroup willbe added as a special case since it'sasubtype of Identity. Workgroup is
+ added with all ofthe fieldspresent inIdentity.
+
+The --write option can be used to write the data to the configured output queue. By default, itwrites to the screen.
+
+The --force option can be used to overwrite an existing config filewith the same name.
+
+ SetPretty
+
+The dataextract setPretty command turns JSON pretty printing on or off.Pretty printing format is easier to read.
+
+ Syntax dataextract setPretty [ON/OFF]
+ Examples >dataextract setPretty ON
+ >dataextract setPretty OFF
+ Result JSON pretty printing turns on or off.Using a value that isnot ON turns pretty print-
+ ing off.
+
+
+
+
+
+SailPoint IdentityIQ Console 61
+
+===== Page 65/67 =====
+IIQ Console Commands
+
+
+ Note: The ON /OFF command iscase insensitive.
+
+ Message
+
+The dataextract message command requires an argument, either --destination or --test. Ifthe provided
+queue has messages, --destination <destination> dequeues one message each time the command is
+issued. --test creates a queue, writes a message, reads the message, and then deletes the queue.
+
+ dataextract message --destination <destination> [--drain] [-
+ -topic] [--wait <wait time in seconds>]
+ Syntax Or
+
+ dataextract message --test [--topic]
+ >dataextract message --destination <valid queue name>
+
+ Requires a value fordestination queue.
+ Examples Or
+
+ >dataextract message --test
+ Result Ifthe provided queue has messages, one message dequeues each time the com-
+ mand isissued.
+
+
+The --drain argument may be used to read messages from the destination untilno more are present.
+
+The --topic option can be used to treatthe destination as a topic ratherthan a queue.
+
+--wait <wait time in seconds> allows time forallmessages todrain.
+
+ Transform
+
+The dataextract transform command transforms an objectinto JSON using a specificTransform YAMLConfig.
+
+Allarguments are required when a default config isnot set.Config isnot required when a default config isset. The
+defaultconfig can be overridden by passing inanother config.
+
+ Note: Ifthe default config isExtract type, itcauses an error.
+
+ Syntax dataextract transform [--type <type>] [--name_or_id <name_
+ or_id>] [--config <config>]
+ Example >dataextract transform
+ Result An objectis transformed intoJSON using the specificTransform YAMLConfig.
+
+The --type <type> option can be used toindicate the friendlyname ofthe type of object totransform.
+
+The --name_or_id <name_or_id> option can be used to indicatethe name or IDof the object totransform.
+
+
+
+
+
+SailPoint IdentityIQ Console 62
+
+===== Page 66/67 =====
+IIQ Console Commands
+
+
+The --config <config> option can indicatethe name ofthe configuration object used to transform the object to
+JSON.
+
+ ListDestinations
+
+The dataextract listDestinations command has no arguments. Itlistsallqueues.
+
+ Syntax dataextract listDestinations
+ Example >dataextract listDestinations
+ Destination type: QUEUE
+ queue://3ad93583-9f77-417c-9b03-e21901c4ad7a
+ queue://5d08a11b-81bd-4668-8569-3001180baba8
+ queue://the4364QueueToo
+ queue://ActiveMQ.Statistics.Broker
+ queue://ActiveMQ.Statistics.Subscription
+ Result queue://iiq.destination.stats.queue
+ queue://the4364ConsoleQueue
+ queue://accessHistoryExtractedObjects
+ queue://iiq.subscription.stats.queue
+ queue://9a0d5416-ee45-4538-b54e-9a8f25b56273
+ queue://ActiveMQ.Statistics.Destination.>
+ queue://14547f55-ac92-4698-b4a7-55a668f489a2
+ queue://iiq.broker.stats.queue
+
+ Connect to a Broker
+
+A broker must be running inorder to have successful outputs from theData Extract console commands. The following
+subcommands can help you connect toa broker when allbrokers are down and no connection can be made:
+
+ 1. dataextract extract -- write
+
+ a. Begin with the broker down.
+
+ b. Issue thiscommand, take thebroker down, then bring itback up.
+
+ c. Evaluate what happens – does itpickback up?
+
+ 2. dataextract message
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Console 63
+
+===== Page 67/67 =====
+IIQ Console Commands
+
+ a. Use the --destination <valid queue> and --follow argument so the connection stays act-
+ ive.
+
+ i. Issue the command – expect tosee connection errors.
+
+ ii. Bring abroker up and make sure itcan reconnect and continues totry toread messages.
+
+ b. --test with allbrokers down
+
+ 3. dataextract listDestinations
+
+ a. Issue the command and watch for exceptions.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Console 64

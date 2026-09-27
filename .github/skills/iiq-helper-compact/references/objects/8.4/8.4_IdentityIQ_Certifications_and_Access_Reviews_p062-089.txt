@@ -1,0 +1,1534 @@
+﻿===== Page 62/115 =====
+How to Complete Access Review Work Items
+
+ 1. Navigate toMy Work > Work Items to view your current work items.
+
+ 2. Select the View button tothe rightof a revocation work item to display the Manage Work Item page.
+
+ 3. Review the work item information in the Summary section.
+
+ 4. Review the Comments section forany information associated with this work item.
+
+ Use the Add Comment button toadd additional information tothe work item ifnecessary.
+
+ 5. Review and perform the operations necessary torevoke the privileges specified. See Making Access
+ Decisions.
+
+ Select a lineitem toview the details of the revocation request forthat item.
+
+ Note:Â The revocation of application privileges is not performed as part of IdentityIQ. The
+ revocation is performed on the specific application from which the entitlements are to be
+ removed. For information on how to remove entitlements, refer tothe documentation asso-
+ ciated with the specific application
+
+ 6. Ifthis work item was assigned toa workgroup, use the Assign Selected Items button to assign specific revoc-
+ ation requests tomembers of that workgroup. The name ofthe workgroup member isdisplayed in the Assignee
+ column.
+ Any member of the workgroup can change the assignee status.
+
+ 7. Select the checkmark next to a name, or the checkmark at the top ofthe column to select allitems inthe list,
+ then select an action button: Complete, Forward, Save, or Cancel.
+
+
+
+ l Select Complete to display the Completion Comments dialog and mark the work item as complete.
+ â€” OR â€”
+ Ifthere are multiple revocation requests in the work item, you can select multiple revocations and use
+ the Mark Revocation Complete button tomark complete. Alternatively, you can click on the revocation
+ item and complete each item individually.
+
+
+
+ l Select Forward to forward the selected work item(s) toanother user.
+
+
+
+ l Save saves any updates you made without completing nor forwarding the work item.
+
+
+
+ l Cancel removes any updates and returns you to the priorscreen.
+
+How to Complete Reassigned or Forwarded Access Reviews
+
+You can reassign or forward access reviews. Reassigned work items are designated as reassigned in the Description
+columns on pages on which they are displayed. Forwarded work item descriptions maintain the name of the original
+
+
+
+
+ SailPoint Certifications and Access Reviews 57
+
+===== Page 63/115 =====
+How toComplete Access Review Work Items
+
+
+owner or the name of the application to which the access review applies.
+
+You use the same procedure to complete access reviews that were reassigned or forwarded toyou that you use for
+access reviews that were originally assigned to you. See Access Review Decisions /Operations.
+How to Perform Multi-Level Sign Off on Access Reviews
+
+You can perform multi-level sign-off access reviews that require more than one person to review before sign off.Multi-
+levelsign-off access reviews are access reviews that an assigned certifiercompleted and signed offand require other
+users to review before the access reviews are complete. When an access review isassigned to you for additional sign
+off,you receive an email notification and the access review request issent toyou.
+
+You can access the access review request the same way as any other access review, make changes or add com-
+ments as required, and clickSign Off when you are finished.
+
+After you sign off, the multi-level sign offrule runs again to determine ifthe access review iscomplete or ifadditional
+sign offactions are required. This process is repeated until the ruledetermines thatno further sign-offactions are
+required forthe access review.
+How to Challenge a Revocation Request
+
+The challenge phase is the period when the user whose roleor entitlement is being removed, can challenge all revoc-
+ation requests.
+
+For identity-type access reviews, the revocation process can include the challenge and revocation periods.
+
+Ifa roleor entitlement is removed from your Identity Cube, you are assigned a work item that enables you toaccept or
+challenge the revocation.
+
+To accept the revocation, do not respond to this challenge work item.
+
+To challenge the revocation request, type your reasons for the challenge in the Reason for Challenge fieldand click
+Challenge. Or, click Cancel to close the work item without taking action.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 58
+
+===== Page 64/115 =====
+Certification Events
+
+Certification Events
+
+
+Certifications can be configured to run based on events that occur within IdentityIQ. For example, an event-based cer-
+tificationmight be configured torun when a manager change is detected foran identity and for that certification
+request to be sent to the newly assigned manager. The events that trigger the certifications can be configured to meet
+the needs of your enterprise.
+
+Use the Certification Event tab toconfigure events within your enterprise to trigger the creation and assignment of cer-
+tificationrequests. Event-based certifications are launched when changes are detected during an identity refresh.
+
+To access the Certification Events panel, clickthe Setup tab and select Certifications. On the Certifications page
+clickthe Certification Events tab. Click an existing certification event to view the details defined when itwas created.
+Click New Certification Event to display the certification event configuration panel. See Define a Certification Event.
+
+The Certifications Events tab contains the following information:
+
+ Column Description
+
+ The name assigned when the certification event was created.
+
+ Name Note: This name is used to identify the certification event. This
+ name isnot displayed in the certifications that are created
+ when this event is triggered.
+
+ Type The event type associated with this certification event.
+ Attribute The attribute specified in attribute change type certification events.
+ Name
+ Owner The user that created the event certification.
+ Disabled Indicates whether or not the certification event isenabled.
+
+Define a Certification Event
+
+To schedule a certification from a certifying event, you make decisions on the Basic, Lifecycle, Notifications, and
+Advanced tabs. The leftpanel provides a summary and descriptions of the tabs. To move through the scheduling pro-
+cess, select a tab in the Summary panel or click Next at the bottom of the page. You do not have to move through the
+tabs in order.
+
+When a Certification Event is set up, allcertifications for that event are listed in the same certification group on the
+Setup > Certifications page.
+
+
+
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 59
+
+===== Page 65/115 =====
+Certification Events
+
+
+ Note: Event certifications are generated as Identity certifications and are displayed as such. To
+ separate Event certifications from other Identity certifications use the Custom Name and Custom
+ Short name options on the Advanced panel.
+
+To schedule a non-event certification, see the Certification Schedules Tab.
+
+These are fields on the Event Certification panels:
+
+ Field Name Description
+
+ Basic
+
+ These options specify what and when to certify and who isresponsible forperforming the access
+ reviews.
+ Assign a descriptive name forthe event certification.
+
+ Name This name is used to identify the event certification. This name is not dis-
+ played in the certification requests that are created when an event is
+ triggered.
+ Description Add a brief description of the certification event.
+ Specify an event-type or rule to associate with the certification.
+
+ Create â€“ launch a certification when a new identity isdiscovered.
+
+ Manager Transfer â€“ launch a certification when an identity's manager
+ changes.
+
+ Event Type Attribute Change â€“ launch a certification when a change isdetected for the
+ specified attribute.
+
+ Rule â€“ use a rule todetermine when certifications are launched.
+
+ Native Change â€“ launch a certification when a change isdetected on a nat-
+ ive application.
+
+ Alert â€“ launch a certification when an alert is triggered within your enterprise
+ For Manager Transfer event certification types only:
+ Previous Man- Certifications are launched ifidentities are transferred from the specified man-
+ ager Filter ager.
+
+ Ifno manager isspecified, all managers are included.
+ For Manager Transfer event certification types only:
+ New Manager Fil- Certifications are launched ifidentities are transferred to the specified man-
+ ter ager.
+
+ Ifno manager isspecified, all managers are included.
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 60
+
+===== Page 66/115 =====
+Certification Events
+
+
+ Field Name Description
+
+ For Attribute Change event certifications types only:
+ Select the identity attribute toassociate with the event certification.
+ Attribute
+ The attribute dropdown listcontains all of the standard and extended identity
+ attributes configured in your deployment of IdentityIQ.
+ For Attribute Change event certification types only:
+ Previous Value Certifications are launched ifthe attribute value specified has changed.
+ Filter
+ Ifno value is specified, allvalues are included.
+ For Attribute Change event certification event types only:
+ Certifications are launched ifthe attribute value specified was newly
+ New Value Filter assigned.
+
+ Ifno value is specified, allvalues are included.
+ For Rule event certification types only:
+ Rule Select the event certification rule used to launch certifications.
+
+ Rules are created as part of the configuration process of IdentityIQ.
+ Disabled Select to specify that a lifecycle event should not be processed.
+ Specifies which identities to include when detecting this lifecycle event.
+ Select one ofthe following filtertypes to narrow your selection:
+
+ Match List â€“ a listof attributes and permissions on selected applications.
+
+ Filter â€“ a custom database query for role creation.
+ Included Iden- Script â€“ a custom script for role creation.
+ tities Rule â€“ select an existing rule from the drop-down list.
+
+
+ Note:Â Click the [...]icon to launch the Rule Editor to
+ make changes to your rules ifneeded.
+
+ Population â€“ select an existing population ofidentities to include.
+ To use an IdentityÂ Processing Threshold to stop lifecycle events before they
+ are fullyprocessed, in case of accidentally-triggered workflows, choose from
+ Threshold Type Fixed or Percentage.
+
+ For more information, see IdentityÂ Processing Thresholds in the Rapid
+ Setup documentation.
+ Threshold Enter a value touse in conjunction with the Threshold Type, for Identity Pro-
+ cessing Thresholds.
+
+
+
+
+
+
+
+SailPoint Certifications and Access Reviews 61
+
+===== Page 67/115 =====
+Certification Events
+
+
+ Field Name Description
+
+ Certification Specify the name of the certification associated with the certification event.
+ Name
+ Certification Specify the owner of the certification.
+ Owner
+ Specify the fullname of the person or people to be assigned the certification.
+
+ To display a listof allvalid certifiers inthe system, type the firstfew letters of
+ the name and then select a name from the displayed list.
+
+ Certifiers Assign to Manager(s) â€“ assign to the manager(s) of the identities for whom
+ the certifications are created. You must also enter a default certifier incase
+ some of the identities do not have a manager assigned.
+
+ Select Certifier(s) Manually â€“ manually specify certifiers to whom these
+ event certifications will be assigned.
+ Included Applic- Specify the applications with the roles and entitlements that should be dis-
+ ations covered when generating this certification.
+ Ifno applications are specified, then allof the applications are included.
+ Included Access Include entitlements or Accounts in the certification that are assigned to an
+ identity but are not contained within a defined role.
+ Include Policy Include policy violations for each identity in the certification report. Ifthis field
+ Violations is deactivated no policy violations are included.
+ Include Roles Include roles assigned to the identity in the certification.
+ Tags Specify one or more tags forthe certifications.
+ Tags can be used to classify certifications for searching and reporting.
+ Lifecycle
+
+ These options define the lifecycle of the certification.
+ Active Period Select a rule to run when the certification enters its active period.
+ Enter Rule
+ Specify the length of the review period during when alldecisions required
+ within this certification should be made. During this phase changes can be
+ Active Period made to decisions as frequently as needed. You can sign off on a certification
+ Duration in the active stage ifno roles or entitlements were revoked or ifthe challenge
+ period is not active. When you sign off on a certification, itenters the end
+ phase or the revocation phase. To enter the revocation phase, the revocation
+ period must be active and a revocation decision must exist.
+ Enable Chal- Specify the period when allrevocation requests can be challenged by the
+
+
+
+
+
+
+SailPoint Certifications and Access Reviews 62
+
+===== Page 68/115 =====
+Certification Events
+
+
+ Field Name Description
+
+ user whose role or entitlement isbeing removed. When the challenge phase
+ begins, a work item and email are sent to each user in the certification that
+ the revocation decision affects. The work items contain the details of the
+ revocation request and any comments the requestor adds. The affected user
+ lenge Period has the duration of the challenge period to accept the loss of access or chal-
+ lenge that decision. You can sign offon a certification in the challenge phase
+ ifallchallenges are completed and there is no open decision on the cer-
+ tification.When you sign offon a certification, itenters the end phase or the
+ revocation phase. To enter the revocation phase, the revocation period must
+ be active and a revocation decision must exist.
+ Ifthe revocation period is disabled, the certification is not scanned for com-
+ pleted revocations and revocation status might not be accurately reflected
+ throughout the product.
+
+ Specify the period when all revocation work should be completed. Revoc-
+ ations can be done automatically or manually. Your provisioning provider
+ must be configured forautomatic revocation. Manual revocations use a work
+ Enable Revoc- request assigned to a IdentityIQ user with the proper authority on the spe-
+ ation Period cifiedapplication. The revocation phase begins when a certification is signed
+ offor when the active and challenge phases have ended.
+
+ Revocation activityis monitored to ensure that inappropriate access to roles
+ and entitlements isrevoked in a timely manner. Revocation completion status
+ isupdated at an interval specified during the deployment of IdentityIQ. By
+ default this task isperformed daily. Click Details tosee view detailed revoc-
+ ation information. Revocation requests that are not acted upon during the
+ revocation phase can be escalated as needed.
+ End Period Enter Select a rule to run when the certification begins itsend period.
+ Rule
+ Select thisoption to specify that revocation requests are processed as soon
+ Process as a revocation decision issaved. Ifthisfield isnot selected, revocation
+ Revokes Imme- requests are not sent untilthe certification issigned off.
+ diately Ifthe challenge period is active, the revocation request isnot sent until the
+ revocation isaccepted or the challenge period expires.
+ Enable Auto- Select thisoption to automatically close the review after the specified para-
+ matic closing meters are met. This option closes unfinished reviews.
+ Notifications:
+
+
+
+
+
+
+SailPoint Certifications and Access Reviews 63
+
+===== Page 69/115 =====
+Certification Events
+
+
+ Field Name Description
+
+ These options specify when reminders and escalations occur for certification and revoc-
+ ations.
+ Suppress Initial Prevent the sending of an initialnotification.
+ Notifications
+ InitialNoti-
+ fications Email Set the default email template for initialcertification notifications.
+ Template
+ Send email reminders before certification expires.
+ Send the firstreminder: The number ofdays before the certification expiration
+ Notify Before Cer- date that the firstreminder issent.
+ tificationExpires Reminder Frequency: The frequency with which email reminders are sent
+ untilthe request is completed or expires.
+ Reminder Email Template: The IdentityIQ notification template used forthe
+ reminders.
+ Send an escalation notice and change the owner of the certification to the
+ escalation recipient.
+
+ Escalate Before Escalation Trigger: The number of days after which a certification is
+ Certification assigned, or the number ofemail reminders that are sent to the certification
+ Expires owner, before the firstescalation notice is sent.
+
+ Escalation Rule: The escalation rule to apply when escalating a certification
+ request.
+ Send email reminders before the revocation period expires.
+ Send the firstreminder: The number ofdays before the revocation expiration
+ date that the firstreminder issent.
+ Send Revocation Reminder Frequency: The frequency with which email reminders are sent
+ Reminder untilthe request is completed or expires.
+
+
+ Reminder Email Template: The IdentityIQ notification template used forthe
+ reminders.
+ Send an escalation notice and change the owner of the revocation request to
+ the escalation recipient.
+
+ Escalate Revoc- Escalation Trigger: The number of days after which a revocation request is
+ ation assigned, or the number ofemail reminders that are sent to the revocation
+ request owner, before the firstescalation notice issent.
+
+ Escalation Rule: The escalation rule to apply when escalating a revocation
+
+
+
+
+
+
+SailPoint Certifications and Access Reviews 64
+
+===== Page 70/115 =====
+Certification Events
+
+
+Field Name Description
+
+ request.
+Notify Users Of Set the default email template forinitialcertification notifications.
+Revocations
+Bulk Reas-
+signment Modi- Set the default email template forbulk reassignment notifications.
+fication Notices
+Behavior:
+These advanced options specify items that can change the presentation and behavior of
+the certification.
+ Enable this option to require an electronic signature as part of the Sign-off pro-
+ cedure. Select the electronic signature meaning from the Electronic Sig-
+Require Elec- nature Meaning dropdown list.
+tronic Signature
+ An electronic signature performs the same authorization checking as the
+ IdentityIQ login page.
+Require Subor- Enable this option to require that allsubordinate access reviews be com-
+dinate Com- pleted before the parent report can be completed.
+pletion
+ Enable this option to automatically sign off an access certification, with the
+ assignee's credentials, ifthe access review contains no items, even ifthere
+Automatically are subordinate access reviews present.
+Sign Off When
+Nothing to Certify Access reviews containing no items and having no subordinate access
+ reviews are always automatically signed offon using the certification ini-
+ tiator's credentials.
+Suppress Noti-
+fication When Do not send notification email when the assignee has nothing to certify.
+Nothing to Certify
+Require Reas- Enable this option to require that allreassignment access reviews be com-
+signment Com- pleted before the parent report can be completed.
+pletion
+Return Reas- Enable this option to cause the contents of reassignment access reviews to
+signments to Ori- revert to the original access review when the reassigned access review is
+ginal Access signed.
+Review
+Automatically Enable this option for an access review to be automatically signed off when
+Sign Off When all items inthe access review are reassigned.
+
+
+
+
+
+
+SailPoint Certifications and Access Reviews 65
+
+===== Page 71/115 =====
+Certification Events
+
+
+Field Name Description
+
+All Items Are The Require Reassignment Completion and Return Reassignments to Ori-
+Reassigned ginal Access Review options must not be enabled forthis option to be avail-
+ able.
+Require Deleg- Enable this option to require the original access review owner to review all del-
+ation Review egated access reviews.
+Require Com- Enable this option to require the certifierto include comments when an
+ments For access review item is approved.
+Approval
+Require Com-
+ments When Enable this option to require the certifierto include comments when an excep-
+Allowing Excep- tion is allowed.
+tions
+Require Com-
+ments for Revoc- Require the certifierto include comments when a certification item is revoked.
+ation
+Disable Deleg- Select to disallow the forwarding ofa work item that was delegated by a dif-
+ation Forwarding ferent user.
+Limit Reas- Limit the number oftimes an item can be reassigned with a certification cham-
+signments paign.
+Show Clas- Show classification information. When enabled, classifications provide addi-
+sifications tional information about roles, managed attributes and policy violations.
+Enable Line Item Enable this option to allow certifiers to delegate individual items from an
+Delegation access review.
+Enable Identity Enable this option to allow certifiers to delegate entire identities in an access
+Delegation review.
+ Enable this option to allow the certifierto revoke an account, when itsasso-
+Enable Account ciated entitlements are also revoked. Note that disabling this option does not
+Revocation prevent the reviewer from revoking accounts directly â€“ itonly enables or dis-
+ ables the "revoke account" option when entitlements are being certified.
+Enable Allow Enables certifiersto allow exceptions on access review items such as roles or
+Exceptions entitlements, that are not policy violations. Allowing an exception means the
+(applies only to user should not have access indefinitely, but can retain access for a specified
+non-policy viol- period of time.
+ation items)
+Deprovision Enables automatic deprovisioning ofaccess when the allowed exception
+
+
+
+
+
+
+SailPoint Certifications and Access Reviews 66
+
+===== Page 72/115 =====
+Certification Events
+
+
+Field Name Description
+
+Items When
+Exception period has expired. This setting applies only to items such as roles or enti-
+Expires (applies tlements, that are not policy violations. This option is available only when the
+only to non-policy Enable Allow Exceptions option isalso enabled.
+violation items)
+Enable Allow Enable this option toallow certifiers toview the Allow Exception popup and
+Exception Popup manually set expiration dates and allow comments. This applies to both viol-
+ ation and non-violation items.
+Default Duration Set a default time period in which exceptions are allowed during the access
+for Exceptions review.
+Enable Bulk Enable this option toallow users to bulk approve access review items.
+Approval
+Enable Bulk Enable this option toallow users to bulk revoke access review items.
+Revocation
+Enable Bulk Enable this option toallow users to allow exceptions inbulk.
+Allow Exceptions
+Enable Bulk Enable this option toallow users to bulk reassign access review items.
+Reassignment
+Enable Bulk Enable this option toallow users to revoke all entitlements for a specific
+Account Revoc- account in bulk.
+ation This option isnot available for Entitlement Owner certifications.
+
+Enable Bulk Enable certifiers tocancel alldecisions currently made on the access review.
+Clear Decisions
+Advanced:
+These advanced options specify items that can change the contents and behavior of the
+certification.
+ Specify the custom name template used to name certifications. The name
+Custom Name can contain parameterized content that ismerged into the name when the cer-
+ tification isgenerated.
+Custom Short Specify the custom short name template used togive certifications short
+Name names. The name can contain parameterized content that ismerged intothe
+ short name when the certification is generated.
+ Select the rule to run toexclude specific entitlements from the certification.
+Exclusion Rule For example, ifyou have an entitlement that is assigned to every user in your
+ enterprise, you generally do not need to include itincertifications.
+
+
+
+
+
+
+SailPoint Certifications and Access Reviews 67
+
+===== Page 73/115 =====
+Certification Events
+
+
+ Field Name Description
+
+ Save Exclusions Select this option to save any entitlements that are discovered, but excluded
+ from the certification enabling them to be used inreports.
+ Exclude Inactive Select this option to exclude inactive identities from new certifications and
+ Identities remove identities that become inactive from existing certifications.
+ Exclude Logical Select this option to exclude entitlements on tierapplication accounts from
+ Tier Entitlements the certification.
+ This option applies to composite applications.
+ FilterLogical Select this option to allow logical entitlements defined on the logical applic-
+ Application Enti- ation's managed entitlement listto be included inthe certification. Any logical
+ tlements application entitlements are filtered from the tierapplication entitlements
+ Include Iden- Select this option to include IdentityIQ capabilities of the identity forcer-
+ tityIQ Cap- tification.
+ abilities
+ Update Enti- Select this option to update assignments after entitlement decisions are
+ tlement Assign- made.
+ ments
+ Automated pre-delegation and pre-reassignment rules are not meant to be
+ Pre-delegation run in conjunction with the Fallback Forwarding User rule.
+ Rule Specify the rule to use to determine ifportions of the certifications that this
+ schedule generates need be pre-delegated to specific certifiers.
+ Specify the rule that is used to determine ifadditional review is need on the
+ sign off decision.
+ Sign Off After the certifier's initialsign off, this rule is run to determine ifanother
+ Approver Rule approver need to review the decisions need tobe reviewed. Ifadditional
+ review is needed, the certification request is sent tothat user's inbox and they
+ receive an email notification. This process isrepeated untilno more review-
+ ers are discovered by the rule.
+ Allow Self Cer- Choose which users may self-certify (that is,be the certifier for their own
+ tificationFor access), either by forwarding or reassigning an access review: All certifiers,
+ Certification and System Administrators, System Administrators only.
+ For users that are not allowed to self-certify, this isthe identity or workgroup
+ Self Certification that willreceive any items that would require a self-certification â€“ that is, when
+ Violation Owner the reviewer and the user whose access is under review are the same per-
+ son.
+
+
+
+
+
+
+
+
+SailPoint Certifications and Access Reviews 68
+
+===== Page 74/115 =====
+Manage and Schedule Certifications
+
+Manage and Schedule Certifications
+
+
+ The term account group can be replaced by the term application object for some applications.
+ Some application can have multiple application objects. An account group can be the name of
+ one ofthose objects.
+
+IdentityIQ automates and optimizes the review and approval of:
+
+
+
+ l Identity access privileges
+
+
+
+ l Account group permissions and membership
+
+
+
+ l Role composition and membership
+
+
+Use the Certifications page toview and create the scheduled certifications that are required to maintain compliance in
+your enterprise. You can also use thispage tocreate one-time certifications when required. From thispage, you can
+create certifications for your entire enterprise or for one approver or one item.
+
+Certifications include multiple access reviews. When a certification schedule iscreated the work item arrives labeled
+as an access review request.
+
+The Certification Page contains the following areas:
+
+
+
+ l Certifications Tab
+
+
+
+ l Certification Events
+
+
+
+ l Scheduling a New Certification
+
+Certifications Tab
+
+Use the Certifications tab toview certification requests that are complete or in the process of running.
+
+ Column Description
+
+ Name The type of certificationscheduled and the date and time when itwas first
+ launched.
+ Owner The user that started the certificationrequest
+ Status Current status of the certification request. Pending, Active, or Staged.
+ Percent Com- Percentage of certification completion based on the number of access reviews
+
+
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 69
+
+===== Page 75/115 =====
+Manage and Schedule Certifications
+
+
+ Column Description
+
+ plete in the certification.
+ Create Date The date and time when the certification request was generated.
+ Tags Assigned labels that are used to classify certifications for searching and report-
+ ing.
+
+The detailed results page contains allof the information that is available for the scheduled certifications.
+
+Click a certification to display the detailed results page for that certification. Right-click and select Change Owner to
+assign a new owner forthis certification or select Use as Template to use this certification as a template to schedule a
+new certification.
+
+ Note: A change to the owner does not reassign or forward thiscertification to the new owner and
+ no notification is sent to the new owner upon the change. The new owner name isassociated
+ with the certification throughout IdentityIQ.
+
+The Certification Results page displays the name and owner of the certification, the date itwas created, and status
+bars to track completion of the reviews, including the information described in the table below. For each access
+review, a description of the access review, including additional information, is described in the Access Reviews sec-
+tionof the table.
+
+ Access Review Information
+
+
+ Item Description
+
+ View Cer-
+ tification Click to view allof the certification parameters.
+ Options
+ Exclusions Click to view which items were not included inthe certification.
+ completed The date and time when the certification request was completed. The completed
+ status is based on the completion of allcertification components.
+ Decision Statistics
+ Pie chart with statistical data for open, approved and remediated business role
+ items for the access reviews within the certification.
+ Roles
+ This pie chart isonly visible ifInclude Roles was enabled in the Basic section of
+ the certification schedule creation.
+ Pie chart with statistical data for open, approved and remediated entitlement
+ Additional items for the access reviews within the certification.
+ Entitlements
+ This pie chart isonly visible ifInclude Additional Entitlements was enabled in the
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 70
+
+===== Page 76/115 =====
+Manage and Schedule Certifications
+
+
+ Item Description
+
+ Basic section of the certification schedule creation.
+ Pie chart with statistical data foropen, allowed and remediated policy violations
+ Policy Viola- for the access reviews within the certification.
+ tions This pie chart is only visible ifInclude Policy Violations was enabled inthe Basic
+ section of the certification schedule creation.
+ Access Reviews
+ Description The type of certification.
+ Percent Com- The percentage of the certification that is complete.
+ plete For example, 46% (6 of 13) means 6 of the 13 users on the list,or46% of the
+ total number, have been acted upon.
+ The current phase of the certification process.
+
+ The challenge and revocation phases are only active ifthose functions were
+ activated when the certification request was scheduled.
+
+ Active â€“ the time period when the certifiermust make alldecisions required to
+ complete the certification.
+ Phase Challenge â€“ the time period when the affected user can challenge the decisions
+
+ to revoke roles or entitlements.
+ Revocation â€“ the time period when allrevocation work is expected to be com-
+ pleted for roles or entitlements that were revoked. Reminder notifications and
+ escalations can be set based on these completion expectations.
+ End â€“ the certification is complete.
+ The date and time when the current phase ends and the next phase begins.
+ Phase End The length of each phase is specified when the certification request issched-
+ uled.
+ Tags Tags are used to classify certifications for searching and reporting.
+ Tags are assigned when certifications are scheduled.
+ Certifiers The name of the person responsible foracting on the access review.
+ Due The date and time when the access review decision isrequired.
+ E-signed A check-mark icon indicates that an electronic signature exists. An electronic sig-
+ nature performs the same authorization checking as the IdentityIQ login page.
+
+
+The information displayed for each certification varies based on the type ofcertification and the parameters specified
+when the schedule is created.
+
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 71
+
+===== Page 77/115 =====
+Manage and Schedule Certifications
+
+
+For example, a manager certification results page can contain the number of access reviews that were generated, the
+managers who were assigned the requests, and the active period for thisschedule.
+Certification Schedules Tab
+
+Use the Certification Schedules tab to view and edit information about pending and periodic.
+
+ Note:Â Certifications that are scheduled torun one time are considered tobe pending and are
+ removed from the listof scheduled certifications after the scheduled run time.
+
+Periodic certifications are scheduled torun on a periodic basis, such as hourly, daily, weekly, monthly, quarterly, and
+annually. Periodic access reviews provide a snapshot view of the identities,roles, and account groups in your enter-
+prise. Periodic certifications focus on the frequency that entire entities (identities, roles, account groups) must be cer-
+tified.
+
+Periodic certifications are not complete until allaccess reviews included in the certification are complete. An access
+review is not complete until allactions are complete and the user who is assigned the access review confirms the
+decisions.
+
+Periodic certifications can be created using a multi-level sign-off structure which enables multiple certifiers to review
+access reviews before they are considered complete. For example, a certification can be created for the direct reports
+of a team leader who knows his employees, but is not authorized to make final certification decisions. When the team
+leader makes his decisions and signs offon the access review, itcan be forwarded to the department manager to
+review the decisions and make changes ifnecessary.
+
+The Certifications Schedule tab contains the following information:
+
+ Column Description
+
+ Name The type of certification scheduled and the date and time when itwas launched.
+ Task The task that was performed.
+ Next Exe- The next date and time when the certification runs.
+ cution
+ Last Execution The date and time when the certification ran last.
+ Result Result status of the last run of the certification, for example Success or Failed.
+ Owner The user who started the certification request
+
+Click an existing certification to view the details defined for the certification when itwas created. Certifications can be
+modified for future certifications. Actions that were taken on the access reviews included in the certification and the
+current phase of the certification determine which items can be modified.
+
+
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 72
+
+===== Page 78/115 =====
+Manage and Schedule Certifications
+
+Scheduling a New Certification
+
+
+ Note:Â Identity certifications are special cases and are scheduled from the Identities or Advanced
+ Identity Search Results pages. Any IdentityIQ user with access to those pages can schedule an
+ identity certification.
+
+Use the New Certification dropdown listtoschedule certifications.
+
+ Note:Â Identity Certifications are not scheduled from the Certifications page, they are requested
+ from the Identity Risk Scores, Identity Search Results or Policy Violations pages.
+
+
+ Note: Automatic approvals are not dismissed in the access reviews ifyou turn offthe automatic
+ approval feature and then activate a staged certification.To remove automatic approvals access
+ reviews generated by a staged certification, you must delete and redefine the certification.
+
+To generate a preview of a certification, enable the staging feature on the Lifecycle panel on the Schedule Cer-
+tificationpage for non-targeted certifications or on the Schedule panel for targeted certifications. When the staging fea-
+ture isenabled, a certification and associated access reviews are created, but the access reviews are not sent to the
+certifiers.You can view what the certification schedule definition produces before the schedule isactivated. Ifthe gen-
+erated certification does not match your needs, you can cancel the certification and redefine itas needed. Ifthe cer-
+tificationisaccurate, activate the schedule.
+
+For more information on the contents of certifications, see:
+
+
+
+ l Scheduling a Non-Targeted Certification
+
+
+
+ l Scheduling a Targeted Certification
+
+Creating a New Certification from an Existing One
+
+New certifications can be created from existing certification definitions so the existing certification definition provides a
+starting point for configuring the new one.
+
+To do this,right-click a certification on the Setup > Certifications page, Certifications tab, and clickUse Cer-
+tification as a Template. Then modify the certification details as needed for the new certification.
+
+Scheduling a Non-Targeted Certification
+
+A non-targeted certification refers to any ofthe types of certification you can schedule in IdentityIQÂ other than the Tar-
+geted certification: Manager, Application Owner, Entitlement Owner, Advanced, Account GroupÂ Membership,
+Account Group Permissions, Role Membership, Role Composition, and Identity. For more details, see Types of Cer-
+tification
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 73
+
+===== Page 79/115 =====
+Manage and Schedule Certifications
+
+
+The sections below describe allfields included in any non-targeted certification. Fields or options that are available for
+a specific type of certification are listed in a separate column.
+
+Basic Fields
+
+The Basic page includes general information about the certification including the name, owner, and various controls
+about when and how often torun it.This page also includes a number of fields that are specific to a limited set of cer-
+tificationtypes.
+
+The When to Certify section of this page determines the scheduling and frequency of each certification. Certifications
+can be run once or on an hourly, weekly, monthly, quarterly or annual basis. They can be kicked off immediately or
+scheduled to startat a later date or time. Each subsequent certification run, ifany, willrepeat at the same time ofday
+as the firstrun, after the specified time interval has passed. (Certifications scheduled to run hourly willrun once an
+hour at the same minute of each hour.)
+
+ Note: Certification start times must be at least one minute later than the current time. For
+ example, ifitis currently 11:41, the certification start time must be 11:42 or later.
+
+
+ Note: Certifications that run across time zones run at the time scheduled, relative tothe time
+ zone in which they are scheduled. For example, a certification scheduled to run at1:00 PDT will
+ run at 4:00 EDT.
+
+
+ Field Name Certification Description
+ Type
+
+ Certification All Specify a name and date parameter that identifies the cer-
+ Name tification.
+ Certification All Specify an owner of the certification.
+ Owner
+ The fullname of a specific manager being assigned a cer-
+ tification.
+ Recipient Manager To display a listof allof the manager names inthe system, type
+ the firstfew letters of the name. You can select a name from the
+ displayed list.
+ All Managers Manager Schedule a certification forall managers configured inthe Iden-
+ tityIQ application.
+ Application
+ Application(s) Owner Select the applications tocertify. Use the Ctrl or Shift keys to
+ select multiple applications or select All Applications.
+ Entitlement
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 74
+
+===== Page 80/115 =====
+Manage and Schedule Certifications
+
+
+ Field Name Certification Description
+ Type
+
+ Owner
+
+
+ Account
+ Group
+ Application
+ Owner
+
+
+ AllApplic- Entitlement Include all applications inthe certification.
+ ations Owner
+
+
+ Account
+ Group
+ Population â€“ Allavailable populations IdentityIQ. Includes all
+ public populations and populations you created.
+ Certifier(s) â€“ The identities who are requested to complete the
+ certification request. Certifiers can be individual identities or
+ Populations workgroups.
+ toCertify Advanced To display a listof allof the manager names in the system, type
+
+ the firstfew letters of the name. You can select a name from the
+ displayed list.
+
+ A separate certification request issent for each population spe-
+ cified, even ifthe certifier of each is the same.
+ Group Factory â€“ All available groups created by group factor-
+ Group Fact- ies and includes allidentity attributes designated as group
+ ories to Cer- Advanced factories.
+ tify Certifier Rule â€“ Select the rule used to designate certifiers for
+ the groups selected.
+ Certifiers Identity Select the person or people to review the certification. Options
+ include assigning managers or manually selecting certifiers.
+ Lists each identity included inthe certification. To remove iden-
+ Identities Identity tities,select an identity and clickRemove Selected Users. To
+ add identities type a name inthe fieldand click Add User.
+ Included Manager The applications included when generating this certification.
+ Applications Ifno applications are specified, all ofthe applications are
+
+
+
+
+
+
+SailPoint Certifications and Access Reviews 75
+
+===== Page 81/115 =====
+Manage and Schedule Certifications
+
+
+ Field Name Certification Description
+ Type
+
+ Identity included.
+ Role Mem- To specify roles to certify, select a role from the list.To specify a
+ bership role type to certify,click the Certify by Role Type radio button
+ Select Role and select the role type from the list.
+ (s) Role Com-
+ When you include business roles, all assigned business roles
+ position are displayed in the certification.
+
+ Role Mem-
+ Certify All bership
+ Roles Schedule a certification on allroles defined in your enterprise.
+ Role Com-
+ position
+ Include Role Role Com- Create certification items for each role that is included inthe
+ Hierarchy position roles selected for certification.
+ Select Entitlements toinclude entitlement access in the cer-
+ Manager tification.You can also choose to include Additional Enti-
+ tlements, Roles and Accounts With No Entitlements in the
+ Included Application certification.
+
+ Access Owner You must select Accounts to include from accounts inthe cer-
+ tification.
+ Identity The Include Roles option is enabled by default and allassigned
+
+ business roles are displayed in the certification.
+ Include Policy All Include policy violations foreach identity in the certification
+ Violations report.
+ Include Entitlement Select this option to include managed entitlements and per-
+ Unowned Owner missions that have no owner in the access review.
+ Data
+ Unowned Entitlement Select this option to assign ownership of unowned entitlements
+ Entitlement Owner to the application owner or an identity you select from the drop-
+ Reviewer down list.
+
+Lifecycle Fields
+
+The Lifecycle page determines which phases ofthe complete certification process willbe included for the specific cer-
+tification'saccess reviews and which rules willbe run atthe start ofeach phase. Parameters on this page impact
+details of the different certification phases. See Phases of a Certification.
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 76
+
+===== Page 82/115 =====
+Manage and Schedule Certifications
+
+
+Examples of these parameters include:
+
+
+
+ l Rules run atthe beginning of the access reviews' various phases
+
+
+
+ l Duration of the Active period
+
+
+
+ l Inclusion of a Challenge period
+
+
+
+ l Inclusion of a Revocation period
+
+
+
+ l Timing of revocation request submission
+
+
+
+ l Closing of incomplete certifications after expiration
+
+
+ Field Name Description
+
+ Use to generate a test certification that isused to verify functionality and con-
+ figuration of the parameters before the certification is generated. The test cer-
+ tificationdisplays in the Certifications tab with the status set to Staged. Click the
+ certification to view itis contents and either activate or cancel it.
+
+ Enable Sta- You might experience a short delay between scheduling the test certification and
+ ging Period seeing iton the Certifications tab with all of the data displayed.
+
+ Automatic approvals are not dismissed in the access reviews ifyou turn off the
+ automatic approval feature and then activate a staged certification. To remove
+ automatic approvals access reviews generated by a staged certification, you
+ must delete and redefine the certification.
+ Active Period Select a rule from the dropdown listto apply when the certification enters itsact-
+ Enter Rule ive period.
+ Specify the review period when all decisions required within thiscertification
+ must be made. During thisphase changes can be made to decisions as often as
+ Active Period needed. You can sign off on a certification in the active period only ifno roles or
+ Duration entitlements were revoked or ifthe challenge period is not active. When you sign
+ off on a certification, the certification enters the end phase or the revocation
+ phase. To enter the revocation phase, the revocation period must be active and
+ a revocation decision must exist.
+ Specify the period when allrevocation requests can be challenged by the user
+ Enable Chal- from which the role or entitlement isbeing removed. When the challenge phase
+ lenge Period begins, a work item and email are sent to each user in the certification that the
+ revocation decision affects. The work items include the details of the revocation
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 77
+
+===== Page 83/115 =====
+Manage and Schedule Certifications
+
+
+ Field Name Description
+
+ request and any comments the requestor added. The affected user has the dur-
+ ation of the challenge period to accept the loss of access or challenge that
+ decision. You can sign off on a certification inthe challenge phase ifallchal-
+ lenges were completed and no open decisions remain on the certification. When
+ you sign offon a certification, itenters the end phase or the revocation phase. To
+ enter the revocation phase, the revocation period must be active and a revoc-
+ ation decision must exist.
+
+ This option is not available for Role Composition and Role Membership cer-
+ tifications.
+ Challenge Select a rule from the dropdown listto apply when the certification enters its chal-
+ Period Enter lenge period.
+ Rule
+ Challenge
+ Period Dur- Specify the period of time when items remain in the challenge period.
+ ation
+ Challenge
+ Email Tem- Choose the email templates used for a variety of challenge period notifications.
+ plates
+ Ifthe revocation period isdisabled, the certification is not scanned forcompleted
+ revocations and revocation status might not be accurately reflected throughout
+ the product.
+
+ Specify the period when allrevocation work must be completed. When the revoc-
+ ation phase isentered, revocation isdone automatically ifyour provisioning pro-
+ vider isconfigured for automatic revocation or manually using a work request
+ Enable assigned to an IdentityIQ user with the proper authority on the specified applic-
+ Revocation ation. The revocation phase isentered when a certification issigned offor when
+ Period the active and challenge phases have ended.
+
+ Revocation activity is monitored to ensure that inappropriate access to roles and
+ entitlements isrevoked in a timely manner. Revocation completion status is
+ updated at an interval specified during the deployment of IdentityIQ. By default
+ thisis performed daily.Click Details to view detailed revocation information.
+ Revocation requests that are not acted upon during the revocation phase can be
+ escalated as required.
+ Revocation Select a rule from the dropdown listto apply when the certification enters its
+ Period Enter revocation period.
+
+
+
+
+
+
+SailPoint Certifications and Access Reviews 78
+
+===== Page 84/115 =====
+Manage and Schedule Certifications
+
+
+ Field Name Description
+
+ Rule
+ Revocation
+ Period Dur- The period of time when items remain in the revocation period.
+ ation
+ End Period Select rule to run when the certification enters the end period.
+ Enter Rule
+ Specifies that revocation requests must be processed as soon as a revocation
+ Process decision is saved. Ifthis fieldis not activated, revocation requests are not sent
+ Revokes untilthe certification issigned off.
+ Immediately Ifthe challenge period is active, the revocation request isnot sent until the revoc-
+ ation is accepted or the challenge period expires.
+ Specifies that decisions not made by the certifier during the active phase are
+ made automatically. Use the following options to configure the details ofthis pro-
+ cess.
+
+ Time After Certification Expiration â€“ select the amount of time following this
+ access review's expiration date that IdentityIQ must wait before attempting to
+ automatically close it.
+ Enable Auto- Closing Rule â€“ select the rule that IdentityIQ runs atthe beginning of the auto-
+ matic Closing matic closing process.
+
+
+ Action Taken On Undecided Items â€“ the action that IdentityIQ assigns to any
+ undecided items when automatically closing thisaccess review. Choose from
+ Approve, Revoke, or Allow Exception.
+
+ Comments â€“ input the comments that IdentityIQ adds to any undecided items
+ when automatically closing this access review.
+
+Notifications Field Descriptions
+
+The Notifications page controls whether and when certifiers and revokers are sent email notices and reminders to
+complete the required tasks. By default, email notification issent to certifier(s)when the access reviews are ready to
+review. Options selected on thispage determine whether and how frequently additional email reminders are sent; they
+can also trigger escalations when certifications are nearing their expiration and have not been completed. Similarly,
+revocation reminder emails and automatic escalations can be configured forrevocation requests created from the
+access reviews.
+
+ Note:Â Some of these options are not available on Identity, Application Owner, and Advanced cer-
+ tifications.
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 79
+
+===== Page 85/115 =====
+Manage and Schedule Certifications
+
+
+ Field Name Description
+
+ Suppress Initial Select this option to prevent the sending of initialcertification notification
+ Notifications emails.
+ InitialNoti-
+ fication Email Choose the email template used for initialcertificationnotifications.
+ Template
+ Notify Before
+ Certification Send email reminders before certification expires.
+ Expires
+ Send Revoc- Send email reminders before the revocation period expires. Includes when
+ ation Reminders the firstreminder issent, how often reminders are sent, and which template
+ to use for the reminders.
+ Send an escalation notice and change the owner of the revocation request to
+ the escalation recipient. Includes settings for:
+
+
+
+ l Number of reminders to send to the revocation request owner before
+ Escalate Revoc- the firstescalation occurs
+ ations
+ l Escalation rule to apply when escalating an uncompleted revocation
+ request
+
+
+
+ l Email template to use for the escalation notice
+
+ Send an email notification to identities whose access was revoked.
+ Notify Users Of
+ Revocations This option isnot available for Account Group Permissions or Role Com-
+ position certifications.
+ Bulk Reas-
+ signment Modi- Choose the email template to use to send bulk reassignment notices
+ fication Notices
+
+Behavior Fields
+
+The Behavior page isused toconfigure how certifiersview and interact with the access reviews. Itdetermines the
+default display characteristics of the access reviews. Italso enables or disables options such as reassignment and del-
+egation of identities or individual line-items, provisioning of missing role requirements, permitting of policy violation
+exceptions, and application ofbulk actions to multiple certification records ata time.
+
+ Field Name Description
+
+ Prompt for Signoff Enable this option todisplay a pop-up reminder to indicate when an
+ access review is complete and ready forsign-off.
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 80
+
+===== Page 86/115 =====
+Manage and Schedule Certifications
+
+
+Field Name Description
+
+ Enable this option to require an electronic signature as part ofthe Sign-
+ offprocedure. Select the electronic signature meaning from the Elec-
+Require Electronic tronic Signature Meaning dropdown list.
+Signature
+ An electronic signature performs the same authorization checking as the
+ IdentityIQ login page.
+Require Subordinate Enable this option to require that all subordinate access reviews be com-
+Completion pleted before the parent report can be completed.
+ Enable this option to automatically Sign Off an access certification,with
+ the assignee's credentials, ifthe access review contains no items, even
+Automatically Sign ifthere are subordinate access reviews present.
+Off When Nothing to
+Certify Access reviews containing no items and having no subordinate access
+ reviews are always automatically signed off using the certification ini-
+ tiator'scredentials.
+Suppress Notification
+When Nothing toCer- Do not send notification email when the assignee has nothing to certify.
+tify
+Require Reas- Enable this option to require that all reassignment access reviews be
+signment Completion completed before the parent report can be completed.
+Return Reas- Enable this option to cause the contents of reassignment access
+signments to Original reviews to revert to the original access review when the reassigned
+Access Review access review issigned.
+ Enable this option for an access review to be automatically signed off
+Automatically Sign when allitems inthe access review are reassigned.
+Off When All Items The Require Reassignment Completion and Return Reassignments to
+Are Reassigned Original Access Review options must not be enabled forthis option to be
+ available.
+Require Delegation Enable this option to require the original access review owner to review
+Review alldelegated access reviews.
+Require Comments Enable this option to require the certifierto include comments when an
+For Approval access review item is approved.
+Require Comments Enable this option to require the certifierto include comments when an
+When Allowing exception isallowed.
+Exceptions
+Require Comments Require the certifierto include comments when a certification item is
+
+
+
+
+
+
+
+SailPoint Certifications and Access Reviews 81
+
+===== Page 87/115 =====
+Manage and Schedule Certifications
+
+
+ Field Name Description
+
+ forRevocation revoked.
+ Disable Delegation Select to disallow the forwarding of a work item that was delegated by a
+ Forwarding different user.
+ Limit Reassignments Enable this option to allow users tolimit the number of reassignment of
+ certification item.
+ Show classification information in identity-based access reviews. When
+ enabled, classifications provide additional information about roles, man-
+ Show Classifications aged attributes and policy violations.
+
+ Note that thisoption is available only inidentity-based certifications.
+ Enable Line Item Enable this option to allow certifiers to delegate individual items from an
+ Delegation access review.
+ Enable Identity Enable this option to allow certifiers to delegate entire identities in an
+ Delegation access review.
+ Enable Account Enable this option to allow users tobulk revoke allentitlements for a spe-
+ Revocation cificaccount.
+ Enable Allow Excep- Enables certifiersto allow exceptions on access review items such as
+ tions (applies only to roles or entitlements, that are not policy violations. Allowing an excep-
+ non-policy violation tion means the user should not have access indefinitely, but can retain
+ items) access for a specified period of time.
+ Deprovision Items Enables automatic deprovisioning of access when the allowed excep-
+ When Exception tion period has expired. This setting applies only to items such as roles
+ Expires (applies only or entitlements, that are not policy violations. This option isavailable
+ tonon-policy viol- only when the Enable Allow Exceptions option is also enabled.
+ ation items)
+ Enable Allow Excep- Enable this option to allow certifiers to view the Allow Exception popup
+ tionPopup and manually set expiration dates and allow comments. This applies to
+ both violation and non-violation items.
+ Default Duration for Set a default time period in which exceptions are allowed during the
+ Exceptions access review.
+ This option isonly visible ifyou have purchased and activated the
+ SailPoint AI Services product
+ Show Recom- This feature isonly available on Manager, Application Owner,
+ mendations Advanced, and Role Membership certifications.
+
+
+ Enable recommendations from AI Services to display in access reviews.
+
+
+
+
+
+
+
+SailPoint Certifications and Access Reviews 82
+
+===== Page 88/115 =====
+Manage and Schedule Certifications
+
+
+ Field Name Description
+
+ This option isonly visible ifyou have purchased and activated the
+ SailPoint AI Services product.
+
+ Automatically Note:Â This feature is only available on Manager,
+ Approve Recom- Application Owner, Advanced, and Role Mem-
+ mended Items bership certifications.
+
+ Automatically mark access review items as approved and move them
+ from the Open to the Review tab of the access review.
+ Enable Bulk Enable this option toallow users to bulk approve access review items.
+ Approval
+ Enable Bulk Revoc- Enable this option toallow users to bulk revoke access review items.
+ ation
+ Enable Bulk Allow Enable this option toallow users to allow exceptions inbulk.
+ Exceptions
+ Enable Bulk Reas- Enable this option toallow users to bulk reassign access review items.
+ signment
+ Enable this option toallow users to revoke all entitlements for a specific
+ Enable Bulk Account account in bulk.
+ Revocation
+ This option isnot available for Entitlement Owner certifications.
+ Enable Bulk Clear Enable certifiers tocancel alldecisions currently made on the access
+ Decisions review.
+
+Advanced Fields
+
+The Advanced page allows for additional customizations of the certification. This includes selection of an Exclusion
+Rule forexcluding identities or entitlements from the certification. Depending on the certification type, the options may
+also include other parameters forexcluding identities or entitlements, and inclusion ofIdentityIQ capabilities and
+scopes, among other options. For most certification types, this isalso where the certifiercan be assigned.
+
+ Field Name Certification Description
+ Type
+
+ The custom name used toname certifications. You can com-
+ Custom Name All bine free text and parameterized text by selecting parameters
+ from the dropdown liston the right.
+ Custom Short All You can combine free textand parameterized text by selecting
+ Name parameters from the dropdown liston the right.
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 83
+
+===== Page 89/115 =====
+Manage and Schedule Certifications
+
+
+ Field Name Certification Description
+ Type
+
+ Assign to Manager (Role Membership Only) â€“ assign the
+ certification request to the role member's manager. If the role
+ members do not share a common manager, a separate cer-
+ tification request willbe created for each manager with at least
+ one direct report inthe role under certification. If a manager is
+ not found for an identity, the certification is assigned to the role
+ owner for that identity.
+
+ Assign to Role Owner â€“ assign the certification to the owner
+ Role Mem- of the role under certification. Ifmultiple roles have been selec-
+ bership ted, separate certifications will be created ifthe given roles do
+ Certifiers not share a common owner. Ifno role owner is discovered, a
+ Role Com- warning isattached to the task results with a listof the items
+ position that could not be assigned for certification.
+
+ Select Certifier Manually â€“ enter the fullname ofa specific
+ certifier or certifiers being assigned thiscertification. Certifiers
+ can be individual identities or workgroups.
+ A name entered here overrides the default certifier forthe type
+ of certification requested.
+ Typing the firstfew letters of the name displays a listofall of
+ the authorized certifier names in the system containing that let-
+ ter combination. You can select from the displayed list.
+ Application
+ Owner
+ The fullname of a specific certifieror certifiers being assigned
+ Certifiers Account Group to this certification. A name entered here overrides the account
+ Membership group owner as certifier for this certification request. Certifiers
+ can be individual identities or workgroups.
+ Account Group
+ Permissions
+ Select whether to generate a certification request for the spe-
+ Manager cified managers, or for the specified managers and all oftheir
+ Generate Cer- subordinate managers.
+ tifications Identity If you select For the specified manager(s) only, the Flatten
+
+ Hierarchy option isdisplayed. Select the Flatten Hierarchy
+
+
+
+
+
+
+SailPoint Certifications and Access Reviews 84
+

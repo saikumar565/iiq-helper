@@ -1,0 +1,1054 @@
+===== Page 1/17 =====
+ Getting Started
+
+
+ Version:8.4
+
+ Revised:September 2023
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thisdocument and the information contained herein is SailPointConfidential Information
+
+===== Page 2/17 =====
+Copyright and Trademark Notices
+
+Copyright © 2023 SailPoint Technologies, Inc.  All Rights Reserved.
+
+Alllogos, text,content, including underlying HTML code, designs, and graphics used and/or depicted on these written
+materials or in thisInternet website are protected under United States and international copyright and trademark laws
+and treaties, and may not be used or reproduced without the prior express written permission of SailPoint Tech-
+nologies, Inc.
+
+“SailPoint Technologies,” (design and word mark), “SailPoint,” (design and word mark), "Identity IQ,” “IdentityNow,”
+“SecurityIQ,” “Identity AI,” “Identity Cube,” and “SailPoint Predictive Identity” are registered trademarks of SailPoint
+Technologies, Inc. “Identity isEverything,” “The Power of Identity,” and “Identity University” are trademarks of
+SailPoint Technologies, Inc. None of the foregoing marks may be used without the prior express written permission of
+SailPoint Technologies, Inc. Allother trademarks shown herein are owned by the respective companies or persons
+indicated.
+
+SailPoint Technologies, Inc. makes no warranty ofany kind regarding these materials or the information included
+therein, including, but not limited to,the implied warranties ofmerchantability and fitness for a particular purpose.
+SailPoint Technologies shall not be liable for errors contained herein or direct, indirect, special, incidental orcon-
+sequential damages inconnection with the furnishing, performance, or use of thismaterial.
+
+Patents Notice. https://www.sailpoint.com/patents
+
+Restricted Rights Legend. All rights are reserved. No part ofthis document may be published, distributed, reproduced,
+publicly displayed, used to create derivative works, or translated to another language, without the prior written consent
+ofSailPoint Technologies. The information contained inthis document issubject to change without notice.
+
+Use, duplication or disclosure by the U.S. Government is subject to restrictions as set forth insubparagraph (c) (1) (ii)
+ofthe Rights inTechnical Data and Computer Software clause at DFARS 252.227-7013 for DOD agencies, and sub-
+paragraphs (c)(1) and (c)(2) ofthe Commercial Computer Software Restricted Rights clause at FAR 52.227-19 for
+other agencies.
+
+Regulatory/Export Compliance. The export and re-export of this software iscontrolled for export purposes by the U.S.
+Government. By accepting this software and/or documentation, licensee agrees to comply with allU.S. and foreign
+export laws and regulations as they relate to software and related documentation.  Licensee will not export or re-
+export outside the United States software or documentation, whether directly or indirectly, to any Prohibited Party and
+willnot cause, approve or otherwise intentionally facilitate others inso doing. A Prohibited Party includes: a party in a
+U.S. embargoed country or country the United States has named as a supporter of international terrorism; a party
+involved in proliferation; a party identified by the U.S. Government as a Denied Party; a party named on the U.S.
+Department of Commerce’s Entity Listin Supplement No. 4 to 15 C.F.R. § 744; a party prohibited from participation in
+export orre-export transactions by a U.S. Government General Order; a party listed by the U.S. Government’s Office
+ofForeign Assets Control as ineligible to participate in transactions subject toU.S. jurisdiction; or any party that
+licensee knows or has reason toknow has violated or plans to violate U.S. or foreign export laws or regulations.
+Licensee shall ensure that each of itssoftware users complies with U.S. and foreign export laws and regulations as
+they relate to software and related documentation.
+
+===== Page 3/17 =====
+Contents
+
+
+ Getting Started with IdentityIQ 1
+
+ New User Registration 1
+
+ Multi-Factor Authentication 2
+
+ Password Recovery –Account Unlock 2
+
+ IdentityIQ Home Page and Navigation 4
+
+ QuickLinks 4
+
+ Home Page Widgets 7
+
+ Navigation Menu Bar 9
+
+===== Page 4/17 =====
+Getting Started with IdentityIQ
+
+Getting Started with IdentityIQ
+
+
+How you log in toIdentityIQ isbased on how your system is configured. The following loginoptions may be available:
+
+
+
+ l Custom login
+
+
+
+ l New User Registration
+
+
+
+ l QuickLinks
+
+
+
+ l Password Recovery – Account Unlock
+
+
+ Note: Based on your role and individual privileges, and how your system is configured some
+ options inthis section could be unavailable.
+
+After you log in to IdentityIQ, the Home page displays. For more information, see IdentityIQ Home Page and Nav-
+igation
+
+ Note: Do not open multiple tabs or browsers. Opening multiple tabs might overwrite changes
+ made inthe other.
+
+New User Registration
+
+Self service registration enables new users to request an IdentityIQ user account the firsttime they access the
+product. When thisoption isenabled, the New User Registration link displays below the Password fieldon the Wel-
+come screen.
+
+ Note: To use thisfeature, enable self-service registration on the Lifecycle Manager Configuration
+ page. See the Lifecycle Manager documentation.
+
+
+ Note: You can also access the New User Registration page through a direct linkthat bypasses
+ the login page and simplifies the registration process.
+
+ 1. Click the New User Registration link tolaunch the New User Registration page.
+
+ 2. Fillin the required fields,which include the requested IdentityIQ user name and password.
+
+ 3. Click Register.
+
+After the request isauthorized, you receive an email notification and you can use the name and password submitted
+tolog on toIdentityIQ.
+
+
+
+
+ SailPoint Getting Started 1
+
+===== Page 5/17 =====
+Getting Started with IdentityIQ
+
+Multi-Factor Authentication
+
+Multi-Factor Authentication (MFA) adds an additional layer ofsecurity by requiring you to use multiple methods to
+authenticate your identitybefore you can log in toIdentityIQ. When MFA isconfigured for your system:
+
+ 1. Log in toIdentityIQ from the default login page and then your MFA provider's login page displays. Ifyour pass-
+ word is expired oryou are required to change your password, you must complete the MFA process first.
+
+ 2. Follow the login prompts foryour provider.
+
+ 3. After you are authenticated, you are logged into IdentityIQ and the Home page displays.
+
+
+ Note: Ifyou are assigned to multiple providers, you must select a provider from the provider list
+ before you can proceed to the provider's login page.
+
+Password Recovery – Account Unlock
+
+Based on the IdentityIQ configuration, the following options can be available:
+
+
+
+ l Forgot Password – your password isreset and you are automatically logged in to IdentityIQ
+
+
+
+ l Account Unlock – your account isunlocked and you can log in
+
+
+When an Administrator sets up password recovery and account unlock options, the following verification methods are
+configured:
+
+
+
+ l Answer Authentication Questions
+
+
+
+ l Send a Text Message with a Verification Code
+
+Answer Authentication Questions
+
+To use thisfeature, your administrator must activate thisoption and you must provide answers to authentication ques-
+tions inyour IdentityIQ User Preferences before thisfeature isavailable.
+
+Your administrator can set the following items thatdetermine how the feature works:
+
+
+
+ l Number of answers you must define inyour IdentityIQ User Preferences
+
+
+
+ l Number of correct answers you must provide to authentication questions
+
+
+
+
+
+
+
+
+
+
+ SailPoint Getting Started 2
+
+===== Page 6/17 =====
+Getting Started with IdentityIQ
+
+
+
+ l Maximum number of wrong answers you can enter before IdentityIQ locks you out
+
+
+
+ l Number ofminutes you are locked out
+
+
+To unlock the account before the lockout time ends, an administrator with the appropriate system capabilities can click
+Unlock Identity on the Identity Cube Attributes tab.
+
+How to Recover Your Password Using Authentication Questions
+
+Ifyou have not set up and answered the authentication questions and do not know your password, you must contact
+your help desk or your IdentityIQ administrator to reset your password.
+
+Complete the following steps:
+
+ 1. Click the Forgot Password? link.
+
+ 2. Enter your username and clickOK.
+
+ 3. Enter the correct answers to the questions you previously set up and clickDone.
+
+ Note: The responses entered on this window are compared to the recorded answers. If
+ you provided the required number of correct answers, IdentityIQ can authenticate you.
+ The authentication process ignores case when comparing the your answers to the stored
+ answers.
+
+ 4. On the next window, enter your new authentication password in the New Password and Confirm Password
+ boxes and click Change.
+
+The new password must meet the requirements ofthe password policy that your IdentityIQ administrator set up.
+
+Send a Text Message with a Verification Code
+
+To use thisfeature, your administrator must activate this option and a mobile telephone number must be configured
+foryour IdentityIQ account. Your mobile phone number must contain a complete number including the area code.
+
+This option is configured in Login Configuration. See the IdentityIQ System Configuration documentation for
+more details.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Getting Started 3
+
+===== Page 7/17 =====
+IdentityIQ Home Page and Navigation
+
+IdentityIQ Home Page and Navigation
+
+
+The IdentityIQ Home page isa web-based console thatenables you toreview and act on compliance-related data and
+activitiesacross the enterprise. The Home page displays after you log intothe IdentityIQ or when you click the Home
+icon. The Home page functions as a dashboard with convenient links tospecific areas IdentityIQ. These links are
+defined when IdentityIQ isdeployed and are based on the needs of your enterprise.
+
+The Home Page includes:
+
+
+
+ l QuickLinks
+
+
+
+ l Home Page Widgets
+
+
+
+ l Navigation Menu Bar
+
+
+ Note: Lifecycle Manager must be installed to access the Lifecycle features. Contact your
+ SailPoint representative for more information.
+
+
+ Note: Based on your role and individual privileges, the availability ofIdentityIQ components may
+ be limited.
+
+QuickLinks
+
+QuickLinks are tasked-based links tofrequently-used areas of IdentityIQ. Your administrator determines the behavior
+and availabilityof these links. QuickLinks are displayed as cards on the IdentityIQ Home page and as links in the
+QuickLink Menu, which is available throughout the product.
+
+
+
+ l QuickLink Menu – Listsall ofthe QuickLinks that are available to the user. The menu is displayed on every
+ IdentityIQ page. Your administrator can configure these links.
+
+
+
+ l QuickLink Cards – Displays task-oriented based on available QuickLinks. Cards are available only on the
+ Home page. Users can add or delete cards from their Home page.
+
+QuickLink Menu
+
+The QuickLinks menu isavailable from any IdentityIQ page and provides access to frequently-used items. To view the
+QuickLinks menu, click the QuickLinks icon, the three-bar icon located on the Navigation menu.
+
+For a QuickLinks menu item to be available, a QuickLink must be configured. Based on your role and individual priv-
+ileges, the availabilityof IdentityIQ QuickLinks can be limited.
+
+By default, IdentityIQ ships with the following configuration in the QuickLinks menu:
+
+
+
+
+
+ SailPoint Getting Started 4
+
+===== Page 8/17 =====
+IdentityIQ Home Page and Navigation
+
+ My Tasks
+
+ Access Reviews: Links to the Certifications > My Reviews page that listsyour current access reviews. Click
+ an access review inthe listto display the Access Review Details page.
+
+ Approvals: Links to the Manage Work Items page where you can view and manage approvals that are
+ assigned to you or toa work group ofwhich you are a member. You can also view approvals assigned by you.
+
+ Forms: Links to the Manage Work Items page where you can view and provide needed information for form
+ work items.
+
+ Signoff Reports: Links tothe Manage Work Items page where you can view and manage sign off report work
+ items.
+
+ Policy Violations: Links to the Policy Violations page where you can view and manage policy violations out-
+ side of certifications.
+
+ Manage Access
+
+
+ Note: This feature requires Lifecycle Manager.
+
+ Manage User Access: Links to the Manage My Access page where you can request to add access based on
+ roles or entitlements or remove access. Ifyou can request access for others, the Manage User Access page dis-
+ plays.
+
+ Manage Accounts: Links to the Manage Accounts page for yourself where you can double-click on a current
+ account to make changes. Ifyou can manage accounts forothers, this option links to a page that listsidentities.
+ Double-click on an identity and select the account you want to manage.
+
+ Change Password: Links tothe Manage Passwords page for yourself where you can manage passwords for
+ your current application accounts. Ifyou can change passwords for others, thisoption linksto a page that lists
+ identities. Double-click on an identity to manage passwords forthe identity's application accounts.
+
+ Track My Requests: Links to the Access Request page that listsyour open access requests. to view details
+ about a specific request double-click a listing.
+
+ Manage Identity
+
+
+ Note: This feature requires Lifecycle Manager.
+
+ Create Identity: Links tothe Create New page where you can create a new identity tobe stored in the Identity
+ Warehouse.
+
+ Edit Identity: Links to the Edit Identity Attributes page foryourself where you can specify and request changes
+ to your identity attributes.Ifyou can edit identityattributes for others, thisoption linksto a page that listsiden-
+ tities.Double-click on an identityto specify and request changes for the identity'sattributes.
+
+
+
+
+SailPoint Getting Started 5
+
+===== Page 9/17 =====
+IdentityIQ Home Page and Navigation
+
+
+ View Identity: Links tothe View identitypage foryourself where you can view identity information. Ifyou can
+ view identityinformation for others, this option linksto a page that listsidentities.Double-click on an identity to
+ view the identity'sinformation. The View Identity page contains information about an identity's attributes,enti-
+ tlements, and application accounts.
+
+ See How to Manage Identities.
+
+Those who have the Privileged Account Management module also have a Quicklink to the Privileged Account Man-
+agement page. The SailPoint IdentityIQ Privileged Account Management Module (PAM) extends identitygovernance
+processes and controls to highly privileged access, enabling you to centrally manage access to privileged and non-
+privileged accounts.
+
+Talk to your SailPoint representative or refer tothe SailPoint IdentityIQ Privileged Account Management doc-
+umentation for more information.
+
+QuickLink Cards
+
+QuickLink cards are based on the QuickLinks that are set up when IdentityIQ isdeployed. You can rearrange, move,
+and add QuickLink cards on your Home page.
+
+For a QuickLink card to be available, a QuickLink must be configured by the Administrator. Additionally, Lifecycle Man-
+ager must be installed to use to use the QuickLink cards forthe Access Request component.
+
+By default, IdentityIQ ships with the following cards set up on the Home page:
+
+
+
+ l Policy Violations
+
+
+
+ l Access Reviews
+
+
+
+ l Approvals
+
+
+
+ l Manage User Access
+
+
+
+ l Track My Requests
+
+
+To use the the QuickLink cards forthe Access Request component Lifecycle Manager must be installed and a Quick-
+Link must be configured.
+
+See QuickLink Menu for more information for information about default QuickLinks.
+
+ How to Manage QuickLink Cards on Your Home Page
+
+To make changes to your Home page, click Edit and make any ofthe following changes:
+
+
+
+
+
+
+
+
+
+ SailPoint Getting Started 6
+
+===== Page 10/17 =====
+IdentityIQ Home Page and Navigation
+
+
+
+
+ l Rearrange cards – Click and hold Drag and then move the card to the new location.
+
+
+
+ l Remove a card – Click Remove.
+
+
+
+ l Add a card – Click Add Card and select one or items from the listof available cards and then clickSave. to
+ close the selection window.
+
+You can also set the type ofcards to display in the top row of the Home page, QuickLink cards or Widgets.
+
+When your changes are complete, click Save.
+
+Home Page Widgets
+
+
+ Note: Based on your roleand individual privileges, the availability ofIdentityIQ Widgets may be
+ limited.
+
+Homepage Widgets use bite-size visualizations and data grids to present information ofinterest to the logged-in user.
+You can rearrange, move, and add widgets on your Home page. See How to Manage Widgets on Your Home Page.
+Click any item in the Widget card to go to the stand-alone page associated with the card. Click All to view the stand-
+alone page with allthe listings associated with the card.
+
+By default, IdentityIQ ships with the following predefined Widgets:
+
+ Work Item
+
+ Latest Approvals displays the five most recent approvals that the logged-in user orone of their work groups.
+
+ Latest Policy Violations displays the fivemost recent forms that the logged-in user or one oftheir work groups
+
+ Latest Forms displays the fivemost recent forms that the logged-in user or one of theirwork groups.
+
+ Certification
+
+ Certification Campaigns displays as a chart that indicates the completion status as a percentage.The color of
+ the chart and message displayed under the titlechange based on the proximity to the due date.
+ Today – textindicates Due Today and chart is red.
+ Week – text indicates Due This Week and chart isorange.
+ Other – text indicates Due X where X isthe due date and chart is green.
+
+ To view this widget, user must have compliance officer,certification admin, or auditor capabilities.
+
+ My Access Requests displays as a pie chart that indicates the completion status as with the number of items
+ completed out oftotal items. The color of the chart and message displayed under the titlechange based on the
+ proximity to the due date.
+ Today – textindicates Due Today and chart is red.
+
+
+
+
+
+ SailPoint Getting Started 7
+
+===== Page 11/17 =====
+IdentityIQ Home Page and Navigation
+
+
+ Week – text indicates Due This Week and chart is orange.
+ Other – textindicates Due X where X is the due date and chart is green.
+
+ Risk
+
+ Risk Scores: Applications and Identities displays riskscores forapplications and identities.By default, the
+ Applications panel displays the top five applications with the highest riskscores. To view the top fiveidentities
+ with the highest riskscore, clickthe forward arrow. To switch between the panels, clickthe forward orback
+ arrow.
+
+ Productivity
+
+ Direct Report Actions displays a listof the direct reports for the logged-in manager. Based on the manager's
+ rights and capabilities, the manager can perform actions such as request access, change password, manager
+ accounts, and view identity details.Click and identity name toview information about the identity.
+
+ Data Governance
+
+ Requires the FileAccess Manager integration
+
+ Sensitive Data Exposure shows the number of overexposed resources, and the overall compliance score. The
+ compliance score is color coded to indicate risk (0-5 isconsidered high risk,5.1-7.5 medium risk, and 7.6-10 low
+ risk).
+
+ Sensitive Resources Missing Owners shows the number of resources with classified data that are missing an
+ assigned data owner, and the overall compliance score. The compliance score iscolor coded to indicate risk(0-5
+ isconsidered high risk,5.1-7.5 medium risk,and 7.6-10 low risk).
+
+How to Manage Widgets on Your Home Page
+
+To make changes to your Home page, click Edit and make any of the following changes:
+
+
+
+ l Rearrange cards – clickand hold Drag and then move the card to the new location.
+
+
+
+ l Remove a card – click Remove.
+
+
+
+ l Add a card – click Add Card and select one oritems from the listofavailable cards and then click Save to close
+ the selection window.
+
+You can also set the type of cards todisplay in the top row ofthe Home page, QuickLink cards or Widgets.
+
+When your changes are complete, clickSave.
+
+
+
+
+
+
+
+
+ SailPoint Getting Started 8
+
+===== Page 12/17 =====
+IdentityIQ Home Page and Navigation
+
+Navigation Menu Bar
+
+The Navigation bar can be accessed from any IdentityIQ page and provides a convenient way to access areas of Iden-
+tityIQ.By default, IdentityIQ ships with the following top-level headings in the Navigation bar:
+
+
+
+ l Home
+
+
+
+ l My Work
+
+
+
+ l Identities
+
+
+
+ l Applications
+
+
+
+ l Intelligence
+
+
+
+ l Data Governance
+
+
+
+ l Setup
+
+
+
+ l Gear Icon – Administration Menu
+
+
+
+ l Bell Icon -Work Item Menu
+
+
+
+ l User Name – User Menu
+
+
+ Note: Based on your role and individual privileges, the availability ofIdentityIQ navigation menu
+ bar items can be limited.Additionally, some options require IdentityIQ administrative capabilities.
+ For information about setting up administrative capabilities, contact your IdentityIQ admin-
+ istrator.
+
+Home
+
+Your Home page functions as a dashboard with convenient QuickLink cards thatlink directlyto frequently-used areas
+inIdentityIQ. Click Home in the Navigation menu bar from any IdentityIQ page to refresh or return to the Home page.
+
+You can rearrange, add, or delete QuickLink cards based on available QuickLinks. See How to Manage QuickLink
+Cards on Your Home Page.
+
+My Work
+
+This menu item links to the Manage Work Items page where your can view and manage open items that require your
+input, such as Access Reviews, Access Requests, Policy Violations, and Work Items.
+
+
+
+
+
+
+ SailPoint Getting Started 9
+
+===== Page 13/17 =====
+IdentityIQ Home Page and Navigation
+
+Identities
+
+This menu item links to the Identities page, which contains links to pages related to user identities,such as:
+
+
+
+ l Identity Warehouse – links tothe Identity Warehouse page where you can create, view, and edit information
+ forindividual identities in your enterprise.
+
+
+
+ l Identity Correlation – links to the Identity Correlation page where you can correlate one or more accounts with
+ an identity.
+
+
+
+ l Identity Risk Model – links to the Risk Scoring Configuration page where you can configure risk scoring iden-
+ tities.
+
+Applications
+
+The Applications menu bar item contains links to pages related to applications and entitlements, such as:
+
+
+
+ l Application Definition – linksto the Application Definition page where you can specify the connection prop-
+ erties,relevant attributes, targets and aggregation rules for each application in your enterprise to work with
+ IdentityIQ.
+
+
+
+ l Entitlement Catalog – links to the Entitlement Catalog page where you can view and manage managed attrib-
+ utes including entitlements, account groups/application objects and permissions.
+
+
+
+ l Application Risk Model – links to the Application Risk Scoring Configuration page where you can configure
+ riskscoring for applications inyour organization.
+
+
+
+ l Activity Target Categories – links to the Activity Target Categories page where you can view, add or edit the
+ defined categories touse with the Activity Search page.
+
+Intelligence
+
+The Intelligence menu bar item contains links to pages related toanalytics, such as:
+
+
+
+ l Advanced Analytics – links to the Advanced Analytics page where you can create specific queries based on
+ identities,certifications, activity and audit logs.
+
+
+
+ l Reports – links to the Reports page where you can use standard or custom reports tocollect information you
+ need to manage the compliance process.
+
+
+
+ l Identity Risk Scores – linksto the Identity Risk Score page where you can view individual risk scores for
+ users. The page displays one tab for each risk level defined in IdentityIQ.
+
+
+
+ l Application Risk Scores – linksto the Application Risk Scores page where you can view risk scores asso-
+ ciated with each application. The page displays a table summarizing all of the applications score cards.
+
+
+
+
+
+ SailPoint Getting Started 10
+
+===== Page 14/17 =====
+IdentityIQ Home Page and Navigation
+
+Data Governance
+
+The Data Governance menu bar item is available only ifthe File Access Manager integration has been implemented,
+and isviewable only by users with an IdentityIQ capability that includes rights to see File Access Manager features. It
+contains links that provide direct access to the File Access Manager website.
+
+For information about the Data Governance menu options, refer to the refer to the File Access Manager doc-
+umentation.
+
+Setup
+
+The Setup menu bar item contains links to pages related to configuration items, such as:
+
+
+
+ l Certifications – linksto the Certifications page where you can view and create the scheduled certifications that
+ are required to maintain compliance inyour enterprise.
+
+
+
+ l Roles – links to the Role Management page where you can create and maintain the roles that define your enter-
+ prise.
+
+
+
+ l Policies – links tothe Policies page where you can define policies tomonitor identities that are inviolation of
+ the policies.
+
+
+
+ l Tasks – links to the Task page where you can create tasks that automate the processes that build, update, and
+ maintain the information contained within IdentityIQ.
+
+
+
+ l Groups – links to the Group Configuration page where you can work with groups and populations that track
+ and monitor activityby membership and risk information.
+
+
+
+ l Business Processes – links to the Business Process Editor page where you can create a sequence ofsteps
+ or activities and each step can perform one or more actions.
+
+
+
+ l Lifecycle Events – links to Lifecycle Events page where you can create new events or configure existing
+ events inyour enterprise to trigger business processes.
+
+
+
+ l Batch Requests – linksto the Batch Requests page where you can work with batch requests that enable you
+ to generate specific types of access requests for more than one user at a time.
+
+Gear Icon – Administration Menu
+
+
+ Note: You must have IdentityIQ administrative capabilities to use thisoption. For information
+ about setting up administrative capabilities, contact your IdentityIQ administrator.
+
+The Administration menu bar item contains links topages specific to system-wide configurations, such as:
+
+
+
+
+
+
+
+ SailPoint Getting Started 11
+
+===== Page 15/17 =====
+IdentityIQ Home Page and Navigation
+
+
+
+ l Global Settings – configure control and default settings for the entire IdentityIQ product.
+
+ For more information, see the System Configuration documentation.
+
+
+
+ l Lifecycle Manager – adds tools, work items and reports related to Lifecycle Manager core functionality.
+
+ For more information, see the Lifecycle Manager documentation.
+
+
+
+ l Compliance Manager – access certifications, policy management, and audit reporting.
+
+ For more information, see the System Configuration documentation.
+
+
+
+ l Administrative Console – provides Task, Provisioning, and Environment monitoring tables.
+
+ For more information, see the System Administration documentation.
+
+
+
+ l Plugins – displays the third-party plugins configured to work with IdentityIQ.
+
+ For more information, see the IdentityIQ Plugins documentation.
+
+Bell Icon - Work Item Menu
+
+The Bell icon provides notifications and quick access to work items fora logged-in user and can include the following
+types of work items:
+
+
+
+ l Approvals
+
+
+
+ l Forms
+
+
+
+ l Violations
+
+
+
+ l Others
+
+
+When you log in,a red badge displays on the Bellicon and indicates the total number of any work items you have.
+Click a work item to display the associated Work Item page. See the Work Items documentation for more information.
+
+ Note: The count for work item types refreshes on a regular interval.By default, the refresh cycle
+ isfive minutes. Because your administrator can customize thissetting, your refresh cycle can be
+ different.
+
+User Name – User Menu
+
+The name ofthe logged-in user is displayed in the navigation menu bar and contains a linkto the Preferences page
+specific to you where you can view or edit user preferences.
+
+There isalso a Logout option allowing you to log out of IdentityIQ.
+
+
+
+
+
+
+
+ SailPoint Getting Started 12
+
+===== Page 16/17 =====
+IdentityIQ Home Page and Navigation
+
+Edit Preferences
+
+Preferences includes settings that personalize how you use IdentityIQ. Depending on your level of access you may
+have options to:
+
+
+
+ l Set up a user to whom allwork items assigned to you are to be forwarded.
+
+
+
+ l Ifa forwarding user isused, edit the start and end dates for allforwarded work items.
+
+
+
+ l Change the password you use to log in to IdentityIQ.
+
+
+
+ l Select security questions and provide answers.
+
+
+
+ l Specify your name and the email address to use for notifications.
+
+
+ Note: Only system administrators can change the name and email information from this location.
+
+The abilityto editsome of the preferences on this page isdetermined during configuration. Consult your administrator
+ifyou have questions.
+
+ General
+
+On the Edit Preferences > General tab, you may designate a Forwarding User who willreceive allwork items, as
+well as the associated reminders and notifications, that are assigned to you forthe time period you determine.
+
+ 1. Use the dropdown arrow or begin typing to locate and select the appropriate user.
+
+ 2. Select the Start Date checkbox, then use the date picker to indicate the date to startforwarding items.
+
+ 3. Ifyou want forwarding to end atsome point, select the End Date checkbox and use the date picker to indicate
+ when forwarding should stop. Note that specifying a forwarding user without an end date will permanently
+ enable the forwarding process as ofthe startdate.
+
+ Password
+
+Use the form on the Edit Preferences > Password tab to change your IdentityIQ password. See Self-Service Pass-
+word Reset.
+
+ 1. Enter your current password.
+
+ 2. Enter your desired new password.
+
+ 3. Re-enter the new password to confirm.
+
+
+
+
+
+
+ SailPoint Getting Started 13
+
+===== Page 17/17 =====
+IdentityIQ Home Page and Navigation
+
+ Security Question
+
+Ifyour System Administrator has set up the system torequire security questions as part of a password reset, you will
+have a Preferences menu option forSecurity Questions. They may be configured by System Administrators in gear >
+Global Settings > Login Configuration > User Reset tab > Questions.
+
+System Administrators, see Configuring the Security Question Settings in the IdentityIQ Password Management
+guide.
+
+
+
+End users, see Security Questions Tab in the IdentityIQ Password Management Guide.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Getting Started 14

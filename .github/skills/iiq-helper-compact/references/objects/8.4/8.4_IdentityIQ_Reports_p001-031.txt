@@ -1,0 +1,1898 @@
+﻿===== Page 1/149 =====
+ IdentityIQ Reports
+
+
+ Version:8.4
+
+ Revised:September 2023
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thisdocument and the information contained herein isSailPoint ConfidentialInformation
+
+===== Page 2/149 =====
+Copyright and Trademark Notices
+
+Copyright Â© 2023 SailPoint Technologies, Inc.Â  All Rights Reserved.
+
+Alllogos, text,content, including underlying HTML code, designs, and graphics used and/or depicted on these written
+materials or in thisInternet website are protected under United States and international copyright and trademark laws
+and treaties, and may not be used or reproduced without the prior express written permission of SailPoint Tech-
+nologies, Inc.
+
+â€œSailPoint Technologies,â€ (design and word mark), â€œSailPoint,â€ (design and word mark), "Identity IQ,â€ â€œIdentityNow,â€
+â€œSecurityIQ,â€ â€œIdentity AI,â€ â€œIdentity Cube,â€ and â€œSailPoint Predictive Identityâ€ are registered trademarks of SailPoint
+Technologies, Inc. â€œIdentity isEverything,â€ â€œThe Power of Identity,â€ and â€œIdentity Universityâ€ are trademarks of
+SailPoint Technologies, Inc. None of the foregoing marks may be used without the prior express written permission of
+SailPoint Technologies, Inc. Allother trademarks shown herein are owned by the respective companies or persons
+indicated.
+
+SailPoint Technologies, Inc. makes no warranty ofany kind regarding these materials or the information included
+therein, including, but not limited to,the implied warranties ofmerchantability and fitness for a particular purpose.
+SailPoint Technologies shall not be liable for errors contained herein or direct, indirect, special, incidental orcon-
+sequential damages inconnection with the furnishing, performance, or use of thismaterial.
+
+Patents Notice. https://www.sailpoint.com/patents
+
+Restricted Rights Legend. All rights are reserved. No part ofthis document may be published, distributed, reproduced,
+publicly displayed, used to create derivative works, or translated to another language, without the prior written consent
+ofSailPoint Technologies. The information contained inthis document issubject to change without notice.
+
+Use, duplication or disclosure by the U.S. Government is subject to restrictions as set forth insubparagraph (c) (1) (ii)
+ofthe Rights inTechnical Data and Computer Software clause at DFARS 252.227-7013 for DOD agencies, and sub-
+paragraphs (c)(1) and (c)(2) ofthe Commercial Computer Software Restricted Rights clause at FAR 52.227-19 for
+other agencies.
+
+Regulatory/Export Compliance. The export and re-export of this software iscontrolled for export purposes by the U.S.
+Government. By accepting this software and/or documentation, licensee agrees to comply with allU.S. and foreign
+export laws and regulations as they relate to software and related documentation.Â  Licensee will not export or re-
+export outside the United States software or documentation, whether directly or indirectly, to any Prohibited Party and
+willnot cause, approve or otherwise intentionally facilitate others inso doing. A Prohibited Party includes: a party in a
+U.S. embargoed country or country the United States has named as a supporter of international terrorism; a party
+involved in proliferation; a party identified by the U.S. Government as a Denied Party; a party named on the U.S.
+Department of Commerceâ€™s Entity Listin Supplement No. 4 to 15 C.F.R. Â§ 744; a party prohibited from participation in
+export orre-export transactions by a U.S. Government General Order; a party listed by the U.S. Governmentâ€™s Office
+ofForeign Assets Control as ineligible to participate in transactions subject toU.S. jurisdiction; or any party that
+licensee knows or has reason toknow has violated or plans to violate U.S. or foreign export laws or regulations.
+Licensee shall ensure that each of itssoftware users complies with U.S. and foreign export laws and regulations as
+they relate to software and related documentation.
+
+===== Page 3/149 =====
+Contents
+
+
+ Introduction to Reports 1
+
+ Report Terminology 2
+
+ Navigating the Reports UI 3
+
+ The My Reports Tab 3
+
+ The Reports Tab 4
+
+ The Scheduled Reports Tab 5
+
+ The Report Results Tab 6
+
+ Working With Reports 8
+
+ New Reports 8
+
+ Existing Reports 8
+
+ Running Reports 8
+
+ Scheduled Reports 8
+
+ Deleting Reports 8
+
+ Exporting Reports 8
+
+ Report Work Items 9
+
+ How toCreate a New Report 9
+
+ How toEdit a Report 11
+
+ How toRun a Report 13
+
+ How toSchedule a Report 14
+
+ How toComplete Report Work Items 14
+
+ Report Properties and Parameters 16
+
+ Properties Common to AllReports 16
+
+ Report-Specific Details 16
+
+ Standard Report Properties 16
+
+ Report Layout 18
+
+ Report-Specific Parameters 19
+
+ Saving, Previewing, and Running Reports 19
+
+ XML Representation ofReports and Instances 20
+
+ IdentityIQ Standard Reports 21
+
+===== Page 4/149 =====
+ Access Review and Certification Reports 21
+
+ Account Group Reports 42
+
+ Activity Reports: User ActivityDetailed Report 44
+
+ Administration Reports 45
+
+ Application Status Report 57
+
+ Configured Resource Reports 59
+
+ Identity and User Reports 62
+
+ Policy Violation Report 84
+
+ Risk Reports 85
+
+ Role Management Reports 90
+
+Developing Custom Reports 104
+
+ Reports in the IdentityIQ Object Model 104
+
+ Report Definition 108
+
+ Report Forms 137
+
+Reports DataSource Example 142
+
+===== Page 5/149 =====
+Introduction to Reports
+
+Introduction to Reports
+
+
+Reports provide an at-a-glance view of the data inIdentityIQ, which helps the organization manage system access
+and the compliance process. IdentityIQ includes a standard set of core reports in template form. Individual users and
+organizations can customize and save instances of these templates, and run these reports on a scheduled or ad-hoc
+basis. Additionally, custom reports can be created to meet the needs of each customer. IdentityIQ includes a reporting
+architecture that simplifies the process ofcreating custom reports. Basic reports can be created quickly through an
+XML specification. A variety of hooks are available for introducing more complex logic where itis needed to produce
+the desired report output. The standard report templates that are part ofthe product are modeled with this same XML
+specification structure and can serve as helpful examples of how custom reports should be structured.
+
+To access the Reports page, from the Navigation menu bar, go toIntelligence > Reports.
+
+IdentityIQ includes a number of standard reports for monitoring and managing compliance and provisioning activities.
+These reports can be run with orwithout filtercriteria.For example, the Uncorrelated Accounts Report can run with no
+filtersand return the listof uncorrelated accounts for allapplications in the system, or you can set filterson the report,
+torestrict the results toa subset of applications.
+
+The unfiltered, standard version of each report islisted on, and can be run from, the Report page's Reports tab. Ifyou
+add filterstothe standard report, that report configuration issaved as a customized report on the My Reports tab.
+
+SailPoint provides a number of standard reports that can be run without changes. You can also use the standard
+reports tocreate custom reports that are specific to your needs.The provided reports are displayed on the Reports tab.
+The following types ofreport templates are provided:
+
+
+
+ l Detailed Reports â€“ include key data about specific areas in IdentityIQ. The information can be presented in
+ table or grid format. The results can be exported to a .csv fileand used in spreadsheets.
+
+
+
+ l Archived Reports â€“ include end-of-period and task information that isformatted for easy dissemination ofkey
+ audit information. Due to the large amount of data that is generated, the best option isto export the report res-
+ ultsto a .pdf file
+
+
+
+ l Summary Report â€“ include end-of-period and task information that isformatted for easy dissemination of key
+ audit information. Due to the large amount of data that is generated, the best option isto export the report res-
+ ultsto a .pdf file
+
+For more information see:
+
+
+
+ l The My Reports Tab
+
+
+
+ l The Reports Tab
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 1
+
+===== Page 6/149 =====
+Introduction to Reports
+
+
+
+ l Report Properties and Parameters
+
+
+
+ l The Scheduled Reports Tab
+
+
+
+ l The Report Results Tab
+
+
+
+ l XML Representation of Reports and Instances
+
+
+
+ l Developing Custom Reports
+
+
+
+ l Reports DataSource Example
+
+
+
+ l Using Reports
+
+Report Terminology
+
+IdentityIQ uses these terms for describing how to create custom reports and how to customize report templates:
+
+
+
+ l Report Templates: Out-of-the-box reports provided with the standard IdentityIQ product. These report tem-
+ plates are on the Reports tab of the Reports page (under the Intelligence >Â Reports menu). These reports
+ can be run directly,or edited tocreate customized versions. These reports are also referred to as out-of-the-
+ box reports, standard reports, or standard report templates.
+
+
+
+ l Custom Reports: Customer-specific reports developed by or specifically fora single customer through a cus-
+ tom Task Definition specification. Once they have been saved, these reports are on the Reports tab of the
+ Reports page. These reports are also referred to as custom report templates.
+
+
+
+ l Customized Report Instances â€” User-specific report versions with pre-specified parameters. These reports
+ are on the My Reports tab of the Reports page. Instances apply toout-of-the-box reports and custom reports.
+ The terms customized report or instance are also used forthese reports.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 2
+
+===== Page 7/149 =====
+Navigating the Reports UI
+
+Navigating the Reports UI
+
+
+Click Intelligence >Â Reports toopen the Reports UI.A set of tabbed pages provides listsof standard and cus-
+tom/saved reports, details on scheduled reports, and report results.
+
+
+
+ l The My Reports Tab tab listsany customized reports that you have created and saved based on a report tem-
+ plate using the templates, or standard reports, provided on the Reports tab.
+
+
+
+ l The Reports Tab listsall ofIdentityIQ's standard report templates, grouped by category.
+
+
+
+ l The Scheduled Reports Tab listsreports that have been scheduled forfuture orrepeated execution.
+
+
+
+ l The Report Results Tab shows a listof reports that have been run. You can clickon reports here to see report
+ results. Note thateach user is only shown reports to which they have access.
+
+The My Reports Tab
+
+The My Reports tab listsallthe customized reports that you have created and saved based on a report template
+provided on the Reports tab.These reports are only available for your use. You can use scoping to make the results
+visibleto other users. You can use scoping tomake the results visible toother users.\
+
+Reports are listedby category. You can use the Search by Report Name fieldto find the report you want to run. The
+Filter searches by setting inthe gear menu > Global Settings > IdentityIQ Configuration > Miscellaneous tab,
+inthe Reporting section, determines whether the search willfind only reports that startwith the stringyou entered, or
+reports that contain the string anywhere in the name.
+
+Right-click on any report inthis listto run, schedule, export or delete a report. The right-clickmenu options are:
+
+
+
+ l Save as New Report â€“ Creates a new report instance based on an existing instance. Changes made are
+ saved as a new report instance, leaving the existing one intact. This is helpful when a report offers a large num-
+ ber of configuration parameters and a new instance is being created that changes only a few of the options (fil-
+ ters, sorts, etc.).
+
+
+
+ l Edit â€“ Edits the existing report instance. This isthe same as clicking the report instance inthe list
+
+
+
+ l Schedule â€“ Schedules the report instance for future (or repeated) execution.
+
+
+
+ l Execute â€“ Runs the report instance immediately.
+
+
+
+ l Delete â€“ Deletes the instanceâ€™s configuration from IdentityIQ.
+
+
+Use IdentityIQ reporting to collect the information you need to manage the compliance process. Reporting replaces
+manual searches for data located in various systems around your enterprise.
+
+
+
+
+
+ SailPoint IdentityIQ Reports 3
+
+===== Page 8/149 =====
+Navigating the Reports UI
+
+
+SailPoint provides a number of standard reports that can be run without changes. You can also use the standard
+reports to create custom reports that are specific toyour needs. The provided reports are displayed on the Reports
+tab. The following types of report templates are provided:
+
+
+
+ l Detailed Reports â€“ include key data about specific areas in IdentityIQ. The information can be presented in
+ table or grid format. The results can be exported to a .csv fileand used in spreadsheets.
+
+
+
+ l Archived Reports â€“ include end-of-period and task information that is formatted for easy dissemination of key
+ audit information. Due tothe large amount of data that isgenerated, the best option is toexport the report res-
+ ultsto a .pdf file
+
+
+
+ l Summary Report â€“ include end-of-period and task information that isformatted foreasy dissemination of key
+ audit information. Due tothe large amount of data that isgenerated, the best option is toexport the report res-
+ ultsto a .pdf file
+
+The Reports Tab
+
+SailPoint provides a number of standard reports that can be run without changes or that can be used as templates for
+creating custom reports.
+
+ Note:Â You cannot write over the report templates on the Reports tab. Ifyou edit a report template
+ from Reports tab and save the changes, you must assign a name to the new report and itis
+ added to the report liston the My Reports tab.
+
+Reports are grouped by category. The categories forreports are:
+
+
+
+ l Access Review and Certification Reports
+
+
+
+ l Account Group Reports
+
+
+
+ l Activity Reports: User Activity Detailed Report
+
+
+
+ l Administration Reports
+
+
+
+ l Application Status Report
+
+
+
+ l Configured Resource Reports
+
+
+
+ l Identity and User Reports
+
+
+
+ l Lifecycle Manager Reports. See the IdentityIQÂ Lifecycle Manager Guide.
+
+
+
+ l Policy Violation Report
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 4
+
+===== Page 9/149 =====
+Navigating the Reports UI
+
+
+
+ l Risk Reports
+
+
+
+ l Role Management Reports
+
+
+Use this page to create, edit, run, schedule, export or delete your custom reports. Right-click the report name and
+select an option from the pop-up menu. When you select an export function, the report is run and the results are dis-
+played in the selected format. For Detailed and Summary type reports the Export to CSV option isnot available. For
+more information, see Working With Reports.
+
+To view a listof allscheduled reports, see The Scheduled Reports Tab.
+
+To view reports afterthey are completed, see The Report Results Tab.
+
+To create reports based on searches on identity, activity,and audit information, see the Search documentation.
+
+Searching for Reports
+
+Use the Search by Report Name fieldto find the report you want to run. The Filter searches by setting inthe gear
+menu > Global Settings > IdentityIQ Configuration > Miscellaneous tab,in the Reporting section, determines
+whether the search willfind only reports that start with the string you entered, or reports that contain the string any-
+where in the name.
+
+This tab listseach report name and a brief description ofits contents.
+
+Running Reports from the Reports Tab
+
+You can run reports directlyfrom this page or schedule them to run at some point in the future, either once or on a
+repeating, scheduled basis. Any report initiated (immediately or scheduled) directly from thispage is run with no filters
+applied. In other words, the report runs for allsystem objects to which that report applies (allroles, all Identities,all
+policies, allaccess reviews, etc.).
+
+To run a report with no filters,right-clickand choose Execute to run itonce immediately or Schedule toset itup to run
+inthe future or on a repeating basis.
+
+To edit the report template to add details and filteringcriteria,clickthe report name, or right-clickand choose Edit.
+
+Deleting Reports
+
+To completely remove the report from the system, right-clickthe report name and select Delete.
+The Scheduled Reports Tab
+
+When you choose the option toschedule a report template or instance to run later (right-click> Schedule), the New
+Schedule page is displayed. You must enter a name forthe scheduled version of the report, and can optionally add a
+description. You can choose a date and time to run the report, and can set the report to run at various frequencies
+(once, hourly, daily,weekly, monthly, quarterly, or annually).
+
+
+
+
+ SailPoint IdentityIQ Reports 5
+
+===== Page 10/149 =====
+Navigating the Reports UI
+
+
+Use the Search by Schedule Name field to findthe scheduled report you want to run. The Filter searches by setting
+inthe gear menu > Global Settings > IdentityIQ Configuration > Miscellaneous tab, in the Reporting section,
+determines whether the search willfind only reports that startwith the string you entered, or reports that contain the
+string anywhere inthe name.
+
+Reports that have been scheduled for future or repeated execution are listed on the Scheduled Reports tab. Once
+the scheduled report has run for the lasttime (forexample, itwas originally scheduled to run one time, at a specific
+date and time, and that time arrived, so itran),itis removed from this list;only future-scheduled report executions are
+shown on this page.
+The Report Results Tab
+
+The Report Results page displays a listofreports run inthe IdentityIQ application to which you have access. Ifscoping
+isactive you may only have access to reports inscopes that you control.
+
+Use the Search by Result Name fieldto find the report results you want to view. There is a Filter searches by set-
+tingin the gear menu > Global Settings > IdentityIQ Configuration > Miscellaneous tab, in the Reporting sec-
+tion,which determines whether the search will findonly reports that startwith the string you entered, orreports that
+contain the string anywhere inthe name. See the IdentityIQ System Configuration documentation for details.
+
+You can also use filteringoptions to limitthe number ofreports displayed inthe table based on the date the report was
+run, and the report results (Success, Warning, Fail,or Cancelled)
+
+The listofreports on thistab includes the following details foreach report:
+
+ Column Description
+
+ Name The name ofthe report.
+ Date Complete The date and time stamp of when the report completed running.
+ Result The result status, Pending, Successful, orFailed.
+ The status of the sign off request for the report results.
+ Signoff None â€” no sign offrequired
+ Waiting â€” sign offrequest not complete
+ Signed â€” a sign off decision has been made
+ Owner The user that created the report.
+
+You can right-clickon any report in thislistand choose View tosee details about that report, as well as the information
+collected. From this view, the report can be viewed on screen, downloaded as a PDF, or downloaded as a CSV file.
+The PDF and CSV forms ofthe report are created during report execution and saved to the database, making the
+download of either format fast and efficient.
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 6
+
+===== Page 11/149 =====
+Navigating the Reports UI
+
+
+ Note:Â Export report names are cropped at 31 characters. File names for exported reports are con-
+ verted to camel case where supported. Ifnot thisconversion isnot supported, filenames will
+ simply have spaces removed and words combined (for example, myPersonalReport.pdf).
+
+Ifa report was scheduled to run but there were no results, navigate tothe The Scheduled Reports Tab to check for any
+errors that might have occurred when the report was run.
+
+To delete report results, right-clickthe result and select Delete. Reports that require a sign offcan only be deleted by a
+user with the Signoff Administrator capability.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Reports 7
+
+===== Page 12/149 =====
+Working With Reports
+
+Working With Reports
+
+New Reports
+
+To create a new report,on the Reports tab, clickan existing report or right-clickand select Save As New Report dis-
+play the New Report page. See How toCreate a New Report.
+Existing Reports
+
+To edit an existing report on the My Reports tab,click a report name or right-clickand select Edit to display the Edit
+Report page. See How to Edita Report.
+
+To edit reports based on searches on identity,activity,and audit information, see the Search documentation.
+Running Reports
+
+Once the report has been defined, you can run the report by right-clickingthe report name and selecting Execute, or
+Execute in background. Execute displays a pop-up progress window and opens the Report Results page when itis
+complete. Execute inbackground launches the report in the background. To track progress orto view the finished
+report,navigate to the Report Results tab. See How to Run a Report.
+Scheduled Reports
+
+To schedule a report torun at a latertime oron a recurring basis, right-clicka report name and select Schedule from
+the drop-down listtodisplay the New Schedule dialog. You can schedule reports to run once, hourly, daily,weekly,
+monthly, quarterly or annually to meet the requirements of your enterprise and auditors. See How to Schedule a
+Report.
+Deleting Reports
+
+To delete a report, right-clickthe report name and select Delete from the drop-down menu. Click Yes on the con-
+firmation pop-up to delete the report. When you delete a report from the Reports table,allassociated report results are
+deleted as well.
+Exporting Reports
+
+To export report results,select one of the export features tolaunch a report and export the results directly toan
+external file.Exported reports are not included in the liston the View Report Results page.
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 8
+
+===== Page 13/149 =====
+Working With Reports
+
+Report Work Items
+
+Reports that require sign offgenerate work items and email notifications that are assigned to the designated signers.
+Sign off decisions are retained with the report results fortracking purposes. See How toComplete Report Work Items.
+How to Create a New Report
+
+Use the New Report page to create reports for your organization based on the reports provided. Reports can be as
+general (allusers inyour organization) or specific (one user) as required.
+
+See Standard Report Properties for the complete listofreports provided with IdentityIQ.
+
+Searches defined on the search pages can also be saved as reports. Reports created on the search pages are saved
+inthe Search category on the My Reports tab.
+
+Procedure
+
+ 1. Select Intelligence > Reports from the navigation menu bar toaccess the Reports page.
+
+ 2. Right-click a report on the My Reports or Reports tab and select Save As New Report.
+
+ 3. Enter a name and briefdescription of the new report. This information is displayed on the My Reports table
+ when the new report issaved.
+
+ 4. Optional: You can require sign off on the report; the report results can not be viewed or down-
+ loaded until the signoff process is complete.
+
+ a. Check Require Signoff. This opens a Signoff Properties section.
+
+ b. Choose the required signers. Enter the firstletter,or letters,of an identity todisplay a selection listof
+ valid identities containing that letterstring and select a signer. Then select Add to List to add the iden-
+ tityto the signers list.You can add as many signers as you need. Each signer willreceive a work item for
+ signing offon the report.
+
+ c. Select an email notification template from the InitialNotification Email drop-down list.For example,
+ the Report Result Signoff template. Templates are created and defined when the application is con-
+ figured.
+
+ d. Specify the escalation criteria forthe signoff request.
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 9
+
+===== Page 14/149 =====
+Working With Reports
+
+
+
+ l None â€“ no reminder emails are sent and no escalation is performed for this work item.
+
+
+
+ l Send Reminders â€“ send email reminders the configured interval.
+
+
+
+ l Reminders then Escalation â€“ send the configured number of reminders, after which the work
+ item isescalated tothe signer's manager.
+
+
+
+ l Escalation only â€“ escalate the signoff work item after the configured interval, with no reminders
+ being sent.
+
+
+
+ l Escalation intervals are set when the application is configured.
+
+ 5. Select a Previous Result Action from the drop-down list.Rename Old is select by default. Previous result
+ actions determine how subsequent runs ofthis report react to existing report results.
+
+ a. Delete â€“ overwrite the previous report results with the new information.
+
+ b. Rename Old â€“ append a numeral to the name of the old report result and preserve both.
+
+ c. Rename New â€“ append a numeral to the name of the new report result and preserve both.
+
+ d. Cancel â€“ cancel the new run of the report.
+
+ 6. Optional: Select the Allow Concurrency check box to enable two identical reports to run at the same time.
+
+
+
+ l Ifenabled, allow concurrency appends a numeric value to the name of the report that started second.
+
+
+
+ l Ifdisabled, the second report iscanceled and an exception sent to the requestor.
+
+ 7. Optional: Assign an email recipient to receive notification of report completion. Enter the firstletter,or letters,of
+ an identity to display a selection listof valid identities containing that letterstring, or click the arrow to the right
+ of the field to display a listofall users. To prevent an email being sent ifthe report isempty, check Don't email
+ empty reports.
+
+ 8. Optional: Enter the maximum number of results to display inthe report results.
+
+ 9. Optional: Enter a scope for the report results. Enter the firstfew letters of a scope name to display the select
+ box, or click the arrow to the right of the field to display allof the scope you control. Only identities that control
+ the assigned scope can view the results of a scoped report.
+ Ifscope is active and you do not explicitly assign a scope, the results are given your assigned scope.
+
+ 10. Specify the report options required for the report you are creating.
+ Each report type displays unique report options. See IdentityIQ Standard Reports for details on each
+
+
+
+
+
+SailPoint IdentityIQ Reports 10
+
+===== Page 15/149 =====
+Working With Reports
+
+
+ report type.
+
+ 11. Specify how the information willdisplay in the report results.
+
+ 12. Choose an option to save and/or run the report:
+
+
+
+ l Select Save tosave the report without running it.
+
+
+
+ l Select Save and Execute to save the report tothe My Reports table and run itimmediately. The Report
+ Results page displays when the report completes.
+
+
+
+ l Select Save and Preview to preview the report results.
+
+
+
+ l Select Execute to run the report without saving it.
+
+
+For more information on report results, see The Report Results Tab
+How to Edit a Report
+
+Use the Edit Report page tomake changes toan existing report.
+
+ 1. Access the Reports page from the navigation menu bar. Go toIntelligence -> Reports.
+
+ 2. Navigate to the My Reports tab to view a listof your saved reports.
+
+ 3. Click a report, or right-clicka report and select Edit from the drop-down listtoopen the Edit Report page.
+
+ 4. Edit the Name and Description section as needed.
+
+ 5. Select a Previous Result Action from the drop-down list.Rename Old isselect by default. Previous result
+ actions determine how subsequent runs of thisreport react to existing report results.
+
+
+
+ l Delete â€“ overwrite the previous report results with the new information.
+
+
+
+ l Rename Old â€“ append a numeral to the name of the old report result and preserve both.
+
+
+
+ l Rename New â€“ append a numeral to the name of the new report result and preserve both.
+
+
+
+ l Cancel â€“ cancel the new run of the report ifa report result with the same name exists.
+
+ 6. Optional: Allow concurrency. Activate the Allow Concurrency check box toenable two identical reports to run
+ at the same time.
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 11
+
+===== Page 16/149 =====
+Working With Reports
+
+
+
+ l Ifenabled, allow concurrency appends a numeric value to the name ofthe report that started second.
+
+
+
+ l Ifdisabled, the second report iscanceled and an exception sent to the requestor.
+
+ 7. Optional: Assign an email recipient toreceive notification of report completion. Enter the firstletter, or letters,of
+ an identity to display a selection listof valid identities containing that letterstring, or click the arrow to the right
+ of the fieldto display a listof all users. To prevent an email being sent ifthe report is empty, check Don't email
+ empty reports.
+
+ 8. Optional: Require sign off.
+
+ a. Activate Required sign off to expand the Signoff Properties section.
+
+ b. Specify the required signers.
+ Enter the firstletter, or letters,of an identity to display a selection listof valid identities containing that let-
+ terstring and select a signer.
+
+ c. Click Add to Listto add the identity to the signers list.
+ You can add as many signers as are required.
+
+ d. Select an email notification template from the InitialNotification Email drop-down list.For example, the
+ Report Result Signoff template.
+ Templates are created and defined when the application is configured.
+
+ e. Specify the escalation criteriafor the sign off request.
+ None â€“ no reminder emails are sent and no escalation isperformed for this work item.
+ Send Reminders â€“ email reminders are sent at the configured interval.
+ Reminders then Escalation â€“ the configured number of reminders are sent and then the work item is
+ escalated to the signers manager.
+ Escalation only â€“ this work item is escalated after the configured interval with no reminders being sent.
+ Escalation intervals are set when the application isconfigured.
+
+ 9. Optional: Enter the maximum number of results to display in the report results. This option is available on a lim-
+ ited number of reports.
+
+ 10. Optional: Enter a scope for the report results. Enter the firstfew letters of a scope name to display the select
+ box, or click the arrow to the right of the fieldto display allof the scope you control.
+ Only identities that control the assigned scope can view the results of a scoped report.
+ Ifscope is active and you do not explicitly assign a scope, the results are given your assigned scope. See Iden-
+ tityIQ Standard Reports for details on each report type.
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Reports 12
+
+===== Page 17/149 =====
+Working With Reports
+
+ 11. Choose an option to save and/or run the report:
+
+
+
+ l Click Save to save the new report to the My Reports table.
+
+
+
+ l Click Save and Execute to save the report tothe My Reports table and run itimmediately. The Report
+ Results page displays when the report completes.
+
+
+
+ l Click Save and Preview to preview the report results.
+
+
+
+ l ClickExecute torun without saving.
+
+ 12. Click Save tosave the new report tothe My Reports table.
+
+
+
+ l Click Save and Execute to save the report tothe My Reports table and run itimmediately.
+ The Report Results page displays when the report completes.
+
+
+
+ l Click Save and Preview topreview the report results.
+
+
+
+ l Click Execute to run without saving.
+
+
+
+
+See also:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Report Layout
+
+
+
+ l The Report Results Tab
+
+How to Run a Report
+
+ 1. Select Intelligence > Reports.
+
+ 2. Navigate tothe My Reports tab to view a listofyour saved reports.
+
+ 3. Right-click a report and select Execute or Execute in background. Execute displays a pop-up progress win-
+ dow and opens the Report Results page when itiscomplete. Execute in background launches the report in
+ the background.
+
+ 4. To track progress or to view the finished report, navigate to the Report Results tab.
+
+For additional details and options forpreviewing, saving, and running reports, see Saving, Previewing, and Running
+Reports.
+
+
+
+
+
+ SailPoint IdentityIQ Reports 13
+
+===== Page 18/149 =====
+Working With Reports
+
+
+For more information on report results,see The Report Results Tab
+How to Schedule a Report
+
+Use the Schedule Report dialog to schedule reports to run at slow processing times or on a recurring basis as need to
+maintain compliance inyour enterprise.
+
+The New Schedule dialog enables you to assign a unique name and description to the report being run atthe sched-
+ule time. The unique schedule name and description display on the Report Results table so that a report run from the
+Reports page does not overwrite the scheduled report. For example, ifyou define and schedule a Weekly AllViola-
+tions Report that you download and archive forauditing purposes, someone running the All Violations Report mid-
+week does not overwrite the information in your scheduled report.
+
+ 1. Access the Reports page from the navigation menu bar. Go toIntelligence > Reports.
+
+ 2. Right-click a report name on the My Reports or Reports tabs and select Schedule from the drop-down listto
+ open the New Schedule dialog.
+
+ 3. Enter a unique name and description for thisschedule report.
+ This isthe name and description that display inthe Report Results table and distinguish thisscheduled version
+ of the report from the same report executed from the reports tables. Defining a unique name on this page
+ ensures that scheduled reports are not overwritten by mistake.
+
+ 4. Enter the date and time to launch the firstexecution of this report. You can enter the date manually, or click the
+ ...icon to select a date from the calendar.
+ â€” OR â€”
+ Select the Run Now fieldto run the report immediately afterclicking Schedule. For recurring reports, the
+ report runs at the current time at the specified Execution Frequency.
+
+ 5. Specify how often this report should run with the Execution Frequency drop-down list.Subsequent exe-
+ cutions of thisreport occur atthe time specified inthe First Execution fields.
+
+ 6. Click Schedule tosave this scheduled report.
+
+ 7. Navigate to the The Scheduled Reports Tab to view a listofallscheduled reports in the IdentityIQ application.
+
+How to Complete Report Work Items
+
+Report work items, also called sign-off work items, are generated by reports that require someone to sign off on the
+results they create and by sign-off requests thatmay be forwarded by a designated signer.
+
+Sign off decisions are retained with the report results for tracking purposes.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 14
+
+===== Page 19/149 =====
+Working With Reports
+
+ 1. Select My Work >Â Work Items inthe Navigation menu to view your current work items.
+
+ 2. Select the View button tothe right of a sign-off work item to display the request.
+
+ 3. Review the work item information inthe Summary section.
+
+ 4. Review the Comments section forany information associated with thiswork item.
+
+ 5. Use the Add Comment button to add additional information to the work item ifnecessary.
+
+ 6. Select the Click to View Report Results linkin the Details section to review the Report Results. After review-
+ ing the report results, select Return to Work Item.
+
+ 7. Select an action button to open the associated comments dialog and conclude this work
+ item. Action options are Signoff, Reject, Forward, Save, or Cancel.
+
+
+ Note:Â If you sign offor reject the sign-off request, the status of the report results isupdated to
+ reflect that decision. Ifyou forward the work item, you must specify a recipient.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Reports 15
+
+===== Page 20/149 =====
+Report Properties and Parameters
+
+Report Properties and Parameters
+
+
+Inthe Edit Report page, you can set details and filtersforyour report,and can save the configuration as acustomized
+report instance forfuture re-use.
+
+Details and criteriaare set inmultiple sections.
+Properties Common to All Reports
+
+Every type ofreport includes a Standard Report Properties and Report Layout sections, as the firstand last sections,
+respectively.
+Report-Specific Details
+
+Parameters and filtersthatare specific to a given report are defined inone or more sections between the Standard
+Properties and the Report Layout. Navigate between the â€œsectionâ€ pages by clicking the section in the Sections list,or
+by clicking Next and Previous at the bottom of the Edit Report page.
+
+For more information, see:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Report-Specific Parameters
+
+
+
+ l Saving, Previewing, and Running Reports
+
+
+
+ l Report Layout
+
+
+
+ l The Scheduled Reports Tab
+
+
+
+ l The Report Results Tab
+
+Standard Report Properties
+
+Allreports use a set ofstandard properties for basic information, such as name and description, and forsetting con-
+trolssuch as email recipients and required signoff.
+
+ Note:Â The Name fieldisrequired for allreports; the other standard properties are optional.
+
+Enter or edit the standard properties information as required when creating or editing a report.
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 16
+
+===== Page 21/149 =====
+Report Properties and Parameters
+
+
+ Field Description
+
+ Name Name of the report.
+ Description Brief description of the report.
+ Require signoff on the results of this task.
+ Require Reports that require sign offgenerate work items and email notifications that
+ Signoff are assigned to the designated signers. Signoff decisions are stored with the
+ report results for tracking purposes.
+ Previous result actions determine how subsequent runs of this report affect
+ existing report results.
+ Previous Res- Delete â€” overwrite the previous report results with the new information.
+ ultAction Rename Old â€” append a numeral to the name of the old report result.
+ Rename New â€” append a numeral tothe name of the new report result.
+ Cancel â€” cancel the new run of the report ifa report result with the same name
+ exists.
+ Enable two identical reports to run at the same time.
+ Allow Con- Ifenabled, allow concurrency appends a numeric value to the name of the
+ currency report that started second. Ifdisabled, the second report iscanceled and an
+ exception is sent to the requester.
+ Specify a user orworkgroup to whom an email should be sent when the report is
+ Email Recip- finished running.
+ ient Sending an email notification removes the need to log in to the product to check
+ the progress oflong-running reports or reports that are scheduled torun peri-
+ odically.
+ Email Attach- Select either or both check boxes forPDF or CSV to have the report include an
+ ment Format attachment copy. Clear the check boxes tonot receive an attachment.
+ Don't email Ifthe report is empty, do not email the report.
+ empty reports
+ Maximum res- Set the maximum number of results to display in the results report. This option is
+ ultsto display available on a limited number of reports.
+ Set the scope for thisreport.
+ Scope control access. Only identities that control the scope specified can see
+ Scope the results of this report.
+
+ The scope information isnot available for allreports. For those reports that sup-
+ port thisfeature, the Administrator must enable and configure the scope option.
+
+For a listof available report templates, see IdentityIQ Standard Reports
+
+
+
+
+
+
+
+SailPoint IdentityIQ Reports 17
+
+===== Page 22/149 =====
+Report Properties and Parameters
+
+Report Layout
+
+The Report Layout page shows the columns that are available for inclusion on the report and the columns selected
+forinclusion on the report. It allows the user toselect a sort fieldand a group fieldifdesired. Italso allows suppression
+of either the summary or the detail information as needed.
+
+These are the fields on the Report Layout page, along with descriptions oftheir usage.
+
+
+
+ Field Description
+
+ Sort by Use the drop-down listtoselect the criteria by which the report is sorted. If a
+ Group By fieldisalso selected, grouping supersedes sorting.
+ Group by Use the drop-down listtoselect the criteria by which the report is grouped. The
+ resulting report displays the data in collapsible groups.
+ Allthe columns listed in the right panel appear inthe finalreport; the liston the
+ leftindicates available columns that are not selected for inclusion inthe report
+ body.
+ Columns
+ Column names can be dragged from one side to the other, and can be reordered
+ within the listwith drag-and-drop. The arrow buttons between the two listscan
+ also be used to move columns around.
+ Disable
+ Report Para- Report parameters are included in the report results by default. Select this option
+ meters Dis- to disable the display of report parameters in the report results.
+ play
+ Disable
+ Report Sum- Select this option to disable the display of a summary inthe report results.
+ mary Display
+ Disable
+ Report Detail Select this option to disable the display of a report details in the report results.
+ Display
+ Include Select this option to include report parameter names and values in the CSV file,
+ Report Para- as comments. These comments are preceded with a # character. This output
+ meters in may not be compatible with some CSV parsers.
+ CSVÂ File
+
+For a listof available report templates, see IdentityIQ Standard Reports
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 18
+
+===== Page 23/149 =====
+Report Properties and Parameters
+
+Report-Specific Parameters
+
+Most reports offerat least one page of configuration options between the Standard Properties and Report Layout
+pages. These pages can be different foreach report, and some reports use several pages, while others include only
+one. These pages allow the user to set filterparameters forthe report instance. For example, the Uncorrelated
+Accounts Report contains one report-specific settings page called Uncorrelated Accounts Parameters; this page
+letsthe user select the Application for which they want tosee a listof accounts that could not be correlated to existing
+Identities (from the authoritative application). Ifno application isselected inthis filter,thereport shows all uncorrelated
+accounts from all applications.
+
+Insome cases, the Report Layout column listwillchange based on the parameters that are set on the report-specific
+parameters pages. For example, the User Account Attributes Report can display account attributes on selected
+applications. Ifthe application selected has attributes (forexample, privileged or service accounts) which other applic-
+ations don't have, when that application isselected for the report, those columns appear on the Report Layout page
+foroptional inclusion inthe report.
+Saving, Previewing, and Running Reports
+
+Once a report has been customized with filteringparameters, sorting and grouping choices, and layout preferences, it
+can be saved as a My Reports report instance for future use/re-use. There are several save options available:
+
+
+
+ l Save: saves the report instance, with itsparameters and options, to the My Reports tab, using the name
+ provided on the Standard Properties window.
+
+
+
+ l Save and Preview: saves the report instance tothe My Reports tab and runs a preview of the report, which dis-
+ plays the summary section (unless suppressed) and the firstpage of detail results (20 records); this allows the
+ user to verify thatthe report shows the data they want to see; this option does not save the report results for
+ later viewing.
+
+
+
+ l Save and Execute: saves the report specification to the My Reports tab and runs the report; the report results
+ are saved to the database and can be recalled from the Report Results tab untilthey are deleted.
+
+ Modifying in the Preview Mode
+
+The Save and Preview option letsyou modify the report output layout, including rearranging columns, changing the
+detailsort order, and hiding either the summary or detail section. Any changes made in preview mode can be saved to
+the report specification, allowing Preview mode to function as an interactive method of reconfiguring the report output.
+A message at the top of the report prompts the user to choose whether toSave Changes orCancel Changes when
+they alter the appearance of the report preview.
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 19
+
+===== Page 24/149 =====
+Report Properties and Parameters
+
+
+When a report isexecuted (as opposed to previewed), the finalresults cannot be reordered in the on-screen display of
+the report. The report can, however, be downloaded as a CSV and manipulated in a spreadsheet application as
+needed.
+
+ Reports Without a Preview Option
+
+A few of the reports cannot be viewed inpreview mode; thisis because the data in these reports cannot be polled
+without fullyexecuting the report. For example, the Identity Forwarding Report shows the forwarding user for all
+Identitieswho have one specified. Because the forwarding property is not searchable, these cannot be counted up
+front,and the report cannot be previewed. In some cases, areport can be previewed unless certain options on itare
+selected. The Manager Access Review Report, forexample, can be previewed unless the Show Excluded Items
+option is selected. In these cases, a message is shown indicating thatpreview isnot available when the user clicks
+Save and Preview.
+
+XML Representation of Reports and Instances
+
+Standard report templates are represented in the IdentityIQ object model as TaskDefinition objects. The XML rep-
+resentation ofthese can be seen in the IdentityIQ Debug pages by selecting Task Definition from the Object Browser
+listand searching forthe report's name inthe Name column.
+
+When a report issaved as a customized instance, a new XML object iscreated in the system torepresent its custom
+configuration. The instance's XML isfar simpler than the template's because itreferences the template formost of the
+report generation details.
+
+Details on these XML representations are explored further in Developing Custom Reports.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 20
+
+===== Page 25/149 =====
+IdentityIQ Standard Reports
+
+IdentityIQ Standard Reports
+
+
+SailPoint provides a number of standard reports thatcan be run without changes. You can also use the standard
+reports to create custom reports that are specific to your needs. Use scope tocontrol access toyour report results.
+
+Allreports use a set of standard properties forbasic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.The Report Layout configuration procedure is the same for allreports.
+
+The reports are divided into the following categories:
+
+
+
+ l Access Review and Certification Reports
+
+
+
+ l Activity Reports: User ActivityDetailed Report
+
+
+
+ l Administration Reports
+
+
+
+ l Application Status Report
+
+
+
+ l Configured Resource Reports
+
+
+
+ l Identity and User Reports
+
+
+
+ l Lifecycle Manager Reports - fordetails, see the Lifecycle Manager documentation
+
+
+
+ l Policy Violation Report
+
+
+
+ l Risk Reports
+
+
+
+ l Role Management Reports
+
+
+For step-by-step instructions on creating or editing a report, see Working With Reports
+Access Review and Certification Reports
+
+
+
+ l Access Review Decision Report
+
+
+
+ l Access Review Signoff Live Report
+
+
+
+ l Account Group Access Review Live Report
+
+
+
+ l Advanced Access Review Live Report
+
+
+
+ l Application Owner Access Review Live Report
+
+
+
+
+
+ SailPoint IdentityIQ Reports 21
+
+===== Page 26/149 =====
+IdentityIQ Standard Reports
+
+
+
+ l Certification Activity by Application Report
+
+
+
+ l Entitlement Owner Access Review Live Report
+
+
+
+ l Manager Access Review Live Report
+
+
+
+ l Role Composition Access Review Live Report
+
+
+
+ l Targeted Access Review Live Report
+
+Access Review Decision Report
+
+The Access Review Decision Report includes information about the decisions made by certifiersfor allitems in non-
+archived access reviews that match the report criteria.
+
+Report results are presented inseveral pages. The firstpage shows a summary, divided into two sections:
+
+
+
+ l the Certification Statistics section shows a count of certifications of each type and the number of certification
+ entities (e.g. identities,roles, account groups) and unique entities included in each certification category;
+
+
+
+ l the Decision Statistics section shows the number of approved items, revoked items, allowed exceptions, and
+ totaldecisions for each type ofcertification item type.
+
+The pages following the summary show details of each access review inthe report, displaying each certification entity
+and allcertification items with the decisions that are currently recorded foreach. The Decision Maker shows the user
+who actually made the certification decision, which may be someone other than the original certifier ifthe review was
+delegated, reassigned, or forwarded. The Decision column also indicates ifthe decision was made as part of a bulk
+certification,ifthat option was permitted by the installationâ€™s configuration.
+
+This report isan archive-type report. Archive reports include end-of-period and task information that is formatted for
+easy dissemination of key audit information. Due tothe large amount ofdata that is generated, the best option isto
+export the report results to a .pdf file.
+
+Allreports use a set of standard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For more information on Standard Properties, see Standard Report Properties
+
+For more information on Report Layout, see Report Layout
+
+For step by step instructions on creating orediting a report, see Working With Reports
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 22
+
+===== Page 27/149 =====
+IdentityIQ Standard Reports
+
+Report Criteria
+
+The following criteria determines what information isincluded in thisreport.You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included in the
+ report.
+
+
+
+
+ Option Description
+
+ Creation Start The access review creation date range. The report includes all access reviews
+ and End Date create on or after the start date and on or before the end date.
+ (s) You can enter the date manually, or click the â€œ...â€ icon to select a date from the
+ calendar.
+ Signed Start The access review signed offon date range. The report includes allaccess
+ and End Date reviews signed offon, on or after the start date and on or before the end date.
+ (s) You can enter the date manually, or click the â€œ...â€ icon to select a date from the
+ calendar.
+ The access review due date range. The report includes all access reviews due
+ Due Start and on or after the start date and on or before the end date.
+ End Date(s) You can enter the date manually, or click the â€œ...â€ icon to select a date from the
+ calendar.
+ To filteraccess reviews based on their tags, select one or more tags. Ifmultiple
+ Tags tags are selected, only access reviews that match allselected tags are included
+ in this report.
+ Select the applications to include in the report. Ifno applications are specified, all
+ applications are included.
+ Applications Click the arrow to the right of the suggestion fieldto display a listofall applic-
+ ations, or enter a few letters in the field todisplay a listofapplications that start
+ with that letter string.
+ The manager listto include in this report. Ifno managers are specified, access
+ reviews for allmanagers are included.
+ Managers Click the arrow to the right of the suggestion fieldto display a listofall managers,
+ or enter a few letters in the field to display a listof managers that start with that
+ letter string.
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 23
+
+===== Page 28/149 =====
+IdentityIQ Standard Reports
+
+Access Review Signoff Live Report
+
+The Access Review Signoff Live Report includes information on who signed offon a access review and ifthe signoff
+was completed. Itshows the names of the signers (ifany) and the signoff dates and indicates whether the reviews
+were electronically signed, along with the corresponding signature meaning. Italso shows basic information about
+each access review, such as itsname, the name of itsparent certification,start date, due date, the access review
+owner, and tags associated with the review.
+
+The detailed results of thisreport can be exported to a .csv or PDFÂ file.
+
+The Access Review Signoff Live Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Report Options. These options are described inthe Certification Properties table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+
+For step-by-step instructions on creating or editing a report, see Working With Reports
+
+Certification Properties
+
+The following criteriadetermines what information is included in this report. You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options in the listare included inthe
+ report.
+
+
+
+
+ Option Description
+
+ Creation Start The access review creation date range. The report includes allaccess reviews
+ and End Date create on or after the start date and on or before the end date.
+ (s) You can enter the date manually, or click the â€œ...â€icon to select a date from the
+ calendar.
+ Signed Start The access review signed off on date range. The report includes allaccess
+ and End Date reviews signed off on, on or after the startdate and on or before the end date.
+
+
+
+
+
+ SailPoint IdentityIQ Reports 24
+
+===== Page 29/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ (s) You can enter the date manually, or click the â€œ...â€icon to select a date from the
+ calendar.
+ The access review due date range. The report includes allaccess reviews due
+ Due Start and on or after the start date and on or before the end date.
+ End Date(s) You can enter the date manually, or click the â€œ...â€icon to select a date from the
+ calendar.
+ The manager listtoinclude in this report. Ifno managers are specified, access
+ reviews for allmanagers are included.
+ Managers Click the arrow to the right of the suggestion field todisplay a listof allmanagers,
+ or enter a few letters inthe fieldto display a listof managers that start with that
+ letter string.
+ Select the applications to include in the report. Ifno applications are specified, all
+ applications are included.
+ Click the arrow to the right of the suggestion field todisplay a listof allapplic-
+ Applications ations, or enter a few letters in the field to display a listofapplications that start
+ with that letterstring.
+ Only access reviews for account groups on the selected applications are
+ included inthe report.
+ Groups The groups to include in the report.
+ Click the â€œxâ€ next to an item in the inclusion listto remove itfrom the report.
+ Certification To filteraccess reviews based on their tags, select one or more tags. Ifmultiple
+ Tags tags are selected, only access reviews that match allselected tags are included
+ in this report.
+ Certification The manager certifications to include in this report.
+ Group
+ Signed Off Filter by the signed off status of certifications.
+ E-Signed Use this field to filterresults by certifications that include an electronic signature.
+
+Account Group Membership Access Review Live Report
+
+This report shows line item details of allaccount group membership access reviews which meet the filtercriteria.The
+purpose of this report is to show the decisions made on each item along with the decision makerâ€™s name and com-
+ments and the current status of any applicable revocations. It also includes basic identifying information for the
+account group and member (such as account number, identity, application, and account group name).
+
+The detailed results of this report can be exported to a .csv or PDFÂ file.
+
+The Account Group Access Review Live Report consists ofthe following sections:
+
+
+
+
+
+ SailPoint IdentityIQ Reports 25
+
+===== Page 30/149 =====
+IdentityIQ Standard Reports
+
+
+
+ l Standard Report Properties
+
+
+
+ l Certification Properties. These options are described in the table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties for basic information such as naming and descriptions, and for setting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+Certification Properties
+
+The following criteria determines what information isincluded inthis report.You can use any combination of options to
+build a report.
+
+ Note:Â Selecting NO options from a listindicates that ALL options inthe listare included inthe
+ report.
+
+
+
+
+ Option Description
+
+ Creation Start The access review creation date range. The report includes allaccess reviews
+ and End Date create on or after the start date and on or before the end date.
+ (s) You can enter the date manually, or click the â€œ...â€ icon to select a date from the
+ calendar.
+ Signed Start The access review signed off on date range. The report includes allaccess
+ and End Date reviews signed off on, on or after the start date and on or before the end date.
+ (s) You can enter the date manually, or click the â€œ...â€ icon to select a date from the
+ calendar.
+ The access review due date range. The report includes allaccess reviews due
+ Due Start and on or after the start date and on or before the end date.
+ End Date(s) You can enter the date manually, or click the â€œ...â€ icon to select a date from the
+ calendar.
+ The applications to include in the report. Ifno applications are specified, all
+ Applications applications are included.
+ Click the arrow to the right of the suggestion fieldto display a listof allapplic-
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 26
+
+===== Page 31/149 =====
+IdentityIQ Standard Reports
+
+
+ Option Description
+
+ ations, or enter a few letters inthe fieldto display a listofapplications that start
+ with that letterstring.
+ Only access reviews foraccount groups on the selected applications are
+ included in the report.
+ Certification To filteraccess reviews based on their tags, select one ormore tags. Ifmultiple
+ Tags tags are selected, only access reviews that match allselected tags are included
+ inthis report.
+ Certification The type of Account Group access reviews to include inthis report, Membership
+ Groups orPermissions.
+ Show items that were excluded from the certification through a rule or other cri-
+ Show teria.
+ excluded
+ items Note: This option disables the preview grid view and the option to sort by
+ Status, Decision, Decision Maker, Application, or Recommendation.
+
+Account Group Permissions Access Review Live Report
+
+This report shows lineitem details of allaccount group permissions access reviews which meet the filtercriteria.The
+purpose of thisreport isto show the decisions made on each item along with the decision makerâ€™s name, any com-
+ments, and the current status ofany applicable revocations. Italso includes basic identifying information about each
+account group and permission (account group name, application, and permission).
+
+The detailed results of thisreport can be exported to a .csv or PDFÂ file.
+
+The Account Group Access Review Live Report consists of the following sections:
+
+
+
+ l Standard Report Properties
+
+
+
+ l Certification Properties. These options are described inthe Certification Properties table below.
+
+
+
+ l Report Layout
+
+
+Allreports use a set of standard properties forbasic information such as naming and descriptions, and forsetting con-
+trols,such as scoping and requiring sign-off.
+
+You must enter the following before running this report:
+
+
+
+ l Name
+
+For step by step instructions on creating or editing a report, see Working With Reports
+
+
+
+
+
+
+ SailPoint IdentityIQ Reports 27
+

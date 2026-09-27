@@ -1,0 +1,3989 @@
+===== Page 1/69 =====
+ Release Notes
+
+
+ Version:8.4
+
+ Revised:September 2023
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thisdocument and theinformation contained herein is SailPointConfidential Information
+
+===== Page 2/69 =====
+Copyright and Trademark Notices
+
+Copyright © 2023 SailPoint Technologies, Inc.  All Rights Reserved.
+
+Alllogos, text,content, including underlying HTML code, designs, and graphics used and/or depicted on these written
+materials or in thisInternet website are protected under United States and international copyright and trademark laws
+and treaties, and may not be used or reproduced without the prior express written permission of SailPoint Tech-
+nologies, Inc.
+
+“SailPoint Technologies,” (design and word mark), “SailPoint,” (design and word mark), "Identity IQ,” “IdentityNow,”
+“SecurityIQ,” “Identity AI,” “Identity Cube,” and “SailPoint Predictive Identity” are registered trademarks of SailPoint
+Technologies, Inc. “Identity isEverything,” “The Power of Identity,” and “Identity University” are trademarks of
+SailPoint Technologies, Inc. None of the foregoing marks may be used without the prior express written permission of
+SailPoint Technologies, Inc. Allother trademarks shown herein are owned by the respective companies or persons
+indicated.
+
+SailPoint Technologies, Inc. makes no warranty ofany kind regarding these materials or the information included
+therein, including, but not limited to,the implied warranties ofmerchantability and fitness for a particular purpose.
+SailPoint Technologies shall not be liable for errors contained herein or direct, indirect, special, incidental orcon-
+sequential damages inconnection with the furnishing, performance, or use of thismaterial.
+
+Patents Notice. https://www.sailpoint.com/patents
+
+Restricted Rights Legend. All rights are reserved. No part ofthis document may be published, distributed, reproduced,
+publicly displayed, used to create derivative works, or translated to another language, without the prior written consent
+ofSailPoint Technologies. The information contained inthis document issubject to change without notice.
+
+Use, duplication or disclosure by the U.S. Government is subject to restrictions as set forth insubparagraph (c) (1) (ii)
+ofthe Rights inTechnical Data and Computer Software clause at DFARS 252.227-7013 for DOD agencies, and sub-
+paragraphs (c)(1) and (c)(2) ofthe Commercial Computer Software Restricted Rights clause at FAR 52.227-19 for
+other agencies.
+
+Regulatory/Export Compliance. The export and re-export of this software iscontrolled for export purposes by the U.S.
+Government. By accepting this software and/or documentation, licensee agrees to comply with allU.S. and foreign
+export laws and regulations as they relate to software and related documentation.  Licensee will not export or re-
+export outside the United States software or documentation, whether directly or indirectly, to any Prohibited Party and
+willnot cause, approve or otherwise intentionally facilitate others inso doing. A Prohibited Party includes: a party in a
+U.S. embargoed country or country the United States has named as a supporter of international terrorism; a party
+involved in proliferation; a party identified by the U.S. Government as a Denied Party; a party named on the U.S.
+Department of Commerce’s Entity Listin Supplement No. 4 to 15 C.F.R. § 744; a party prohibited from participation in
+export orre-export transactions by a U.S. Government General Order; a party listed by the U.S. Government’s Office
+ofForeign Assets Control as ineligible to participate in transactions subject toU.S. jurisdiction; or any party that
+licensee knows or has reason toknow has violated or plans to violate U.S. or foreign export laws or regulations.
+Licensee shall ensure that each of itssoftware users complies with U.S. and foreign export laws and regulations as
+they relate to software and related documentation.
+
+===== Page 3/69 =====
+Contents
+
+
+ IdentityIQ Release Notes 1
+
+ IdentityIQ 8.4 Updates and Enhancements 1
+
+ IdentityIQ 8.4 Feature Updates 1
+
+ Important Upgrade Considerations forIdentityIQ 4
+
+ Important Upgrade Considerations forConnectors 13
+
+ Supported Platforms 16
+
+ Connectors and Integration Modules Enhancements 19
+
+ Connectivity Supported Platform and Language Updates 30
+
+ Connectivity Dropped Platform Support 32
+
+ Dropped Connector Support 33
+
+ Known Issues -IdentityIQ 33
+
+ Resolved Issues - IdentityIQ 34
+
+ Resolved Issues - Connectivity 43
+
+===== Page 4/69 =====
+IdentityIQ Release Notes
+
+IdentityIQ Release Notes
+
+
+These are the release notes for SailPoint IdentityIQ, 8.4
+
+SailPoint IdentityIQ isa complete identity and access management solution thatintegrates governance and pro-
+visioning into a single solution leveraging a common identityrepository and governance platform. Because ofthis
+approach, IdentityIQ consistently applies business and security policy and role and riskmodels across allidentity and
+access-related activities-from access requests to access certifications and policy enforcement, to account pro-
+visioning and user lifecycle management. Through the use of patent-pending technologies and analytics, IdentityIQ
+improves security, lowers the cost ofoperations, and improves an organization's abilityto meet compliance and pro-
+visioning demands.
+
+This release note contains the following information:
+
+
+
+ l IdentityIQ Feature Updates
+
+
+
+ l Connectors and Integration Modules Enhancements
+
+
+
+ l Dropped Connector Support
+
+
+
+ l Important Upgrade Considerations
+
+
+
+ l Supported Platforms
+
+
+
+ l Resolved issues
+
+IdentityIQ 8.4 Updates and Enhancements
+
+IdentityIQ 8.4 provides new features and capabilities across the product, including Compliance Manager, Lifecycle
+Manager, the Governance Platform, and Connectivity. Key enhancements in the release include:
+IdentityIQ 8.4 Feature Updates
+
+IdentityIQ 8.4 introduces the following new features or enhancements.
+
+ Feature/Enhancement Description
+
+ Access History gives your organization the abilityto view historical access data for iden-
+ tities.
+ Access History
+ Access History tracks user access over time toreveal patterns ofhistorical access, giving
+ you the abilityto see and report on past access changes inyour business. Access history
+
+
+
+
+
+
+ SailPoint Release Notes 1
+
+===== Page 5/69 =====
+IdentityIQ Release Notes
+
+
+Feature/Enhancement Description
+
+ shows you the “who, what, when, why, and how” of changes touser’s access over time.
+
+ Key benefits for identity governance stakeholders include:
+
+
+
+ l Seeing a user's timeline of access so that I can see how ithas evolved over time
+
+
+
+ l Exporting the changes ina user's access over a time period to understand what
+ was provided at time ofhire
+
+
+
+ l Seeing listof accounts a given user has, so that I can ensure itisappropriate per
+ provided guidelines
+
+
+
+ l Seeing when access was removed fora terminated employee, so that Ican con-
+ firm itwas done in a timely manner
+
+
+
+ l Finding out when an identity received a specific entitlement, so thatI can confirm it
+ was provisioned when expected
+
+ The Access History feature adds a new database to IdentityIQ. The database for
+ storing Access History data is separate from the IdentityIQ database. The IdentityIQ
+ install and upgrade scripts willcreate separate databases forIdentityIQ and Access His-
+ tory data. The databases can be within the same instance for convenience, but separate
+ database instances are recommended for production environments to avoid an impact
+ on IdentityIQ performance. Depending on your environment setup and on the number of
+ daily changes to your identities, the Access History database can be large, and willcon-
+ tinue to grow.
+
+ The Access History feature is enabled by default for new installations but is disabled by
+ default when upgrading to version 8.4, due to configuration requirements. Refer to the
+ IdentityIQ Access History guide for information on how to configure and enable this fea-
+ ture.
+
+
+ Data Extract lets you extract data from the IdentityIQ database and store itina format
+ that common business intelligence (BI) tools can use. Data extract gives you added flex-
+ ibilityto analyze your data, and helps you provide key data foraddressing business and
+Data Extract security questions.
+
+ To extract data, IdentityIQ administrators create and configure a Data Extract Task,
+ which calls the functionality to extract and transform data, and defines the message des-
+ tination (aqueue where data isavailable to be picked up by BI systems).
+
+
+
+
+
+
+
+SailPoint Release Notes 2
+
+===== Page 6/69 =====
+IdentityIQ Release Notes
+
+
+Feature/Enhancement Description
+
+ Administrators can also customize which types of objects are extracted and define which
+ properties of those objects to include by configuring criteria forthe extraction and trans-
+ formation tasks.
+
+
+ IdentityIQ customers can now mine and automatically create roles containing the
+ baseline access needed fora given population, and exclude that access from future
+ Access Modeling role mining/role insights.
+
+Create Common From an Identity search in Advanced analytics, you can use the new Discover Common
+Access Access Roles option tosend your search-results population to AI Services todiscover
+ roles containing broadly-held access.
+
+ This feature requires a subscription to Access Modeling.
+
+
+ A new capability gives users the ability toview but not edit Objects viathe Debug Pages
+ Object Browser. This can help technical users who are not system administrators see
+ IdentityIQ object XML fordebugging and troubleshooting purposes. For example, data-
+ base administrators can view database properties inorder toconfirm configurations, and
+ certification ortask administrators can review definition object XML toconfirm that con-
+ figurations are correct.
+
+Read only rights for Each page within the Debug menu (Memory, Objects, Caches, etc) has an associated
+Admin Debug pages SPRight which grants read-only access, allowing you to create custom capabilities to
+ limitview-only Debug access to specific areas for specific users. These SPRights are
+ also bundled together in one out-of-the-box capability, DebugPagesReadOnlyAccess,
+ which makes iteasy for you to allow complete view-only access tousers as needed.
+
+ Users with read-only access can copy or download object XML, but cannot save changes
+ or upload XML.
+
+
+ Changes made on Debug pages can now be be audited. To enable logging, navigate to
+ gear > Global Settings > Audit Configuration > General Actions and select the
+Audit changes made Debug Object Browser Change checkbox.
+through the Debug Audit data isviewed through the Advanced Analytics > Audit search, and includes the
+Object Browser date and time a change was made, the identity that made the change, and the target
+ object that was changed (such as identity, bundle, orconfiguration). Audit results can be
+ exported inPDF, CSV, or CEF formats
+
+
+
+
+
+
+
+SailPoint Release Notes 3
+
+===== Page 7/69 =====
+IdentityIQ Release Notes
+
+
+ Feature/Enhancement Description
+
+ The audit log does not detail what the changes were. Internal versioning or tracking
+ should be used ifyou need to track the specific changes that are made.
+
+
+ IdentityIQ version 8.4 adds support forPostgreSQL version 15
+ Support for PostgreSQL
+
+ With thisrelease, IdentityIQ begins an upgrade from Angular JS to Angular 15. UIs that
+ have been updated include the Login screen, the Identity Preferences UI, and the API
+ Authentication Global Settings page. More UI pages willbe upgraded infuture releases.
+
+ Updates to Angular Users upgrading from an earlier version of IdentityIQ should be aware that custom wid-
+ gets and installed plugins may be impacted by the Angular upgrade. Verifying any
+ needed changes to custom widgets and installed plugins should be part of your upgrade
+ planning; widgets and plugins should firstbe evaluated ina non-production environment,
+ prior tobeing deployed in production.
+
+
+ In version 8.4, new librarieshave been added, and some existing libraries have been
+ upgraded or removed. When you upgrade, be sure to test any custom forms in your imple-
+ Security Upgrades and mentation, to ensure compatibility with the updated libraries.
+ Library Updates
+ A complete listof librariesis provided in the Important Upgrade Considerations for Iden-
+ tityIQsection below.
+
+
+Important Upgrade Considerations for IdentityIQ
+
+IdentityIQ 8.4 is a major release that contains numerous new features and capabilities across allareas ofthe product.
+A comprehensive plan should be created when upgrading that includes becoming familiar with the new features and
+changes, identifying use cases and how they are affected by the changes, creating a detailed strategy for migration of
+configuration and customizations, testing the upgrade process using data and system resources that are as close to
+the production environment as possible, and performing a complete deployment test cycle.
+
+Security Upgrades
+
+With this release, new libraries have been added, and some existing librarieshave been upgraded, or removed.
+
+Due to an increased overall industry focus on supply chain attacks and product security, SailPoint has become more
+aggressive inupdating thirdparty librariescontained in IdentityIQ. SailPoint has always aggressively monitored the
+security of allcomponents ofour products regardless ofthe source of the component and willcontinue to do so, and
+
+
+
+
+
+ SailPoint Release Notes 4
+
+===== Page 8/69 =====
+IdentityIQ Release Notes
+
+
+SailPoint has always treated security issues found in allcomponents of our products the same following our Product
+Vulnerability Management Policy which defines remediation and/or mitigation timelines based on the severity of a vul-
+nerability. Itisimportant to note that the severity ofa vulnerability in a standalone libraryencompasses every possible
+use of the library.The severity of a finding or vulnerability in IdentityIQ due to a vulnerability in a library may be dif-
+ferent due to the use of the library in IdentityIQ.
+
+Many updates to thirdparty libraries are not backward compatible, both atthe API and functional level.Because of
+this,the changes required are often not simple a replacement of the library, but also changes to the component in the
+product that is a consumer of the library. Sometimes, a change to IdentityIQ behavior and/or APIs to accommodate
+these changes is required. Given that IdentityIQ isa platform that many ofour customers and deployment partners
+use to build identity management solutions, the impact of these types of changes can be very high and our preference
+based on customer demand and feedback remains to introduce librarychanges in releases and not in patches unless
+remediation for a security vulnerability is required in which case updates can be introduced in patches.
+
+A listof librariesthat have been added or upgraded in this release is provided below. These are separated intothe lib-
+raries inthe IdentityIQ server layer and those in the IdentityIQ connector layer. Some libraries in the connector layer
+are bundled into larger packages and therefore the changes are not as visible when inspecting product filenames.
+
+ For connector library upgrades, see Important Upgrade Considerations for Connectors.
+
+Starting in recent IdentityIQ releases and patches, a listof the libraries embedded ina connector bundle are contained
+ina filenamed SBOM.txt at the root of the bundle jar file.
+
+IdentityIQ should not be thought of as a collection of independently upgradeable components, but instead a complete
+solution supported by SailPoint as itisdelivered. Customers and deployment partners should not remove, modify, or
+update components of IdentityIQ outside of officialreleases by SailPoint.
+
+ Important: When upgrading, be sure to test any custom forms in your implementation, to ensure
+ compatibility with the updated libraries.
+
+
+The following isa listof the current libraries:
+
+
+
+ l ActiveMQ 5.17.4
+
+
+
+ l ActiveMQ (geronimo-j2ee-management-1.1-spec) 1.0.1
+
+
+
+ l ActiveMQ (hawtbuf) 1.11
+
+
+
+ l Apache Ant 1.10.12
+
+
+
+ l Bouncy Castle 1.70
+
+
+
+
+
+
+
+
+ SailPoint Release Notes 5
+
+===== Page 9/69 =====
+IdentityIQ Release Notes
+
+
+
+ l Byte-buddy 1.12.10
+
+
+
+ l dbcp2 (Part of Commons) 2.9.0
+
+
+
+ l net.tascalate.javaflow.api (Part of Commons) 2.7.1
+
+
+
+ l Lang (Part of Commons) 3.12.8
+
+
+
+ l Net (Part of Commons) 3.9.0
+
+
+
+ l Pool2 (Part ofCommons) 2.11.1
+
+
+
+ l Text (Part of Commons) 1.10.0
+
+
+
+ l Easymock 5.1.0
+
+
+
+ l Ehcache 3.10.0
+
+
+
+ l Failsafe 2.4.4
+
+
+
+ l Gson 2.9.0
+
+
+
+ l Guice servlet 5.1.0
+
+
+
+ l Httpcore 4.4.15
+
+
+
+ l Jersey 2.35
+
+
+
+ l junit 4.13.1
+
+
+
+ l mimepull 1.9.15
+
+
+
+ l Java JSON Web Token (jjwt)0.11.2
+
+
+
+ l jackson 2.13.2
+
+
+
+ l Jackson (jackson-dataformat-yaml) 2.13.2
+
+
+
+ l Jackson (snakeyaml) 1.30
+
+
+
+ l jakarta.json 2.0.1
+
+
+
+
+
+
+
+
+
+SailPoint Release Notes 6
+
+===== Page 10/69 =====
+IdentityIQ Release Notes
+
+
+
+ l jakarta.json-api 2.1.0
+
+
+
+ l jasperreports-javaflow 6.19.1
+
+
+
+ l jakarta.activation 1.2.1
+
+
+
+ l jakarta.mail1.6.7
+
+
+
+ l javassist 3.29.0
+
+
+
+ l jcommon 1.0.24
+
+
+
+ l jakarta.servlet-api 4.0.4
+
+
+
+ l junit 4.13.2
+
+
+
+ l JJWT 0.11.5
+
+
+
+ l Jline 3.21.0
+
+
+
+ l Joda-time 2.10.14
+
+
+
+ l Json-path 2.7.0
+
+
+
+ l Json-smart 2.4.8
+
+
+
+ l Java-jwt 3.19.1
+
+
+
+ l jwks-rsa 0.21.1
+
+
+
+ l mysqlconnector-java 8.0.33
+
+
+
+ l okhttp 4.9.3
+
+
+
+ l okio 2.8.0
+
+
+
+ l kotlin-stdlib
+
+
+
+ l openpdf 1.3.27
+
+
+
+ l cryptacular 1.2.5
+
+
+
+
+
+
+
+
+
+SailPoint Release Notes 7
+
+===== Page 11/69 =====
+IdentityIQ Release Notes
+
+
+
+ l java-support 7.5.2
+
+
+
+ l OpenSAML 3.4.6
+
+
+
+ l OpenSAML (metrics-core) 4.2.9
+
+
+
+ l OpenSAML (xmlsec) 2.3.0
+
+
+
+ l javaee-api 8.0.1
+
+
+
+ l slf4j1.7.32
+
+
+
+ l Spring 5.2.24
+
+
+
+ l twillio8.14.0
+
+
+
+ l sshj0.31.0
+
+
+
+ l asn-one 0.5.0
+
+
+
+ l xmlschema 2.2.5
+
+
+
+ l xmlsec 2.2.2
+
+
+
+ l objenesis 3.2
+
+
+
+ l ngdbc 2.8.12
+
+
+
+ l testng (jcommander) 7.5
+
+
+
+ l lucene 8.8.2
+
+
+
+ l primefaces 8.0.12 (paid)
+
+
+
+ l jquery 3.5.1
+
+
+
+ l json 20210307
+
+
+
+ l XML Unit 2.9.0
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Release Notes 8
+
+===== Page 12/69 =====
+IdentityIQ Release Notes
+
+Unable to Create Applications with Tomcat 9.0.78
+
+When IdentityIQ isrunning with Tomcat 9.0.78 or higher, we are unable to create applications for few of the con-
+nectors (like ACF2-Full, Top Secret) and the following error isseen on the Tomcat screen:
+
+More than the maximum number ofrequest parameters (GET plus POST) fora single request ([1000]) were detected.
+Any parameters beyond this limithave been ignored.
+
+To resolve this,set the maxParameterCount parameter to a higher value (default- 1000) inserver.xml and restart the
+Tomcat server.
+
+New Database Added with Access History Feature
+
+The Access History feature adds a new database to IdentityIQ. The database forstoring Access History data is sep-
+arate from the IdentityIQ database. The IdentityIQ installand upgrade scripts willcreate separate databases forIden-
+tityIQand Access History data. The databases can be within the same instance forconvenience, but separate
+database instances are recommended for production environments to avoid an impact on IdentityIQ performance.
+Depending on your environment setup and on the number of dailychanges to your identities,the Access History data-
+base can be large,and willcontinue to grow.
+
+ActiveMQ Table Casing
+
+Ifa user changes the standard ActiveMQ casing for tables, thismay result inproblems with the embedded brokers
+falselyclaiming that the tables do not exist on start up.
+
+JasperReports Update
+
+The JasperReports library has been updated toversion 6.19.1. Any custom forms should be tested priorto the Jasper-
+Reports upgrade.
+
+Java 11
+
+IdentityIQ 8.4 iscompiled with Java 11. Plugins and other integrations must be compiled under Java 11 to be com-
+patible with IdentityIQ 8.4.
+
+Angular 15
+
+The Angular framework has been upgraded from AngularJS to Angular 15 on the following pages.
+
+
+
+ l Login
+
+
+
+ l Identity Preferences
+
+
+
+ l Global Settings → API Authentication
+
+
+
+
+
+
+ SailPoint Release Notes 9
+
+===== Page 13/69 =====
+IdentityIQ Release Notes
+
+
+These upgrades could potentially impact installed plugins, ifthe plugins use AngularJS and/or modify the rendering of
+the affected page. After upgrade to 8.4,we recommend thatany plugins are firstevaluated ina non-production envir-
+onment, priorto being deployed in production.
+
+Deserialization of Untrusted Data
+
+[SECURITY] Deserialization ofuntrusted data is a security risk that should be avoided. Java introduced a serialization
+filteringfeature in JDK 9 and later backported to versions 6, 7 and 8 which allows forserialization ofclasses specified
+ina filtervia the "jdk.serialFilter"system security property. IdentityIQ now only allows deserialization of classes from
+the sailpoint package. String, primitive classes, and arrays are allowed by default. Support for the configurable filters
+has been included in the CPU releases for JDK 8u121, JDK 7u131, and JDK 6u141.
+
+Security Fix for SetIdentityForwarding Right
+
+[SECURITY] This release contains a fixfor an important security vulnerability that was previously announced. The vul-
+nerability allows authenticated users assigned the Identity Administrator capability orany custom capability that con-
+tains the SetIdentityForwarding rightto modify the work item forwarding configuration foridentities other than the ones
+that should be allowed by Lifecycle Manager Quicklink Population configuration. This vulnerability in IdentityIQ is
+assigned CVE-2022-45435.
+
+As with all software vulnerabilities, we recommend that allcustomers apply this upgrade or the e-fix forIIQSR-727
+available in the Product Download Center on Compass as soon as possible.
+
+JSON Libraries Replaced with Jackson
+
+Alluses of the JSON-java library have been replaced with Jackson.
+
+Processing Objects with Non-Standard Object IDs
+
+In8.3 GA and 8.3p1, processing objects with nonstandard object IDs caused NativeIdentityChange propagation to fail
+with the exception “Attempt to generate refresh event with null object”. When this error occured, the failedNat-
+iveIdentityChangeEvents blocked provisioning. This issue has been resolved. For customers impacted by itinearlier
+versions, a new task template, “Reset Failed NativeIdentityChange Events”, has been added inthis release that re-
+processes these events to:
+
+
+
+ l Report the number of failed events
+
+
+
+ l Prune events where the old and new values only differby case
+
+
+
+ l Reset failed events and launch tasks to re-process them
+
+
+A new option, detectNativeIdentityChangeCaseSensitive, is now supported that improves performance. This option
+defaults to false. When enabled, ittriggers creation of a NativeIdentityChangeEvent in IdentityIQ even ifthe native
+
+
+
+
+
+ SailPoint Release Notes 10
+
+===== Page 14/69 =====
+IdentityIQ Release Notes
+
+
+identifierforAccount or Group only differs by case from the value in IdentityIQ. To enable this option, add the following
+tothe Attributes Map of the System Configuration:
+
+<entry key=“detectNativeIdentityChangeCaseSensitive” value=“true”/>
+
+AI Role Mining Plugin Functionality Moved to Base IdentityIQ Product
+
+In8.4, the functionality previously available in the IdentityAI Role Mining plugin isnow in the base IdentityIQ product.
+Upon upgrade to 8.4,ifthe IdentityAI Role Mining plugin was previously installed, the plugin willbe uninstalled and
+any configuration from that plugin willbe added tothe AIServices Configuration under a new section, "Access Model-
+ing".
+
+There are two new SPRights: ManageIAISpecializedRoleDiscovery and ManageIAICommonAccessDiscovery.
+There isone new capability, AIAccessModelingAdministrator, containing those two SPRights and also having
+ViewIdentity, which isnecessary forAccess Modeling.
+
+There isno separate System Configuration key toenable Access Modeling apart from identityAIEnabled. The
+Access Modeling configuration willbe visible on the AI Services Configuration page to IdentityIQ customers with AI
+subscriptions, regardless of whether they subscribe tothe Access Modeling module specifically.However, in such
+cases the Access Modeling functionality willstillbe disabled intheir IdentityNow tenant.
+
+New Configuration Page/Rights Entries Added to webresources.xml
+
+New Installations or Upgrades willadd the new Access History/Data Extract/Broker configuration pages/rights entries
+intowebresources.xml. Customers should review the changes and merge theirsifdifferent from the out-of-the-box
+configuration.
+
+Form Beans Required in Form Submissions
+
+[SECURITY] Form Beans used toprocess SailPoint Form submissions must now implement the FormBean interface.
+Anything else willthrow an exception and block submission of the form.
+
+This release contains a fixforan important security vulnerability thatwas previously announced. This vulnerability
+allows an authenticated user toinvoke a Java constructor with no arguments or a Java constructor with asingle Map
+argument inany Java class available inthe IdentityIQ application classpath. This vulnerability in IdentityIQ isassigned
+CVE-2023-32217. As with allsoftware vulnerabilities, we recommend that allcustomers apply thisupgrade or the e-fix
+forIIQFW-655 available inthe Product Download Center on Compass as soon as possible.
+
+Security Fix to JavaServer Faces (JSF) Library
+
+[SECURITY] A filetraversal vulnerability inthe JavaServer Faces (JSF) libraryhas been fixed.
+
+This vulnerability allows access toarbitrary filesin the application server filesystem due to a path traversal vul-
+nerabilityin JavaServer Faces (JSF) 2.2.20 documented in CVE-2020-6950. The remediation forthis vulnerabilitycon-
+
+
+
+
+
+
+ SailPoint Release Notes 11
+
+===== Page 15/69 =====
+IdentityIQ Release Notes
+
+
+tained inthis securityfixprovides additional changes tothe remediation announced inMay 2021 tracked by ETN
+IIQSAW-3585. This vulnerabilityin IdentityIQ isassigned CVE-2022-46835.
+
+As with allsoftware vulnerabilities,we recommend that allcustomers apply thisupgrade orthe e-fixfor IIQFW-336
+available inthe Product Download Center on Compass as soon as possible.
+
+Workflow Approval Arguments to Prevent ObjectAlreadyLocked Exceptions
+
+Two new approval arguments are available on an Approval step in a workflow so thatend users willnot see
+ObjectAlreadyLocked exceptions after completing an approval workitem and the workitem islocked. Using either of
+these options willdisable theautomatic display ofthe next workitem in a "wizard" workitem scenario:
+
+<Arg name="backgroundApprovalCompletion" value="script:true"/>
+
+This willmove approval completion to background processing to freethe user from waiting untilthe workitem ispro-
+cessed by the workflow before returning to the home page.
+
+<Arg name="backgroundApprovalCompletionIfLocked" value="script:true"/>
+
+This willonly move the approval completion process to the background iftheworkitem orworkflow islocked by
+another user oranother process. This willprevent the user from seeing apopup and return the user to the home page.
+
+JDNI Datasources for Access History Database
+
+Ifyou are using a JNDI datasource foryour access history database, you willneed to make a few configuration
+changes.
+
+ 1. Extract configBeans.xml out of the lib/identityiq.jar, and copy that fileintothe WEB-INF/classes
+ directory.
+
+ 2. Add a new bean toconfigBeans.xml as follows:
+ <!--
+ App-server managed data source for accessHistory database that is looked up in
+ JNDI. The location of the data source is configured with jndiName in
+ iiq.properties.
+ -->
+ <bean id="jndiAccessHistoryDataSource"
+ class="org.springframework.jndi.JndiObjectFactoryBean">
+ <property name="jndiName" value="jdbc/overrideInIIQProperties"/>
+ <property name="lookupOnStartup" value="false"/>
+ <property name="cache" value="true"/>
+ <property name="proxyInterface" value="javax.sql.DataSource"/>
+ </bean>
+ 3. Iniiq.properties, define the datasource as follows:
+
+
+
+
+
+ SailPoint Release Notes 12
+
+===== Page 16/69 =====
+IdentityIQ Release Notes
+
+ jndiAccessHistoryDataSource.jndiName=[insert your data source here. For example,
+ java:comp/env/jdbc/testDataSourceAccessHistory]
+ configuredDataSourceAccessHistory.targetBeanName=jndiAccessHistoryDataSource
+Important Upgrade Considerations for Connectors
+
+General Updates for Connectors
+
+
+
+ l Microsoft has announced that Basic Authentication for exchange Online isno longer available afterOctober 1,
+ 2022. You can update your Azure Active Directory applications configured to manage Exchange Online using
+ modern authentication supported by connector. Be sure toupgrade the IQService to the one which isbundled
+ with the release. For more details regarding Microsoft announcement, referBasic Authentication Deprecation
+ in Exchange Online – May 2022 Update
+
+
+
+ l The Salesforce connector now supports API version 56.0, For existing applications, remove the User- Per-
+ missionsMobileUser attribute from the schema forthe connector towork with the new 56.0 API version
+
+
+
+ l The Salesforce connector now supports creating new Portal and Partner Users as well as assigning Portal and
+ Partner Licenses to existing Salesforce Users using theirrespective user profiles.Ensure thatthe service
+ account user has the "Manage Contacts" object [ R||W] added to the administrative user profile.
+
+
+
+ l The Salesforce connector now supports creating, updating and deleting Public Groups. Ensure that the service
+ account user has "Public Groups" object [ R||W] added to the administrative user profile.
+
+
+
+ l The IQService version must match the IdentityIQ server version, including the major release and patch ver-
+ sions. When one isupgraded, the other must also be upgraded, so that the version and patch levels match. For
+ more information on upgrading the IQService, see the IdentityIQ Installationguide chapter on upgrading
+
+
+
+ l The Zoom connector no longer supports API Token Authentication. Configure your Zoom application to use
+ Oauth2 Authentication, to avoid any failures.
+
+Connector Security Upgrades
+
+With this release, new libraries have been added, and some existing libraries have been upgraded, orremoved. The
+following isa listof the current libraries:
+
+
+
+ l accessors-smart-2.4.8
+
+
+
+ l bcel-6.6.1
+
+
+
+ l commons-fileupload-1.4
+
+
+
+ l hk2-api-3.0.3
+
+
+
+
+
+
+ SailPoint Release Notes 13
+
+===== Page 17/69 =====
+IdentityIQ Release Notes
+
+
+
+ l hk2-locator-3.0.3
+
+
+
+ l hk2-utils-3.0.3
+
+
+
+ l hibernate-core-6.1.5.Final
+
+
+
+ l jersey-hk2-3.0.4
+
+
+
+ l jackson-databind-2.13.3
+
+
+
+ l jakarta.annotation-api-2.1.0
+
+
+
+ l jakarta.validation-api-3.0.1
+
+
+
+ l jakarta.ws.rs-api-3.1.0
+
+
+
+ l jersey-hk2-3.0.4
+
+
+
+ l jersey-client-3.0.4
+
+
+
+ l jersey-common-3.0.4
+
+
+
+ l jersey-container-servlet-core-3.0.4
+
+
+
+ l jersey-media-jaxb-3.0.4
+
+
+
+ l jersey-media-multipart-3.0.4
+
+
+
+ l jersey-server-3.0.4
+
+
+
+ l jersey-apache-connector-3.0.4
+
+
+
+ l jasperreports-javaflow-6.19.1
+
+
+
+ l jackson-core-2.13.3
+
+
+
+ l javax.faces-2.4.0
+
+
+
+ l javax.mail-1.6.2
+
+
+
+ l kotlin-stdlib-1.7.10
+
+
+
+
+
+
+
+
+
+SailPoint Release Notes 14
+
+===== Page 18/69 =====
+IdentityIQ Release Notes
+
+
+
+ l mysql-connector-java-8.0.30
+
+
+
+ l mysql-connector-java-8.0.30
+
+
+
+ l org.jacoco.ant-0.8.8
+
+
+
+ l spring-core-5.3.20
+
+
+
+ l spring-core-5.3.22.RELEASE
+
+
+
+ l spring-web-5.2.22.RELEASE
+
+
+
+ l testng-7.6.1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Release Notes 15
+
+===== Page 19/69 =====
+Supported Platforms
+
+
+ IMPORTANT: SailPoint does not support anything beyond the compatibility ofthe platform
+ vendors. Confirm the interoperability and support from those vendors when deciding on your plat-
+ forms.
+
+
+Operating Systems
+
+
+
+ l Windows Server 2022 and 2019
+
+
+
+ l Solaris 11 and 10
+
+
+
+ l IBM AIX 7.3 and 7.2
+
+
+ Note regarding Linux Support: The distributions and versions ofLinux highlighted below have
+ been verifiedby IdentityIQ Engineering, but any currently available and supported distributions
+ and versions of Linux willbe supported by SailPoint. Implementers and customers should verify
+ that the distribution and version of Linux of choice iscompatible with the application server, data-
+ base server, and JDK also being used.
+
+
+
+
+ l Red Hat Linux 9.1 and 8.8
+
+
+
+ l SuSe Linux 15 and 12
+
+Application Servers
+
+
+
+ l Apache Tomcat 9.0
+
+
+
+ l Oracle WebLogic 14c
+
+
+
+ l JBoss Enterprise 7.4 and 7.3
+
+
+
+ l IBM WebSphere Liberty 21.0 and 22.0
+
+Databases (On Site)
+
+
+
+ l IBM DB2 11.5
+
+
+
+ l MySQL 8.0
+
+
+
+
+
+
+
+
+ SailPoint Release Notes 16
+
+===== Page 20/69 =====
+ l MS SQL Server 2022 and 2019
+
+
+
+ l Oracle 19c
+
+
+
+ l PostgreSQL 15
+
+Message Brokers
+
+
+
+ l ActiveMQ 5.17.4
+
+Cloud Platforms
+
+
+
+ l AWS EC2
+
+
+
+ l AWS Aurora
+
+
+
+ l AWS RDS (MySQL, MS SQL, Oracle)
+
+
+
+ l Azure (VM, Azure SQL)
+
+
+
+ l Google Cloud Platform – Google Compute Engine
+
+Java Platform
+
+
+
+ l Sun, Oracle orIBM JDK 11 and JDK 17 forallapplication servers thatsupport those versions
+
+
+
+ l OpenJDK11 is now supported on allenvironments, but we have specificallytested against Adopt OpenJDK 11
+ and 17 for Windows and Red Hat OpenJDK 11 and 17 for Linux
+
+
+
+ l Eclipse Temurin JDK 11, 17
+
+
+
+ l IBM Semeru 17.0.5.0
+
+Browsers
+
+
+
+ l Google Chrome Latest Version
+
+
+
+ l Microsoft Edge Latest Version
+
+
+
+ l Safari 16
+
+
+
+ l Firefox Latest Version
+
+
+
+
+
+
+
+ SailPointRelease Notes 17
+
+===== Page 21/69 =====
+Mobile User Interface OS / Browser Support
+
+
+
+ l Android with Chrome 13
+
+
+
+ l iOS with Safari 16
+
+Languages
+
+
+
+ l Brazilian Portuguese
+
+
+
+ l Chinese (Taiwan)
+
+
+
+ l Danish
+
+
+
+ l Dutch
+
+
+
+ l English
+
+
+
+ l Finnish
+
+
+
+ l French
+
+
+
+ l French Canadian
+
+
+
+ l German
+
+
+
+ l Hungarian
+
+
+
+ l Italian
+
+
+
+ l Japanese
+
+
+
+ l Korean
+
+
+
+ l Norwegian
+
+
+
+ l Polish
+
+
+
+ l Portuguese
+
+
+
+ l Simplified Chinese
+
+
+
+ l Spanish
+
+
+
+
+
+
+ SailPoint Release Notes 18
+
+===== Page 22/69 =====
+ l Swedish
+
+
+
+ l Traditional Chinese
+
+
+
+ l Turkish
+
+Connectors and Integration Modules Enhancements
+
+IdentityIQ 8.4 provides various enhancements in the following connectors and integration modules.
+
+New Connectors
+
+IdentityIQ 8.4 delivers new, out-of-the-box connectors for the following enterprise applications, which simplifies the
+connectivity of these systems.
+
+ New Con- Description
+ nectors
+
+ BMC Helix The BMC Helix Remedyforce ITSM Service Desk Integration module isdesigned to provide the
+ Remedyforce service desk experience inIdentity IQ. The integration supports creation of tickets within Identity
+ Service Desk IQ for manual provisioning operations and status checks. Service desk integration module
+ Integration ensures synchronization of ticketstatus between Identity IQ and the BMC Helix Remedyforce Ser-
+ Module vice Desk system.
+ The new SailPoint Coupa connector provides the capability forseamless and secure connection
+ Coupa Con- tothe Coupa system, and manages user access and groups throughout the user’s lifecycle.This
+ nector integration also manages user-groups, content-groups, account-groups and approval-groups
+ membership as entitlements.
+ Generic Ser- The Generic Service Desk integration offers connectivity with different IT Service Management
+ vice Desk (ITSM) solutions. Itsupports the creation of tickets,which can be configured toalign with the spe-
+ Integration cificservice request types of the target ITSM solution. This integration brings the service desk
+ Module experience into the SailPoint platform, enabling users toraise and track service desk tickets to
+ theirlogical closure from SailPoint IdentityIQ.
+ IdentityIQ for The Epic SER connector provides the capability to manage Epic Provider (SER) records. Itsup-
+ EPIC SER ports aggregation of Provider records as accounts and lifecyclecapabilities including create
+ account, update account, and enable/disable account.
+ Ivanti Cherwell The Cherwell connector offers seamless connectivity to the Cherwell ITSM solution, enabling
+ Connector aggregation and provisioning of two distinctCherwell user types: 'users' & 'customers'. This integ-
+ ration enables robust user access management and governance in the Cherwell System.
+ Ivanti Cherwell The Cherwell Service Desk Integration Module (SDIM) brings the service desk experience into the
+ Service Desk SailPoint platform, enabling users to raise and track service desk tickets (Service Request & Incid-
+
+
+
+
+
+
+ SailPoint Release Notes 19
+
+===== Page 23/69 =====
+New Con- Description
+nectors
+
+ ent) to their logical closure in Cherwell ITSM solution from SailPoint IdentityIQ.
+Microsoft Azure SQL Database connector provides connectivity with Azure SQL Database for user access
+Azure SQL governance and management. The connector supports the management ofMicrosoft Azure SQL
+Database database logins as accounts and users associated tologin accounts. Itsupports aggregation, pro-
+ visioning and fullaccount management.
+ Oracle Fusion HCM Accounts connector provides the capabilities to manage HCM users’
+Oracle Fusion accounts. Itsupports the aggregation ofaccounts and roles. The connector also provides forfull
+HCM Accounts lifecycle capabilities including account creation, updation, and role assignment/revocation with
+ accounts.
+Oracle Enter-
+prise Per- The new Oracle Enterprise Performance Management (EPM) Cloud governance connector
+formance provides the capability for managing user accounts, predefined roles,application roles, and
+Management groups. The integration supports EPM Cloud Services forFinancial Consolidation and Close
+(EPM) Cloud (FCCS), Account Reconciliation (AR), Planning, Narrative Reporting (NR).
+governance
+Connector
+ The new Oracle HCM Cloud connector provides read capability from Oracle Fusion HCM for "per-
+Oracle HCM son" details when Oracle Fusion HCM isthe HR data source for the organization. This new con-
+Cloud Con- nector’s capabilities include operations such as fullaccount aggregations using recommended
+nector designs from Oracle touse performance-based fileextract methods, and any incremental user
+ data changes to be detected via delta aggregation using “Oracle’s Atom Feeds”. The connector
+ also provides capabilities to refresh any accounts coming in,as well as discover new schemas.
+ The new SAP Concur Connector provides Identity Governance on Expense management ser-
+SAP Concur vices provided by Concur. The integration supports enforcing policies and permissions forgrant-
+Connector ing and revoking access to systems and data based on user identities,roles, and associated
+ groups forExpense, Request, Invoice, and Reporting.
+ SailPoint’s Integration forthe SAP Fieldglass Vendor Management System offers governance cap-
+SAP Fieldglass abilities forcontingent workers. Itoffers seamless governance of external users management for
+Connector joiners, movers, leaver workflows, and separation ofduty (SOD) checks based on user roles,
+ attributes, and entitlements.
+Snowflake Con- A new Snowflake Connector isnow available to govern identitiesfor Snowflake Data Lake.
+nector
+
+
+
+
+
+
+
+
+
+
+SailPoint Release Notes 20
+
+===== Page 24/69 =====
+ACF2
+
+
+
+ l Supports z/OS 2.5
+
+Active Directory
+
+
+
+ l Supports aggregation of domain NetBIOSName as partof account and group aggregation. You need toadd
+ NetBIOSName as a schema attributewith the type as String in theAccount and Group schema to leverage this
+ feature.
+
+
+
+ l Supports Microsoft Windows Server 2022.
+
+Amazon Web Services
+
+
+
+ l Supports AWS GovCloud (US) Regions.
+
+Atlassian Suite - Server
+
+
+
+ l Supports the following new versions:
+
+
+
+ l Supports Jira Service Management version 5.2
+
+
+
+ l Supports Jira Software Server version 9.6
+
+
+
+ l Supports Confluence version 8.1
+
+
+
+ l Supports Bitbucket version 8.8
+
+
+
+ l Supports Bamboo version 9.2
+
+Atlassian Server Jira Service Management
+
+
+
+ l Supports Atlassian Jira Service Management (Server) version 5.2.0
+
+Azure Active Directory
+
+
+
+ l Supports managing Azure PIM Role memberships to Azure Active Directory groups.
+
+
+
+ l Supports certificatebased modern authentication to communicate withExchange Online that ismore secure
+ and is the Microsoft recommendation.
+
+
+
+ l Now provides visibilityintouser’ssign-in (lastlogin)activity.
+
+
+
+
+
+
+ SailPoint Release Notes 21
+
+===== Page 25/69 =====
+ l Supports managing Azure Active Directory Role as a group object.
+
+
+
+ l Supports Continuous Access Evaluation (CAE), which leverages the Azure Active Directory real-time enforce-
+ ment of conditional access location and riskpolicies, along with instant enforcement oftoken revocation events
+ for an enterprise application (service principal).
+
+
+
+ l Support management of access packages.
+
+
+
+ l Supports managing user-assigned identities.
+
+
+
+ l Supports read and write of Azure Multi-Factor Authentication attributes required for various authentication
+ methods.
+
+
+
+ l Supports EXO V3 module for Exchange Online management feature.
+
+
+
+ l Supports filtersfor channels during entitlement aggregation.
+
+
+
+ l Supports User and Group advanced filtersthrough the application UI.
+
+
+
+ l Supports giving visibilitytoread-only group hierarchy information during group aggregation.
+
+
+
+ l Supports managing Service Principal for enterprise Applications as an Account (Service Principal as Account).
+
+
+
+ l Supports creating SAML based applications and corresponding Service Principals using the Gallery applic-
+ ation templates.
+
+
+
+ l Supports creation of Service Principals for existing Applications.
+
+BMC Helix
+
+
+
+ l Supports BMC Helix IT Service Management Suite version 22.1
+
+BMC Helix ITSM Service Desk
+
+
+
+ l Supports OAuth 2.0 authentication.
+
+
+
+ l Supports version 21.3. With thisnew version, the connector supports service requests via the digital workplace
+ with a new ticket type called DWP Service Request.
+
+
+
+ l Supports BMC Helix IT Service Management Suite version 22.1
+
+
+
+
+
+
+
+
+
+
+ SailPoint Release Notes 22
+
+===== Page 26/69 =====
+BMC Remedy
+
+
+
+ l Supports BMC Helix 21.3 systems.
+
+Cloud Gateway
+
+
+
+ l Supports using load balancer with sticky-bitconfiguration.
+
+
+
+ l Supports new configuration to enable alloperations fortarget collectors tobe executed in Cloud Gateway.
+
+
+
+ l Supports the following new versions:
+
+
+
+ l Oracle JRE forJava version 17 and OpenJDK 17 platforms
+
+
+
+ l RHEL 9.0
+
+
+
+ l Microsoft Windows Server 2022
+
+Duo
+
+
+
+ l Supports proxy setting from the application server settings and can also bypass the proxy for hosts listed inthe
+ nonProxyHosts list.
+
+EPIC
+
+
+
+ l The following Epic user fields are now supported as account attributes:
+
+
+
+ l PrimaryManager
+
+
+
+ l UsersManagers
+
+
+
+ l Supports Epic version May 2023
+
+EPIC SER
+
+
+
+ l Enhanced to display provisioning failures atan attributelevel.
+
+Generic Service Desk
+
+
+
+ l Supports retrieving the ticketnumber from the URL ifthe create ticketresponse returns the URL instead ofthe
+ ticket number. The new attribute isProcess Response Element Expression, and itshould be populated with
+ parsing logic tofetch the ticket number from the response URL.
+
+
+
+
+
+
+ SailPoint Release Notes 23
+
+===== Page 27/69 =====
+Google Workspace
+
+
+
+ l Supports archiving and unarchiving users.
+
+HCL Domino
+
+
+
+ l Supports HCL Domino version 12.0.2.
+
+IBM Security Verify Governance
+
+
+
+ l Supports delta aggregation.
+
+
+
+ l Supports IBM Security VerifyGovernance version 10.0
+
+IBM Security Verify Access
+
+
+
+ l Supports IBM Security VerifyAccess 10.0.3
+
+
+
+ l Supports IBM Security VerifyAccess 10.0.6 with support forbackend servers: IBM Security Directory Suite ver-
+ sion 10.0.
+
+
+
+ l Deprecating REST API support.
+
+Jack Henry
+
+
+
+ l Supports enabling and disabling accounts.
+
+LDAP
+
+
+
+ l Supports Modify Time Stamp as a new deltaaggregation mode.
+
+
+
+ l The UI has been updated toprovide more fieldsforconfiguring the connection details tovarious LDAP Dir-
+ ectory servers.
+
+Linux
+
+
+
+ l Supports Red Hat Enterprise Linux versions 8.5 and 8.8.
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Release Notes 24
+
+===== Page 28/69 =====
+Mainframe Connectors - RACF, ACF2, TopSecret
+
+
+
+ l Enhanced tosupport mutual TLS authentication for communication between IdentityIQ Connector Gateway
+ and the mainframe connector itself.You must upgrade to the latestversion ofConnector Gateway to leverage
+ thisfeature.
+
+Microsoft SQL Server
+
+
+
+ l Supports Azure Managed Instances.
+
+
+
+ l Supports Microsoft SQL Server 2022.
+
+Okta
+
+
+
+ l Enhanced torespect the password policyset in theOkta target system (interms of password age and pass-
+ word history).
+
+
+
+ l Supports the addition and removal of custom roles directlyassociated with accounts.
+
+
+
+ l Supports aggregation ofcustom rolesdirectly associated with accounts and groups.
+
+
+
+ l Enhanced toprovide an option formulti-threading when aggregating groups and applications connected to
+ Okta accounts during account aggregation.
+
+Oracle E-Business
+
+
+
+ l Supports the 12.2.11 Oracle EBS environment.
+
+Oracle ERP Cloud
+
+
+
+ l Enhanced tosupport aggregation of data access information (securitycontext and securitycontext values)
+ even when not assigned to a role.
+
+Oracle Fusion HCM
+
+
+
+ l Supports aggregation ofadditional attributes from the WORKERS API responses using a JSON Path.
+
+
+
+ l Enhanced account aggregation performance.
+
+
+
+ l Account aggregation willnow failwhen there isa planned outage (maintenance) on the Oracle system.
+
+
+
+
+
+
+
+
+
+ SailPoint Release Notes 25
+
+===== Page 29/69 =====
+Oracle Fusion HCM Accounts
+
+
+
+ l Oracle Fusion HCM Accounts connector provides the capabilities tomanage HCM users’ accounts. Itsupports
+ the aggregation of accounts and roles. The connector alsoprovides forfulllifecyclecapabilities including
+ account creation, updation, and roleassignment/revocation with accounts.
+
+
+
+ l Account aggregation willnow failwhen there isa planned outage (maintenance) on the Oracle system.
+
+Oracle Identity Manager
+
+
+
+ l Supports the Oracle IdentityManager 12C version.
+
+Oracle PeopleSoft ERP
+
+
+
+ l Supports PeopleTool versions 8.60 to8.60.05.
+
+Oracle PeopleSoft HCM
+
+
+
+ l Supports PeopleTool version 8.60 to 8.60.05.
+
+RACF
+
+
+
+ l Supports resource aggregation and provisioning as additional group schema, and requesting permissions for
+ accounts and groups.
+
+
+
+ l Supports z/OS 2.5
+
+RSA
+
+
+
+ l Supports RSA Authentication Manager version 8.7 and 8.6.
+
+SAP Direct
+
+
+
+ l Redesigned to use an SAP-certified function module for enhanced security and performance. The use of the
+ RFC_READ_TABLE has been made limited according toSAP recommendations.
+
+SAP GRC
+
+
+
+ l Redesigned to use an SAP-certified function module for enhanced security and performance. The use of the
+ RFC_READ_TABLE has been made limited according toSAP recommendations.
+
+
+
+
+
+
+
+
+ SailPoint Release Notes 26
+
+===== Page 30/69 =====
+ l Enhanced tosupport account partitioning for SAP Basis version 751 and later.
+
+
+
+ l Enhanced tosupport additional attributes that are now configurable through the provisioning policy.
+
+
+
+ l Enabling and disabling accounts is now possible for allthe GRC-connected systems and not justlimited to the
+ master. This enables deeper governance and clean audit capabilities.
+
+
+
+ l Enhanced tosupport Additional Settings in the UI, which includes Access Request Type Mapping, Provisioning
+ Actions for Role, and Provisioning Actions forSystem sections.
+
+
+
+ l Supports access management requests that are configured for auto approval in the SAP GRC system.
+
+SAP HANA
+
+
+
+ l Enhanced tosupport get and provisioning ofexternal type users.
+
+
+
+ l Supports custom user parameters for aggregation and provisioning.
+
+
+
+ l Supports the following new versions:
+
+
+
+ l SAP HANA Cloud Database version 4.0 application
+
+
+
+ l SAP HANA 2.0 SPS6 version
+
+SAP HR/HCM
+
+
+
+ l Redesigned touse an SAP-certified function module forenhanced security and performance. The use ofthe
+ RFC_READ_TABLE has been made limited according to SAP recommendations.
+
+Salesforce
+
+
+
+ l Supports creating, updating, and deleting public groups (ensure that your service account user has the “Public
+ Groups” object [R ||W] added into the administrative user profile).
+
+
+
+ l No longer supports Salesforce API version 48.0 or prior.The connector willonly work on API version 56.
+
+
+
+ l Supports creating new portal and partner users, as well as assigning portal and partner licenses toexisting
+ Salesforce users using theirrespective user profiles (ensure that your service account user has “Manage
+ Contacts” object [R||W] added intothe administrative user profile).
+
+
+
+ l Supports use of the Enhanced Domains option in the Salesforce system.
+
+
+
+
+
+
+
+
+
+ SailPoint Release Notes 27
+
+===== Page 31/69 =====
+ServiceNow Identity Governance
+
+
+
+ l Supports configurable option to read deleted events (forexample, removing a group or role) ofuser’s con-
+ nection from a custom table instead of the sys_audit_delete table. This enhances the delta aggregation per-
+ formance.
+
+
+
+ l Supports the ServiceNow Utah and Tokyo release.
+
+IdentityIQ for ServiceNow Service Desk
+
+
+
+ l Supports pullingRITM status into SailPoint.
+
+
+
+ l Enhanced to populate the access request comment on the ServiceNow ticket.Existing service desk integ-
+ rations need to modify the provisioning task definitionto include the comments for access request comments.
+ This feature isautomatically included forallnew configurations.
+
+
+
+ l Supports ServiceNow Tokyo and Utah release.
+
+SharePoint Online
+
+
+
+ l Supports configurable endpoints when Azure Active Directory is deployed on a non-public national cloud
+ server.
+
+SharePoint Server
+
+
+
+ l Supports managing Microsoft SharePoint Server Subscription Edition.
+
+Siebel
+
+
+
+ l Supports Siebel server version 22.8.0.0.
+
+Slack
+
+
+
+ l Supports creation of a guest user tohave access to a single or multiple channels in Slack Enterprise Grid Plan.
+
+SuccessFactors
+
+
+
+ l Enhanced to support account delta aggregation.
+
+
+
+ l Enhanced to exclude Personal Identifiable Information (PII)data for employees.
+
+
+
+
+
+
+
+
+ SailPoint Release Notes 28
+
+===== Page 32/69 =====
+ l Enhanced to manage external users, and theirentitlements, who are inthe onboarding stage.
+
+
+
+ l Supports additional attributes and custom attributes related touser entities viathe ODATA API.
+
+
+
+ l Enhanced to aggregate selective employee records based on filteringcriteria.
+
+Web Services
+
+
+
+ l Supports Create, Update, and Delete for Group objects.
+
+
+
+ l Supports removing entitlements while disabling accounts and enabling entitlements while enabling accounts.
+
+
+
+ l Now provides example rules toshow the use ofWeb Services operation rules tohelp configure the searchAfter
+ attribute for pagination.
+
+Windows Local
+
+
+
+ l Supports Microsoft Windows Server 2022.
+
+Workday
+
+
+
+ l Supports adding proxy level parameters in the Workday application.
+
+
+
+ l Supports Workday web service versions 39.1 and 38.0.
+
+Workday Accounts
+
+
+
+ l Enhanced to integrate with Workday Learning Module and aggregate the training information associated with
+ users.
+
+
+
+ l Supports managing Service Center Representative accounts.
+
+
+
+ l Supports filteringof accounts based on the Organization Type and Organization Reference ID.
+
+
+
+ l Supports aggregation and provisioning of future accounts ahead of their hiredate.
+
+
+
+ l Enhanced to provide an option formulti-threading, which willimprove the account aggregation performance.
+
+
+
+ l Supports additional schema attributes for User-Based Security Group objects.
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Release Notes 29
+
+===== Page 33/69 =====
+Zoom
+
+
+
+ l Supports OAuth 2.0 authentication.
+
+
+
+ l Authentication Type “API Token” isno longer supported. Set up your Zoom application to configure Oauth2.0
+ Authentication to avoid any failures.
+
+Connectivity Supported Platform and Language Updates
+
+
+ Connector/Component New Platform Version
+
+ Active Directory Con- Supports Microsoft Windows Server 2022
+ nector
+ ACF2 FullConnector Supports z/OS 2.5
+
+ l Supports Jira Service Management version 5.2
+
+
+
+ l Supports Jira Software Server version 9.6
+
+ Atlassian Suite - Server l Supports Confluence version 8.1
+ Connector
+
+ l Supports Bitbucket version 8.8
+
+
+
+ l Supports Bamboo version 9.2
+
+ BMC Remedy Connector Supports BMC Helix 21.3 system.
+ BMC Helix Connector Supports BMC Helix IT Service Management Suite version 22.1
+ BMC Helix ITSM Service Supports version 22.1.
+ Desk Integration Module
+
+ l Supports Oracle JRE for Java version 17 and OpenJDK 17 platforms.
+
+ Cloud Gateway l Supports RHEL 9.0.
+
+
+
+ l Supports Microsoft Windows Server 2022
+
+ EPIC Connector Supports Epic version May 2022
+ HCL Domino Connector Supports HCL Domino version 12.0.2.
+
+ l Supports IBM Security VerifyAccess 10.0.3
+ IBM Security Verify
+ Access Connector l Supports IBM Security VerifyAccess 10.0.6 with Supported Backend Servers:
+ IBM Security Directory Suite version 10.0
+ IdentityIQ forAtlassian Supports Atlassian Jira Service Management (Server) Version 5.2.0
+ Server JiraService Desk
+
+
+
+
+
+ SailPoint Release Notes 30
+
+===== Page 34/69 =====
+Connector/Component New Platform Version
+
+IdentityIQ forIBM Secur- Supports IBM Security Verify Governance v10.0
+ityIdentityManager
+IdentityIQ forServiceNow Supports the ServiceNow Tokyo and Utah release.
+Service Desk
+Linux Connector Supports Red Hat Enterprise Linux versions 8.8 and 8.5.
+Microsoft SharePoint Supports managing Microsoft SharePoint Server Subscription Edition.
+Server Connector
+MS SQL Server -Direct Supports MS SQL Server 2022
+Connector
+Oracle E-Business Con- Supports the 12.2.11 Oracle EBS environment
+nector
+Oracle IdentityManager Supports the Oracle Identity Manager 12C version.
+Connector
+PeopleSoft Connector Supports PeopleTools version 8.60.05 and 8.59 environment
+PeopleSoft HCM Con- Supports PeopleTool version 8.60.05
+nector
+RACF Full Connector Supports z/OS 2.5
+RSA Connector Supports RSA Authentication Manager version 8.7 and 8.6
+SAP Business Suite Integration iscertified with 'SAP HANA S/4 2022'
+(ERP)
+SailPoint Identity
+Governance Connector Supports the ServiceNow Tokyo and Utah release.
+forServiceNow
+
+ l Supports SAP HANA Cloud DB ver 4.0 application
+SAP Hana DB Connector
+ l Supports SAP HANA 2.0 SPS6 version
+
+ Supports API version 56.0 (For existing applications, you must remove the User-
+Salesforce Connector PermissionsMobileUser attribute from the schema for the connector to work with the
+ new 56.0 API version.)
+ServiceNow IdentityIQ for Supports the ServiceNow Tokyo and Utah release.
+Service Desk
+ServiceNow Catalog Supports the ServiceNow Tokyo and Utah release.
+Integration
+
+ l Enhanced tosupport the account delta aggregation
+SAP SuccessFactors
+Connector l Enhanced toexclude PIIdata foremployees.
+
+
+
+
+
+
+SailPoint Release Notes 31
+
+===== Page 35/69 =====
+ Connector/Component New Platform Version
+
+ Siebel Connector Supports Siebel server version 22.8.0.0.
+ Top Secret Supports zOS 2.5
+ Top Secret LDAP Supports zOS 2.5
+ Windows Local Con- Supports Microsoft Windows Server 2022
+ nector
+ Workday Connector Supports Workday web service version 38.0 and 39.1
+
+Connectivity Dropped Platform Support
+
+
+ Connector/Integration Module Dropped Platforms
+
+ ACF - Full z/OS 2.2 and z/OS 2.3 systems
+ No longer supports the following:
+
+
+
+ l Jira Software Server version 8.13 and 8.12
+
+ Atlassian Suite Server Connector l Confluence version 7.8 and 7.7
+
+
+
+ l Bitbucket version 7.5
+
+
+
+ l Bamboo version 7.1 and 7.0
+
+ IdentityIQ forServiceNow Service Desk ServiceNow Paris, Rome, and Quebec release.
+ Integration Module (SDIM)
+ IdentityIQ forOracle Identity Manager Oracle IdentityManager 11g R1 and Oracle Identity Manager 11g
+ R2 releases.
+ IBM AIX Connector AIX version 7.1
+ Linux Connector Red Hat Enterprise Linux versions 8.4, 8.3,8.2, 8.1, 8.0,7.9, 7.8
+ and Ubuntu OS Version 18.04 LTS.
+ Oracle Solaris Connector Solaris versions 11.3, 11.2, 11.0 and 10.0
+ RACF -Full z/OS 2.2 and z/OS 2.3 systems
+ RACF -LDAP z/OS 2.2 and z/OS 2.3 systems
+ RSA Connector RSA 8.3, 8.4, and 8.5 version.
+ SailPoint Identity Governance Connector for ServiceNow Paris, Rome, and Quebec release.
+ ServiceNow
+ ServiceNow Service Desk Paris, Rome, and Quebec releases.
+ Top Secret z/OS 2.2 and z/OS 2.3 systems
+
+
+
+
+
+
+
+ SailPoint Release Notes 32
+
+===== Page 36/69 =====
+ Connector/Integration Module Dropped Platforms
+
+ Top Secret LDAP z/OS 2.2 and z/OS 2.3 systems
+ Zoom API Token authentication type.
+
+Dropped Connector Support
+
+End of Life: The following connectors and connector components are no longer supported:
+
+
+
+ l Oracle Fusion HCM Connector -On December 31, 2023, Oracle Fusion HCM Connector willno longer be sup-
+ ported. Use the newly-released Oracle HCM Cloud Connector. For documentation on the new connector, refer
+ to Integrating SailPoint with Oracle HCM Cloud.
+
+
+
+ l IdentityIQ for Oracle Identity Manager -IdentityIQ forOracle Identity Manager Version 1: Connection via OIM
+ Integration Web Application isno longer supported. Use the newly-released Identity IQ for IdentityManager
+ Version 2: Connecting Oracle Identity Manager via Oracle Client API. For documentation on the new con-
+ nector, refer to IdentityIQ for Oracle Identity Manager V2.
+
+
+
+ l IBM Tivoli Access Manager -Support for REST API forIBM Tivoli Access Manager connectors isno longer sup-
+ ported.
+
+
+
+ l Zoom - Support forAPI Token authentication isno longer supported.
+
+Known Issues - IdentityIQ
+
+
+ Issue ID Description
+
+ When an assigned rolethat has been added by an assignment rule is removed from an
+ IIQETN-11203 identitythrough a revoke or remove action, Access History willnot recognize that there
+ isa negative assignment. As a result,role removal events are not created consistently
+ and some data and counts may be incorrect.
+ IIQETN-11209 Inthe Access History feature, ifany of the roleAssignments foran identity capture are
+ set tonegative=”true”, then the counts shown in the UI forRoles and Entitlements
+ may be inaccurate.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Release Notes 33
+
+===== Page 37/69 =====
+Resolved Issues - IdentityIQ
+
+
+ Issue ID Description
+
+ IIQSR- Entitlements are now revoked completely when revoking through Policy Violations.
+ 761
+ IIQCB- <Includes></Includes> tags can now be used forscripts in workflows.
+ 4662
+ IIQCB- When the Assigned Role field on the Advanced Identity Search page is set to"is not equal to"now will
+ 4680 exclude identities with multiple assigned roles ifone of those roles matches the supplied value.
+ IIQCB- Certification bulk delegated items with line item delegations no longer show errors.
+ 4686
+ IIQCB- Workflow exceptions are now localized.
+ 4697
+ IIQCB- Access Request Emails now uses EmailTemplate SessionProperties.
+ 4699
+ IIQCB- When 'Show Password' option isenabled, we now disable historical passwords autofillas a hint when
+ 4708 entering the next password.
+ IIQCB- On the Rapid Setup Leaver /Identity Operations pages, the Reassigned Artifacts Types pulldown no
+ 4710 longer contains "Alert","Classification", "Plugin", and "Task and Report Schedules".
+ IIQCB- Importing an application no longer deletes and orphans schemas when running aggregation
+ 4759
+ IIQCB- SAML Electronic Signatures can now be used with custom approval forms the same way that SAML
+ 4792 Electronic Signatures are used with Approvals.
+ IIQCB- The Entitlement Catalog now displays when a Boolean type extended attribute isincluded inthe search-
+ 4825 able attributes.
+ IIQCB- Running a RequestObjectSelector Rule no longer errors when filteringforextended attributes.
+ 5042
+ IIQCB- On the Role Search page when filteringby profilethe filtertype willnow include "Entitlement" value in
+ 5374 the dropdown when there isat least one Role-Entitlement Association that is not oftype "Permission".
+ [SECURITY] SailPoint Form sections with type `text`or `datatable` no longer render HTML by default.
+ IIQFW-1 Fields that need to display HTML must now provide the `contentIsEscaped` attributeand set itto `true`.
+ Any dynamic or user-entered content in the fieldmust be escaped inorder to be secure.
+ IIQFW-2 [SECURITY] HTML embedded in entitlement or role names willno longer be rendered as part ofsur-
+ rounding formatting HTML.
+ IIQFW-7 [SECURITY] When MFA authorization workflow isconfigured and the user clickson Forgot Password
+ forreset, the security authorization questions page can not be skipped untilthe reset workflow action is
+
+
+
+
+
+ SailPoint Release Notes 34
+
+===== Page 38/69 =====
+Issue ID Description
+
+ successful.
+IIQFW-36 [SECURITY] On the Approvals page, HTML embedded inentitlements and roles willno longer render in
+ the browser.
+IIQFW- [SECURITY] The server now escapes potentially harmful HTML contained in message parameters
+224 before being displayed inthe UI.
+IIQCB- The Policy Violations Details no longer displays HTML tags
+4992
+IIQCB- Processing a rolethat cannot be processed no longer results ina NullPointerException. As part ofthis
+5034 change, IdentityIQ has improved diagnostic logging when unable toanalyze a role for profilerelations.
+IIQFW- [SECURITY] IdentityIQ allows deserialization of classes from the sailpoint package by default. Ifthe
+287 jdk.serialFilter property isprovided, itisrecommended that italso specifies the sailpoint package.
+IIQFW- [SECURITY] A filetraversal vulnerability inthe JavaServer Faces (JSF) library has been fixed.
+336
+IIQFW- Added role="alert" tothe message element, so the screen reader can now detect and read the mes-
+369 sages displayed on the home page.
+IIQFW- [SECURITY] IdentityIQ no longer supports an empty WebResource config. Running IdentityIQ without
+584 a WebResource config willprevent the sitefrom working forany non-SysAdmin user.
+IIQFW- A 'data is stillloading' alert message isnow displayed during revocation of certificationitems, when the
+634 items haven't finished loading, instead of throwing an exception.
+IIQFW- Resolved issue where the Load More option was not being presented for certification campaigns con-
+654 taining multiples of 5 + 1. For example: 6,11, 16, 21, etc.
+IIQFW- [SECURITY] Updated UI so that instead of the actual client secret value we willsend a dummy value.
+728
+IIQFW- [Security] Removed option to view security authentication question answers inclear text.The answer
+729 fields are treated as password values. Actual answer values are no longer sent back to browser.
+IIQFW- [Security] The Spring libraryis now updated to version 5.2.24
+833
+IIQSR-836 With the upgrade to the JasperReports 6.19.1 library,the HtmlExporter.exportText() method in the sail-
+ point.reporting.export package isnow deprecated and willbe removed ina future release.
+IIQSR-825 The option to select Class Action "Identity" inthe Audit Configuration page isnow available.
+IIQSR-818 [SECURITY] Users who have no access toscoped Identities are no longer allowed tomake requests
+ for those Identities.
+IIQSR-815 A custom filterina CertificationDefinition isnow always copied toa new Certification created from that
+ CertificationDefinition as a template.
+IIQSR-810 Classification FilterRules are now exposed as task arguments. The number of records fetched with
+
+
+
+
+
+SailPoint Release Notes 35
+
+===== Page 39/69 =====
+Issue ID Description
+
+ each SCIM call isnow configurable via the "Page Size" argument on the FAM Classifications task. The
+ FAM Classification task isnow more tolerant of errors. The "Retry Limit," "Retry Gap," and "Max Errors"
+ arguments have been added tothe FAM Classification task to allow users to adjust how tolerant itis.
+IIQSR-808 Role Profile synchronization now leverages the proxy Application, ifneeded, when fetching the enti-
+ tlement attribute.
+IIQSR-807 A "source" attribute value ofAttributeAssignment is no longer changed to "Rule" after native deletion
+ and re-provisioning.
+ [SECURITY] The Apache Commons Net library was updated to version 3.9.0 to mitigate a potential vul-
+IIQSR-804 nerability in Nets FTP client that willby default trust a host from a PASV response. The updated library
+ willby default ignore such hosts.
+IIQSR-803 [SECURITY] OAuth secrets are no longer fetched en-masse and will only be fetched with each indi-
+ vidual request forthe secret of each OAuth client.
+IIQSR-801 The Jasper Report for an unpartitioned Account Aggregation task is now rendered successfully on task
+ completion ifa partitioned aggregation task isexecuted concurrently.
+IIQSR-800 [SECURITY] Unauthorized server responses (error code 401) that result in browser login prompts can
+ now be overridden to prevent popups.
+IIQSR-799 The message "Skipping aggregation of application in maintenance window" now appears for an applic-
+ ation in maintenance mode during a partitioned aggregation.
+IIQSR-798 Identity Snapshots with unordered entitlement listsno longer cause an error in the Identity Warehouse.
+IIQSR-796 Exporting a certification no longer generates an exception ifan Identity was deleted after the cer-
+ tificationwas created.
+IIQSR-794 An error no longer occurs when an entitlement owner removes an owned entitlement from another user.
+IIQSR-785 Identities with more than 2100 entitlements willno longer throw a Microsoft SQL Server error when view-
+ ing the Access listin the View Identity quicklink.
+IIQSR-780 Sequential tasks willrun accordingly when selected to execute on an alternate host.
+IIQSR-779 Errors when loading an object from the database no longer have the potential to cause data corruption.
+IIQSR-777 Approving a single work item viaMy Work -> Work Items, when configured to require comments, no
+ longer generates an exception.
+IIQSR-773 Fixed a problem that prevented hierarchical groups from being properly created during partitioned
+ group aggregation.
+IIQSR-771 An entitlement provisioned via role is no longer certified as an additional entitlement when the role
+ includes entitlements from multiple applications.
+IIQSR-770 The last UI page viewed is now properly restored after a SAML SSO timeout.
+IIQSR-767 A revoked entitlement isno longer displayed under Entitlements in the Identity UI.
+IIQSR-766 Fixed issue where selecting permitted roles can cause a Hibernate exception when using custom quick-
+
+
+
+
+
+SailPoint Release Notes 36
+
+===== Page 40/69 =====
+Issue ID Description
+
+ links tomanage access requests and dynamic scopes are associated with the quicklink.
+IIQSR-765 Loading the Manager User Access page no longer makes duplicate callsto REST resource: rest.ui.re-
+ questaccess.IdentityIdNameListResource.
+IIQSR-763 LinkEdit AttributeRequests in the ProvisioningPlan are now ignored during provisioning, avoiding gen-
+ eration of a manual workitem.
+IIQSR-758 Permitted roles may now be deprovisioned via Batch Requests.
+IIQSR-756 Application schemas now correctly handle '#'characters in attribute names.
+IIQSR-755 Indirectly controlled Scopes are checked when accessing task and report results.
+IIQSR-752 Business roles that expire but have a pending expiration extension are now properly adding IT role
+ when the extension isapproved.
+IIQSR-750 The text displayed in a certification message pop-up is now localized based on the browser's configured
+ language.
+IIQSR-747 Auditing the delete ofa WorkItem object no longer causes a LazyInitializationException error.
+IIQSR-745 Reports downloaded as CSV no longer have repeated headers with misaligned column data.
+IIQSR-744 The Manager column isnow present inthe Certification .csv export after launch of an Entitlement
+ Owner certification.
+IIQSR-742 Inherited capabilities are now considered when adding capabilities togroups.
+IIQSR-740 Login timeouts no longer cause a cascade of HTTP 408 errors leading tothe fillingofserver logs.
+IIQSR-739 [SECURITY] The LCM Manage Password workflow forself-service password reset no longer logs the
+ password inclear text with tracing enabled.
+IIQSR-737 The selected QuickLink is now considered during LCM removal of current access items.
+IIQSR-735 The "Last Action Status" column in the Manage Accounts identity details table now shows "Failed
+ Enable/Disable" status when the related access request isexpired.
+IIQSR-733 An error no longer occurs when submitting an access request foran identity inan assigned workgroup
+ with an advanced policy containing a capability.
+IIQSR-732 A user with multiple roles which share one or more entitlements no longer provokes a dependency error
+ when the roles are removed after expiration.
+IIQSR-729 The status for a completed access request item willnow move from "Provisioning" to "Completed" with
+ splitprovisioning enabled.
+IIQSR-727 [SECURITY] Resolved a vulnerability that allows users to change settings on identities who are outside
+ of theircontrol. Refer to the Upgrade Considerations section for more information.
+IIQSR-724 The script pre-parser no longer throws a StringIndexOutOfBoundsException forrules with a large num-
+ ber of variable expansions using the $(...)notation.
+IIQSR-723 Remediators are now determined for allrequests inunmanaged provisioning plans.
+
+
+
+
+
+
+
+SailPoint Release Notes 37
+
+===== Page 41/69 =====
+Issue ID Description
+
+IIQSR-722 An error no longer occurs when selecting a saved search inIdentity Advanced Analytics.
+IIQSR-717 Entitlements included inIT roles are now successfully removed using a sunset date.
+IIQSR-711 Removing classifications from Classifiable objects (Entitlements, Roles) now cleans up unneeded
+ records from the spt_object_classification table.
+IIQSR-710 Reports that failnow clean up persisted database objects that would otherwise be orphaned.
+IIQSR-706 The displayName attribute is now correctly set on an account when the account is created during the
+ provisioning ofan entitlement.
+IIQSR-699 Attribute sync no longer failswhen an Identity has multiple accounts on an application and the target
+ mapping does not have 'Provision to allaccounts' selected.
+IIQSR-697 The assigned scope for a TaskDefinition isnow transferred to the TaskResult for tasks and reports.
+IIQSR-696 When running incremental exports, the Data Exporter task now correctly exports objects that had been
+ modified while the previous instance of the Data Exporter task was running.
+IIQSR-694 Filtering on Role Source Value during Manage Access no longer causes an error.
+IIQSR-692 Sequential Task execution is no longer handled by an active long-running parent task and is instead
+ part of the native function ofthe TaskManager.
+IIQSR-689 Clarified the javadoc comments for the Util.stringToDate() method.
+IIQSR-688 Permitted roles that are assigned now show as an assignedRole in the Access Request.
+IIQSR-686 Access Request deep links no longer redirect tothe self-service page repeatedly or lose track ofquery
+ parameters.
+IIQSR-682 The processing of scheduled assignments no longer generates errors and duplicate requests.
+IIQSR-681 Added check inquery options tofetch quicklinks foridentities with system administrator capability to
+ avoid incorrect roles and entitlements filtering.
+IIQSR-679 A log error no longer occurs during Identity Refresh when calculating which Roles to auto-assign via a
+ Population with a multi-value Identity attribute.
+IIQSR-678 Initializingdate fields informs with existing values no longer results in errors that prevent the date picker
+ from functioning.
+IIQSR-676 An email notification isno longer sent to an owner ifthe "Email Owner on Pre-Delegation Completion"
+ option isdisabled inthe Certification configuration.
+IIQSR-674 The submit button is now disabled when generating an Access Request, eliminating the possibility for
+ duplicate requests to be created viamultiple selects of the ENTER or SPACE keys.
+IIQSR-673 Fixed an access request issue that prevented roles from being assigned to the same identity multiple
+ times even when the option to allow itis enabled.
+IIQSR-670 A validation error message isnow displayed on empty required Date fields aftera form submit.
+IIQSR-668 System level tasks now allow concurrency where applicable.
+
+
+
+
+
+
+
+SailPoint Release Notes 38
+
+===== Page 42/69 =====
+Issue ID Description
+
+IIQSR-666 The 'Perform Maintenance' task now properly releases SailPoint contexts that are used when pro-
+ cessing background workflow events.
+IIQSR-663 The Managed Attributes oftype Identity now store the name ofthe selected identity to keep consistent
+ with other Managed Attributes.
+IIQSR-662 Performance of activityscans with large data sets has been improved.
+IIQSR-661 When moving a Link from an Identity, both the target and source Identity willhave the 'needsRefresh'
+ flag enabled.
+ When a new certification is created using the “Use Certification as Template” feature toclone an exist-
+IIQSR-660 ing certification that has "Require Electronic Signature" enabled, that option can now be disabled inthe
+ new certification.
+IIQSR-659 Possible database cursor leaks were fixed for situations when the "Aggregate Correlated Applications"
+ task encounters duplicate links.
+IIQSR-658 Requests that create an account in which the native id isgenerated by an application in maintenance
+ mode will now have the corresponding identity request updated with that native id.
+IIQSR-657 In a transient Workflow, any XHTML-based forms following the firstform are now successfully dis-
+ played.
+IIQSR-656 The Identity Entitlements Detail report now successfully incorporates filteringby Assigners.
+IIQSR-654 Fixed an issue in the Role Archive report that caused the Profiles section to be excluded.
+IIQSR-651 Added audit details for certification revoke for provisioning and remediation of certification's item.
+IIQSR-645 The CheckedPolicyViolations SCIM API endpoint now consistently returns a description forall policy
+ types.
+IIQSR-637 Improved extensibility of Upgrade and Patch framework for modules, including ensuring rswork-
+ flows.xml isimported when required.
+IIQSR-635 Improved performance for applying manual decisions to items within Certifications containing several
+ entities with very few items each.
+IIQSR-634 When configuring a forwarding user for an identity, the Submit button isnow disabled ifthe "Select User
+ to Forward to" fieldis empty with "Start Date" and "End Date" specified.
+IIQSR-630 CertificationDefinition assigned scope isnow applied tothe Certification schedule object.
+IIQSR-622 When using a custom form, the form owner is now correctly assigned when the name of the identity
+ launching the workflow contains a comma.
+IIQSR-617 An Entitlement Owner certification willnow revoke all attribute assignments under the same owner of
+ an application instead of only a single entitlement from a group ofentitlements.
+IIQSR-615 Tracing ofthe SCIM classes is now possible from the log4j2.properties file.
+IIQSR-614 The "Created on" and "Created By" fields are now updated in Identity Events forchanges insun-
+ set/sunrise dates.
+
+
+
+
+
+SailPoint Release Notes 39
+
+===== Page 43/69 =====
+Issue ID Description
+
+IIQSR-613 A TaskDefinition isnow exported from the console without errors when itcontains arguments without a
+ type.
+IIQSR-609 Using a forgot password link when multiple passthrough applications are configured no longer results in
+ incorrect authentication questions.
+IIQSR-608 IT role mining panels now scale better when several Identity Populations are present.
+IIQSR-605 The Role Details report no longer throws an error when thousands of roles are reported on.
+IIQSR-604 The owner dropdown on the editentitlement page now properly displays names containing a "&" rather
+ than "&amp;".
+IIQSR-601 Defining an instance attribute in an application no longer results in duplicate attributeAssignments inan
+ Identity.
+IIQSR-598 Grouping certification details by display name no longer results in excessive wait times.
+IIQSR-584 Identity create forms with postback fields are properly executed before validation.
+IIQSR-583 Timings forthe following meters no longer produce negative statistics:"PlanEvaluator.execute phase
+ 1", "ServiceRequestExecutor.execute"
+IIQSR-568 The AuditLog source for provisioning expansion operations is now displayed correctly instead of
+ "unknown".
+IIQSAW- [SECURITY] Values in the displayName field of Identities are now properly sanitized toavoid malicious
+4960 content.
+IIQSAW- Account unlock is now properly translated to Danish.
+4889
+IIQSAW- The user interface now properly displays Italian language prompts and labels.
+4888
+IIQSAW- Provisioning no longer failsin cases where an Active Directory account is moved, then deleted, and sub-
+4880 sequently added again.
+ A defect in processing objects with nonstandard object IDs (since corrected in IdentityIQ 8.4 and 8.3p2)
+IIQSAW- caused NativeIdentityChange propagation to fail,and events to remain in the queue, blocking pro-
+4675 visioning. A new task template was added that re-processes these events. The new task "Reset Failed
+ NativeIdentityChange Events" can be used to:report the number of failed events, prune events where
+ the old and new values only differ by case, and reset failed events and launch tasks to re-process them.
+IIQSAW- [SECURITY] The Apache Commons Text library was updated to version 1.10.0 to mitigate a potential
+4644 vulnerability for remote code execution or unintentional contact with remote servers ifuntrusted con-
+ figuration values are used.
+IIQSAW- Changes made to Distinguished Name that are initiated within IdentityIQ (through Rapid Setup or cus-
+4311 tomizations) now result in appropriate updates to allIdentityIQ objects, and are no longer treated as
+ new identities, but are instead recognized as moves or renames.
+
+
+
+
+
+
+SailPoint Release Notes 40
+
+===== Page 44/69 =====
+Issue ID Description
+
+IIQSAW- Running group aggregation on a renamed group hierarchy no long produces errors.
+4221
+IIQSAW- Replaced alluses of the JSON-java library with Jackson.
+4206
+IIQSAW- lookupByName now works properly for the LaunchedWorkflows SCIM endpoint, and error handling is
+4201 improved forendpoints that do not support lookupByName, namely Accounts, Entitlements and Poli-
+ cyViolations.
+IIQPB- Workgroups Detail Report no longer show error that indicates a ResultSet closed and now displays the
+1646 workgroup members list.
+IIQPB- Revoke Access no longer creates an account for missing accounts.
+1637
+IIQPB- When using custom forms forapprovals and using e-signatures, form validation now occurs before e-
+1535 signature prompt.
+IIQPB- InCompliance Manager settings, changes to "Require Electronic Signature" are now saved suc-
+1490 cessfully.
+IIQPB- The identityai-recommender-plugin.zip version isnow tiedto the IdentityIQ version. For example, 8.4
+1340 includes identityai-recommender-plugin.zip version 8.4
+IIQPB- The JasperReports library has been updated toversion 6.19.1
+1210
+IIQPB- Elevated Access icons no longer display under Additional Options in Request Access when LCM Man-
+1203 ager has unchecked `Show Elevated Access inAccess Requests`.
+IIQPB- The Capabilities toIdentities Report no longer duplicates identities when they have a capability directly
+1166 applied and is a member of a workgroup.
+IIQMAG- Cloning a role now updates the created and modified dates to the current date.
+4688
+ InIdentityIQ 8.3 a new feature was introduced to create Native Change Events and process them to
+IIQMAG- update existing accounts and account groups when an application object was renamed or changed by
+4617 being moved to a different container. This behavior is now limited to Active Directory applications. For
+ allother applications, the behavior inIdentityIQ for object renames willbe the same as itwas priorto
+ 8.3.
+IIQMAG- New Installations or Upgrades willadd the new Access History/Data Extract/Broker configuration
+4591 pages/rights entries intowebresources.xml. Clients should review the changes and merge theirs ifdif-
+ ferent from OOTB.
+IIQMAG- SCIM update-account PUT now properly assigns the source attribute inthe provisioning plan.
+4430
+
+
+
+
+
+
+SailPoint Release Notes 41
+
+===== Page 45/69 =====
+Issue ID Description
+
+IIQMAG- Requesting a new entitlement with sunrise and sunset dates for a user without an account on the applic-
+4428 ation now successfully adds the entitlement on sunrise date and removes the entitlement on sunset
+ date.
+IIQMAG- During a partitioned Account Group Aggregation, ifany partition fails,the check deleted phase willbe
+4349 skipped.
+IIQMAG- Bad data no longer causes a NullPointerException during a role search in Advanced Analytics.
+4336
+IIQMAG- Account aggregation no longer treats accounts that differonly with blank UUID vs. NULL UUID as a
+4316 renamed native identity. Instead, accounts with blank UUIDs are treated the same as accounts with
+ NULL UUIDs.
+IIQMAG- Native Change Detection isnow triggered ifaggregated values are different than requested values in
+4310 Create Account Request.
+ NativeIdentityChange propagation no longer failswith the exception ”Attempt to generate refresh event
+ with null object” when the objectID of the object being processed isnon-standard. When this error
+IIQMAG- occurred, the failing NativeIdentityChangeEvents blocked provisioning. Customers previously on 8.3
+4247 GA or 8.3p1 who encountered this error can resolve thisissue using a newly introduced task template,
+ "Reset Failed NativeIdentityChange Events". Refer to the Upgrade Considerations section for more
+ information.
+IIQMAG- [SECURITY] Jackson-Databind library updated to resolve security vulnerabilities.
+4223
+IIQMAG- [SECURITY] The Password Reset process no longer attempts toreset a password for accounts that
+4211 don't support it.
+IIQMAG- 'Description' column is now populated in the 'Role Composition Access Review Live Report'.
+4087
+IIQFW- Account Group Membership Certification now includes an entitlement assignment update option, that
+946 willupdate identity assignments.
+IIQFW- Updated Identity request maintenance task, now correctly calculate statuses when doing 'approval and
+938 provision split'.
+IIQFW- Roles By Application report now completes and does not throw a lazy initializationexceptions.
+919
+IIQFW- [SECURITY] Form Beans used toprocess SailPoint Form submissions must now implement the
+655 FormBean interface. Anything else willthrow an exception and block submission of the form.
+IIQCB- The Teams bot now contains translation filesto match IdentityIQ.
+4932
+
+
+
+
+
+
+
+
+SailPoint Release Notes 42
+
+===== Page 46/69 =====
+Resolved Issues - Connectivity
+
+
+ Issue ID Description
+ CONCHENAB- The AIX Connector now supports fetch only attributes present in the account schema with an
+ 4445 additional application configuration.
+ CONCHENAB- A new connector "Oracle Fusion HCM Accounts" isnow available to govern the accounts of
+ 4487 Oracle Fusion HCM system.
+ CONCHENAB- [SECURITY] To improve security,SailPoint has upgraded the spring-core-5.1.18.RELEASE.jar
+ 4493 tospring-core-5.3.20.jar for the RSA Application.
+ CONCHENAB- [SECURITY] Upgrading the vulnerable ognl jarto the latestversion 3.3.4.jar
+ 4503
+ CONCHENAB- [SECURITY] The Duo Connector now uses okhttp-4.9.3.jar and okio-2.8.0.jar to address the
+ 4504 security vulnerabilityissues reported with previous version ofthese libraries.
+ CONCHENAB- [SECURITY] Deprecating commons-httpclient jardue tovulnerability.
+ 4539
+ CONCHENAB- The Linux Connector now supports Red Hat Enterprise Linux versions 8.4 and 8.5.
+ 4541
+ CONCHENAB- The spring-web:5.1.18 jarisnow upgraded with spring-web:5.2.20
+ 4564
+ CONCHENAB- IdentityIQ forIBM Security Identity Manager now supports IBM Security Verify Governance
+ 4568 v10.0.
+ CONCHENAB- [SECURITY] To improve security,SailPoint has upgraded the spring-beans-5.1.18.RELEASE.-
+ 4571 jartospring-beans-5.3.20.jar for the RSA application.
+ CONCHENAB- Workday Accounts Connector now supports managing Service Center Representative
+ 4576 accounts.
+ CONCHENAB- The Duo Connector now follows the proxy settings from application server settings and also can
+ 4587 bypass the proxy for hosts mentioned in nonProxyHosts list.
+ CONCHENAB- The Workday Connector willnow respect the autocomplete flagfor custom id request.
+ 4627
+ CONCHENAB- The RSA Connector now supports RSA 8.7 version
+ 4629
+ CONCHENAB- The RSA Connector now supports RSA 8.6 version
+ 4633
+ CONCHENAB- [SECURITY] To improve security,SailPoint has upgraded the kotlin-stdlib-1.4.10.jarto kotlin-
+ 4635 stdlib-1.7.10.jarforthe Duo application.
+ CONCHENAB- The Okta Connector willnow respect the password policy set inOkta target system interms of
+
+
+
+
+
+
+ SailPoint Release Notes 43
+
+===== Page 47/69 =====
+Issue ID Description
+4640 password age and password History
+CONCHENAB- Oracle Fusion HCM Connector willnow support the fetching ofcustom attribute"Extern-
+4655 alIdentifiers"during aggregation and get account operation ifappropriate JSON path is
+ provided
+CONCHENAB- The Workday Accounts Connector now correctly handles the InvalidId error.
+4656
+CONCHENAB- The Oracle Fusion HCM Connectors now adds the ASSIGNMENT_MANAGER_NUMBER as
+4657 the default attribute inthe Account schema.
+CONCHENAB- The Oracle Fusion HCM Connector now correctly handles rehirescenarios during the refresh
+4663 account.
+CONCHENAB- Oracle Fusion Connector now supports aggregation of the additional attributes from
+4681 WORKERS API responses using a JSON path.
+CONCHENAB- The Oracle Fusion HCM Connectors account aggregation performance isnow enhanced.
+4695
+CONCHENAB- The Oracle Fusion HCM Connector accounts aggregation willnow failincase of a planned out-
+4723 age (maintenance) from the Oracle system.
+CONCHENAB- The Oracle Fusion HCM Accounts aggregation willnow failincase ofa planned outage (main-
+4724 tenance) from the Oracle system.
+CONCHENAB- The child application account aggregation ofOracle IdentityManager isnow successful.
+4763
+CONCHENAB- The Workday Accounts Connector now supports filteringofaccounts based on the Organ-
+4773 ization Type and Organization Reference ID
+CONCHENAB- The Workday Accounts Connector now supports aggregation and provisioning offuture
+4775 accounts ahead of theirhire date.
+CONCHENAB- The Oracle IdentityManager Connector now provides the abilityto filterouttargetsystem
+4798 accounts fromOracle Identity manager users.
+CONCHENAB- The Okta Connector now supports the addition and removal ofcustom rolesdirectly associated
+4801 withaccounts
+CONCHENAB- The IBM Security Verify Access Connector now supports IBM Security Verify Access 10.0.3
+4803
+CONCHENAB- The Okta Connector now supports the aggregation of custom roles directlyassociated withboth
+4819 accounts and groups.
+CONCHENAB- The Okta Connector now aggregates only theroles connected directly tothe Okta user
+4825
+CONCHENAB- [SECURITY] Allthe spring jars are upgraded toa common version for resolving the vul-
+
+
+
+
+
+
+SailPoint Release Notes 44
+
+===== Page 48/69 =====
+Issue ID Description
+4913 nerabilities.
+CONCHENAB- The Workday Connector now supports Workday web service version 39.1
+4948
+ The oldapproach to deploying Oracle Identity Manager Web Application isbeing deprec-
+CONCHENAB- ated.The Oracle Identity Manager Connector isnow discontinuing support forOracle Identity
+4961 Manager 11g R1 and 11g R2 releases.The Oracle IdentityManager Connector isnow capable
+ ofsupporting Oracle Identity Manager 12C viaOracle Client API.
+CONCHENAB- SailPoint announces the release ofa new connector Oracle HCM Cloud to govern identitiesfor
+4988 Oracle Fusion HCM system. For documentation on the new connector, see Integrating
+ SailPoint with Oracle HCM Cloud.
+CONCHENAB- The Okta Connector now provides an option for multi-threading when aggregating Groups and
+5057 Applications connected toOkta Accounts during Okta Account aggregation.
+CONCHENAB- The Workday Accounts Connector now provides an option formuti-threading which willboost
+5058 the Account Aggregation performance.
+CONCHENAB- The Okta Connector no longer failswhen aggregating the newly introduced group by Okta
+5064 called "Okta Administrator".
+CONCHENAB- [SECURITY] The commons-httpclient.jar 3.1 isnow removed due to vulnerability issues.
+5072
+ [SECURITY] [SECURITY] The Spring Framework libraries have been upgraded to a newer ver-
+ sion due tovulnerabilities found inolder versions. Please check the impact on custom con-
+CONCHENAB- nectors, rules or any other customization, which are directly or indirectlyusing this JAR file.
+5086 spring-aop-5.2.22.RELEASE.jar spring/spring-context-5.2.22.RELEASE.jar spring-context-sup-
+ port-5.2.22.RELEASE.jar spring-core-5.2.22.RELEASE.jar spring-expression-
+ 5.2.22.RELEASE.jar spring-tx-5.2.22.RELEASE.jar spring/spring-beans-5.2.22.RELEASE.jar
+ spring/spring-web-5.2.22.RELEASE.jar
+CONCHENAB- The Oracle Identity Manager Connector now supports the Oracle IdentityManager 12C version.
+5098
+CONCHENAB- The Workday Accounts Connector now supports additional schema attributesfor User-Based
+5161 Security Group Objects.
+CONCHENAB- The Workday Connector now allows adding proxy level parameters in the Workday application.
+5179
+CONCHENAB- On December 31, 2023, Oracle Fusion HCM Connector willbe deprecated and itwillno longer
+5203 be supported. Use the newly released Oracle HCM Cloud Connector. For documentation on the
+ new connector, see Integrating SailPoint with OracleHCM Cloud.
+CONCHENAB- The Workday Accounts connector is now enhanced to integrate with Workday Learning Module
+
+
+
+
+
+
+
+SailPoint Release Notes 45
+
+===== Page 49/69 =====
+Issue ID Description
+5231 and aggregate the traininginformation associated with the users
+CONCHENAB- The RSA Connector now supports Delta Account Aggregation.
+5322
+CONCHENAB- The IBM Security IdentityManager now supports Delta Aggregation
+5328
+CONCHENAB- Deprecating REST API support forIBM TivoliAccess Manager connectors.
+5345
+CONCHENAB- The Linux Connector now supports RHEL version 8.8
+5353
+CONCHENAB- The IBM AIX Connector has now deprecated IBM AIX 7.1 version.
+5371
+CONCHENAB- The following versions of Solaris have been depreciated and are no longer supported: Solaris
+5373 11.3 SPARC x86 Solaris 11.2 SPARC x86 Solaris 11 SPARC x86 Solaris 10 SPARC x86
+CONCHENAB- The RSA Connector has now deprecated RSA 8.3 8.4 and 8.5 version.
+5374
+CONCHORDS- The RACF FullConnector now supports z/OS 2.5
+1254
+CONCHORDS- The ACF2 Full Connector now supports z/OS 2.5
+1257
+CONCHORDS- The BMC Remedy Connector now supports BMC Helix 21.3 system.
+1344
+CONCHORDS- The Atlassian Suite -Server Connector now supports JiraService Management: 5.2
+1358
+ New Platform Support :Atlassian Server Connector now supports following versions of various
+CONCHORDS- Atlassian products -Jira Software Server: 9.6Confluence: 8.1Bitbucket: 8.8Bamboo: 9.2 Drop
+1416 Platform Support : Atlassian Server Connector no more supports following versions of various
+ Atlassian products -Jira Software Server: 8.13 and 8.12 Confluence: 7.8 and 7.7 Bitbucket: 7.5
+ Bamboo: 7.1 and 7.0
+CONCHORDS- The BMC Helixconnector now supports BMC Helix IT Service Management Suite version 22.1
+1706
+CONDOCS-872 New platform support - Following Mainframe connector now supports z/OS 2.5 system - RACF -
+ Full,ACF2 -Full,Top Secret - Full,Top Secret -LDAP
+ Dropped platform support -the following Mainframe connectors no longer supports z/OS 2.2
+CONDOCS-949 and z/OS 2.3 systems -RACF - Full,ACF2 - Full,Top Secret -Full,RACF -LDAP, Top Secret -
+ LDAP
+
+
+
+
+
+
+
+SailPoint Release Notes 46
+
+===== Page 50/69 =====
+Issue ID Description
+CONDOCS-1233 A new Snowflake connector is now available to govern identitiesfor Snowflake Data Lake.
+ The SailPoint IdentityGovernance Connector for ServiceNow now no longer supports the Ser-
+CONDOCS-1373 viceNow Quebec release. IdentityIQ for ServiceNow Service Desk Integration Module (SDIM)
+ now no longer supports the ServiceNow Quebec release.
+CONDOCS-1953 Oracle Identity Manager versions 11gR3 ,11gr2 and 11gR1 are deprecated and willno longer
+ be supported.
+CONDOCS-2469 The Oracle Solaris connector no longer supports Solaris versions 11.3, 11.2, 11.0 and 10.0
+CONDOCS-2472 The Linux connector no longer supports Red Hat Enterprise Linux versions 8.4, 8.3,8.2, 8.1,
+ 8.0,7.9, 7.8 and Ubuntu OS Version 18.04 LTS.
+CONDOCS-2475 The IBM AIX connector no longer supports AIX version 7.1
+ Connectors implementing openConnector’s provisioning plan with a nulloperation inthe attrib-
+CONETN-3135 ute request willhave the default operation as Add, resulting in a successful transaction.
+ However, an account request with a nulloperation willfail.
+CONETN-3442 The Workday Accounts Connector no longer sends additional callswhen provisioning ORG_
+ ROLE##ORG_NAME
+CONETN-3661 The SAP GRC Integration willnow support retry mechanism for pollingof requests.
+CONETN-3672 The Oracle HRMS Connector now displays a validerror message when the object isnot found
+ on the managed system
+CONETN-3681 The Microsoft SQL Server Connector now aggregates the childserver roles when a group
+ aggregation is performed.
+CONETN-3706 The SCIM 2.0 Connector no longer failswith java.lang.IllegalArgumentException when pro-
+ visioning accounts.
+CONETN-3707 The AWS Connector now successfully aggregates accounts from an application whose service
+ account does not have permission for tags.
+CONETN-3714 The SAP Direct Connector now aggregates description ofa role when group aggregation isper-
+ formed.
+CONETN-3722 The SuccessFactors Connector no longer failswhen provisioning the area code for a phone
+ number.
+CONETN-3731 The SAP Sybase Connector now uses the latestAPIs forprovisioning operations.
+CONETN-3740 The SAP HR/HCM Connector now supports using state variable in the buildmap rule when run-
+ ning partitioned aggregation.
+CONETN-3742 The SAP HR/HCM Connector no longer failswhen performing a delta aggregation foran applic-
+ ation withcustom BAPI configured.
+CONETN-3743 The Workday Connector no longer aggregates an attributewhose value iscleared from the tar-
+ get system.
+
+
+
+
+
+
+SailPoint Release Notes 47
+
+===== Page 51/69 =====
+Issue ID Description
+CONETN-3753 The SCIM 2.0 Connector now correctly aggregates the multivalued attributes from an extended
+ schema.
+CONETN-3758 The SCIM 2.0 Connector now aggregates sub-attributes of an account's manager when per-
+ forming account aggregation.
+CONETN-3763 The JDBC Connector now supports provisioning on allthe configured group types of an applic-
+ ation.
+CONETN-3764 The SuccessFactors Connector aggregation no longer failswith connection reset error when an
+ account aggregation isperformed.
+CONETN-3778 The Google Workspace Connector now uses the attribute "isContinueOnError" when con-
+ figured in the application during delta aggregation toskip corrupted accounts.
+CONETN-3788 The Okta Connector no longer reads unnecessary data from the target when provisioning an
+ account.
+CONETN-3789 The REST Web Services Connector now saves application without any error when clientcer-
+ tificateissaved in application config and browser isin non-English mode.
+CONETN-3791 The Workday Account Connector now successfully retries the errors during group and account
+ aggregation which are defined as part of "retryableErrors" inthe application config.
+CONETN-3792 In the Azure Active Directory Connector, itisnow optional to encode the attribute immutableId
+ used while provisioning of Federated User Account
+CONETN-3796 The SCIM 2.0 Connector no longer failswith provisioning group having attribute "id"with a
+ value of type Double.
+CONETN-3800 A provisioning rule with name ofmore than 32 characters isnow supported.
+CONETN-3802 The REST Web Services Connector now correctly retries errors when the only error code is
+ defined inretryableErrors.
+ The account aggregation of the HCL Domino Connector now fetches the groups based on the
+CONETN-3804 flag"fetchGroupsForAllUsernames" which istrue by default and can be set to false to improve
+ account aggregation time
+CONETN-3806 The SAP Direct Connector now correctly aggregates description of a rolefrom a CUA enabled
+ managed system.
+CONETN-3813 ServiceNow account aggregation with partition now aggregates accounts and its roles and
+ groups properly.
+CONETN-3814 The axiom.xml forconnectors now includes allsupported implementations.
+CONETN-3818 The Oracle Fusion HCM Connector now correctly aggregates custom attributes for future hire
+ workers.
+CONETN-3820 Azure Active Directory Group aggregation now correctly aggregates "teamsEnabled" attribute.
+CONETN-3821 IQService now uses skipDNSLookup application config to skip the DNS lookup forthe
+
+
+
+
+
+
+SailPoint Release Notes 48
+
+===== Page 52/69 =====
+Issue ID Description
+ Exchange server when connecting over TLS forActive Directory application.
+CONETN-3823 The Oracle Fusion HCM Connector now correctly provisions allsupported attributes of afuture
+ hire worker.
+CONETN-3833 The PIRM task no longer removes the entitlements forsub-domain accounts ofGoogle Work-
+ space connector.
+CONETN-3835 The Workday Connector now correctly skips the future hired workers whose hire date is cor-
+ rected when an aggregation is performed.
+CONETN-3837 The aggregation forLDAP Connector willnot be retried without retryableErrors entry in the
+ application during PAGED_RESULTS iteratemode.
+CONETN-3850 The Azure Active Directory Connector now supports managing Azure PIM Role memberships
+ to Azure Active Directory groups
+CONETN-3867 The PeopleSoft Connector now supports the 8.59 PeopleTools environment
+ Salesforce PublicGroups entitlement willbe using Group Name instead of Name to aggregate
+ and Provisioning operation as itis unique on the Salesforce managed System. This willbe
+ applicable forthe new source only and there won't be impact on the existing sources. For the
+CONETN-3871 new sources created, switching to older alike source willbe possible by making below flagfalse
+ inthe source config file:<entry key-
+ ="PublicGroupIde-
+ entityAttributeAsDeveloperName"><value><Boolean>false</Boolean></value> </entry>
+CONETN-3882 The Linux Connector getObject operation now properly fetches values forthe sudoCommands
+ ifconfigured in schema.
+CONETN-3885 The Oracle HCM Fusion Connector now correctly provisions the date attributesof an email for
+ an account.
+CONETN-3889 The Workday Connector no longer failswith java.lang.ClassCastException when an aggreg-
+ ation isperformed foran application with ROCustomisation rule.
+CONETN-3896 Account Request attributes willno longer be removed from attributes of ProvisioningPlan
+ between Before Provisioning and After Modify Rule during provisioning operation.
+CONETN-3898 The SAP GRC Integration willnow skip proactive check fora role assignment if"skipPro-
+ activeCheck" is set totrue in the application.
+ The Oracle HCM Fusion Connector now correctly aggregates the updated values forAssign-
+CONETN-3901 mentStatusTypeId and AssignmentStatusType attributes when a delta aggregation isper-
+ formed.
+CONETN-3903 The Azure Active Directory Connector now fetches allthe shared mailboxes during account
+ aggregation.
+CONETN-3911 The Oracle ERP Cloud Connector no longer failswhen provisioning a data access containing
+
+
+
+
+
+
+
+SailPoint Release Notes 49
+
+===== Page 53/69 =====
+Issue ID Description
+ special characters initsrole name and security context value.
+ The RACF-Full Connector now supports resource aggregation and provisioning as additional
+CONETN-3916 group schema, and requesting permissions foraccounts and groups. Refer to documentation
+ formore details.
+CONETN-3923 The Azure Active Directory Connector now manages mail-enabled security groups ordis-
+ tributiongroups using IQService without any error.
+CONETN-3924 The Oracle HCM Fusion Connector correctly aggregates the updated attributes when a delta
+ aggregation isperformed.
+CONETN-3925 The REST Web Services Connector now correctly sets the rootpath from Before Operation
+ Rule.
+CONETN-3929 The PlanInitializerScript inApplications of type RACF, ACF2, and TopSecret no longer use
+ imports and System.out.println statements.
+CONETN-3931 IQService willno longer show the errors/warnings messages related to UpgradeService while
+ running the Perform Maintenance task from IdentityIQ.
+CONETN-3936 The Workday Connector is now certifiedwith Workday API version 38.0
+CONETN-3938 The Azure Active Directory Connector no longer throws the error "Failto find owners of a chan-
+ nel "while channel aggregation incase the channel issoft deleted.
+CONETN-3949 The Salesforce Connector account aggregation no longer failswhen URL inthe source is
+ changed.
+CONETN-3950 The Oracle HCM Fusion Connector willnow correctly aggregate changes to allsupported attrib-
+ utes in delta aggregation.
+CONETN-3951 The Azure Active Directory Connector now displays ExchangeOnline attributes on the UI after
+ account aggregation when "Manage Exchange Online" feature isenabled.
+CONETN-3956 The Oracle Fusion HCM Connector correctly aggregates the ASSIGNMENT_MANAGER_ID
+ value when an aggregation is performed.
+CONETN-3957 The SCIM 2.0 Connector now correctly updates the roles foran account when provisioning or
+ de-provisioning operation is performed.
+CONETN-3959 The SCIM 2.0 Connector no longer failswith a NullPointerException when multiple complex
+ attributes are provisioned.
+CONETN-3960 The SAP HR/HCM Connector no longer failswith NullPointerException when aggregating
+ accounts with custom value forSTAT2 field.
+CONETN-3962 The Oracle HCM Fusion Connector now skips the terminated users fallingoutside the ter-
+ mination offset when a delta aggregation isperformed.
+CONETN-3968 The Oracle HCM Fusion Connector now correctly aggregates future hires when a delta aggreg-
+ ation isperformed.
+
+
+
+
+
+
+SailPoint Release Notes 50
+
+===== Page 54/69 =====
+Issue ID Description
+CONETN-3971 The REST Web Services Connector configuration page now correctly displays necessary attrib-
+ ute as per grant type selection on UI forOAuth 2.0 authentication.
+ For Active Directory applications, no warning message willbe displayed inthe GUI when delta
+CONETN-3974 aggregation is performed followed by completion of Refresh task inwhich group membership is
+ being removed.
+CONETN-3975 The filterstringfor the account additional filterwillbe saved as account.filterString in the source
+ application fileforLDAP connectors.
+CONETN-3979 The RACF connector no longer failstoaggregate unstructured targets and permissions when
+ Mainframe connector isupgraded to FSD0148 orlater.
+CONETN-3980 The Active Directory Connector now successfully provisions msExchHideFromAddressLists
+ with type as string.
+CONETN-3982 The Web Services Connector now supports http proxy configuration for OAuth authentication.
+ The ServiceNow Connector account aggregation with partitioning enabled no longer query sys_
+CONETN-3984 user_grmember and sys_user_has_role when no entitlement attributes are present in the
+ account schema.
+CONETN-3985 The Azure Active Directory Connector no longer displays duplicate ServicePrincipals values in
+ Resource Object afterrunning account aggregation.
+ Adding the attribute skipGroupFilterAttributeReplacement as true in the application ,the Azure
+CONETN-3987 Active Directory Connector no longer failswhile creating the group when group filtercontains a
+ value same as that of the attribute'sname.
+CONETN-3988 The SCIM 2.0 Connector correctly provisions the manager attributes using patch operation.
+CONETN-3989 The Active Directory Connector now correctly provisions msExchHideFromAddressLists.
+ONETN-3990 The Oracle Fusion HCM Connector now excludes Suspended workers when "skipSus-
+ pendedAccounts" isenabled inthe application during aggregation.
+CONETN-3991 The Azure Active Directory Connector now displays the correct spelling forUserPrincipalName
+ in provisioning policy.
+CONETN-3998 The CloudGateway application now supports retryableErrors configuration forprovisioning
+ retry.
+CONETN-3999 The SharePoint Online Connector now fetches allsites including newly created sitesduring
+ aggregation.
+CONETN-4002 The Azure Active Directory Connector no longer errors out the request while fetching the SignIn
+ Activity of users during account aggregation.
+CONETN-4003 The SCIM 2.0 Connector now sends the path attribute forallpatch operations when an exten-
+ ded schema attributeis included inprovisioning.
+CONETN-4009 The SAP HR/HCM Connector no longer failswhen a delta or partitioned aggregation is per-
+
+
+
+
+
+
+SailPoint Release Notes 51
+
+===== Page 55/69 =====
+Issue ID Description
+ formed.
+CONETN-4010 The SAP HR Connector now has improved performance fordelta aggregation.
+CONETN-4012 The Azure Active Directory Connector now fetches the Exchange Online custom attributes dur-
+ ing account aggregation or getObject operation.
+CONETN-4013 The SCIM 2.0 Connector now supports provisioning ofcomplex attributes using PUT operation.
+CONETN-4014 The Oracle Fusion HCM Connector can now aggregate delta changes forallattributes sup-
+ ported by the Oracle Atom Feed APIs.
+CONETN-4019 The Azure Active Directory Connector now supports advanced query filtersduring account as
+ well as group aggregation.
+CONETN-4023 The Azure Active Directory Connector now fetches allthe Resource Groups during entitlement
+ aggregation.
+CONETN-4024 The SAP Direct Connector correctly provisions the Parameter attributefor new and existing
+ accounts on the target system.
+CONETN-4025 MANIFEST.MF filein IdentityIQCloudGateway.jar now correctly reflectsthe version details
+ along with patch.
+CONETN-4027 The Before and After Provisioning rules are now correctly called when executeMan-
+ agedAppRules flagis set totrue.
+CONETN-4029 The Active Directory Connector now ignores delta changes forusers inResource foresthaving
+ msExchMasterAccountSid equals S-1-5-10.
+CONETN-4031 The REST Web Services Connector now waits for max 3 minutes per retry while throttling
+ request.
+CONETN-4033 The Okta Connector now correctly aggregates the changed users when a delta aggregation is
+ performed.
+CONETN-4041 The Google Workspace Connector no longer logs an error message ifthere are no delegates
+ during account aggregation.
+CONETN-4042 The Oracle Fusion HCM Connector now aggregates the correct data when a delta aggregation
+ isperformed
+CONETN-4044 The Microsoft SQL Server Connector now supports aggregating membership details of nested
+ database roles when an entitlement aggregation isperformed.
+ Mainframe Connectors (RACF-Full, ACF2-Full, and TopSecret-Full) Enhanced to support
+CONETN-4046 mutual TLS authentication for communication between IdentityIQ, Connector Gateway, and the
+ Mainframe Connector itself.Upgrade to latestConnector Gateway to leverage thisfeature.
+CONETN-4047 Aggregation with cloudGateway on tomcat 9.0.69 onwards now works properly after adding fol-
+ lowing attribute inapplication. <entry key="httpCookieSpecsStandard" value="true"/>
+CONETN-4049 The Google Workspace Connector no longer failswith HTTP error 404 while updating alias
+
+
+
+
+
+
+SailPoint Release Notes 52
+
+===== Page 56/69 =====
+Issue ID Description
+ along with primary email address ofthe user.
+CONETN-4057 The Azure Active Directory Connector now fetches allthe resource groups during entitlement
+ aggregation.
+CONETN-4058 The Connector Gateway does not break interceptions protocol forcontinuous transactions from
+ IdentityIQ connector side which are sent to CTSGATE for continuous 30 minutes.
+CONETN-4062 The Mainframe Connector now supports setting provisioning resultat attribute levelwith warn-
+ ing ataccount request incase of partialsuccess.
+CONETN-4064 The Azure Active Directory Connector now fetches the Exchange Online attributes for allthe
+ accounts.
+CONETN-4065 The LDAP Connector now removes entitlement as part of delete provisioning operation when
+ remove entitlement issent to connector as part ofattribute request.
+CONETN-4066 The assignment of entitlement ServicePrincipal alone now works during account creation in
+ Azure Active Directory Connector.
+CONETN-4067 The SAP HR/HCM Connector no longer failswhen no employees are fetched from PA0000
+ table intarget system.
+CONETN-4068 The Workday Connector no longer failswhen performing provisioning for CUSTOM ID's with
+ empty or nullvalues.
+ WORKATTR attributes and other similarattributes are now updated while performing create
+CONETN-4073 and update operation on user account as we added <UserProfileName>_SWITCH which is set
+ as 'Y'when these attributes are considered to be updated.
+CONETN-4077 The Oracle E-Business Connector now correctly provisions the customer_id and supplier_id
+ attributes ofan account when a provisioning operation isperformed.
+CONETN-4078 The LDAP Connector now clears group membership when null value is passed in SET oper-
+ ation.
+CONETN-4080 The REST WebServices Connector now supports pagination using pagination steps for child
+ endpoint as well during aggregation.
+CONETN-4081 The Google Workspace Connector now clears the "customSchema" attributes when null value
+ ispassed inSET operation.
+CONETN-4083 The Active Directory Connector no longer shows a false error message inthe log during getOb-
+ jectoperation for create Group operation.
+CONETN-4084 The SCIM 2.0 Connector now supports Provisioning Multivalued core and extended attributes.
+CONETN-4085 The SCIM 2.0 Connector can now aggregate accounts from a non-compliant SCIM target
+ server when the /Users response isnot compliant with RFC.
+CONETN-4086 The Oracle ERP Cloud Connector now supports provisioning of data access having special
+ characters in itssecurity context values.
+
+
+
+
+
+
+SailPoint Release Notes 53
+
+===== Page 57/69 =====
+Issue ID Description
+CONETN-4087 IdentityGovernance Connector forServiceNow now supports Utah release. ServiceNow Ser-
+ viceDesk Integration Module forServiceNow now supports Utah release.
+CONETN-4091 The delta aggregationfor ServiceNow Connector no longer failsin case ifan empty group or an
+ empty user ispresent inServiceNow memberships.
+CONETN-4099 The Workday Connector no longer failswith "XML parsing failed"error when performing
+ account aggregation.
+CONETN-4103 The Delimited FileConnector now supports aggregation ofaccounts containing special char-
+ acters in itsattributes.
+CONETN-4108 The RACF Connector using After Provisioning rule with EmailTemplate no longer shows a
+ blank email body.
+CONETN-4109 The BoxNet Connector now successfully deletes user who is owning content on the Managed
+ system when forceDeleteUser=true application config is configured.
+CONETN-4113 The SCIM 2.0 Connector willcall/ServiceProviderConfig endpoint only forcompliant enabled
+ applications.
+CONETN-4114 The Salesforce Connector now correctly sends nullvalue attributein update request to manage
+ system during provisioning.
+CONETN-4115 The Apachex.x/conf/server.xml filenow contains the value for "Error Report Valve" default as
+ false
+CONETN-4116 The JDBC Connector now aggregates correct value for an account attribute of type BigDecimal
+ or Float.
+CONETN-4117 The Oracle Fusion HCM Connector can now choose toaggregate values based on configured
+ JSON path or default OOTB values during account aggregation.
+CONETN-4120 The SAP Direct Connector now supports setting password to productive mode when a Create
+ Account operation is performed.
+CONETN-4123 The Google Workspace Connector no longer failwhile provisioning the already existing group
+ on target system tothe user.
+CONETN-4125 IQService willnot log any error message during provisioning ifcustom attributeis not present in
+ ActiveDirectory Schema on IQService host.
+CONETN-4130 The Azure Active Directory Connector now does not throw an error while creating guest user
+ when the email ID has a sub-domain of an another existing user's email domain.
+CONETN-4134 The Azure Active Directory Connector now honors the HTTP proxy settings configured as Java
+ system properties.
+CONETN-4135 IQService Client authentication willnow use system default logon provider.
+CONETN-4137 Inthe Active Directory Connector domain NetBIOSName willbe aggregated as part of account
+ and group aggregation. Customers need to add NetBIOSName as schema attribute as type
+
+
+
+
+
+
+SailPoint Release Notes 54
+
+===== Page 58/69 =====
+Issue ID Description
+ String under Account and Group schema toleverage thisfacility.
+CONETN-4140 The Active Directory Connector now successfully updates Exchange attributes fordistribution
+ groups without mailnickname passed inprovisioning plan.
+CONETN-4141 The Azure Active Directory Connector now saves the ServicePrincipal memberships in the List
+ during account aggregation.
+CONETN-4147 The Active Directory account creation with add Entitlements no longer failswith SQLGram-
+ marException when object isnot found on Active Directory.
+CONETN-4149 The SCIM 2.0 Connector now supports provisioning and de-provisioning of groups using /Users
+ endpoint.
+CONETN-4153 The REST Web Services Connector now updates lastAggregationDate_account only when
+ account aggregation is successful.
+CONETN-4154 The Azure Active Directory Connector now provisions the guest user successfully even ifthe
+ attribute password ispresent in the provisioning plan.
+CONETN-4162 The Coupa connector now correctly provisions any additional account attribute.
+CONETN-4174 The SAP SuccessFactors Connector no longer failswith Null Pointer Exception when a pro-
+ visioning operation is performed.
+CONETN-4180 The Azure Active Directory Connector now honors the HTTP proxy authentication configured as
+ Java system properties.
+CONETN-4181 The Salesforce Connector now executes the provisioning plan successfully for the Account Dis-
+ able operation when the plan contains UserRoleName in it.
+CONETN-4191 The SCIM 2.0 Connector can now exclude custom header and request attributes when using
+ OAUTH 2.0 based authentication.
+CONETN-4192 The Azure Active Directory Connector no longer throws an error,"Your password has expired",
+ after the user resets theirpassword using PTA.
+CONETN-4197 The Slack Connector now removes phone number value when phone number value set tonull
+ or no value through provisioning plan.
+CONETN-4198 The Azure Active Directory Connector now allows to assign permanent PIM roles to the users
+ and roleassignable groups.
+CONETN-4202 The SCIM 2.0 connector no longer fails when the Identity attribute isconfigured as an Integer
+ during aprovisioning operation.
+CONETN-4206 The SCIM 2.0 connector now supports role provisioning foran account for a PUT operation.
+CONETN-4211 The Oracle ERP Cloud connector correctly revokes data accesses ofan account when a de-pro-
+ visioning is performed.
+CONETN-4213 User Filters,Group Filters,User Advanced Filters and Group Advanced Filters fieldare now
+ available on application uipage by default so making entries ofthese keys isin the application
+
+
+
+
+
+
+SailPoint Release Notes 55
+
+===== Page 59/69 =====
+Issue ID Description
+ xml filethrough debug page isnot required any more.
+CONETN-4223 The Azure Active Directory Connector now supports filtersforthe Directory Roles, Azure AD
+ PIM Active and EligibleRoles, Azure PIM Active and Eligible Roles inthe group aggregation.
+CONETN-4244 The Azure Active Directory Connector now retriesthe intermittent errors, ifthe 'retry-
+ ableErrorsOnAgg’ attribute isconfigured during the channel aggregation.
+CONETN-4245 The Azure Active Directory Connector now excludes Disabled/Deleted Subscriptions during
+ Entitlement Aggregation to avoid Aggregation Failure.
+ InServiceNow Identity Governance Connector, delta account aggregation performance can be
+CONETN-4248 improved by configuring the attribute'maxDeltaAccountsCountToSkipCache' in case ofless
+ number ofchanged accounts.
+CONETN-4260 The SAP Fieldglass Connector now aggregates allaccounts correctly when the pageSize is
+ configured to any value inthe application.
+CONETN-4266 The Linux Cconnector now support RHEL version 8.8
+CONETN-4271 Entitlements are now added/removed on given sunrise/sunset date when provisioned via con-
+ nected application with Cloud Gateway
+CONETN-4275 Aggregations are now successfully completed with cloud gateway running on tomcat server
+ 9.0.75
+CONHOWRAH- The Azure Active Directory Connector isnow more resilientinhandling IndexOutOfBound-
+3749 sException while building PIM membership during account aggregation.
+CONHOWRAH- [SECURITY] The Azure Active Directory Connector now supports certificatebased modern
+3764 authentication to communicate with Exchange Online which is more secure and isrecom-
+ mended by Microsoft.
+CONHOWRAH- The Active Directory Connector now supports Microsoft Windows Server 2022
+3769
+CONHOWRAH- The Windows Local Connector now supports Microsoft Windows Server 2022
+3772
+CONHOWRAH- The Azure Active Directory Connector now fetches eligibleand active roles only when PIM flag
+3775 isenabled on the application configuration.
+CONHOWRAH- The Google Workspace Connector now supports archiving and unarchiving a user.
+3782
+CONHOWRAH- An error during partitioned account aggregation has been resolved inthe Active Directory con-
+3821 nector occurring when caching isenabled.
+CONHOWRAH- The Azure Active Directory Connector now respects the provided Azure Management API end-
+3836 point inthe application configuration toform access token scope instead ofa predefined static
+ value.
+
+
+
+
+
+
+SailPoint Release Notes 56
+
+===== Page 60/69 =====
+Issue ID Description
+CONHOWRAH- The LDAP Connector has been enhanced tosupport Modify Time Stamp as new delta aggreg-
+3861 ation mode. The user interface of the connector has also been updated to configure itwith the
+ necessary details required toconnect tomost of the LDAP Directory servers.
+CONHOWRAH- The Azure Active Directory Connector now provides visibilityintouser's sign-in (lastlogin) activ-
+3871 ity.
+CONHOWRAH- The Azure Active Directory Connector now supports managing Azure Active Directory Role as a
+3911 group object.
+CONHOWRAH- The SharePoint Online Connector now supports configurable endpoints when Azure Active Dir-
+3986 ectory is deployed innon-public national cloud server.
+ The Azure Active Directory Connector now supports Continuous Access Evaluation (CAE)
+CONHOWRAH- which leverages the Azure Active Directory real-time enforcement ofConditional Access loc-
+3990 ation and riskpolicies along with instant enforcement oftoken revocation events for an enter-
+ prise application (service principal).
+CONHOWRAH- The IQService has now different configuration option to specify the IP orFQDN of the load bal-
+3993 ancer todistinguish the health check requests originating from load balancer for logging pur-
+ pose.
+CONHOWRAH- SailPoint is pleased to announce a new connector to govern identities foryour Coupa system.
+4010 For more information, refer to Integrating SailPoint with Coupa connector guide.
+CONHOWRAH- The HCL Domino Connector now supports HCL Domino version 12.0.2.
+4042
+CONHOWRAH- The Azure Active Directory Connector now supports management of Access Packages.
+4055
+CONHOWRAH- The Azure Active Directory Connector now supports managing user-assigned managed iden-
+4084 tities.For more information, refer toIntegrating SailPoint with Azure Active Directory Connector
+ guide.
+CONHOWRAH- The Microsoft SharePoint Server Connector now supports managing Microsoft SharePoint
+4092 Server Subscription Edition.
+CONHOWRAH- The Azure Active Directory connector now supports reading and writing Azure Multi-Factor
+4164 Authentication attributes required for differentauthentication methods.
+CONHOWRAH- The Azure Active Directory connector now supports the PowerShell EXO V3 module forthe
+4186 Exchange Online Management feature.
+CONHOWRAH- The Azure Active Directory Connector now supports filtersforChannels during entitlement
+4199 aggregation.
+CONHOWRAH- [SECURITY] Due tothe security vulnerabilities found inthe json-smart-2.4.7.jar file,ithas been
+4224 upgraded with json-smart-2.4.10.jar. Ensure to update custom connectors, rules, or any other
+
+
+
+
+
+
+
+SailPoint Release Notes 57
+
+===== Page 61/69 =====
+Issue ID Description
+ customizations that directly or indirectly reference the json-smart-2.4.7.jar fileto json-smart-
+ 2.4.10.jar.
+CONHOWRAH- The Azure Active Directory source now supports the aggregation ofAzure Active Directory
+4278 group hierarchy.
+CONHOWRAH- The Azure Active Directory connector now supports managing Service Principal forEnterprise
+4322 Applications as an Account.
+CONHOWRAH- The Azure Active Directory connector now supports creating SAML based applications and cor-
+4345 responding Service Principals using the Gallery application templates.
+CONHOWRAH- The Azure Active Directory connector now supports creation ofService Principals foralready
+4346 existing Applications ( Local /Multi Tenant Type )
+CONJUBILEE- The Salesforce Connector now processes PermissionSetLicense firstwhile provisioning both
+1164 PermissionSet and PermissionSetLicense.
+CONJUBILEE- For new applications, the SCIM 2.0 Connector schemas willhave optional attribute "externalId"
+1178 irrespective of schema endpoint response.
+CONJUBILEE- The Salesforce Connector now provisions Profile before Role.
+1339
+CONJUBILEE- For the REST Web Services Connector, the body section willbe disabled in UI for the HTTP
+1377 method 'GET'.
+ Below jarsare upgraded tonewer versions due to vulnerabilities found in older version. Please
+CONJUBILEE- check the impact on custom connectors, rules or any other customization, which are directlyor
+1454 indirectly using these jarfilesjersey/hk2-api-2.6.1.jar->jersey/hk2-api-3.0.3.jarjersey/hk2-loc-
+ ator-2.6.1.jar->jersey/hk2-locator-3.0.3.jarjersey/hk2-utils-2.6.1.jar->jersey/hk2-utils-3.0.3.-
+ jarjersey/jersey-hk2-2.31.jar->jersey/jersey-hk2-3.0.4.jar
+CONJUBILEE- [SECURITY] To enhance security, upgraded gson-2.8.5.jar with vulnerabilities to gson-2.9.0.-
+1458 jar.
+CONJUBILEE- The connector classloader now provides the ability todelegate loading of some classes and
+1467 packages from system classloader.
+CONJUBILEE- The SCIM 2.0 Connector now works with Cloud Gateway.
+1492
+ In latest Jersey library,“Java Validation API” library has been removed (Package :javax.val-
+ idation). So the “Bean Validation API“ library has to be added separately for customisation, if
+CONJUBILEE- required. Below jarsare upgraded tonewer versions due to vulnerabilities found in older ver-
+1495 sion. Please check the impact on custom connectors, rules or any other customization, which
+ are directly or indirectly using these jar files.jersey/jakarta.annotation-api-1.3.5.jar->jer-
+ sey/jakarta.annotation-api-2.1.0.jarjersey/jakarta.validation-api-2.0.2.jar->jer-
+
+
+
+
+
+
+
+SailPoint Release Notes 58
+
+===== Page 62/69 =====
+Issue ID Description
+ sey/jakarta.validation-api-3.0.1.jar jersey/jersey-hk2-2.31.jar -> jersey/jersey-hk2-3.0.4.-
+ jarjersey/jakarta.ws.rs-api-2.1.6.jar->jersey/jakarta.ws.rs-api-3.1.0.jarjersey/jersey-client-2.31.-
+ jar->jersey/jersey-client-3.0.4.jarjersey/jersey-common-2.31.jar->jersey/jersey-common-
+ 3.0.4.jarjersey/jersey-container-servlet-core-2.31.jar->jersey/jersey-container-servlet-core-
+ 3.0.4.jarjersey/jersey-media-jaxb-2.31.jar->jersey/jersey-media-jaxb-3.0.4.jarjersey/jersey-
+ media-multipart-2.31.jar->jersey/jersey-media-multipart-3.0.4.jarjersey/jersey-server-2.31.jar-
+ >jersey/jersey-server-3.0.4.jarscim-sdk-1.8.18.01/jersey-apache-connector-2.22.2.jar->scim-
+ sdk-1.8.18.01/jersey-apache-connector-3.0.4.jar
+CONJUBILEE- The REST Web Services Connector now supports Create/Update/Delete for Group Objects
+1503
+CONJUBILEE- The IdentityIQ Cloud Gateway Synchronisation task now decrypts nested credentials before
+1521 syncing to Cloud Gateway server.
+CONJUBILEE- The SCIM 2.0 Connector no longer ignores No Authentication headers when set up with a
+1594 Relax configuration. The SCIM 2.0 Connector now supports placeholders so that you can
+ include sensitive attributes in No Authentication headers.
+CONJUBILEE- The REST Web Services Connector no longer ignores Connection Timeout value.
+1600
+CONJUBILEE- The REST Web Services Connector's Custom Authentication operation no longer ignores
+1604 XPath Namespace Mappings.
+CONJUBILEE- The Jack Henry Connector now supports enabling or disabling the accounts.
+1617
+CONJUBILEE- The Salesforce Connector now supports creating, updating and deleting Public Groups. Note:
+1622 Please make sure your service account user has "Public Groups" object [ R ||W] added into
+ administrative user profile
+CONJUBILEE- Below jars are upgraded tonewer versions due tovulnerabilities found in older version. Please
+1644 check the impact on custom connectors, rules or any other customization, which are directly or
+ indirectly using these jarfiles.bcel-6.5.0 -> bcel 6.6.1
+CONJUBILEE- The REST Web Services Connector now supports removing entitlements while disabling
+1655 account and adding entitlements while enabling account.
+CONJUBILEE- Below jars are upgraded tonewer versions due tovulnerabilities found in older version. Please
+1660 check the impact on custom connectors, rules or any other customization, which are directly or
+ indirectly using these jarfiles.bcprov-ext-jdk15on-1.61 -> bcprov-ext-jdk15on-1.70
+CONJUBILEE- Below jars are upgraded tonewer versions due tovulnerabilities found in older version. Please
+1661 check the impact on custom connectors, rules or any other customization, which are directly or
+ indirectly using these jarfiles.bcprov-ext-jdk15on-1.61 -> bcprov-ext-jdk15on-1.70
+
+
+
+
+
+
+
+SailPoint Release Notes 59
+
+===== Page 63/69 =====
+Issue ID Description
+CONJUBILEE- The Cloud Gateway now supports Oracle JRE for Java version 17 and OpenJDK 17 platforms.
+1667
+ With this release, the Salesforce Connector no longer supports Salesforce API versions 48.0
+CONJUBILEE- and prior, the connector will only work on API version 56. API version 56 doesn't support attrib-
+1685 ute "UserPermissionsMobileUser", hence customers must remove the User-
+ PermissionsMobileUser parameter from schema manually, to avoid errors.
+CONJUBILEE- The REST Web Services Connector example rules now show use of Web Services operation
+1689 rules to help configure the searchAfter parameter forpagination.
+ The Salesforce connector now supports creating new Portal and Partner Users as well as
+CONJUBILEE- assigning Portal and Partner Licenses to existing Salesforce Users using their respective user
+1694 profiles. Note: Please make sure your service account user has "Manage Contacts" object [ R ||
+ W] added intoadministrative user profile
+CONJUBILEE- Below JAR is upgraded to newer version due to vulnerabilities found inolder version. Please
+1696 check the impact on custom connectors, rules or any other customisation, which are directly or
+ indirectly using thisJAR file.accessors-smart-1.2.jar ->accessors-smart-2.4.8.jar
+CONJUBILEE- Below JAR is upgraded to newer version due to vulnerabilities found inolder version. Please
+1697 check the impact on custom connectors, rules or any other customisation, which are directly or
+ indirectly using thisJAR file.commons-net-3.6.jar -> commons-net-3.9.0.jar
+CONJUBILEE- The REST Web Services Connector aggregation runs fine ifthe partitioned aggregation option
+1762 is selected and no endpoint for partitioned aggregation provided.
+CONJUBILEE- The Salesforce Connector now supports use of"Enhanced Domains" option inSalesforce sys-
+1805 tem.
+CONJUBILEE- The Cloud Gateway now supports RHEL 9.0.
+1806
+CONJUBILEE- [SECURITY] Due to security vulnerabilities discovered inthe json-smart-2.4.7.jar file,ithas
+1809 been upgraded with json-smart-2.4.10.jar. Be sure to update custom connectors, rules, or other
+ customisations which directly orindirectly reference the json-smart-2.4.7.jar file.
+CONJUBILEE- Now alloperations fortarget collectors are executed in Cloud Gateway, ifconfigured.
+1815
+CONJUBILEE- The Cloud Gateway is now shipped with secure tomcat release Apache Tomcat 9.0.75.
+1859
+CONJUBILEE- The Salesforce Connector can now complete user provisioning without errors even ifthe Integ-
+1869 ration User doesn't have fullpermissions to the Contact object inthe Salesforce system.
+CONJUBILEE- The IdentityIQ Cloud Gateway now supports Windows Server 2022.
+1960
+
+
+
+
+
+
+
+SailPoint Release Notes 60
+
+===== Page 64/69 =====
+Issue ID Description
+CONJUBILEE- Below jarsare upgraded to newer versions due to vulnerabilitiesfound in older version. Please
+1987 check the impact on custom connectors, rules orany other customization, which are directlyor
+ indirectlyusing these jarfiles.bcel-6.5.0 ->bcel 6.6.1
+CONNAMDANG- The SAP SuccessFactors Connector is now enhanced tofetch the primary employment inform-
+3719 ation
+CONNAMDANG- A new Snowflake Connector is now available togovern identitiesfor Snowflake Data Lake.
+3778
+CONNAMDANG- The SuccessFactor Connector now enhanced to fixtheperformance issues inaccount aggreg-
+3787 ation
+CONNAMDANG- The SAP Hana DB Connector now supports SAP HANA 2.0 SPS6 version.
+3847
+CONNAMDANG- The SuccessFactors Connector has been enhanced tosupport the account deltaaggregation.
+3866
+CONNAMDANG- The SAP Hana Database Connector now enhanced to support get and provisioning of external
+3911 type users
+CONNAMDANG- The Snowflake Connector now enhanced to improve the performance ofentitlement aggreg-
+3918 ation.
+CONNAMDANG- The SAP HANA Database Connector now supports Custom User Parameters for Aggregation
+3989 and Provisioning
+ The SAP HR/HCM Connector has been redesigned touse RFC_READ_TABLE according to
+CONNAMDANG- SAP recommendations forenhanced securityand technology adoption. The connector now
+4000 uses aSAP-certified function module tosupport the documented use cases. For more inform-
+ ation on configuration and installation,referto SailPoint Add-On toreplace theuse ofRFC_
+ READ_TABLE.
+CONNAMDANG- The Microsoft SQL Server -Direct Connector isnow enhanced to support Azure SQL managed
+4007 instance.
+CONNAMDANG- The Microsoft SQL Server -Direct Connector now supports MS SQL Server 2022
+4032
+CONNAMDANG- The SAP SuccessFactors Connector is enhanced toexclude PII data foremployees.
+4033
+CONNAMDANG- The SAP SuccessFactors Connector is now enhanced tomanage external users and theirenti-
+4076 tlements who are inthe onboarding stage.
+CONNAMDANG- IdentityIQ now supports new connector forintegrating with the ‘Azure SQL' database.
+4101
+CONNAMDANG- The JDBC Connector isenhanced tofixprobable injections innon-parameterised get object
+
+
+
+
+
+
+
+SailPoint Release Notes 61
+
+===== Page 65/69 =====
+Issue ID Description
+4126 queries.
+CONNAMDANG- [SECURITY] The mysql-connector-java-8.0.30.jar has been upgraded to newer version mysql-
+4129 connector-java-8.0.33.jar due to vulnerabilities found in older version.
+CONNAMDANG- [SECURITY] “commons-collections-3.2.2.jar“ has been upgraded to “commons-collections4-
+4158 4.4.jar”due to security vulnerabilities inconnector-bundle-webservices and connector-bundle-
+ jdbc
+CONNAMDANG- [SECURITY] Due tosecurity vulnerabilities discovered in the json-smart-2.4.7.jar file,ithas
+4161 been replaced with json-smart-2.4.10.jar. Be sure to update custom connectors, rules, or other
+ customisations which directly orindirectly reference the json-smart-2.4.7.jar file.
+CONNAMDANG- The SAP SuccessFactors Connector now supports additional attributes and custom attributes
+4168 related to user entities via ODATA API.
+CONNAMDANG- The SuccessFactors connector isnow enhanced to aggregate selective records based on fil-
+4201 tering criteriaon employee records
+CONNAMDANG- The SAP HANA DB connector now works with SAP HANA Cloud DB ver 4.0 application.
+4291
+CONNAMDANG- The PeopleSoft HCM Connector now supports PeopleTool version 8.60.
+4304
+CONSEALINK- A new healthcare integration “IdentityIQ for EPIC SER” isnow available togovern the providers
+2597 from EPIC.
+CONSEALINK- The EPIC Connector test connection no longer failson Oracle JDK 11 as the Bouncy Castle lib-
+2695 rary isupgraded to 1.70 version.
+CONSEALINK- The Cerner Connector is now enhanced for efficienthandling and closure ofHTTP resources.
+2925
+CONSEALINK- For the Collaboration bundle, "jersey-common" jar has been upgraded toversion 2.37 and its
+3009 dependent jar "jersey-client" has also been upgraded to2.37
+CONSEALINK- IdentityIQ now supports the BMC Helix Remedyforce Service Desk Integration Module.
+3011
+CONSEALINK- The IdentityIQ for ServiceNow Service Desk Integration now supports pulling RITM status in
+3042 SailPoint.
+CONSEALINK- The pending users from the Zoom User management are now successfully aggregated using
+3060 the Zoom Connector.
+CONSEALINK- The ServiceNow IdentityGovernance Connector account filterhandling forsys user has role
+3075 and sys user grmember istaken care of during cache initialization.
+CONSEALINK- The Cerner Connector delete operations no longer failifno additional attribute requests are
+3101 provided.
+
+
+
+
+
+
+SailPoint Release Notes 62
+
+===== Page 66/69 =====
+Issue ID Description
+CONSEALINK- With the Zoom Connector, the assignment ofmultiple groups isnow updated inthe right format
+3103 when a user isa member ofmore than one group.
+CONSEALINK- The EPIC Connector now supports Epic version May 2022.
+3110
+CONSEALINK- 1) The ServiceNow Identity Governance Connector no longer supports the ServiceNow Paris
+3158 release. And, 2) The IdentityIQ forServiceNow Service Desk no longer supports the Ser-
+ viceNow Paris release.
+CONSEALINK- 1) The SailPoint IdentityGovernance Connector forServiceNow now supports the ServiceNow
+3162 Tokyo release. 2)The IdentityIQ forService Desk now supports the ServiceNow Tokyo release.
+CONSEALINK- The Slack Connector now supports creation of a guest user to have access to a single channel
+3190 or multiple channels in Slack Enterprise Grid Plan.
+CONSEALINK- The Cerner Connector now aggregates invalid account usernames without failing.
+3191
+CONSEALINK- The Zoom Connector now supports OAuth 2.0 authentication mechanism.
+3234
+CONSEALINK- The Zendesk Connector now filtersthe accounts correctly without any error.
+3243
+CONSEALINK- Jaxen libraryupgraded to a compatible version for supporting JDK 11
+3274
+CONSEALINK- The Siebel Connector now supports Siebel server version 22.8.0.0.
+3275
+CONSEALINK- BMC Helix ITSM Service Desk Integration Module now supports version 21.3. With thisnew ver-
+3276 sion, itsupports Service Request via Digital Workplace with new Ticket Type "DWP Service
+ Request".
+CONSEALINK- AllService Desk Integration Module Configuration now supports attribute "pro-
+3287 visioningRequestExpiration", which willavoid duplicate ticket creation.
+CONSEALINK- The EPIC SER Connector now displays provisioning failuresat an attribute level.
+3296
+CONSEALINK- The ServiceNow IdentityGovernance Connector now supports "sysparm_query_category" as
+3308 query parameter.
+CONSEALINK- For ServiceNow Identity Governance Connector, "sysparm_fields" are now available to improve
+3329 performance during aggregation operation
+CONSEALINK- The SailPoint Identity Governance Connector now supports configurable option to read deleted
+3357 events (such as removing group/role) of user's connection from custom table instead of sys_
+ audit_delete table. This willenhance performance ofdelta aggregation.
+
+
+
+
+
+
+
+SailPoint Release Notes 63
+
+===== Page 67/69 =====
+Issue ID Description
+CONSEALINK- The Zoom Connector now supports the transfer_whiteboard attribute inthe Delete user pro-
+3367 visioning policy.
+CONSEALINK- The Zoom Connector no longer failstest connection with error 'authType' required.
+3378
+CONSEALINK- IdentityIQ for Atlassian Server Jira Service Desk now supports Atlassian Jira Service Man-
+3421 agement (Server) Version 5.2.0
+CONSEALINK- The EPIC Connector no more fails with error "TimeOut waiting for connection pool", User can
+3424 increase the axis connection pool by configuring maxHostConnections parameter inapplic-
+ ation.
+ The ServiceNow Service Desk Integration Module now populates the Access Request com-
+CONSEALINK- ment on the ServiceNow ticket.Existing ServiceDesk Integration configuration needs to modi-
+3449 fythe provisioning task definition to include the comments forAccess Request. This feature is
+ automatically included for allnew configurations.
+CONSEALINK- 1) The ServiceNow Identity Governance Connector no longer supports the ServiceNow Rome
+3455 release. And, 2) The IdentityIQ forServiceNow Service Desk no longer supports the Ser-
+ viceNow Rome release.
+CONSEALINK- BMC Helix ITSM Service Desk integration now supports OAuth 2.0 authentication.
+3462
+CONSEALINK- The EPIC Connector InBasket Classifications are no longer included by default inthe account
+3498 schema to avoid performance impact on provisioning operations.
+ The Generic SDIM now supports retrieving the ticketnumber from the URL ifthe create ticket
+CONSEALINK- response returns the URL instead of the ticketnumber. The new attribute is'Process Response
+3512 Element Expression’ and itshould be populated with parsing logic to fetch the ticket number
+ from the response URL.
+CONSEALINK- New Service Desk Integration "IdentityIQ for IvantiCherwell ITSM Service Desk" isavailable
+3556 now.
+CONSEALINK- The EPIC Connector user fields "PrimaryManager" and "UsersManagers" are now supported
+3566 as account attributes.
+CONSEALINK- The ServiceNow Connector avoids unnecessary API calls related to entitlements ifCustomer is
+3605 interested inonly aggregating User data.
+CONSEALINK- [SECURITY] For Collaboration bundle, "commons-collections-3.2.2.jar" jarhas been removed
+3656 due to vulnerabilitywith the version. As there were no dependency of iton any of the con-
+ nectors, instead of upgrading ithas been removed.
+CONSEALINK- A new out-of-the-box accounts connector for user access governance inIvanti Cherwell ITSM
+3765 solution
+
+
+
+
+
+
+
+SailPoint Release Notes 64
+
+===== Page 68/69 =====
+Issue ID Description
+CONSEALINK- The Zoom connector no longer supports Authentication Type “API Token”.
+3824
+CONSEALINK- The BMC Helix ITSM Service Desk Integration Module now supports version 22.1.
+3927
+CONUMSHIAN- The SAP GRC Connector now supports handling XML special characters ("'&<>) during user
+4126 provisioning operations.
+CONUMSHIAN- The Amazon Web Services (AWS) Connector now supports 'AWS GovCloud (US)' Regions.
+5107
+CONUMSHIAN- The SAP Connector has been enhanced toprovide a more relevant exception incase of certain
+5129 erroneous situations.
+CONUMSHIAN- The SAP GRC Connector isre-designed touse an SAP-certified function module for enhanced
+5179 security and performance. The use ofRFC_READ_TABLE has been made limitedaccording to
+ SAP recommendations.
+CONUMSHIAN- The SAP GRC Connector now enhanced to support Account Partitioning for SAP Basis version
+5232 751 and later.
+CONUMSHIAN- The Oracle ERP Cloud Connector now enhanced to support aggregation of data access inform-
+5284 ation (security context and security context values) even when not assigned to a role.
+CONUMSHIAN- The SAP Direct Connector isre-designed touse an SAP-certified function module forenhanced
+5303 security and performance. The use ofRFC_READ_TABLE has been made limitedaccording to
+ SAP recommendations.
+CONUMSHIAN- SAP Business Suite (ERP) Integration is certifiedwith 'SAP HANA S/4 2022' formaintaining
+5379 SailPoint Connectivity’s commitment tobusiness continuity,customer support, and brand
+ value.
+ The new Oracle Enterprise Performance Management (EPM) Cloud governance Connector
+CONUMSHIAN- provides the capability for managing user accounts, predefined roles,application roles and
+5405 groups. The integration supports EPM Cloud Services for Financial Consolidation and Close
+ (FCCS), Account Reconciliation (AR), Planning, Narrative Reporting (NR).
+ The new SAP Concur Connector provides Identity Governance on Expense management ser-
+CONUMSHIAN- vices provided by Concur. The integration supports enforcing policies and permissions forgrant-
+5586 ing and revoking access to systems and data based on user identities,roles, and associated
+ groups forExpense, Request, Invoice, and Reporting.
+ The new Oracle Enterprise Performance Management (EPM) Cloud Governance Connector
+CONUMSHIAN- provides the capability for managing user accounts, and reading and associating ofPredefined
+5688 roles, application roles and groups. The integration supports EPM Cloud Services forPlanning,
+ Financial Consolidation and Close Service(FCCS), Account Reconciliation (ARCS), & Narrative
+
+
+
+
+
+
+
+SailPoint Release Notes 65
+
+===== Page 69/69 =====
+Issue ID Description
+ Reporting (NR).
+ The new Oracle Enterprise Performance Management (EPM) Cloud Governance Connector
+CONUMSHIAN- provides the capability formanaging user accounts, and reading and associating of Predefined
+5691 roles,application roles and groups. The integration supports EPM Cloud Services for Planning,
+ Financial Consolidation and Close Service(FCCS), Account Reconciliation (ARCS), & Narrative
+ Reporting (NR).
+ The new Oracle Enterprise Performance Management (EPM) Cloud Governance Connector
+CONUMSHIAN- provides the capability formanaging user accounts, and reading and associating of Predefined
+5695 roles,application roles and groups. The integration supports EPM Cloud Services for Planning,
+ Financial Consolidation and Close Service(FCCS), Account Reconciliation (ARCS), & Narrative
+ Reporting (NR).
+ The new Oracle Enterprise Performance Management (EPM) Cloud Governance Connector
+CONUMSHIAN- provides the capability formanaging user accounts, and reading and associating of Predefined
+5724 roles,application roles and groups. The integration supports EPM Cloud Services for Planning,
+ Financial Consolidation and Close Service(FCCS), Account Reconciliation (ARCS), & Narrative
+ Reporting (NR).
+CONUMSHIAN- The SAP Concur Connector has been enhanced to support role assignment to the user during
+5747 the modify operation.
+CONUMSHIAN- The SAP Concur Connector now supports date provisioning and retrieval ina fixed format, also
+5756 fixingan attributesync problem.
+CONUMSHIAN- The SAP Concur Connector now handles the proper SCIM mapping of attributes required for
+5769 provisioning use cases.
+CONUMSHIAN- We have added additional settings on the SAP GRC Source Configuration UI for Access
+5836 Request Type Mapping, Provisioning Actions forRoles and System sections forease of con-
+ figuration and maintenance
+ SailPoint’s Integration for the SAP Fieldglass Vendor Management System offers governance
+CONUMSHIAN- capabilities forcontingent workers. Itoffers seamless governance of external users man-
+5852 agement for joiners,movers, leaver workflows, and separation of duty (SOD) checks based on
+ user roles, attributes,and entitlements.
+CONUMSHIAN- SailPoint SAP GRC Integration now supports Access Management Requests thatare con-
+5974 figured forAuto-Approval inthe SAP GRC system.
+CONUMSHIAN- The Oracle PeopleSoft HCM Connector isnow supports PeopleTools version 8.60.05
+5990
+CONVASHI-1431 The Web Services Connector willnow work with optional namespace prefixfor XPATH attribute
+ mappings.
+
+
+
+
+
+
+
+SailPoint Release Notes 66

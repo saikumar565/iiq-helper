@@ -1,0 +1,1354 @@
+===== Page 1/23 =====
+ IdentityIQ Identity Management
+
+
+ Version:8.4
+
+ Revised:September2023
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thisdocument and the informationcontainedhereinisSailPointConfidentialInformation
+
+===== Page 2/23 =====
+Copyright and Trademark Notices
+
+Copyright © 2023 SailPoint Technologies, Inc.  All Rights Reserved.
+
+Alllogos, text,content, including underlying HTML code, designs, and graphics used and/or depicted on these written
+materials or in thisInternet website are protected under United States and international copyright and trademark laws
+and treaties, and may not be used or reproduced without the prior express written permission of SailPoint Tech-
+nologies, Inc.
+
+“SailPoint Technologies,” (design and word mark), “SailPoint,” (design and word mark), "Identity IQ,” “IdentityNow,”
+“SecurityIQ,” “Identity AI,” “Identity Cube,” and “SailPoint Predictive Identity” are registered trademarks of SailPoint
+Technologies, Inc. “Identity isEverything,” “The Power of Identity,” and “Identity University” are trademarks of
+SailPoint Technologies, Inc. None of the foregoing marks may be used without the prior express written permission of
+SailPoint Technologies, Inc. Allother trademarks shown herein are owned by the respective companies or persons
+indicated.
+
+SailPoint Technologies, Inc. makes no warranty ofany kind regarding these materials or the information included
+therein, including, but not limited to,the implied warranties ofmerchantability and fitness for a particular purpose.
+SailPoint Technologies shall not be liable for errors contained herein or direct, indirect, special, incidental orcon-
+sequential damages inconnection with the furnishing, performance, or use of thismaterial.
+
+Patents Notice. https://www.sailpoint.com/patents
+
+Restricted Rights Legend. All rights are reserved. No part ofthis document may be published, distributed, reproduced,
+publicly displayed, used to create derivative works, or translated to another language, without the prior written consent
+ofSailPoint Technologies. The information contained inthis document issubject to change without notice.
+
+Use, duplication or disclosure by the U.S. Government is subject to restrictions as set forth insubparagraph (c) (1) (ii)
+ofthe Rights inTechnical Data and Computer Software clause at DFARS 252.227-7013 for DOD agencies, and sub-
+paragraphs (c)(1) and (c)(2) ofthe Commercial Computer Software Restricted Rights clause at FAR 52.227-19 for
+other agencies.
+
+Regulatory/Export Compliance. The export and re-export of this software iscontrolled for export purposes by the U.S.
+Government. By accepting this software and/or documentation, licensee agrees to comply with allU.S. and foreign
+export laws and regulations as they relate to software and related documentation.  Licensee will not export or re-
+export outside the United States software or documentation, whether directly or indirectly, to any Prohibited Party and
+willnot cause, approve or otherwise intentionally facilitate others inso doing. A Prohibited Party includes: a party in a
+U.S. embargoed country or country the United States has named as a supporter of international terrorism; a party
+involved in proliferation; a party identified by the U.S. Government as a Denied Party; a party named on the U.S.
+Department of Commerce’s Entity Listin Supplement No. 4 to 15 C.F.R. § 744; a party prohibited from participation in
+export orre-export transactions by a U.S. Government General Order; a party listed by the U.S. Government’s Office
+ofForeign Assets Control as ineligible to participate in transactions subject toU.S. jurisdiction; or any party that
+licensee knows or has reason toknow has violated or plans to violate U.S. or foreign export laws or regulations.
+Licensee shall ensure that each of itssoftware users complies with U.S. and foreign export laws and regulations as
+they relate to software and related documentation.
+
+===== Page 3/23 =====
+Contents
+
+
+ Identity Management 1
+
+ Manage Identity Quicklinks 2
+
+ Identity Warehouse Page 3
+
+ View Identity Page 4
+
+ Attributes Tab 4
+
+ Entitlements Tab 5
+
+ Application Accounts Tab 6
+
+ Policy Tab 7
+
+ History Tab 8
+
+ Risk Tab 9
+
+ Activity Tab 10
+
+ User Rights Tab 11
+
+ Events Tab 12
+
+ Identity Correlation 15
+
+ How to Perform Manual Identity Correlation 17
+
+ Rights and Capabilities for Identities 19
+
+ Mapping Rights to Capabilities 19
+
+ Manage Identity Quicklinks 20
+
+===== Page 4/23 =====
+Identity Management
+
+
+Identity Management
+
+
+Use the Identity Warehouse page to create, view and edit individual Identity Cube information. Identity Cubes are
+multi-dimensional data models of identity information that offera single, logical representation of each managed user.
+Each Cube contains information about user attributes, entitlements, accounts, policy violations, risk scores,rights and
+capabilities within IdentityIQ, and historical records of user access configurations and activity.
+
+The Identity Management area includes:
+
+
+
+ l Identity Warehouse Page – basic user information for every user inyour organization.
+
+
+
+ l View Identity Page – clicking on any identity in the Identity Warehouse page opens detailed information for
+ that identity.
+
+
+
+ l Identity Correlation – manually correlate the Identity Cubes created when identity aggregation was performed
+ on your identity authoritative sources with any user accounts discovered while performing aggregations on
+ other applications.
+
+
+
+ l Identity Risk Model – configure your organization's risk model for roles, entitlements, and policy violations,
+ and configure your risk scoring.. For information on the Identity Risk Model, see the IdentityIQ Risk doc-
+ umentation. You can view a risk scorecard for each identity in the Identity Warehouse on the Risk Tab in the
+ detailed view of the identity.You can also see listsof identities that fallinto specific risk levels under the Intel-
+ ligence > Identity Risk Scores menu. See the IdentityIQ Risk documentation formore information.
+
+Access to these pages iscontrolled by IdentityIQ Capabilities and Scope. Contact your system administrator ifyou
+need help to access tothese areas ofIdentityIQ.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Identity Management 1
+
+===== Page 5/23 =====
+Manage IdentityQuicklinks
+
+Manage Identity Quicklinks
+
+
+
+ Note: This feature requires Lifecycle Manager.
+
+You can use Quicklinks tocreate, edit and view identities.See How to Manage Identities inthe IdentityIQ Lifecycle
+Manager guide.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQIdentity Management 2
+
+===== Page 6/23 =====
+Identity Warehouse Page
+
+Identity Warehouse Page
+
+
+The Identities table contains basic user information forevery identitydiscovered during the latest aggregation pro-
+cess. Identities can include non-human identities, such as service accounts and bot identities, as well as users.
+
+ Note: By default, only active identities are displayed.
+
+
+ Note: Many columns inthe table can be sorted. Click the column titleto sort the table by the
+ entries inthat column in ascending order. Click again to sort the table indescending order. You
+ can also click the associated dropdown menu to sort or toadd or remove columns in the table.
+
+To Search foridentities, enter a letter,or combination of lettersinto the Filter By Identity Name fieldabove the listof
+identities.Then click the search icon (magnifying glass) to findidentities that have that lettercombination in their
+name.
+
+The Identity Warehouse listingcontains thisinformation for each identity:
+
+ Column Name Description
+
+ User Name The user's account ID or login name.
+ First Name Full firstname of the user.
+ Last Name Full last name of the user.
+ Manager Name of the manager for the user.
+ Assigned Role A complete listof allroles assigned to the user.
+ Summary
+ Detected Role A complete listof alldetected roles for the user.
+ Summary
+ Risk Score The composite risk score for the user. Risk score is determined by numerous
+ factors defined during configuration.
+ Last Refresh The date of the last identity refresh.
+ Type The type assigned to this identity,Employee, Contractor, External / Partner,
+ RPA / Bots, or Service Accounts.
+ Location The physical location of the user. For example, Chicago or Singapore.
+ Region The corporate region assigned to the user. For example, Americas or Asia-
+ Pacific.
+
+Click any identity to display the View Identity page.
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Identity Management 3
+
+===== Page 7/23 =====
+View Identity Page
+
+View Identity Page
+
+
+Select an identity from Identities > Identity Warehouse, then use the View Identity page to view detailed inform-
+ation about each component ofthe identity for a selected user.
+
+The View Identity page contains the following option:
+
+
+
+ l Attributes Tab
+
+
+
+ l Entitlements Tab
+
+
+
+ l Application Accounts Tab
+
+
+
+ l Policy Tab
+
+
+
+ l History Tab
+
+
+
+ l Risk Tab
+
+
+
+ l Activity Tab
+
+
+
+ l User Rights Tab
+
+
+
+ l Events Tab
+
+Attributes Tab
+
+The View Identity > Attributes tab provides the basic user identity information such as firstname, last name, email,
+manager, and type, along with information about theirrole in the organization, such as job title,department, location,
+region, cost center, etc.
+
+You can also update information about the user from this tab, using these options:
+
+Edit
+
+ Select tomodify attribute values as needed. This option isrestricted based on user capabilities and isnot avail-
+ able to every user.
+
+Manager
+
+ The manager towhom the user reports directly. Select the manager's name to display the View Identity page for
+ that user.
+
+
+
+
+
+
+ SailPoint IdentityIQ Identity Management 4
+
+===== Page 8/23 =====
+View Identity Page
+
+Location Owner
+
+ The owner ofthe location where the user reports. Select the location owner's name to display the View Identity
+ page for that user.
+
+Region Owner
+
+ The owner ofthe region where user reports. Select the region owner's name todisplay the View Identity page for
+ that user.
+
+Change Password
+
+ Set or update a password forthe user. Ifyou want torequire the user to change their password the next time they
+ log in toIdentityIQ, select the checkbox below the password confirmation field.
+
+Change Forwarding User
+
+ The forwarding user is a user orworkgroup to whom work items assigned to this identity can be forwarded. You
+ can use the Start Forwarding and End Forwarding options to set a specific time period when forwarding
+ should occur, forexample, ifthe user is on leave.
+Entitlements Tab
+
+The View Identity > Entitlements tab listsallof the roles and entitlements for the selected user.
+
+By default, the identity'sdirect access isshown. You can select the Effective Access button at the top right tosee the
+identity'seffective access. Effective Access isany indirect access that is granted through another object, such as
+group membership, another role, or an unstructured target.
+
+You can use Advanced Search for both roles and entitlements, tofind access based on a variety of criteria,such as
+how itwas assigned, whether ishas been requested or is pending approval, and whether ithas been certified.
+
+The entitlements tab includes two sections: Roles and Entitlements.
+
+Roles
+
+A listof roles that were detected or assigned to the user manually or through role assignment rules. The Acquired
+column indicates whether the rolewas assigned or detected. Assigned roles are typically business-type roles that
+model how users are grouped by business function, including functional hierarchies, project teams, or geographic loc-
+ation. Detected roles are roles that are detected by IdentityIQ during the aggregation and correlation processes
+based on the entitlements assigned toan identity.
+
+Ifan activation or deactivation date isdefined for the role itisdisplayed in a message box below the role name.
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Identity Management 5
+
+===== Page 9/23 =====
+View Identity Page
+
+
+ Column Name Description
+
+ Name Name ofthe role.Select the name to view detailed information about the role
+ Description Brief description of the role.
+ Classifications Ifthe role has a classification that categorizes itas potentially allowing access to sensitive, pro-
+ tected, or otherwise significant data, an icon is shown to flag the classification.
+ Assigned By The user that assigned this role to the identity.
+ The assigned roles that permit a user tohave thisrole, either directly orindirectly. A direct per-
+ Allowed By mission isone in which the assigned role isa member ofthe permitted role. An indirect permission
+ isone in which the assigned role is on the permitted listfor the assigned role.
+ Acquired How the role was acquired: assigned or detected.
+ Application The application associated with the role.
+ Account Name The application account the role ismapped to.
+
+Entitlements
+
+A listof the applications that have entitlements to which the identity has access. Click the entitlement or application
+name to view the entitlement details, ifavailable.
+
+When an information icon is displayed, you can hover over itto view more details.
+
+Ifthe entitlement has a classification that categorizes itas potentially allowing access tosensitive, protected, oroth-
+erwise significant data, an icon isshown to flagthe classification
+
+Select Show only additional entitlements to limitthe listtoentitlements that are not included ina role that has been
+assigned to or detected forthe user.
+
+ Note: If any of the displayed roles orentitlements has elevated access, they willhave the Elev-
+ ated Access icon next to the name or entitlement. See Elevated Access for more information.
+
+Application Accounts Tab
+
+The View Identity > Applications Accounts tab listsaccount information forall the applications towhich the user
+has some level of access.
+
+ Column Name Description
+
+ The name of the applications towhich the user has some level of
+ Application access.
+ Select an application name toview detailed information.
+ Account The simple name used to identify the user on the application.
+ Name
+
+
+
+
+
+
+ SailPoint IdentityIQ Identity Management 6
+
+===== Page 10/23 =====
+View Identity Page
+
+
+ Column Name Description
+
+ Values can include:
+
+ Disabled – the account has been disabled by an admin atsome point.
+ Status
+ Locked – the user islocked out after too many password attempts.
+
+ Active – the account isnot disabled or locked.
+ Last Refresh Date on which the user identity information was last refreshed.
+
+To remove the link between the identity and the application in IdentityIQ, select the checkbox next to an account in the
+table and then select the Delete button. This action does not affect the user's account or entitlements on the applic-
+ation.
+
+To transfer the account to a different identity,select an account and the select the Move Account button. On the
+Select Account Owner dialog, select an existing identity from the listor create a new identity.
+
+To select an existing identity, enter the firstfew letters of the identity name to display a suggestion list,orselect the
+arrow next tothe fieldto display a listof allidentities to which you have access. When you are finished, select Save.
+Policy Tab
+
+The View Identity > Policy tab shows policy violations forthe user. The table liststhe policy and rules that are viol-
+ated.
+
+Policies use rules to enforce your organization's target conditions. For example, a separation of duty rule might be
+defined that disallows a single user from having roles that enable them to both request and approve purchase orders.
+
+For more information about policy violations, see the Policies Guide.
+
+The Policy tab includes the following information:
+
+ Column Name Description
+
+ Detected The date when the policy violation was detected.
+ Policy The policy that isviolated.
+ Policy Violation The owner of the policy. The owner is assigned during the policy definition pro-
+ Owner cess.
+ The specific rule that isbeing broken to cause the violation in the policy.
+
+ Select a rule to display the following rule information:
+
+ Rule Policy Description – brief description of the violation as defined with the
+ policy.
+
+ Policy Violation Owner – the owner of the policy with which you are inviol-
+ ation.
+
+
+
+
+
+ SailPoint IdentityIQ Identity Management 7
+
+===== Page 11/23 =====
+View Identity Page
+
+
+ Column Name Description
+
+ Rule Description – briefdescription of the rule from the rule definition page.
+
+ Compensating Control – any compensating controls associated with this
+ rule.
+
+ Correction Advice – advice on how to correct the violation as entered when
+ the rule was created.
+ Summary The reason forthe violation.
+
+History Tab
+
+The View Identity > History tab provides a history of user data. Tracking identityscores over time enables you to
+identity patterns ortrends in the activity ofa selected user.
+
+The History tab contains two sections: Identity Snapshots and Identity Certification History.
+
+Identity Snapshots
+
+Snapshots are generated when a certification isrun, and when the Maintain identity histories option isused inthe
+identity refresh task.
+
+The frequency with which snapshots are generated is set in gear > Global Settings > IdentityIQ Configuration on
+the Identities tab. See IdentityIQ Global Settings.
+
+ Column Description
+ Name
+
+ The dates of the identity snapshots.
+ Snapshot Select a snapshot date from the table to view details about attributes, roles, enti-
+ Date tlements, and application accounts inthe View Identity History page. See View
+ Identity History below.
+ Roles A listofthe IT roles assigned tothis user. The snapshot does not display Business
+ roles.
+
+Identity Certification History
+
+Select any row in the Identity Certification History panel to see an overview of that specific portion's certification his-
+tory.
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Identity Management 8
+
+===== Page 12/23 =====
+View Identity Page
+
+
+ Column Description
+ Name
+
+ Displays an icon that indicates the decision made on the certification. Options
+ Decision include Approved, Revoked, Allowed Exception, or Delegated.
+
+ For detailed descriptions of decisions, see the Certifications documentation
+ Type The type of certification. For example, Role or Additional Entitlement.
+ Description Brief description of the certification.
+ Application The application to which the certification applies.
+ Account The account name to which the certification applies.
+ Name
+ Actor The person who signed off on the certification.
+ Date The date when the certification decision was made.
+ Comments Any comments entered during the decision phase ofthe certification.
+
+View Identity History Page
+
+Select a snapshot date from the Identity Snapshots table toview details in the View Identity History page. The View
+Identity History page contains user information from the specific date and time listed on the top of the page.
+
+The View Identity History page contains four tabs:
+
+
+
+ l Attributes – the identity attributes.
+
+
+
+ l Roles – roles assigned to this user and all associated entitlements.
+
+
+
+ l Extra Entitlements – allentitlements assigned to thisuser that are not part of a role assigned to the user.
+
+
+
+ l Application Accounts – allapplications on which this user has an active account, along with the account
+ name, and the user’s fullidentity.
+
+Risk Tab
+
+The View Identity > Risk tab provides a current composite identity riskscore with a listofthe raw and compensated
+riskscore for each category used toderive the composite score. This page also provides a listof the top composite
+score contributors which provide further information on how the score was derived. This information helps toprovide
+clues on the areas of highest risk. These scores are based on the latest information discovered.
+
+IdentityIQ uses a combination of base access riskand compensated scoring to determine the overall Identity Risk
+Scores, or Composite Risk Score, used throughout the application.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Identity Management 9
+
+===== Page 13/23 =====
+View Identity Page
+
+
+Base access risk score is a measure of inherent user access risk. Base riskscores are set on each role,entitlement,
+and policy defined. This type of score ranges from 0 (lowest risk) to 1000 (highest risk).
+
+A series of compensating factors are applied toeach base risk score to calculate compensated scores. These com-
+pensated scores are then weighted using a maximum contribution percentage and combined to form an overall Com-
+posite Risk Score for each user.
+
+The compensating factors and weighted values enable you toidentify high risk users based on more than the roles
+they are assigned in your enterprise.
+
+For more information about risk modeling inIdentityIQ, see the Risk Guide.
+Activity Tab
+
+The View Identity > Activity tab provides a listof allapplications that have activitymonitoring enabled and to which a
+user has access, including the roles associated with those applications and the activities performed.
+
+The Recent Activities table initiallyliststhe last ten (10) actions performed. Select See All Activities to include allof
+the activities stored by IdentityIQ on the table.
+
+From thistab you can also enable activity monitoring for thisuser on specific applications that do not have activity mon-
+itoring enabled at the role level.
+
+ Note: Changes made to activity monitoring do not appear until identity aggregation isperformed
+ from the task page, or a scheduled identity aggregation takes place.
+
+To enable activity monitoring for this user on the associated applications and roles, select the Activity Monitoring
+checkbox next to the Activities Settings table.
+
+To display additional activityinformation in the Activity Details panel, select an activityentry in the Recent Activities
+list.
+
+The View Identity Activity tab contains two sections: Activity Settings and Recent Activities.
+
+Activity Settings
+
+
+ Column Description
+
+ Activity Monitoring Enable activity monitoring for this user on the specified application.
+ Checkbox Ifthis box isnot active, activity monitoring is already enabled at the role
+ level or the application does not allow activitymonitoring.
+ Applications The listof applications to which this user has some level of access.
+ The listof roles that are allof the following:
+ Activity Enabled Roles
+ l Assigned to this user
+
+
+
+
+
+
+ SailPoint IdentityIQ Identity Management 10
+
+===== Page 14/23 =====
+View Identity Page
+
+
+ Column Description
+
+
+ l Associated with the application
+
+
+
+ l Have activity monitoring enabled
+
+
+ Activity monitoring is enabled when roles are defined.
+
+Recent Activities
+
+
+ Column Description
+
+ Date The date on which the activity occurred.
+ Action The activityperformed on the application. For example, Login, Update,
+ Delete.
+ Target The specific part of the application that was targeted by the activity. For
+ example, the name of a particular database that was updated.
+ Application The application on which the activitywas performed.
+ Result The result ofthe activity.For example, Success or Failure.
+
+User Rights Tab
+
+The View Identity > User Rights tab enables you to set the capabilities and define controlled scope for the user. See
+the Identity Management Guide.
+
+Capabilities determine which features inIdentityIQ the user can access. A complete listof IdentityIQ default cap-
+abilitiesand their associated features isavailable on Compass inthe IdentityIQ Rights and Capabilities - Definitions
+document.
+
+ Note: The scope feature MUST be enabled for the scope information to display.
+
+
+ Field Name Description
+
+ The SailPoint capabilities available. The capabilities currently assigned
+ User Capabilities tothe user are highlighted on the list.
+
+ Use the Ctrl and Shift keys toselect multiple capabilities.
+ Assigned Scope The scope the identity belongs to.
+ Select thisoption to manage whether the identity can access the scope
+ Can Access Assigned towhich they are assigned.
+ Scope
+ l True – the user can access objects within the scope to which they
+
+
+
+
+
+
+ SailPoint IdentityIQ Identity Management 11
+
+===== Page 15/23 =====
+View Identity Page
+
+
+ Field Name Description
+
+ are assigned.
+
+
+
+ l False – the user cannot access objects within the scope to which
+ they are assigned.
+
+
+
+ l Use System Default (<value>) – the user's access isbased on the
+ value of the setting defined in the Global Settings forIdentityIQ.
+ The scopes the user has access to.Ifscopes are active, identities can
+ only see objects that are within the scopes they have access to.
+
+ Assign scopes to the identity using the fieldat the top of the Authorized
+ Scopes listbox.
+
+
+
+ l Select the arrow to the right of the fieldto display a listof all
+ Authorized Scopes scopes defined.
+
+
+
+
+ l Enter a few letters in the field todisplay a listof allscopes that
+ start with that letterstring.
+
+ Depending on configuration, objects with no scope assigned might be vis-
+ ible toall users with the correct capabilities.
+ Workgroups The workgroups to which this identity belongs
+ IdentityIQ capabilities assigned toa workgroup to which thisuser
+ Indirect Rights > Cap- belongs.
+ abilitiesAssigned by
+ Workgroups Workgroup members automatically have the capabilities and scopes
+ assigned to the workgroup.
+
+
+ Note: the System Administrator has access toall IdentityIQ features including Global Settings
+ and Debug.
+
+Events Tab
+
+The View Identity > Events tab enables you to view events that are scheduled for the user as well as detailed access
+request history.
+
+The Events tab includes two sections: Events and Access Requests.
+
+Events
+
+The Events listhas two sections:
+
+
+
+
+
+ SailPoint IdentityIQ Identity Management 12
+
+===== Page 16/23 =====
+View Identity Page
+
+
+
+ l Future Events shows scheduled role sunrise and sunset events. See Roles, Groups, and Populations Guide.
+
+
+
+ l Past Events shows IdentityTriggers and role sunrise/sunsets events that have been executed.
+
+
+Select an event and clickDelete tocancel that event and remove the schedule from the list.
+
+ Field Name Description
+
+ Created On The date when the event schedule was created.
+ Created By The identity that scheduled the event.
+ Due On The date when the event isscheduled to occur.
+ Summary A briefsummary of the event that ispulled from the business
+ process with which itis associated.
+
+Access Requests
+
+Select an item in the listto display detailed information about requested items and any pending actions that stillneed
+tobe taken on that request. From the detailed history panel, you can navigate further into the request to expand the
+Details view, review the actual access request, and send messages to owners of the request reminding them that their
+action is required.
+
+Select the X icon to cancel a request.
+
+To search forspecific access requests, select Search toexpand the search criteria.Specify the search criteriaand
+then select Search. To clear the criteria fora new search, select Reset.
+
+ Column Name Description
+
+ Access Request ID Identification number assigned to the access request.
+ Priority Specifies the priority levelto which the access request was
+ designated.
+ Type The type ofaccess request.
+ Description The a brief description ofthe access request.
+ Requester The name of the user who assigned thiswork item to you.
+ Requestee The name of the user who was assigned this access request.
+ Request Date The date the request was made.
+ Status of the request. Status levels include:
+
+ Approve and Provision – request was received but no action
+ Current Step has taken place.
+
+ Approved – request was approved. Additional action may be
+ needed to complete the request.
+
+
+
+
+
+
+ SailPoint IdentityIQ Identity Management 13
+
+===== Page 17/23 =====
+View Identity Page
+
+
+Column Name Description
+
+ Rejected – request was denied.
+
+ Cancelled – request was cancelled.
+
+ Completed Pending Verification – the manual action forthis
+ request was completed, however the verification procedure
+ has yet to have been run.
+
+ End – all actions required forthis access request have been
+ fulfilled.
+Completion Date The date when the work item was completed.
+ Status of the request execution. Status levels include:
+
+ Executing – the request is going through the business pro-
+ cess and has not been completed.
+
+Execution Status Verifying – the request has finished the business process and
+ iswaiting for the Provisioning Scanner to verifyit.
+
+ Terminated – the request was terminated before itwas com-
+ pleted.
+
+ Completed – the request was completed and verified.
+External Ticket ID Identifies any external tickets related to the request.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Identity Management 14
+
+===== Page 18/23 =====
+Identity Correlation
+
+Identity Correlation
+
+
+Use the Identity Correlation page to maintain the IdentityIQ Identity Cubes which contain information about an indi-
+vidual user's entitlements, activity, and associated business context. Identity Cubes are created when identity aggreg-
+ation is performed on your identity authoritative source. An example of an identity authoritative source is a human
+resources application that is the main repository foremployee information and the data source that isused tobuild
+most Identity Cubes.
+
+ Note: If user accounts are discovered on at-riskapplications that do not correlate to the Iden-
+ tityIQ identities that were created based on the employee information in your identity author-
+ itative sources, itmay indicate a risksituation that needs to be addressed.
+
+Because each Identity Cube is associated with an identity authoritative source, itprovides a single representation of
+each managed identity and associated user accounts. However, user accounts on applications may not correlate to
+IdentityIQ identities.Some examples include the following:
+
+
+
+ l An employee who no longer works for your enterprise. They were removed from the human resources applic-
+ ation, however, their account was not removed from every application to which they had access.
+
+
+
+ l Mismatched orredundant accounts. Accounts that were created on different applications atdifferent times or
+ by different administrators using variations of the employee's name; Tom Jones, Thomas Jones, and tjones.
+
+To display detailed information about the account or identity, click an account ID or name. The details panels for an
+account and an identity can be open at the same time forcomparison before you perform a merge.
+
+Accounts that are manually assigned to identities from this page can be reassigned ifnecessary from the identity
+Application Accounts tab. See Application Accounts Tab.
+
+Use the Correlated column of the Select Target Identity panel to manually change the correlation status of specific
+accounts.
+
+The Identity Correlation page is divided intotwo panels:
+
+
+
+ l Select Uncorrelated Accounts – a listof the accounts on a specific application that are not correlated with an
+ account detected on an authoritative source. See Select Uncorrelated Accounts Panel .
+
+
+
+ l Select Target Identity – a listof allaccounts detected on allapplications monitored by IdentityIQ. See Select
+ Target Identity Panel.
+
+Make selections in each panel to perform manual correlation. See How to Perform Manual Identity Correlation.
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Identity Management 15
+
+===== Page 19/23 =====
+Identity Correlation
+
+Select Uncorrelated Accounts Panel
+
+The Select Uncorrelated Accounts panel displays a listof the accounts on a specific application that are not correlated
+with an account detected on an authoritative source. From this listyou can select accounts tomerge with identities.
+
+Select an application from the Search dropdown listor enter the firstfew letters ofan application name and make a
+selection from the suggest box to populate the table. Use the filteringoptions to reduce the number of accounts dis-
+played at one time.
+
+Use the Included Account Types filtertoexclude specific account types from the uncorrelated list.For example, cer-
+tain account types such as Service or Privileged accounts may never be assigned tospecific users and, therefore,
+should never be correlated with a specific Identity Cube. To exclude a specific account type from the uncorrelated
+accounts list,clickIncluded Account Types and clear the checkbox associated with that account type on the drop-
+down list.
+
+Click an Account ID to display detailed account information.
+
+The Select Uncorrelated Accounts panel contains the ID and user name associated with the account and the date the
+account was created, along with the following options:
+
+ Note: The columns on this page can be configured and may display differently inyour enterprise.
+
+
+ Column Description
+
+ Account ID Unique identifier associated with the account
+ Account Name Name associated with the account.
+ Create Date The date when the account was created.
+ Inactive Account Inactive accounts have a value of true.
+ This column can be used foraccount type filtering.
+ Last login The date when the account was last accessed.
+ Service Account Mark accounts as service accounts ifappropriate.
+ This column can be used foraccount type filtering.
+ Privileged Account Privileged accounts have a value of true.
+ This column can be used foraccount type filtering.
+
+Select Target Identity Panel
+
+The Select Target Identity panel contains a listof allaccounts detected on allapplications that IdentityIQ monitors.
+From this listyou can select an identitywith which to merge the uncorrelated accounts on the selected application.
+
+Use the filteringoptions to display specific identities or click the filtericon to display every identity inIdentityIQ. Enter a
+letterstring and click the search icon to search by user name or click Advanced Search formore options.
+
+Click a name to display detailed information about the selected identity.
+
+
+
+
+ SailPoint IdentityIQ Identity Management 16
+
+===== Page 20/23 =====
+Identity Correlation
+
+
+The Select Target Identity panel contains the a variety of information about the identity, including the following:
+
+ Note: The columns on this page can be configured and may display differently in your enterprise.
+
+
+ Column Description
+
+ Note: This column is read
+ only. Making changes
+ here does not change the
+ state of the account.
+ Correlated
+ The correlation status ofthe identity.
+ Accounts marked as correlated no longer dis-
+ play on the uncorrelated accounts listor
+ reports.
+ Manager Manager listed forthis identity.
+ Email Full email address.
+ Inactive Current status of the identity account, active or
+ inactive.
+ Last Refresh The date when the last identity refresh was per-
+ formed on this identity cube.
+ Advanced Search Options:
+ Standard Attributes:
+ Standard attributes include name, username, email, and manager fields. Enter a letterstring in
+ any of these fieldsto return a listofidentities that have a matching string in that identity attribute
+ value.
+ For example, typing st in the firstname field returns Steve and Hester.
+ True – only show active identities
+ Inactive
+ False – only show inactive identities
+ True – only show correlated identities
+ Correlated
+ False – only show uncorrelated identities
+ Searchable Attributes:
+ Searchable attributes are defined during configuration and vary for each installation of the
+ product.
+
+How to Perform Manual Identity Correlation
+
+To perform identity correlation complete the following steps:
+
+
+
+
+
+
+ SailPoint IdentityIQ Identity Management 17
+
+===== Page 21/23 =====
+Identity Correlation
+
+ 1. Click Identities > Identity Correlation.
+
+ 2. Choose which application to correlate identities for: select an application from the Search dropdown listor
+ enter the firstfew letters of an application name and make a selection from the suggest box to populate the
+ table. This table contains a listofthe accounts on a specific application that are not correlated with an account
+ detected on an authoritative source.
+
+ 3. Select the accounts to merge with identities that were created during the aggregation of your authoritative
+ sources.
+
+ 4. InSelect Target Identity, select an identity to merge with the uncorrelated accounts selected instep 3. Use
+ the filteringoptions to display specific identities or click the filtericon to display every identity inIdentityIQ. Enter
+ a letterstring and clickthe search icon to search by user name or click Advanced Search for more options.
+
+ 5. Select an identity account to merge with the accounts selected in the Select Uncorrelated Accounts panel.
+
+ 6. Click Perform Merge toperform the merge for these identities.
+
+The merge removes the accounts from the Select Uncorrelated Accounts table.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Identity Management 18
+
+===== Page 22/23 =====
+Rights and Capabilities for Identities
+
+Rights and Capabilities for Identities
+
+
+IdentityIQ uses a security model based on rights that are granted to users, tocontrol access toproduct features.
+These rights (also called SPRights) turn on or off menus, tools, pages, and tabs inthe UI,and thus can limitthe
+actions users can take within IdentityIQ.
+
+Capabilities group one or more access rights within IdentityIQ, and are used to group rights logically by job function,
+streamlining their assignment to users or workgroups.
+
+Rights tend tobe limited and granular, and are often used in combination to provide fullaccess to a feature or area of
+the UI. The granular nature of rights helps administrators fine-tune access – allowing them, forexample, togive read-
+or-view-only privileges to some users ina given feature, but to allow other users fullaccess tothat feature, including
+creating, editing, and deleting data.
+
+There are several ways capabilities can be assigned to users, orused inother ways in IdentityIQ:
+
+
+
+ l Identities can have capabilities assigned directly to them. This isdone via Identities > Identity Warehouse >
+ User Rights tab
+
+
+
+ l Workgroups can have capabilities assigned to them, and users who are members of the workgroup inherit the
+ capabilities. This is done via Setup > Groups > Workgroups tab
+
+
+
+ l Certifications can include the capabilities assigned to users as part ofthe access being reviewed and cer-
+ tified.
+
+
+
+ l Quicklink Populations can include assigned capabilities as part of their membership criteria;in other words,
+ you can create Quicklink Populations (dynamic scopes) based on assigned capabilities.
+
+Mapping Rights to Capabilities
+
+IdentityIQ provides a wide variety of pre-defined capabilities out of the box. The rights associated with each capability
+can vary from release to release of IdentityIQ. With each release, SailPoint publishes a matrix ofrights and cap-
+abilitieson Compass. You can find a listofall these matrices here: IdentityIQ Capabilities Matrix - AllVersions
+
+Inaddition, a document on Compass provides definitions of allthe individual SPRights in IdentityIQ. See IdentityIQ
+Rights and Capabilities -Definitions.
+
+You can view the rights associated with each capability at the object level,via the Debug Pages. In Debug, choose
+Capability as the object type, then select a capability to view. Rights are defined inthe <RightRefs> element.
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Identity Management 19
+
+===== Page 23/23 =====
+Manage IdentityQuicklinks
+
+Manage Identity Quicklinks
+
+
+
+ Note: This feature requires Lifecycle Manager.
+
+You can use Quicklinks tocreate, edit and view identities.See How to Manage Identities inthe IdentityIQ Lifecycle
+Manager guide.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQIdentity Management 20

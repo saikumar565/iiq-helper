@@ -1,0 +1,4678 @@
+===== Page 1/75 =====
+ System Administration
+
+
+ Version:8.4
+
+ Revised:September2023
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thisdocument and the informationcontained herein isSailPointConfidentialInformation
+
+===== Page 2/75 =====
+Copyright and Trademark Notices
+
+Copyright © 2023 SailPoint Technologies, Inc.  All Rights Reserved.
+
+Alllogos, text,content, including underlying HTML code, designs, and graphics used and/or depicted on these written
+materials or in thisInternet website are protected under United States and international copyright and trademark laws
+and treaties, and may not be used or reproduced without the prior express written permission of SailPoint Tech-
+nologies, Inc.
+
+“SailPoint Technologies,” (design and word mark), “SailPoint,” (design and word mark), "Identity IQ,” “IdentityNow,”
+“SecurityIQ,” “Identity AI,” “Identity Cube,” and “SailPoint Predictive Identity” are registered trademarks of SailPoint
+Technologies, Inc. “Identity isEverything,” “The Power of Identity,” and “Identity University” are trademarks of
+SailPoint Technologies, Inc. None of the foregoing marks may be used without the prior express written permission of
+SailPoint Technologies, Inc. Allother trademarks shown herein are owned by the respective companies or persons
+indicated.
+
+SailPoint Technologies, Inc. makes no warranty ofany kind regarding these materials or the information included
+therein, including, but not limited to,the implied warranties ofmerchantability and fitness for a particular purpose.
+SailPoint Technologies shall not be liable for errors contained herein or direct, indirect, special, incidental orcon-
+sequential damages inconnection with the furnishing, performance, or use of thismaterial.
+
+Patents Notice. https://www.sailpoint.com/patents
+
+Restricted Rights Legend. All rights are reserved. No part ofthis document may be published, distributed, reproduced,
+publicly displayed, used to create derivative works, or translated to another language, without the prior written consent
+ofSailPoint Technologies. The information contained inthis document issubject to change without notice.
+
+Use, duplication or disclosure by the U.S. Government is subject to restrictions as set forth insubparagraph (c) (1) (ii)
+ofthe Rights inTechnical Data and Computer Software clause at DFARS 252.227-7013 for DOD agencies, and sub-
+paragraphs (c)(1) and (c)(2) ofthe Commercial Computer Software Restricted Rights clause at FAR 52.227-19 for
+other agencies.
+
+Regulatory/Export Compliance. The export and re-export of this software iscontrolled for export purposes by the U.S.
+Government. By accepting this software and/or documentation, licensee agrees to comply with allU.S. and foreign
+export laws and regulations as they relate to software and related documentation.  Licensee will not export or re-
+export outside the United States software or documentation, whether directly or indirectly, to any Prohibited Party and
+willnot cause, approve or otherwise intentionally facilitate others inso doing. A Prohibited Party includes: a party in a
+U.S. embargoed country or country the United States has named as a supporter of international terrorism; a party
+involved in proliferation; a party identified by the U.S. Government as a Denied Party; a party named on the U.S.
+Department of Commerce’s Entity Listin Supplement No. 4 to 15 C.F.R. § 744; a party prohibited from participation in
+export orre-export transactions by a U.S. Government General Order; a party listed by the U.S. Government’s Office
+ofForeign Assets Control as ineligible to participate in transactions subject toU.S. jurisdiction; or any party that
+licensee knows or has reason toknow has violated or plans to violate U.S. or foreign export laws or regulations.
+Licensee shall ensure that each of itssoftware users complies with U.S. and foreign export laws and regulations as
+they relate to software and related documentation.
+
+===== Page 3/75 =====
+Contents
+
+
+ Using the Administrator Console 1
+
+ Manage Task Results 1
+
+ Manage Provisioning Transaction Results 5
+
+ Monitoring Your Environment 7
+
+ About Debug Pages 21
+
+ Read-Only Access toDebug Pages and Administrative Information 22
+
+ Auditing Changes Made inthe Debug Pages 23
+
+ Partitioning 24
+
+ How Partitioning Works 24
+
+ Loss Limits 25
+
+ Configuring Partitioning Request Objects 25
+
+ Alerts 27
+
+ Alerts Page 27
+
+ Create AlertDefinition 28
+
+ Edit AlertDefinitions 30
+
+ About Data Extract 33
+
+ Configuring Data Extraction 33
+
+ Configuring Data Transformation 35
+
+ Importing Data Extract and Transform Configurations 49
+
+ Provisioning a Data Extract Task Destination Queue 49
+
+ Enabling and Configuring Data Extract 49
+
+ Setting Up Data Extract Task 50
+
+ Working with the Data Extract Message Broker 51
+
+ Running a Data Extract Task 54
+
+ Viewing Data Extract Task Results 54
+
+ Validating Data Extract Results 55
+
+ Intercept Delete Functionality 56
+
+ Data Extract Auditing 56
+
+ Sample Transform YAML Config 56
+
+===== Page 4/75 =====
+ Allowed Properties 62
+
+ IdentityIQ Object Model and Usage 64
+
+ Using Data Extract with Sensitive Data 65
+
+Rules and Scripts in IdentityIQ 66
+
+ Types of Rules and Scripts 66
+
+ How Rules Are Created 67
+
+ Type Attributes in Rules 67
+
+ Using the Rule Editor 67
+
+ Rule Re-Use 68
+
+ Restricting Access to the Rule Editor 68
+
+ Importing Rule XML 69
+
+ Sample Rule Files 69
+
+ Rule Libraries 69
+
+ API Reference forRules 70
+
+ Testing Rules 70
+
+Working With Incident Codes 71
+
+===== Page 5/75 =====
+Using the Administrator Console
+
+Using the Administrator Console
+
+
+Use the Administrator Console link,under the gear icon, toaccess the Administrator Console and view the Task, Pro-
+visioning, and Environment monitoring tables.
+
+
+
+ l Manage Task Results
+
+
+
+ l Manage Provisioning Transaction Results
+
+
+
+ l Monitoring Your Environment
+
+
+Access to the Administrator Console is controlled with IdentityIQ rights.
+Manage Task Results
+
+Use the Tasks table to view host affinitycheck run time data. From thispage you can also postpone a scheduled task,
+terminate a running task, ordump a stack trace ofa running task. The stack trace istypically used when a task is run-
+ning long and diagnostics are needed.
+
+Use the tabs at the top of the table tolimityour view by task status: Active Tab, Scheduled Tab, or Completed Tab.
+Use the Filteroptions or search fieldto further limitthe tasks displayed.
+
+Postponing Tasks
+
+Tasks which are scheduled to run in the future can be postponed fora selected amount of time.
+
+ 1. Click the Scheduled tab tosee future scheduled tasks.
+
+ 2. Click the calendar button (Postpone Task) inthe Actions column.
+
+ 3. Choose the date and time when the task should run again and clickSubmit.
+
+The system willautomatically prevent any instances of that task from running untilthe designated time.
+
+After the designated time has passed, the task willresume on itsnormal schedule. Itwillnot be run immediately atthe
+time specified in the postponement.
+
+Terminating a Task
+
+Tasks which are currently executing can usually be terminated from the IdentityIQ UI.
+
+
+
+
+
+
+
+
+
+ SailPoint System Administration 1
+
+===== Page 6/75 =====
+Using the Administrator Console
+
+ 1. Click the Active tab on the Administrator Console Tasks page tosee currently running tasks.
+
+ 2. Ifa task isrunning longer than expected or otherwise needs to be immediately terminated, click the X button in
+ the Actions column to send a terminate request to the task.
+
+Allof SailPoint's out-of-the-box tasks have logic in them that will respond toa terminate request and shut down grace-
+fullyat the next logical breakpoint. Custom tasks should also be written tohandle a terminate request.
+
+This terminate action can also be done from the Task Results page in Setup > Tasks > Task Results by right-click-
+ing the task and clicking Terminate. However, permissions which grant access to the Administrator Console are dif-
+ferent than the permissions required forthe Setup > Tasks page, so some users may only have access to this feature
+from the Administrator Console. See the IdentityIQ Tasks documentation formore information.
+
+Requesting a Stack Trace
+
+When troubleshooting abnormal task behavior (most notably, long-running tasks), itmay be helpful toget a stack
+trace of the task's current execution.
+
+ 1. Click the Active tab ofthe Administrator Console Tasks page to see currently running tasks.
+
+ 2. Click the </> button in the Actions column on any running task row to generate a stack trace forthat task. A dia-
+ log box appears, to confirm that the stack trace has been requested and willbe available soon.
+
+ 3. The stack trace willbe generated and the </> button willbe colored green when itisavailable.
+
+ 4. Click the green </> button to view the stack trace in a dialog box. You can generate another stack trace forthe
+ same task, ifitisstillexecuting, with the Request New Stack Trace button in that dialog box.
+
+Note that workflows also generate task result objects which, are included on this page. Since the Stack Trace option
+does not apply to a workflow, this option isnot enabled for those entries in the list.
+
+Active Tab
+
+This tab displays all ofthe tasks that are currently running.
+
+Use the Actions column to terminate a running task or request a stack trace, ifa task isrunning long and you would
+liketo see diagnostics.
+
+Name
+
+ Name ofthe task
+
+Type
+
+ Task type
+
+
+
+
+
+
+ SailPoint System Administration 2
+
+===== Page 7/75 =====
+Using the Administrator Console
+
+Start Date
+
+ Name of the task
+
+Owner
+
+ The task owner, not necessarily the identity who requested the task be run
+
+Host
+
+ Host on which the task is currently running
+
+Current Runtime
+
+ How long the task has been actively running
+
+Average Runtime
+
+ The time that thistask has historicallytaken to complete
+
+Scheduled Tab
+
+This tab displays allof the tasks that are scheduled to run in the future,including those thatare scheduled torun peri-
+odically,for example Perform Maintenance.
+
+Use the Actions column to postpone a scheduled task or delete a schedule. No instance ofa postponed task willbe
+performed untilafter the selected date.
+
+Name
+
+ Name of the task
+
+Type
+
+ Task type
+
+Task
+
+ Name of the task
+
+Host
+
+ Host on which the task is scheduled torun
+
+Next Execution
+
+ The next time this task isscheduled to run
+
+
+
+
+
+
+ SailPoint System Administration 3
+
+===== Page 8/75 =====
+Using the Administrator Console
+
+Last Execution
+
+ The lasttime this task was executed
+
+Last Result
+
+ The resultof the lastrun, for example Success or Failed
+
+Owner
+
+ The task owner, not necessarily the identitywho requested the task be run
+
+Completed Tab
+
+This tab displays allofthe tasks that have completed, regardless ofthe result.
+
+Name
+
+ Name of the task
+
+Type
+
+ Task type
+
+Result
+
+ The resultof the lasttest run
+
+Start Date
+
+ The date and time at which thistask began
+
+Date Complete
+
+ The date and time at which thistask stop running
+
+Owner
+
+ The task owner, not necessarily the identitywho requested the task be run
+
+Host
+
+ Host on which the task was run
+
+Average Runtime
+
+ The time that thistask has historicallytaken tocomplete
+
+
+
+
+
+
+ SailPoint System Administration 4
+
+===== Page 9/75 =====
+Using the Administrator Console
+
+Runtime
+
+ The actual runtime
+
+Diff from Average
+
+ The difference between the actual and average runtimes
+Manage Provisioning Transaction Results
+
+
+ This feature can be disabled and might not appear in your instance of IdentityIQ. Contact your
+ system administrator for details.
+
+Use the Provisioning Transactions table to view the status of allprovisioning transactions in your implementation of
+IdentityIQ: connectors, manual work items, and IdentityIQ operations.
+
+To access the Provisioning Transaction table, clickthe gear icon > Administrator Console > Provisioning.
+
+Four pages of data are available forreview: All, Failure, Success, and Pending. The firstpage (All),which isdis-
+played by default, shows alllogged provisioning transactions. The other three pages display transactions which ended
+infailure, success, and pending statuses (retry) respectively, depending on the logging configuration, which is
+described in the section below.
+
+Managing the Contents of the Provisioning Transaction Table
+
+By default, the Provisioning Transaction table only displays transactions that have resulted in a failurecondition, but it
+can be configured todisplay allprovisioning transactions which are processed through IdentityIQ.
+
+To change this default, change the logging level for Provisioning Transactions:
+
+ 1. Click the gear icon > Global Settings > IdentityIQ Configuration > Miscellaneous.
+
+ 2. In the Provisioning Transaction Log Settings section, change Maximum Log Level to Retry or Success.
+
+
+
+ l Retry means the system willlog provisioning transactions that return a Failure result or a Retry result
+ (an error message indicating a temporary condition that means a laterretry of the provisioning operation
+ willlikely succeed and should therefore be auto-retried after a delay interval).
+
+
+
+ l Success means the system willlog allprovisioning transactions, regardless of theirprovisioning result
+ status values.
+
+
+
+ l Days before provisioning transaction event deletionNote.
+
+ 3. Optionally, set a Days before provisioning transaction event deletion value. Ifyou set the Maximum Log
+ Level toSuccess, the provisioning transaction log willrecord high volumes ofrecords.Therefore, itis
+
+
+
+
+
+ SailPoint System Administration 5
+
+===== Page 10/75 =====
+Using the Administrator Console
+
+
+ particularly important in that case to also set the Days before provisioning transaction event deletion value
+ tothe number of days you want to retain these records so they willbe automatically purged after that time. Leav-
+ ing thisvalue as the default "0" means these records willnever be deleted, which can fillyourdatabase quickly.
+ Even when using a Retry or Failure maximum log level, this value should be set to purge records you no longer
+ need.
+
+ 4. To turn off provisioning transaction logging entirely, clear the Enable Provisioning Transaction Log box.
+
+ 5. Save your changes.
+
+Use the tabs atthe top of the table to limityour view by transaction status: All,Failure, Success, orPending. Use the
+Filter options or search fieldto further limit the transactions displayed.
+
+Reporting on Provisioning Transactions
+
+Use the report/download button to launch a Provisioning Transaction Object report in the background. From the
+Report Launched window, you can click Get Email Notification to receive an email when the report is complete, or
+View Report to display the Report Results page.
+
+The information on this page isalso available intwo reports available from the Intelligence > Reports menu: the Pro-
+visioning Transaction Object Report and the Detailed Provisioning Object Report. See the Reports doc-
+umentation for more information.
+
+Click the information icon for any transaction to view detailed information. The Transaction Details window displays all
+available details about the selected provisioning transaction, including attribute-level information about the request
+and any applicable error messages.
+
+The Transaction Details window provides very detailed information, including the reasons for a Failed orPending
+status. After viewing, you can take the appropriate actions to correct the reasons forthe failureor delay.
+
+Forcing Retries for Retryable Errors
+
+Retryable errors are recorded as Pending transactions in the Provisioning Transactions table. Though these trans-
+actions willautomatically retry aftera configured interval, an administrator can override the retry interval and force a
+transaction to retry immediately. For example, suppose a network error causes a retryable error. Ten minutes later,
+the problem isfixed but the wait period on the retry isset for the transaction toretry after two hours. The administrator
+can speed up the process by forcing the retry tooccur immediately after the network issue is resolved.
+
+For any Pending transaction, a Retry button isshown in the Actions column. These retryable transactions appear on
+both the All page and the Pending page, and can be forced to retry from either page.
+
+To force an immediate retry of a pending transaction, clickitsRetry button. The Retry Launched pop-up window
+appears, confirming that the retry has begun.
+
+
+
+
+
+
+
+ SailPoint System Administration 6
+
+===== Page 11/75 =====
+Using the Administrator Console
+
+
+Failed transactions cannot be retried;you must use the override option tocreate a new work item for those trans-
+actions.
+
+Overriding Failed Transactions with Manual Work Items
+
+Transactions which appear as Failures are considered permanent failures and willnever be retried automatically by
+the system. Likewise, they cannot be forcibly retried from the Provisioning Transactions table user interface. However,
+they can be reprocessed manually by creating a manual work item assigned toa person to complete the request out-
+side of IdentityIQ's automated operations. In short, the transaction reprocessing isdone justas ifitwere a provisioning
+request fora disconnected system (an application with no automated provisioning channel from IdentityIQ).
+
+The administrator can view failed transactions on the All and Failure pages. To reprocess a failed transaction through
+a manual work item, click Override inthe Actions column.
+
+Next, choose the user to whom the manual work item should be assigned, and enter comments to communicate with
+that person; the comments are included in the manual work item. The choices for assignee are the Application
+Owner for the target application, yourself, or Other (another user). Ifyou choose Assign to Other, you willbe promp-
+ted to select the target user from a list.
+
+Finally,click Override on thispop-up window to complete the failure override process and generate the manual work
+item. An Override Success message appears , confirming that the override has been completed and the manual work
+item has been generated.
+
+The original transaction remains inthe Provisioning Transactions table with a Failure status, for historical information
+purposes, though itno longer offers the Override option because the override has already been done. A new Pro-
+visioning Transactions table entry gets created for the override manual work item. Both the new manual record and
+the failed auto record reflect the umber, so they can be connected through that information as needed.
+
+ Note: Just likewith manual work items for provisioning to disconnected systems (systems with no
+ automated provisioning channel from IdentityIQ), override work items are treated as successfully
+ completed in the Provisioning Transactions table when the manual work item generated. Con-
+ sequently, the Success override transaction appears inthe Provisioning Transactions table
+ immediately.
+
+Monitoring Your Environment
+
+The Environment Monitoring console in the Administrator console provides insight into each defined application's
+health and the status of your modules and extensions via a single dashboard. This helps administrators of both on-
+premises and cloud-based installations get insights into a number of environment statisticsfor both hosts and applic-
+ations, and diagnose connectivity issues within the environment.
+
+Access the Environment Monitoring console by following these steps:
+
+
+
+
+
+
+
+ SailPoint System Administration 7
+
+===== Page 12/75 =====
+Using the Administrator Console
+
+ 1. Select the gear icon.
+
+ 2. Select Administrator Console.
+
+ 3. From the left-hand menu, select Environment.
+
+Use the gear icon on the right side of the titlebar todefine global settings for allhosts in IdentityIQ. These settings are
+used for allhosts that have not explicitly overridden the defaults.
+
+The Environment console has tabs for Hosts, Applications, and SailPoint Modules and Extensions.
+
+On each tab, select the Columns button atthe upper right side of the page to choose and arrange the information dis-
+played on the pages. When you select the Add Column button, any other available columns appear as dropdown
+options. Use the search fieldto locate specific servers.
+
+For details about each tab, see:
+
+
+
+ l Hosts
+
+
+
+ l Applications
+
+
+
+ l SailPoint Modules and Extensions
+
+Hosts
+
+The Hosts tab in the Environment console displays allof the hosts associated with an IdentityIQ instance, along with
+statisticsabout the state of each host inthe selected column.
+
+A search box in the upper rightlets you search for servers. This isa "starts with" search rather than a full-textsearch,
+and itisnot case-sensitive.
+
+You can add, remove, or reorder the columns on this tab. Columns may include:
+
+
+
+ l Host Name – name of the machine hosting the IdentityIQ instance.
+
+
+
+ l Status – a color-coded arrow icon indicating whether the host isup or down.
+
+
+
+ l Last Heartbeat – the last time the host verified itsfunctionality. Each host periodically sets a date inthe server
+ object to verify itisstillrunning. Ifthe verification date does not advance for a specified period of time, the other
+ servers detect and mark the server as having crashed.
+
+
+
+ l CPU – a percentage representation of the workload sustained by the host machine CPU.
+
+
+
+ l Memory Percentage – the percentage of the maximum allowed memory which is actively in use by the applic-
+ ation server's Java virtualmachine.
+
+
+
+
+
+
+ SailPoint System Administration 8
+
+===== Page 13/75 =====
+Using the Administrator Console
+
+
+
+ l Request Threads – the number of request processor threads running on thishost.
+
+
+
+ l Timestamp – the last time the monitoring service ran.
+
+
+
+ l Database Response Time – the number ofmilliseconds itlast took to connect to the database and query from
+ it.
+
+
+
+ l Task Threads – the number of background tasks running on this host.
+
+
+
+ l Memory – the amount of memory (inbytes) actively in use by the application server's Java virtual machine.
+
+
+
+ l Host Actions – action buttons to configure or delete hosts.
+
+
+ Note: For hosts running on Unix operating systems, there isan option, Open Files—Unix Only,
+ that displays the number of open filesto avoid running out of filehandles. This count is on the
+ operating system, not the application server. This column can only be enabled manually from the
+ UI Configuration object on the debug pages.
+
+Global Host Configuration
+
+You can set global Environment Monitoring options forallyour hosts by selecting the gear in the titlebar. Settings you
+choose here are used for allhosts, but you can also set specific options for individual hosts (described below) toover-
+ride many ofthese global settings on a per-host basis.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+These are the options you can configure globally foryour hosts:
+
+
+
+ l Polling Interval – the number ofseconds between monitoring cycles.
+
+
+
+ l Statistics Retention – the number of days monitoring statistics willbe retained. Enter a zero here toretain stat-
+ isticsindefinitely.
+
+
+
+
+
+
+
+ SailPoint System Administration 9
+
+===== Page 14/75 =====
+Using the Administrator Console
+
+
+
+ l CPU – a percentage representation of the workload sustained by the host machine CPU.
+
+
+
+ l Task Threads – the number of background tasks running on this host.
+
+
+
+ l Request Threads – the number ofrequest processor threads running on this host.
+
+
+
+ l Database Response Time – the number of milliseconds itlast took to connect tothe database and query from
+ it.
+
+
+
+ l Memory – the amount of memory (inbytes) actively in use by the application server's Java virtualmachine.
+
+
+
+ l Memory Percentage – the percentage of the maximum allowed memory which is actively in use by the applic-
+ ation server's Java virtual machine.
+
+Host-Specific Configuration and Monitoring
+
+Each host can be configured by clicking the gear in the Host Actions column for that host.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+When you select the gear icon, the Host Setting dialog appears with two tabs, Services and Configuration, enabling
+you to specify the services running on each host and configure host monitoring.
+
+Services
+
+The Services tab lets you toggle to enable or disable the services running on a specific host. Many of these services
+can be managed through the UI. The one exception is the Request service, which cannot be fullyshut down.
+
+When a service isshut down, the host stillprocesses requests that have been specifically targeted tothat host, but
+does not pick up generic, or untargeted, requests.
+
+Monitoring Service
+
+The Monitoring service captures and saves the latest statistics,promotes any statistics-related extended attributes to
+the Server object, and prunes any statistics that have outlived the configured retention period. The Monitoring service
+
+
+
+
+
+
+ SailPoint System Administration 10
+
+===== Page 15/75 =====
+Using the Administrator Console
+
+
+populates the task threads, request threads, and cpu usage statistics as well as statistics formemory usage,
+memory usage percentage, and database response time.
+
+Reanimator Service
+
+The Reanimator service helps manage "hung" tasks, or tasks that appear to be running even though they have
+stopped. An un-partitioned task can sometimes failwithout properly updating the state of the TaskResult. This can
+leave the task in a hung state. The most common causes for thiskind of issue are a temporary loss of connection to
+the database or a briefdatabase server failure.Regardless of the underlying reason, the Reanimator service performs
+the task of resetting requests or tasks so they can resume.
+
+The service can also help with terminating a task or request that isnot configured toresume upon being orphaned or
+failing.Ifthe task or request is not configured to resume, then when the service detects a task ina hung state, itauto-
+matically marks itas terminated.
+
+ Note: Ifyou are using Email Task Alerts in any of your task definitions, be aware that when a task
+ hangs and is restarted by the reanimator service, email task alertnotifications may not be sent.
+
+The Reanimator service runs by default on all hosts. Although itis unlikely that you would need to switch itoff,itis pos-
+sible to do so. For example, ifyou have a dedicated UI host, you might not need this service running there.
+
+To disable the Reanimator service on a specific host:
+
+ 1. On the Hosts tab, select the gear icon beside the specific host on which you want to disable the service.
+
+ 2. On the Services tab of the Host Configuration dialog, use the slider to switch offthe Reanimator service.
+
+
+Configuration
+
+The Configuration tab letsyou set up host-specific monitoring configuration. What you set here overrides the global
+defaults forPolling Interval, Statistics Retention, and to enable and disable given retained statistics, such as CPU or
+task threads.
+
+The Configuration tab also lets you select applications to monitor. Any applications you select for monitoring are con-
+tacted each time the monitoring service runs and a health check status isrecorded.
+
+The Use Default Settings button at the bottom of the Configuration tab clears your Monitoring Configuration forthis
+host and reverts this host to the global defaults. See Monitoring Applications.
+
+ Note: When you restore default settings, any applications you have selected forApplication Mon-
+ itoring are retained; restoring default settings does not remove any applications you have selec-
+ ted formonitoring.
+
+
+ Note: Administrators can assign a given host to handle specific types of requests. See Spe-
+ cifying Hosts to Handle Requests.
+
+
+
+
+ SailPoint System Administration 11
+
+===== Page 16/75 =====
+Using the Administrator Console
+
+Viewing Host Statistics
+
+Select a name inthe Host Name column toshow allserver statisticscaptured for thathost, grouped intime-based Stat-
+isticSnapshots. A host's snapshots can be cycled using the previous and next arrows to the leftand right ofthe
+header or individually selected using the dropdown list.
+
+Choosing Which Host Statistics to Display
+
+You can choose which statisticsto show on the Hosts tab and in which order they appear.
+
+ 1. To edit what isshown on the Hosts tab, select the Column button.
+
+ 2. To add columns, select Add Column and choose the new column(s) to include.
+
+ 3. To change the order of the statistics,use the arrow buttons on each column tile,or drag the tilesinto the
+ order you prefer.
+
+ 4. To remove a column from the Hosts tab, select Remove on the column tile.
+
+ 5. Save your changes before exiting.
+
+Deleting Hosts
+
+Use the X button in the Host Actions column to delete hosts. Deleting a host removes the associated Server object
+and any related configuration or statistics forthe given host.
+
+The host no longer appears in the listof hosts after deletion. However, ifthe underlying server is stillrunning, the host
+willreappear the next time itsheartbeat service runs. Allconfiguration settings for a regenerated host use the defaults
+foritslistof services and forthe monitoring service configuration.
+
+Specifying Hosts to Handle Requests
+
+Ina multi-host environment, you can specify which hosts can process specific types of requests, by including a single
+host or listof hosts in a RequestDefinition object. This can help with performance, allowing you to dedicate specific
+machines and threads for processing request types that are, for example, operating at a high volume or require more
+resources.
+
+ 1. When logged in as an administrator, select the wrench icon dropdown at the top of the screen, then select
+ Object.
+
+ 2. In the Debug pages, choose RequestDefinition inthe Select an Object field ofthe Object Browser.
+
+
+
+
+
+
+
+
+
+
+ SailPoint System Administration 12
+
+===== Page 17/75 =====
+Using the Administrator Console
+
+ 3. From the listof RequestDefinition objects, select the object that you want to modify in order to specify a host or
+ listofhosts.
+
+ 4. Add host entry tothe RequestDefinition attribute map. The value can be set to a single host, or multiple hosts
+ separated by commas. For example:
+
+
+ <Attributes>
+    <Map>
+       <entry key="hosts" value="hostA,hostB,hostC"/>
+       <entry key="maxThreads" value="1"/>
+     </Map>
+  </Attributes>
+
+
+
+ 5. Select Save to save the updated RequestDefinition object or Close tocancel changes.
+
+Applications
+
+The Application tab in the Environment console provides a view from an application-up perspective. Application mon-
+itoringis configured per host, giving each a listof applications you want that specific host to monitor. Each application
+islisted, along with itstype and a summary of allstatuses reported by allconfigured hosts. Monitoring can be run from
+any number of servers on any subset of applications.
+
+Select an application name to display a panel containing detailed information about the application's statuses. The
+panel shows each host that has reported a status for the application, as well as the status – up or down – and time of
+the most recent ping.
+
+Ifyou have fullaccess rights, select the refresh icon to schedule a request for the host toperform a health check for an
+application. The refresh icon isthen disabled until the request is fulfilled.
+
+ Note: An application must be monitored by at least one host before itcan report statistics.
+
+Global Application Configuration
+
+You can set global monitoring options for allyour hosts and applications by selecting the gear in the titlebar. Settings
+you choose here are used for allhosts and associated applications in the same way.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint System Administration 13
+
+===== Page 18/75 =====
+Using the Administrator Console
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+These are the options you can configure globally:
+
+
+
+ l Polling Interval – the number of seconds between monitoring cycles.
+
+
+
+ l Statistics Retention – the number ofdays monitoring statistics willbe retained. Enter a zero here to retain stat-
+ istics indefinitely.
+
+
+
+ l CPU – a percentage representation of the workload sustained by the host machine CPU.
+
+
+
+ l Task Threads – the number of background tasks running on this host.
+
+
+
+ l Request Threads – the number ofrequest processor threads running on this host.
+
+
+
+ l Database Response Time – the number of milliseconds itlast took to connect tothe database and query from
+ it.
+
+
+
+ l Memory – the amount of memory (inbytes) actively in use by the application server's Java virtual machine.
+
+
+
+ l Memory Percentage – the percentage of the maximum allowed memory which is actively in use by the applic-
+ ation server's Java virtual machine.
+
+
+ Note: For hosts running on Unix operating systems, there isan option, Open Files – Unix Only,
+ that displays the number of open filesto avoid running out of filehandles. This count ison the
+ operating system, not the application server. This column can only be enabled manually from the
+ UI Configuration object on the debug pages.
+
+Setting Up Application Monitoring
+
+To set up an application to be monitored, navigate to the Hosts tab, then complete the following:
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint System Administration 14
+
+===== Page 19/75 =====
+Using the Administrator Console
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 1. On the Hosts page, select the gear icon in the Host Actions column for the host that you want set up to monitor
+ applications.
+
+ 2. Select the Configure tab for that host.
+
+ 3. In the Application Monitoring section, choose the applications tomonitor; you can type inapplication names,
+ or use the dropdown listing browse forapplications. You can choose as many hosts as you like.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint System Administration 15
+
+===== Page 20/75 =====
+Using the Administrator Console
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 4. Select Save.
+
+Monitoring Applications
+
+ 1. Select the gear menu > Administrator Console > Environment.
+
+ 2. Select the Applications tab.
+
+
+
+
+
+
+
+
+ SailPoint System Administration 16
+
+===== Page 21/75 =====
+Using the Administrator Console
+
+ 3. All your applications are listed. The applications that are being monitored have numbers in the status
+ column, indicating the number of hosts showing the application as being responsive (up arrow) and the num-
+ ber of hosts showing the application as down (down arrow). To search for specific applications, use the Search
+ box.
+
+
+
+
+
+
+
+
+
+
+
+
+ 4. Select an application name tosee details:
+
+
+
+ l Status – an arrow indicates whether the application is up (running) or down.
+
+
+
+ l Last ping – a timestamp of the most recent ping to the application.
+
+ 5. To re-ping the application and refresh the status, select the Refresh icon.
+
+Environment Monitoring Objects
+
+The IdentityIQ object model includes some objects related to Environment Monitoring.
+
+Monitoring Statistic Object
+
+An object type, MonitoringStatistic, defines what you can monitor on allyour hosts. The objects of thistype do not hold
+any of the monitoring data; they simply define which statisticscan be monitored. You can customize the Environment
+Monitoring UI viachanges to thisobject, that is,by adding or removing individual MonitoringStatistic objects.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint System Administration 17
+
+===== Page 22/75 =====
+Using the Administrator Console
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Server Statistic Object
+
+Objects of type ServerStatistic contain the statistics formonitored hosts. The number of ServerStatistic objects you
+can see in the Debug pages varies depending on how long you have configured Environment Monitoring toretain stat-
+isticsand how frequently the monitoring service runs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint System Administration 18
+
+===== Page 23/75 =====
+Using the Administrator Console
+
+Global ServiceDefinition for Monitoring
+
+The ServiceDefinition object contains the default monitoring configuration forallservers; you can override the con-
+figurationsettings defined here on a server-by-server basis by settings inthe monitoringConfig entry in the Server
+object,as described inthe section below.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Server-Specific Monitoring Settings in the Server Object
+
+Each server can define itsown specific monitoring configuration. Ifa monitoring configuration isdefined inthe Server
+object,itwilloverride the global default configuration for thishost. The Server object can include an entry named mon-
+itoringConfig initsattribute Map.
+
+
+ <entry key="monitoringConfig">
+         <value>
+           <Map>
+             <entry key="retentionPeriodDays">
+               <value>
+                 <Integer>30</Integer>
+               </value>
+             </entry>
+             <entry key='monitoringStatistics'>
+               <value>
+                 <List>
+                   <String>cpu</String>
+                 </List>
+               </value>
+             </entry>
+           </Map>
+
+
+
+
+
+ SailPoint System Administration 19
+
+===== Page 24/75 =====
+Using theAdministrator Console
+
+
+
+         </value>
+       </entry>
+
+
+
+Application Monitoring in Server Objects
+
+Information about applications that are being monitored isstored inthe Server objectfor each host,in the mon-
+itoredApplications entry key that ispart ofthe monitoringConfig:
+
+
+ <entry key="monitoringConfig">
+         <value>
+           <Map>
+             <entry key="monitoredApplications">
+               <value>
+                 <List>
+                   <String>ADDirectDemodata</String>
+                   <String>Composite_ERP_Global_App_Users</String>
+                   <String>Active_Directory</String>
+                   <String>Composite_ERP_Global_DB</String>
+                 </List>
+               </value>
+             </entry>
+           </Map>
+         </value>
+       </entry>
+
+
+SailPoint Modules and Extensions
+
+The SailPoint Modules and Extensions tab provides a listofallinstalledmodules and extensions, a briefdescription,
+and a summary of allstatuses reported.
+
+Select a module or extension name to see a listofreported statuses and the corresponding Last Ping timestamp.
+When the Problem Detected icon is present, select itformore information about thenature ofthe problem.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint System Administration 20
+
+===== Page 25/75 =====
+About Debug Pages
+
+About Debug Pages
+
+
+The Debug pages provide administrative functions, including advanced object editing capabilities for IdentityIQ sys-
+tem administrators, as well as a place tofind detailed information about your IdentityIQ installation.
+
+Debug pages include:
+
+
+
+ l About – basic information about the IdentityIQ installation such as server host, the current IdentityIQ version
+ and schema version, locale and time zone forthe client,and an array of Java system properties.
+
+
+
+ l Object – the most frequently used feature of the Debug pages, providing access to the XML representations of
+ data and configuration objects in the IdentityIQ system
+
+
+
+ l Memory – view the Free, Total, and Max JVM memory
+
+
+
+ l Caches – five buttons formanaging the Hibernate Caches
+
+
+
+ l Count – count of objects by class
+
+
+
+ l Beans – the Managed Beans page displays all JMX beans registered with the application server
+
+
+
+ l Threads – view all Java threads and theircurrent state; a good resource for diagnosing performance problems
+
+
+
+ l Call Timings – statistics about the time taken to perform certain database activities
+
+
+
+ l Logging – view or change the path to the Log4j properties file
+
+
+
+ l Database – view basic database pooling information
+
+
+
+ l Connections – see the connections from the database connection pool that the server iscurrently using
+
+
+
+ l ActiveMQ Monitoring – view broker information, connectors, broker statistics,destinations, and subscriptions
+
+
+See the Debug PagesCompass article fordetails about each page.
+
+On Debug's Object Browser page, you can view and edit XML representations of data and configuration objects in the
+IdentityIQ system. The Debug pages also provide UI-based access to many of the actions you can run in the Iden-
+tityIQconsole.
+
+Debug pages are accessed via the wrench menu, ifavailable, or a hidden URL: http://[hostname:port]/[con-
+textroot]/debug (forexample, http://localhost:8080/identityiq/debug) and can only be used by those with the Sys-
+temAdministration capability. As of IdentityIQ version 8.4, users may be granted read-only access rightsto view the
+Debug pages without taking actions or making changes. See Read-Only Access to Debug Pages and Administrative
+Information
+
+
+
+
+ SailPoint System Administration 21
+
+===== Page 26/75 =====
+About Debug Pages
+
+
+For more details about Debug, see Read-Only Access to Debug Pages, and the Debug Pagesarticle on Compass.
+
+ Caution: There isno rollback mechanism foredits that are saved in the Debug pages. For this
+ reason itisstrongly recommended that you export an object (the process isdescribed inthe
+ Debug Pages articleon Compass), copy it,make changes to the copy, and then import the
+ updated version, rather than editing objects directlyin the Debug page.
+
+Read-Only Access to Debug Pages and Administrative Information
+
+System administrators may grant the capability Debug Pages Read Only Access to non-admin users. Those who are
+granted standard read-only access to IdentityIQ Debug pages are able to view not justthe Object Browser, but also
+the other pages that have traditionallybeen reserved forsystem administrators, including About, Memory, Caches,
+Count, Beans, Threads, Call Timings, Logging, Database, Connections, and ActiveMQ Monitoring.
+
+Read-only access allows users to see the XML code for configured objects. They can copy or download the XML, but
+cannot save changes orupload.
+
+Many of the Debug pages have actionable options that are only enabled forthose with system administrator cap-
+abilities.For those with read-only access, options such as Run Rules and Run Garbage Collector are present but dis-
+abled.
+
+ Important: Read-only access allows users to view allobjects inthe Object Browser; thismay
+ include some sensitive data. Keep thisin mind when determining who should have access.
+
+
+Configuring Fine-Grained Read-Only Debug Access
+
+There are multiple individual rights that control fine-grained access. Your installationof IdentityIQ isconfigurable and
+administrators can group a subset ofread-only debug rightsinto capabilities appropriate for your organization's
+needs. For example, ifyou have a DBA who only needs tosee a subset of Debug items related to databases, then use
+the more fine-grained rights tocreate a custom capability.
+
+ Important: Read-only access allows users to view allobjects inthe Object Browser; thismay
+ include some sensitive data. Keep thisin mind and consider configuring custom capabilities as
+ needed.
+
+
+See Rights and Capabilities for Identities.
+
+View-only access tothe Debug pages controls whether or not you can see the page – ifusers tryto reach a page
+without having either system administrator capabilities orread-only access rights,they see an Access Denied mes-
+sage.
+
+
+
+
+
+
+
+ SailPoint System Administration 22
+
+===== Page 27/75 =====
+About Debug Pages
+
+Useful When
+
+Read-only access isuseful when developers need tosee IdentityIQ objects' XML inorder towrite custom code,
+troubleshoot, ordebug without a system administrator partnering with them. They can open any object on the Object
+Browser.
+Auditing Changes Made in the Debug Pages
+
+When enabled, changes made on Debug pages may be audited. To enable logging, navigate togear > Global Set-
+tings > Audit Configuration > General Actions and select the Debug Object Browser Change checkbox.
+
+Audit items log the following information:
+
+
+
+ l Date/time
+
+
+
+ l Source – identitythat made the change
+
+
+
+ l Target – object class that was edited such as identity,bundle, configuration, etc.
+
+
+The auditlog does not detail what the changes were. Use your organization's internal versioning or tracking ifyou
+need totrack the specific changes made.
+
+To view Debug changes:
+
+ 1. Navigate toIntelligence > Advanced Analytics.
+
+ 2. Select Audit from the Search Type dropdown.
+
+ 3. Under Search Criteria > Audit Attributes,select the Action dropdown, then select DebugOb-
+ jectBrowserChange.
+
+ 4. Select the Run Search button.
+
+ 5. Audit results may be exported in pdf,csv, or cef formats by selecting the corresponding button at the upper
+ right side ofthe search results.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint System Administration 23
+
+===== Page 28/75 =====
+Partitioning
+
+Partitioning
+
+
+Partitioning isused to break operations into multiple pieces, or partitions, allowing data processing to splitacross mul-
+tiplehosts, and across multiple threads per host. The overall goal with partitioning isto increase processing through-
+put and speed.
+
+Partitioning issupported for account and account group aggregation tasks, foridentity refresh tasks, for generation of
+manager and targeted certifications, and for role propagation.
+
+Some connector types support partitioning at the application level. To use partitioning for account and account group
+aggregation, you must configure the application for partitioning, and enable partitioning when defining an account
+aggregation or identity refresh task.
+
+Ifpartitioning isenabled in an aggregation task that is acting on a connector application that does not support par-
+titioning,partitioning willtake place at the IdentityIQ database level and not at the connector level; this isreferred to as
+generic partitioning or task-level partitioning.
+
+
+
+ l Applications are configured as part of the Account Settings on the Configuration tab of the Application Con-
+ figuration page. See the Application Configuration documentation.
+
+
+
+ l For task details, see the Tasks documentation.
+
+
+
+ l For certification details, see the Certifications documentation.
+
+
+ Note: Partitioning isnot available on all tasks or certifications. Partitioning is available for
+ Account Aggregation, Account Group Aggregation, Identity Refresh, Perform Identity Request
+ Maintenance, and Perform Maintenance tasks, and for Manager and Targeted Certification gen-
+ eration. Partitioning is also not available on all application types. Partitioning iscontrolled by both
+ the configuration of the applications you are using and the configuration ofthe applications used
+ to communicate with those applications.
+
+How Partitioning Works
+
+Each partition isplaced ina global queue, and machines (or hosts) in a cluster compete to execute the partitions in the
+queue. Machines are added or removed from the cluster dynamically with automatic balancing. Ifa machine fails or is
+taken down while processing a partition, the partition isplaced back into the queue and reassigned to a different
+machine.
+
+A single result object isshared by all partitions and is continually updated so you can monitor the overall progress of
+the partitioned operation. When all partitions have finished executing, the result ismarked complete.
+
+
+
+
+
+
+
+
+ SailPoint System Administration 24
+
+===== Page 29/75 =====
+Partitioning
+
+
+Each instance ofIdentityIQ includes a Server object containing information about what is happening in that instance.
+For machines running multiple instances of IdentityIQ, each instance must be assigned a unique iiq.hostname and
+have a unique Server object.
+
+The Server objects include a heartbeat service that is updated by a new system thread on a regular basis. By mon-
+itoringserver heartbeats, machines inthe cluster can detect when another machine fails.When this happens any par-
+titioned requests that were running on that machine are restarted and picked up by a different machine in the cluster,
+so that failure ofone machine does not terminate an entire long running task.
+
+Server objects include some statistics,such as the number of request threads currently active, and the request types
+that are executing. You can view the state ofthe machines in your cluster on the Administrator Console page. See
+Using the Administrator Console.
+
+See also:
+
+
+
+ l Loss Limits
+
+
+
+ l Configuring Partitioning Request Objects
+
+
+
+ l Partitioning Best Practices on SailPoint's Compass community.
+
+Loss Limits
+
+Some of the features which support Partitioning also include an option toset loss limitsfor the identities or accounts
+being processed by a task. The loss limitsets the maximum number of identities or accounts that willbe reprocessed
+incase of a sudden termination of a partitioned refresh.
+
+Ina partitioned task, each time the task reaches the loss limit– that is,ithas processed a number of accounts or iden-
+titiesthat match the value of the loss limit – itcommits a listofthe accounts toa requestState object. Ifthe task
+should happen to fail,due perhaps toa server or database going down, the task willcheck the requestState object
+when itresumes, so that itknows which accounts have already been processed. This means the task doesn't have to
+re-process the entire partition. A lower loss limitnumber willresult inless duplicated work following a crash, but may
+slow down the task due to increased database contention.
+
+Loss limitdata that isstored in the requestState object isbase-64 encoded and so isnot human-readable.
+RequestState objects are not retained inthe IdentityIQ database past their usefulness; in other words, once a loss
+limithas been reached, the object forthat particular segment is automatically deleted.
+Configuring Partitioning Request Objects
+
+Partitioning is also maintained using RequestDefinition objects that are defined foreach request type. These objects
+control how each request-type isprocessed. For example, these objects define the number of threads thatrun for
+each request on the instances ofIdentityIQ running on a specific machine. The RequestDefinition objects must be
+defined on each machine, host, in a cluster.
+
+
+
+
+ SailPoint System Administration 25
+
+===== Page 30/75 =====
+Partitioning
+
+
+ Note: By default the maximum number of threads to run on each host isset to 1. This number
+ can be changed to maximize performance in your environment, but should be done with caution
+ and only after testing and tuning for your environment.
+
+The following RequestDefinition objects are available:
+
+
+
+ l Aggregation Partition – define the maximum number ofthreads torun on each host during account aggreg-
+ ations
+
+
+
+ l Identity Refresh Partition – define the maximum number ofthreads to run on each host during identity refresh
+
+
+
+ l Manager Certification Generation Partition – define the maximum number of threads, the error action, and
+ orphan action forpartitioned manager certification requests
+
+
+
+ l Role Propagation Partition – define the maximum number ofthreads torun on each host during role propaga-
+ tion
+
+To work with the RequestDefinition objects, go to the IdentityIQ Debug page and select RequestDefinition from the
+Select an Object dropdown list.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint System Administration 26
+
+===== Page 31/75 =====
+Alerts
+
+Alerts
+
+
+Alerts are created using IdentityIQ File Access Manager (FAM) based on activitydata – actions users take on
+resources that are part ofan application that FAM ismonitoring. FAM can be configured tocreate alerts when the user
+action is considered unexpected, potentially risky, or inappropriate. Itis possible to configure alerts for any behavior.
+You can choose to use this functionality more broadly (e.g. for non-risky or non-problematic activities that someone
+wants to use as a process trigger).
+
+This integration additionally enables you to trigger actions in IdentityIQ inresponse to an alert. Specifically, alerts
+aggregated into IdentityIQ can be used to drive three different response actions. A single alert can trigger more than
+one response action:
+
+
+
+ l Launch a certification
+
+
+
+ l Launch a workflow
+
+
+
+ l Send an email notification
+
+
+See:
+
+
+
+ l Alerts Page
+
+
+
+ l Alert Definitions Page
+
+
+
+ l Edit Alert Definitions
+
+Alerts Page
+
+Use the Alerts page to view existing alerts foryour enterprise. To limit the number ofalerts displayed in the table, use
+the filteringoptions.
+
+ Alert Page Details
+
+
+Name
+
+ The name ofthe alert.
+
+Source
+
+ Application associated with the alert.
+
+
+
+
+
+
+
+
+ SailPoint System Administration 27
+
+===== Page 32/75 =====
+Alerts
+
+
+Native Id
+
+ Native identifierof the application with which the alert isassociated.
+
+Type
+
+ Alert type.
+
+Target Type
+
+ Type of the object that triggered the alert.
+
+Target Name
+
+ Name of the object thattriggered the alert.
+
+Alert Date Start
+
+ Date and time at which this alertwas triggered.
+
+Alert Date End
+
+ Date and time at which this alertexpires.
+
+Last Processed Start
+
+ Last date and time this alertwas triggered.
+
+Last Processed End
+
+ Last date and time this alertprocess finished.
+
+Acted Upon
+
+ Select True ifthis alertmatched an alert definition and an alert action was triggered.
+
+Create Alert Definition
+
+The Create Alert Definition page contains the following information:
+
+ Details
+
+
+Name
+
+ A descriptive name of thisalert. This isthe name thatdisplays on the Alerts page.
+
+
+
+
+
+
+
+ SailPoint System Administration 28
+
+===== Page 33/75 =====
+Alerts
+
+
+Display Name
+
+ Label that is displayed on the alert.
+
+Description
+
+ A brief description of the alert.
+
+Owner
+
+ The alert owner, not necessarily the identity who triggered the alert.
+
+Match Rule
+
+ Enables more complex matching logic.
+
++Add
+
+ Option to add a Match Term.
+
+Source
+
+ Application name that triggers the alert.
+
+Attribute
+
+ The display name of an account attribute derived from the attribute and itsassociated application.
+
+Value
+
+ Value for the selected attribute that willtrigger an alertduring alert processing.
+
+Action Type
+
+ Action to be taken when the alert is created. This can either be a notification, certification,or a workflow, or a com-
+ bination of the available actions.
+
+Email Template
+
+ Template used for the notification email. Ifnone is selected, a system default is used.
+
+Email Recipients
+
+ List ofusers toreceive the alertnotification.
+
+ How to Create an Alert Definition
+
+Alerts are created using the Alert Definitions tab. Use this procedure to create new alert.
+
+
+
+
+
+ SailPoint System Administration 29
+
+===== Page 34/75 =====
+Alerts
+
+Procedure
+
+ 1. Click the Alert Definitions tab on the Alerts page.
+
+ 2. Click +New.
+
+ 3. Enter the alertinformation.
+
+ 4. Click Save tosave the alertand return to the Alerts page.
+
+Edit Alert Definitions
+
+Use the Edit Alert Definition to editexisting rules. The Edit Alert Definitions page contains the following information:
+
+Name
+
+ A descriptive name ofthis alert. This is the name that displays on the Alerts page.
+
+Display Name
+
+ Label that isdisplayed on the alert.
+
+Description
+
+ A brief description of the alert.
+
+Owner
+
+ The alert owner, not necessarily the identity who triggered the alert.
+
+Source
+
+ Application name that triggers the alert.
+
+Attribute
+
+ The display name of an account attribute derived from the attribute and itsassociated application.
+
+Value
+
+ Value for the selected attribute that willtrigger an alert during alert processing.
+
+Match Rule
+
+ Enables more complex matching logic.
+
+
+
+
+
+
+ SailPoint System Administration 30
+
+===== Page 35/75 =====
+Alerts
+
+Action Type
+
+ Action to be taken when the alert iscreated. This can either be a notification, certification, or a workflow, or a com-
+ bination of the available actions.
+
+Workflow
+
+ Defines the workflow structure and steps involved in the workflow processing.
+
+Email Template
+
+ Template used for the notification email. Ifnone isselected, a system default is used.
+
+Email Recipients
+
+ List of users to receive the alert notification.
+
+How toEdit an Alert Definition
+
+How toFilter Alerts
+
+How to Edit an Alert Definition
+
+Alerts are edited in the Alert Definitions tab. Use this procedure to edit existing alerts.
+
+Procedure
+
+ 1. Click the Alert Definitions tab on the Alerts page.
+
+ 2. Select an alert and lick Edit in the Actions column.
+
+ 3. Enter the alert information.
+
+ 4. Click Save to save the alert and return tothe Alerts page.
+
+How to Filter Alerts
+
+Use the filtering options to limitthe number of alerts displayed inthe table. You can filterby any field.Use this pro-
+cedure to filterthrough existing alerts.
+
+ 1. Click the Alert tab on the Alerts page.
+
+ 2. Click Filter.
+
+ 3. Enter filteringcriteria,such as type, source, and alertstart and end dates.
+
+
+
+
+
+
+
+ SailPoint System Administration 31
+
+===== Page 36/75 =====
+Alerts
+
+ 4. Click Apply to save the filteroptions. The filterbutton turns green to alert you that filteringconditions have been
+ applied.
+
+ 5. To clear filters,click the Filter button to open the filtercriteria section, and click Clear.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint System Administration 32
+
+===== Page 37/75 =====
+About Data Extract
+
+About Data Extract
+
+
+Data Extract allows organizations to periodically extract data from the IdentityIQ database and store itina format that
+common business intelligence (BI)tools can use. IdentityIQ administrators create and configure a Data Extract Task,
+which calls the functionality to extract and transform data and defines the message destination, a queue where data is
+available tobe picked up by BI systems.
+
+ Note: Nothing in IdentityIQ consumes the messages from an ActiveMQ message broker, but cus-
+ tomer organizations can write their own client to do so.
+
+Administrators can configure criteriafor both the extraction and transformation tasks to customize which types of
+objects are extracted and define which properties of those objects toinclude.
+
+Data extract also tracks sufficient context to keep a log of the extraction events.
+
+Running Data Extract requires you to complete the following:
+
+ 1. Configuring Data Extraction
+
+ 2. Configuring Data Transformation
+
+ 3. Importing Data Extract and Transform Configurations
+
+ 4. Provisioning a Data Extract Task Destination Queue
+
+ 5. Enabling and Configuring Data Extract
+
+ 6. Setting Up Data Extract Task
+
+Configuring Data Extraction
+
+Data extraction defines what toextract. Itisconfigured by creating an Extract YAMLConfig and importing itto Iden-
+tityIQ.You may use the IdentityIQ console to generate extract configurations, then modify them as needed. See
+IdentityIQ Console Commands.
+
+Data Extract yields image objects that contain imageFields with data inthem, as well as metadata about the image,
+such as the object type itrepresents and the timing ofthe image. The ObjectSelector isused to select objects for
+extraction. Administrators define key data in the extract configuration, including:
+
+
+
+ l Types of objects toextract and transform
+
+
+
+ l What attributes to include or exclude for each object type
+
+
+
+
+
+
+
+ SailPoint System Administration 33
+
+===== Page 38/75 =====
+About Data Extract
+
+
+
+ l Filter criteriaforselecting objects
+
+
+
+ l Name ofthe queue to publish to
+
+
+
+ l Name ofthe transform configuration
+
+
+ Note: You can exclude any property orattribute for any object you have defined from going
+ through Data Extract.
+
+
+ Note: Attributes that are known to be encrypted or secret cannot be extracted by default. Ifyour
+ implementation isstoring an Extended Attribute defined by your organization and ifyou define
+ that attributeas part of a Data Extract YAMLConfig, then itwillbe extracted as normal. Ifan
+ encrypted attribute were included, itwould be extracted in itsencrypted state unless you take
+ extra steps todecrypt it.See Using Data Extract with Sensitive Data.
+
+Major classes matching the objects found inthe Debug Object browser can be extracted. Best practice isto exclude
+AccessHistory classes and Intercepted Deletes from extraction, although this isnot enforced by IdentityIQ. The fol-
+lowing objects are not extractable inany circumstance:
+
+
+
+ l AuthenticationAnswer
+
+
+
+ l RemoteLoginToken
+
+
+
+ l SAMLToken
+
+
+Make sure the extractedObjects from the Extract YAMLConfig allhave a corresponding imageConfigDescriptor and
+thateach has a valid objectClassName.
+
+The extract configuration may look likethis example:
+
+
+ 1extractedObjects:
+ 2   identity:
+ 3    resultLimit: 10
+ 4  role:
+ 5  certification:
+ 6    filterString: phase ==
+ Certification.Phase.End
+ 7transformConfigurationName:
+ ExtractTransformConfig
+ 8messageDestination: extractedObjectsQueue
+
+
+
+transformConfigurationName – the name of the configuration object describing the transformation ofthe objects
+extracted.
+
+
+
+
+
+
+
+SailPoint System Administration 34
+
+===== Page 39/75 =====
+About Data Extract
+
+
+messageDestination – the name of a queue to place the message into. You may use a script ifyou want to dynam-
+icallydecide what queue to write to. Itisimportant to correctly define a message destination; without something read-
+ing from the queue, itwill fillupand negatively impact performance.
+
+ Note: IdentityIQ supports ActiveMQ only. Whether you use embedded or external ActiveMQ,
+ message destinations do not have expiry defined by IdentityIQ. Be sure toconfigure what will
+ read from them before you start running data extracts. The internal processing queues used by
+ the tasks do have expiration times set after the firstrun to ensure that failed execution do not
+ block subsequent runs. Ifthere is a time out event during a data extract task, the task willfail,
+ allowing the cause to be fixed and the data to be re-extracted.
+
+extractedObjects– a map of values. The key is the string names of the object types described in the transformation
+configuration, for example, identity, role,and certification. Ifthat isall that ispresent, the data extract process will look
+up the classname from the transformation configuration object and find the classname to know which object to read
+from the database.
+
+The value can contain an object with the following properties:
+
+
+
+ l filterString – a normal IdentityIQ filterstring tobe used for the queries
+
+
+
+ l You can use a filterstring to pullspecific audit table rows based a particular action, so the usage would
+ look likethis:
+ className:
+ filterString: property == "<filter value>"
+ Example <filtervalue> would be name.startsWith("B")
+
+
+
+ l deleteTransformFormat – indicates thisYAMLConfig isinterested in intercepted deleted objects (optional)
+
+
+
+ l You can set the output forthe transform to brief, full,ornone. Brief cannot be compared; fullcaptures
+ can be compared.
+
+
+
+ l Full captures a fullcopy ofwhat is intercepted including data such as ID, name, created date, modified
+ date, and acknowledgement ofchild records.
+
+
+
+ l Brief contains only the ID and name.
+
+
+
+ l None gives no indication thata record was deleted.
+
+Configuring Data Transformation
+
+The Transform configuration tellsthe system how to format the extracted data. Objects and properties extracted from
+the IdentityIQ database may be transformed into something that can easily be exported ina JSON format to be more
+friendly to BI tools.The Transform YAML configuration defines how you want that done by listingthe configuration for
+
+
+
+
+
+ SailPoint System Administration 35
+
+===== Page 40/75 =====
+About Data Extract
+
+
+each object and how to do the actual JSON transformations. View YAML configurations from the Debug > Object
+Browser page.
+
+You may generate a Transform YAMLConfig in the IdentityIQ console. See IIQ Console Commands. The following
+example creates the base default Transform config for the Identity object called IdentityTransformConfig:
+ >dataextract generatetransform --classes Identity --write IdentityTransformConfig
+
+Customize your transform YAMLs according to your organization's needs. Ifyou want to write your own transformers,
+use the existing IdentityIQ plugin interface and itcan be called by Data Extract. See Working with Plugins in Iden-
+tityIQ.
+
+You might use transformers forthings likeconverting a timestamp toa specific format, or converting a string that
+refers toanother object toan extract reference to that object, or converting the xml attributes toJSON containing a
+select set ofattributes.
+
+Each transformer is justone operation, but there are many ways tocustomize the JSON output by stacking trans-
+formers such thatthe output of one becomes the input ofthe next. Properties are transformed first– forexample, trans-
+forming a UNIX time into a formatted date string – then object transformers are applied, such as adding a composite
+key or a hash value. Transformers are applied inthe order listed.
+
+A transform configuration may look likethis example:
+
+
+ identity:
+ includeHash: true
+ objectClassName: sailpoint.object.Identity
+
+ imagePropertyConfigDescriptors:
+ -    property: id
+ -    property: name
+ -    property: managerStatus
+ -    attribute: email
+
+
+
+Adding a hash by setting includeHash to True lets you quickly know ifextracted objects are the same or different.Prop-
+ertiesand attributes are those that you would liketo export; this example includes id,name, manager status, and
+email. You may also export extended attributes, which are those that are defined only for your implementation.
+
+Property transformers apply to a single property. For instance, you can use a property transformer to change the date
+format. Just add dateFormat (see Java's SimpleDateFormat) and optionally timeZone as shown inthe example below:
+
+
+ 1 imageConfigDescriptors:
+ 2  identity:
+ 3    objectClassName: sailpoint.object.Identity
+ 4    imagePropertyConfigDescriptors:
+ 5      - property: id
+ 6      - property: name
+ 7      - property: created
+
+
+
+
+
+
+SailPoint System Administration 36
+
+===== Page 41/75 =====
+About Data Extract
+
+
+
+ 8        type: date
+ 9        dateFormat: EEEE MMMM d yyyy ('julian day' - DD) - h:m:s a
+ 10        timeZone: CST
+
+ 1 dataextract transform identity james.smith deExamples
+
+
+
+The result isa new format forthe date – note that thisexample adjusts toCST instead ofUTC (5hours earlier):
+
+
+ 1{
+ 2  "created": "Wednesday September 7 2022 (julian day - 250) - 9:29:20 AM",
+ 3  "name": "James.Smith",
+ 4  "id": "ac130b1283181a728183185b0138065d"
+ 5}
+
+
+
+Atthe end ofa listofspecified transformers, you may use specialYAML properties tomake iteasierto add 'built-in'
+transformers. This can be helpfulifyou want to add wrappers toconvert values toImageValues orwant to use hashEx-
+clude toexclude values from a hash.
+
+For an example ofa complete Transform YAML Configuration, seeSample Transform YAML Config.
+
+Data Transformer Cookbook
+
+This section contains some "recipes" forhow toexport object properties.
+
+Here is atemplate forthe configuration object(be sure tochange the name):
+
+
+ 1<?xml version='1.0' encoding='UTF-8'?>
+ 2<!DOCTYPE YAMLConfig PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+ 3<YAMLConfig name="deExamples">
+ 4  <Attributes>
+ 5    <Map>
+ 6      <entry key="ExportConfiguration">
+ 7        <value>
+ 8          <Script language="yaml">
+ 9            <Source>
+ 15            </Source>
+ 16          </Script>
+ 17        </value>
+ 18      </entry>
+ 19    </Map>
+ 20  </Attributes>
+ 21</YAMLConfig>
+
+
+
+Using the console commands we can see how these objects willbe transformed. The console command for thisis:
+
+dataextract transform <type> <name or id> <configuration object name>
+
+Properties
+
+
+
+ SailPoint System Administration 37
+
+===== Page 42/75 =====
+About Data Extract
+
+
+Inthe configuration above, replace thepart that says <CONFIGURATION GOES HERE> withthis:
+
+
+ 1imageConfigDescriptors:
+ 2  identity:
+ 3    objectClassName: sailpoint.object.Identity
+ 4    imagePropertyConfigDescriptors:
+ 5      - property: id
+ 6      - property: name
+
+
+
+The part thatsays "identity"isthe friendlyname ofthe object type, and the objectClassName isthe actual Java class
+name of the object.Import thexml file,and use thisconfiguration toexport an identity:
+
+
+ 1dataextract transform identity james.smith deExamples
+
+Result (only the imageFields part)
+
+
+ 1"imageFields": {
+ 2  "name": "James.Smith",
+ 3  "id": "ac10f8718187187d818187b962930671"
+ 4}
+
+
+
+Two properties were described, and two properties appear inthe output.
+
+Properties can be renamed easilyusing newName. Here isan example ofrenaming idto identityIQ_id:
+
+
+ 1imageConfigDescriptors:
+ 2  identity:
+ 3    objectClassName: sailpoint.object.Identity
+ 4    imagePropertyConfigDescriptors:
+ 5      - property: id
+ 6        newName: identityIQ_id
+ 7      - property: name
+
+
+
+Result (rename)
+
+
+ 1{
+ 2  "identityIQ_id": "ac130b1283181a728183185b0138065d",
+ 3  "name": "James.Smith"
+ 4}
+
+
+ Date
+
+Adding date created.
+
+
+
+
+
+
+SailPoint System Administration 38
+
+===== Page 43/75 =====
+About Data Extract
+
+
+Example
+
+
+ 1imageConfigDescriptors:
+ 2  identity:
+ 3    objectClassName: sailpoint.object.Identity
+ 4    imagePropertyConfigDescriptors:
+ 5      - property: id
+ 6      - property: name
+ 7      - property: created
+ 1dataextract transform identity james.smith deExamples
+
+
+
+Result
+
+
+ 1{
+ 2  "created": 1662560960824,
+ 3  "name": "James.Smith",
+ 4  "id": "ac130b1283181a728183185b0138065d"
+ 5}
+
+
+
+Notice the created field.Thisis a Java date object. Itgets converted to a Unix date (long).
+
+ Date with default formatting
+
+By justspecifying that thetype is date,default formatting isapplied to the date (ISO 8601).
+
+Example
+
+
+ 1imageConfigDescriptors:
+ 2  identity:
+ 3    objectClassName: sailpoint.object.Identity
+ 4    imagePropertyConfigDescriptors:
+ 5      - property: id
+ 6      - property: name
+ 7      - property: created
+ 8        type: date
+ 1{
+ 2  "created": "2022-09-07T14:29Z",
+ 3  "name": "James.Smith",
+ 4  "id": "ac130b1283181a728183185b0138065d"
+ 5}
+
+
+
+
+ Date with formatting
+
+You can change the date format. Just add dateFormat (see Java's SimpleDateFormat) and optionally timeZone.
+
+Example
+
+
+
+
+SailPoint System Administration 39
+
+===== Page 44/75 =====
+About Data Extract
+
+
+
+ 1imageConfigDescriptors:
+ 2  identity:
+ 3    objectClassName: sailpoint.object.Identity
+ 4    imagePropertyConfigDescriptors:
+ 5      - property: id
+ 6      - property: name
+ 7      - property: created
+ 8        type: date
+ 9        dateFormat: EEEE MMMM d yyyy ('julian day' - DD) - h:m:s a
+ 10        timeZone: CST
+ 1dataextract transform identity james.smith deExamples
+
+
+
+Result
+
+New format forthe date, and note that it'sinCST instead ofUTC (5hours earlier).
+
+
+ 1{
+ 2  "created": "Wednesday September 7 2022 (julian day - 250) - 9:29:20 AM",
+ 3  "name": "James.Smith",
+ 4  "id": "ac130b1283181a728183185b0138065d"
+ 5}
+
+
+ ImageRef
+
+Iftheproperty is aSailPoint object, itwillbecome an imageref object.
+
+Example
+
+
+ 1imageConfigDescriptors:
+ 2  identity:
+ 3    objectClassName: sailpoint.object.Identity
+ 4    imagePropertyConfigDescriptors:
+ 5      - property: id
+ 6      - property: name
+ 7      - property: capabilities
+
+
+
+Result
+
+Notice thatthe object under capabilities has an id,name, and objectType. It'snow an imageref.
+
+
+ 1dataexport export identity wanda.watkins deExamples
+ 1{
+ 2  "capabilities": [
+ 3    {
+ 4      "id": "ac130b1283181a728183185a87b100bf",
+ 5      "name": "SystemAdministrator",
+
+
+
+
+
+
+SailPoint System Administration 40
+
+===== Page 45/75 =====
+About Data Extract
+
+
+
+ 6      "objectType": "sailpoint.object.Capability"
+ 7    }
+ 8  ],
+ 9  "name": "James.Smith",
+ 10  "id": "ac130b1283181a728183185b0138065d"
+ 11}
+
+
+
+xmlString
+
+Example
+
+
+ 1imageConfigDescriptors:
+ 2  identity:
+ 3    objectClassName: sailpoint.object.Identity
+ 4    imagePropertyConfigDescriptors:
+ 5      - property: id
+ 6      - property: name
+ 7        type: xmlString
+
+
+
+Result
+
+
+ 1{
+ 2  "id": "ac130b1283181a728183185b0138065d",
+ 3  "name": "<name>James.Smith</name>"
+ 4}
+
+
+ Attributes
+
+Example
+
+Extract'location'from the attributesmap.
+
+
+ 1imageConfigDescriptors:
+ 2  identity:
+ 3    objectClassName: sailpoint.object.Identity
+ 4    imagePropertyConfigDescriptors:
+ 5      - property: id
+ 6      - property: name
+ 7      - attribute: location
+
+
+
+Result
+
+
+ 1{
+
+
+
+
+
+
+SailPoint System Administration 41
+
+===== Page 46/75 =====
+About Data Extract
+
+
+
+ 2  "name": "James.Smith",
+ 3  "attributes": {
+ 4    "location": "Austin"
+ 5  },
+ 6  "id": "ac130b1283181a728183185b0138065d"
+ 7}
+
+
+
+Normally attributewillput allattributes under the attributes container. Ifyou want the name tobe different,use the
+attributesContainer property on the image property config descriptor.
+
+Example
+
+
+ 1imageConfigDescriptors:
+ 2  identity:
+ 3    objectClassName: sailpoint.object.Identity
+ 4    attributesContainer: myAttributes
+ 5    imagePropertyConfigDescriptors:
+ 6      - property: id
+ 7      - property: name
+ 8      - attribute: location
+
+
+
+Result
+
+
+ 1{
+ 2  "name": "James.Smith",
+ 3  "myAttributes": {
+ 4    "location": "Austin"
+ 5  },
+ 6  "id": "ac130b1283181a728183185b0138065d"
+ 7}
+
+
+
+Notice the myAttribute property instead of attributes.There is an additional fieldforwhen a record's attributes column
+isnot named "attributes."These differing column names are supported using attributeSourceName.
+
+extendedAttributes and extendedIdentityAttributes work in the same manner.
+
+ Note: Ifyou set the attributes container to nothing, the attribute willbe a top-level property of the
+ json. For example:
+
+
+ 1imageConfigDescriptors:
+ 2  identity:
+ 3    objectClassName: sailpoint.object.Identity
+ 4    attributesContainer:
+ 5    imagePropertyConfigDescriptors:
+
+
+
+
+
+
+SailPoint System Administration 42
+
+===== Page 47/75 =====
+About Data Extract
+
+
+
+ 6      - property: id
+ 7      - property: name
+ 8      - attribute: location
+
+
+
+Result
+
+
+ 1{
+ 2  "name": "James.Smith",
+ 3  "location": "Austin",
+ 4  "id": "ac130b1283181a728183185b0138065d"
+ 5}
+
+
+ Hashing
+
+To add a hash value toan objectuse includeHash likethis:
+
+
+ 1imageConfigDescriptors:
+ 2  identity:
+ 3    includeHash: true
+ 4    objectClassName: sailpoint.object.Identity
+ 5    imagePropertyConfigDescriptors:
+ 6      - property: id
+ 7      - property: name
+ 8
+
+
+
+Result
+
+
+ 1{
+ 2  "sha1": "D6306DF4EE9DC1A261D3E1BC727998DA8A3797B3",
+ 3  "name": "James.Smith",
+ 4  "id": "ac130b1283181a728183185b0138065d"
+ 5}
+
+
+
+The property called "sha1" contains the hash. This can be change toanother fieldby adding the hashProperty attrib-
+uteto the ImageConfigDescriptor for identity.
+
+Example
+
+
+ 1imageConfigDescriptors:
+ 2  identity:
+ 3    includeHash: true
+ 4    hashProperty: my_sha1_hash
+
+
+
+
+
+
+
+SailPoint System Administration 43
+
+===== Page 48/75 =====
+About Data Extract
+
+
+
+ 5    objectClassName: sailpoint.object.Identity
+ 6    imagePropertyConfigDescriptors:
+ 7      - property: id
+ 8      - property: name
+
+
+
+
+Result
+
+
+ 1{
+ 2  "name": "James.Smith",
+ 3  "id": "ac130b1283181a728183185b0138065d",
+ 4  "my_sha1_hash": "D6306DF4EE9DC1A261D3E1BC727998DA8A3797B3"
+ 5}
+
+Notice the new name ismy_sha1_hash.
+
+Suppose that you want toexclude a property from the hash calculation– forexample, created and modified. Justadd
+hashExclude tothe property config descriptor and set ittotrue.
+
+Example
+
+
+ 1imageConfigDescriptors:
+ 2  identity:
+ 3    includeHash: true
+ 4    hashProperty: my_sha1_hash
+ 5    objectClassName: sailpoint.object.Identity
+ 6    imagePropertyConfigDescriptors:
+ 7      - property: id
+ 8      - property: name
+ 9      - property: created
+ 10        hashExclude: true
+ 11      - property: modified
+ 12        hashExclude: true
+
+
+
+Result
+
+
+ 1{
+ 2  "created": 1662560960824,
+ 3  "name": "James.Smith",
+ 4  "modified": 1662562037284,
+ 5  "id": "ac130b1283181a728183185b0138065d",
+ 6  "sha1": "D6306DF4EE9DC1A261D3E1BC727998DA8A3797B3"
+ 7}
+
+
+
+Notice the created and modified properties are inthe json, butthe hash isidentical.
+
+
+
+
+
+
+SailPoint System Administration 44
+
+===== Page 49/75 =====
+About Data Extract
+
+ Decrypt
+
+You can decrypt values. See Using Data Extract with Sensitive Data.
+
+ Caution: Itisyour responsibility to ensure thatonly data thatdo not violate security policies within
+ your environment are included as extractable or decryptable.
+
+
+Example
+
+
+ 1imageConfigDescriptors:
+ 2  identity:
+ 3    objectClassName: sailpoint.object.Identity
+ 4    imagePropertyConfigDescriptors:
+ 5      - property: id
+ 6        newName: identityIQ_id
+ 7      - property: name
+ 8      - property: password
+ 9        decrypt: true
+
+
+
+Result
+
+
+ 1{
+ 2  "password": "xyzzy",
+ 3  "identityIQ_id": "ac130b1283181a728183185b0138065d",
+ 4  "name": "James.Smith"
+ 5}
+
+
+ Objects
+
+With type object, you can specify an object name to expand an object inplace. Normally itwould be an identityref,but
+suppose you want toexpand itinplace.
+
+ Note: In thisexample, we need toalso specify transformType ofelements because thisisa list.
+ We don't want totransform the list,we want totransform each item in the list.
+
+Example
+
+
+ 1imageConfigDescriptors:
+ 2  identity:
+ 3    objectClassName: sailpoint.object.Identity
+ 4    imagePropertyConfigDescriptors:
+ 5      - property: id
+ 6      - property: name
+ 7      - property: links
+
+
+
+
+
+
+SailPoint System Administration 45
+
+===== Page 50/75 =====
+About Data Extract
+
+
+
+ 8        type: object
+ 9        objectName: link
+ 10        transformType: elements
+ 11
+ 12  link:
+ 13    objectClassName: sailpoint.object.Link
+ 14    imagePropertyConfigDescriptors:
+ 15      - property: id
+ 16      - property: applicationName
+ 17      - property: nativeIdentity
+
+
+
+Result
+
+
+ 1{
+ 2  "name": "James.Smith",
+ 3  "links": [
+ 4    {
+ 5      "id": "ac130b1283181a728183185b1b310862",
+ 6      "applicationName": "HR_Employees",
+ 7      "nativeIdentity": "1a"
+ 8    },
+ 9    {
+ 10      "id": "ac130b1283181a728183185b53c811c8",
+ 11      "applicationName": "Active_Directory",
+ 12      "nativeIdentity": "100"
+ 13    },
+ 14    {
+ 15      "id": "ac130b1283181a728183185be2e417e4",
+ 16      "applicationName": "ADDirectDemodata",
+ 17      "nativeIdentity": "CN=James Smith,OU-
+ U=Austin,OU=Americas,OU=DemoData,DC=test,DC=sailpoint,DC=com"
+ 18    },
+ 19    {
+ 20      "id": "ac130b1283181a728183185c81011917",
+ 21      "applicationName": "RealLDAPWithDemoData",
+ 22      "nativeIdentity": "CN=James Smith,OU-
+ U=Austin,OU=Americas,OU=DemoData,DC=test,DC=sailpoint,DC=com"
+ 23    }
+ 24  ],
+ 25  "id": "ac130b1283181a728183185b0138065d"
+ 26}
+
+
+ TransformType
+
+Thisis documented inthe Objects section above.
+
+ Exclude Boolean false
+
+Forthe sake ofbrevityin thejson, you may want to exclude Boolean values that arefalse.
+
+
+
+
+
+SailPoint System Administration 46
+
+===== Page 51/75 =====
+About Data Extract
+
+
+Example
+
+
+ 1excludeBooleanFalse: true
+ 2imageConfigDescriptors:
+ 3  identity:
+ 4    objectClassName: sailpoint.object.Identity
+ 5    imagePropertyConfigDescriptors:
+ 6      - property: id
+ 7      - property: name
+ 8      - property: inactive
+
+
+
+Result
+
+
+ 1{
+ 2  "name": "James.Smith",
+ 3  "id": "ac130b1283181a728183185b0138065d"
+ 4}
+
+
+
+This iswhat the results would have looked likewithout excludeBooleanFalse
+
+
+ 1{
+ 2  "inactive": false,
+ 3  "name": "James.Smith",
+ 4  "id": "ac130b1283181a728183185b0138065d"
+ 5}
+
+
+ Classifications
+
+This isreally the same thing as object – it'sjustanother object.But since itcomes up in a lotofIdentityIQ objects, here
+isan example of how to extract classifications.
+
+This configuration willextract the property called classifications. It'sa listofObjectClassification objects. Each object
+classificationobject has a property called classification.It'sa Classification object. This example uses names forthe
+imageConfigDescriptors thatmatch the class names. While thatis not strictlyrequired, isa best practice.
+
+Example
+
+
+ 1imageConfigDescriptors:
+ 2  Bundle:
+ 3    imagePropertyConfigDescriptors:
+ 4    - property: "id"
+ 5    - property: "name"
+ 6    - property: "displayName"
+ 7    - property: "description"
+
+
+
+
+
+
+SailPoint System Administration 47
+
+===== Page 52/75 =====
+About Data Extract
+
+
+
+ 8    - property: "disabled"
+ 9    - property: "modified"
+ 10    - property: "created"
+ 11    - property: "owner"
+ 12    - property: "classifications"
+ 13      type: object
+ 14      objectName: ObjectClassification
+ 15      transformType: elements
+ 16    objectClassName: "sailpoint.object.Bundle"
+ 17
+ 18  ObjectClassification:
+ 19    imagePropertyConfigDescriptors:
+ 20      - property: id
+ 21      - property: classification
+ 22        type: object
+ 23        objectName: Classification
+ 24
+ 25  Classification:
+ 26    imagePropertyConfigDescriptors:
+ 27      - property: name
+ 28      - property: id
+ 29      - property: origin
+ 30      - property: displayName
+ 31        hashExclude: true
+ 1> dataextract transform Bundle "sailpoint dev" bconfig | jq
+
+
+
+Result
+
+
+ 1{
+ 2  "owner": {
+ 3    "id": "ac130b1283aa11858183aa01a19100ea",
+ 4    "name": "spadmin",
+ 5    "objectType": "sailpoint.object.Identity"
+ 6  },
+ 7  "classifications": [
+ 8    {
+ 9      "id": "ac130b1283cd1d008183cdfce6700105",
+ 10      "classification": {
+ 11        "origin": "JDBCDirectDemoData",
+ 12        "name": "Special7",
+ 13        "id": "ac130b1283aa11858183aa02fefb1b58"
+ 14      }
+ 15    }
+ 16  ],
+ 17  "created": 1665004612038,
+ 18  "name": "sailpoint dev",
+ 19  "modified": 1665608246939,
+ 20  "disabled": false,
+ 21  "id": "ac130b1283aa11858183aa0229c60805"
+ 22}
+
+
+
+
+
+
+
+
+SailPoint System Administration 48
+
+===== Page 53/75 =====
+About Data Extract
+
+Importing Data Extract and Transform Configurations
+
+Import your Extract and Transform YAMLConfigs using the IdentityIQ user interface (see Import from Filein the Sys-
+tem Configuration Guide) orthe console.
+
+To import through the IdentityIQconsole:
+
+ 1. Open a command prompt and launch the IdentityIQ console. See Launching the Console inthe
+ IdentityIQ Console Guide.
+
+ 2. Startthe console and use the console import command toimport the file.The import issuccessful only ifthe
+ XML isvalid. Any errors encountered are reported to theconsole.
+
+Provisioning a Data Extract Task Destination Queue
+
+The Data Extract task destination queue value can be a stringthatrepresents the ActiveMQ messageDestinations
+name, oritcan be a beanshell script likethisexample:
+
+
+ messageDestination: |
+   script:
+   import sailpoint.object.Configuration;
+
+   Configuration config = Configuration.getAccessHistoryConfig();
+   return config.get("destinationQueue");
+
+
+
+See Configuring Data Extraction.
+Enabling and Configuring Data Extract
+
+Priorto running the Data Extract task,you need to enable thattask.
+
+ 1. Navigate togear > Global Settings > Data Extract Configuration.
+
+ 2. Select the Enable Data Extract Tasks checkbox.
+
+ 3. Set the internalprocessing queue.
+
+ 4. Set the internalprocessing message expiration time, which isthe length oftime in minutes that a message
+ should be retained inthe internalprocessing queue.
+
+ 5. Select Save Changes.
+
+
+
+
+
+
+
+
+
+ SailPoint System Administration 49
+
+===== Page 54/75 =====
+About Data Extract
+
+Setting Up Data Extract Task
+
+The Data Extract Task selects objects from the IIQ database, processes each object, and writes a message foreach
+toa destination queue. The firsttime Data Extract runs, itcompletes a fullextract forthe defined objects. Subsequent
+task runs extract a delta based on what has changed since the last time itran.
+
+You can set up this task to run on your instance:
+
+ 1. Configure a Data Extraction YAMLConfig for the task provides what types ofobjects to extract. See Configuring
+ Data Extraction.
+
+ 2. Set a message destination to dispatch messages to. See Provisioning a Data Extract Task Destination Queue.
+
+ 3. Configure a transformConfigurationName YAMLConfig to describe how to extract the types from the first
+ YAMLConfig extractedObjects. See Configuring Data Transformation.
+
+ a. Make sure the extractedObjects from the firstYAMLConfig allhave a corresponding imageCon-
+ figDescriptor and that each has a valid objectClassName
+
+ 4. Navigate to Setup > Tasks.
+
+ 5. Select the New Task dropdown inthe upper rightcorner.
+
+ 6. From the dropdown list,select Data Extract.
+
+ Note: When upgrading to version 8.4 from another version ofIdentityIQ, ifyou do not see
+ the Data Extract option, then make sure you followed the upgrade process by importing
+ upgradeObjects. Ifit'sa clean installation,then you need to reimport init.xml.
+
+ 7. On the New Task screen, enter a Name foryour task and add any other optional fieldinformation you would
+ like.
+
+ 8. Under Data Extract Options, select a Data Extract YAMLConfig.
+
+ 9. Select Save, Save & Execute, Cancel, or Refresh.
+
+ a. Executing the task looks at what objects are configured tobe exported, applies the filtercriteriaand any
+ limits that you have set and translates allof those objects intoJSON documents, and writes them to a
+ JMS queue.
+
+ b. Ifexecuted, review the Task Results, which display allthe differences as well as the attribute statistics.
+ See Viewing Data Extract Task Results.
+
+You can schedule thistask to run on a regular cadence. See How to Schedule a Task inthe Tasks Guide.
+
+
+
+
+
+ SailPoint System Administration 50
+
+===== Page 55/75 =====
+About Data Extract
+
+
+Ifyou configure differentYAML configurations for differentobject types, you can also configure separate tasks torun
+atdifferent intervals.For example, YAML 1 may be configured forObject X and YAML 2 forObject Y. Task 1 forYAML
+1 may be scheduled torun every week, while Task 2 for YAML 2 may be scheduled to run every day.
+Working with the Data Extract Message Broker
+
+Viewing Overall Broker Status on the ActiveMQ Monitoring Page
+
+Starting and Stopping Connectivity toan External Broker
+
+Configuring Message Broker
+
+Starting and Stopping an Embedded Message Broker
+
+
+Viewing Overall Broker Status on the ActiveMQ Monitoring Page
+
+Data Extract may use an embedded ActiveMQ message broker, but organizations are encouraged toset up external
+ActiveMQ instances. When using an external broker, use that broker's monitoring tool forgreater administrative cap-
+abilities.
+
+Use the ActiveMQ monitoring page to view the high-level status of brokers thatare registered inthe configuration, and
+view messages processing during the data extract task.
+
+ 1. Navigate to Debug menu > ActiveMQ Monitoring.
+
+ 2. The following information isincluded on the ActiveMQ Monitoring page:
+
+ a. Broker information – ID, name, VM URL, status, and data directory
+
+ b. Connectors – connector name and binding address
+
+ c. Broker statistics– memory usage, storage usage, total message count, average message size, counts
+ for totalenqueue and dequeue, totalcounts forproducer and consumer
+
+ d. Destinations – tablelistsdestinations by name and includes size, enqueue messages, dequeue mes-
+ sages, and average enqueue time.
+
+Starting and Stopping Connectivity to an External Broker
+
+Connectivity information, along with setup and administration of the differentqueues you want to use for statistics,is
+found in Broker Configuration. You may want to stop the broker tocomplete maintenance on an external broker imple-
+mentation or inthe case of a disaster recovery failover.
+
+To startor stop the broker:
+
+
+
+
+
+
+ SailPoint System Administration 51
+
+===== Page 56/75 =====
+About Data Extract
+
+ 1. Navigate to gear > Global Settings > Messaging Configuration.
+
+ 2. Select or deselect the checkbox forEnable Messaging.
+
+ 3. Select Save Changes.
+
+Ifthe message broker isdisabled and you navigate to something that depends on it,such as Access History or Data
+Extract, a banner warning states, "Messaging is disabled. You can enable messaging in Global Settings > Messaging
+Configuration."
+
+Configuring Message Broker
+
+To configure an embedded or external message broker for Data Extract, navigate togear > Global Settings > Mes-
+saging Configuration and select the checkbox to Enable Messaging.
+
+There are sections for:
+
+
+
+ l Broker Type
+
+ o Embedded – the embedded ActiveMQ broker that isincluded with IdentityIQ.
+
+
+ o External – an external ActiveMQ broker that you maintain.
+
+
+
+
+ l Embedded Broker Settings
+
+ o Lock Keep Alive Period (required) – the amount of time in milliseconds thatthe lock should be kept alive.
+
+
+ o Lock Acquire Sleep Interval (required) – duration in milliseconds forhow long the broker willwait before
+ trying to retry acquiring a lock.For Lease Database Locker, this value should be larger than the Lock
+ Keep Alive Period.
+
+ o Max Page Size (required) – the maximum number of messages to page in from the store at one time.
+
+
+ o DLQ Message Expiration in Days (required) – duration indays thatmessages inthe dead letterqueue
+ (DLQ) willbe expired and removed.
+
+
+
+ l Connection Settings
+
+ o Client Connection String (required) – a string that defines how clients connect tothe broker, in the format
+ of 'failover:(tcp://&lt;host&gt;:&lt;port&gt;)?&lt;options&gt;'
+
+ o Enable Failover Optimization – ifenabled, the system willuse the lastknown broker url firstwhen con-
+ necting to the broker.
+
+
+
+
+
+
+
+
+ SailPoint System Administration 52
+
+===== Page 57/75 =====
+About Data Extract
+
+
+ o Consumer Username (required) – username for read-only connections. For the embedded broker, it
+ may take a few minutes forthe change to take effect.
+
+ o Consumer Password (required) – password for read-only connections. For the embedded broker, itmay
+ take a few minutes for the change to take effect.
+
+ o Producer Username (required) – username ofthe connection that willwrite messages onto the queues.
+ For the embedded broker, itmay take a few minutes for the change to take effect.
+
+ o Producer Password (required) – password ofthe connection that willwrite messages onto the queues.
+ For the embedded broker, itmay take a few minutes for the change to take effect.
+
+ o Admin Username (optional for external brokers, required for embedded brokers) – username of the con-
+ nection that creates queues ifa queue isnot available. This setting is required forEmbedded Brokers.
+ For the Embedded Broker, itmay take a few minutes forthe change to take effect.
+
+ o Admin Password (optional forexternal brokers, required forembedded brokers) – password of the con-
+ nection that creates queues ifa queue isnot available. This setting is required forEmbedded Brokers.
+ For the Embedded Broker, itmay take a few minutes forthe change to take effect.
+
+
+
+ l Statistics Settings
+
+ o Broker Statistics Queue Name (optional forexternal brokers unless you are using the Debug > Act-
+ iveMQ Monitoring page, required for embedded) – name of the ActiveMQ queue on which overall stat-
+ isticsare stored.
+
+ o Destinations StatisticsQueue Name (optional for external brokers unless you are using the Debug > Act-
+ iveMQ Monitoring page, required for embedded) – name of the ActiveMQ queue on which destination
+ statisticsare stored.
+
+ o Subscriptions Statistics Queue Name (optional forexternal brokers unless you are using the Debug >
+ ActiveMQ Monitoring page, required for embedded) – name of the ActiveMQ queue on which sub-
+ scription statisticsare stored.
+
+
+ Note: Selecting an external broker disables the embedded broker settings.
+
+Starting and Stopping an Embedded Message Broker
+
+The ActiveMQ embedded message broker isrun as an IIQ service thatcan be enabled or disabled for each host in the
+Administrator Console UI. The shutdown message is broadcast toembedded brokers, but they may take some time to
+shut down. Attempts to turn them back on willnot be accepted untilthe shutdown iscompleted.
+
+To start or stop the broker:
+
+
+
+
+
+
+ SailPoint System Administration 53
+
+===== Page 58/75 =====
+About Data Extract
+
+ 1. Navigate to gear > Administrator Console > Environment.
+
+ 2. Select the gear button inthe Host Actions column for the hostname. This launches a pop-up dialog.
+
+ 3. EmbeddedBroker islisted on the Services tab and can be toggled on or off.
+
+ 4. Select Save.
+
+Ifthe message broker isdisabled and you navigate tosomething that depends on it,such as Access History or Data
+Extract, a banner warning states, "Messaging isdisabled. You can enable messaging in Global Settings > Messaging
+Configuration."
+Running a Data Extract Task
+
+Use the IdentityIQ console torun a data extraction task, run on demand from the Tasks page, or schedule Data
+Extract to run at a time or cadence you choose. See Tasks Overview and How to Schedule a Task in the Tasks
+Guide .
+Viewing Data Extract Task Results
+
+View Data Extract task results atSetup > Tasks > Task Results. The top section displays the total number ofExtrac-
+ted Objects and Extracted Objects Dispatched. The values should be the same. Also included are the totalnumber of
+Deleted Objects, Deleted Objects Dispatched, and a breakdown ofthe types of deleted objects dispatched and the
+totalfor each. The total forallobjects listed inthis section equals the number of Deletion Objects Dispatched in the top
+section.
+
+ Note: Ifan object is deleted, you willreceive an update on the message queue forthe deleted
+ object so that you can update your data repository. Under Extracted Objects Dispatched Types
+ isa breakdown of types ofobjects dispatched and the totalfor each. The totalforall objects listed
+ inthis section equals the number of Extracted Objects Dispatched inthe top section.
+
+Details can be expanded or collapsed. The expanded view shows a listofpartitions with columns forName, Host, and
+Status. Each partitioncan be expanded or collapsed. When expanded, each shows number of Extracted Objects and
+Extracted Objects dispatched, including any deletion objects processed.
+
+The Deletion Objects Processed are handled in a unique way – they are processed in parallel toData Extract and are
+deleted aftersending. Ifa Data Extract task failsfor any reason, there isa chance that the deleted objects may stillbe
+processed and a notification ofthe event may be on the destination queue. As the task isasynchronous, the failure
+could result in data being in several locations throughout the workflow, including the destination queue. The message
+consumer will handle any duplicates.
+
+
+
+
+
+
+
+
+ SailPoint System Administration 54
+
+===== Page 59/75 =====
+About Data Extract
+
+Validating Data Extract Results
+
+Ifyour implementation uses the embedded ActiveMQ message broker, you can verify extracted messages in the
+ACTIVEMQ_MSGS table. There isnot a way tomonitor temporary queues.
+
+Ifyour implementation uses external ActiveMQ, you can see the following happen as a Data Extract task runs:
+
+
+
+ l OBJECT_SELECTOR messages are written in the inbound queue.
+
+ o This isthe listof object IDs / names to extract.
+
+
+ o The partitions /threads willread messages from this queue then process and write tothe destination
+ queue.
+
+
+
+ l EXTRACTED_OBJECT messages are written to the destination queue with the name specified in your Extract
+ YAMLConfig.
+
+To verify the content of EXTRACTED_OBJECT messages, you can do the following:
+
+ 1. Run Task with Transform / Extract config toextract allobjects of alltypes (generate transform config for all
+ objects) and verify messages.
+
+ 2. Run Task with Transform / Extract config toextract allobjects for single object type.
+
+ 3. Run Task with Transform / Extract config toextract allobjects for multiple object types.
+
+ 4. Run Task with Transform / Extract config with filterStringto restrictwhich objects ofa particular type to extract.
+
+Verify that the number of messages match:
+
+
+
+ l Using Embedded Message Broker: In the task result, verify that the number of message inthe table fordes-
+ tination queue (see Debug > ActiveMQ Monitoring, scrolldown to Destinations) matches the number of Extrac-
+ ted Objects/Extracted Objects Dispatched (see Task Results).
+
+
+
+ l Using External Broker: Verify that the number of messages in the temporary queue match the number inthe
+ destination queue. Additionally, the task result should show the same number forExtracted Objects as for
+ Extracted Objects Dispatched.
+
+Spot check messages:
+
+ 1. Generate the default Transform YAMLConfig for identity.Add filterStringtoExtract YAMLConfig to extract
+ single identity.Run the task using thatconfig and view the dispatched message content, verify data looks cor-
+ rect.
+
+
+
+
+
+
+
+
+ SailPoint System Administration 55
+
+===== Page 60/75 =====
+About Data Extract
+
+ 2. Remove some properties or attributesfrom the Transform YAMLConfig and repeat. View dispatched message
+ content, verifythatit'scorrect.
+
+ 3. Repeat withsome other tasks.
+
+Intercept Delete Functionality
+
+When an identityis removed from a workgroup, they effectivelylose permissions or access tocertain functionalitythat
+isassociated withthe workgroup. That change inpermissions isnow reflected inthe identitycube and can be viewed
+by running the Data Extract task and reviewing the Task Results. This isdriven by the Created By and Modified By
+attributes.
+Data Extract Auditing
+
+Enable Data Extract auditing bynavigating togear > Global Settings > Audit Configuration. When you Run Task
+inthe auditconfiguration, the task shows up as an audit event viewable at Intelligence > Advanced Analytics >
+Search Type: Audit, Action: Run Task.
+Sample Transform YAML Config
+
+
+ 1  <YAMLConfig name="ExampleTransformConfig" type="Transform">
+ 2    <YamlText>
+ 3      <![CDATA[
+ 4      excludeBooleanFalse: true
+ 5      imageConfigDescriptors:
+ 6
+ 7        identity:
+ 8          includeHash: true
+ 9          hashProperty: smartHash
+ 10          objectClassName: sailpoint.object.Identity
+ 11          objectTransformerConfigDescriptors:
+ 12            - type: sailpoint.dataextract.conversion.ExtendedIdentityAttributes
+ 13              args:
+ 14                excludedKeys: ""
+ 15                saveAs: "extendedAttributesIdentity"
+ 16          imagePropertyConfigDescriptors:
+ 17            - property: id
+ 18            - property: name
+ 19            - property: displayName
+ 20            - property: displayableName
+ 21              hashExclude: true
+ 22            - property: managerStatus
+ 23              newName: isManager
+ 24              type: bool
+ 25            - property: administrator
+ 26              type: object
+ 27              objectName: identityRef
+
+
+
+
+
+
+ SailPointSystem Administration 56
+
+===== Page 61/75 =====
+About Data Extract
+
+
+
+ 28            - property: manager
+ 29              type: object
+ 30              objectName: identityRef
+ 31            - property: inactive
+ 32            - property: bundles
+ 33              newName: detectedRoles
+ 34              type: object
+ 35              objectName: bundleRef
+ 36              transformType: elements
+ 37            - property: assignedRoles
+ 38              type: object
+ 39              objectName: bundleRef
+ 40              transformType: elements
+ 41            - property: roleAssignments
+ 42              type: object
+ 43              objectName: roleAssignment
+ 44              transformType: elements
+ 45            - property: id
+ 46              newName: entitlements
+ 47              type: none
+ 48              propertyTransformerConfigDescriptors:
+ 49                - type: sailpoint.dataextract.conversion.IdentityIdEntitlements
+ 50                  args:
+ 51                    objectName: identityEntitlement
+ 52            - property: attributes
+ 53              type: none
+ 54              propertyTransformerConfigDescriptors:
+ 55                - type: sailpoint.dataextract.conversion.AttributesWithExclusions
+ 56                  args:
+ 57                    excludedKeys: displayName,inactive
+ 58                    objectConfigTypes: system,standard,unclear
+ 59            - property: extendedAttributes
+ 60              type: none
+ 61              propertyTransformerConfigDescriptors:
+ 62                - type: sailpoint.dataextract.conversion.AttributesWithExclusions
+ 63                  args:
+ 64                    objectConfigTypes: extended
+ 65            - property: attributes
+ 66              newName: extendedAttributesNamed
+ 67              type: none
+ 68              propertyTransformerConfigDescriptors:
+ 69                - type: sailpoint.dataextract.conversion.AttributesWithExclusions
+ 70                  args:
+ 71                    objectConfigTypes: named
+ 72            - property: links
+ 73              newName: accounts
+ 74              type: object
+ 75              objectName: link
+ 76              transformType: elements
+ 77
+ 78        role:
+ 79          includeHash: true
+ 80          hashProperty: smartHash
+ 81          objectClassName: sailpoint.object.Bundle
+
+
+
+
+
+
+SailPoint System Administration 57
+
+===== Page 62/75 =====
+About Data Extract
+
+
+
+ 82          objectTransformerConfigDescriptors:
+ 83            - type: sailpoint.dataextract.conversion.ExtendedIdentityAttributes
+ 84              args:
+ 85                excludedKeys: ""
+ 86                saveAs: "extendedAttributesIdentity"
+ 87          imagePropertyConfigDescriptors:
+ 88            - property: id
+ 89            - property: name
+ 90            - property: displayName
+ 91            - property: inheritance
+ 92              newName: supers
+ 93              type: object
+ 94              objectName: bundleRef
+ 95              transformType: elements
+ 96            - property: permits
+ 97              newName: permitteds
+ 98              type: object
+ 99              objectName: bundleRef
+ 100              transformType: elements
+ 101            - property: requirements
+ 102              newName: requireds
+ 103              type: object
+ 104              objectName: bundleRef
+ 105              transformType: elements
+ 106            - property: activationDate
+ 107            - property: deactivationDate
+ 108            - property: attributes
+ 109              type: none
+ 110              propertyTransformerConfigDescriptors:
+ 111                - type: sailpoint.dataextract.conversion.AttributesWithExclusions
+ 112                  args:
+ 113                    excludedKeys: displayName
+ 114                    objectConfigTypes: system,standard,unclear
+ 115            - property: extendedAttributes
+ 116              type: none
+ 117              propertyTransformerConfigDescriptors:
+ 118                - type: sailpoint.dataextract.conversion.AttributesWithExclusions
+ 119                  args:
+ 120                    objectConfigTypes: extended
+ 121            - property: attributes
+ 122              newName: extendedAttributesNamed
+ 123              type: none
+ 124              propertyTransformerConfigDescriptors:
+ 125                - type: sailpoint.dataextract.conversion.AttributesWithExclusions
+ 126                  args:
+ 127                    objectConfigTypes: named
+ 128
+ 129        link:
+ 130          attributesContainer:
+ 131          objectClassName: sailpoint.object.Link
+ 132          objectTransformerConfigDescriptors:
+ 133            - type: sailpoint.dataextract.conversion.UniqueKeyGenTransformer
+ 134              args:
+ 135                fields:
+
+
+
+
+
+
+SailPoint System Administration 58
+
+===== Page 63/75 =====
+About Data Extract
+
+
+
+ 136                  - applicationId
+ 137                  - nativeIdentity
+ 138                saveAs: "__key"
+ 139                separator: "|"
+ 140          imagePropertyConfigDescriptors:
+ 141            - property: id
+ 142            - property: applicationId
+ 143            - property: applicationName
+ 144            - property: nativeIdentity
+ 145            - property: iiqLocked
+ 146            - property: iiqDisabled
+ 147            - property: attributes
+ 148              type: none
+ 149              propertyTransformerConfigDescriptors:
+ 150                - type: sailpoint.dataextract.conversion.AttributesWithExclusions
+ 151                  args:
+ 152                    excludedKeys: displayName,IIQLocked,IIQDisabled
+ 153                    objectConfigTypes: system,standard,unclear
+ 154            - property: extendedAttributes
+ 155              type: none
+ 156              propertyTransformerConfigDescriptors:
+ 157                - type: sailpoint.dataextract.conversion.AttributesWithExclusions
+ 158                  args:
+ 159                    objectConfigTypes: extended
+ 160            - property: attributes
+ 161              newName: extendedAttributesNamed
+ 162              type: none
+ 163              propertyTransformerConfigDescriptors:
+ 164                - type: sailpoint.dataextract.conversion.AttributesWithExclusions
+ 165                  args:
+ 166                    objectConfigTypes: named
+ 167        certificationEntity:
+ 168          objectClassName: sailpoint.object.CertificationEntity
+ 169          imagePropertyConfigDescriptors:
+ 170            - property: targetId
+ 171            - property: targetName
+ 172            - property: type
+ 173            - property: completed
+ 174              type: unixtime
+ 175        identityEntitlement:
+ 176          objectClassName: sailpoint.object.IdentityEntitlement
+ 177          imagePropertyConfigDescriptors:
+ 178            - property: appName
+ 179            - property: name
+ 180            - property: value
+ 181            - property: type
+ 182            - property: grantedByRole
+ 183              type: bool
+ 184        certification:
+ 185          objectClassName: sailpoint.object.Certification
+ 186          imagePropertyConfigDescriptors:
+ 187            - property: id
+ 188            - property: name
+ 189            - property: type
+
+
+
+
+
+
+SailPoint System Administration 59
+
+===== Page 64/75 =====
+About Data Extract
+
+
+
+ 190            - property: phase
+ 191            - property: finished
+ 192              type: unixtime
+ 193            - property: signed
+ 194              type: unixtime
+ 195            - property: certifiers
+ 196            - property: entities
+ 197              type: object
+ 198              objectName: certificationEntity
+ 199              transformType: elements
+ 200        identityRef:
+ 201          imagePropertyConfigDescriptors:
+ 202            - property: name
+ 203            - property: id
+ 204            - property: displayName
+ 205              hashExclude: true
+ 206
+ 207        bundleRef:
+ 208          imagePropertyConfigDescriptors:
+ 209            - property: name
+ 210            - property: id
+ 211            - property: type
+ 212            - property: displayName
+ 213              hashExclude: true
+ 214
+ 215        roleAssignment:
+ 216          imagePropertyConfigDescriptors:
+ 217            - property: roleId
+ 218            - property: roleName
+ 219            - property: comments
+ 220            - property: assigner
+ 221            - property: date
+ 222            - property: source
+ 223            - property: negative
+ 224            - property: startDate
+ 225            - property: endDate
+ 226            - property: assignmentId
+ 227      ]]>
+ 228    </YamlText>
+ 229  </YAMLConfig>
+
+
+Sample Transform YAML Config with Explanation
+
+Here isan example of an actualTransform YAML Config.
+
+
+ 1imageConfigDescriptors:
+ 2  identity:
+ 3    objectClassName: sailpoint.object.Identity
+ 4    imagePropertyConfigDescriptors:
+ 5      - property: id
+
+
+
+
+
+
+ SailPointSystem Administration 60
+
+===== Page 65/75 =====
+About Data Extract
+
+
+
+ 6        type: none
+ 7        propertyTransformerConfigDescriptors:
+ 8        - type: sailpoint.dataextract.conversion.ImagePropertyTransformer
+ 9          args:
+ 10            propertyType: string
+ 11      - property: name
+ 12        type: none
+ 13        propertyTransformerConfigDescriptors:
+ 14          - type: sailpoint.dataextract.conversion.ImagePropertyTransformer
+ 15            args:
+ 16              propertyType: string
+ 17      - property: firstname
+ 18        type: none
+ 19        propertyTransformerConfigDescriptors:
+ 20          - type: sailpoint.dataextract.conversion.ImagePropertyTransformer
+ 21            args:
+ 22              propertyType: string
+ 23      - property: lastname
+ 24        type: none
+ 25        propertyTransformerConfigDescriptors:
+ 26          - type: sailpoint.dataextract.conversion.ImagePropertyTransformer
+ 27            args:
+ 28              propertyType: string
+ 29      - property: modified
+ 30        type: none
+ 31        propertyTransformerConfigDescriptors:
+ 32          - type: sailpoint.dataextract.conversion.ImagePropertyTransformer
+ 33            args:
+ 34              propertyType: date
+
+
+
+You can view an example of how thiswillgetexported by entering the followingin theIIQ console:
+
+
+ 1dataextract transform identity james.smith deExampleOne
+ 2- or - if you have jq installed and want the pretty version
+ 3dataextract transform identity james.smith deExampleOne | jq
+
+
+
+Here isan excerpt ofthe output run through jq forformatting:
+
+
+ 1{
+ 2  "firstname": "James",
+ 3  "name": "James.Smith",
+ 4  "modified": "2022-09-07T14:47Z",
+ 5  "id": "ac130b1283181a728183185b0138065d",
+ 6  "lastname": "Smith"
+ 7}
+
+
+
+There are some shortcuts so you don'thave tospecify every piece of information foreach property. While the Type
+property inthe example above isset to"none," itsdefault value is"auto." This property willappend the
+
+
+
+
+
+SailPoint System Administration 61
+
+===== Page 66/75 =====
+About Data Extract
+
+
+ImagePropertyTransformer with an argument of"auto," or whatever the Type is set to,so our configuration could be
+simplified to this:
+
+
+ 1imageConfigDescriptors:
+ 2  identity:
+ 3    objectClassName: sailpoint.object.Identity
+ 4    imagePropertyConfigDescriptors:
+ 5      - property: id
+ 6      - property: name
+ 7      - property: firstname
+ 8      - property: lastname
+ 9      - property: modified
+
+
+
+With no Type specified, the automatically appended ImagePropertyTransformer triesto inferthe Type and use that.
+
+One important reminder isthat the Type of every property isdefaulted to Auto, which causes the ImageProp-
+ertyTransformer to be appended. IfData Extract can't determine what type to use, itwilljust use the object's toString
+method.
+Allowed Properties
+
+The subsections below detailproperties allowed inData Extract Transform configurations.
+
+ TransformationConfigDescriptor
+
+Map<String, ImageConfigDescriptor> imageConfigDescriptors – map of ImageConfigDescriptor objects that is
+keyed by the object type's "friendly name," for example identity.
+
+boolean excludeBooleanFalse – (default false) –ifset to true, thiswillexclude any Boolean values that are equal to
+false during the transformation to JSON.
+
+ ImageConfigDescriptor
+
+String objectClassName – the name of the image object's Java class. For example sailpoint.object.Identity.
+
+List<ImagePropertyConfigDescriptors> imagePropertyConfigDescriptors – listof descriptors forthe image prop-
+ertyconfig.
+
+boolean includeHash – (default false) – true ifyou would like toappend a property to the JSON object that contains
+the sha1 hash of the JSON object.
+
+String hashProperty – (default "sha1") – the name of the property that gets appended to the JSON object containing
+the sha1 hash of the JSON object. This will only be used ifincludeHash isset to true.
+
+String attributesProperty – (default "attributes") – the name of the property inthe source object that willserve as the
+attributes map. This willalmost certainly always be "attributes."
+
+
+
+
+
+
+
+ SailPoint System Administration 62
+
+===== Page 67/75 =====
+About Data Extract
+
+
+String attributesContainer – (default "attributes") – the container to put the attribute values under in the JSON out-
+put.
+
+String extendedAttributesContainer – (default "extendedAttributes") – the container toput the extendedAttribute
+values under in the JSON output.
+
+String extendedIdentityAttributesContainer – (default "extendedIdentityAttributes") – the container to put the
+extendedIdentityAttribute values under in the JSON output.
+
+List<ObjectTransformerConfigDescriptor> objectTransformerConfigDescriptors – listof transformers that can
+be invoked on the resulting ImageValueObject after all property transformations are complete.
+
+ ImagePropertyConfigDescriptor
+
+String property – the name ofthe property to export from the IdentityIQ object.
+
+String newName – the name given to the property inthe resulting JSON document
+
+String attribute – ifattribute is used instead of property itassumes the property isattribute, and the value will be
+extracted from the attribute property ofthe source object.
+
+String extendedAttribute – ifextendedAttribute is used instead of property itassumes the property isan exten-
+dedAttribute, and the value will be extracted from the extendedAttribute property of the source object.
+
+String attribute – ifextendedIdentityAttribute isused instead of property itassumes the property is exten-
+dedIdentityAttribute, and the value willbe extracted from the extendedIdentityAttribute property of the source object.
+
+String timeZone – specifies a timeZone forthe ImagePropertyTransformer that is appended for date formats. The
+default is UTC.
+
+String dateFormat – specifies a SimpleDateFormat string forthe ImagePropertyTransformer that isappended for
+date formats. The default is 'yyyy-MM-dd'T'HH:mm'Z''
+
+boolean decrypt – appends the DecryptionTransformer. This willbe appended before the ImageProp-
+ertyTransformer ifthe type parameter is specified.
+
+boolean hashExclude – adds a parameter to the ImagePropertyTransformer (iftype is not set to none) that willwrap
+the resulting object in a NonHashableImageValue. These are excluded from hash calculations for ImageValueOb-
+jects.Ifyou do set type to none, you can stillaccomplish the same thing, but you willneed towrap the object inthe
+NonHashableImageValue. One way to do this isby manually appending the ImagePropertyTransformer to the listof
+transformers, and using the argument tothe constructor to tellitto do this wrapping.
+
+String type – (default is auto. Valid values: none, auto, string, number, bool, list,date, unixtime, imageref, xmlString.)
+– appends the ImagePropertyTransformer and use the value as the firstargument to it'sconstructor. Ifitis set to
+None, itwillnot append any transformer.
+
+String objectName – iftype isset toobject, objectName is used to transform the sub-object.
+
+
+
+
+
+
+
+SailPoint System Administration 63
+
+===== Page 68/75 =====
+About Data Extract
+
+
+String transformType – (default is object. Valid values: elements, object.) – ifthe property value is a list,thetrans-
+formType determines how itispassed into the transformers. Ifthe transform type iselements, each element willbe
+passed intothe transformers, and then added to a list.Ifthe type is object, the entire listwillbe passed intothe trans-
+former.
+
+List<PropertyTransformerConfigDescriptors> propertyTransformerConfigDescriptors – a listof Prop-
+ertyTransformerConfigDescriptors. It'simportant tonote that ifthe type property ofthe PropertyConfigDescriptor is set
+tonone, then only transformers inthis listwillbe called inthe order they are listed. Remember that type appends trans-
+formers as do a couple other things. It'sfine tomix these, but just remember that more transformations can happen
+than what are inthis listunless the type isset to none.
+
+ PropertyTransformerConfigDescriptor
+
+String type – the java class name of the transformer. For example: sail-
+point.dataexport.conversion.ImagePropertyTransformer
+
+String pluginName – optional – name of a plugin toload the transformer from.
+
+List<String> args – the arguments passed into the constructor of that transformer.
+
+ Transformers
+
+DecryptionTransformer – decrypts encrypted values
+
+ExportAttributeTransformer – extracts an attribute from the attributes map. While itmay be easier to use attribute
+instead ofproperty, this gives complete control.
+
+ExportAttributeXPathTransformer – extracts an attribute from the attributes xml document using an XPath query.
+While itmay be easier to use attribute instead of property, this gives complete control.
+
+ExportHashTransformer – adds a sha1 hash to an object.
+
+ImagePropertyTransformer – wraps a type in an ImageValue object. This will frequently be the last transformer in
+the chain, since alltransformations must ultimately result inan ImageValue derived object.
+
+ImageValueObjectTransformer – transforms image value objects by looking up their YAML configurations. This can
+be used to clean up the YAML file,or to embed objects into other objects. Itcan also be used forthings likethe link
+object contained in identity objects.
+
+IdentityIQ Object Model and Usage
+
+Data Extract allows you to configure which objects to extract. See IdentityIQ Object Model and Usage in Compass for
+details on core objects and key areas of application functionality.
+
+
+
+
+
+
+
+
+
+ SailPoint System Administration 64
+
+===== Page 69/75 =====
+About Data Extract
+
+Using Data Extract with Sensitive Data
+
+By default, attributes that are known to be encrypted or sensitive cannot be extracted from standard SailPointObject
+fields.Ifyour implementation isstoring an Extended Attribute defined by your organization and ifyou define that attrib-
+ute as part of a Data Extract YAMLConfig, then itwillbe extracted as normal.
+
+Ifan encrypted attribute were included in a data extraction, itwould be extracted in itsencrypted state unless you take
+extra steps to decrypt it.
+
+To allow your configuration to extract encrypted data, modify the system configuration.
+
+ 1. In the Debug pages, open the SystemConfiguration object.
+
+ 2. Locate the encryptedClassFieldConfig section.
+
+ 3. Locate the object you would liketo make extractable and/or decryptable. They may look likethis:
+ <entry key="extractable" value="false"/>
+ <entry key="decryptable" value="false"/>
+ 4. Update the extractable and/or decryptable values to true orfalse as needed.
+
+
+ Caution: Itis your responsibility to ensure that only data that do not violate security policies within
+ your environment are included as extractable ordecryptable.
+
+
+The following tables are not extractable inany circumstance:
+
+
+
+ l AuthenticationAnswer
+
+
+
+ l RemoteLoginToken
+
+
+
+ l SAMLToken
+
+
+ Caution: Ifcustomers define these objects within an attributes column, they may be extracted.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint System Administration 65
+
+===== Page 70/75 =====
+Rules and Scripts in IdentityIQ
+
+Rules and Scripts in IdentityIQ
+
+
+Rules inIdentityIQ allow the addition ofcustom business logicat specific points within the execution flow of the
+product. To enable this,IdentityIQ allows system integrators towrite rules in the BeanShell scripting language. The
+BeanShell language isbased on Java and can use allJava classes that are available toIdentityIQ, including custom
+code.
+
+
+
+ l Types ofRules and Scripts
+
+
+
+ l How Rules Are Created
+
+
+
+ l Type Attributes inRules
+
+
+
+ l Using the Rule Editor
+
+
+
+ l Rule Re-Use
+
+
+
+ l Restricting Access tothe Rule Editor
+
+
+
+ l Importing Rule XML
+
+
+
+ l Sample Rule Files
+
+
+
+ l Rule Libraries
+
+
+
+ l API Reference for Rules
+
+
+
+ l Testing Rules
+
+Types of Rules and Scripts
+
+Rules and scriptsare used inmany places within IdentityIQ, including but not limited to:
+
+
+
+ l Modifying IdentityIQ behavior
+
+
+
+ l Validating and customizing aggregated data
+
+
+
+ l Filtering and modifying data during provisioning
+
+
+
+ l Advanced correlation ofapplication accounts toIdentity Cubes
+
+
+
+
+
+
+
+
+ SailPoint System Administration 66
+
+===== Page 71/75 =====
+Rules and Scripts inIdentityIQ
+
+
+Inaddition to these standard purposes, rules can implement automated tasks and perform advanced actions not con-
+tained in the standard features of IdentityIQ.
+
+Scripts are similar torules; the main difference between them is where they are stored. Scripts are embedded inthe
+objects thatuse them, such as policy objects and workflows, whereas rules are separate objects that are referred to
+by the objects that use them.
+How Rules Are Created
+
+Rules are created within IdentityIQ inone of two ways: through the UI-based Rule Editor, and by importing rule XML
+objects.
+
+See Using the Rule Editor and Importing Rule XML for details.
+Type Attributes in Rules
+
+Specialized rules must have a type attribute so that they can be selected from dropdown menus throughout the applic-
+ation. Each specialized type also has itsown set of input and output variables and, optionally, a return value.
+
+Ineach area where you can select a rule, you are limited to choosing (orcreating) rules of the type that isappropriate
+tothe feature. For example, inthe Edit Policy page, the Policy Owner rule dropdown only lets you choose rules of the
+type "PolicyOwner."
+
+The rule type is shown inboth the Rule Editor, and in the rule's signature in the Debug pages.
+Using the Rule Editor
+
+Rules are associated with system activities on a variety ofpages (such as the Schedule Certification, Edit Application,
+and Edit Policy pages), and throughout the IdentityIQ user interface. At these points, an existing rule can be selected
+toattach to the activity.Most, but not all,ofthese UIs also provide an entry point to the Rule Editor, for writing new
+rules or editing existing rules. Some UIs, such as the Rapid Setup Configuration pages, allow you to select rules but
+do not provide a directlink to the Rule Editor.
+
+To edit an existing rule, firstselect the rule, then click the [...]button to open the Rule Editor.
+
+To create a new rule,click the [...]button without selecting an existing rule,and a blank Rule Editor window isopened
+where you can create a new rule.
+
+Rule Editor Fields
+
+The Rule Editor uses these fields to define the rule and itsbusiness logic:
+
+Copy From Existing Rule
+
+ Ifyou want to reuse existing code in your new rule, select an existing rule to copy.
+
+
+
+
+
+
+ SailPoint System Administration 67
+
+===== Page 72/75 =====
+Rules and Scripts inIdentityIQ
+
+Rule Name
+
+ Enter a unique name forthe new rule, that clearly describes the purpose. Itisuseful to include the type of rule in
+ the name, such as "Customization – My App," or "Exclusion – Inactive Users."
+
+Description
+
+ Enter text that describes the purpose of the rule and what itdoes.
+
+Arguments and Returns
+
+ These sections listthe input variables (Arguments) that can be used in the script, and the return information
+ (Returns). Click on any of the arguments or returns toshow more detailed information. These fields cannot be
+ changed inthe Rule Editor.
+
+Rule Type
+
+ The rule type determines the purpose ofthe rule and where itcan appear indropdown listsinthe IdentityIQ UI. In
+ most cases, the Rule Editor does not allow you to change the Rule Type.
+
+Rule Editor
+
+ In the main editor of this UI, enter the BeanShell code forthe rule.The rule cannot be saved untilsome code is
+ entered. Note that no validation isperformed; even ifthe rule issyntactically incorrect, itis accepted and saved.
+ Incorrect rules may result intasks, workflows or certifications failing toexecute, and inerrors and large stack
+ traces inthe log files.
+Rule Re-Use
+
+A single rule can be reused in many places throughout IdentityIQ; for example, two applications could share the same
+Build Map Rule. Changes made to the rule inone location willaffect the functionality in alllocations where itisused,
+so ifthe functionality varies between usages, separate rules should be created for each functional need.
+Restricting Access to the Rule Editor
+
+The abilityto edit inlinescripts inIdentity IQ requires either the SystemAdministrator capability or the EditScripts
+SPRight. The EditScripts SPRight isnot included inany standard capabilities by default. Ifyou want to give script edit-
+ing abilitiesto users other than System Administrators, you must either create a new capability for these users that
+includes the EditScripts SPRight, or add the EditScripts SPRight to an existing capability that can be assigned to
+those users.
+
+Because the abilityto write scripts is a potential security risk,itis recommended that the EditScripts SPRight is given
+out in a controlled manner to trusted users only.
+
+For more information on assigning capabilities to users, see the IdentityIQ Identity Management Guide.
+
+
+
+
+ SailPoint System Administration 68
+
+===== Page 73/75 =====
+Rules and Scripts in IdentityIQ
+
+
+For more information on rights and capabilities inIdentityIQ, see IdentityIQ Rights and Capabilities -Definitions.
+Importing Rule XML
+
+Rules can be written as standalone XML objects and imported into IdentityIQ through the gear > Global Settings >
+Import from File option, or through the IdentityIQ console, using the iiqconsole import command. A single rule XML
+filecan contain one or more rules.
+
+For more information on importing files,see the IdentityIQ System Configuration Guide and the IdentityIQ Console
+Guide.
+Sample Rule Files
+
+IdentityIQ provides a set of sample rules that you can use as a model for creating your own. The sample rules are in
+the examplerules.xml file,which is located inyour IdentityIQ installation directory under <identityiq_
+home>\WEB-INF\config\
+
+Inaddition, a set ofsample rules specifically for Rapid Setup isincluded with the Rapid Setup feature. Sample Rapid
+Setup rules are in the rsexamplerules.xml file,which islocated inyour IdentityIQ installation directory under
+<identityiq_home>\WEB-INF\config\rapidsetup.
+
+Rule Libraries
+
+Rule libraries are collections ofmethods that have been grouped together and stored in IdentityIQ as a Rule object.
+They contain sets of related but unconnected methods thatcan be invoked directly by workflow steps or other rules.
+These are stored as Rule objects, rather than in the compiled Java classes, so that theirfunctionality can be easily
+modified to suitthe needs ofeach installation.
+
+IdentityIQ includes some rule librariesthat are used by the default workflows. Examples of rule librariesare Workflow
+Library, Approval Library, and LCM Workflow Library, any of which can be viewed through the Debug pages or the iiq
+console.
+
+You can create your own custom librariesto provide additional functionality as needed. To reference a rule library
+from another rule,include a <ReferencedRules> element inthe ruleXML, naming the rule libraryin the <Refer-
+ence> element.
+
+The methods within the library can then be invoked from within the rule'sSource element.
+
+
+ <Rule...>
+    <ReferencedRules>
+        <Reference class='Rule' name='My Library'/>
+    </ReferencedRules>
+    <Source>
+        doSomething();
+
+
+
+
+
+
+ SailPoint System Administration 69
+
+===== Page 74/75 =====
+Rules and Scripts in IdentityIQ
+
+
+
+    </Source>
+ </Rule>
+
+
+API Reference for Rules
+
+The IdentityIQ API isdocumented as Java documentation (javadocs). The documentation isincluded in every install-
+ation ofIdentityIQ under <identityiq_home>\doc\javadoc\
+Testing Rules
+
+Inmany cases, rules need input.That is,the rules need instances of objects, meaning that live data is the best test
+environment. However, taking instances of objects is not always possible and could cause problems with the actual
+data. For example, ifa mistake is made ina correlation rule,application accounts could be correlated to the wrong
+identitiesor remain uncorrelated.
+
+SailPoint recommends separating development, testing, and production environments. Creating a "sandbox" with its
+own sample data is a recommended practice that allows fortesting rules under realistic conditions with minimal risk to
+livedata.
+
+For debugging purposes, itcan be useful toinsert println statements inyour rules'BeanShell code. Be sure to
+comment out or delete any println statements before making the rule livein a production environment.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint System Administration 70
+
+===== Page 75/75 =====
+Working With Incident Codes
+
+Working With Incident Codes
+
+
+Some errors that occur inIdentityIQ display a banner across the top of the UI, with a message similar to this:
+
+"The system has encountered a serious error while processing your request. Please report the following incident code
+toyour system administrator: <incident code>"
+
+Incident code numbers are specific to your environment. You can use IdentityIQ's search function tosee more detail
+about what the incident code is reporting:
+
+ 1. Make a note ofthe incident code number.
+
+ 2. Navigate to Intelligence > Advanced Analytics.
+
+ 3. For Search Type, choose Syslog.
+
+ 4. Enter the Incident Code and select Run Search.
+
+When IdentityIQ retrieves the incident details, you can select the error to get a stack trace forthe incident code.
+
+The stack trace is typically very helpful for troubleshooting purposes. Ifyou need toescalate the issue to SailPoint's
+Support team, submitting the stack trace with a support ticketcan help expedite the troubleshooting process.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint System Administration 71

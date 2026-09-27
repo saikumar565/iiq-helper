@@ -1,0 +1,1843 @@
+﻿===== Page 26/91 =====
+Roles
+
+
+and replaced with a work item containing the latest changes. A role with changes pending approval displays the ori-
+ginal, unchanged, role information on the Role Information panel, but the latest, changed, information on the Role
+Editor page. This enables you to view the role as itcurrently exists in the Role Information panel, but ensures that you
+do not duplicate changes on the Role Edit page.
+
+The Role Editor panel contains allof the information associated with the selected role.Some of the sections listed in
+the table might not be available for allrole types. Ifthere isinformation associated with a role that isnot supported by
+the assigned role type, the information isdisplayed with a warning message.
+
+ Role Editor Fields
+
+
+Name
+
+ The name ofthe role.
+
+Display Name
+
+ The name tobe used throughout IdentityIQ.
+
+Type
+
+ The type of role.For example, organizational, business, or IT. Role type definitions are customizable and cre-
+ ated as part of the configuration process.
+
+Owner
+
+ Enter a valid user or workgroup. Typing the firstfew letters of a name displays a listof allof the user and work-
+ group names in the system containing that lettercombination. You can select from the displayed list.
+
+Scope
+
+ Select a scope from the drop-down list.Only scopes that you control are displayed inthe list.Scope is used to
+ determine the objects to which a user has access. Ifscoping is active, identities can only see objects that they
+ created or that are within the scopes they control.
+
+Description
+
+ A brief description ofthe role. This description isdisplayed with the role throughout IdentityIQ and should be as
+ intuitive as possible.
+
+ Use the language selector to enter description in multiple languages. The drop-down listdisplays any languages
+ supported by your instance of IdentityIQ. The description displayed throughout the product is dependent on the
+ language associated with the userâ€™s browser. Ifonly one description is entered, that isthe description used by
+ default.
+
+ You must Save the description before changing languages to enter another description.
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 23
+
+===== Page 27/91 =====
+Roles
+
+
+Classifications
+
+ Classifications are used to categorize and flag a role, to identify itas potentially allowing access to sensitive, priv-
+ ileged, or otherwise significant data.
+
+Enable Activity Monitoring
+
+ Activate this feature to track activity for any user who isassigned thisrole. Ifactivity monitoring is not available on
+ the selected application, the Activity Monitoring Enabled check-box isreplaced by the following note: This applic-
+ ation does not currently have activity monitoring configured.
+
+Provision both profiles and policies
+
+ Provision any changes to either profiles or policies associated with this role.
+
+Allow multiple application accounts
+
+ Enables a role tospecify its own target account, or create a new account, during a role request, even ifitis
+ required by another role and included in that roles required roles list.
+
+
+ Ifthis option isnot enabled, required roles are assigned to the same account as the top-level role.
+
+Enable multiple assignments
+
+ Enables a role tobe assigned to the same identity multiple times. This option isnot available ifeither multiple
+ assignments are not enabled, or ifthey are universally enabled. This option is only available on assignable role
+ types.
+
+Disable
+
+ Disable the role so that itis no longer available inyour application. Disabled roles names appear gray in the Role
+ Navigation panel.
+
+Custom or Extended Role Attributes
+
+ Any extended role attributes configured foryour enterprise are displayed with the role information. You can enter
+ data in any ofthese attribute fields,to be used in rules and workflows written for your installation.
+
+Scheduled Events
+
+ The activation events scheduled for the role.Activation events use business processes to automatically activate
+ or deactivate roles based on the dates specified in the Add New Event dialog.
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 24
+
+===== Page 28/91 =====
+Roles
+
+
+Assignment Rule
+
+ A rule used to automatically assign roles to identities during a correlation process. Assignment rules can be cre-
+ ated using:
+
+ Match List â€” only identities whose criteria match that specified in the list.The criteria isconfigured using the
+ tools provided. Add identity attributes, application attributes and application permissions. Customize further by
+ creating attribute groups to which thisassignment rule applies.
+
+ Note: IfIs Null is selected, the associated value text box isdisabled. When the isnull match ispro-
+ cessed, the term matches users on the chosen application who have a null value forthat attrib-
+ ute/permission.
+
+ Filter â€” a custom database query for role creation.
+ Script â€” a custom script for role creation.
+ Rule â€” select an existing rule from the drop-down list.
+
+ Note: Click the ...icon to launch the Rule Editor to make changes to your rules ifneeded.
+
+ Population â€” select an existing population and assign this role to identities in that population.
+
+Permitted Roles
+
+ Roles towhich users have access ifthey are assigned thisrole.
+
+Required Roles
+
+ The roles to which an identity must have access before thisrole can operate properly.
+
+Inherited Roles
+
+ The roles inwhich this role isa member.
+
+Entitlements
+
+ Detailed information about the entitlements that are contained inthe role. Use this panel to create new enti-
+ tlements or edit or delete existing entitlements. Mouse over the information icon to display the description of an
+ entitlement.
+
+Provisioning Policy
+
+ A listofprovisioning policies associated with this role. Use this panel to add, edit, or delete provisioning policies.
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 25
+
+===== Page 29/91 =====
+Roles
+
+
+Granted IdentityIQ User Rights
+
+ Use this panel to specify the IdentityIQ capabilities and scopes associated with role.These rights are granted to
+ the identities to whom this role isassigned.
+
+ These capabilities and scopes are not assigned untilan Identity Refresh task isrun with the Provision assigned
+ roles option selected. See the Tasks documentation for more details.
+
+Role Editor - Archived Role Panel
+
+Click an archived role to display the Archived Role panel and view the details of the archived roleand determine the
+proper version forthis roll-back.
+
+Click Roll Back to Archive Role to return to the Role Editor page. Use the action buttons on the bottom of the page
+tocomplete the procedure. Ifapproval is required on role changes itisrequired when a role is rolled back to a previous
+version.
+
+Role Editor - Edit Entitlement Panel
+
+Use the Edit Entitlement panel to define the profiles that are included in the role.A profileis a set of entitlements on an
+application. An entitlement iseither a specific value for an account attribute, most commonly group membership, or a
+permission. Profiles are not shared between roles.
+
+Click Submit to save changes or add the profileto the role.
+
+ Note: The simple view may not be available for allroles.
+
+There are two options for adding entitlements to a role,the Simple View or the Advanced View. The simple view elim-
+inates the need to create attribute rules tolocate entitlements and provides a drop-down listofthe entitlement con-
+figured for selection foreach application. See How to Create orEdit a Profile forinformation on how towork with
+profiles.
+
+ Simple View Fields on the Entitlement Editor panel:
+
+
+Application
+
+ The application associated with the account attributes orpermissions for thisprofile.
+
+Account Attribute
+
+ The value of the account attribute,most commonly group membership.
+
+Select Entitlement
+
+ Specify as many entitlements as required forthis role.
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 26
+
+===== Page 30/91 =====
+Roles
+
+ Advanced View Fields on the Entitlement Editor panel:
+
+
+Description
+
+ A briefdescription of the profile.
+
+ This description isdisplayed with the role throughout the product and should be as intuitive as possible.
+
+Application
+
+ The application associated with the account attributes or permissions for this profile.
+
+Attribute Rules
+
+ Attribute rules are made up of filtersthat can be grouped and controlled using AND\OR operations. The attribute
+ rules associated with a profile can be as simple or complex as needed. The Add a Filter box is used to create the
+ individual filters,the Filter(s) box is used to view and manipulate the existing filters.See How to Create or Edit a
+ Profile.
+
+Field
+
+ The attribute associated with the attribute filter.The drop-down listcontains allattributes configured for the selec-
+ ted application.
+ Applications are configured on the Configure Application page.
+
+Search Type
+
+ The qualifier associated with the attribute value.
+ Multi Valued attributes â€” contains all,isnull, isnot null
+ Long, Int, Date â€” Allexcept contains alland is likeâ€” equals, is less than, isgreater than, isgreater than or
+ equal to, is less than or equal to, isin, isnull, isnot null,is not equal
+ Boolean â€” equal, isnot equal to,is null, isnot null
+ Permission â€” equals, is not equal, isin, isnull, is not null
+ Everything else â€” All operations except contains allâ€” islike, equals, is less than, isgreater than, is greater
+ than or equal to, isless than or equal to, isin, isnull, isnot null,is not equal
+
+Value
+
+ The value ofthe attribute. When available, select an entitlement from the drop-down list.This fieldis not avail-
+ able for unary operations.
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 27
+
+===== Page 31/91 =====
+Roles
+
+
+Ignore Case
+
+ Specifies ifcase should be a factor when comparing entitlements defined for profiles with those assigned to
+ users. During identity correlation, the entitlements defined in profiles are compared with entitlements assigned to
+ users to determine roles and additional entitlements forcertifications.
+ This fieldis not available for unary operations.
+
+Operation
+
+ The operation used to control the interaction between the filters.
+
+Permissions
+
+ Rights: The rights associated with thisprofile on the target attribute. For example, create, read, update, delete,
+ execute.
+ Use the Shift and Ctrlkeys to select multiple rights from the list.
+
+Target
+
+ The target attribute forthis permission.
+
+Role Editor - Provisioning Policy Editor Panel
+
+Provisioning policies define the fields required for a role to be provisioned, often including a default value orscript/rule
+forcalculating a value. With a provisioning policy in place, when a role isrequested and a fieldcannot be calculated by
+the system, the user must input specified criteria into a generated form before the request can be completed.
+
+See How to Create or Edit a Provisioning Policy for information on how towork with provisioning policies.
+
+The Provisioning Policy Editor panel contains the following information:
+
+ Edit Provisioning Policy Fields
+
+Use the Edit Provisioning Policy Fields panel to customize the look and function of the form fields generated from the
+provisioning policy.
+
+Name
+
+ The name of the field.
+
+Display Name
+
+ The name displayed for the field inthe form generated by the provisioning policy.
+
+Help Text
+
+ The text you wish to appear when hovering the mouse over the help icon.
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 28
+
+===== Page 32/91 =====
+Roles
+
+
+Type
+
+ Select the type offield from the drop-down list.Choose from the following:
+ Boolean â€” true or false values field
+ Date â€” calendar date field
+ Integer â€” only numerical values field
+ Long â€” similar to integer but isused for large numerical values
+ Identity â€” specific identity in IdentityIQ field
+ Secret â€” hidden text field
+ String â€” text field
+
+Multi Valued
+
+ Choose thisto have more than one selectable value in this fieldof the generated form. Click the plus sign to add
+ another value.
+
+Read Only
+
+ Determine how the read only value is derived:
+ Value â€” value based on the selection from the drop-down list
+ Rule â€” value is based on a specified rule
+ Script â€” value isdetermined by the execution of a script
+
+Hidden
+
+ Determine how the hidden value is derived:
+ Value â€” value based on the selection from the drop-down list
+ Rule â€” value is based on a specified rule
+ Script â€” value isdetermined by the execution of a script
+
+Owner
+
+ The owner ofthe provisioning policy. This isdetermined by selecting from the following:
+ None â€” no owner is assigned to thisprovisioning policy.
+ Application Owner â€” identity assigned as owner ofthe application inwhich the provisioning policy resides.
+ Role Owner â€” identity assigned as owner of the role in which the provisioning policy resides.
+ Rule â€” use a rule to determine the owner of thisprovisioning policy.
+ Script â€” use a script to determine the owner ofthis provisioning policy
+
+Required
+
+ Choose whether or not to have the completion of thisfield a requirement for submitting the form.
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 29
+
+===== Page 33/91 =====
+Roles
+
+
+Review Required
+
+ Choose whether or not to require the person who isapproving the workflow item to approve thisfield.
+
+Refresh Form on Change
+
+ Select thisoption to have the form associated with this policy refresh to reflex changes to thispolicy.
+
+Display Only
+
+ Set this fieldas display only.
+
+Authoritative
+
+ Boolean that specifies whether the fieldvalue should completely replace the current value rather than be merged
+ with it;applicable only for multi-valued attributes
+
+Value
+
+ Determine how the value isderived. Select from the following:
+ Literal â€” value is based on the information you provide
+ Rule â€” value is based on a specified rule
+ Script â€” value isdetermined by the execution of a script
+
+Value
+
+ The value displayed in the field ofthe generated form before editing. Choose from the following:
+ None â€” the field isblank
+ Literal â€” value is based on the information you provide
+ Rule â€” value is based on a specified rule
+ Script â€” value isdetermined by the execution of a script
+
+Validation
+
+ Gives the ability tospecify a script or rule forvalidating the user's value. For example, a script that validates that
+ a password is8 characters or longer.
+
+ How to Create or Edit a Provisioning Policy
+
+
+To Create or Edit a Provisioning Policy:
+
+ 1. Access the Provisioning Policy panel from the Role Editor page.
+
+ 2. Click an existing provisioning policy to edit or clickAdd Provisioning Policy to create a new one.
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 30
+
+===== Page 34/91 =====
+Roles
+
+ 3. Edit the provisioning policy information.
+
+ 4. Optional: Add or delete provisioning policy fields.
+ See The Role Editor Page for descriptions of the fields ineach section.
+
+ 5. Select fieldsto include in the form.
+
+ 6. Click Save to return to the Role Editor.
+
+The Role Search Tab
+
+Use the Role Search tab togenerate searches on the roles. These searches can be used tolocate roles by name,
+owner, type, or status. You can also search for roles by the number of users to whom they are assigned, either manu-
+allyor through role assignment rules, the number of entitlements they contain, their riskscore weight, their association
+toother roles, the last time they were assigned or certified,or any combination of that criteria.
+
+For example, you can identify roles that were created but are not being used by searching for setting Detected Total
+and Assigned Total to less than one (1).
+
+ Note: The Role Index Refresh task must have run at least once before a roles search can yield
+ results. See the IdentityIQÂ Tasks documentation.
+
+The search fields are "AND" type searches. Only actions matching values specified in allfields are included in the
+search results.
+
+Ifyou do not enter any values in a search criteria field,allpossible choices are included for that field.For example, if
+you do not provide a type in the Type field,roles of any type are included.
+
+Specify the search criteriaand columns to display and click Run Search to display the search results. From the
+search results page you can review the results ofyour search and save the search.
+
+ Role Attributes
+
+
+Name
+
+ Enter a role name to include in the search.
+
+
+ Entering a string ofcharacters returns allroles with that string in their name that your controlled scopes enable
+ you to view. For example, ifyou enter admin the search results include information for the roles System Admin-
+ istrator,SysAdmin, and Administrative Assistant.
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 31
+
+===== Page 35/91 =====
+Roles
+
+
+Display Name
+
+ Enter a display name to include in the search.
+
+
+ Entering a string of characters returns all roles with that string in theirdisplay name that your controlled scopes
+ enable you to view. For example, ifyou enter System Administrator the search results include information for the
+ display name System Administrator.
+
+Owner
+
+ Enter the role owner to include inthe search.
+
+
+ Click the arrow to the rightof the suggestion field to display a listof allrole owners, or enter a few letters in the
+ field to display a listof role owners that start with that letter string.
+
+Type
+
+ Select the role type toinclude inyour search. For example, IT, Organizational, or Business.
+
+
+ Role types are defined for your enterprise during the role modeling process.
+
+Status
+
+ Select the Enabled/Disabled status of the roles to include in the search.
+
+Classification
+
+ Classifications can identify roles as potentially allowing access to sensitive, protected, or otherwise significant
+ data. Choose any classifications to include in the search.
+
+Detected Total
+
+ Specify an upper or lower limitfor the number of identities that have this role detected that should be included in
+ the search results.
+
+
+ Detected roles are roles that are automatically assigned toidentities based on the entitlements to which they
+ have access.
+
+
+ For example, to search for roles that were not detected by any identity during correlation, select Less Than from
+ the drop-down listand type 1 in the empty field.The search results include allroles that were not automatically
+ assigned toat least one identity.
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 32
+
+===== Page 36/91 =====
+Roles
+
+
+Assigned Total
+
+ Specify an upper or lower limitfor the number of identities that have this role assigned that should be included in
+ the search results.
+
+
+ Assigned roles are roles that were manually assigned to an identity by a user with role assignment authority or
+ through a role assignment rule.
+
+
+ For example, to search for roles that were not assigned to any identity, select Less Than from the drop-down list
+ and type 1 inthe empty field.The search results include allroles that were not manually assigned toat least one
+ identity.
+
+Entitlement Total
+
+ Specify an upper or lower limitfor the number of entitlement a role can have.
+
+
+ For example, ifyou select Less Than and type 3, the search results include roles that contain two (2), one (1),or
+ zero (0) entitlements.
+
+Risk Score Weight
+
+ Specify an upper or lower limitfor risk score weight assigned to a role for itto be included inthe search results.
+
+
+ For example, you can specify a Greater Than value to search for high-risk roles, or you can specify a Less Than
+ value to search for roles that were created with a riskscore weight that istoo low for theirtype. In the second
+ example, ifyour enterprise has a policy that requires that allIT-type roles have a risk score weight of 100, you
+ can select IT from the Type drop-down list,select Less Than from the Risk Score Weight drop-down list,and
+ type 100 inthe empty field to return allIT-type roles with a risk score weight less than 100.
+
+Associated To Another Role
+
+ Include roles that are associated with atleast one other role or roles that are NOT associated with any other role.
+
+
+ True â€” include roles that are associated with at least one other role.
+ False â€” include roles that are NOT associated with any other roles.
+
+Effective Access
+
+ Limit the search to the specific effective access list.
+
+
+ Effective Access isany indirect access that was granted through another object. For example a nested group, an
+ unstructured target, oranother role.
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 33
+
+===== Page 37/91 =====
+Roles
+
+ Filter by:Â Profile
+
+A profile is a set of entitlements on a specific application. Options inthis section let you search forroles based on pro-
+filesand on their relationship to other roles.
+
+Profile State
+
+ Search for roles based on how entitlements and permissions are defined relative tothe role(s). For example, you
+ can use this criteria to search for allroles on an invalid application, or forroles with entitlements that are not
+ defined (inother words, are missing) in IdentityIQ.
+
+ Options are:
+
+
+
+ l No Invalid/Missing Relationships
+
+
+
+ l Invalid Applications or Missing Entitlements/Permissions
+
+
+
+ l Missing Entitlements/Permissions Only
+
+
+
+ l Invalid Applications Only
+
+Relationship to Role
+
+ Search for roles based on how entitlements or permissions are defined, relative to the role(s). This filtercan be
+ used inconjunction with an application, or independently. For example, tosearch for roles that provide direct
+ access to permissions on the Oasis_DB application, you would select the Oasis_DB application, select Per-
+ missions inthe Filter Type field,and choose Any direct relationships here.Â To search for every role that
+ allows indirect access to entitlements, regardless of the application, you would select Any indirect rela-
+ tionships here and choose Entitlements in the Filter Type field.
+
+ Options are:
+
+
+
+ l Any direct or indirect relationships:Â Show roles with any entitlement or permission relationships
+
+
+
+ l Any direct relationships:Â Only show roles that have the entitlements or permissions directly on them
+
+
+
+ l Any direct and selected indirection relationships:Â Show roles that have the entitlements/permissions directly on
+ them, or a specific indirect relationship (such as inherited, permitted, or required). When you choose this
+ option, you can enter additional criteria to filteron Inheritance and Required/Permitted relationships.
+
+
+
+ l Any indirect relationships: Only show roles that have entitlements or permissions through a specific rela-
+ tionship, not on the role directly
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 34
+
+===== Page 38/91 =====
+Roles
+
+
+
+
+ l Selected indirect relationships:Â Only show roles that have the entitlement or permission through a specific rela-
+ tionship, not on the role itself.When you choose this option, you can enter additional criteriato filteron Inher-
+ itance and Required/Permitted relationships.
+
+ Note that some roles can grant both direct and indirect access to entitlements and permissions, so a role can
+ potentially be returned by both the direct relationship and indirect relationship options.
+
+Application
+
+ To filterroles by application, choose the application(s) here.
+
+ Click the arrow to the right of the suggestion fieldto display a listofall applications, or enter a few lettersin the
+ field todisplay a listof applications that start with that letterstring.
+
+Filter Type
+
+ Choose whether to search for permissions or entitlements. Leave this field blank tosearch for both.
+
+ Filter by:Â Extended Attributes
+
+The extended attributes for roles are specific to your instance of IdentityIQ; they are defined under the gear icon >
+Global Settings > Role Configuration option. Any extended attributes defined for roles that are marked searchable
+appear here as search critiera.
+
+ Filter By: Date
+
+
+Date Type
+
+ Select a state toassociate with the specified dates:
+
+
+ Last Membership Certification â€” the date when the lastrole membership certification was performed.
+ Last Composition Certification â€” the date when the last role composition certification was performed.
+ Last Assigned â€” the date when the role was last assigned to an identity.
+
+Start Date
+
+ Specify a beginning date for this search. The search results include information pertaining toany action per-
+ formed on or afterthe specified date.
+
+End Date
+
+ Specify an end date for thissearch. The search results include information pertaining to any action performed on
+ or before the specified date.
+
+ Fields to Display
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 35
+
+===== Page 39/91 =====
+Roles
+
+
+Choose the information to display on the Role Search Results page associated with this search. Each fielddefines a
+column on the results table.
+
+You must select atleast one fieldto display on the results page.
+
+ Saving Searches
+
+Once you have run your search, you can save the results as asaved search or as a report.
+
+ 1. In the Search Results page, click the Result Options drop-down and choose Save Search orSave Search
+ as Report.
+
+ 2. Enter a Name and Description for the saved search or report.
+
+ 3. Click Save.
+
+Searches saved as reports are saved in the Intelligence >Â Reports >Â My Reports area of IdentityIQ. Searches
+saved as searches are listedin the Saved Searches section of the Role Search page.
+
+When you have saved searches, you can:
+
+
+
+ l Click on the saved search inthe Search Name area, to see the saved search's description and to load the cri-
+ teria forthe search.
+
+
+
+ l Clear any saved search criteriayou have loaded by clicking the Clear Search button at the bottom of the page.
+
+
+
+ l Delete the currently-selected saved search by clicking Delete Search.
+
+How to Create or Edit a Role From the Role Management Page
+
+Use the following procedure to editexisting roles or create new roles.Roles can also be created from certifications
+and role mining.
+
+Use the approval function to open approval work items forrole owners. See How to Approve Role Changes formore
+information.
+
+Use the impact analysis function tocreate a report that provides details on the impact these changes can have on the
+restof your product implementation. See How to Perform Impact Analysis for more information.
+
+To Create a Role
+
+ 1. To Access Role Management, clickSetup > Roles.
+
+ 2. Click a role to edit.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 36
+
+===== Page 40/91 =====
+Roles
+
+
+ â€” OR â€”
+
+ Select Add to create a new role.
+
+ 3. Enter the role information. This information is used throughout the product.
+
+
+
+ l Name â€” The name ofthis role; this serves as the programmatic name forthe role inthe IdentityIQ
+ object model. Single quotation marks, double quotation marks, or commas are not supported inthe
+ Name.
+
+
+
+ l Display Name â€” A user-friendly descriptive name ofthis role. The Display Name isused throughout
+ IdentityIQ, in access requests, approvals, and certifications.
+
+
+
+ l Type â€” The type of role being created. For example, organizational, business, or IT.Role type defin-
+ itions are customizable and created as part ofthe configuration process.
+
+
+
+ l Owner â€” The name of the owner forthis role. Entering the firstfew letters of a name displays a select
+ listof valid users and workgroups with names starting with those letters.Select a name from the list.
+
+
+
+ l Description â€” A detailed description of the role.
+
+ 4. Enable Activity Monitoring Select this ifyou want to track activity for any user who isassigned this role.
+
+ 5. Provision both profiles and policies Ifa provisioning policy has been defined on a role, itsupersedes the
+ entitlement profile inprovisioning operations. This flag indicates that you want itto supplement the entitlement
+ definition instead ofoverride. Provisioning policies and entitlement profiles can be defined for this role inlater
+ steps.
+
+ 6. Disabled. Select thisoption to disable the role. Disabled roles can not be assigned or used to manage access.
+
+ 7. Custom or Extended Role Attributes:Â Any extended role attributes configured foryour enterprise are dis-
+ played with the role information. You can enter data in any of these attribute fields,to be used in rules and work-
+ flows written for your installation.
+
+ 8. Perform any optional tasks necessary tocreate or edit the role. See Optional Tasks ,below.
+
+ 9. For ITÂ roles, add the entitlements to the role (or edit or delete existing entitlements) from the Entitlements
+ panel. Entitlement profiles created forthis role are inherited by any role that is a member of this role.
+
+ 10. When you have finished creating a new role or editing an existing role, take one of the fol-
+ lowing actions:
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Role, Group, and Population Management 37
+
+===== Page 41/91 =====
+Roles
+
+
+
+ l Click Submit to save the role or,ifthe approval work flow is active, open an approval work item forthe
+ specified role owner.
+ The approval feature isonly available ifthe work flow was activated during configuration.
+
+
+
+ l Click Submit with Impact Analysis to create a report that provides details on the impact these
+ changes can have on the rest of your product implementation and open an approval work item ifthe
+ approval work flow is active.
+
+
+
+ l Click Check Policy Conflicts to display any policy violations created by changes made on thispage.
+ Policy checking isonly available ifimpact analysis has been run.
+
+Optional Tasks
+
+The following tasks can be performed when you create a Role. You can choose todo some of them or allof them prior
+tosaving the role.
+
+ Define Classifications for the role
+
+Classifications can categorize and flag a role, toidentify itas potentially allowing access to sensitive, privileged, or oth-
+erwise significant data. Choose any classifications you want to add tothis role from the the drop-down list.The list
+includes any classifications that have been configured in your system; ifno classifications have been defined, the list
+isempty. See the Classifications documentation formore information.
+
+ Define Scheduled Activation and Deactivation Events for the role:
+
+Scheduled events use business processes to automatically activate or deactivate roles based on the dates set inthe
+Add New Event dialog within this section. This section will appear only ifyour instance of IdentityIQ has been con-
+figured to allow for sunrise and sunset dates for roles. See the System Configuration documentation more inform-
+ation on enabling sunrise and sunset dates.
+
+ Note: Only one activation or deactivation event can be defined at a time.
+
+ 1. Click Add Event to display the Add New Event dialog.
+
+ 2. Manually enter a date or clickthe calendar icon to select a date.
+
+ 3. Select Activate or Deactivate from the Action drop-down list.
+
+ 4. Click Save to return to the Role Editor page.
+
+ 5. Select an event and clickDelete toremove the event.
+
+
+ Define an Assignment Rule
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 38
+
+===== Page 42/91 =====
+Roles
+
+
+Assignment rules are used in Business roles to define logic allowing them to be assigned to Identities automatically.
+An Assignment Rule can be defined using these options:
+
+Match List
+
+ Define a listof entitlements todetermine role assignment.
+ For attributes select an attribute from the drop-down listand type a value.
+ For permissions, type the name (target) and value (right).
+
+ Note: IfNull is selected, the associated value text box isdisabled. When the is nullmatch is pro-
+ cessed, the term matches users on the chosen application who have a null value for that attrib-
+ ute/permission.
+
+Filter
+
+ Enter a custom XML database query todefine user for thisrole.
+
+Script
+
+ Enter a custom script for role assignment. Scripts are similar torules, but the source is stored with the role and
+ can be edited from this page.
+
+Rule
+
+ Select an existing rule from the drop-down list.
+
+Population
+
+ Select a population from the list.Members of that population are assigned the role. Populations are generated as
+ the results ofidentity searches.
+
+ Modify the list of roles permitted by this role
+
+Click Modify Permitted Roles in the Permitted Roles panel and modify the listofroles permitted by this role.
+
+ 1. Enter the firstfew letters of a role name in the Select a role fieldand select a role from the selection list.
+
+ 2. Click Add toadd the role tothe membership list.
+ Add as many roles as required.
+
+ 3. Click Save.
+
+
+ Modify the list of roles required for this role
+
+Click Modify Required Roles in the Required Roles panel and modify the listof roles required by thisrole.
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 39
+
+===== Page 43/91 =====
+Roles
+
+ 1. Enter the firstfew letters ofa role name in the Select a role fieldand select a role from the selection list.
+
+ 2. Click Add to add the role to the membership list.
+ Add as many roles as required.
+
+ 3. Click Save.
+
+
+ Modify the list of roles which this role is a member
+
+Click Modify Inheritance in the Inherited Roles panel and modify the listofroles of which this role isa member. This
+role inherits entitlements from any role towhich itisa member.
+
+ 1. Enter the firstfew letters ofa role name in the Select a role fieldand select a role from the selection list.
+
+ 2. Click Add to add the role to the inheritance list.
+ Add as many roles as required.
+
+ 3. Click Save.
+
+
+ Note: Any roles that have elevated access will display with an icon next tothe name ofthe role.
+
+ Add a Provisioning Policy for this role.
+
+Provisioning policies define the fieldsrequired for a role to be provisioned, often including a default value or script/rule
+forcalculating a value. The policies available to be assigned to the rule are listed in the Provisioning Policy panel.
+Click Add Provisioning Policy to create a new policy, or DeleteÂ Provisioning Policy to remove any existing
+policies.
+
+See the Role Editor - Provisioning Policy Editor Panel and the Provisioning documentatoin or more information.
+
+
+Additional Information
+
+To work with profiles associated with a role see:
+
+
+
+ l How to Create or Edit a Profile
+
+
+
+ l How to Create a Profile Using Entitlement Analysis
+
+How to Create a Role From a Role Creation Request
+
+Use the following procedure to create roles from role creation request work items. Role creation request work items
+can be generated through the certification process.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 40
+
+===== Page 44/91 =====
+Roles
+
+
+ Note: Approval isonly required ifthe approval work flow is active. Ifapproval is not required roles
+ are added directly from the Create Role dialog.
+
+
+Create a new role from a role creation request
+
+ 1. Click the work item requesting the role in your inbox.
+
+ 2. Review the information in the work item and do one ofthe following:
+
+
+
+ l Forward â€” forward the work item to another authorized user tomake the decision on the role. Option-
+ ally add comments on the Forward Comments dialog.
+
+
+
+ l Reject â€” reject the proposed role. Optionally add comments on the Rejection Comments dialog.
+
+
+
+ l Approve â€” continue with step 3 toproceed with the approval process.
+
+ 3. Optional: Edit the name ofthe role.
+
+ 4. Optional: Edit the owner of the role.
+ Entering the firstfew letters of a name or workgroup displays a select listofvalid IdentityIQ users and work-
+ groups with names starting with those letters.Select a name from the list.
+
+ 5. Optional: Edit or enter a description of the role being created.
+
+ 6. Click Approve todisplay the Approval Comments dialog.
+
+ 7. Add comments ifthey are required and clickApprove tocreate this role.
+
+How to Approve Role Changes
+
+When roles are created or edited, they might require approval from the designated owner before they become active.
+Work items are created and sent to the owners when approval is necessary. Use thisprocedure toreview and
+approve or rejectrole changes.
+
+Role analysis and role approval are an important part of the overall role life-cycle management. Role analytics and
+approval, both fornew or modified roles are controlled thought business processes configured for your imple-
+mentation ofIdentityIQ.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 41
+
+===== Page 45/91 =====
+Roles
+
+
+To approve rolechanges:
+
+ 1. Click an approval work item inyour Inbox on the to display the Approval page.
+
+ 2. Review the summary information ofthe work item.
+
+ 3. Review the comments associate with the work item and, optionally, add comments.
+
+ 4. Review the details sections.
+
+ Modification approvals
+
+ Review the changes inthe Modified Role or Modified Profiletable and make a decision.
+
+ Creation approvals
+
+ Review the information inthe New Role or New Profile panel, make the necessary modifications, and
+ make a decision. Some of the information is read only.
+
+ 5. Click Review Pending Changes to display the Role Editor and review the changes proposed forthe role.
+
+ 6. Make a decision.
+
+ Approve
+
+ Approve the creation or modification. Add comments ifneeded and confirm the approve on the Approval
+ Comments dialog.
+
+ Reject
+
+ Reject the request for approval on the creation ormodification. Add comments ifneeded and confirm the
+ rejection on the Rejection Comments dialog.
+
+ Forward
+
+ Forward the approval work item to another user. Entering the firstfew lettersof a name displays a select
+ listof valid users with names starting with those letters.Select a name from the list.Add comments if
+ needed.
+
+ Cancel
+
+ Cancel the work you have done on the work item.
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 42
+
+===== Page 46/91 =====
+Roles
+
+How to Create or Edit a Profile
+
+A profile isa set ofentitlements on a specific application. An entitlement is either a specific value foran account attrib-
+ute, most commonly group membership, or a permission.Profiles are specific toone role.
+
+IdentityIQ also supports the creation of roles based on the mining of entitlements within the enterprise. These roles typ-
+icallymodel the IT privileges required to perform a specific function within an application or other target system. Using
+a configurable algorithm, IdentityIQ searches for access patterns to determine logical groupings of entitlements. For
+information about creating a profileusing entitlement analysis, see How to Create a Profile Using Entitlement
+Analysis.
+
+Use one of the following procedures to create a new profile:
+
+ Create a New Profile from the Simple View
+
+
+ Note: Click Simple View ifyou are inthe advance view. The Simple View might not be available
+ in allroles.
+
+ 1. Click Add inthe Entitlements Panel.
+
+ 2. Select the application on which to apply thisprofile from the Application suggestion list.
+ Enter the firstfew letters of an application name and select the application from the suggest list.
+
+ 3. Select an account attribute and then an entitlement from the drop-down lists.
+
+ 4. Click Save to return to the Role Editor.
+
+
+ Create a New Profile from the Advanced View
+
+ 1. Click Advanced View in the Entitlements Panel.
+
+ 2. Click Create inthe Profiles panel of the Role Editor and select New Profile. Profiles can only be added within a
+ role.See How toCreate or Edit a Profile.
+
+ 3. Enter a description for the profile.
+
+ 4. Select the application on which to apply thisprofile from the Application suggestion list.Enter the firstfew let-
+ ters ofan application name and select the application from the suggest list.
+
+ 5. Add Attribute Rules and Permissions to the profile.To use the filter,see How to Create or Edit a Profile.For
+ an explanation of the permission options, see How to Create or Edit a Profile.
+
+ 6. Click Save to return to the Role Editor.
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 43
+
+===== Page 47/91 =====
+Roles
+
+ Edit a profile
+
+ 1. Access the Entitlement panel from the Role Editor page.
+
+ 2. Edit the entitlement information.
+
+
+
+Additional Information
+
+From the Role Editor you can add additional profiles, edit the role, or save the role.See The Role Editor Page.
+
+Profile Attributes
+
+Creating Attribute Rules
+
+Use the Attribute Rules function to add and combine filterstodefine your profiles. Apply qualifiers to attributes within fil-
+ters to limitthe values returned and then use grouping and AND\OR operations tocreate the rules that make up the
+profile.
+
+ Add a Filter
+
+Create the filtersthat make up the attribute rules.
+
+Field
+
+ Select an attribute value from the drop-down list.This listcontains allof the attributes mapped from the selected
+ application.
+
+Search Type
+
+ The qualifier to associate with the value, for example equals or like.
+
+Value
+
+ The value of the attribute.
+
+Ignore Case
+
+ Specifies ifcase should be factored into the query.
+
+Filter(s):
+
+The Operations drop-down listenables you to specify AND/OR relationships between the filtersin the list.You can
+use multiple layers of filtergrouping containing AND\OR operations to create complex attribute rules. For example,
+you can create an attribute rule that returns allusers who are in payroll OR human resource AND located in Chicago.
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 44
+
+===== Page 48/91 =====
+Roles
+
+
+Creating Attribute Permissions
+
+Use the permissions panel to add permissions to the profile.Permissions define rights on targets on the application.
+Select rights from the rights lists(for example, create, read, update, delete, execute), and specify the target attribute in
+the Target field.Use the Shift and Ctrl keys to select multiple rights.
+
+How to Create a Profile Using Entitlement Analysis
+
+IdentityIQ supports the creation of roles based on the mining of entitlements within the enterprise. These roles typ-
+icallymodel the IT privileges required to perform a specific function within an application or other target system. Using
+a configurable algorithm, IdentityIQ searches foraccess patterns todetermine logical groupings of entitlements.
+
+Entitlement analysis enables you tosearch for entitlements based on specific application and identity information.
+This feature enables you to create meaningful profiles without having to remember every entitlement on every applic-
+ation, or be familiar with the access assigned to each employee in your enterprise.
+
+Entitlement mining also enables you to analyze the entitlement information collected tofurther refine the profiles you
+are creating before saving.
+
+Overview
+
+Creating a profile using entitlement analysis actually involves three distinct phases:
+
+
+
+ l Search forentitlements
+
+
+
+ l Analyze the search results
+
+
+
+ l Save the profile
+
+ Search for Entitlements:
+
+ 1. Access the Create Profile from Entitlement Analysis panel.
+
+ 2. Click Create in the Profiles panel of the Role Editor and select New Profile From Entitlement. Profiles can
+ only be added within a role. See How to Create or Edit a Profile.
+
+ 3. Select the application on which to search forentitlements.
+
+ 4. Optional: Narrow your entitlement search using the Identity Attribute fields.
+ The Identity Attribute fields displayed are dependent on the identity attributes defined during configuration.
+
+ 5. Click Search to begin the role analysis based on the specified criteria.
+
+
+ Analyze the Search Results:
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 45
+
+===== Page 49/91 =====
+Roles
+
+
+The search returns the following information:
+
+ Note: The entitlement analysis search only returns those entitlements based on account or group
+ attributes, not those based on permissions.
+
+ Search Parameters
+
+
+Attribute
+
+ The criteria used to define thissearch. For example, Application, Last Name, or Manager.
+
+Filter Type
+
+ The type of filterapplied to the search criteria.For example, Equal or Like.
+
+Value
+
+ The value entered inthe search field.
+
+Only show percentages above:
+
+ Use the sliderto limit the results displayed in the table based on the percentage ofthe population to which the res-
+ ults apply.
+
+ For example, ifyou are only interested inentitlements that apply to at least forty percent (40%) ofthe population
+ searched, click the slider and move itto that percentage, or type the percentage in the fieldto the right.
+
+ Entitlement Information
+
+Click a value to display a listofallidentities to whom that entitlement is assigned.
+
+Name
+
+ The name of the attribute from which thisentitlement was derived. Attributes used to define entitlements are spe-
+ cified during configuration.
+
+Value
+
+ The value assigned to the attribute. Click a value to expand a listofusers to whom the entitlement is assigned.
+
+Percent of Population
+
+ The number of identities assigned to thatvalue of that attribute on this application expressed as a percentage of
+ allidentities that have an account on the application.
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 46
+
+===== Page 50/91 =====
+Roles
+
+
+Use these results to analyze the entitlements that existwithin your enterprise. The Group and Analyze feature enables
+you to group entitlements within an application and generate results based on that group. This feature enables you to
+see how assigning multiple entitlements to a profilecan impact access within the application.
+
+To group and analyze, select multiple entitlements and clickGroup and Analyze. The results are displayed below the
+entitlements table. Click a group to see the details for the entitlements within. You can perform analysis multiple times
+on entitlements oron the groups created.
+
+ Save the Profile:
+
+When you are satisfied with the information you have mined and analyzed, clickCreate Profile. You must enter an
+name forthe new profile,optionally a description, and click Save to return to the Role Editor.
+
+Additional Information
+
+From the Role Editor you can add additional profiles, edit the role or save the role and return to the Role Viewer. See
+The Role Editor Page.
+
+How to Perform Impact Analysis
+
+Use the impact analysis function tocreate a report that provides details on the impact these changes can have on the
+rest ofyour product implementation.
+
+ Note: The Assignment and Provisioning numbers are the same for simple roles.However, the
+ numbers are different when there are manually written provisioning plans. The numbers are also
+ different when the profilesuse OR terms because provisioning only picks the firstterms using
+ OR.
+
+When you clickthe Submit with Impact Analysis from the Role Editor, the changes are rolled into a work item that is
+assigned toyou, an analysis task is launched, and a link iscreated inside the work item that points tothe task results.
+You can navigate from the work item to the task result to check on the status of the task as itisrunning.
+
+Impact analysis can also be performed from the Task page using the Role Overlap Analysis tasks.
+
+ Overlap analysis returns information on the following overlap facets:
+
+
+Attributes
+
+ Overlap between extended attributes and a some system attributes
+
+Local Assignment
+
+ Overlap between assignment rules and profilesdefined directly on the role (not inherited)
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 47
+
+===== Page 51/91 =====
+Roles
+
+
+Hierarchal Assignment
+
+ Overlap between both local and inherited assignment rules and profiles
+
+Local Provisioning
+
+ Overlap between provisioning side effects defined directly on the role
+
+Hierarchical Provisioning
+
+ Overlap between both local and inherited provisioning side effects
+
+
+To perform impact analysis
+
+ 1. Click an impact analysis work item in your inbox to open the Role Approval page.
+
+ 2. Review the summary information of the work item.
+
+ 3. Review the comments associated with the work item and, optionally, add comments.
+
+ 4. Review the details of the changes being analyzed by the impact analysis task associated with the work item.
+
+ 5. Click Click to view analysis task results to display the task results page containing the actual impact inform-
+ ation obtained by the task.
+
+ 6. Review the impact information and click Return to Work Item to return to the work item and make a decision
+ on the request.
+
+ 7. Make a decision:
+
+
+
+ l Approve â€“ apply the creation or modification based on the content of the impact analysis task results.
+
+
+
+ l Reject â€“ discard any changes made to the role based on the impact analysis results.
+
+
+
+ l Forward â€“ forward the impact analysis work item toanother user. Entering the firstfew lettersof a name dis-
+ plays a select listofvalid users with names starting with those letters.Select a name from the list.Add com-
+ ments ifneeded.
+
+
+
+ l Cancel â€“ cancel the work you have done on the work item.
+
+Entitlement Analysis
+
+IdentityIQ supports the creation of roles based on the mining of entitlements within the enterprise. These roles typ-
+icallymodel the IT privileges required to perform a specific function within an application or other target system. Using
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 48
+
+===== Page 52/91 =====
+Roles
+
+
+a configurable algorithm, IdentityIQ searches for access patterns to determine logical groupings of entitlements.
+
+Entitlement analysis enables you to search forentitlements based on specific application and identity information or
+by populations defined within your deployment of IdentityIQ. This feature enables you to create meaningful roles
+without having to remember every entitlement on every application or be familiar with the access assigned to each
+employee inyour enterprise.
+
+Entitlement Analysis also enables you to analyze the entitlement information collected to further refine the roles you
+are creating before saving.
+
+Performing Entitlement Analysis involves three distinct phases:
+
+
+
+ l Searching for entitlements
+
+
+
+ l Analyze the search results
+
+
+
+ l Creating roles
+
+Search for Entitlements
+
+ 1. Access the Entitlement Analysis tab from the Role Management page.
+
+ 2. Select the applications on which to search forentitlements.
+ Enter the firstlettersof an application name to display a suggestion list,or click the arrow to the right of the field
+ todisplay a listof allthe applications to which you have access.
+
+ 3. Optional: Narrow your entitlement search using the Identity Attribute fields or a listof populations.
+ Use the Search by Attribute or Search by Populations radio buttons to switch between the options.
+ The Identity Attribute fields displayed are dependent on the identity attributes defined during configuration. Pop-
+ ulations are defined from the Advanced Analytics, Identity Search Results page.
+
+ 4. Click Search to begin the entitlement mining based on the specified criteria.
+
+Analyze the Search Results
+
+The search returns the following information:
+
+ Note: The search only returns those entitlements based on account or group attributes, not those
+ based on permissions.
+
+
+ Column Description
+
+ Search Parameters:
+ Attribute The criteriaused to define this search. For example,
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 49
+
+===== Page 53/91 =====
+Roles
+
+
+ Column Description
+
+ Application, Last Name, Population, or Manager.
+ FilterType The type of filterapplied to the search criteria. For
+ example, Equal or Like.
+ Value The value entered in the search field.
+ Only show percentages above:
+ Use the slider to limit the results displayed in the table based on the percentage of the population
+ to which the results apply.
+ For example, ifyou are only interested in entitlements that apply to atleast fortypercent (40%) of
+ the population searched, click the slider and move ittothat percentage, or type the percentage in
+ the field tothe right.
+ Entitlement Information:
+ Click a value to display a listof allidentities to whom that entitlement isassigned.
+ The name ofthe attribute from which this entitlement was
+ Name derived.
+ Attributes used to define entitlements are specified during
+ configuration.
+ The value assigned tothe attribute.
+ Value Click a value toexpand a listof users to whom the enti-
+ tlement is assigned.
+ The number of identities assigned to that value of that
+ Percent ofPopulation attribute on this application expressed as a percentage of
+ allidentities that have an account on the application.
+
+Use the results toanalyze the entitlements that exist within your enterprise. The Group and Analyze feature enables
+you to group entitlements within an application and generate results based on that group. This feature enables you to
+see how assigning multiple entitlements to a role can impact access within the application.
+
+To group and analyze, select multiple entitlements and click Group and Analyze. The results are displayed below the
+entitlements table. Click a group tosee the details for the entitlements within. You can perform analysis multiple times
+on entitlements or on the groups created.
+
+Save the Profile:
+
+When you are satisfied with the information you have mined and analyzed, click Create Role. You must enter an
+name for the new role, optionally a type and description, and click Save to return to the Role Viewer.
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 50
+
+===== Page 54/91 =====
+Roles
+
+Role Mining
+
+Role Mining is used to create roles based on specified criteriain an existing enterprise. IdentityIQ separates role min-
+ing into the following categories:
+
+
+
+ l IT Role Mining
+
+
+
+ l Business Role Mining
+
+
+The IT Role Mining panel generates roles in bulk. The population of identities from which to mine can be restricted by
+IPOP or by String, boolean, or integer attributes (multi-valued are not supported at this time).
+
+The entitlements from which roles are generated are defined on a by-application basis. When an application is added
+to the mining analysis, allof itsentitlements are added toa box to the right.Users can prevent the entitlements from
+being considered in the analysis by clicking the â€œxâ€ next to them.
+
+The population size is restricted by the defined identity population as well as the applications under consideration. The
+current population size ispresented along with a warning that mining details are not available for large populations.
+
+You can restrictthe roles that are generated by specifying a minimum number of identities and entitlements per role.
+
+Select IT Role Mining or Business Role Mining from the Create New drop-down listtocreate and launch a new role
+mining task. Alternatively, you can select an existing template from the Role Mining Template panel and use the pre-
+defined criteria inyour role mining task.
+
+ Note: Names are required when creating role mining templates. When you editan existing tem-
+ plate, you are given the choice to either change the existing template or create a new template. If
+ you create a new template you are require togive ita new name.
+
+Types of Role Mining Activities
+
+Roles can be mined either by performing a Role Mining process or by running an Entitlement Analysis . Both options
+are found on the Role Management page. These two options are similar in some ways:
+
+
+
+ l Both allow the administrator tospecify one or more applications whose entitlements willbe evaluated as well as
+ a set of identity attributes that can be used to filterthe set of Identities that should be examined.
+
+
+
+ l Both only return entitlements held by atleast one identity inthe examined set.This is useful for constraining the
+ role modeling activities to manageable sets by looking atusers who are likely to share common sets of enti-
+ tlements that should be configured as IT roles (e.g. users in the Accounting department or the Austin location).
+
+They each also offer unique features inrole creation that make them separately suited to different types of role cre-
+ation needs.
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 51
+
+===== Page 55/91 =====
+Roles
+
+
+IT Role Mining is designed to highlight Identitiesâ€™entitlement commonalities. It returns every set of entitlements on the
+selected applications that are all held by one or more Identities. It does not return subsets (e.g. ifseveral identities
+hold entitlements A, B, and C but none hold A and B without C, ABC willbe a returned set but AB willnot be a returned
+set of itsown).
+
+Entitlement Analysis is designed to allow maximum flexibilityingrouping entitlements into roles by returning each enti-
+tlement separately and allowing the administrator togroup them in as many combinations as are desired. Entitlement
+Analysis even allows the creation of roles that represent sets ofentitlements no one user currently holds, while IT Role
+Mining does not. (Using the example scenario above, entitlement analysis supports the creation of a role containing
+entitlements A and B only while IT Role Mining does not.)However, Entitlement Analysis does not show the existing
+connections between entitlements as well as IT Role Mining does. See Entitlement Analysis .
+
+IT Role Mining
+
+IT Role Mining creates roles based on the mining of entitlements within the enterprise. These roles typically model the
+IT privileges required to perform a specific function within an application or other target system. Using a configurable
+algorithm, IdentityIQ searches for access patterns to determine logical groupings of entitlements.
+
+The mining task generates or updates a single IT role with entitlements that are mined from a user population spe-
+cified by groups, applications, or an identity filter.A threshold percentage limitsthe entitlements that are added to
+those held by a percentage of the population that exceeds the threshold.
+
+ Create New IT Role Using Role Mining
+
+Use the Create New drop-down listat the top-right corner ofthe page and select IT Role Mining. Input your mining cri-
+teriain the IT Role Mining panel.
+
+Owner
+
+ Enter a valid user or workgroup. Typing the firstfew letters of a name displays a listofall ofthe user and work-
+ group names in the system containing that letter combination. You can select from the displayed list.
+
+Identities to Mine
+
+ Search By Attributes â€“ Input the attribute data to target specific identity criteriaused in the role mining task.
+ Search By Population â€“ Select a population on which the role mining task is run.
+
+ Note: Selecting a population automatically filtersthe applications to those included inthe selec-
+ ted population.
+
+Applications to Mine
+
+ Specify the application(s) on which to focus the mining task.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 52
+
+===== Page 56/91 =====
+Roles
+
+
+Entitlements to Exclude
+
+ Select any entitlements that are associated with the application to exclude in the role mining task. Allother enti-
+ tlements are used as part of the role mining criteria.
+
+The size of the population to be mined is currently X identities
+
+ The variable value of the totalnumber ofidentities used in the role mining task based on the current mining cri-
+ teria.
+
+Minimum Identities per Role
+
+ Specify the minimum number of Identities, who meet the role mining criteria,that are required to create thisrole.
+
+Minimum Entitlements per Role
+
+ Specify the minimum number of entitlements, which meet the role mining criteria,that are required to create this
+ role.
+
+Maximum Groups to Mine
+
+
+ Note: The rolemining task failsifthe number of candidate roles discovered exceeds the number
+ specified inthis field.
+
+ Specify the maximum number of groups (candidate roles),which can be generated using thisrole mining criteria.
+
+Once you have entered your criteria,click Save to save your selections as an IT Role Mining template. Click Save
+and Execute to save the template and run the role mining task. Enter the name of your role mining template then click
+OK.
+
+ Use An Existing IT Role Mining Template
+
+
+ Note: Names are required when creating role mining templates. When you edit an existing tem-
+ plate, you are given the choice toeither change the existing template or create a new template. If
+ you create a new template you are require togive itanew name.
+
+Use or editan existing IT Role Mining template to generate a role based on previous criteriaby clicking a template
+name inthe Role Mining Templates panel on the Role Mining tab.
+
+Click View Latest Mining Results to view the results of the most recent mining task for this template.
+
+Any changes to the template are saved for thistemplate unless the template name is changed. Once you have
+entered your criteria,clickSave tosave your selections, or clickSave and Execute tosave the template and run the
+role mining task. Executed mining tasks appear on the Role Mining Results tab.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Role, Group, and Population Management 53
+

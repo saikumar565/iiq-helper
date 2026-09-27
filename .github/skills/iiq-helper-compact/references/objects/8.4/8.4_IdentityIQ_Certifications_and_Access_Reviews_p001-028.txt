@@ -1,0 +1,1542 @@
+﻿===== Page 1/115 =====
+ Certifications and Access Reviews
+
+
+ Version:8.4
+
+ Revised:September2023
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thisdocument and theinformationcontainedhereinisSailPointConfidentialInformation
+
+===== Page 2/115 =====
+Copyright and Trademark Notices
+
+Copyright Â© 2023 SailPoint Technologies, Inc.Â  All Rights Reserved.
+
+Alllogos, text,content, including underlying HTML code, designs, and graphics used and/or depicted on these written
+materials or in thisInternet website are protected under United States and international copyright and trademark laws
+and treaties, and may not be used or reproduced without the prior express written permission of SailPoint Tech-
+nologies, Inc.
+
+â€œSailPoint Technologies,â€ (design and word mark), â€œSailPoint,â€ (design and word mark), "Identity IQ,â€ â€œIdentityNow,â€
+â€œSecurityIQ,â€ â€œIdentity AI,â€ â€œIdentity Cube,â€ and â€œSailPoint Predictive Identityâ€ are registered trademarks of SailPoint
+Technologies, Inc. â€œIdentity isEverything,â€ â€œThe Power of Identity,â€ and â€œIdentity Universityâ€ are trademarks of
+SailPoint Technologies, Inc. None of the foregoing marks may be used without the prior express written permission of
+SailPoint Technologies, Inc. Allother trademarks shown herein are owned by the respective companies or persons
+indicated.
+
+SailPoint Technologies, Inc. makes no warranty ofany kind regarding these materials or the information included
+therein, including, but not limited to,the implied warranties ofmerchantability and fitness for a particular purpose.
+SailPoint Technologies shall not be liable for errors contained herein or direct, indirect, special, incidental orcon-
+sequential damages inconnection with the furnishing, performance, or use of thismaterial.
+
+Patents Notice. https://www.sailpoint.com/patents
+
+Restricted Rights Legend. All rights are reserved. No part ofthis document may be published, distributed, reproduced,
+publicly displayed, used to create derivative works, or translated to another language, without the prior written consent
+ofSailPoint Technologies. The information contained inthis document issubject to change without notice.
+
+Use, duplication or disclosure by the U.S. Government is subject to restrictions as set forth insubparagraph (c) (1) (ii)
+ofthe Rights inTechnical Data and Computer Software clause at DFARS 252.227-7013 for DOD agencies, and sub-
+paragraphs (c)(1) and (c)(2) ofthe Commercial Computer Software Restricted Rights clause at FAR 52.227-19 for
+other agencies.
+
+Regulatory/Export Compliance. The export and re-export of this software iscontrolled for export purposes by the U.S.
+Government. By accepting this software and/or documentation, licensee agrees to comply with allU.S. and foreign
+export laws and regulations as they relate to software and related documentation.Â  Licensee will not export or re-
+export outside the United States software or documentation, whether directly or indirectly, to any Prohibited Party and
+willnot cause, approve or otherwise intentionally facilitate others inso doing. A Prohibited Party includes: a party in a
+U.S. embargoed country or country the United States has named as a supporter of international terrorism; a party
+involved in proliferation; a party identified by the U.S. Government as a Denied Party; a party named on the U.S.
+Department of Commerceâ€™s Entity Listin Supplement No. 4 to 15 C.F.R. Â§ 744; a party prohibited from participation in
+export orre-export transactions by a U.S. Government General Order; a party listed by the U.S. Governmentâ€™s Office
+ofForeign Assets Control as ineligible to participate in transactions subject toU.S. jurisdiction; or any party that
+licensee knows or has reason toknow has violated or plans to violate U.S. or foreign export laws or regulations.
+Licensee shall ensure that each of itssoftware users complies with U.S. and foreign export laws and regulations as
+they relate to software and related documentation.
+
+===== Page 3/115 =====
+Contents
+
+
+ Introduction to Certifications and Access Reviews 1
+
+ About Certifications 2
+
+ Certification Schedules 2
+
+ Types ofCertification 3
+
+ Contents ofa Certification:Policies, Roles, and Entitlements 4
+
+ Challenges 6
+
+ Revocations 6
+
+ Escalations and Reminders 7
+
+ Phases of a Certification 7
+
+ Automatic Closing ofCertifications 9
+
+ Rules in Certifications 9
+
+ Self-Certification 12
+
+ About Access Reviews 14
+
+ Customization of Access Reviews 14
+
+ How Reviewers Are Notified About Access Reviews 14
+
+ How Access Review Items are Displayed: Important, Open, and Review Tabs 15
+
+ Making Access Decisions 15
+
+ Passing Access Reviews toOthers 17
+
+ Signing Off on Reviews 20
+
+ Access Review Pages 22
+
+ Access Review Page Overview 23
+
+ Access Review â€“ Common Information 24
+
+ Targeted Access Reviews 26
+
+ Access Review Details - Targeted 26
+
+ How To Perform a Targeted Access Review 29
+
+ Manager, Application Owner, and Advanced Access Reviews 30
+
+ Access Review Details â€“ Identity List 30
+
+ How To Perform an IdentityList Access Review 34
+
+ Role Membership and Entitlement Owner Access Reviews 35
+
+===== Page 4/115 =====
+ Access Review Details â€“ Object List 35
+
+ How to Perform an Object List Access Review 38
+
+Role Composition Access Reviews 40
+
+ Access Review Details â€“ Role Composition List 40
+
+ How to Perform a Role Composition Access Review 42
+
+Account Group Membership and Account Group Permission Access Reviews 43
+
+ Access Review Details - Account Group List 43
+
+ How to Perform an Account Group Access Review 45
+
+Access Review Decisions / Operations 47
+
+ Basic Access Review Procedure 47
+
+ Access Review Decisions 48
+
+ Reassign Access Reviews 49
+
+ Approve Access Reviews 50
+
+ Delegate Access Reviews 50
+
+ Allow Exceptions on Access Reviews 51
+
+ Revoke or Edit Access From Access Reviews 51
+
+ Revoke an Account on Access Reviews 53
+
+ Respond toa Challenged Revocation 53
+
+ Allow Policy Violations on Access Reviews 54
+
+How to Complete Access Review Work Items 55
+
+ How to Complete Delegated Access Reviews 55
+
+ How to Complete Revocation Work Items 56
+
+ How to Complete Reassigned orForwarded Access Reviews 57
+
+ How to Perform Multi-Level Sign Off on Access Reviews 58
+
+ How to Challenge a Revocation Request 58
+
+Certification Events 59
+
+ Define a CertificationEvent 59
+
+Manage and Schedule Certifications 69
+
+ CertificationsTab 69
+
+ CertificationSchedules Tab 72
+
+===== Page 5/115 =====
+ Scheduling a New Certification 73
+
+Compliance Manager Setup 104
+
+===== Page 6/115 =====
+Introduction to Certifications and Access Reviews
+
+Introduction to Certifications and Access Reviews
+
+
+IdentityIQâ„¢ helps you manage compliance by providing an automated way for designated reviewers toview and con-
+firm orremove other users' access privileges, through a process called certification. IdentityIQ also letsyou certify
+the contents and membership of roles and groups. Certifications likethis are the central focus of compliance activities
+inan identity and access management program.
+
+IdentityIQ uses certifications (or certification "campaigns") and access reviews toreview and manage this user
+access.
+
+ Certifications
+
+InIdentityIQ, the term "certification"or "certification campaign" refers toan overall campaign to review access for a
+selected set of users â€“ that is,tocreate and then complete a set of access reviews. The certification campaign isusu-
+allythe responsibility of a high-level authority on access, such as a compliance officer,administrator, or manager.
+
+A certification defines what isbeing reviewed and for which users, who the reviewers willbe, what the timeline forthe
+reviews is,and other details.For example, a company's compliance officermay set up a quarterly certification cam-
+paign toreview and certify allthe sensitive financial systems the people inthe Accounting department have access to,
+and require each manager in the Accounting department perform the access review forallthe members of hisor her
+team.
+
+ Access Reviews
+
+The access review part of a certification iswhen someone who isan authority of some sort â€“ such as a people man-
+ager, or someone responsible for an application like a Human Resources system or a financial database â€“ reviews the
+access that other users have, toverify whether or not itiscorrect and appropriate, and to make any necessary cor-
+rections to revoke inappropriate access.
+
+A certification campaign typicallyconsists of multiple access reviews â€“ forexample, a Manager certification can create
+an individual access review for each department manager, so you have a single certification campaign that consists of
+a number of access reviews done by different people.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 1
+
+===== Page 7/115 =====
+About Certifications
+
+About Certifications
+
+
+In IdentityIQ, certifications letyou automate the review and approval of identity access privileges. In a certification,
+IdentityIQ collects fine-grained access or entitlement data, and formats the information into interactive reports, which
+are sent to the appropriate reviewers as access reviews. You can also use certifications to validate things like roles
+and account groups.
+
+Certifications typically consist ofmultiple access reviews. For example, when you schedule a Manager Certification, a
+type of certification that asks managers toreview and validate their direct reports' access, itwillconsist of an individual
+access review foreach of the managers you choose to include as part of the campaign. However, itis possible to con-
+figure a certification such that itincludes only one access review â€“ for example, you might schedule a Manager Cer-
+tificationfor justone specific manager, which means that there would only be one access review making up that
+certification.
+
+When you configure the certification, you can set itup to annotate each access review with descriptive language that
+highlights changes, flags anomalies, and highlights where policy violations appear. The access reviews enable review-
+ers to:
+
+
+
+ l Approve access for identities
+
+
+
+ l Approve account group permissions and membership
+
+
+
+ l Approve role composition and membership
+
+
+
+ l Take corrective actions, such as revoking entitlements that violate policy
+
+
+
+ l Forward, reassign, or delegate allor part of the access review to another reviewer
+
+
+For all corrective actions, IdentityIQ can fulfillcertificationrevocations through automated or manual means, depend-
+ing on the individual applications' connector configurations. IdentityIQ can also be configured to integrate with tick-
+eting systems or other provisioning systems to fulfillprovisioning requests.
+
+The sections below willfamiliarize you with some terms and concepts related to certifications.
+Certification Schedules
+
+Certifications can be scheduled to run on a periodic basis; they can also be triggered by an event, or run as a one-off
+process.
+
+ Periodic Certifications
+
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 2
+
+===== Page 8/115 =====
+About Certifications
+
+
+Periodic certifications are scheduled to run on a recurring basis, such as daily, weekly, monthly, quarterly, or annually.
+These periodic access reviews provide a snapshot view of the identities, roles, and account groups within your enter-
+prise. Periodic certifications focus on the frequency at which entire entities (identities,roles, or account groups) must
+be certified.
+
+A periodic certification is considered complete when all the access reviews contained within the certification have
+been completed. The access reviews that make up the certification, in turn, are considered complete when allitems,
+such as roles, entitlements, violations, and application objects, have been acted upon, and those decisions are con-
+firmed by the user to whom that access review was assigned.
+
+Periodic certifications can be created using a multi-level sign-off structure, to allow multiple certifiers toreview the
+access before the review isconsidered complete.
+
+ Event-Based Certifications
+
+Certifications can be configured to run based on "trigger" events that occur within IdentityIQ. For example, you can
+configure IdentityIQ to automatically generate a certification any time an identity's manager changes. You can also
+configure the events that trigger the certifications to meet the needs of your enterprise. See Certification Events for
+more information.
+
+ One-Off Certifications for Identities
+
+One-off certifications can be created from the Identity Risk Score, Identity Search Results, or Policy Violation pages.
+These one-off access reviews can be run for a single identity, or formultiple identities at once. One-off certifications
+are most often used inspecial situations, such as when an access review is required outside ofthe normal certification
+cycle. You can also schedule standard IdentityIQ certifications to run on a one-off basis.
+
+Types of Certification
+
+IdentityIQ provides these types of certification:
+
+ Targeted Certifications
+
+ The most flexible type of certification, designed tomeet most organizations' full range of certification needs from
+ a single place. Ina Targeted Certification you can certify role, entitlement, and account access for a narrowly
+ defined set of your users. The Targeted Certification gives you a high level of flexibilityinchoosing which para-
+ meters to include in the certification, such as who, what, and when to certify.
+
+ Manager Certifications
+
+ Certify that a manager's direct reports have the rightentitlements they need todo their job, and no more than
+ that. You can configure a Manager Certification to include allmanagers inthe company, or only specific man-
+ agers. You can also configure which applications you want to certify as part of the Manager Certification.
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 3
+
+===== Page 9/115 =====
+About Certifications
+
+ Application Owner Certifications
+
+ Certify that allidentitiesthat have access toapplications for which the reviewer is responsible have the proper
+ entitlements.
+
+ Entitlement Owner Certifications
+
+ Certify that allidentitiesthat have access toentitlements forwhich the reviewer isresponsible are correct.
+
+ Advanced Certifications
+
+ Certify entitlements and roles forall identitiesincluded in a specific population or group.
+
+ Account Group Membership Certifications
+
+ Certify that allaccounts which make up an account group are correct â€“ that is,are the rightaccounts inthe
+ account group. Account groups that do not have owners assigned are certified by the owner ofthe application on
+ which they reside.
+
+ Account Group Permissions Certifications
+
+ Certify that allpermissions that are granted to an account group forselected application(s) are correct. Account
+ groups that do not have owners assigned are certified by the owner ofthe application on which they reside.
+
+ Role Membership Certifications
+
+ Certify that roles forwhich the reviewer isresponsible are assigned tothe correct identities.
+
+ Role Composition Certifications
+
+ Certify that roles forwhich the reviewer isresponsible are composed of the proper permissions and entitlements.
+
+ Identity Certifications
+
+ This type ofcertification isused for "one-off" certifications that are launched from the IdentityRisk Score, Identity
+ Search Results, or Policy Violation pages. These certificationsverify the entitlement information for the iden-
+ tities,typicallyforat-risk users.
+
+ Event-Based Certifications
+
+ Certify the entitlement information for the identitiesselected based on events detected within IdentityIQ.
+
+Contents of a Certification: Policies, Roles, and Entitlements
+
+These are some common terms thatare used incertifications.
+
+
+
+ SailPoint Certifications and Access Reviews 4
+
+===== Page 10/115 =====
+About Certifications
+
+ Policies
+
+ Policies govern access and can be defined for your enterprise. You can use certifications to monitor users that
+ are in violation of those policies. For example, a separation-of-duties policy may dictate that one person can not
+ both request and approve purchase orders, or an activity policy might dictate that a user with the Human
+ Resource role should not be able to update the payroll application.
+
+ In access reviews, Policy Violations show any violations of policy for an identity. The access reviewer(s) must
+ take action on these violations before the certification can be completed.
+
+ There isa Policy Violations page in IdentityIQ that isseparate from the access review page. Policy violations can
+ be viewed and acted upon from this page, or as part of another access review.
+
+ Decisions made on a violation that come from another page or review are displayed within the access review,
+ below the summary information, or in the revocation dialog.
+
+ Roles
+
+ Roles are essentially collections of permissions. Through roles, system entitlements can be grouped together
+ and presented as a logical unit, such as a job function, rather than as a detailed and often difficult-to-interpret list
+ of access rights. Within IdentityIQ, users are granted permissions through the roles that are assigned to them, or
+ through roles they inherit through a role hierarchy.
+
+ In an access review, only the top-level roles are displayed in the roles section. For example, ifa role contains
+ required and permitted roles, only the top-level role is displayed and the required and permitted roles are cer-
+ tifiedas part of that role. You can click Details in the three-line menu forthe item to expand the role information
+ and view the role details and hierarchy. Both assigned and detected roles are displayed in the roles section.
+
+ Ifan identity has a role assigned to itmultiple times â€“ for example, togrant the same access to multiple accounts
+ the user holds â€“ that role isdisplayed multiple times, and each one must be reviewed and acted on individually.
+
+ Entitlements
+
+ Entitlements are either permissions or specific values for an account attribute, such as group membership. In the
+ context of certifications, entitlements refer to allthe entitlements an identity has access to that are not included
+ as part of a role that isassigned to the identity.
+
+ Certifications can also include IdentityIQ capabilities and scopes; ifthe certification includes capabilities and
+ scopes, these appear as additional entitlements on the IdentityIQ application, as Capabilities and Authorized
+ Scopes attributes. Revoking these entitlements has auto-remediation enabled by default. This means that when
+ the revocation is processed (either when the access review is signed, or immediately, based on the certification
+ configuration) the capabilities and authorized scopes are removed from the identity.
+
+For additional information, see Access Review Pages.
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 5
+
+===== Page 11/115 =====
+About Certifications
+
+Challenges
+
+When an access reviewer has determined that the user's access should be revoked, you may want to allow the
+affected user to challenge the decision; forexample, toshare information with the reviewer about why they may need
+toretain the access in question.
+
+To allow users to challenge revocation decisions, enable a challenge period as part of a certification's configuration.
+During the challenge period, ifthe certifierhas, for example, revoked a user's Financial Reporting access, that user
+would get an email saying that the entitlement has been revoked. The user can then respond with comments on the
+item describing why they need to keep access to the Financial Reporting system. The certifiersees that the revocation
+has been challenged and why, and isable go back in to the access review and reconsider their decision.
+
+For more information, see How to Challenge a Revocation Request.
+Revocations
+
+Revocation is when an identity's entitlements are altered in the source application, to remove any entitlements that
+were marked by the access reviewer as needing to be revoked. Depending on the provisioning features in use, remedi-
+ations may be processed manually or automatically. Ifautomatic provisioning isenabled in your system for the rel-
+evant application, revocation of access can happen without any further action from the reviewer, as a consequence of
+an access review decision. Ifthe relevant application does not have automated provisioning enabled, then remedi-
+ation of that application's entitlements is managed by the creation of manual work items for the Application Revoker or
+Application Owner, requesting that they change the identity'saccess or permissions manually. IdentityIQ alerts the
+Application Revoker or Application Owner about the manual work item via an email message.
+
+A Revocation phase can be enabled for the certification as part of the certification setup. Note that remediation of
+access occurs as a result of revocations inan access review whether or not a Revocation period isenabled. The dif-
+ference isthat when a Revocation period isenabled, IdentityIQ monitors the status of remediation requests; when itis
+not enabled, remediation requests are submitted forprocessing but are not tracked.
+
+The purpose of the revocation phase isfor the work of revoking access to be done, according tothe access revisions
+that have been made. This means that once a revocation has been processed, an access reviewer can not change
+theirdecision for that item.
+
+Configuration settings in the certification setup determine when the revocation isprocessed.
+
+
+
+ l Immediate Revocation: Ifthe Process Revokes Immediately option is selected, then revocation is con-
+ sidered tobe processed as soon as a reviewer makes and saves a Revoke decision, and the decision can not
+ be changed. Note that this does not affect Approve decisions; those can be changed even after saving, but ifan
+ Approve decision ischange toRevoke and saved, itcan no longer be changed.
+
+
+
+ l Revocation during a revocation phase: The revocation phase is entered when a certification issigned off,or
+ when the active and challenge phases have ended. Until the certification enters this phase, reviewers can
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 6
+
+===== Page 12/115 =====
+About Certifications
+
+
+ make changes to theirapprove and revoke decisions (unless the Process Revokes Immediately option
+ described above was selected forthe certification).Once the certification isin this phase, reviewers can
+ no longer change their decisions.
+
+Escalations and Reminders
+
+When a person who has been assigned a manual work item for revoking access does not complete the work in a
+timely manner, IdentityIQ can send that person email reminders or can even escalate the work to the next level, such
+as to theirmanager. Revocation reminders and escalations are used only when revocation is being handled through
+manual work items assigned to the application's revoker or owner, and not when revocation is processed auto-
+matically.
+
+The remediation parameters that are set in the certification configuration tellIdentityIQ what reminders and escal-
+ations to perform, and when.
+
+Revocation reminder emails can be automatically sent to the person assigned the revocation work item ifthe work
+item is not completed within a specified timeframe. Reminders can configured tobe sent once, or at scheduled inter-
+vals, beginning a specified number of days before the end of the Revocation period.
+
+Escalations can also be automated to notify and transfer control to someone else, for example, the revoker's man-
+ager orthe application owner, ifthe person originally responsible forthe revocation has not completed it,and the end
+ofthe Revocation period is near. Escalation triggers, email templates, and rules fordetermining who the item isescal-
+ated to are allpart of the Certification configuration.
+
+See Compliance Manager Setup formore information on configuring reminders and escalations.
+Phases of a Certification
+
+Certifications progress through phases as they move through their lifecycle.The phases associated with each cer-
+tificationare determined when the certification isset up. Some phases are part of every certification, while others are
+optional phases that can be configured as needed according to your organization's business processes.
+
+ Staging
+
+ This isan optional phase you can use to test or validate a certification before sending itto reviewers. The staging
+ phase letsyou create a certification and associated access reviews, but not send the access reviews to the cer-
+ tifiers.You can view what the certification schedule definition produces before the certification is activated. Ifthe
+ generated certification does not match your needs, you can cancel the certification and redefine itas needed. If
+ the certification isaccurate, you can activate it.Ifyou want touse a staging period, you enable itas part of the cer-
+ tification'sconfiguration parameters at the time you set up the certification.
+
+ Active
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 7
+
+===== Page 13/115 =====
+About Certifications
+
+
+ The active phase is the review period when the reviews are performed â€“ that is, when alldecisions that are
+ required for the access review are made. During this phase, reviewers make decisions about access, and
+ changes can be made to these decisions as frequently as required, untilthe access period expires. The active
+ period lasts either for a scheduled amount of time or until allthe access reviews forthe certification have been
+ signed off.You can sign off on the active stage ifno roles or entitlements were revoked, or ifthe optional chal-
+ lenge period has not been enabled. When you sign off on a periodic certification itenters either an end phase, or,
+ ifenabled, a revocation phase. To enter the revocation phase, the revocation period must be enabled, and at
+ least one revocation decision must exist.
+
+ Challenge
+
+ The challenge phase isan optional period when users can challenge all revocation requests ifany of their roles,
+ entitlements, or account group access are being removed. When the challenge phase begins, a work item and
+ email are sent toeach user affected by a revocation decision. The notifications contain the details ofthe revoc-
+ ation request and any comments added by the reviewer. The affected user has the duration ofthe challenge
+ period toaccept the loss of access, or challenge that decision. Ifyou want to allow a challenge period, you
+ enable itas part of the certification's configuration parameters atthe time you set up the certification.
+
+ You can sign off on a certification inthe challenge phase ifallchallenges are complete and no open decisions
+ remain for the access review. When you sign off on an access review, itenters either the end phase, or,if
+ enabled, the revocation phase. To enter the revocation phase, the revocation period must be enabled, and at
+ least one revocation decision must exist.
+
+ Revocation
+
+ The revocation phase isthe period when all revocation work iscompleted. When the revocation phase is
+ entered, revocation can be done either automatically or manually. Automatic revocation can happen ifyour pro-
+ visioning provider isconfigured for automatic revocation or ifyour implementation is configured to work with a
+ help desk solution and a help ticket isgenerated. Ifyou don't have an automatic revocation process enabled,
+ revocation isdone manually via work requests assigned to the relevant users in IdentityIQ. For periodic cer-
+ tifications,the revocation phase starts when a periodic certification is signed off,or when the active and chal-
+ lenge phases have ended.
+
+ Revocation activityis monitored to ensure that inappropriate access to roles and entitlements isrevoked in a
+ timely manner. Revocation completion status isupdated at an interval specified during the deployment of Iden-
+ tityIQ.By default this is performed daily. You can view detailed revocation information by clicking the inform-
+ ation icon inthe access review then clicking the Details button on the information dialog. Revocation requests
+ that are not acted upon during the revocation phase can be escalated as needed.
+
+ End
+
+
+
+
+
+
+
+SailPoint Certifications and Access Reviews 8
+
+===== Page 14/115 =====
+About Certifications
+
+
+ Ifa Revocation phase isnot enabled for the certification, revocations can be done during the end period. The end
+ period also indicated when the access review iscomplete.
+
+Automatic Closing of Certifications
+
+Automatic closing isan option you can enable inyour certifications to handle access reviews that have not been com-
+pleted by the time the certification's designated active period has ended. With automatic closing, you can auto-
+matically make decisions on the open line items â€“ either to revoke, allow, or mark as an exception â€“ or you can run a
+rule toperform more complex analyses or other actions.
+
+Ifyou choose toenable automatic closing, there are several configuration options you willset, including the amount of
+time to allow afterthe expiration date before automatic closing is invoked, any closing rule that willbe run at that time,
+which action totake on uncompleted Access Review items, and any comment to add to each item forwhich the auto-
+matic action is taken. These can be set as global defaults and also can be set or changed from the global defaults at
+the individual certificationlevel. See Compliance Manager Setup.
+Rules in Certifications
+
+Certifications can use rules to customize certification behavior. Rules enable you toinsert your own logic tomodify the
+behavior of the certification; for example, you could write a rule to exclude your executive management team from cer-
+tifications,or to add an additional level of sign-off approval to an access review. Rules are written using BeanShell, a
+lightweight Java-based scripting language. IdentityIQ provides a standard set of example rules that you can import to
+use as starting points fordeveloping your own rules, inan examplerules.xml file.
+
+When you set up a certification,there are numerous places where you can choose rules tomodify the certification's
+behavior. Every rule has a type that categorizes it,and in certifications, the rule type determines where and how inthe
+certification the rule can be used, and what kind of effect orpurpose ithas. Rules that are applicable to certifications
+are listed here, in the order in which they would be run in a certification.
+
+For an overview of developing and using rules in IdentityIQ, see the IdentityIQ SystemÂ Administration guide.
+
+ Rule Types
+
+
+ User Interface Rule Type How/When Effect/Purpose
+ Field Name Triggered
+
+ Run as a part of the Excludes entitlements from the cer-
+ Exclusion Rule CertificationExclusion certification gen- tificationbased on the rule's logic
+ eration process
+ Pre-delegation Run as a part of the Automatically delegates access
+ Rule CertificationPreDelegation certification gen- reviews based on the rule's logic
+ eration process
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 9
+
+===== Page 15/115 =====
+About Certifications
+
+
+ User Interface Rule Type How/When Effect/Purpose
+ Field Name Triggered
+
+ Who Do You
+ Want to Certify Run as a part of the
+ Rule (Tar- CertificationScheduleEntitySelector certification gen- Select identities to certifyin a Tar-
+ geted Cer- eration process geted certification.
+ tifications
+ Only)
+ Run as a part of the
+ Group Fact- Advanced cer- Assigns certifier for each group's
+ ory: Certifier Certifier tificationgeneration access review
+ process for Group
+ Factory certifications
+ Run at the startof
+ the Active period; the
+ Active period isthe
+ Active Period CertificationPhaseChange period during which Open-ended; depends on rule
+ Enter Rule certifiers can exam- logic
+ ine their access
+ reviews and make
+ access decisions
+ Ifthe access review
+ has not yet been fin-
+ ished and signed-off Transfers ownership of the access
+ Certification by the certifierat the review to a different identity (often
+ Escalation WorkItemEscalationRule time specified by the the certifier'smanager or the cer-
+ Rule Escalation Trigger in tification owner)
+ the certification defin-
+ ition,this rule is run
+ at that time
+ Run at the startof
+ Challenge the Challenge period
+ Period Enter CertificationPhaseChange (ifenabled), which Open-ended; depends on rule
+ Rule follows immediately logic
+ after the Active
+ Period ends;
+
+
+
+
+
+
+
+SailPoint Certifications and Access Reviews 10
+
+===== Page 16/115 =====
+About Certifications
+
+
+ User Interface Rule Type How/When Effect/Purpose
+ Field Name Triggered
+
+ IfProcess Revokes
+ Immediately isselec-
+ ted, Challenge
+ period begins for
+ each entitlement at
+ the moment itis
+ revoked and this rule
+ runs once for each
+ revocation
+ Run according tothe
+ timeframe specified
+ in the Automatic
+ Closing con-
+ Closing Rule CertificationAutomaticClosing figuration in the cer- Open-ended; depends on rule
+ tificationdefinition logic
+ (after the end of the
+ Active phase --or
+ Challenge phase if
+ enabled)
+ Transfers ownership of the access
+ review to a next-level approver
+ who needs toapprove the cer-
+ tification decisions made by the cer-
+ tifier;thisrule enables two-level (or
+ multi-level) signoff on an access
+ review
+ Sign-off Triggered by certifier Exception: When a challenge
+ Approver Rule CertificationSignOffApprover sign-off on an period is included, the sign-off
+ access review approver can only override
+
+ approval decisions; revocation
+ decisions made by the original cer-
+ tifierand seen by the access
+ holder in a challenge work item
+ (whether they challenge the
+ decision or not) willnot be change-
+
+
+
+
+
+SailPoint Certifications and Access Reviews 11
+
+===== Page 17/115 =====
+About Certifications
+
+
+ User Interface Rule Type How/When Effect/Purpose
+ Field Name Triggered
+
+ able in the sign-off approver's cer-
+ tification view.
+ Run at the startof
+ the Revocation
+ Revocation period; the Revoc-
+ Period Enter CertificationPhaseChange ation period imme- Open-ended; depends on rule
+ Rule diately follows the logic
+ Active period (or the
+ Challenge period ifit
+ isenabled)
+ Ifthe revocation
+ work item has not yet
+ been completed by
+ Revocation the assigned revoker Transfers ownership of the revoc-
+ Escalation WorkItemEscalationRule at the time specified ation to a different identity (often
+ Rule by the Revocation the revoker's manager or the
+ Escalation Trigger in application owner)
+ the certification defin-
+ ition,this rule is run
+ at that time
+ Run at the beginning
+ of the End period,
+ End Period which starts after all Open-ended; depends on rule
+ Enter Rule CertificationPhaseChange other periods con- logic
+ figured forthe cer-
+ tificationare
+ complete
+
+Self-Certification
+
+Self-certification means a user is allowed to be the certifier forhis or her own access. Self-certification isoften con-
+sidered a security risk because itallows a user to approve and permit his or her own access, whether or not itis appro-
+priate to his or her job. By default, IdentityIQ does not allow self-certification, other than for System Administrators.
+However, some organizations have business reasons for allowing self-certification, so there are configuration options
+to permit it.These can be set at the global level, or at the individual certification level.
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 12
+
+===== Page 18/115 =====
+About Certifications
+
+
+Globally, self-certification options are set inthe gear menu > Compliance Manager page's Behavior section. Global
+settings set the default configuration values for individual certifications, but these defaults can be changed when you
+configure individual certifications.
+
+At the individual certification level, self-certification options are set on the Advanced page of the Certification con-
+figuration options for most types of certification; for Targeted certifications thisoption is set in the Choose Certifier
+section, under Advanced Options.
+
+When allowing self-certification, you can choose who is allowed to self-certify:All certifiers, System and Cer-
+tification Administrators, or System Administrators only. Which users are considered System Administrators or
+Certification Administrators isdetermined by the IdentityIQ capabilities the user has. Capabilities can be assigned dir-
+ectly to users, and also to workgroups. The System Administrator capability defines who isconsidered a System
+Administrator. For Certification Administrators, any IdentityIQ capability that includes the CertifyAllCertifications
+SPRight (such as the standard Certification Administrator capability) defines the user or workgroup as a Certification
+Administrator, for purposes of being allowed to self-certify.
+
+You can not configure IdentityIQ toexclude allusers from self-certification, since excluding even your System Admin-
+istrators from self-certifying can potentially lead to certifications that are impossible to complete.
+
+When you allow users to self-certify, you can also choose an identity or workgroup tobe the Self Certification Viola-
+tion Owner. For users that are not allowed to self-certify, this isthe identity or workgroup that willreceive any items
+that would require a self-certification â€“ that is,when the reviewer and the user whose access isunder review are the
+same person. Ifa Self Certification Violation Owner is not chosen, any items that require self-certification will be
+shown as read-only tothe reviewer in the access review.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 13
+
+===== Page 19/115 =====
+About Access Reviews
+
+About Access Reviews
+
+
+The access review part ofa certificationis when someone who is an authority of some sort â€“ such as a people man-
+ager, or someone responsible foran application like aHuman Resources system or a financial database â€“ reviews the
+access that other users have, to verify whether or not itiscorrect and appropriate, and tomake any necessary cor-
+rections to revoke inappropriate access.
+Customization of Access Reviews
+
+IdentityIQ provides many ways to customization certifications and the access reviews that comprise them. These
+options control things likethe actions a reviewer can take to correct an action, whether or not reviewers can process
+access decisions in bulk oronly one by one, whether reviewers can delegate reviews to other people, et cetera. Since
+many access review options can be enabled or disabled when the certificationisset up, reviewers may see only some
+ofthe features and options described inthis section in theirown access reviews.
+
+Here are some examples ofthe customization options foraccess reviews thatcan be set by the person who creates
+the certification:
+
+
+
+ l Requiring an electronic signature to close an access review
+
+
+
+ l Requiring comments when an access item isapproved
+
+
+
+ l Enabling or disabling the option to delegate a review
+
+
+
+ l Limiting the number of times a review can be reassigned
+
+
+
+ l Enabling an exception period, to allow a user toretain access for a certain time period but no longer
+
+
+
+ l Allowing items toapproved, revoked, or reassigned inbulk, versus item-by-item only
+
+How Reviewers Are Notified About Access Reviews
+
+Certifications can be configured tosend an email notification toreviewers when the access reviews are available. An
+Access Review tileon the reviewer's home page also shows a count of how many reviews are awaiting the user's
+attention.
+
+Whether oremail notifications are sent, the access reviews themselves appear inthe IdentityIQ user interface for the
+assigned reviewers, and can be accessed from these page or menu option paths:
+
+
+
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 14
+
+===== Page 20/115 =====
+About Access Reviews
+
+
+
+ l In the top navigation menu of IdentityIQ, clickthe My Work > My Access Reviews menu option.
+
+
+
+ l In the Quicklinks (leftsidebar) menu, clickthe My Tasks > Access Reviews option.
+
+
+
+ l On the home page, click the Access Reviews tile.
+
+How Access Review Items are Displayed: Important, Open, and
+Review Tabs
+
+The items foryou toreview are presented ina tabbed interface.
+
+Important
+
+ The Important tab liststhe access review items that require immediate attention. This includes policy violations,
+ challenge items, and returned items. (Challenge items are items which the certifierrevoked and the access
+ holder has challenged the decision; returned items are items which have been delegated to someone else for
+ input and have been rejected by thatuser and sent back to the certifier.)The Important tab appears only when
+ any of your review items fallintothe "important" category.
+
+ Note: Ifyou do not have any review items that fallinthe "Important" category, this tab willnot
+ appear inyour Access Review listing.That means thatsome ofyour access reviews may show
+ you an Important tab, and others may not.
+
+Open
+
+ The Open tab shows access review items awaiting your attention, excluding any items listedon the Important
+ tab.
+
+Review
+
+ The Review tab shows the access review items that you have completed for thiscertification.You can change
+ decisions from thistab, up untilthe point the access review has been completed and signed off.
+Making Access Decisions
+
+These are the decisions reviewers can make directly on an access review item:
+
+ Approve the access
+
+ When you approve access, you are indicating that it'sOK for thisuser tohave thisaccess. That means no action
+ willbe taken, and the user's access willremain the same as itisnow.
+
+ Revoke the access
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 15
+
+===== Page 21/115 =====
+About Access Reviews
+
+
+ When the reviewer revokes access, IdentityIQ willremove the access, in whatever way the system isconfigured
+ todo it.It'simportant to note that this revocation doesn't necessarily happen immediately. This isanother option
+ that isconfigurable by the person who set up the certification.Itcan be set up so that revocation happens as
+ soon as you make the decision, or itcould be set up so that nothing isrevoked until the entire certification cam-
+ paign iscomplete is complete and signed off. Ifyou're unsure about when a revocation willtake effect,you can
+ check with the owner of the certification â€“ which, remember, issomething you can see on the main review page.
+
+ Revoke an account
+
+ Revoking an account issimilar to revoking an individual entitlement or role, but itletsyou revoke both the
+ account and all the entitlements associated with the account, at once. This is one ofthe options that iscon-
+ figurable, so whether you have this option or not willdepend on how the certification was set up.
+
+ Remediate a policy violation
+
+ There is a specific type ofrevoke option forSeparation of Duties policy violations. This type ofviolation
+ occurs when a user has two or more accesses that conflict with each other, inviolation ofa defined company
+ policy. For example, your company may have a policy that says that one person can't both approve vendors and
+ make payments tothem. For separation of duties policy violations, revoking access involves choosing which of
+ the two conflicting accesses the user will keep, and which willbe revoked.
+
+ Allow an exception for access
+
+ This is another configurable option that you may or may not have. What the "allow" option means isthat you don't
+ want the user to have thisaccess indefinitely, but you do want to allow the access for some particular period of
+ time, after which you'll revisitthe access and potentially revoke it.A typical use case for thisis when someone is
+ on a temporary assignment and needs time-limited access to some system, or perhaps istransitioning between
+ job responsibilities and willbe losing access toa system or account at some known date inthe future. When you
+ allow access, you're prompted to choose an ending date forthe access. Allowing an exception isalways an
+ option on policy violation items in an access review, but only appears for other access review items ifthe cer-
+ tificationisconfigured to include this option.
+
+ For separation-of-duties policy violations, allowing an exception marks the item as allowed fora specified dur-
+ ation, so any policy checking during that time willnot reflag the violation.
+
+ One of the options that your administrator or certification owner can configure issending email notifications
+ when an exception period expires â€“ so keep in mind that itisup to the certification owner whether or not you
+ willbe alerted when an exception period expires.
+
+ Automatic Approvals
+
+
+
+
+
+
+
+
+SailPoint Certifications and Access Reviews 16
+
+===== Page 22/115 =====
+About Access Reviews
+
+
+ Ifyou have implemented AIÂ Services, you can enable automatic approvals ofaccess based on recom-
+ mendations. With thisfeature enabled, any access review item that has a recommendation of "thumbs up" is
+ automatically moved from the reviewer's Open tab to the Review tab,with an Approved decision. Reviewers
+ retain the option of changing the automated decision, as needed, before signing offon the review. Automated
+ approvals help your reviewers process access reviews quickly and more efficientlyby taking easy decisions out
+ of the way so that they can focus on exceptional items. See the AIÂ Services documentation formore inform-
+ ation.
+
+Item-by-Item versus Bulk Decisions
+
+Review decisions can be made one ata time, or in bulk. The abilityto decide on items inbulk isconfigurable; itcan be
+turned off or on, both per certification,and globally.
+
+Ifbulk processing isenabled foryour review, you willsee a Bulk Decisions button inthe header area of your listingof
+items. To select the items you want to process in bulk, you can select them one by one using the checkboxes, or you
+can click inthe header row toselect either allthe items on the current page, orallthe items in the entire access review.
+You can deselect items in the same way.
+
+Once you've chosen your items, clickBulk Decisions to approve, revoke, or allow.
+
+Changing Decisions
+
+Untilyou have signed off on the fullreview, you have the option to change the decisions you've saved. You can do this
+immediately when you make a decision, before saving it,by re-clicking the decision button or unchecking the decision
+from the flyout menu.
+
+Once a decision has been saved, you can stillgoto the Review tab and make changes there. Click the 3-line menu
+beside the item, then choose Undo Decision from the flyoutmenu.
+Passing Access Reviews to Others
+
+Sometimes you may need someone else's input on an access review, or you may even need someone else to handle
+the review entirely.There are three ways topass a review along to someone else, and each involves different levels of
+ownership or responsibility both foryou and forthe person you pass itto. These options are allthings that the system
+administrator or certificationowner can configure, so your abilityto use any of these methods in your review will
+depend on how the certificationhas been set up.
+
+Delegating Reviews
+
+When you delegate a review item to someone else, you are allowing that person make the decisions and return the
+item to you, so that you can review it,accept or change their decision, and then sign off.With delegation, the original
+reviewer stillretainsultimate control of the decision and the sign-off.
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 17
+
+===== Page 23/115 =====
+About Access Reviews
+
+
+When the certification owner sets up the certification,they can configure itso that you can delegate an entire identity,
+or so that you can delegate individual access items one by one.
+
+When you delegate a review, you choose who to delegate itto,and can enter comments to explain why you have del-
+egated or to give instructions. Delegated items are listed in your Open tab and are labeled as delegated. The 3-line
+menu gives you options for viewing any decisions made by the person you delegated to, as well as history, details,
+and comments.
+
+Reassigning Reviews
+
+Reassigning isdifferent from delegating, in that reassigned items are no longer the responsibility of the original
+reviewer. The person the items are reassigned to assumes complete responsibility forall decisions on those items,
+and must sign off on those decisions themselves. However, the original owner ofthe overall access review (thatis, the
+person doing the reassigning) typically stillretains responsibility for making sure the person the items were reassigned
+tocompleted the review.
+
+Reassigning isdone through the Bulk Decisions menu, even ifyou only want toreassign one item. Depending on
+how the certification was configured, you can reassign the whole identity, a single line item, or a specific set of items in
+bulk. When you reassign items, they no longer appear in your own listof access review items.
+
+The default behavior fora reassignment isthat the person who reassigns the items cannot sign offon theirown cer-
+tificationuntilthe reassigned items are completed and signed offby the person you reassigned them to.This means
+that although you are no longer responsible forthe decisions inthe certification,you stillretainresponsibility for mak-
+ing sure the new reviewer completes their review. However, there is a configuration option in the Certification setup
+that letsyou override this requirement, so that the original owner can sign off on his or her own reviews even ifsome or
+allof the reassigned items are stillpending action.
+
+Forwarding Reviews
+
+Forwarding a review means you relinquish all responsibility for the access review. You can not retract it,or even see
+what activityhas occurred inthe review â€“ you pass allresponsibility to the new owner, including the ability tochange
+any decisions you may have already made.
+
+Forwarding is done at the overall review level, from the main access review listing.That is,you can forward an entire
+review, but you can't forward individual line items or identitieswithin a review.
+
+Automatic forwarding can be set up for an individual, or at the certification level, and is typically used in an out-of-
+office scenario. Itmay also be configured to make sure that certain users never get assigned reviews; forexample,
+executives might forward alltheir reviews to an administrative assistant.
+
+What Reviewers Can Do With Delegated, Reassigned, or Forwarded Reviews
+
+ Delegated Reviews
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 18
+
+===== Page 24/115 =====
+About Access Reviews
+
+
+When you delegate a review item, the user you delegate ittocan make decisions about access in the same way as
+you the original owner can. An important point about delegated items isthat they show up for the new reviewer as a
+work item under the My Work > Work Items menu rather than in an access review. In the Work Items listing,the
+reviewer clicks View to review to open the review page.
+
+The user can make the same kinds ofreview decisions in the work items view as a reviewer might make inthe Access
+Reviews view, for example they can approve, revoke, revoke account, and allow exceptions.
+
+The reviewer can choose to decide on only some of the items you have delegated. Once they have made and saved
+theirthe decisions, they click Save <number> Decisions tosave alltheir changes and enter comments. Ifthe
+reviewer leftany items undecided when they click Save <number> Decisions, those willrevert to you and willappear
+on your Open tab, for you to process. The items the delegated reviewer has decided on willappear in your Review
+tab.
+
+The person you delegate toalso has the option toreject something that has been delegated. Ifsomeone rejects items
+you have delegated to them, those items willcome back toyou forreview, and willrevert toyou and willappear in your
+Important tab.
+
+The person you delegate can also forward the items to someone else for review. Ifthis happens, you as the original
+owner willsee an update in your review: you willsee the name of the new owner as the delegate, rather than the name
+ofthe person you originally delegated itto.
+
+ Reassigned Reviews
+
+Reassigned items appear tothe new reviewer as new Access Reviews. The new reviewer can take actions on the
+review items in the same way as the original owner would have done, including delegating, forwarding, orreassigning
+the items to someone else. Certifications can be configured to limitthe number of times each item can be reassigned.
+The default behavior forreassignments is that the originalowner can not complete the signoff of the main access
+review untilthe person who the items were reassigned to has completed, saved, and signed offon theirdecisions.
+
+ Forwarded Reviews
+
+Forwarded reviews or review items become the fullresponsibility of the user they were forwarded to.The new owner
+processes these reviews inthe same way as an originalowner would, with allthe same options. When a review or
+review items are forwarded, they can no longer be recalled oracted on in any way by the person who forwarded them.
+
+Undoing Delegation and Reassignment of Reviews
+
+Sometimes when you pass a review item or an entire review to someone else, you may need recallitfor some reason.
+To recall a review:
+
+
+
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 19
+
+===== Page 25/115 =====
+About Access Reviews
+
+
+
+ l For individual delegated items, clickthe decision menu foran item and choose Undo Decision. When you
+ undo a delegation, any decisions made by the person you delegated to are undone.
+
+ Note:Â You can only undo individual lineitem delegation ifthe items were delegated indi-
+ vidually. Inother words, ifyou delegated an entire identity, you cannot recall items one by
+ one. You willhave to undo the delegation of the entire identity.
+
+
+
+
+ l If you have delegated an entire identity, you can go to the List view, and click the Undo arrow beside the iden-
+ tityyou have delegated to undo the delegation. When you undo a delegation, any decisions made by the per-
+ son you delegated to are undone.
+
+
+
+ l You can recall a reassigned review, to take ownership back from the person you reassigned to and return
+ ownership to yourself. To recalla review thathave been reassigned, click the info icon at the top of the review,
+ then click Additional Reviews. This will show you allthe items that have been reassigned. To recall the
+ review, click the Return button and confirm that you want toreturn the item to yourself. You can also use the
+ Email icon to send an email message tothe reassigned reviewer.
+
+
+
+ l For reassigned line items, ifthe person you reassigned something to has made a decision, you can stillundo
+ or change the decision, until the reassignment owner has completely signed offon his or her review.
+
+
+
+ l Forwarded items cannot be recalled. Once you forward something, you no longer have access to it,and can-
+ not recallitor edit itinany way.
+
+Signing Off on Reviews
+
+When decisions have been made for everything in your review, you can sign off on the review. Sign-off cannot occur
+untilallitems in certificationhave been decided, including any delegated or reassigned items, unless the certification
+was specifically configured toallow it.Also, ifa challenge period is enabled, sign offcannot occur until that period is
+complete.
+
+A blue Sign-Off button means that allindividual reviews for thisoverall access review are completed, and the entire
+review can now be marked as complete. A red Sign-Off button means that you have finished the items you are
+responsible for,but subordinate or reassigned reviews have not yet been completed.
+
+Electronic Signatures
+
+Incases when your organization wants to attach a legal significance to the certification sign-off process, the cer-
+tificationcan be configured torequire the use of electronic signatures. With electronic signatures, the certification
+owner can associate specific text with the sign off process, such as wording that pertains a regulation likea Sarbanes-
+Oxley requirement.
+
+ How To Require An Electronic Signature in a Certification
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 20
+
+===== Page 26/115 =====
+About Access Reviews
+
+
+The options forrequiring an electronic signature in most certifications are on the Behavior tab. In Targeted cer-
+tifications,the options are in the Choose Certifier section.
+
+Require Electronic Signature
+
+ Require an electronic signature as part of the sign-off process. Reviewers use theirIdentityIQ login as author-
+ ization for the electronic signature.
+
+Electronic Signature Meaning
+
+ Ifyou choose torequire electronic signature, choose the meaning (the text that goes with the electronic sig-
+ nature) from the list.Electronic signature meanings are defined in Global Settings > Electronic Signatures.
+
+You can also enable electronic signatures for certifications globally by selecting the gear icon > Compliance Man-
+ager, navigating to the Behavior section and checking the Require Electronic Signature option. When you check
+thisoption, you must also select an Electronic Signature Meaning.
+
+ How to Authenticate for an Electronic Signature
+
+As a reviewer, you must re-authenticate using the login process configured for your organization, as part of signing off
+with an electronic signature.
+
+ More Information on Configuring Electronic Signatures
+
+For more information on configuring electronic signatures, see the Electronic Signatures section of the IdentityIQ
+System Configuration documentation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 21
+
+===== Page 27/115 =====
+Access Review Pages
+
+Access Review Pages
+
+
+The layout ofthe access review pages can be customized during the configuration ofIdentityIQ. The organization of
+the pages can vary from the descriptions inthis documentation, the function ofthe product should not be affected.
+
+ My Access Reviews
+
+The My Access Reviews page listsallthe access reviews assigned to you. How you access thispage is determined
+by how your IdentityIQ instance isconfigured. Itcan be accessed through:
+
+
+
+ l The Access Reviews tileon your IdentityIQÂ home page
+
+
+
+ l The My Work >Â My Access Reviews menu
+
+
+
+ l The Quicklink (leftnavigation) menu, through My Tasks >Â Access Reviews or through a custom Quicklink
+ menu your organization has configured
+
+From this page, you can clickStart to begin the review; in-process reviews can be reopened by clicking Continue.
+Depending on how IdentityIQ is configured foryour organization, you may also have options here to forward the
+review to another user. See Forwarding Reviews formore details.
+
+This page includes:
+
+
+
+ l The name of the access review
+
+
+
+ l A percentage progress wheel, showing how much of thisreview has been done so far
+
+
+
+ l When the review is due
+
+
+
+ l How many individual review items you have, and how many are completed
+
+
+
+ l Who requested the review â€“this isthe person who set up the certification
+
+
+
+ l The phase the review is inâ€“ see Phases ofa Certification for more information
+
+
+ Access Review Details
+
+Starting or opening an access review opens a page with detailed information about access, and options formaking
+decisions. The layout and information willvary depending on the type ofaccess review. See Types ofCertification for
+more information.
+
+
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 22
+
+===== Page 28/115 =====
+Access Review Pages
+
+Access Review Page Overview
+
+Use this page to review access review requests. The information displayed on thispage isdependent on the access
+review type and options selected atscheduling.
+
+There are five access review types:
+
+
+
+ l Targeted â€“ used forTargeted certifications
+
+
+
+ l Identity â€“ used forManager, Application Owner, and Advanced certifications
+
+
+
+ l Object â€“ used for Entitlement Owner and Role Member certifications
+
+
+
+ l Role Composition â€“ used forRole Composition certifications
+
+
+
+ l Account Group/Application Object â€“ used for Account Group certifications
+
+
+Only top-level roles are displayed as lineitems. For example, ifarole contains required or permitted roles, those roles
+are certified as part of the top-level role inthe same way that the entitlements that make up a role are certified with the
+role.
+
+Ifan identity has a role assigned to itmultiple times, that role isdisplayed multiple times and each one must be
+reviewed and acted on individually.
+
+Allof the access review detail pages include the following information, but itmight display differently depending on the
+access review type:
+
+Access Review Information
+
+ Displays the administrative and statistical information for the access review.
+
+Filter
+
+ Enables you to filtertheinformation displayed on the page.
+
+Access Review Decision Tab
+
+ Displays the listofitems that must be certifiedbefore this access review isReview. This listcan contain enti-
+ tlements, account groups, roles, or identities based on the access review type and the default settings of Iden-
+ tityIQ.
+
+See Access Review â€“ Common Information for common terms and detailed information on access reviews.
+
+
+
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 23
+

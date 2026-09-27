@@ -1,0 +1,1899 @@
+===== Page 1/31 =====
+ Provisioning
+
+
+ Version:8.4
+
+ Revised: September 2023
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+This document and the information contained herein is SailPoint Confidential Information
+
+===== Page 2/31 =====
+Copyright and Trademark Notices
+
+Copyright © 2023 SailPoint Technologies, Inc.  All Rights Reserved.
+
+Alllogos, text,content, including underlying HTML code, designs, and graphics used and/or depicted on these written
+materials or in thisInternet website are protected under United States and international copyright and trademark laws
+and treaties, and may not be used or reproduced without the prior express written permission of SailPoint Tech-
+nologies, Inc.
+
+“SailPoint Technologies,” (design and word mark), “SailPoint,” (design and word mark), "Identity IQ,” “IdentityNow,”
+“SecurityIQ,” “Identity AI,” “Identity Cube,” and “SailPoint Predictive Identity” are registered trademarks of SailPoint
+Technologies, Inc. “Identity isEverything,” “The Power of Identity,” and “Identity University” are trademarks of
+SailPoint Technologies, Inc. None of the foregoing marks may be used without the prior express written permission of
+SailPoint Technologies, Inc. Allother trademarks shown herein are owned by the respective companies or persons
+indicated.
+
+SailPoint Technologies, Inc. makes no warranty ofany kind regarding these materials or the information included
+therein, including, but not limited to,the implied warranties ofmerchantability and fitness for a particular purpose.
+SailPoint Technologies shall not be liable for errors contained herein or direct, indirect, special, incidental orcon-
+sequential damages inconnection with the furnishing, performance, or use of thismaterial.
+
+Patents Notice. https://www.sailpoint.com/patents
+
+Restricted Rights Legend. All rights are reserved. No part ofthis document may be published, distributed, reproduced,
+publicly displayed, used to create derivative works, or translated to another language, without the prior written consent
+ofSailPoint Technologies. The information contained inthis document issubject to change without notice.
+
+Use, duplication or disclosure by the U.S. Government is subject to restrictions as set forth insubparagraph (c) (1) (ii)
+ofthe Rights inTechnical Data and Computer Software clause at DFARS 252.227-7013 for DOD agencies, and sub-
+paragraphs (c)(1) and (c)(2) ofthe Commercial Computer Software Restricted Rights clause at FAR 52.227-19 for
+other agencies.
+
+Regulatory/Export Compliance. The export and re-export of this software iscontrolled for export purposes by the U.S.
+Government. By accepting this software and/or documentation, licensee agrees to comply with allU.S. and foreign
+export laws and regulations as they relate to software and related documentation.  Licensee will not export or re-
+export outside the United States software or documentation, whether directly or indirectly, to any Prohibited Party and
+willnot cause, approve or otherwise intentionally facilitate others inso doing. A Prohibited Party includes: a party in a
+U.S. embargoed country or country the United States has named as a supporter of international terrorism; a party
+involved in proliferation; a party identified by the U.S. Government as a Denied Party; a party named on the U.S.
+Department of Commerce’s Entity Listin Supplement No. 4 to 15 C.F.R. § 744; a party prohibited from participation in
+export orre-export transactions by a U.S. Government General Order; a party listed by the U.S. Government’s Office
+ofForeign Assets Control as ineligible to participate in transactions subject toU.S. jurisdiction; or any party that
+licensee knows or has reason toknow has violated or plans to violate U.S. or foreign export laws or regulations.
+Licensee shall ensure that each of itssoftware users complies with U.S. and foreign export laws and regulations as
+they relate to software and related documentation.
+
+===== Page 3/31 =====
+Contents
+
+
+ Provisioning with IdentityIQ 1
+
+ Recording Provisioning Requests 2
+
+ Certifications 2
+
+ Policy Violations 3
+
+ Identity-Refresh-Driven Assignments 3
+
+ Lifecycle Manager Requests 4
+
+ Lifecycle Event-Driven Provisioning 7
+
+ Other IdentityCube Modifications 9
+
+ Processing Provisioning Requests 11
+
+ Involvement 11
+
+ Overview ofProvisioning Process 12
+
+ Compiling the Plan 12
+
+ Answering Provisioning Policy Questions 16
+
+ Implementing the Plan 17
+
+ Updating the Identity Cube 21
+
+ IdentityRefresh 21
+
+ Special Case: Optimistic Provisioning 22
+
+ Attribute Synchronization 23
+
+ Choosing Which Attributes toSynchronize 23
+
+ How Attribute Synchronization isTriggered 24
+
+ Using Business Processes to Manage Attribute Synchronization 24
+
+ Auditing Attribute Synchronization 26
+
+ Summary of Workflows, Tasks, and Rules in Provisioning 27
+
+===== Page 4/31 =====
+Provisioning with IdentityIQ
+
+ Provisioning with IdentityIQ
+
+
+The IdentityIQ provisioning capabilities help companies manage system access for theirpersonnel. Provisioning
+requests can be created and processed in several ways in IdentityIQ, based on the needs and configuration of the
+installation.In many cases, modifications toaccess or entitlements you request in IdentityIQ can be automatically
+reflected in the associated native applications.
+
+This chapter traces the flow of the provisioning plan through itsevaluation and preparation for processing into the
+appropriate native system. Included throughout are the IdentityIQ tasks, business processes and rules that operate on
+the data as itmoves through the process.
+
+ Note: Business processes are often referred to as workflows.
+
+At a high level, provisioning requests are processed as follows:
+
+
+
+ l The provisioning request ismade through one of several actions or activities.
+
+
+
+ l The request is created as a provisioning plan.
+
+
+
+ l The Provisioning Broker evaluates and compiles the provisioning plan, which often involves dividing the ori-
+ ginal plan into several partitioned plans. Each partitioned plan addresses a single application.
+
+
+
+ l Each partitioned provisioning plan is passed to the appropriate handler.
+
+
+
+ l For integration configuration or read-write connectors, the change iswritten to the destination system.
+
+
+
+ l For Work Items, a work item is created and assigned toan identity who must formanually process the
+ request into the target system.
+
+
+
+ l The provisioning actions are confirmed and marked on the identity cube, based on the mechanisms involved.
+
+
+Use the Administrator Console link,under the gear icon, toaccess the Provisioning Transactions table to view the
+status of allprovisioning transactions inyour implementation of IdentityIQ; connectors, manual work items, and Iden-
+tityIQoperations. Refer to the System Administration documentation.
+
+Access tothe Provisioning Transaction table iscontrolled with IdentityIQ rights.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Provisioning 1
+
+===== Page 5/31 =====
+Recording Provisioning Requests
+
+Recording Provisioning Requests
+
+
+You can create provisioning requests in IdentityIQ using any of the following actions or activities:
+
+
+
+ l Certifications
+
+
+
+ l Policy Violations
+
+
+
+ l Identity-Refresh-Driven Assignments
+
+
+
+ l Lifecycle Manager Requests
+
+
+
+ l Lifecycle Event-Driven Provisioning
+
+
+Provisioning requests create a provisioning plan that the Provision Broker can analyze and process. Inall cases,
+except certification and policy violation-generated requests, provisioning requests create a Workflow case. The Work-
+flow case manages the processing of the provisioning request based on a defined Workflow. See also Processing Pro-
+visioning Requests.
+Certifications
+
+During a Certification Access Review, certifiersreview the system entitlements granted to sets of identities. Access
+can be approved or revoked foran identity.This certification process can result in:
+
+
+
+ l Certificate Remediation – When an identity’s access to a system is determined to be inappropriate fortheir
+ job function, the certifiercan revoke the entitlement through the Certification Access Review. This process cre-
+ ates a remediation provisioning request inIdentityIQ to remove that access from the source application.
+
+
+
+ l Provisioning through Certifications – When a business role is approved for an identity and that role includes
+ required IT roles the identity does not have, the certifieris prompted toselect whether the missing roles must
+ be provisioned for the identity or whether the business role must be approved without provisioning the missing
+ roles. Ifthe certifierelects toprovision the missing roles, a provisioning request iscreated.
+
+
+ Note: This provisioning option is only presented during the Access Review ifthe option Enable
+ Provisioning of Missing Role Requirements is selected in the certification specification.
+
+ All revocations and provisioning requests from a specific access review are combined into a
+ single provisioning plan and processed together except in certifications where revocations are
+ processed immediately, such as certifications with the Process Revokes Immediately setting
+ selected.
+
+
+
+
+
+
+
+ SailPoint Provisioning 2
+
+===== Page 6/31 =====
+Recording Provisioning Requests
+
+Policy Violations
+
+Policies defined in IdentityIQ enable the system to evaluate an identity’saccess or activitiesand report any incon-
+sistencies with company policies.Violations are reported tothe violation owner, often the identity’s manager, or the
+appropriate application owner. The violation owner can then permit an exception or initiatea remediation request. The
+following types of policy violation remediations are available:
+
+
+
+ l Policy Violation Remediations for SOD Policy Violations
+
+
+
+ l Policy Violation Remediations for Non-SOD Policy Violations
+
+Policy Violation Remediations for SOD Policy Violations
+
+Only remediations forrole or entitlement Separation of Duties (SOD) violations generate a provisioning request to
+revoke the invalid access. For example, when a manager evaluates an identity’sSOD violations and determines that
+one ofthe accesses forthe identity must be removed, the manager can request the revocation of the invalid access.
+
+You can create policy violation remediation requests from:
+
+
+
+ l Policy owner’s Policy Violation page that you can from Manage -> Policy Violations page.
+
+
+
+ l Certification on which the violation is noted.
+
+Policy Violation Remediations for Non-SOD Policy Violations
+
+
+ Note: By default, you cannot remediate non-SOD policy violations with a certificationor in the
+ policy violation window.
+
+You can perform the following actions to enable certification remediate and generate a Work Item:
+
+ 1. Edit the XML for any policy toinclude remediated as one ofitscertificationActions values to enable cer-
+ tificationremediation on that policy type.
+
+ 2. Select the remediation option forthe violation in a certificationto automatically create a Work Item that informs
+ the appropriate party of the need to manually correct the violation.
+
+Identity-Refresh-Driven Assignments
+
+You can use the following options on an IdentityRefresh task to generate provisioning requests for identities:
+
+
+
+ l Refresh assigned, detected roles and promote additional entitlements — Creates provisioning requests
+ for IdentityIQ to add roles to identity cubes.
+
+
+
+
+
+
+
+ SailPoint Provisioning 3
+
+===== Page 7/31 =====
+Recording Provisioning Requests
+
+
+
+ l Provision assignments — Creates provisioning requests that apply to external applications.
+
+
+The following table describes these options inmore detail:
+
+ Option Description
+
+ Refresh assigned, Runs the defined assignment rules for roles and examines role detection
+ detected roles and profiles toupdate the Assigned and Detected rolelists forthe identity.
+ promote addi-
+ tional entitlements This option does NOT provision access in external system
+
+ Generates provisioning requests toadd entitlements required by the cur-
+ rently assigned roles, which can include:
+ - Entitlements fornewly assigned roles
+ - Entitlements missing from previously assigned roles.
+
+ Ifa role was previously assigned through an automatic assignment rule and
+ the rule no longer returns true, provisioning requests are generated to
+ remove the entitlements that the role requires. Ifanother assigned role
+ requires those entitlements, they are not removed.
+
+
+ Note: By default, the entitlements associated with a role are de-provisioned when the role is
+ removed from an identity. The Disable deprovisioning ofdeassigned roles option overrides that
+ default and leaves the entitlements intact for the identity while the role isremoved.
+
+Lifecycle Manager Requests
+
+Lifecycle Manager is a separately licensed portion of the IdentityIQ product that is designed to manage entitlements
+using provisioning requests. Based on their manager status and how the Lifecycle Manager is configured, users can
+make requests for themselves or forother identities.
+
+Ina typical configuration:
+
+
+
+ l Managers can make requests for theirdirect reports.
+
+
+
+ l Help desk users can make requests for themselves and others.
+
+
+
+ l Any user can make requests forthemselves.
+
+Lifecycle Manager Toolbar
+
+When Lifecycle Manager isenabled, the Lifecycle Manager toolbar displays at the top ofthe IdentityIQ view and sup-
+ports the following actions:
+
+
+
+
+
+
+ SailPoint Provisioning 4
+
+===== Page 8/31 =====
+Recording Provisioning Requests
+
+
+
+ l Request Access
+
+
+
+ l Manage Accounts
+
+
+
+ l Other Lifecycle Manager Options
+
+
+ Note: The set of identities for which these actions can be taken isbased on the individual user’s
+ authority and the Lifecycle Manager configuration. The self-service, Request For Me, options do
+ not include Create Identity.
+
+ Request Access
+
+Request Access includes Role and Entitlement requests. Ifyou are working with a single user, a thirdtab, Current
+Access displays that you can use to request the removal of Roles or Entitlements. Use the Lifecycle Manager
+Request Roles feature to generate requests that:
+
+
+
+ l Add the appropriate role to the specified identities.
+
+
+
+ l Provision the entitlements the role requires.
+
+
+
+ l Provision permitted roles, ifadded tothe request when prompted.
+
+
+
+ l Deprovision by removing roles from an identity
+ This option generates a provisioning request to remove the role assignment from the identities and the enti-
+ tlements the role requires ifanother role does not need the entitlements.
+
+Use the Lifecycle Manager Request Entitlements feature to generate requests to:
+
+
+
+ l Add the entitlement tothe specified identity.
+
+
+
+ l Revoke an identity’s current entitlements.
+ This option generates a provisioning request that removes the access from the source application or applic-
+ ations.
+
+By default, when you request a new entitlement on an application and the user already has an account on that applic-
+ation, the entitlement is added to the existing account. Ifneeded, you can create a separate account for specific enti-
+tlements.
+
+To create multiple accounts for a single identity on an application or to add an entitlement to a specific existing
+account when several are available:
+
+
+
+
+
+
+
+
+
+
+SailPoint Provisioning 5
+
+===== Page 9/31 =====
+Recording Provisioning Requests
+
+ 1. Navigate to the Lifecycle Manager configuration Additional Options page.
+
+ 2. In the General Options section, select an application included in the listforApplications that support addi-
+ tional account requests.
+
+ 3. For the Account selection, select the option to create a new account or the option to add the entitlement to an
+ existing account thatthe identity already has.
+
+ Manage Accounts
+
+Use the Manage Accounts feature to:
+
+
+
+ l Request accounts on additional applications – generates provisioning requests.
+
+
+
+ l Revoke or disable existing accounts – generates provisioning requests.
+
+
+
+ l Enable disabled accounts – generates provisioning requests to enable or disable accounts.
+
+
+
+ l Unlock locked accounts – generates provisioning request.
+
+
+To use the Manage Accounts torequest a new account:
+
+ 1. Navigate to the Lifecycle Manager configuration Additional Options page.
+
+ 2. In the Manage Accounts Options section, select an application included inthe listofapplications that support
+ account-only requests.
+
+ 3. For the Account selection, select the option to create a new account or the option to add the entitlement to an
+ existing account held by the identity.
+
+
+ Note: You can also select the Manage Accounts option on the Lifecycle Options page for any
+ group, they can enable, disable, and delete accounts forthe existing accounts. The connector
+ must support this action and the action must not be disabled through another setting on the Addi-
+ tional Options page.
+
+ Other Lifecycle Manager Options
+
+Other Lifecycle Manager options include the following items:
+
+
+
+ l Create Identity – Creates provisioning plans that update IdentityIQ. You can create a new IdentityIQ identity
+ with a set ofattributes that can be configured. The attributes that you can set orchange are defined by a form
+ that can be customized. New identities do not have accounts on any application.
+
+
+
+
+
+
+
+SailPoint Provisioning 6
+
+===== Page 10/31 =====
+Recording Provisioning Requests
+
+
+
+
+ l Edit Identity – Creates provisioning plans that update IdentityIQ. You can modify attributes for an existing Iden-
+ tityIQidentity. The attributes that you can set or change are defined by a form that can be customized.
+
+
+ Note: Life Cycle Events can cause provisioning outside of IdentityIQ or additional provisioning
+ inside IdentityIQ. In addition. Attribute sync can also cause provisioning outside of IdentityIQ
+ based on create or edit identity.
+
+
+
+
+ l Manage Passwords – Resets passwords on target systems which involves a provisioning plan and pro-
+ visioning action.
+
+
+
+ l View Identities – Does not have provisioning-related functionality and is read-only.
+
+Lifecycle Event-Driven Provisioning
+
+With Lifecycle Manager enabled, Lifecycle Events can be configured in IdentityIQ torepresent activities that occur dur-
+ing the normal course of a person’s employment at a company. These activitiesinclude events such as joining the
+company, changing departments or managers, and leaving the company. The shorthand terms for these activities are
+Joiner, Mover and Leaver.
+
+When Lifecycle Manager isenabled, IdentityIQ contains four pre-defined Lifecycle Events.
+
+ Lifecycle Trigger Business Process Invoked
+ Event
+
+ Joiner Identity Creation Lifecycle Event – Joiner
+ Leaver Attribute Change: Inactive attribute change from Lifecycle Event – Leaver
+ false to true
+ Manager Manager Change Lifecycle Event – Manager
+ Transfer Transfer
+ Reinstate Attribute Change: Inactive attribute change from Lifecycle Event – Reinstate
+ true to false
+
+By default, these events are disabled and must be enabled before the events can be triggered. Lifecycle Events are
+triggered by specific changes to an identity. These changes can include the following actions:
+
+
+
+ l Creation
+
+
+
+ l Manager transfer
+
+
+
+ l Attribute change
+
+
+
+ l Complex changes that an IdentityTrigger rule detects
+
+
+
+
+
+ SailPoint Provisioning 7
+
+===== Page 11/31 =====
+Recording Provisioning Requests
+
+
+The triggered Lifecycle Events invoke business processes, or workflows, that can contain provisioning actions.
+
+ Note: The terms Business Process and Workflow are synonymous. The IdentityIQ user interface
+ refers tothese terms as Business Processes which isthe term business managers use most
+ often. The IdentityIQ object model and XML use the term Workflows.
+
+Manage Lifecycle Events and Actions
+
+The Lifecycle Events and the default actions of each ofthe business process that the pre-defined Lifecycle Events
+invoke are listedbelow.
+
+
+
+ l Lifecycle Event – Joiner — Prints the name of the identityto sysout. No actions are taken on the identity. This
+ action istypically modified toprovision birthright access for identities.
+
+
+
+ l Lifecycle Event – Leaver — Creates and runs a provisioning plan todisable allaccounts the leaving identity
+ has.
+
+
+
+ l Lifecycle Event – Manager Transfer — Prints names ofthe old and new manager to sysout. No actions are
+ taken on identity or entitlements. This action is typicallymodified togenerate a certificationfor the new man-
+ ager to review the access an identity holds. This action can also be used to provision birthrightaccess identified
+ for members of new manager’s group.
+
+
+
+ l Lifecycle Event – Reinstate — Creates and runs a provisioning plan toenable allpreviously disabled
+ accounts that a returning identity had.
+
+Lifecycle Events and Actions How-To Tasks
+
+You can perform the following tasks forLifecycle events and actions:
+
+ Note: Additional Lifecycle Events and workflows/business processes can be created as needed
+ tosupport the business needs for each installation.
+
+ How To Edit Pre-defined Lifecycle Events
+
+ 1. Navigate to Setup -> Lifecycle Events page.
+
+ 2. Right-click an entry and click Edit or double click an entry.
+
+ 3. Make desired changes and clickSave.
+
+
+ How To Create a New a Lifecycle Event
+
+
+
+
+
+
+
+
+ SailPoint Provisioning 8
+
+===== Page 12/31 =====
+Recording Provisioning Requests
+
+ 1. Navigate toSetup > Lifecycle Events page.
+
+ 2. Click Add New Lifecycle Event.
+
+ 3. Enter information forLifecycle Event Options and Behavior.
+
+ 4. Click Save.
+
+
+ How To Delete a Lifecycle Event
+
+ 1. Navigate toSetup > Lifecycle Events page.
+
+ 2. Right-click an entry and select Delete.
+
+
+ How To Modify Actions for Lifecycle Events
+
+ 1. Navigate toNavigate toSetup -> Business Process page.
+
+ 2. Select the Process Designer tab.
+
+ 3. Select a process from the Edit An Existing Process list.
+
+
+
+ Note: Typically only administrators can editthe Identity Cube information. This option isavailable
+ through Identities > Identities Warehouse.
+
+You can also access IdentityIQ Debug pages and modify actions through the XML Workflow.
+
+See Business Processes documentation formore details.
+Other Identity Cube Modifications
+
+Inaddition tothe Lifecycle Manager pages, users with the right capabilities can access an administrative interface to
+make additional identitymodifications. Navigate tothe Identities > Identities Warehouse page.
+
+Most ofthe information is read-only, but a provisioning plan isgenerated that updates an identitywhen you:
+
+
+
+ l Edit attribute values on the Attributes tab.
+
+
+
+ l Delete or Move account links from the Application Accounts tab.
+
+
+
+ l Change capabilities orassigned scopes on the User Rights tab.
+
+
+
+
+
+
+
+ SailPoint Provisioning 9
+
+===== Page 13/31 =====
+Recording Provisioning Requests
+
+
+Ifthe triggering attributes for the identity have not changed, deleted roles that were assigned by rules are auto-
+matically re-assigned to the identity during the next identity refresh. The re-assignment is also processed as an iden-
+tity-refresh-driven provisioning request.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Provisioning 10
+
+===== Page 14/31 =====
+Processing Provisioning Requests
+
+Processing Provisioning Requests
+
+
+IdentityIQ creates a master provisioning plan forthe requested actions when a provisioning request issubmitted from
+a provisioning request source. A workflow case is also created to manage and track the progress of the provisioning
+activity.The workflow case contains the workflow that specifies the process to follow.
+
+ Note: Certification and policy violation based provisioning does not use workflows.
+
+IdentityIQ ships with pre-defined workflows or business processes which can be customized for each installation as
+needed. The workflow case created foreach provisioning request is associated with the appropriate workflow for the
+event that generated the request. The following table liststhe Workflows thatdrive the provisioning process from each
+request source.
+
+
+
+ Provisioning Request Workflow Invoked
+ Source
+
+ Lifecycle Manager Main workflows include: LCM Create and Update, LCM Manage Pass-
+ word, LCM Registration and LCM Provisioning
+ Identity Refresh Identity Refresh
+ Define Identities Identity Update
+ Lifecycle Events Each event is managed by the business process listed inBusiness Pro-
+ cess field on the Lifecycle Event definition window.
+ None
+
+ Certification Remedi- Managed by and RemediationManager class.
+ ations / Provisioning Ifthe certification specifies Process Revokes Immediately, cer-
+
+ tificationstarts the remediation process directly.
+ None
+
+ Policy Violation Policy violations remediations that certifications create are managed the
+ Remediations same as any other certification remediation.
+
+ Policy violations remediated from Policy Violations page are saved dir-
+ ectly to the violation table.
+
+ Involvement
+
+The Perform Maintenance task processes all certificationremediation including: roles entitlements and policy viol-
+ations. This task invokes the Remediation Manager to process the remediation requests.
+
+
+
+
+
+ SailPoint Provisioning 11
+
+===== Page 15/31 =====
+Processing Provisioning Requests
+
+
+For certifications with specifications that include the Process Revokes Immediately option, the Certificationer object
+invokes the Remediation Manager directly to process the remediation requests. The basic logicof the provisioning pro-
+cess remains the same. The Remediation Manager uses the same mechanisms that the workflows use to complete
+the requests.
+
+Remediation tasks that are performed on the Policy Violations page are not a part of these maintenance task pro-
+cesses.
+
+ Note: Requests on a certificationfor provision-missing-required-roles are not remediation items.
+ These requests are added tothe same provisioning plan as additional actions. The process that
+ manages remediation items also manages these requests.
+
+Overview of Provisioning Process
+
+The Provisioning Process has three phases:
+
+
+
+ l Compiling the Plan – Analysis and preparation of the plan for processing
+
+
+
+ l Answering Provisioning Policy Questions – Request ofmissing required data from a user
+
+
+
+ l Implementing the Plan – Submittal of the plan to the appropriate connector to provision the requested access
+
+Compiling the Plan
+
+The Plan Compiler isresponsible for the following tasks:
+
+Create the Provisioning Project
+
+The Plan Compiler calculates plans forprovisioning using IntegrationConfig objects. Some details of application
+objects are maintained as an in-memory cache and, because of the cached nature of the objects, an update to an
+Application or an IntegrationConfig might not immediately take effect for plan calculations.
+
+By default, cache updates are performed every 10 minutes. To modify this, ina test or deployment environment,
+modify the following SystemConfiguration options:
+
+ Evaluate and Expand Roles
+
+The master plan is evaluated for any roleassignments. Ifthe plan contains role assignments, those roles must be
+expanded. The role expansion process:
+
+
+
+ l Identifies IT roles that an assigned business roleneeds.
+
+
+
+ l Determines what specific entitlements the IT role needs.
+
+
+
+
+
+
+
+ SailPoint Provisioning 12
+
+===== Page 16/31 =====
+Processing Provisioning Requests
+
+
+
+
+ l Adds the entitlements tothe listsof account/attribute/permission request for the provisioning project. Each
+ attribute isrepresented as an Attribute Request or a Permission Request.
+
+For example, Business Role X isadded to an identity. Business Role X requires IT Role A which has entitlements
+associated with its role.The Plan Complier determines that ITRole A isrequired, identifies the necessary enti-
+tlements, and adds the entitlements to the project.
+
+ Note: After role expansion is complete, IT Role A does not display inthe project. Only the raw
+ entitlements that the IT role A needs are listed.
+
+Apply Provisioning Policies
+
+A provisioning policy is a listof fieldswith names that correspond to an application account attribute name the role
+uses. Provisioning Policies can be used to help complete an access request that has unknown data required for pro-
+visioning. When a provisioning request requires additional information to complete the access request, you can apply
+a provisioning policy specified for the application involved. Examples of additional or unknown data that isrequired for
+provisioning include the following items:
+
+
+Types ofProvisioning Policies include:
+
+
+
+ l Role Provisioning Policies — Removes role uncertainty.
+
+
+
+ l Application Provisioning Policies — Applied when a new account is requested.
+
+Role Provisioning Policies
+
+The primary purpose ofprovisioning policies on roles isto remove any uncertainty for the role. Insome cases, examin-
+ing the role profile can determine the set of entitlements tobe provisioned for an IT role. Role profiles can be clear or
+unclear. When all the role profile terms are joined using AND statements, the profile isclear. IdentityIQ can easily ana-
+lyze the role profile and provision entitlements that match the profile.
+
+For example, A profile that includes a listof OR terms isunclear, because two or more different memberOf values can
+satisfy the role. The following table provides examples.
+
+ Role Profile Example Type of Explanation
+ Terms Terms
+
+ Profile
+ location='Austin' and mem- with a To satisfy this role,the identity must have both of these
+ berOf='Engineering' listof account attributes. Requests for those two attributes are
+ AND added to the plan.
+ terms
+
+
+
+
+
+ SailPoint Provisioning 13
+
+===== Page 17/31 =====
+Processing Provisioning Requests
+
+
+ Role Profile Example Type of Explanation
+ Terms Terms
+
+ The default provisioning behavior for profiles containing
+ OR terms is to provision only the firstone. In thiscase,
+ Profile memberOf='Engineering' is added tothe plan but not
+ memberOf='Engineering' with a memberOf='Sales'.
+ OR memberOf='Sales’ listof
+ OR Ifthe organization wants memberOf='Sales’ provisioned
+ terms fornew role members, a provisioning policy can be
+ defined with one fieldnamed memberOf with the field
+ value Sales.
+
+
+ Note: Fields can also be assigned scripts or rules that enable the appropriate value to be cal-
+ culated instead of using a hard-coded value.
+
+Application Provisioning Policies
+
+Provisioning Policies can also be specified for applications. These policies are applied when a new account isreques-
+ted on an application. Application Provisioning Policies are similar toRole Provision Policies and can specify the field
+values as literalvalues or through a script or rule.The following actions trigger application provisioning policies:
+
+
+Application Dependency
+
+You can specify an application dependency at the field level when you create a policy. Application dependency works
+with synchronous connectors and does not work with connectors that queue plans. Application dependencies are
+enforced during Create operations. For update and delete, the dependencies are ignored.
+
+ Note: IdentityIQ does not undo dependencies during de-provisioning.
+
+To specify an application dependency:
+
+ 1. Navigate toApplications -> Application Definition. On the Provisioning Policies tab of the Application Con-
+ figuration page select the dependent application for the provisioning.
+
+ 2. Double-click orright-click the application inthe Application List.
+
+ 3. On the Application Configuration page, select the Provisioning Policies tab.
+
+ 4. Define the application dependency at the field level inthe Create Account and Create Group policies.
+
+
+
+
+
+
+
+
+ SailPoint Provisioning 14
+
+===== Page 18/31 =====
+Processing Provisioning Requests
+
+
+Application dependency works similar to roles and entitlements. Ifa dependency ismissing, IdentityIQ expands itand
+executes a Create request forthe dependency. If the user has an existing link on a dependent application, IdentityIQ
+uses the existing linkinformation to derive the value. When there are multiple accounts on the link, the applicable
+accounts are selected automatically using rules or through an interactive user interface. Selecting an account can be
+an option to create a new account.
+
+The available attributes are derived from the account schema of alldependent applications. During plan compilation,
+IdentityIQ reads these properties and determines any new accounts that are required to satisfy the dependency.
+
+During Plan Evaluation, IdentityIQ uses the dependency settings todetermine the order that must be used to imple-
+ment the plan. Ifa dependency plan fails,all ofthe dependent plans also fail.Ifa dependency plan requires a retry,
+after the retry issuccessfully completed, the dependent plans are executed. There isspecial new logic in the Provision
+with Retries method that loops back to the provisioning step when there are stillplans to complete.
+
+There are not transformations (rules) on dependent fields. The evaluation process copies the exact values from the
+dependency plan or link to the dependent plan.
+
+Identify Questions
+
+After the provisioning policies are applied, pieces ofdata can stillbe missing. Some provisioning policies are spe-
+cificallywritten so the data must be obtained from a person when the role or application account isrequested. These
+missing data elements are recorded as questions on the provisioning project. These questions are presented to a per-
+son who must provide the information necessary to complete the provision request. See Answering Provisioning
+Policy Questions.
+
+Filter and Check Dependencies
+
+Filterand Check Dependencies streamline the provisioning process and prevent unintended consequences of the
+requests. During thisstep of the compilation process:
+
+
+
+ l The current state of the identity isexamined.
+
+
+
+ l Any entitlements requested in the plan that already exist forthe identity are removed from the plan.
+
+
+
+ l Entitlements that are to be removed, based on a role removal, are examined. This step determines ifthe iden-
+ tityhas another role that requires the entitlement that isscheduled to be removed.
+
+
+ Note: Ifthe identity has another role that requires that entitlement, the entitlement removal
+ request istaken out of the plan.
+
+Partition the Plan
+
+At the end of plan compilation, allthe individual entitlement requests identified from the original master plan and the
+role expansion are partitioned intoa set ofsmaller provisioning plans – one per target. The targets are designated by
+
+
+
+
+ SailPoint Provisioning 15
+
+===== Page 19/31 =====
+Processing Provisioning Requests
+
+
+the connector or integrationConfig thatIdentityIQ uses to communicate with them. Connections can include:
+
+ Note: Any requests in the plan that cannot be processed by any of the integration configurations
+ or read-write connectors are added to the unmanaged plan and are processed manually through
+ IdentityIQ Work Items.
+
+See also Implementing the Plan.
+Answering Provisioning Policy Questions
+
+After the plan is compiled, the project can have unanswered questions that must be presented to a person to answer.
+The provisioning broker does not interface with the user and cannot get answers to these questions. The workflow pro-
+cess, the component that controls the provisioning process, isresponsible for getting the questions answered.
+
+Exceptions
+
+Because the following processes can not present forms to users, thisinteractive provisioning policy phase does not
+apply for the associated provisioning activities.These requests are only fulfilledifthey can be completed with the avail-
+able information. Because remediation requests are access removal requests, these requests should not require any
+additional data.
+
+
+
+ l Processes that manage certificationremediations
+
+
+
+ l Processes that manager provisioning activities
+
+
+
+ l Policy-violation remediations
+
+
+Generally projects that have unanswered questions are only an issues ifthe projects have activitiesthat require a new
+account to be created fora new assignment or a missing role.
+
+Provisioning Forms
+
+The Lifecycle Manager Provisioning, Identity Refresh, and Identity Update Workflows invoke the Do Provisioning
+Forms business process. This process presents questions on user-facing forms and collects the answers. The Do Pro-
+visioning Forms process separates these actions into the following steps:
+
+
+
+ l Build Provisioning Form
+
+
+
+ l Present Provisioning Form
+
+
+
+ l Assimilate Provisioning Form
+
+
+
+
+
+
+
+
+
+ SailPoint Provisioning 16
+
+===== Page 20/31 =====
+Processing Provisioning Requests
+
+
+Optionally, you can assign owners for individual provisioning policy fields. When an owner is assigned, any questions
+related to the field are sent tothe fieldowner and not to the access requester. The controlling workflow identifies who
+receives the questions and then submits the forms tothe correct identities.
+
+By default, the Lifecycle Manager Provisioning Workflow contains two opportunities to present provisioning forms to a
+user, pre-approval and post-approval. The following named steps run the Do Provisioning Forms workflow:
+
+
+
+ l Identity Request Initialize
+
+
+
+ l Identity Request Provision
+
+
+A Workflow can have a different number of approval steps between the steps that present provisioning forms. Each
+approval can modify items in the master plan that cause the project to be recompiled. For example, ifan approver
+rejects one of the role assignments, provisioning questions for an account that role requires might not be needed.
+Implementing the Plan
+
+After the plans are partitioned and any missing fields are provided, the subdivided plans can be implemented through
+one ofthe following mechanisms:
+
+
+
+ l Integrations
+
+
+
+ l Direct Read-Write Connectors
+
+
+
+ l Work Items
+
+
+The results are recorded in the plan and indicate ifthe request was implemented immediately or placed in a queue for
+future implementation. This status determines when the identity cube isupdated to reflect the provisioned changes.
+See also Updating the Identity Cube.
+
+The following table provides an overview ofthe provisioning mechanism.
+
+ Provisioning Plan Implementation
+ Mechanism
+
+ Integration Managed plan implementation using integration executors.Starts as an asyn-
+ Executors chronous process that might not complete immediately.
+ Direct Read-
+ Write Con- Application objects contain the provisioning configuration.
+ nectors
+ Work Items Unmanaged plan implementation using the controlling workflow.
+
+
+
+
+
+
+
+
+
+ SailPoint Provisioning 17
+
+===== Page 21/31 =====
+Processing Provisioning Requests
+
+Integrations
+
+Integrations are a separately licensed components that communicate with systems within your network. The following
+table provides and overview of the integration modules and connectors.
+
+ System Module Connector
+
+ Provisioning systems, such as: Provisioning Integration Read/write connectors and
+ OIM, ISIM, FIM Modules (PIMs) IntegrationConfigs/Executors
+ IT Service Management, such
+ as: Service Integration Modules IntegrationConfigs/Executors
+ Remedy, Service Now, HP Ser- (SIMs)
+ vice Manager
+ Mobile device management sys- Mobile Integration Modules
+ tems, such as: AirWatch, (MIMs) Read/write Connectors
+ MobileIron, Good Technology
+ IT Security: HP ArcSight IT Security Integration Mod- IntegrationConfigs/Executors
+ ule
+ Enterprise Applications: Oracle Enterprise Resource Plan-
+ EBS, SAP Portal, PeopleSoft, ning Integration Modules Read/Write Connectors
+ Siebel and NetSuite (ERP Integration Modules)
+ Mainframe: RACF, CA-Top Mainframe Integration Mod-
+ Secret, CA-ACF2, RACF LDAP ules Read/Write Connectors
+ and Top Secret LDAP
+ Healthcare: Epic and Cerner Healthcare Integration Mod- Read/Write Connectors
+ ules
+ Identity Intelligence/Analytics: GRC Integration Module IntegrationConfigs/Executors
+ SAP GRC
+
+Integration Executors attempt an immediate update of the target application. Ifthe immediate update attempt is unsuc-
+cessful, Integration Executors, place the activity in a queue.
+
+ Note: Even ifthe activity does not immediately commit, the Integration Executors cannot com-
+ municate back to IdentityIQ when the request is completed. Therefore, these requests are
+ always considered tobe queued.
+
+See also Plan InitializerRule.
+
+
+
+
+
+
+
+
+
+
+ SailPoint Provisioning 18
+
+===== Page 22/31 =====
+Processing Provisioning Requests
+
+Direct Read-Write Connectors
+
+Read-write connectors are available tomanage data communication between IdentityIQ and an ever-increasing num-
+ber of applications. For applications using these connectors, you manage provisioning activities through the variables
+inthe Provisioning configuration for thatapplication.
+
+Provisioning using direct read-write connector with these applications is fullyautomated. These connectors generally:
+
+
+
+ l Run the plan immediately.
+
+
+
+ l Can report back a committed status toIdentityIQ in real time.
+
+
+
+ l Confirm that the changes can be reflected on the identity cube immediately.
+
+
+See also Plan InitializerRule.
+
+IdentityIQ Updates
+
+For items that require updates toIdentityIQ, such as roles assigned toan identity or identityattribute changes, a sep-
+arate plan iscreated. These requests are similar to direct connector updates. Although no connector is required to
+complete these internal updates, the requests are run immediately and are reported back as committed when
+updated.
+
+Work Items
+
+Work Items, opened in IdentityIQ that contain provisioning instructions, to provision unmanaged plans. The controlling
+workflow or Remediation Manager isresponsible for implementing an unmanaged plan. An unmanaged plan:
+
+
+
+ l Includes provisioning requests to any application where data isaggregated using read-only connectors.
+
+
+
+ l Does not have an Integration Executor that communicates with the plan.
+
+
+
+ l Are identified and examined after the Integration Executors and direct read-write connectors are called.
+
+
+Ifthe unmanaged plan contains any requests, one or more work items are opened in IdentityIQ that contains the pro-
+visioning instructions from the plan. Each work item isassigned to a user who is responsible for implementing the
+changes required to complete the specified provisioning tasks. Work item assignees are often the application or enti-
+tlement owner. When the provisioning action iscompleted, the work item assignee must manually mark the work item
+as complete.
+
+ Note: Provisioning tasks managed through work items are considered queued, rather than com-
+ mitted. Even ifthe assigned user marks the work item complete, IdentityIQ cannot determine
+ with certainty ifthe changes were actually made untilthe next aggregation from the source applic-
+ ation is completed.
+
+
+
+
+ SailPoint Provisioning 19
+
+===== Page 23/31 =====
+Processing Provisioning Requests
+
+Plan Initializer Rule
+
+You can specify a Plan Initializerrule torun during the implementation of the provisioning plan. An installation-specific
+rule can be added to integration and provisioning configurations. When a rule isspecified, itruns immediately prior to
+running the provisioning activity forthe application. Provisioning is based on the provisioning plan and application
+associated configuration or integration executor.
+
+See also Implementing the Plan.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Provisioning 20
+
+===== Page 24/31 =====
+Updating the Identity Cube
+
+Updating the Identity Cube
+
+
+Provisioning activities that occur completely within IdentityIQ, such as assigning a business role toan identity,are the
+only provisioning actions that change the information on the identity cube. For example, implementing a provisioning
+plan does not update role detections. You must perform an Identity Refresh toupdate the identity based on the pro-
+visioned items. For example, to update the listofdetected entitlements and roles, you must perform an Identity
+Refresh.
+Identity Refresh
+
+Provisioning workflows generally includes an Identity Refresh step than can be enabled or disabled as needed for the
+provision activity.To perform an identity refresh to update the Identity Cube, you must:
+
+
+
+ l Include an Identity Refresh step in the Workflow, or
+
+
+
+ l Run an Identity Refresh task after the Workflow completes.
+
+
+To enable the Refresh step in the workflow the doRefresh variable must be set to True.
+
+General Guidelines
+
+Direct Read-write connectors — For Direct read-write connectors that process requests immediately, the Identity
+Refresh step isgenerally enabled. The changes toapplication accounts that the connectors make are usually dis-
+played immediately in IdentityIQ.
+
+Queued Requests — Requests that were queued are not applied to the identity cube until a re-aggregation has
+occurred from the application involved. As a result, the Identity Refresh step is typicallydisabled forprovisioning work-
+flows that are managing integration configuration-driven provisioning activities, because the refresh can not detect
+any changes untilafter an aggregation from the source system.
+
+Items that were processed as Work Items from the unmanaged plan are treated as queued requests, because manu-
+allyclosing a Work Item does not necessarily indicate allthe work was completed. To confirm that the request was pro-
+cessed, you must perform a re-aggregation from the source system. This aggregation must be followed by an identity
+refresh to update the identity cube with the information.
+
+Because the Application Accounts tab for the Identity Cube displays account data that is recorded on the Link object
+forthe identity,the tab liststhe provisioned access immediately following the read-write connector commit or following
+a re-aggregation from integration configuration-managed applications. However, the entitlement data on the Enti-
+tlement tab and inany certification isnot updated untilthe Identity Refresh task has run.
+
+
+
+
+
+
+
+
+
+ SailPoint Provisioning 21
+
+===== Page 25/31 =====
+Updating the Identity Cube
+
+Special Case: Optimistic Provisioning
+
+When the workflows are configured forOptimistic Provisioning, provisioned changes appear in IdentityIQ before the
+changes are confirmed through re-aggregation. Optimistic Provisioning assumes that provisioning requests are com-
+pleted and then updates the identity cube to display the changes when the request is submitted, not when the request
+isverified.
+
+Optimistic provisioning configuration isuseful for some testing scenarios or product demonstrations, but itisnot an
+ideal configuration for most production environments. Companies often prefer that IdentityIQ indicates a confirmed
+state of system access and not a desired state.
+
+To configure the workflows for Optimistic Provisioning:
+
+ 1. Verify that the workflow has the Set the optimisticProvisioning process variable. By default, most provisioning-
+ related workflows are configured with thisargument
+
+ 2. Set the optimisticProvisioning process variable, or XML arg, option to True. The default value isfalse.
+
+
+ Note: To modify other workflows, add the variable and then follow the steps listed above.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Provisioning 22
+
+===== Page 26/31 =====
+Attribute Synchronization
+
+Attribute Synchronization
+
+
+Attribute synchronization is an automated process ofsynchronizing changes to an Identity Cube’s identityattributes
+(such as name, email, or department) from an authoritative source to target systems.
+
+A simple example is when an employee’s name changes – Pat Smith becomes Pat Jones. In thisexample, Human
+Resources willchange the employee’s name, and perhaps the email address, in an authoritative source, such as Act-
+ive Directory. The changes then need to be propagated out to other accounts that the user has, such as JIRA, Sales
+Force, Outlook, etc.
+
+Lifecycle events can also trigger attribute changes thatneed tobe synchronized: users joining or leaving the organ-
+ization,or changes tothings likea user’s status, job title,manager, ordepartment can allcause changes touser attrib-
+utes that need to be synchronized to various systems.
+Choosing Which Attributes to Synchronize
+
+To configure attribute synchronization, you firstchoose which attributes should be synchronized, and edit them to set
+up synchronization targets and behavior.
+
+ 1. Click gear > Global Settings > Identity Mappings.
+
+ 2. Double-click the attribute you want to edit.
+
+ 3. The Target Mappings section is where you identify the target systems that should be updated with new values
+ for the attribute. You must add targets one at a time, for each target system. To add a new target, click Add Tar-
+ get.
+
+ 4. Enter your Target values:
+
+
+
+ l Application: the target system to be updated when thisvalue changes.
+
+
+
+ l Attribute: the attribute on the target system that stores this value. The values in the drop-down menu
+ are determined by the application schema defined forthis application. See the Application Con-
+ figuration documentation formore information on application schemas.
+
+
+
+ l Transformation Rule: ifthe application attributeis represented differently in the target system than itis
+ in the authoritative source (forexample, ifyour target system records full-timeversus part-time employ-
+ ment status as a numeric code 1 or 2, but you record that as ”Full”and “Part” in IdentityIQ) you can use a
+ BeanShell rule to modify the attribute as itispushed out to the target.
+
+
+
+
+
+
+
+
+
+ SailPoint Provisioning 23
+
+===== Page 27/31 =====
+Attribute Synchronization
+
+
+
+ l Provision All Accounts: Ifthe user has more than one account on the target application, check this
+ option to automatically synchronize the value to allaccounts. Ifyou leave this option unchecked, the sys-
+ tem willprompt someone to choose which accounts to synchronize to,in cases of multiple accounts.
+
+ Click Add to save your changes and close the dialog.
+
+ 5. Optional: ifyou want to use a business process tomanage attribute synchronization forthis attribute,check the
+ Sync with Workflow option in the Advanced Options section. See Using Business Processes to Manage
+ Attribute Synchronization formore information on using business processes for attribute synchronization, and
+ on how to setthis option globally rather than at the individual-attribute level.
+
+ 6. Repeat these steps for each additional Target you want toadd for thisattribute.
+
+How Attribute Synchronization is Triggered
+
+There are two ways attribute synchronization can be triggered in IdentityIQ:
+
+
+
+ l Direct Edit to an Identity: Editing the identity directlyin the UI, inthe Identity Warehouse's Identity Details
+ Page, or the Edit Identity quicklink. These changes cause the system to immediately process the syn-
+ chronization. Note that there may be an approval step required forthe change, before the synchronization will
+ occur. See the Identity Management documentation formore information.
+
+
+
+ l Aggregation: When an attribute change comes through aggregation, attribute synchronization is initiated
+ through a refresh task that has the Synchronize Attributes option selected. See the Tasks documentation for
+ more details..
+
+ Related:
+
+Using Business Processes to Manage Attribute Synchronization
+
+Auditing Attribute Synchronization
+
+Using Business Processes to Manage Attribute Synchronization
+
+You can integrate a business process with attributesynchronization, to letyou manage the synchronization ofmultiple
+attributes together, in a single request and approval process. Ifyou have Lifecycle Manager implemented, you can
+use an out-of-the-box business process formanaging attribute synchronization. You can also create your own custom
+business process ifyou have not implemented Lifecycle Manager, or ifyou prefer to use custom logic.
+
+You can set a global option so that allattribute synchronization ishandled by a business process, or you can choose
+individual attributes tomanage using a business process.
+
+Configuring Attribute Synchronization to Use a Business Process.
+
+To enable a global business process for attribute synchronization:
+
+
+
+
+ SailPoint Provisioning 24
+
+===== Page 28/31 =====
+Attribute Synchronization
+
+ 1. Click gear > Global Settings > IdentityIQ Configuration.
+
+ 2. Click the Identities tab.
+
+ 3. In the Business Processes section, choose the business process touse for Attribute Sync. IdentityIQ
+ provides a standard Attribute Sync business process that meets most use cases; you can editthis business pro-
+ cess to tailoritto your needs, and you can also create and choose a custom business process ifyou prefer.
+
+ 4. Check the Always Sync using workflow option inthe Identity Attributes section. Leaving thisoption
+ unchecked means that you can set the option touse the business process individually on each attribute in Iden-
+ tityMappings.
+
+To enable a business process handling for attribute synchronization individually forspecific attributes:
+
+ 1. Follow the steps above to select a business process in the IdentityIQ Configuration, but do not check the
+ Always Sync using workflow option.
+
+ 2. In the gear > Global Settings > Identity Mappings page, clickthe attribute you want to manage with a busi-
+ ness process.
+
+ 3. In the Advanced Options section, check the Sync with Workflow option.
+
+ 4. Ifyou haven’t already set up your Target Mappings forthis attribute,follow the steps in Attribute Syn-
+ chronization to do so.
+
+ 5. Save your changes.
+
+Customizing the Business Process for Attribute Synchronization
+
+With Lifecycle Manager, IdentityIQ provides a standard business process for attribute synchronization; you can
+modify thisbusiness process according to your business needs. Ifyou don't have Lifecycle Manager implemented, or
+ifyou prefer touse a completely custom business process, you can develop your own business process forattribute
+synchronization.
+
+ 1. Click Setup > Business Processes.
+
+ 2. Click the Attribute Sync business process to select it.
+
+ 3. You can modify most ofthe details of this business process; the ones you are most likelyto want to modify are
+ the Process Variables:
+
+
+
+ l Approvals can be enabled or disabled in the Approval section. IfApprovals are enabled, you can
+ choose who is responsible for approving requested attribute changes.
+
+
+
+
+
+
+ SailPoint Provisioning 25
+
+===== Page 29/31 =====
+Attribute Synchronization
+
+
+
+ l Notifications can be enabled or disabled. When they are enabled you can select who should be notified
+ when attribute changes are completed.
+
+See the Business Processes documentation for more information.
+Auditing Attribute Synchronization
+
+Ifyou want the abilityto audit details about attribute synchronization, such as what triggered the synchronization, or
+which attributes were synchronized to which target systems, use IdentityIQ’s Audit Configuration to enable auditing for
+thisactivity:
+
+ 1. Click gear > Global Settings > Audit Configuration.
+
+ 2. On the General Actions tab, check the box for Attribute Sync.
+
+ 3. Save your changes.
+
+To view audit details for attribute synchronization activity:
+
+ 1. Click Intelligence > Advanced Analytics.
+
+ 2. In the Search Type dropdown, choose Audit.
+
+ 3. In the Action fieldunder Audit Attributes, choose attributeSync. Note that attributeSync willnot be available
+ as a choice inthis listunless there is attribute synchronization activity that has been completed in your system.
+
+ 4. Enter any other search criteriayou want to use.
+
+ 5. Click Run Search.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Provisioning 26
+
+===== Page 30/31 =====
+Summary of Workflows, Tasks, and Rules inProvisioning
+
+Summary of Workflows, Tasks, and Rules in Provisioning
+
+
+The following table provides an at-a-glance listofworkflows, tasks and rules forprovisioning through IdentityIQ.
+
+For an overview of developing and using rules inIdentityIQ, see the IdentityIQ System Administration guide.
+
+ Type Name Purpose /Usage
+
+ Lifecycle Man-
+ ager:
+ LCM Pro-
+ visioning
+ Workflow LCM Create and Manages actions requested through Lifecycle Manager.
+ Update
+ LCM Manage
+ Passwords
+ LCM Regis-
+ tration
+ Workflow IdentityUpdate Manages the provisioning actions required based on an Identity Cube
+ update.
+ Workflow IdentityRefresh Manages the provisioning actions required from an Identity Refresh.
+ Lifecycle Event
+ – Joiner
+
+ Lifecycle Event
+ – Manager
+ Workflow Change Controls the Lifecycle Event-driven activities,which can contain pro-
+ visioning actions.
+ Lifecycle Event
+ – Leaver
+
+ Lifecycle Event
+ – Reinstate
+ Workflow (sub- Do Provisioning Creates, presents and gathers data from provisioning forms. This
+ process) Forms step isthe interactive provisioning policy phase of provisioning.
+ Presents the unmanaged portion ofa provisioning project as work
+ Workflow (sub- Do Manual items to be processed manually. Update and Identity Refresh work-
+ process) Actions flows use thisstep. Lifecycle Manager has a similar step but audits dif-
+ ferently.
+ Workflow (sub- Provision with Manages retrieson the provisioning actions for Lifecycle Manager.
+
+
+
+
+
+
+ SailPoint Provisioning 27
+
+===== Page 31/31 =====
+Summary ofWorkflows, Tasks, and Rules in Provisioning
+
+
+ Type Name Purpose /Usage
+
+ process) Retries
+ Identity Request
+ Initialize
+ Identity Request
+ Violation Review
+ Identity Request
+ Approve
+ Identity Request
+ Approve Identity These workflows subdivide Lifecycle Manager Provisioning into more
+ Workflow (sub- Changes manageable workflow parts. LIfecycle workflows also use some or all
+ process) Identity Request of these tasks.
+ Provision
+ Identity Request
+ Notify
+ Identity Request
+ Finalize
+ Provisioning
+ Approval Sub-
+ process
+ Task Identity Refresh Creates provisioning requests based on application of role assign-
+ ment rules or role detection.
+ Task Perform Main- Processes certification-generated and policy violation-generated
+ tenance remediation requests.
+ Account Aggreg- Provisioning activities driven by integration configurations or Work
+ Task ation Items require a re-aggregation from the target system before the iden-
+ titiescan be updated with the access change.
+ Rule FieldValue Identifies the default value for the Provisioning Policy field.
+ Rule AllowedValues Constrains allowed values for the Provisioning Policy field.
+ Rule Validation Defines validation process forProvisioning Policy field.
+ Rule Owner Defines owner forProvisioning Policy field.
+ Can be specified for any IntegrationConfig or ProvisioningConfig to
+ Rule PlanInitializer run installation-specific pre-processing in Plan Evaluation step before
+ carrying out provisioning.
+ Rule IdentityTrigger Can determine the triggering of a Lifecycle Event.
+
+
+
+
+
+
+
+
+SailPoint Provisioning 28

@@ -1,0 +1,2060 @@
+﻿===== Page 29/115 =====
+Access Review Pages
+
+Access Review â€“ Common Information
+
+This section provides information on the common access review information. This information is displayed differently
+forthe different access review types, ifitisavailable. This section also contains electronic signature information, ifthat
+feature is enabled.
+
+ This information is displayed on the information panel.
+
+
+Due
+
+ The date on which this access review isdue.
+
+Owner
+
+ The identity towhom thisaccess review isassigned.
+
+Phase
+
+ The phase at this time and the date when this phase ends.
+
+Revocations
+
+ This number reflectsthe fraction of revocation requests completed for this access review a compared to the total
+ number requested. The revocation competition status is updated atan interval specified during the deployment
+ of IdentityIQ. By default thisis performed daily.
+
+Tags
+
+ Listed are any tags assigned to the certification when the certificationwas scheduled. Tags are used to classify
+ certifications forsearching and reporting purposes.
+
+Review
+
+ You may be able to sign off an access review untilallsubordinate reviews are complete, based on how this cer-
+ tificationwas scheduled. Click Additional Reviews in the status panel to view the subordinate reviews asso-
+ ciated with the one displayed. Click a subordinate access review to display the Access Review Decision page.
+ See Subordinate Access Reviews.
+
+A completion notice displays in the Access Review Information panel when allitems and subordinate access reviews
+are in a complete state.Before IdentityIQ recognizes an access review as complete, you must clickSign Off and
+verifythat certification iscomplete on the Sign off Access Review screen. Additional sign offinformation is required if
+your installation isconfigured to require an electronic signature.
+
+ Subordinate Access Reviews
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 24
+
+===== Page 30/115 =====
+Access Review Pages
+
+
+Subordinate access review are any access reviews that must be completed before the top-level certification can be
+considered completed. Examples of subordinate access reviews can include any groups ofidentities that you reas-
+sign, or any lower-level, subordinate, manager access reviews. Lower-level manager access reviews can be created
+when Manager Certifications are scheduled and can be required as part ofthat process.
+
+Subordinate access reviews are not displayed as part of the access review listand do not show as part of the com-
+pletion status for this access review. When specified, subordinate access reviews must be in a complete state before
+the top-level certification can be signed off.
+
+The Access Reviews linkdisplays with the Access Review Decision page ifsubordinate access reviews exist. Click
+Access Reviews to expand a table containing the following information:
+
+ Column Description
+
+ Name The name and descriptive information about the top-level certification.
+ Owner The current owner of the subordinate access review requests.
+ Percent The percentage ofthe subordinate access review that was acted upon and is ina
+ Complete complete state.
+ Open The number of subordinate items that are stillinthe open state.
+ Completed The number of subordinate items that are inthe completed state.
+ Delegated The number of subordinate items that the current owner delegated to different
+ users.
+ Click an icon to specify an action to take on the subordinate certification.
+
+ Return â€“ return the subordinate access review items to the review that generated
+ Action the items and delete the subordinate access review.
+
+ Email â€“ generate an email tosend tothe owner of the original access review.
+
+ Forward â€“ forward the subordinate access review to a different, qualified certifier.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Certifications and Access Reviews 25
+
+===== Page 31/115 =====
+Targeted Access Reviews
+
+Targeted Access Reviews
+
+
+The access review might look different in your instance of IdentityIQ depending on the configuration and the options
+selected when the certificationwas defined.
+
+For detailed information on certifications and access reviews, see About Certifications.
+
+For detailed information on completing an access review, see About Access Reviews.
+Access Review Details - Targeted
+
+This page is comprised of allroles, entitlements and policy violations that are part of this access review.
+
+The page contains three tabs:
+
+
+
+ l Important â€“ contains items that require immediate attention, such as returned delegations.
+
+
+
+ l Open â€“ all ofthe other access review items that have yet to be acted upon.
+
+
+
+ l Review â€“ the items on which a decision has been made.
+
+
+By default the page opens with the Important tab displayed, ifthere are issues thatrequire immediate action.
+
+Targeted Page Features
+
+The following features are available forall ofthe tabs:
+
+
+
+ l List icon â€“ click the icon to display a listof the identities thatmake up the access review.
+
+
+
+ l Download to CSV icon â€“ click the icon to download the access review listtoa CSV file.
+
+
+
+ l Information icon â€“ click the information icon to get details about the access review, including due date, phase,
+ and subordinate access reviews.
+
+
+
+ l Columns â€“ add, remove, or rearrange the columns displayed on the page.
+
+
+
+ l Group By â€“ rearrange the sort order ofitems on the page.
+
+
+
+ l Filter â€“ use a filtertolimit the items displayed.
+
+
+ Note: The recommendations icon is only displayed IfSailPoint AI Services was purchased
+ and activated for your installation of IdentityIQ. See the AI Services documentation for
+ more information.
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 26
+
+===== Page 32/115 =====
+Targeted Access Reviews
+
+
+
+ l Recommendations â€“ display the Decision Recommendation popup
+
+
+
+ l Bulk Decision button â€“ make the same decision formultiple items. Ifonly one action isapplicable, that action
+ appears on the button.
+
+
+
+ l Bulk select /deselect â€“ clickthe box on the header line and choose to select or deselect multiple items.
+
+Important Tab
+
+The Important tab contains the following information:
+
+ Note: The Important tab is not displayed ifno urgent issues exist.
+
+ Targeted - Important Tab
+
+
+ Column Description
+
+ Policy Name Name of the policy being violated.
+ Policy Descrip- Description of the policy being violated.
+ tion
+ Rule Specific rule that is being broken tocause the violation ofthe policy.
+ Owner Owner of the policy.
+ Identity Identity that isin violation.
+ Account Name The account name forthe application with which the item is associated and
+ the account status, enabled or disabled.
+ Application The application with which the item is associated.
+ Compensating Any compensating controls associated the policy. For example, in some
+ Control cases managers may be exempt forcertain separation of duty policies.
+ Conflict For separation of duties policy violations, the conflict that is causing the viol-
+ ation of the policy.
+ Description Description of the violation from the Policy Configuration page.
+ Remediation Any correction advice associated with the policy. This advice isadded when
+ Advice the policy is created.
+ Rule Descrip- The description of the rule that has been broken.
+ tion
+ This column flags any changes made to this access item for thisidentity, since
+ Changes Detec- the lasttime itwas included ina certification of this type. For example,
+ ted changes can be detected in an identity between one Manager certification
+ and the next, but are not detected between a Manager certification and an
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 27
+
+===== Page 33/115 =====
+Targeted Access Reviews
+
+
+ Column Description
+
+ Advanced certification for the same identity.
+
+ Values can be:
+
+ No: the item has been certified before. Once an identity has been certified,
+ any item that was previously certified willshow as No each time a subsequent
+ certification of thissame type is generated
+
+ Yes: the item has not been certified. Once an identity has been certified, any
+ new items that are detected the next time a certification of this same type is
+ generated will have a Yes value.
+
+ New User: this identity has never been certified,in a certification of this type.
+
+
+Use the Decision column to Allow the violation, or click the menu icon to display additional options; Delegate, Com-
+ment, History, Details.
+
+Delegated items are stillpartof this access review and must be acted upon before itiscomplete.
+
+Use Reassign to reassign the policy violation decision to another user.
+
+The Open Tab
+
+The Open tab contains the following information by default. You can configure which columns appear on the Open tab
+by clicking the Columns button and adding, removing, or rearranging columns as needed.
+
+ Column Description
+
+ Type Role, entitlement, or account.
+ Display Name The item name as itappears throughout the product.
+ Description The description associated with the item.
+ This column appears only if"Show Classifications" was enabled for the cer-
+ tification.Ifan entitlement has classification data associated with it,toflag that
+ Classifications the permission gives access to potentially sensitive or otherwise protected
+ data, a classification icon appears inthis column. Click the icon to see details
+ about the classification.
+ Application The application with which the item isassociated.
+ Account Name The account name for the application with which the item isassociated and
+ the account status, enabled or disabled.
+ Identity The identity associated with the role, entitlement, or account.
+
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 28
+
+===== Page 34/115 =====
+Targeted Access Reviews
+
+
+Use the Decision column to Approve or Revoke the item, or click the menu icon to display additional options; Allow,
+Delegate, Revoke Account, Comment, History, Account Details.
+
+Click the recommendation icon fordetails about the recommendation. The recommendations icon isonly displayed If
+SailPoint AI Services was purchased and activated foryour installation ofIdentityIQ. See the AI Services doc-
+umentation formore information.
+
+Revoking an account affects allrole or entitlements with which itis associated.
+
+Delegated items are stillpartof thisaccess review and must be acted upon before itiscomplete.
+
+Use the Bulk Decisions to make decision for multiple items or reassign items toanother decision maker.
+
+Review Tab
+
+The Review tab contains allof the items upon which a decision has been made. Click the menu icon inthe Decision
+column to change or undo a decision.
+
+Click the automatic approval icon for details about the approval. The the automatic approval icon is only displayed If
+SailPoint AI Services was purchased and activated foryour installation ofIdentityIQ.
+
+See the AI Services documentation formore information.
+How To Perform a Targeted Access Review
+
+
+ Note:Â The options available inan access review are dependent on the configuration of IdentityIQ
+ and the option defined when the certificationwas scheduled.
+
+
+ Note:Â Use Bulk Decisions toreassign items to another decision maker.
+
+ 1. Access the targeted access review from the My Access Reviews page or directlyfrom your Home page.
+
+ 2. Select items individually and select an action inthe Decision column.
+
+ â€” OR â€”
+
+ Select multiple items and select an action from Bulk Decision list.
+
+ 3. Click Save Decisions tomove the completed items to the Review tab.
+
+ Note: Automatically approved items are displayed on the Review tab where you can
+ accept the approval or change the decision as needed.
+
+ 4. Review your decisions on the Review tab and make any required changes.
+
+ 5. When alldecisions have been made, click Sign-Off Decision todisplay the Sign Off on Certification dialog.
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 29
+
+===== Page 35/115 =====
+Manager, Application Owner, and Advanced Access Reviews
+
+Manager, Application Owner, and Advanced Access
+Reviews
+
+
+Access reviews forManager, Application Owner, and Advanced Access Certifications share a common user interface.
+The access review might look different inyour instance of IdentityIQ depending on the configuration and the options
+selected when the certification was defined. These are allidentity list-typecertifications.
+
+For detailed information on certificationsand access reviews, see About Certifications.
+
+For detailed information on completing an access review, see Access Review Decisions /Operations.
+Access Review Details â€“ Identity List
+
+The identitylistiscomposed of allidentities containing roles, entitlements and policy violations thatare part ofthis
+access review.
+
+The identitylistpage contains three tabs:
+
+
+
+ l Important â€“ contains items that require immediate attention, such as returned delegations.
+
+
+
+ l Open â€“ allof the other access review items that have yet to be acted upon.
+
+
+
+ l Review â€“ the items on which a decision has been made.
+
+
+By default the page opens with the Important tab displayed, ifthere are issues thatrequire immediate action.
+
+Identity List Page Features
+
+
+
+ l The following features are available for allofthe tabs:
+
+
+
+ l Identity listicon â€“ clickthe icon todisplay a listofthe identities thatmake up the access review.
+
+
+
+ l Download to CSV icon â€“ clickthe icon to download the access review listtoa CSV file.
+
+
+
+ l Information icon â€“ clickthe information icon to get details about the access review, including due date, phase,
+ and subordinate access reviews.
+
+
+
+ l Columns â€“ add, remove, or rearrange the columns displayed on the page.
+
+
+
+ l Group By â€“ rearrange the sort order of items on the page.
+
+
+
+ l Filterâ€“ use a filtertolimitthe items displayed.
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 30
+
+===== Page 36/115 =====
+Manager, Application Owner, and Advanced Access Reviews
+
+
+ Note:Â The recommendations icon is only displayed IfSailPoint AI Services was purchased
+ and activated for your installation of IdentityIQ. See the AI Services documentation for
+ more information.
+
+
+
+
+ l Recommendations â€“ display the Decision Recommendation popup
+
+
+
+ l Bulk Decision button â€“ make the same decision formultiple items. Ifonly one action isapplicable, that action
+ appears on the button.
+
+
+
+ l Bulk select /deselect â€“ clickthe box on the header line and choose to select or deselect multiple items.
+
+Important Tab
+
+The Important tab contains the following information:
+
+ Note:Â The Important tab is not displayed ifno violations exist.
+
+
+Identity List â€“ Important Tab
+
+
+ Column Description
+
+ First Name The firstname associated with the identity that requires access review.
+ Last Name The lastname associated with the identity that requires access review.
+ Policy Name The policy in violation.
+ Policy Descrip- Description of the policy.
+ tion
+ Rule The rule from the policy in violation.
+ Owner The owner of the policy.
+ Account Name The account name forthe application with which the item is associated and
+ the account status, enabled or disabled.
+ Application The application with which the item is associated.
+ Compensating Any compensating controls associated the policy. For example, in some
+ Control cases managers may be exempt forcertain separation of duty policies.
+ Conflict For separation of duties policy violations, the conflict that is causing the viol-
+ ation of the policy.
+ Description Description of the violation from the Policy Configuration page.
+ Remediation Any correction advice associated with the policy. This advice isadded when
+ Advice the policy is created.
+ Rule Descrip- The description of the rule that has been broken.
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 31
+
+===== Page 37/115 =====
+Manager, Application Owner, and Advanced Access Reviews
+
+
+ Column Description
+
+ tion
+ This column flags any changes made to this access item forthis identity, since
+ the last time itwas included in a certification of thistype. For example,
+ changes can be detected inan identity between one Manager certification
+ and the next, but are not detected between a Manager certification and an
+ Advanced certification for the same identity.
+
+ Values can be:
+ Changes Detec- No: the item has been certified before. Once an identity has been certified,
+ ted any item that was previously certified willshow as No each time a subsequent
+
+ certification of thissame type is generated
+
+ Yes: the item has not been certified. Once an identity has been certified, any
+ new items that are detected the next time a certification of this same type is
+ generated will have a Yes value.
+
+ New User: this identity has never been certified,in a certification of this type.
+
+Use the Decision column to Allow the violation, or click the menu icon to display additional options; Delegate, Com-
+ment, History, Details.
+
+Delegated items are stillpartof this access review and must be acted upon before itiscomplete.
+
+Use Reassign to reassign the policy violation decision to another user.
+
+Open Tab
+
+The Open tab contains the following information:
+
+Identity List â€“ Open Tab
+
+
+ Column Description
+
+ First Name The firstname associated with the identity that requires access review.
+ Last Name The lastname associated with the identity that requires access review.
+ Type The type of item being certified, Role or Entitlement.
+ Display Name The item name as itappears throughout the product.
+ Description The description associated with the item.
+ This column appears only if"Show Classifications" was enabled for the cer-
+ Classifications tification.Ifan entitlement has classification data associated with it,toflag that
+ the permission gives access to potentially sensitive or otherwise protected
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 32
+
+===== Page 38/115 =====
+Manager, Application Owner, and Advanced Access Reviews
+
+
+ Column Description
+
+ data, a classification icon appears in this column. Click the icon to see details
+ about the classification.
+ Application The application with which the item isassociated.
+ Account Name The account name forthe application with which the item isassociated and
+ the account status, enabled or disabled.
+ Account ID The login ID of this identity on the application.
+ Risk Score The riskscore associated with this role or entitlement, for this identity.
+ Role Account For roles, the name ofthe account.
+ Name
+ Role Application For roles, the application thisrole applies to.
+ This column flags any changes made to this access item for this identity,since
+ the lasttime itwas included ina certification ofthis type. For example,
+ changes can be detected in an identity between one Manager certification and
+ the next, but are not detected between a Manager certification and an
+ Advanced certification for the same identity.
+
+ Values can be:
+ Changes Detec- No: the item has been certifiedbefore. Once an identity has been certified,
+ ted any item that was previously certified willshow as No each time a subsequent
+
+ certification of this same type isgenerated
+
+ Yes: the item has not been certified. Once an identity has been certified,any
+ new items that are detected the next time a certification of thissame type is
+ generated willhave a Yes value.
+
+ New User: this identity has never been certified, in a certification of thistype.
+
+Use the Decision column to Approve or Revoke the item, or click the menu icon to display additional options; Allow,
+Delegate, Revoke Account, Comment, History, Account Details.
+
+Click the recommendation icon for details about the recommendation. The recommendations icon is only displayed If
+SailPoint AI Services was purchased and activated for your installation of IdentityIQ.
+
+See the AI Services documentation for more information.
+
+Revoking an account affects allrole or entitlements with which itis associated.
+
+Delegated items are stillpartof this access review and must be acted upon before itiscomplete.
+
+Use the Bulk Decisions to make decision for multiple items or reassign items to another decision maker.
+
+
+
+
+
+
+
+
+SailPoint Certifications and Access Reviews 33
+
+===== Page 39/115 =====
+Manager, Application Owner, and Advanced Access Reviews
+
+Review Tab
+
+The Review tab contains all ofthe items upon which a decision has been made. Click the menu icon in the Decision
+column to change or undo a decision.
+
+Click the automatic approval icon fordetails about the approval. The the automatic approval icon isonly displayed If
+SailPoint AI Services was purchased and activated for your installation ofIdentityIQ.
+
+See the AI Services documentation for more information.
+How To Perform an Identity List Access Review
+
+
+ Note:Â The options available in an access review are dependent on the configuration ofIdentityIQ
+ and the option defined when the certification was scheduled.
+
+
+ Note: Use Bulk Decisions to reassign items toanother decision maker.
+
+ 1. Access the identity listaccess review from the My Access Reviews page or directlyfrom your Home page.
+
+ 2. Select items individually and select an action inthe Decision column.
+
+ â€” OR â€”
+
+ Select multiple items and select an action from Bulk Decision list.
+
+ 3. Click Save Decisions to move the completed items tothe Review tab.
+
+ Note:Â Automatically approved items are displayed on the Review tab where you can
+ accept the approval or change the decision as needed.
+
+ 4. Review your decisions on the Review tab and make any required changes.
+
+ 5. When alldecisions have been made, click Sign-Off Decision todisplay the Sign Offon Certification dialog.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 34
+
+===== Page 40/115 =====
+Role Membership and Entitlement Owner Access Reviews
+
+Role Membership and Entitlement Owner Access Reviews
+
+
+Role Membership and Entitlement Owner access reviews share a common user interface. The access review might
+look differentin your instance of IdentityIQ depending on the configuration and the options selected when the cer-
+tificationwas defined. These are allobject list-typecertifications.
+
+For detailed information on certificationsand access reviews, see About Certifications.
+
+For detailed information on completing an access review, see Access Review Decisions /Operations.
+Access Review Details â€“ Object List
+
+The object listiscomposed of allroles orentitlements that are part of thisaccess review.
+
+The object listpage contains three tabs:
+
+
+
+ l Important â€“ contains items thatrequire immediate attention, such as returned delegations.
+
+
+
+ l Open â€“ allof the other access review items thathave yet to be acted upon.
+
+
+
+ l Review â€“ the items on which a decision has been made.
+
+
+By default the page opens with the Important tab displayed, ifthere are issues thatrequire immediate action.
+
+Object List Page Features
+
+The following features are available for allofthe tabs:
+
+
+
+ l Object listicon â€“ clickthe icon to display a listofthe items that make up the access review.
+
+
+
+ l Download to CSV icon â€“ click the icon to download the access review listtoa CSV file.
+
+
+
+ l Information icon â€“ click the information icon toget detailsabout the access review, including due date, owner,
+ phase, number of completed items and revocations.
+
+
+
+ l Columns â€“ add, remove, or rearrange the columns displayed on the page.
+
+
+
+ l Group By â€“ rearrange the sortorder ofitems on the page.
+
+
+
+ l Filter â€“ use a filtertolimitthe items displayed.
+
+
+
+ l Bulk Decision button â€“ make the same decision formultiple items. Ifonly one action isapplicable, thataction
+
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 35
+
+===== Page 41/115 =====
+Role Membership and Entitlement Owner Access Reviews
+
+
+ appears on the button.
+
+
+
+ l Bulk select / deselect â€“ clickthe box on the header lineand choose to select or deselect multiple items.
+
+
+The recommendations icon isonly displayed IfSailPoint AI Services was purchased and activated foryour installation
+ofIdentityIQ. Recommendations are not available on Entitlement Owner Certifications. See the AI Services doc-
+umentation formore information.
+
+
+
+ l Recommendations â€“ display the Decision Recommendation popup
+
+Important Tab
+
+The Important tab contains the following information:
+
+ Note:Â The Important tab isnot displayed ifno urgent issues exist.
+
+ Entitlement List - Important Tab
+
+
+ Column Description
+
+ FirstName The firstname associated with the item that requires access review.
+ Last Name The last name associated with the item that requires access review.
+ Display The entitlement named used throughout IdentityIQ" />.
+ Name
+ Attribute The attribute with which the entitlement isassociated.
+ Account The name of the account with which the entitlement isassociated.
+ Name
+ Description Description of the entitlement.
+ Return Com- Any comments associated with this item.
+ ment
+ Decision The decision made by the reviewer to whom this item was delegated, or by the
+ user from whom itwas revoked.
+
+
+ Role Membership List - Important Tab
+
+
+ Column Description
+
+ FirstName The firstname associated with the item that requires access review.
+ Last Name The last name associated with the item that requires access review.
+ Role The name of the role.
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 36
+
+===== Page 42/115 =====
+Role Membership and Entitlement Owner Access Reviews
+
+
+ Column Description
+
+ Description Description ofthe role.
+ For Role Membership reviews only. This column appears ifShow Clas-
+ sifications was enabled for the certification.Ifan entitlement has classification
+ Classifications data associated with it,toflag that the permission gives access to potentially
+ sensitive or otherwise protected data, a classification icon appears inthis
+ column. Click the icon to see details about the classification.
+ Return Com- Comments from the reviewer to whom the decision was delegated.
+ ment
+ Role Application The application with which the role isassociated.
+ Decision The decision made by the reviewer to whom the decision was delegated.
+
+
+Delegated items are stillpart ofthis access review and must be acted upon before itiscomplete.
+
+Use Reassign to reassign the policy violation decision to another user.
+
+Open Tab
+
+The Open tab contains the following information:
+
+ Entitlement List â€“ Open Tab
+
+
+ Column Description
+
+ FirstName The firstname associated with the item that requires access review.
+ Last Name The lastname associated with the item that requires access review.
+ Display Name The entitlement named used throughout IdentityIQ" />.
+ Attribute The attribute with which the entitlement isassociated.
+ Account Name The name of the account with which the entitlement is associated.
+ Description Description of the entitlement.
+
+
+ Role Membership List â€“ Open Tab
+
+
+ Column Description
+
+ FirstName The firstname associated with the item that requires access review.
+ Last Name The last name associated with the item thatrequires access review.
+ Role The name of the role.
+ Description Description ofthe role.
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 37
+
+===== Page 43/115 =====
+Role Membership and Entitlement Owner Access Reviews
+
+
+ Column Description
+
+ For Role Membership reviews only. This column appears ifShow Clas-
+ sifications was enabled forthe certification. Ifan entitlement has classification
+ Classifications data associated with it,toflag that the permission gives access to potentially
+ sensitive or otherwise protected data, a classification icon appears in this
+ column. Click the icon to see details about the classification.
+ Return Com- Comments from the reviewer to whom the decision was delegated.
+ ment
+
+
+Use the Decision column to Approve or Revoke the item, or click the menu icon to display additional options; Allow,
+Delegate, Revoke Account, Comment, History, Account Details.
+
+Click the recommendation icon for details about the recommendation. The recommendations icon is only displayed If
+SailPoint AI Services was purchased and activated foryour installation ofIdentityIQ. Recommendations are not avail-
+able on Entitlement Owner certifications.
+
+See the AI Services documentation for more information.
+
+Revoking an account affects allrole or entitlements with which itisassociated.
+
+Delegated items are stillpartof this access review and must be acted upon before itiscomplete.
+
+Use Bulk Decisions to make decision formultiple items orreassign items to another decision maker.
+
+Review Tab
+
+The Review tab contains allof the items upon which a decision has been made. Click the menu icon in the Decision
+column tochange or undo a decision.
+
+Click the automatic approval icon fordetails about the approval. The the automatic approval icon isonly displayed If
+SailPoint AI Services was purchased and activated foryour installation ofIdentityIQ.
+
+See the AI Services documentation for more information.
+How to Perform an Object List Access Review
+
+
+ Note:Â The options available in an access review are dependent on the configuration of IdentityIQ
+ and the option defined when the certificationwas scheduled.
+
+
+ Note:Â Use Bulk Decisions to reassign items to another decision maker.
+
+
+
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 38
+
+===== Page 44/115 =====
+Role Membership and Entitlement Owner Access Reviews
+
+ 1. Access the object listdetails from the My Access Reviews page or directly from your Home page.
+
+ 2. Select items individually and select an action in the Decision column.
+
+ â€” OR â€”
+
+ Select multiple items and select an action from Bulk Decision list.
+
+ 3. Click Save Decisions to move the completed items to the Review tab.
+
+ Note: Automatically approved items are displayed on the Review tab where you can
+ accept the approval or change the decision as needed.
+
+ 4. Review your decisions on the Review tab and make any required changes.
+
+ 5. When alldecisions have been made, clickSign-Off Decision todisplay the Sign Off on Certification dialog.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Certifications and Access Reviews 39
+
+===== Page 45/115 =====
+Role Composition Access Reviews
+
+Role Composition Access Reviews
+
+
+The listiscomposed of allofthe roles thatmake up this access review. This listisonly available for Role Composition
+access reviews. The access review might look different in your instance of IdentityIQ depending on the configuration
+and the options selected when the certificationwas defined. These are allrole composition list-typecertifications.
+
+For detailed information on certifications and access reviews, see About Certifications.
+
+For detailed information on completing an access review, see Access Review Decisions /Operations.
+Access Review Details â€“ Role Composition List
+
+The rolecomposition listiscomposed of allroles thatare part ofthis access review.
+
+The object listpage contains three tabs:
+
+
+
+ l Important â€“ contains items that require immediate attention, such as returned delegations.
+
+
+
+ l Open â€“ allof the other access review items that have yet to be acted upon.
+
+
+
+ l Review â€“ the items on which a decision has been made.
+
+
+By default the page opens with the Important tab displayed, ifthere are issues that require immediate action.
+
+Object List Page Features
+
+The following features are available forallof the tabs:
+
+
+
+ l Object listicon â€“ click the icon todisplay a listofthe items that make up the access review.
+
+
+
+ l Download to CSV icon â€“ clickthe icon todownload the access review listto a CSV file.
+
+
+
+ l Information icon â€“ clickthe information icon toget details about the access review, including due date, owner,
+ phase, number ofcompleted items and revocations.
+
+
+
+ l Columns â€“ add, remove, or rearrange the columns displayed on the page.
+
+
+
+ l Group By â€“ rearrange the sort order of items on the page.
+
+
+
+ l Filter â€“ use a filtertolimitthe items displayed.
+
+
+
+ l Bulk Decision button â€“ make the same decision formultiple items. Ifonly one action is applicable, that action
+
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 40
+
+===== Page 46/115 =====
+Role Composition Access Reviews
+
+
+ appears on the button.
+
+
+
+ l Bulk select / deselect â€“ clickthe box on the header line and choose to select or deselect multiple items.
+
+Important Tab
+
+The Important tab contains the following information:
+
+ Note: The Important tab isnot displayed ifno urgent issues exist.
+
+
+Role Composition List â€“ Important Tab
+
+
+ Column Description
+
+ Role The name of the role with which this item is associated.
+ Name The name of the line item being reviewed.
+ Type The type of role orentitlement profile.
+ Description Description of the role.
+ Application The application associated with thisitem, ifappropriate.
+ Return Comments Any comments associated with this item.
+ Decision The decision made by the reviewer towhom this item was delegated.
+
+Delegated items are stillpart of thisaccess review and must be acted upon before itis complete.
+
+Use Reassign to reassign the policy violation decision to another user.
+
+Open Tab
+
+The Open tab contains the following information:
+
+ Column Description
+
+ Name The name of the role or the individual line items contained within.
+ Type The type ofrole or entitlement profile.
+ Description Description of the role.
+ Application The application associated with thisitem, ifappropriate.
+
+Use the Decision column to Approve or Revoke the item, or click the menu icon to display additional options; Allow,
+Delegate, Revoke Account, Comment, History, Account Details.
+
+Revoking an account affects allrole or entitlements with which itisassociated.
+
+Delegated items are stillpart of thisaccess review and must be acted upon before itis complete.
+
+Use Bulk Decisions to make decision for multiple items or reassign items toanother decision maker.
+
+
+
+
+ SailPoint Certifications and Access Reviews 41
+
+===== Page 47/115 =====
+Role Composition Access Reviews
+
+Review Tab
+
+The Review tab contains allofthe items upon which adecision has been made. Click the menu icon inthe Decision
+column to change or undo a decision.
+How to Perform a Role Composition Access Review
+
+
+ Note:Â The options available in an access review are dependent on the configuration of IdentityIQ
+ and the option defined when the certificationwas scheduled.
+
+
+ Note: Use Bulk Decisions to reassign items to another decision maker.
+
+ 1. Access theaccess review details page from the My Access Reviews page ordirectly from your Home page.
+
+ 2. Click an item to display the detailed role information.
+
+ 3. Take action on individual items.
+
+ â€” OR â€”
+
+ Use the select boxes and select an action from Bulk Decision list.
+
+ 4. Click Save Decisions.
+
+ 5. When alldecisions have been made, clickSign-Off Decisions to display the Sign Off on Certification dialog.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 42
+
+===== Page 48/115 =====
+Account Group Membership and Account Group Permission Access Reviews
+
+Account Group Membership and Account Group Per-
+mission Access Reviews
+
+
+The access review might look differentin your instance ofIdentityIQ depending on theconfiguration and the options
+selected when the certificationwas defined. These are allaccount group list-typecertifications.
+
+For detailed information on certificationsand access reviews, see About Certifications.
+
+For detailed information on completing an access review, see Access Review Decisions /Operations.
+Access Review Details - Account Group List
+
+The listiscomposed of allofthe account groups, application objects, that make up thisaccess review.
+
+The object listpage contains three tabs:
+
+
+
+ l Important â€“ contains items thatrequire immediate attention, such as returned delegations.
+
+
+
+ l Open â€“ allofthe other access review items thathave yet tobe acted upon.
+
+
+
+ l Review â€“ the items on which a decision has been made.
+
+
+By default the page opens with the Important tab displayed, ifthere are issues that require immediate action.
+
+Object List Page Features
+
+The following features are available for allofthe tabs:
+
+
+
+ l Object list icon â€“ clickthe icon to display a listofthe items that make up the access review.
+
+
+
+ l Download to CSV icon â€“ clickthe icon to download theaccess review listtoa CSV file.
+
+
+
+ l Information icon â€“ clickthe information icon toget details about the access review, including due date, owner,
+ phase, number ofcompleted items and revocations.
+
+
+
+ l Columns â€“ add, remove, orrearrange the columns displayed on the page.
+
+
+
+ l Group By â€“ rearrange the sortorder ofitems on the page.
+
+
+
+ l Filter â€“use a filtertolimittheitems displayed.
+
+
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 43
+
+===== Page 49/115 =====
+Account Group Membership and Account Group Permission Access Reviews
+
+
+
+ l Bulk Decision button â€“ make the same decision for multiple items. Ifonly one action is applicable, that action
+ appears on the button.
+
+
+
+ l Bulk select / deselect â€“ click the box on the header line and choose to select or deselect multiple items.
+
+Important Tab
+
+The Important tab contains the following information:
+
+ Note:Â The Important tab is not displayed ifno urgent issues exist.
+
+ Account Group Permissions List â€“ Important Tab
+
+
+ Column Description
+
+ Account Group The account group name.
+ Type The type of the account group.
+ Description Description of the account group.
+ Attribute The attributeassociated with thisaccount group.
+ Entitlements Any entitlements associated with the account group.
+ Return Com- Any comments associated with thisitem.
+ ment
+ Decision The decision made by the reviewer towhom thisitem was del-
+ egated.
+
+
+ Account Group Membership List â€“ Important Tab
+
+
+ Column Description
+
+ FirstName The firstname of the account group member.
+ Last Name The lastname of the account group member.
+ Type The type of the account group.
+ Description Description of the account group.
+ Return Comments Any comments associated with thisitem.
+ Decision The decision made by the reviewer to whom thisitem was delegated.
+
+
+Delegated items are stillpart ofthis access review and must be acted upon before itiscomplete.
+
+Use Reassign to reassign the policy violation decision toanother user.
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 44
+
+===== Page 50/115 =====
+Account Group Membership and Account Group Permission Access Reviews
+
+Open Tab
+
+The Open tab contains the following information:
+
+ Account Group Permissions List â€“ Open Tab
+
+
+ Column Description
+
+ Account Group The account group name.
+ Type The type of the account group.
+ Description Description ofthe account group.
+ Attribute The attributeassociated withthis account group.
+ Entitlements Any entitlements associated with the account group.
+
+
+ Account Group Membership List â€“ Open Tab
+
+
+ Column Description
+
+ FirstName The firstname of the account group member.
+ Last Name The lastname of the account group member.
+ Type The type of the account group.
+ Account The name ofthe account associated with thismember.
+ Description Description of the account group.
+
+
+Use the Decision column toApprove or Revoke the item, orclick the menu icon to display additional options; Allow,
+Delegate, Revoke Account, Comment, History, Account Details.
+
+Revoking an account affects allroleor entitlements with which itisassociated.
+
+Delegated items are stillpartofthis access review and must be acted upon before itiscomplete.
+
+Use Bulk Decisions tomake decision for multiple items or reassign items to another decision maker.
+
+Review Tab
+
+The Review tab contains allofthe items upon which a decision has been made. Clickthe menu icon in theDecision
+column to change or undo a decision.
+How to Perform an Account Group Access Review
+
+
+ Note: The options available inan access review are dependent on the configuration ofIdentityIQ
+ and the option defined when the certificationwas scheduled.
+
+
+
+
+
+ SailPoint Certificationsand Access Reviews 45
+
+===== Page 51/115 =====
+Account Group Membership and Account Group Permission Access Reviews
+
+
+ Note:Â Use Bulk Decisions to reassign items to another decision maker.
+
+ 1. Access the access review details page from the My Access Reviews page or directly from your Home page.
+
+ 2. Take action on individual items.
+
+ â€” OR â€”
+
+ Use the select boxes and select an action from Bulk Decision list.
+
+ 3. Click Save Decisions.
+
+ 4. When alldecisions have been made, click Sign-Off Decision to display the Sign Off on Certification dialog.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Certifications and Access Reviews 46
+
+===== Page 52/115 =====
+Access Review Decisions /Operations
+
+Access Review Decisions / Operations
+
+
+
+ Note:Â The terms account group and application object are use interchangeably inthis document
+ but have the same meaning. Some applications can have multiple application objects. An
+ account group can be the name ofone of those objects.
+
+There are many ways to move through the IdentityIQ application.As you become familiarwith IdentityIQ, you can con-
+figurethe product to fitthefunctions of your job. To take action,you must be the owner or delegated approver of an
+access review. You might be able to view another user's access review; however, the reviews are read-only files.
+
+ Note: System Administrators and Certification Administrators can take action on allaccess
+ review items whether they own the certificationor not.
+
+Basic Access Review Procedure
+
+Access Reviews are performed from the Access Review Page Overview page.
+
+ 1. Go toyour My Access Review page.
+
+ 2. Perform one of the following actions on each item included inthe Access Review Request:
+
+ Note:Â Not allof the decision options are available at alltimes.
+
+
+
+
+ l Reassign â€“ see Reassign Access Reviews
+
+
+
+ l Approve â€“ Approve Access Reviews
+
+
+
+ l Delegate â€“ Delegate Access Reviews
+
+
+
+ l Allow Exception â€“ Allow Exceptions on Access Reviews
+
+
+
+ l Revoke or Edit Access â€“ Revoke or Edit Access From Access Reviews
+
+
+
+ l Revoke Account â€“ Revoke an Account on Access Reviews
+
+
+
+ l Allow Violation â€“ Allow Policy Violations on Access Reviews
+
+ 3. Save your changes. Any decision made on the Access Review Details page or the Decisions tab must be
+ saved before tomoving toa different page. A warning prompts for any unsaved changes.
+
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 47
+
+===== Page 53/115 =====
+Access Review Decisions /Operations
+
+
+ Decisions are not committed at this point, however, and can stillbe changed before the access review issigned
+ off on.
+
+ Note:Â Changing the decisions might revoke one or more line item delegations. Any
+ changes made during the delegation willbe lost.
+
+ 4. Sign off a periodic certification task before itis overdue.
+
+ Note: Allitems must be in the complete state before the sign offoption is available.
+
+ You must sign off a periodic certification before itisconsidered complete. Click Sign Off on the Access Review
+ Details page and select Finish on the Sign Off Access Review screen.
+
+ If the challenge period for revocations isactive, you cannot sign offan access review until one ofthe following
+ conditions ismet:
+
+
+
+ l All items are complete and the challenge period isnot active orno revocation decisions were made.
+
+
+
+ l The access review is inthe challenge phase and allitems are completed and any revocation decisions
+ have progressed through the challenge procedure.
+
+
+
+ l The challenge period has expired.
+
+ 5. OPTIONAL: Ifan electronic signature is required, you must authenticate in order tocomplete the electronic sig-
+ nature. Electronic signature requirements are configured when the certification isscheduled. Use the same cre-
+ dentials for the electronic signature that you use to sign in to IdentityIQ.
+
+Access Review Decisions
+
+Perform one of the following actions on each item included in the Access Review Request:
+
+ Note: Not all ofthe decision options are available atall times.
+
+
+
+
+ l Reassign â€“ see Reassign Access Reviews
+
+
+
+ l Approve â€“ Approve Access Reviews
+
+
+
+ l Delegate â€“ Delegate Access Reviews
+
+
+
+ l Allow Exception â€“ Allow Exceptions on Access Reviews
+
+
+
+ l Revoke or Edit Access â€“ Revoke or Edit Access From Access Reviews
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 48
+
+===== Page 54/115 =====
+Access Review Decisions /Operations
+
+
+
+ l Revoke Account â€“ Revoke an Account on Access Reviews
+
+
+
+ l Allow Violation â€“ Allow Policy Violations on Access Reviews
+
+Reassign Access Reviews
+
+You can reassign items individually or use:
+
+
+
+ l Bulk reassignment to reduce access review lists.For example, ifyou are the assigned approver of an applic-
+ ation with thousands of identities,you can use thisfeature to reassign identities by department ormanager.
+
+
+
+ l Automatic reassignment orforwarding of allaccess reviews assigned toyou. You can use the Forwarding User
+ field on the Edit Preferences page. Ifyou select a forwarding user, allwork items including access review
+ requests are sent tothat user.
+
+When you choose toreassign, you willsee the Reassign Items dialog.
+
+Enter the following information inthe reassignment dialog.
+
+Recipient
+
+ Type the fullname of the approver to whom you are reassigning thiswork item. The recipient can be an identity
+ or a workgroup. Typing the firstfew lettersof a name displays a pop-up menu ofIdentityIQ users and workgroups
+ with names containing that letterstring.Click the arrow next to the fieldto display allusers.
+
+ â€” OR â€”
+
+ Select an assignee from the dropdown menu. The dropdown menu can contain options such as assign to self,
+ assign to manager, or assign to application owner.
+
+Description
+
+ (optional) A briefdescription of the item being reassigned.
+
+Comment
+
+ (optional) Any additional information needed.
+
+Click Reassign to reassign the item and return tothe Access Review Details page.
+
+The Percentage complete bar isupdated to show the changes and the selected items are removed from the listand
+do not show as part of the completion status forthis access review. Ifconfigured, all reassigned items must be acted
+upon before you can sign offa periodic certification.
+
+
+
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 49
+
+===== Page 55/115 =====
+Access Review Decisions /Operations
+
+Approve Access Reviews
+
+You cannot approve policy violations. Warning messages are displayed ifyou attempt toinclude policy violations
+when performing an approval.
+
+Ifprovisioning is enabled from the access review pages and you approve a role that contains required roles towhich
+the identity does not have access, a dialog displays enabling you to request provisioning for those roles. Ifyou perform
+a bulk approval, this function isoverwritten and the roles are approved intheir current state.
+
+Ifyou perform bulk approval and the access review has missing roles, you do not have the option to provision required
+roles. The provisioning function isonly available ifyou approve roles individually and provisioning isenabled forthis
+access review.
+
+Ifthe provisioning dialog displays, review the missing information and make a provisioning decision.
+
+Ifyou choose torequest that the missing roles be added, you must select a recipient for the request and click Pro-
+vision Required Roles again. The recipient you specify isused ifautomatic provisioning isnot configured or there is
+no default remediator forthe application. Or clickDo Not Provision and return tothe access review page.
+
+When you perform an approve at the top level you are approving all ofthe items that are included in the identity,role,
+entitlement, or account group/application object. Access Reviews performed at this levelare logged for auditing pur-
+poses.
+Delegate Access Reviews
+
+Delegation can be performed automatically based on rules specified when the certification request isgenerated. Items
+delegated automatically display in the access review details and behave exactly likeitems delegated manually.
+
+The Enable Line Item Delegation option must be selected when the certificationwas created to delegate certification
+items from the Access Review Details page.
+
+Type the following information inthe Delegate Access Review dialog.
+
+Recipient
+
+ Type the fullname ofthe approver to whom you are delegating thiswork item. The recipient can be an identity or
+ a workgroup. Typing the firstfew lettersof a name displays a pop-up menu of IdentityIQ users and workgroups
+ with names containing that letterstring.
+
+Description
+
+ A description ofthe work item being delegated. You can edit the description as required.
+
+Comment
+
+ (optional) any additional information needed forthis delegation.
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 50
+
+===== Page 56/115 =====
+Access Review Decisions /Operations
+
+
+Changing the decisions may revoke one or more lineitem delegations. Any changes made during the delegation that
+be lost.
+
+You cannot delegate account groups from the account group list.
+
+When you delegate at the top level you are also delegating allof the items that are included inthe identity or role.
+Allow Exceptions on Access Reviews
+
+
+ Note: This option is only available ifitwas turned on in the global settings atthe time ofyour con-
+ figuration.
+
+Use Allow Exception to put an expiration date on access to a particular entitlement, role, or account group. For
+example, ifone employee must temporarily assume the duties of another during a vacation, you can allow them
+access to that rolefor the length ofthe vacation.
+
+Decisions made in access reviews are shown on the Policy Violations page for the affected policy violation.
+
+Allow exceptions on individual items that make up the identity.
+
+Type the following information inthe Allow Exception dialog.
+
+Expiration
+
+ Manually type an expiration date, or clickthe icon and select a date.
+ A 4-digit year isrequired ifyou type the date manually. For example, mm/dd/yyyy.
+
+Comment
+
+ (Optional) Any additional information needed for thisexception.
+Revoke or Edit Access From Access Reviews
+
+This section has information on the following:
+
+
+
+ l Request the removal of an identity access to a specified role or entitlement
+
+
+
+ l Remove a permission of member from an account group
+
+
+
+ l Remove access toa managed entitlement from an identity
+
+
+
+ l Remove a profile or included rolefrom a role
+
+
+
+ l Edit the values of specific entitlement attributes or permission on identity-type access reviews
+
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 51
+
+===== Page 57/115 =====
+Access Review Decisions /Operations
+
+
+ Note:Â Entitlements must be configured on the application to enable editing from the access
+ review pages.
+
+For revocation on individual roles, ifa role contains required or permitted roles that are not used in any other roles for
+thisidentity, a dialog displays enabling you to make revocation decision on each of those included roles. By default all
+included roles, that are not used inother roles for this identity, are marked for removal. Ifyou perform bulk revocation
+thisfunction is overwritten.
+
+On periodic access reviews, by default, no action is taken on a revocation request until the access review containing
+thisitem is signed off or the challenge period expires, ifthe challenge period is active. This is done to ensure that no
+entitlement is removed untilfinal confirmation is received from the requestor. This default behavior can be overwritten
+when the access review schedule iscreated.
+
+Revocation isdone automatically ifyour provisioning provider isconfigured forautomatic revocation through help
+ticket generation or ifyour implementation is configured to work with a help desk solution. Without the automatic con-
+figurations, revocations are done manually using a work request assigned to a IdentityIQ user or workgroup. Ifan
+access review requires that multiple revocation requests be sent to the same IdentityIQ user or workgroup they are
+rolled up into one work item.
+
+For identity-type access reviews, the revocation process can also include the challenge and revocation periods. The
+challenge phase isthe period during which allrevocation requests can be challenged by the user from whom the role
+or entitlement is being removed or modified. The revocation phase isthe period during which allrevocation work must
+be completed. The revocation phase is entered when an access review is signed off or when the active and challenge
+phases have ended.
+
+Type the following information in the revocation dialog and click Revoke.
+
+ Note: This dialog isnot displayed ifa default revoker was specified as part of the IdentityIQ con-
+ figuration.
+
+Recipient
+
+ Type the fullname of the revoker to whom you are assigning this work item. The recipient can be an identity or a
+ workgroup. Typing the firstfew letters ofa name displays a pop-up menu of IdentityIQ users and workgroups
+ with names containing that letter string.
+ Ifautomatic remediation is enabled or a default revoker was specified for the application to which the enti-
+ tlements are associated, the recipient specified here isoverwritten.
+
+Comment
+
+ (Optional) Any additional information needed for this revocation.
+
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 52
+
+===== Page 58/115 =====
+Access Review Decisions /Operations
+
+Edit Revocation Details
+
+ Only available ifthe entitlement is configured formodification. One line displays foreach entitlement contained in
+ this revocation request.
+ Operation â€“ select the operation to perform, Remove or Modify.
+ Attribute â€“ attribute name thatthe attribute or permission isassociated.
+ Value â€“ ifare modifying the entitlement, select or type the new value.
+ Application â€“ application to which the entitlement is associated.
+ Account ID â€“ login ID ofthis identity on the application specified.
+Revoke an Account on Access Reviews
+
+When you select Revoke Account for one entitlement, allother entitlements associated with the same account for
+the item being certified are marked forrevocation.
+
+On periodic certifications,by default, no action istaken on a revocation request untilthe certification containing the
+account is signed off or the challenge period expires, ifthe challenge period isactive. This is done to ensure that no
+account is removed untilfinalconfirmation is received from the requestor. When the certification schedule is created,
+thisdefault behavior can be overwritten allowing revocation requests to be processed immediately.
+
+Revocation is done automatically ifyour provisioning provider is configured forautomatic revocation through help
+ticketgeneration or ifyour implementation is configured to work with a help desk solution. Without the automatic con-
+figurations, revocations are done manually using a work request assigned to a IdentityIQ user or workgroup. Ifa cer-
+tificationrequires that multiple revocation requests be sent to the same IdentityIQ user or workgroup they are rolled up
+intoone work item.
+
+For identity-type certifications, the revocation process can also include the challenge and revocation periods. The chal-
+lenge phase is the period during which allrevocation requests can be challenged by the user from which the account
+isbeing removed. The revocation phase is the period during which allrevocation work must be completed. The revoc-
+ation phase isentered when a certification is signed off orwhen the active and challenge phases have ended.
+Respond to a Challenged Revocation
+
+For identity-type certifications, the revocation process can include the challenge and revocation periods. The chal-
+lenge phase is the period when a user whose role orentitlements are being removed can challenge those revocation
+requests.
+
+When a revocation request is challenged, the status of the item associated with the revocation request displays as
+Challenged. You must take action on allchallenged revocations before a certificationis complete.
+
+From the Challenge Decision drop-down menu select either Accept or Reject.
+
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 53
+
+===== Page 59/115 =====
+Access Review Decisions /Operations
+
+
+Allcomments are kept with the certificationitem and can be viewed below the certification decision information for that
+item. Click comments toview the comments added by the challenger and accepted / rejected to view the comments
+associated with the decision.
+
+Based on your decision one ofthe following occurs:
+
+Reject
+
+ The revocation process proceeds as normal when the certification issigned off or the challenge period ends.
+
+Accept
+
+ The item is moved to the open status and you must make another certification decision.
+Allow Policy Violations on Access Reviews
+
+Use thisto allow an identity to retain conflicting roles, accounts, or entitlements fora specific period of time. For
+example, ifone employee must temporarily assume the duties of another, you can allow them access to a rolethat cre-
+ates a policy violation for the length of the vacation.
+
+To display detailed information about the policy, click the violation name on the Decisions tab.
+
+Type the following information in the Allow Violation dialog.
+
+Expiration
+
+ Manually type an expiration date, or clickthe [...]icon and select a date.
+ A 4-digit year is required ifyou type the date manually. For example, mm/dd/yyyy.
+
+Comment
+
+ (Optional) Any additional information needed for thisexception.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Certifications and Access Reviews 54
+
+===== Page 60/115 =====
+How to Complete Access Review Work Items
+
+How to Complete Access Review Work Items
+
+
+The following procedures listthe steps to complete Access Review work items thatwere originallyassigned toa dif-
+ferentapprover, but now require you, as amember of theworkgroup, or the other members of a workgroup totake
+action.Access review work items include items that were delegated, reassigned, forwarded, require your approval, or
+require you to take revocation actions.
+
+
+
+ l How to Complete Delegated Access Reviews
+
+
+
+ l How to Complete Revocation Work Items
+
+
+
+ l How to Complete Reassigned or Forwarded Access Reviews
+
+
+
+ l How to Perform Multi-Level Sign Off on Access Reviews
+
+
+
+ l How to Challenge a Revocation Request
+
+How to Complete Delegated Access Reviews
+
+You can complete delegated access reviews items from access reviews that were assigned to adifferent certifierthat
+the originalapprover delegated to you. For example, ifan employee does work for you but reports to a differentman-
+ager, thatmanager might not be familiar withallof the entitlements orroles listedin the employee's Identity Cube.
+
+To display the Manage Work Item page, clicka delegation work item.
+
+Required Authorization
+
+To take action on a delegated work item, you must be the owner ofthat work item.
+
+ Note: A System Administrator or CertificationAdministrator can also take action on work items.
+
+ Complete Delegated Access Reviews
+
+ 1. Open a delegated work item.
+
+ 2. Review thework item information inthe Summary section.
+
+ 3. Review theComments section forany information associated withthis work item. Use the Add Comment but-
+ ton toadd additional information tothe work item.
+
+
+
+
+
+
+
+
+
+ SailPoint Certificationsand Access Reviews 55
+
+===== Page 61/115 =====
+How toComplete Access Review Work Items
+
+ 4. Make an access review decision on each item listedfor the identity.See Making Access Decisions fordetailed
+ information.
+
+ 5. Click Complete todisplay the Completion Comments dialog and mark the work item as complete.
+
+
+ Note: Ifyour deployment isconfigured torequire a decision on each item inthe work item before
+ itismarked complete and you do not take action on allitems in the work item, an alert displays
+ when you attempt to complete a work item.
+
+ Delegation Review â€“ Optional
+
+Ifthe access review was originally configured torequire a delegation review, you can perform this review after the del-
+egate completes theirportion ofthe access review. The items awaiting review are listedon the Important tab of the
+access review.
+
+ 1. In the access review, click the Important tab. Delegated items that have been completed and are awaiting
+ review are listedin the Returned Items section.
+
+ 2. To view the comments of the delegated decision maker, clickthe three-line menu and choose History,
+
+ 3. Click Agree to accept the delegated decision; ifyou don't accept the delegated decision, you can override the
+ delegated decision with any of the available options â€“ Revoke, Revoke Account, Allow, etc. You can also del-
+ egate the line item again.
+
+
+ Note:Â Ifthe identitywho originally delegated the work item overrides a delegated decision, an
+ audit shows the delegation of the work item was never assigned.
+
+How to Complete Revocation Work Items
+
+You can confirm that you have completed the requested revocation. Revocation requests are sent after the access
+review forthe associated item is completed and signed off orwhen the access review enters the challenge phase, if
+the challenge period feature isactive. This process ensures that nothing is removed untilthe final decision ismade on
+the access review. When you select Complete on thiswork item, you are stating that you acted on the revocation
+request.
+
+Required Authorization
+
+You must have authorization on the specified application to perform the required revocation.
+
+ Note: A System Administrator or Certification Administrator can also take action on work items.
+
+ Completing Revocation Work Items
+
+
+
+
+ SailPoint Certifications and Access Reviews 56
+

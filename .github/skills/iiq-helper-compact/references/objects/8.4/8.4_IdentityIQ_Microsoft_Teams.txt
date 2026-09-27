@@ -1,0 +1,1472 @@
+===== Page 1/25 =====
+ IdentityIQ Microsoft Teams
+ Notifications
+
+
+ Version:8.4
+
+ Revised:September2023
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thisdocument and theinformationcontainedhereinisSailPointConfidentialInformation
+
+===== Page 2/25 =====
+Copyright and Trademark Notices
+
+Copyright © 2023 SailPoint Technologies, Inc.  All Rights Reserved.
+
+Alllogos, text,content, including underlying HTML code, designs, and graphics used and/or depicted on these written
+materials or in thisInternet website are protected under United States and international copyright and trademark laws
+and treaties, and may not be used or reproduced without the prior express written permission of SailPoint Tech-
+nologies, Inc.
+
+“SailPoint Technologies,” (design and word mark), “SailPoint,” (design and word mark), "Identity IQ,” “IdentityNow,”
+“SecurityIQ,” “Identity AI,” “Identity Cube,” and “SailPoint Predictive Identity” are registered trademarks of SailPoint
+Technologies, Inc. “Identity isEverything,” “The Power of Identity,” and “Identity University” are trademarks of
+SailPoint Technologies, Inc. None of the foregoing marks may be used without the prior express written permission of
+SailPoint Technologies, Inc. Allother trademarks shown herein are owned by the respective companies or persons
+indicated.
+
+SailPoint Technologies, Inc. makes no warranty ofany kind regarding these materials or the information included
+therein, including, but not limited to,the implied warranties ofmerchantability and fitness for a particular purpose.
+SailPoint Technologies shall not be liable for errors contained herein or direct, indirect, special, incidental orcon-
+sequential damages inconnection with the furnishing, performance, or use of thismaterial.
+
+Patents Notice. https://www.sailpoint.com/patents
+
+Restricted Rights Legend. All rights are reserved. No part ofthis document may be published, distributed, reproduced,
+publicly displayed, used to create derivative works, or translated to another language, without the prior written consent
+ofSailPoint Technologies. The information contained inthis document issubject to change without notice.
+
+Use, duplication or disclosure by the U.S. Government is subject to restrictions as set forth insubparagraph (c) (1) (ii)
+ofthe Rights inTechnical Data and Computer Software clause at DFARS 252.227-7013 for DOD agencies, and sub-
+paragraphs (c)(1) and (c)(2) ofthe Commercial Computer Software Restricted Rights clause at FAR 52.227-19 for
+other agencies.
+
+Regulatory/Export Compliance. The export and re-export of this software iscontrolled for export purposes by the U.S.
+Government. By accepting this software and/or documentation, licensee agrees to comply with allU.S. and foreign
+export laws and regulations as they relate to software and related documentation.  Licensee will not export or re-
+export outside the United States software or documentation, whether directly or indirectly, to any Prohibited Party and
+willnot cause, approve or otherwise intentionally facilitate others inso doing. A Prohibited Party includes: a party in a
+U.S. embargoed country or country the United States has named as a supporter of international terrorism; a party
+involved in proliferation; a party identified by the U.S. Government as a Denied Party; a party named on the U.S.
+Department of Commerce’s Entity Listin Supplement No. 4 to 15 C.F.R. § 744; a party prohibited from participation in
+export orre-export transactions by a U.S. Government General Order; a party listed by the U.S. Government’s Office
+ofForeign Assets Control as ineligible to participate in transactions subject toU.S. jurisdiction; or any party that
+licensee knows or has reason toknow has violated or plans to violate U.S. or foreign export laws or regulations.
+Licensee shall ensure that each of itssoftware users complies with U.S. and foreign export laws and regulations as
+they relate to software and related documentation.
+
+===== Page 3/25 =====
+Contents
+
+
+ Introduction to IdentityIQ Microsoft Teams Notifications 1
+
+ Configuring IdentityIQ Microsoft Teams Notifications 2
+
+ Prerequisites for Integrating Microsoft Teams with IdentityIQ 2
+
+ Components ofIdentityIQ's Microsoft Teams Notifications 3
+
+ Best Practices for Configuring IdentityIQ Microsoft Teams Notifications 4
+
+ Configuring Single Sign-On to IdentityIQ from Microsoft Teams 5
+
+ Creating an API Application in Azure 8
+
+ Creating a Microsoft Teams Application for IdentityIQ inAzure 9
+
+ Creating an Azure Bot for IdentityIQ's Microsoft Teams Notifications 12
+
+ Installing and Configuring the IdentityIQ Service Code 14
+
+ Creating a Microsoft Teams Manifest 17
+
+ Configuring IdentityIQ's Microsoft Azure Active Directory Application forTeams 18
+
+ Enabling Microsoft Teams Notifications Within IdentityIQ 19
+
+ Configuring API Authentication for Microsoft Teams inIdentityIQ 19
+
+ Installing the IdentityIQ Microsoft Teams Notifications Bot in Microsoft Teams 20
+
+ Using IdentityIQ Microsoft Teams Notifications 22
+
+ Auditing Microsoft Teams Notifications 22
+
+===== Page 4/25 =====
+Introduction to IdentityIQ Microsoft Teams Notifications
+
+Introduction to IdentityIQ Microsoft Teams Notifications
+
+
+IdentityIQ's Microsoft Teams Notifications feature allows notifications from IdentityIQ to be delivered directly to users
+as notifications in theirMicrosoft Teams environment.
+
+Any IdentityIQ notification for certifications,access requests, and access approvals can be sent as a Microsoft Teams
+notification,and can include a linkto the relevant area oraction within IdentityIQ. For more information on IdentityIQ
+notifications, see the IdentityIQ System Configuration documentation.
+
+With SAML-based single sign-on enabled, authenticated Microsoft Teams users can directly access IdentityIQ from
+linkscontained within the notifications,to take actions in IdentityIQ, without a separate login toIdentityIQ.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Microsoft Teams Notifications 1
+
+===== Page 5/25 =====
+Configuring IdentityIQ Microsoft Teams Notifications
+
+Configuring IdentityIQ Microsoft Teams Notifications
+
+
+Implementing the Microsoft Teams Notifications feature forIdentityIQ involves creating and configuring some com-
+ponents in Azure, and also configuring IdentityIQ to support Microsoft Teams notifications. Information from some con-
+figuration steps is required by other configuration steps, so itisstrongly recommended that you perform the
+integration in the sequence presented in thisguide.
+
+Configuring SAML-based single sign-on (SSO) between Azure and IdentityIQ isan optional step in thisprocess.
+Enabling SSO between IdentityIQ and Azure gives your Microsoft Teams users a seamless experience using noti-
+fications inMicrosoft Teams to take action inIdentityIQ. Enabling SSO removes the need to log inseparately toIden-
+tityIQor to browse to the correct IdentityIQ location to take action on a notification.
+
+ Important: Details on how toconfigure Azure components are provided in thisguide as an aid to
+ implementers; however, implementers should also consult Microsoft's documentation on Azure
+ and Microsoft Teams toensure thatthey have the most accurate and up-to-date information on
+ these platforms. This guide only discusses actions inAzure that are required as part IdentityIQ's
+ Microsoft Teams Notifications feature, and does not discuss more general Azure concepts or
+ actions that may be part ofsetting up Microsoft Teams and SSO for your organization.
+
+Prerequisites for Integrating Microsoft Teams with IdentityIQ
+
+Prerequisites for implementing the Microsoft Teams integration forIdentityIQ include the following:
+
+Supported Operating Systems
+
+IdentityIQ's Microsoft Teams bot is supported on any currently available and supported versions of Windows and
+Linux.
+
+Azure Prerequisites
+
+
+
+ l A familiaritywith Azure concepts and operations on the part of your implementation team
+
+
+
+ l A configured and functioning Azure tenant for your organization
+
+
+
+ l A configured IdentityIQ Connector application. This application provides the permissions necessary foraggreg-
+ ating Active Directory user and group data into IdentityIQ. Itcommunicates with a corresponding Azure Active
+ Directory application within IdentityIQ. For more information, see SailPoint's Integrating SailPoint with Azure
+ Active Directory Connector guide, which is available in the Microsoft Azure Active Directory area of the Con-
+ nector Directory on Compass.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Microsoft Teams Notifications 2
+
+===== Page 6/25 =====
+Configuring IdentityIQ Microsoft Teams Notifications
+
+
+
+ l Optional: a resource group in Azure for your IdentityIQ integration. This can help with organizing your Azure
+ resources.
+
+IdentityIQ Prerequisites
+
+
+
+ l A configured instance ofan Azure Active Directory application. This isused toaggregate user and group data
+ from Azure Active Directory into IdentityIQ, and correlate ittoIdentityIQ users. Some modifications willbe
+ made tothis application as part of setting up the Microsoft Teams integration, and are described laterin this
+ document. You can also refer to SailPoint's Integrating SailPoint with Azure Active Directory Connector guide,
+ which isavailable in the Microsoft Azure Active Directory area of the Connector Directory on Compass.
+
+
+
+ l Recommended: a private server to run the IdentityIQ service code. The IdentityIQ service code should not be
+ run on the same server as IdentityIQ; the service code must be exposed to the Internet, and the IdentityIQ
+ server should not be exposed to the Internet.
+
+Connectivity and Security Prerequisites
+
+
+
+ l A network connection thatallows Microsoft Teams to contact the IdentityIQ service code. This requires a public
+ IP address that routes to the private IP of the server running the service code. The trafficcan be limited to a spe-
+ cific port,which is customizable. The public IP must be resolvable by a DNS.
+
+
+
+ l To enable Microsoft Teams to trustthe callto the IdentityIQ service code, itmust support HTTPS and have a
+ valid certificate from a Microsoft supported Certificate Authority for the domain name in the previous item. The
+ certificate and key are used by the IdentityIQ service code running on the private server. Note that Microsoft
+ Teams willnot send messages to a server with an invalid certificate;this includes a self-signed certificate.
+
+Components of IdentityIQ's Microsoft Teams Notifications
+
+Here isan overview ofthe components that are part of the IdentityIQ Microsoft Teams Notifications feature. Some of
+these components are created as app registrations inAzure. Detailed instructions for creating and configuring these
+components is provided later in thisdocument.
+
+API Application – an Azure app registration thatenables token-based authentication between Microsoft Teams and
+IdentityIQ by providing a GetToken scope and the proper audience value. This willbe assigned to the Teams applic-
+ation as a permission. When this isenabled, IdentityIQ can look forthe scope GetToken when the bot requests an
+API token, and verify the audience token claim. See Creating an API Application in Azure.
+
+Teams Application – an Azure app registration that defines the scope in Azure that can be used by the IdentityIQ
+Microsoft Teams Notifications feature. In this app, you define authentication parameters, set a clientsecret, and
+choose which Microsoft Graph API permissions to expose. You will use some values from this app inIdentityIQ, to
+ensure secure communication between IdentityIQ and Azure. See Creating a Microsoft Teams Application for Iden-
+tityIQin Azure
+
+
+
+
+
+ SailPoint IdentityIQ Microsoft Teams Notifications 3
+
+===== Page 7/25 =====
+Configuring IdentityIQ Microsoft Teams Notifications
+
+
+Azure Bot for Microsoft Teams – an Azure bot that leverages Microsoft's artificialintelligence(AI) chatbot to man-
+age the messaging between Microsoft Teams and IdentityIQ. This bot also stores the configuration required to access
+the IdentityIQ service code. See Creating an Azure Bot for IdentityIQ's Microsoft Teams Notifications.
+
+IdentityIQ service code – this code isprovided by SailPoint and isinstalled in your environment. The service code
+package includes an environment (.env) filethatmust be configured with necessary resource information such as the
+Azure Teams app ID, Azure Teams app secret, Azure tenant ID, and more. Once the .env filehas been configured, a
+manifest can be built.This manifest isused to deploy the app in the user's Teams environment. See Installing and
+Configuring the IdentityIQ Service Code
+
+Optional: SSO Provider – an Azure app registration that enables SAML-based single-sign on between Microsoft
+Teams and IdentityIQ. Implementing this option streamlines the login process forMicrosoft Teams users, allowing
+them bypass the IdentityIQ login when they click IdentityIQ linksin Microsoft Teams. See Configuring Single Sign-On
+toIdentityIQ from Microsoft Teams
+
+
+Best Practices for Configuring IdentityIQ Microsoft Teams Noti-
+fications
+
+SailPoint recommends that you follow these best practices as you implement the IdentityIQ Microsoft Teams Noti-
+fications feature:
+
+
+
+ l Use meaningful names forthe components you create in Azure. This willhelp with organizing your applic-
+ ations inAzure. Here isan example ofhow you could name your components:
+
+
+
+ l IdentityIQ API Access – the Azure API application. See Creating an API Application inAzure.
+
+
+
+ l IdentityIQ Teams – the Teams application. See Creating a Microsoft Teams Application for IdentityIQ
+ in Azure
+
+
+
+ l IdentityIQ_MyCompany Bot – the bot handle foryour Azure bot. Note that thisname must be unique
+ in Azure. See Creating an Azure Bot for IdentityIQ's Microsoft Teams Notifications
+
+
+
+ l IdentityIQ Connector – the Azure application for the IdentityIQ Azure Active Directory connector. See
+ Prerequisites forIntegrating Microsoft Teams with IdentityIQ.
+
+
+
+ l IdentityIQ SSO Provider – the Azure application for managing single sign-on between Microsoft
+ Teams and IdentityIQ. See Configuring Single Sign-On to IdentityIQ from Microsoft Teams.
+
+
+
+ l When configuring the IdentityIQ service code:
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Microsoft Teams Notifications 4
+
+===== Page 8/25 =====
+Configuring IdentityIQ Microsoft Teams Notifications
+
+
+
+ l Encrypt the certificateand key. See Installingand Configuring the IdentityIQ Service Code.
+
+
+
+ l Make sure the cert directory, the bot.cert and the bot.key items are set with read write per-
+ mission for owner only.
+
+Configuring Single Sign-On to IdentityIQ from Microsoft Teams
+
+IdentityIQ Microsoft Teams notifications supports a SAML-based Single Sign-On (SSO) configuration. Enabling
+SSO for Microsoft Teams and IdentityIQ is optional, but itisuseful in that itstreamlines the login process forMicrosoft
+Teams users, allowing them bypass the IdentityIQ login when they click IdentityIQ links inMicrosoft Teams.
+
+This isa two-step process that requires configuring SAML SSO within Azure forIdentityIQ, then using some of the
+parameters from the Azure steps toenable SAML SSO within IdentityIQ.
+
+Single Sign-On Configuration in Azure Active Directory
+
+
+ Details on how toconfigure Azure components are provided in thisguide as an aidto imple-
+ menters; however, implementers should also consult Microsoft's documentation on Azure and
+ Microsoft Teams toensure thatthey have the most accurate and up-to-date information on these
+ platforms. This guide only discusses actions inAzure thatare required as part IdentityIQ's
+ Microsoft Teams Notifications feature, and does not discuss more general Azure concepts or
+ actions that may be part ofsetting up SSO orMicrosoft Teams foryour organization.
+
+
+Follow these steps inAzure forenabling single sign-on from Microsoft Teams to IdentityIQ:
+
+ 1. Navigate toyour Azure Active Directory home.
+
+ 2. Click Add > Enterprise Application.
+
+ 3. Click Create your own application
+
+ 4. Enter a Name for your application.
+
+ 5. Select Integrate any other application you don't find in the gallery.
+
+ 6. Click Create. Once the creation process is complete, Azure opens a Properties page forthe application.
+
+ 7. Define the users and groups that can use SAML SSO with IdentityIQ:
+
+ a. In the leftnavigation, click Users and groups.
+
+ b. Click Add users and groups.
+
+
+
+
+
+
+ SailPoint IdentityIQ Microsoft Teams Notifications 5
+
+===== Page 9/25 =====
+Configuring IdentityIQ Microsoft Teams Notifications
+
+ c. Choose the users and groups that you want tobe able to use SAML SSO.
+
+ d. Click Select.
+
+ e. Click Assign.
+
+ 8. In the leftnavigation, clickSingle sign-on.
+
+ 9. Click the SAML tile
+
+ 10. In the Basic SAML Configuration section, clickEdit.
+
+ a. Add an Identifier (Entity ID). This can be any name, but typicallytakes the form of a URL (for example,
+ https://myhost:myport/identityiq). This value isused to linkAzure and IdentityIQ; Make a
+ note of ittouse later when configuring SSO within IdentityIQ.
+
+ b. Add a Reply URL (Assertion Consumer Service URL) and enter a URL to your IdentityIQ instance, in
+ thisformat:
+
+
+ https://myhost:myport/identityiq/login.jsf.
+
+
+ This URL must be accessible toyour Microsoft Teams users on your network.
+
+ c. Enter a Sign on URL to your IdentityIQ instance, inthis format:
+
+
+ https://myhost:myport/identityiq
+
+
+ d. Do not enter a Logout URL.
+
+ e. Save your changes.
+
+ 11. In the User Attributes and Claims section, click Edit. IdentityIQ uses the unique identifierthat isspecified as
+ the Required Claim's Claim Name tocorrelate IdentityIQ users to Azure/Microsoft Teams users. By default,
+ Azure uses user.userprincipalname as itsunique identifier,but IdentityIQ uses user.objectid by
+ default.
+
+
+ To use IdentityIQ's default configuration, you must edit this value to change the Source attribute for the claim
+ to user.objectid.
+
+
+ To editthe claim to use user.objectid as the Source attribute, clickEdit.
+
+
+
+
+
+
+
+SailPoint IdentityIQ Microsoft Teams Notifications 6
+
+===== Page 10/25 =====
+Configuring IdentityIQ Microsoft Teams Notifications
+
+ a. Click the Claim Name to editit.
+
+ b. Change the Name Identifier format to Unspecified.
+
+ c. Select user.objectid as the Source attribute.
+
+ d. Save your changes.
+
+ 12. In the SAML Signing Certificate section, download and save the Certificate (Base64). You willneed this
+ later,when configuring SAML SSO within IdentityIQ.
+
+ 13. In the Set up (name) section, make a note of the URLs thatare listed.You willneed these later,when con-
+ figuring SAML SSO within IdentityIQ.
+
+Single Sign-On Configuration in IdentityIQ
+
+Follow these steps forenabling single sign-on inIdentityIQ:
+
+ 1. Click the gear menu > Global Settings > Login Configuration.
+
+ 2. Click the SSO Configuration tab.
+
+ 3. Check to select the Enable SAML Based Single Sign-On (SSO) box. This opens a panel for entering SAML
+ Based SSO details.
+
+ 4. In the Identity Provider Settings section:
+
+ a. Enter an Entity ID /Issuer. This must match the Azure AD Identifier from the Set up (name) section
+ inAzure. (See step 13 inthe previous section.)
+
+ b. Enter a SSO Login URL. This must match the Login URL from the Set up (name) section in Azure.
+ (See step 13 inthe previous section.)
+
+ c. Enter your Public X.509 Certificate. This isthe certificateyou downloaded and saved in the Azure
+ SAML Signing Certificate panel, as described the previous section.
+
+ 5. In the Service Provider (IdentityIQ) Settings section:
+
+ a. Enter an Entity ID Issuer. This must match the Identifier (Entity ID) value you set inAzure in the
+ Basic SAML Configuration panel, as described inthe previous section.
+
+ b. Enter a SAML URL. This must match the Reply URL (Assertion Consumer Service URL) you set
+ Azure in the Basic SAML Configuration panel, as described in the previous section.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Microsoft Teams Notifications 7
+
+===== Page 11/25 =====
+Configuring IdentityIQ Microsoft Teams Notifications
+
+ c. Set the SAML Name ID Format tounspecified, ifyou are using the default identifiers as described in
+ step 11 in the previous section. Ifyou have opted to use a different set ofvalues for uniquely identifying
+ users, select the appropriate value here.
+
+ d. The SAML Correlation Rule manages the correlation of IdentityIQ identities toAzure/Teams identities.
+ IdentityIQ provides a sample rule, ExampleAzureActiveDirectorySAML. This rule is included inthe
+ examplerules.xml file,located in the [install_directory]WEB-INF\config directory. If you
+ are using the recommended default identifiers, you can use the sample rule without modification. Ifyou
+ have opted touse different unique identifiers, you can either edit this rule,or use a different rule that you
+ have developed.
+
+ 6. Save your changes.
+
+For more information on configuring your IdentityIQ instance for SSO authentication, refer tothe SSO Configuration
+section ofthe SailPoint IdentityIQ System Configuration Guide
+Creating an API Application in Azure
+
+To enable token-based authentication between Microsoft Teams and IdentityIQ, you must create an API application in
+Azure, then use some of the values from the API application within IdentityIQ, toenable authentication. For related
+information about what to configure in IdentityIQ for token-based authentication, see Configuring API Authentication
+forMicrosoft Teams in IdentityIQCreating an API Application inAzure
+
+To create the API Application in Azure:
+
+ 1. Navigate to your Azure Active Directory home.
+
+ 2. In the leftnavigation, clickApp registrations.
+
+ 3. Click New Registration.
+
+ 4. Enter a Name for your application. When creating applications, it'sa good idea toname them according tofunc-
+ tion; for example, IdentityIQ API.
+
+ 5. Under Supported account types, choose the Multitenant option.
+
+ 6. Click Register
+
+ 7. Once the registration process has completed, clickExpose an API, inleftnavigation.
+
+ 8. Click Add a scope
+
+ 9. Click Save and Continue
+
+
+
+
+
+ SailPoint IdentityIQ Microsoft Teams Notifications 8
+
+===== Page 12/25 =====
+Configuring IdentityIQ Microsoft Teams Notifications
+
+ 10. Enter a Scope name, for example, GetToken. You willuse thisvalue laterwhen configuring
+ API Authentication inIdentityIQ.
+
+ 11. For Who can consent? choose Admins and users
+
+ 12. Add names and descriptions for Admin consent and User consent.
+
+ 13. Make sure the state isEnabled
+
+ 14. Click Add scope to save your information
+
+ 15. Click to edit the Application ID URI, and append /identityiq/api to the end of the URI, then clickSave.
+ You willuse this value later when configuring API Authentication inIdentityIQ.
+
+Creating a Microsoft Teams Application for IdentityIQ in Azure
+
+This Azure application defines the scope that can be used by the IdentityIQ Microsoft Teams Notifications feature. In
+thisapp, you define authentication parameters, set a client secret, and choose which Microsoft Graph
+API permissions to expose. You willuse some values from thisapp in IdentityIQ, toensure secure communication
+between IdentityIQ and Azure.
+
+ Important: Details on how toconfigure Azure components are provided in this guide as an aid to
+ implementers; however, implementers should also consult Microsoft's documentation on Azure
+ and Microsoft Teams toensure thatthey have the most accurate and up-to-date information on
+ these platforms. This guide only discusses actions inAzure thatare required as part IdentityIQ's
+ Microsoft Teams Notifications feature, and does not discuss more general Azure concepts or
+ actions that may be part ofsetting up Microsoft Teams and SSO for your organization.
+
+
+ 1. Navigate to your Azure Active Directory home.
+
+ 2. In the leftnavigation, clickApp registrations.
+
+ 3. Click New Registration.
+
+ 4. Enter a Name for your application. When creating applications, it'sa good idea to name them according to func-
+ tion; forexample, IdentityIQ Teams.
+
+ 5. Under Supported account types, choose the Multitenant option.
+
+ 6. Click Register.
+
+ 7. Configure an Authentication redirect URI:
+
+
+
+
+
+
+ SailPoint IdentityIQ Microsoft Teams Notifications 9
+
+===== Page 13/25 =====
+Configuring IdentityIQ Microsoft Teams Notifications
+
+ a. In the leftnavigation, click Authentication.
+
+ b. Click Add platform.
+
+ c. In the Configure Platforms panel that opens at right,click the Web tile.
+
+ d. Enter a Redirect URIs. Use thisvalue for the redirct:
+ https://token.botframework.com/.auth/web/redirect
+
+ e. Under Implicit grant and hybrid flows, make sure both flows are checked.
+
+ f. Save your edits.
+
+ 8. Create a clientsecret for the application:
+
+ a. In the leftnavigation, click Certificates and secrets.
+
+ b. Click New client secret.
+
+ c. Add a description and expiration date.
+
+ d. Click Add.
+
+ IMPORTANT: This isthe only time the clientsecret isavailable to be copied. Use
+ the copy icon to copy and save the secret. You willneed the secret later,when
+ creating your Azure bot, configuring the service code, and configuring IdentityIQ's
+ integration properties.
+
+
+ 9. Configure the API permissions forthe application:
+
+ a. In the leftnavigation clickAPI permissions.
+
+ b. Click Add a permission.
+
+ c. Under the Microsoft APIs tab, choose Microsoft Graph and select these options in the Delegated Per-
+ missions list:
+
+
+
+ l email
+
+
+
+ l offline_access
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Microsoft Teams Notifications 10
+
+===== Page 14/25 =====
+Configuring IdentityIQ Microsoft Teams Notifications
+
+
+
+ l openid
+
+
+
+ l profile
+
+
+ Then clickAdd permissions.
+
+ Note: If User.Read is present and selected, you can leave itselected.
+
+ d. In the leftnavigation click API permissions.
+
+ e. Click Add a permission.
+
+ f. Under the My APIs tab, choose the API Application you created earlier(as described inthe Creating
+ an API Application in Azure section). Select your GetToken permission and click Add permissions.
+
+ g. The API permissions page now shows a listofthe API permissions you have created. Check the Grant
+ admin consent for (MyTenant), where MyTenant isthe name of your tenant. Then click Yes tocon-
+ firm.
+
+ 10. In the leftnavigation, click Expose an API .
+
+ 11. Click Set for the Application ID URI.
+
+ 12. Edit the URI toadd botid- immediately after the api:// in the URI. Be sure toinclude the dash after botid.
+ Click Save.
+
+ 13. Add an access_as_user scope:
+
+ a. Click Add a scope. Give itaScope name and choose Admins and users. Provide Admin and user con-
+ tent descriptions – these are messages that willappear tousers ifthey need to give authorization.
+
+ b. Enter a Scope name, for example, access_as_user.
+
+ c. Add names and descriptions for Admin consent and User consent.
+
+ d. Make sure the state isEnabled.
+
+ e. Click Add Scope to save your changes.
+
+ 14. Add a GetToken scope:
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Microsoft Teams Notifications 11
+
+===== Page 15/25 =====
+Configuring IdentityIQ Microsoft Teams Notifications
+
+ a. Click Add a scope. Give ita Scope name and choose Admins and users. Provide Admin and user con-
+ tent descriptions – these are messages that willappear to users ifthey need to give authorization.
+
+ b. Enter a Scope name, forexample, GetToken.
+
+ c. Add names and descriptions for Admin consent and User consent.
+
+ d. Make sure the state is Enabled.
+
+ e. Click Add Scope to save your changes.
+
+ 15. Authorize desktop and mobile applications to use this application.
+
+ a. Click Add a client application
+
+ b. For a Microsoft Teams web client,enter this value as the Client ID:
+ 5e3ce6c0-2b1f-4285-8d4b-75ee78787346 .
+ This value isprovided by Microsoft; referto Microsoft's documentation fordetails about the Client ID.
+
+ c. Check the Authorized scopes option.
+
+ d. Click Add application.
+
+ e. Repeat steps 1-4 above, substituting this value in step 2: For a Microsoft Teams mobile and desktop cli-
+ ents, enter this value as the Client ID:
+ 1fec8e78-bce4-4aaf-ab1b-5451cc387264 .
+ This value isprovided by Microsoft; referto Microsoft's documentation fordetails about the Client ID.
+
+Once your Microsoft Teams application isconfigured, copy and save the Application (client) ID value. You will
+need thisvalue later,when creating your Microsoft Teams bot and configuring IdentityIQ's integration with Microsoft
+Teams.
+
+For more information, see:
+
+
+
+ l Creating an Azure Bot for IdentityIQ's Microsoft Teams Notifications
+
+
+
+ l Configuring IdentityIQ's Microsoft Azure Active Directory Application for Teams
+
+Creating an Azure Bot for IdentityIQ's Microsoft Teams Noti-
+fications
+
+Next you willcreate an Azure bot thatleverages Microsoft's artificialintelligence(AI) chatbot tomanage the mes-
+saging between Microsoft Teams and IdentityIQ. This bot also stores the configuration required to access the
+
+
+
+
+
+ SailPoint IdentityIQ Microsoft Teams Notifications 12
+
+===== Page 16/25 =====
+Configuring IdentityIQ Microsoft Teams Notifications
+
+
+IdentityIQ service code.
+
+ Important: Details on how toconfigure Azure components are provided inthis guide as an aid to
+ implementers; however, implementers should also consult Microsoft's documentation on Azure
+ and Microsoft Teams to ensure that they have the most accurate and up-to-date information on
+ these platforms. This guide only discusses actions inAzure thatare required as part IdentityIQ's
+ Microsoft Teams Notifications feature, and does not discuss more general Azure concepts or
+ actions that may be part ofsetting up Microsoft Teams and SSO for your organization.
+
+
+ 1. From your Azure home, use the search field tosearch forAzure Bot.
+
+ 2. Choose the result that appears in the Marketplace category, to open the Create an Azure Bot page.
+
+ 3. Enter a Bot handle. This is the name of your bot, that your users willsee in the Microsoft Teams application.
+
+ 4. Select your resource group forthe bot.
+
+ 5. Choose your pricing plan.
+
+ 6. For Type of app, choose the Multi tenant option.
+
+ 7. For Creation type, choose Use existing app registration. This is how you link the bot to your Microsoft
+ Teams application. Enter these values from the Teams application you created, as described in Creating a
+ Microsoft Teams Application for IdentityIQ inAzure.
+
+
+
+ l App ID
+
+
+
+ l App secret
+
+ 8. Click Review + Create to create the bot and link ittoyour Microsoft Teams application. On the review screen,
+ click Create toconfirm the bot creation.
+
+ 9. When the deployment process iscomplete, configure the bot:
+
+ a. Click Go to Resource.
+
+ b. In the leftnavigation, click Configuration.
+
+ c. Enter a Messaging endpoint. This endpoint isused by the Microsoft Teams application tocom-
+ municate with the bot. The endpoint must be a public, DNS-resolvable domain name.
+
+
+ For security purposes, SailPoint recommends using a format that incorporates the Microsoft App ID
+
+
+
+
+
+
+SailPoint IdentityIQ Microsoft Teams Notifications 13
+
+===== Page 17/25 =====
+Configuring IdentityIQ Microsoft Teams Notifications
+
+
+ with the dashes removed. For example:
+
+
+ https://identityiqteams.mycompany.com:3978/appidwithnodashes/api/messages
+
+ d. Click Apply.
+
+ e. Click Add OAuth Connection Settings – thisconnection manages tokens for SSO authentication. You
+ willuse some values from the Microsoft Teams application you created; see Creating a Microsoft Teams
+ Application for IdentityIQ in Azure fordetails on where to find those values.
+
+ i. Enter a Name forthe new connection setting.Do not include spaces inthe name.
+
+ ii. For Service provider, select Azure Active Directory v2.
+
+ iii. Enter the Client ID and Client secret from your Microsoft Teams application.
+
+ iv. For Token Exchange URL enter the Application ID URI from your Microsoft Teams application.
+ This isthe URI thatbegins with api://botid-
+
+ v. Enter your Tenant ID.
+
+ vi. For Scope, enter the scope you created foryour API application. To find this value, navigate to
+ your API application, click Expose an API, and copy the fullscope from the Scopes field there,
+ toenter here. See Creating an API Application inAzure.
+
+ vii. Click Save.
+
+ 10. Click Apply to save allyour changes.
+
+Installing and Configuring the IdentityIQ Service Code
+
+The IdentityIQ service code isprovided by SailPoint. The service code ispackaged into platform-specific zip filesand
+isdownloaded from Compass. Choose the zipfileappropriate foryour platform.
+
+The Linux zip fileincludes an executable file,an env.template file,and a shellscript and service script to assist with
+installingthe code as a service.
+
+The Windows zipfilecontains an executable fileand an env.template file.
+
+Once you have downloaded the zipappropriate to your environment, follow these steps:
+
+ 1. Extract the zip to the private server dedicated to hosting the service code. See the section on Prerequisites for
+ Integrating Microsoft Teams with IdentityIQ formore information.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Microsoft Teams Notifications 14
+
+===== Page 18/25 =====
+Configuring IdentityIQ Microsoft Teams Notifications
+
+ 2. The zip fileincludes a template for configuring your IdentityIQ/Microsoft Teams environment, named env.tem-
+ plate. Copy thisfileand name it.env.
+
+
+ Note: Once the zip filehas been extracted, add a BOT_HOME environment variable tothe server,
+ set to the directory where your executable file,environment file,and cert directory are located
+ (see steps below for details on the cert directory).
+
+
+ 3. Edit the .env filetoset configuration values foryour environment. The values you must configure are listed
+ below; some other values can be modified as needed for your environment. The variables inthe fileare com-
+ mented, to give you information on their usage.
+
+
+
+ l PUBLIC_HOSTNAME=<public DNS hostname>: the public domain name of where you host the
+ IdentityIQ service code. This must be a public DNS-resolvable hostname thatresolves tothe private IP
+ ofthe server that willrun the service code. The trafficcan be limited to a specific port, which iscus-
+ tomizable. See Prerequisites forIntegrating Microsoft Teams with IdentityIQ.
+
+
+
+ l LOCAL_HOSTNAME=<local private IP address>: this isthe private IP towhich the PUBLIC_
+ HOSTNAME isrouted.
+
+
+
+ l PUBLIC_PORT and PRIVATE_PORT: the hosting ports for the IdentityIQ service code. The template
+ provides default values which can be replaced with values specific to your installation.See the Con-
+ nectivity and Security Prerequisites section inPrerequisites forIntegrating Microsoft Teams with
+ IdentityIQ.
+
+
+
+ l TENANT_ID=<Azure tenant ID>: your Azure tenant ID.
+
+
+
+ l APP_ID=<teams app ID>: the Application (client)ID value that was set as part of configuring the
+ Microsoft Teams app. You can findthis value on the Overview page ofthe Microsoft Teams app. See
+ Creating a Microsoft Teams Application forIdentityIQ inAzure
+
+
+
+ l APP_NAME=<teams app name>: the name of your Microsoft Teams app. See Creating a Microsoft
+ Teams Application for IdentityIQ in Azure
+
+
+
+ l APP_SECRET=<encrypted teams app secret>: IMPORTANT: this value isrequired but willbe
+ set later,in a secondary step. See step 5 below for more information.
+
+
+
+ l SSO_CONNECTION_NAME=<sso connection associated with azure bot>: this value was
+ set inthe Add OAuth Connection Settings when you configured the Azure bot. See Creating an Azure
+ Bot for IdentityIQ's Microsoft Teams Notifications.
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Microsoft Teams Notifications 15
+
+===== Page 19/25 =====
+Configuring IdentityIQ Microsoft Teams Notifications
+
+
+
+ l ENCRYPTION_SECRET=<provide strong value>: provide an 8-character encryption secret. This
+ can be any value you like,but ifthis value changes, any items encrypted must be re-encrypted
+
+
+
+ l IIQ_URL: the fullURL to your installation ofIdentityIQ. Use this format:
+
+
+ https://<host/ip>:<port>/<identityiq_home>
+
+
+ where <identityiq_home> isthe directory in which you extracted the identityiq.war fileduring the
+ IdentityIQ installation procedure. Ifyou are using a load balancer to manage multiple IdentityIQ hosts,
+ put the load balancer URL here.
+
+ 4. Install valid certificatefiles inthe cert directory contained inthe root location where your extracted service
+ code and .env fileare. The certificate must be named bot.cert and the key must be named bot.key.
+
+
+ The service code can work on encrypted or raw certificates, but for security reasons, itis recommended to
+ encrypt them. For convenience, an encrypt endpoint has been provided with the service code. Follow these
+ guidelines for creating encrypted bot.cert and bot.key :
+
+
+
+ l Convert the raw certificateand key to single lines by replacing end of line characters with \n
+
+
+
+ l POST the single-line certificate and key tothe encryption endpoint.
+
+
+
+ l Paste the responses to the POST operation into new files called bot.cert and bot.key and save
+ them. After creating the files,verify that an end of line character was not inserted by the editor; remove
+ the end of line character ifthere is one.
+
+
+
+ l Make sure the cert directory, the bot.cert and the bot.key items are set with rw permission for
+ owner only.
+
+
+
+ l For more information on certificates, see Prerequisites for Integrating Microsoft Teams with IdentityIQ.
+
+ 5. Encrypt and add your client secret tothe environment file.For convenience, the IdentityIQ service code
+ provides an encryption endpoint.
+
+ a. Make sure rest ofthe .env filehas been configured and saved before encrypting and adding the client
+ secret.
+
+ b. Start the bot (forexample, by running the identityiqbot.sh script).Note that because the secret
+ has not yet been encrypted, you may see an error when initiallystarting the bot. You can continue
+ past thiserror to complete the process for encrypting the secret.
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Microsoft Teams Notifications 16
+
+===== Page 20/25 =====
+Configuring IdentityIQ Microsoft Teams Notifications
+
+ c. Use the following private POST endpoint to encrypt messages such as bot secret, certificate,and
+ private key. Provide a JSON object as the payload and a JSON object willbe returned with the encryp-
+ ted value.
+
+ https://<private IP>:<private port>/util/encrypt
+
+ Input: {“message” : “some message to be encrypted”}
+
+ Output: { “status” : “success”, “encrypted_message” : “……..”}
+
+ d. Copy the returned value intothe APP_SECRET=<encrypted teams app secret> fieldof the .env
+ file.
+
+ e. Restart the bot.
+
+Allowing Microsoft Teams Users to Disable Notifications
+
+The ALLOW_USER_TO_DISABLE_NOTIFICATIONS property in the .env fileallows Microsoft Teams users to disable
+notifications,by entering the command nonotifications intheir Microsoft Teams environment. This option is disabled
+by default;ifyou want to allow users todisable notifications,set thisvalue to true.
+
+
+Creating a Microsoft Teams Manifest
+
+Once the .env fileiscompletely configured, a bot manifest can be created. This isthe fileusers willuse toinstallthe
+bot intotheirlocal Microsoft Teams environments.
+
+To create a manifest, use the private POST endpoint, which isprovided with the service code, to generate the mani-
+fest.This endpoint requires information from the .env fileas input.When executed, the endpoint generates a mani-
+festzip fileinthe <BOT_HOME> location.
+
+The response also includes the contents of the manifest.json file(asincluded in manifest zip file).
+
+https://<private IP>:<private port>/util/manifest
+
+Input: {"tenant_id" : "xxxxxxxx", "app_id" : "yyyyyyy"}
+
+Output: {"status" : "success", "manifest" : {……}}
+
+Aftera successful post tothe manifest endpoint, azip filenamed identityiqbot-<version>-manifest.zip.is
+created in <BOT_HOME>.
+
+The manifest zip filecontains the manifest.json file,as wellas some configuration options such as color and out-
+linelogos.
+
+Once the manifest isgenerated, itdoesn't need tobe generated again unless there are changes to the bot con-
+figurationin the .env file– forexample, due to Azure portal changes.
+
+
+
+
+ SailPoint IdentityIQ Microsoft Teams Notifications 17
+
+===== Page 21/25 =====
+Configuring IdentityIQ Microsoft Teams Notifications
+
+
+ Ifthere is trouble generating a manifest, verify the tenant_id and app_id are correct.
+
+For more information on the service code, see Installing and Configuring the IdentityIQ Service Code.
+Configuring IdentityIQ's Microsoft Azure Active Directory Applic-
+ation for Teams
+
+To enable IdentityIQ to send notifications to Microsoft Teams, you must add details for connecting to the Microsoft
+Teams Bot the Azure Active Directory application inIdentityIQ. The values you use here correspond tothe con-
+figuration settings for your Microsoft Teams and bot applications inAzure.
+
+This section assumes you have already created an Azure Active Directory application in IdentityIQ and registered itin
+Azure. For details on creating an Azure Active Directory application, referto SailPoint's Integrating SailPoint with
+Azure Active Directory Connector guide, which isavailable in the Microsoft Azure Active Directory area of the Con-
+nector Directory on Compass.
+
+To configure Teams-specific settings in the application:
+
+ 1. Click Applications > Application Definition.
+
+ 2. Open your Azure Active Directory application.
+
+ For complete details on creating and configuring an Azure Active Directory application,
+ refer tothe Integrating SailPoint with Azure Active Directory Connector guide.
+
+ 3. Click Configuration > Settings.
+
+ 4. Configure these values for Microsoft Teams in the Additional Configuration section:
+
+
+
+ l Enable Microsoft Teams Notifications – check this option toenable IdentityIQ notifications within
+ Microsoft Teams. Note thatthis option must be checked inorder forthe next fields toappear.
+
+
+
+ l Microsoft Teams Bot URL – the private URL tothe server hosting the IdentityIQ service code, includ-
+ ing the port and endpoint, inthe format http://server:port/appidwithnodashes/api/notify
+ where appidwithnodashes isthe Application (client)Id forthe Microsoft Teams application. This ID
+ was also used when you set up the Messaging endpoint inthe Azure bot. Note that the step in Creat-
+ ing an Azure Bot forIdentityIQ's Microsoft Teams Notifications that include this Messaging endpoint
+ references the public server; in thisfield inIdentityIQ, be sure touse server and port details forthe
+ private server.
+
+
+
+ l Tenant ID – the Azure Active Directory tenant ID that isused for your Microsoft Teams application.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Microsoft Teams Notifications 18
+
+===== Page 22/25 =====
+Configuring IdentityIQ Microsoft Teams Notifications
+
+
+
+ l Microsoft Teams Bot Secret – the clientsecret you generated when creating the Microsoft Teams
+ application. See Creating a Microsoft Teams Application for IdentityIQ inAzure for details.
+
+ 5. Save your changes.
+
+Enabling Microsoft Teams Notifications Within IdentityIQ
+
+You must globally enable Microsoft Teams within IdentityIQ, to allow IdentityIQ to send notifications toMicrosoft
+Teams users.
+
+ 1. Click on the gear icon and navigate to Global Settings > IdentityIQ Configuration > Notifications Settings.
+
+ 2. Select Enable Microsoft Teams Notifications. This turns on notifications and enables your Microsoft Teams
+ users toreceive them.
+
+ 3. Notification Templates determine the contents of the notifications that are sent in Microsoft
+ Teams. You can choose only one notification template for each type of notification (for
+ example, For reminder notices, For escalation notices, etc.).
+
+
+ Important: IdentityIQ uses a single notification template foreach type of notification;in other
+ words, for a specific type ofnotification, you cannot specify one template for email notifications
+ and a different template forMicrosoft Teams notifications.
+
+
+For information on how to editNotification Templates, see the SailPoint IdentityIQ System Configuration Guide.
+
+Formatting Options for Microsoft Teams Notifications
+
+There isa property inthe .env filethatidentifies the format of notificationmessages: NOTIFICATION_TEXT_
+FORMAT. The validvalues are xml, markdown, and plain.
+
+Ifthe property has not been set inthe .env file,orisnot a valid value, itwilldefault to markdown. For more details on
+how the textformat isused by Teams, refer to Microsoft's documentation on formatting bot messages.
+
+For more information on editing .env properties, see Installingand Configuring the IdentityIQ Service Code
+Configuring API Authentication for Microsoft Teams in IdentityIQ
+
+To enable token-based authentication between Microsoft Teams and IdentityIQ, you must create an API application in
+Azure, then use some of the values from the API application within IdentityIQ, toenable authentication. For related
+information about what to configure inAzure for token-based authentication, see Creating an API Application inAzure
+
+To configure API Authentication inIdentityIQ:
+
+
+
+
+
+
+ SailPoint IdentityIQ Microsoft Teams Notifications 19
+
+===== Page 23/25 =====
+Configuring IdentityIQ Microsoft Teams Notifications
+
+ 1. Click gear > Global Settings > API Authentication.
+
+ 2. On the General Settings tab, set an expiration value fortokens, inseconds. This value applies to both Token
+ Settings (see below) and OAuth Client Management (see API Authentication inthe System Con-
+ figuration documentation).
+
+ 3. Click the Token Settings tab, and set these values:
+
+
+
+ l Access Token Authentication Scope –expected scope ofthe API access token issuer. This isthe
+ value you entered for Scope Name inthe previous section; for example, GetToken.
+
+
+
+ l Access Token Authentication Audience – suffix that identifiesthe service or system to which the call
+ isdirected. This isthe value you appended tothe Application ID URI in the Creating an API Application
+ in Azure section; for example /identityiq/api. The validator willensure the SSO audience claim
+ ends with this value.
+
+
+
+ l Access Token Authentication Issuers – identificationof the SSO token provider. This fieldsupports
+ variable interpolation. Field values must be claims inthe SSO token.
+ For example, https://sts.windows.net/{{tid}}/.
+
+
+
+ l Correlation Variable – the SSO claim used match the requesting user with an existing IdentityIQ user;
+ the IdentityIQ default isoid.
+
+ 4. Save your changes.
+
+For more information on configuring your IdentityIQ instance for API authentication, refer to the API Authentication
+section of the SailPoint IdentityIQ System Configuration Guide.
+Installing the IdentityIQ Microsoft Teams Notifications Bot in
+Microsoft Teams
+
+Each Microsoft Teams user must installthe IdentityIQ bot intheir Microsoft Teams environment. The manifest you cre-
+ated in Creating a Microsoft Teams Manifest can be made available by your Microsoft Teams administrator to
+Microsoft Teams users inan approved apps list.
+
+Microsoft Teams users simply follow the instructions for installingapps from the list. Formore information, refer to
+Microsoft's documentation.
+
+When the bot is installed,itsends a notifications command to IdentityIQ. This makes the connection between
+the user's Microsoft Teams environment and your installation ofIdentityIQ
+
+ Note: Ifthe initialinstallation'snotifications command does not resultin an "IdentityIQ noti-
+ fications have been enabled" response, wait a few minutes, then manually issue the
+
+
+
+
+
+ SailPoint IdentityIQ Microsoft Teams Notifications 20
+
+===== Page 24/25 =====
+Configuring IdentityIQ Microsoft Teams Notifications
+
+
+ notifications command. You willreceive the expected response once Microsoft Teams is
+ communicating with IdentityIQ.
+
+
+ Ifatany time afterMicrosoft Teams Notifications has been implemented, a user isno longer
+ receiving expected notifications from IdentityIQ, issue the notifications command from the
+ Microsoft Teams console. An "IdentityIQ notifications have been enabled" response indicates
+ that the connection has been restored.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Microsoft Teams Notifications 21
+
+===== Page 25/25 =====
+Using IdentityIQ Microsoft Teams Notifications
+
+Using IdentityIQ Microsoft Teams Notifications
+
+
+Microsoft Teams users receive notifications from IdentityIQ directly in theirMicrosoft Teams client. Notifications
+include links to IdentityIQ, to take the user to the relevant action or area inIdentityIQ.
+
+Ifsingle sign-on (SSO) between Microsoft Teams and IdentityIQ has been configured, links take Microsoft Teams
+users directlyto the appropriate destination inIdentityIQ, without requiring a step for logging into IdentityIQ. If
+SSO has not been enabled, users willneed tolog in to IdentityIQ.
+
+Microsoft Teams users can use these commands:
+
+
+
+ l hello – returns a response with the version
+
+
+
+ l help – displays the bot help message
+
+
+
+ l identityiq – verifies the connection between IdentityIQ and Microsoft Teams
+
+
+
+ l notifications – makes the connection between the user's Microsoft Teams environment and theirinstallation of
+ IdentityIQ
+
+Auditing Microsoft Teams Notifications
+
+IdentityIQ's audit configuration includes two audit actions related to Microsoft Teams notifications, that can be col-
+lected for audit logs:
+
+
+
+ l Chat Notification Success
+
+
+
+ l Chat Notification Failure
+
+
+For more information about auditing in IdentityIQ, see the SailPoint IdentityIQ System Configuration Guide.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Microsoft Teams Notifications 22

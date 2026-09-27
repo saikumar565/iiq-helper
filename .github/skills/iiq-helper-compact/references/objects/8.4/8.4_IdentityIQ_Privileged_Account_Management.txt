@@ -1,0 +1,2419 @@
+===== Page 1/39 =====
+ Privileged Account Management
+
+
+ Version:8.4
+
+ Revised:September2023
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thisdocument and theinformationcontainedhereinisSailPointConfidentialInformation
+
+===== Page 2/39 =====
+Copyright and Trademark Notices
+
+Copyright © 2023 SailPoint Technologies, Inc.  All Rights Reserved.
+
+Alllogos, text,content, including underlying HTML code, designs, and graphics used and/or depicted on these written
+materials or in thisInternet website are protected under United States and international copyright and trademark laws
+and treaties, and may not be used or reproduced without the prior express written permission of SailPoint Tech-
+nologies, Inc.
+
+“SailPoint Technologies,” (design and word mark), “SailPoint,” (design and word mark), "Identity IQ,” “IdentityNow,”
+“SecurityIQ,” “Identity AI,” “Identity Cube,” and “SailPoint Predictive Identity” are registered trademarks of SailPoint
+Technologies, Inc. “Identity isEverything,” “The Power of Identity,” and “Identity University” are trademarks of
+SailPoint Technologies, Inc. None of the foregoing marks may be used without the prior express written permission of
+SailPoint Technologies, Inc. Allother trademarks shown herein are owned by the respective companies or persons
+indicated.
+
+SailPoint Technologies, Inc. makes no warranty ofany kind regarding these materials or the information included
+therein, including, but not limited to,the implied warranties ofmerchantability and fitness for a particular purpose.
+SailPoint Technologies shall not be liable for errors contained herein or direct, indirect, special, incidental orcon-
+sequential damages inconnection with the furnishing, performance, or use of thismaterial.
+
+Patents Notice. https://www.sailpoint.com/patents
+
+Restricted Rights Legend. All rights are reserved. No part ofthis document may be published, distributed, reproduced,
+publicly displayed, used to create derivative works, or translated to another language, without the prior written consent
+ofSailPoint Technologies. The information contained inthis document issubject to change without notice.
+
+Use, duplication or disclosure by the U.S. Government is subject to restrictions as set forth insubparagraph (c) (1) (ii)
+ofthe Rights inTechnical Data and Computer Software clause at DFARS 252.227-7013 for DOD agencies, and sub-
+paragraphs (c)(1) and (c)(2) ofthe Commercial Computer Software Restricted Rights clause at FAR 52.227-19 for
+other agencies.
+
+Regulatory/Export Compliance. The export and re-export of this software iscontrolled for export purposes by the U.S.
+Government. By accepting this software and/or documentation, licensee agrees to comply with allU.S. and foreign
+export laws and regulations as they relate to software and related documentation.  Licensee will not export or re-
+export outside the United States software or documentation, whether directly or indirectly, to any Prohibited Party and
+willnot cause, approve or otherwise intentionally facilitate others inso doing. A Prohibited Party includes: a party in a
+U.S. embargoed country or country the United States has named as a supporter of international terrorism; a party
+involved in proliferation; a party identified by the U.S. Government as a Denied Party; a party named on the U.S.
+Department of Commerce’s Entity Listin Supplement No. 4 to 15 C.F.R. § 744; a party prohibited from participation in
+export orre-export transactions by a U.S. Government General Order; a party listed by the U.S. Government’s Office
+ofForeign Assets Control as ineligible to participate in transactions subject toU.S. jurisdiction; or any party that
+licensee knows or has reason toknow has violated or plans to violate U.S. or foreign export laws or regulations.
+Licensee shall ensure that each of itssoftware users complies with U.S. and foreign export laws and regulations as
+they relate to software and related documentation.
+
+===== Page 3/39 =====
+Contents
+
+
+ About Privileged Account Management 1
+
+ PAM Terminology 1
+
+ Additional Resources 1
+
+ Privileged Account Management inIdentityIQ 2
+
+ Activating the Privileged Account Management Module 3
+
+ Components Installedwith the PAM Module 3
+
+ Configuring the Privileged Account Management Module 6
+
+ Configuring a PAM Application 6
+
+ PAM Global Configuration Settings 12
+
+ Allowing View-Only Access toPAM Containers 13
+
+ Privileged Account Management Tasks: Aggregation, Indexing, and Refresh 14
+
+ Adding a PAM Quicklink Card to the Home Page 15
+
+ Managing Privileged Accounts 16
+
+ Finding PAM Containers 16
+
+ Viewing PAM Container Details 16
+
+ Container Details 17
+
+ Adding New PAM Containers Manually 19
+
+ Adding and Removing Identitiesina PAM Container 20
+
+ Adding and Removing Privileged Items in a PAM Container 21
+
+ Approvals forChanges to PAM Containers 22
+
+ Notifications About Changes to PAM Containers 23
+
+ Using Rapid Setup Joiner and Leaver Processes for PAM Users 24
+
+ Privileged Account Management Credential Cycling 25
+
+ Credential Cycling Configuration 25
+
+ Credential Cycling in an Application 36
+
+===== Page 4/39 =====
+About Privileged Account Management
+
+About Privileged Account Management
+
+
+Privileged Account Management (PAM) refers to managing access to privileged or high-level accounts such as
+domain administrator accounts, root accounts, or superuser accounts, as well as to criticalorsensitive accounts and
+systems. These privileges are often associated with IT accounts, such as root access to a Unix system or the abilityto
+add ordelete email accounts on a Microsoft Exchange application. They can also apply to access to sensitive
+accounts such as a company's social media, or sensitive assets such as a financial database orlistof credit card num-
+bers or security certificates.
+
+By controlling access to privileged accounts, PAM solutions provide a way toprotect organizations from accidental or
+deliberate misuse of privileged access. There are numerous PAM solution providers inthe market, such as Thycotic,
+Leiberman, CyberArk, and BeyondTrust. The details ofhow access to privileged accounts is managed can vary by
+solution provider, and might mean different things todifferent companies. Things likeautomatic rotation of credentials,
+time-boxing user access, making passwords invisible toend users, and tracking and auditing actions can allbe parts
+ofa PAM solution.
+
+Think ofPAM solutions as a library, but instead ofbooks, the library holds privileged accounts. To check a book out of
+the libraryyou need a library card, but for PAM, you need some kind ofcredential or authorization to access what is in
+the library,or vault. ("Vault" isa common term for the logical container of assets protected by PAM.) However, unlike a
+librarycard, which gives you access to every book in a library,with PAM your credential might only give you access to
+a limited set ofspecific PAM vaults, and not every vault that is managed by the PAM solution.
+PAM Terminology
+
+Although specific terms for common PAM concepts vary from vendor to vendor, ingeneral these are the terms you will
+encounter when working with PAM solutions:
+
+
+
+ l Vault or safe: a logical container or folder that contains privileged accounts and passwords. A safe or vault is a
+ container in which you store privileged access, forexample, a container forallyour company’s Windows admin-
+ istrator accounts, or a container for allUnix root accounts. In IdentityIQ, these are called containers.
+
+
+
+ l Privileged Item: a piece ofprivileged data thatis managed by the PAM solution, such an account, credential,
+ file,or key. The types and names of privileged data vary by PAM vendor.
+
+Additional Resources
+
+Privileged Access Management Best Practices
+
+Privileged Access Management Use Cases
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Privileged Account Management 1
+
+===== Page 5/39 =====
+About Privileged Account Management
+
+Privileged Account Management in IdentityIQ
+
+
+
+
+ Note: You must have the SailPoint™ Lifecycle Manager installed to use the Privileged Account
+ Management Module effectively.
+
+The SailPoint IdentityIQ Privileged Account Management (PAM) Module extends identitygovernance processes and
+controls to highly privileged access, enabling you tocentrally manage access toprivileged and non-privileged
+accounts. Itgives you a complete and centralized view ofyour PAM containers, including which individuals and
+groups have access toeach container, and what privileged items each container holds. Italso automates governance
+controls, enabling you tosecurely manage access toPAM containers.
+
+IdentityIQ is not a PAM solution per se and does not provide the same features a PAM solution does; rather, the Iden-
+tityIQPAM module integrates with market-leading PAM solution providers (such as Thycotic, Leiberman, CyberArk,
+and BeyondTrust) to provide governance features thatthe PAM solutions themselves do not offer.While the native
+PAM solution determines what is ina container, and IdentityIQ PAM module governs who has access to a container,
+and what permissions they have in it
+
+The SailPoint IdentityIQ Privileged Account Management Module gives you:
+
+Complete visibility and governance over privileged accounts
+
+ By extending identity governance to privileged accounts, enterprises get a 360-degree view over allaccess,
+ especially high-risk identitieswith privileged access.
+
+Simplified and centralized administration
+
+ With the Privileged Account Management Module, IdentityIQ can serve as a central platform to govern access to
+ both privileged and non-privileged accounts according to established policies.This prevents overprovisioning
+ and limitsthe risk ofproviding access tohighly privileged accounts tounauthorized users. Italso speeds the
+ delivery of privileged access based on user role or lifecycleevent changes.
+
+Integration with multiple 3rd-party PAM solutions at once
+
+ The IdentityIQ Privileged Account Management Module enables you to deploy multiple instances and integrate
+ with multiple PAM vendors at the same time. The IdentityIQ Privileged Account Management Module provides
+ an open, standards–based integration framework (SCIM) that supports any third-party solution.
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Privileged Account Management 2
+
+===== Page 6/39 =====
+Activating the PrivilegedAccount Management Module
+
+Activating the Privileged Account Management Module
+
+
+To activate the PAM module:
+
+ 1. Log on to IdentityIQ as an administrator.
+
+ 2. Clickgear > Global Settings and selectImport from File.
+
+ 3. ClickBrowse and browse to the followingdirectory:
+
+ IdentityIQ_home\WEB-INF\config
+
+ where IdentityIQ_home isthe directoryin which you extracted the IdentityIQ.war fileduring the IdentityIQ
+ installationprocedure.
+
+ 4. Select the init-pam.xml fileand click Import.
+
+ 5. When theimport is complete, clickDone.
+
+The PAM features are now active insideof the IdentityIQproduct.
+Components Installed with the PAM Module
+
+The installed PAM components include:
+
+ Business Processes
+
+
+PAM Approval Subprocess
+
+ Approval subprocess forPAM requests. This generates approvals based on the approvalScheme, audits the
+ approval decisions, and returns theapproved status.
+
+PAM Identity Provisioning
+
+ The business process thathandles provisioning of identitiesforPAM.
+
+PAM Identity Provisioning Notify
+
+ This subprocess handles notificationfrom the PAM provisioning workflows.
+
+PAM Initialize
+
+ This subprocess initializesthevarious objects necessary when executing thePAM workflow. This creates the
+ ProvisioningProject and IdentityRequest.
+
+
+
+
+
+ SailPointPrivileged Account Management 3
+
+===== Page 7/39 =====
+Activating the Privileged Account Management Module
+
+
+PAM Request Finalize
+
+ This subprocess handles the finalstep from thePAM business processes.
+
+ Email Templates
+
+
+PAM Approval
+
+ Notifiesapprovers when they need to approve a request changes a user's permissions on a PAM container.
+
+PAM Manager Notification
+
+ Notifiesmanagers when an employee's access to PAM containers ismodified.
+
+PAM Requester Notification
+
+ Notifiesrequesters when theirrequests forPAM access modification are completed.
+
+PAM User Notification
+
+ Notifiesusers when they are given access or removed toa PAM container.
+
+ User Capabilities
+
+
+PAM Administrator
+
+ Gives users fullaccess toallPAM module functionality;thiscapability isassigned by default tomembers of the
+ PAMAdministrator Dynamic Scope/Quicklink Population, and can also be assigned directly toindividual users.
+
+PAM Viewer
+
+ Gives read-only access to PAM features and information.
+
+ Dynamic Scope
+
+
+PAMAdministrator
+
+ Lets associated users see and use the Quicklink thatgrants access toPAM functionality.
+
+ Quicklink
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Privileged Account Management 4
+
+===== Page 8/39 =====
+Activating the Privileged Account Management Module
+
+
+Privileged Account Management
+
+ The Quicklink menu item available by default tomembers ofthe PAMAdministrator Dynamic Scope. This Quick-
+ linkappears inthe main menu under Manage Access > Privileged Account Managment. In the Debug pages,
+ thisQuicklink object is named View PAM Container List.
+
+ Audit Event
+
+
+Approve PAM Request / Reject PAM Request
+
+ You can select these in the gear menu > Global Settings > Audit Configuration page ifyou want toaudit
+ PAM-related events.
+
+ Rules
+
+
+PAM Group Refresh
+
+ This rulemake external groups non-requestable. You might want tomake external groups non-requestable if,for
+ example, your organization's process isforgroup membership to be requestable through an external application
+ such as Active Directory, which is acommon use case
+
+Map Demodata PAM Application Names
+
+ A sample rule included in the examplerules.xml fileinthe [installdir]\WEB-INF\config directory.
+ PAM solutions have the concept of "external" users and groups: accounts and groups that are defined inan
+ external system such as Active Directory, and are used within the PAM system to control access. When these
+ objects are aggregated from the PAM system, they include a source attributefor the name of the external system
+ from which they came (the name used by the PAM system). When stored as Links and ManagedAttributes,
+ these names need tomatch the Application name. This rule maps thename as known on the external system to
+ aname that can be used locally.
+
+ Application Types
+
+
+Privileged Account Management application (connector) type
+
+ Aggregates users, groups, and containers intoIdentityIQ.
+
+Privileged Account Management collector type
+
+ Reads in permissions users have on containers, and can write permissions back to the targetsystem.
+
+
+
+
+
+
+
+
+
+ SailPoint Privileged Account Management 5
+
+===== Page 9/39 =====
+Configuring the Privileged Account Management Module
+
+Configuring the Privileged Account Management Module
+
+
+Configuring the PAM module inIdentityIQ involves several steps:
+
+
+
+ l Configuring applications to connect to your PAM vendor to aggregate data about PAM accounts and groups.
+ The PAM application should include a collector toaggregate data about PAM vaults and permissions. See Con-
+ figuring a PAM Application.
+
+
+
+ l Setting global options for PAM, that determine things likehow PAM containers can be modified within Iden-
+ tityIQ,and which business process touse forprovisioning PAM identities.See PAM Global Configuration Set-
+ tings
+
+
+
+ l Configuring the tasks that willaggregate and index PAM data, and refresh identities.See Privileged Account
+ Management Tasks: Aggregation, Indexing, and Refresh
+
+Configuring a PAM Application
+
+The PAM module includes a PAM-specific application (connector) type: Privileged Account Management. To use the
+PAM feature, configure aPAM application to connect toeach of your PAM vendor systems.
+
+Applications should be configured to include both a connector and a target collector.
+
+
+
+ l The connector aggregates users, groups, and containers intoIdentityIQ.
+
+
+
+ l The target collector reads in permissions users have on containers, and can write permissions back to the tar-
+ get system.
+
+
+ Important: The PAM connector type isbased on IdentityIQ's SCIM 2.0 connector, with special
+ schemas, object types, and policies.The SCIM 2.0 Connector documentation, which isavailable
+ in the SailPoint documentation portal, gives detailed information about allthe configuration para-
+ meters inthis application definition.The information below provides some essential and PAM-
+ specific information about configuring PAM applications.
+
+
+To configure a PAM application:
+
+ 1. Click Applications > Application Definition > Add New Application.
+
+ 2. Enter a Name and Owner for the PAM application.
+
+ 3. For Application Type choose Privileged Account Management
+
+ 4. On the Configuration tab, clickSettings toenter connection information. Note the following:
+
+
+
+
+
+ SailPoint Privileged Account Management 6
+
+===== Page 10/39 =====
+Configuring the Privileged Account Management Module
+
+
+
+ l The Base URL isthe URL to the PAM vendor's SCIM server.
+
+
+
+ l The PAM connector type supports several methods for authentication. These are discussed in detailin
+ Configuring Authentication for the PAM Application
+
+
+
+ l Note: For Thycotic implementations, itis not recommended that you select the Explicit Attribute Request
+ setting, as this may cause issues when aggregating.
+
+ 5. Also on the Settings tab, add Permissions; these are the container permissions that willdisplay forthe PAM
+ container in the PAM UI. The permissions you enter here should correspond to the permissions used by the
+ vendor's PAM application, and willvary depending on vendor. To add a permission, type the permission name
+ in the Permissions fieldand clickthe plus icon to add it.
+
+ 6. On the Provisioning Policies tab, editthe out-of-the-box policies for creating accounts and creating con-
+ tainers as needed. These policies determine which fieldsare presented tousers when adding accounts or con-
+ tainers, and can also determine how container information isdisplayed inthe Entitlement Catalog.
+
+ 7. Set up an Unstructured Target Collector forthe application. This will aggregate permissions users and
+ groups have on containers.
+
+ a. Click the Unstructured Targets tab.
+
+ b. Click Add New Unstructured Data Source.
+
+ c. An Add or Create dialog appears. Click Create TargetSource.
+
+ d. Enter a Name (required) and Description (optional).
+
+ e. Choose or create a Correlation Rule for correlating the data. You can use the PAM Access Mapping
+ Correlation Rule which isprovided out ofthe box, or create your own rule.
+
+ f. For Target Source Type, choose Privileged Account Management Collector.
+
+ g. A new set of SCIM Settings fields isdisplayed. For the Base URL, enter the URL to the PAM vendor's
+ SCIM server. For details on authentication settings, see Configuring Authentication for the PAM Applic-
+ ation. For other fields,refer tothe SCIM 2.0 Connector documentation.
+
+ h. Save the data source.
+
+ 8. Optional: On the Rules tab, choose rules formanaging your PAM application:
+
+
+
+
+
+
+
+
+
+
+SailPoint Privileged Account Management 7
+
+===== Page 11/39 =====
+Configuring the Privileged Account Management Module
+
+
+
+ l You can create a Customization Rule on the application to map external application names to internal
+ IdentityIQ application names, and /or external users to IdentityIQ identities.
+
+
+
+ l You can use the PAM Group Refresh rule(included with the PAM module) tomake external groups
+ non-requestable. You might want tomake external groups non-requestable if,for example, your organ-
+ ization's process is forgroup membership to be requestable through an external application such as Act-
+ ive Directory; this isa common use case.
+
+ 9. Save the Application definition.
+
+Configuring Authentication for the PAM Application
+
+The PAM application supports three types of authentication:
+
+
+
+ l OAuth2.0
+
+
+
+ l API Token
+
+
+
+ l Basic Authentication
+
+
+ Important: Details of how to obtain the necessary credentials willvary by solution provider, so
+ you should consult your PAM solution provider's documentation fordetails.
+
+
+OAuth2.0
+
+OAuth 2.0 isan industry-standard protocol forauthorization. Itprovides a variety of authorization flows forweb applic-
+ations, desktop applications, mobile phones, and devices.
+
+The PAM application supports several grant types forOAuth 2.0:
+
+
+
+ l Refresh Token
+
+
+
+ l Client Credentials
+
+
+
+ l JWT
+
+
+
+ l Password
+
+
+Refresh Token
+
+This grant type isused by clients inorder toexchange a refresh token for a new access token when the existing
+access token has expired. This allows the PAM application toget a new session when the current session expires,
+
+
+
+
+
+
+ SailPoint Privileged Account Management 8
+
+===== Page 12/39 =====
+Configuring the Privileged Account Management Module
+
+
+without having to re-authenticate as frequently. This grant type iscommonly used together with Authorization Code to
+prevent a user from having to log inseveral times per day.
+
+ Note: Before any OAuth 2.0 token requests can be initiated, a Client ID and secret are neces-
+ sary. Details of how to obtain the necessary credentials willvary by solution provider, so you
+ should consult your PAM solution provider's documentation for details.
+
+For more information see OAuth 2.0 Refresh Token.
+
+To configure Refresh Token authentication:
+
+ 1. Enter the OAuth 2.0 Token URL for generating access token. This URL ison the PAM solution provider side.
+ Refer toyour PAM solution provider system administrator ordocumentation for information about thisURL.
+
+ 2. Enter the Client ID forOAuth 2.0 authentication. This isobtained from your PAM solution provider.
+
+ 3. Enter the Client Secret for OAuth 2.0 authentication. This is obtained from your PAM solution provider.
+
+ 4. Enter the Refresh Token used togenerate an access token. This isobtained from your PAM solution provider.
+
+
+Client Credentials
+
+The Client Credentials grant is used when applications request an access token to access theirown resources, not on
+behalf of a user.
+
+ Note: Before any OAuth 2.0 token requests can be initiated, a Client ID and secret are neces-
+ sary. Details of how to obtain the necessary credentials willvary by solution provider, so you
+ should consult your PAM solution provider's documentation for details.
+
+For more information see OAuth 2.0 Client Credentials Grant.
+
+To configure Client Credentials authentication:
+
+ 1. Enter the OAuth 2.0 Token URL for generating access token. This URL ison the PAM solution provider side.
+ Refer toyour PAM solution provider system administrator ordocumentation for information about thisURL.
+
+ 2. Enter the Client ID forOAuth 2.0 authentication. This isobtained from your PAM solution provider.
+
+ 3. Enter the Client Secret for OAuth 2.0 authentication. This is obtained from your PAM solution provider.
+
+
+JWT
+
+A JWT (JSON Web Token) securely authenticates the connection to an external application to perform operations as
+required. A JWT contains encoded JSON objects, and is signed using a signing algorithm to ensure that the claims
+cannot be altered after the token is issued. These tokens have a specific structure consisting of a header, payload,
+and signature.
+
+
+
+
+ SailPoint Privileged Account Management 9
+
+===== Page 13/39 =====
+Configuring the Privileged Account Management Module
+
+
+JWTs can be used as OAuth 2.0 Bearer Tokens to encode allrelevant parts of an access token into the access token
+itselfinstead of having to store them in a database.
+
+You can use the Additional Payload fieldfor systems where authentication may require additional parameters along
+with mandatory fields.
+
+For example, ifthe PAM system expects the client_id and client_secret inthe payload, then itmust be
+provided in the Additional Payload field.The Additional Payload fieldaccepts additional body parameters in JSON
+format.
+
+For more information, see JWT Profile forOAuth 2.0 Access Tokens.
+
+To configure JWT authentication:
+
+ 1. Enter the OAuth 2.0 Token URL forgenerating access token. This URL is on the PAM solution provider side.
+ Refer to your PAM solution provider system administrator ordocumentation forinformation about this URL.
+
+ 2. In the JWT Header field,you can add additional headers inJSON format ifrequired. The header consists of the
+ type ofthe token (JWT) and the signing algorithm being used. For example:
+
+
+ {
+      "typ" : "JWT",
+      "alg" : "RS256"
+ }
+
+
+
+ 3. Enter the JWT Issuer for authorization. The Issuer is the party that issued the JWT. For example:
+ https://issuer.example.com/
+
+ 4. Enter the JWT Subject for authorization. The Subject isthe user forwhich the access token isbeing reques-
+ ted. For example: 145234573
+
+ 5. Enter the JWT Audience. This is the recipient for which the JWT isintended, and istakes the form of an array
+ of case-sensitive strings, each containing a StringOrURI value.
+
+ 6. You can add Additional Payload detailsas needed. See above for details about Additional Payload values.
+
+ 7. Enter the Private Key and the corresponding Private Key Password tobe used tosign the JWT.
+
+
+Password
+
+The Password grant type is a way toexchange a user's credentials for an access token. Although thistype issup-
+ported, itisconsidered less secure than other grant types.
+
+You can use the Additional Payload fieldfor systems where authentication may require additional parameters along
+with mandatory fields.
+
+
+
+
+
+ SailPoint Privileged Account Management 10
+
+===== Page 14/39 =====
+Configuring the Privileged Account Management Module
+
+
+For example, ifthe PAM system expects the client_id and client_secret in the payload, then itmust be
+provided in the Additional Payload field.The Additional Payload fieldaccepts additional body parameters inJSON
+format.
+
+For more information see OAuth 2.0 Password Grant.
+
+To configure Password authentication:
+
+ 1. Enter the OAuth 2.0 Token URL for generating access token. This URL is on the PAM solution provider side.
+ Refer to your PAM solution provider system administrator or documentation forinformation about thisURL.
+
+ 2. Enter the OAuth 2.0 Username and the corresponding Password.
+
+ 3. You can add Additional Payload details as needed. See above for details about Additional Payload values.
+
+API Token
+
+API tokens allow a user to bypass two-step verification and SSO, in order to authenticate and retrieve data, and
+requires only an API Token. The token isself-contained and contains allthe information itneeds forauthentication.
+The token type must be included with the value. For example:
+
+Bearer <AUTH TOKEN>
+
+For more information see OAuth Access Tokens.
+
+Basic Authentication
+
+Basic Authentication is a simple method forauthenticating, requiring only a Username and Password.
+
+For Basic Authentication, itis a best practice toset up an identity within IdentityIQ specifically for performing this
+authentication.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Privileged Account Management 11
+
+===== Page 15/39 =====
+PAM Global Configuration Settings
+
+Part ofconfiguring the PAM module isconfiguring global settings forthe module. Global settings include things like
+how PAM containers can be modified within IdentityIQ,and which business process to use for provisioning PAM iden-
+tities
+
+To configure PAM's global settings, clickthe gear icon > Global Settings > IdentityIQ Configuration and select the
+Privileged Account Management tab.
+
+Define the following:
+
+Enable adding and removing identities in PAM containers
+
+ Allow PAM users to manually add or remove identitieson the container details page.
+
+Enable adding and removing privileged items in PAM containers
+
+ Allow PAM users to manually add or remove privileged items on the container details page.
+
+Enable owners to modify PAM containers
+
+ Allow owners of PAM containers tochange oredit theircontainers.
+
+Enable the creation of PAM containers
+
+ Allow PAM users to manually add PAM containers on the Privileged Account Management page.
+
+The maximum number of selectable users in Privileged Account Management
+
+ The maximum number of identitiesyou can take action on atone time inthe PAM module.
+
+The workflow used to provision identities
+
+ The workflow, or business process, thatdefines the provisioning process for the PAM Module. Business pro-
+ cesses are defined and maintained on the Business Process Editorpage. See the Business Processes doc-
+ umentation for more information.
+
+A rule to filter privileged items that can be added to containers
+
+ You can use a rule to add business logic to limitwhich privileged items can be added toPAM containers. Rules
+ must be ofrule type PrivilegedItemSelector tobe included in the dropdown list.You can also clickthe
+ [...]icontoopen the rule editor tocreate oredit a rule.
+
+
+
+
+
+
+
+
+
+
+ SailPoint Privileged Account Management 12
+
+===== Page 16/39 =====
+Allowing View-Only Access to PAM Containers
+
+To give users view-only access to PAM containers and theirdata,you can grant thePAM Viewer capabilitytothose
+users.
+
+For detailson how togrant capabilitiestousers, see the IdentityManagement documentation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPointPrivileged Account Management 13
+
+===== Page 17/39 =====
+Privileged Account Management Tasks: Aggregation, Indexing, and
+Refresh
+
+Once your PAM applications have been configured to connect to your PAM vendors, and your PAM global settings
+have been configured, you can aggregate data from your PAM vendor systems. Data is aggregated using tasks. In
+addition to data aggregation tasks, tasks forindexing effective access and for updating identities should be configured
+forPAM.
+
+The following tasks are required for the PAM feature, and should be run in thissequence:
+
+
+
+ l Account Aggregation – this task aggregates PAM accounts from your PAM vendor. Other than setting the
+ PAM application as the application toscan, there are no other specific options you need toselect specifically
+ for PAM; you can choose Account Aggregation Options thatsuit your business needs.
+
+
+
+ l Account Group Aggregation – thistask aggregates group information from your PAM vendor. Other than
+ setting the PAM application as the application to scan, there are no other specific options you need toselect
+ specifically for PAM; you can choose Account Group Aggregation Options that suityour business needs.
+
+
+
+ l Target Aggregation – this task aggregates data about PAM vaults and the rights that users have tothose
+ vaults. Configure the task to select your PAM Target Source (thatis,the Unstructured Target Collector you con-
+ figured when setting up your PAM application) as the target source to aggregate.
+
+
+
+ l Effective Access Indexing – thistask refreshes the effective access privileges on the PAM containers; thatis,
+ container access thatis granted by virtue ofmembership ina group. Check the Index Entitlement Targets
+ and Index unstructured targets options when running thistask for PAM.
+
+
+
+ l Identity Refresh – this task refreshes identities with relevant PAM group and permissions data. For PAM, run
+ this task with the Refresh Identity Entitlements for alllinks selected.
+
+Refer to the IdentityIQ Tasks documentation for detailed information on defining tasks.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Privileged Account Management 14
+
+===== Page 18/39 =====
+Adding a PAM Quicklink Card to the Home Page
+
+The Privileged Account Quicklink is added toyour Quicklink menu during the installationprocess, under the Manage
+Access sub-menu.
+
+You can manually add a Quicklink card to your Home page as well.
+
+ 1. Go to your Home page.
+
+ 2. ClickEdit.
+
+ 3. ClickAdd Card.
+
+ 4. Select Privileged Account Management and Save.
+
+ 5. Save again on the Home Editpage to load the card.
+
+For more information about Quicklinks and Quicklink cards, see the IdentityIQ Getting Started documentation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPointPrivileged Account Management 15
+
+===== Page 19/39 =====
+Managing Privileged Accounts
+
+Managing Privileged Accounts
+
+
+To open the Privileged Account Management page, use the Quicklink menu and select Manage Access > Privileged
+Account Management. A Quicklink card can also be enabled on the IdentityIQ home page forquicker access. See
+Adding a PAM Quicklink Card to the Home Page fordetails on how toenable this card.
+
+The Privileged Account Management page shows allthe PAM containers inyour installation.The containers display
+the following information:
+
+
+
+ l Container Name – the display name aggregated from the privileged account management application
+
+
+
+ l Application – the name ofthe privileged account management application associated with thiscontainer
+
+
+
+ l Total Identities – the totalnumber of identities associated with the container either directly or through a group
+
+
+
+ l Privileged Items – the number of privileged items to which thiscontainer grants access, these are usually priv-
+ ileged accounts
+
+
+
+ l Groups – the number of groups associated with the container
+
+
+
+ l Owner – the owner of thisprivileged account management container. An owner can be an individual or a work-
+ group. See PAM Container Owners for detailsabout PAM container ownership.
+
+The Add Container button lets you manually add containers. See Adding New PAM Containers Manually.
+Finding PAM Containers
+
+Use the Filter and Search options at the top of the page to findspecific containers.
+Viewing PAM Container Details
+
+You can click View Details to see and edit details about identitiesand items inthe container. The abilityto view or
+make changes tothis information iscontrolled using SailPoint rights and capabilities and through the configuration set-
+tings.Users with a PAM Administrator capability can editcontainers and theircontents; users with a PAM Viewer cap-
+abilitycan only view containers and their contents. See Container Details.
+
+ Note: The identities and entitlements contained in your privileged account management system
+ are available throughout the IdentityIQ product. For example, the identitiesare incorporated in
+ the IdentityWarehouse, the entitlements display in the Entitlement Catalog and are included in
+ certain Certifications, requests are tracked through the lifecycle manager process, and pro-
+ visioning transactions are listedin the Administrator Console.
+
+
+
+
+
+
+ SailPoint Privileged Account Management 16
+
+===== Page 20/39 =====
+Managing Privileged Accounts
+
+Container Details
+
+Click View Details on a container toview and editits contents.
+
+The page contains three tabs:
+
+Identities
+
+ Allidentities with access to the privileged items, either directly oreffectively – Container Details: Identities
+
+Groups
+
+ Allgroups with access to the privileged items – Container Details: Groups
+
+Privileged Items
+
+ Allthe items to which thiscontainer provides access – Container Details: Privileged Items
+
+PAM Container Owners
+
+The PAM feature lets you designate owners foryour PAM containers. This option allows you to separate the respons-
+ibilityforthe PAM container's contents from responsibility forthe PAM application itself.
+
+Inother words, the PAM application owner is the identityor workgroup responsible for the connection to the PAM
+source; the PAM container owner is responsible for approving changes to the identitiesor items ina PAM container.
+
+PAM Container Owners and Viewing/Editing Privileges
+
+The PAM feature uses two user rights to control who can view oredit a PAM container. Ifyou plan to use container
+owners to designate who willmanage your containers, be sure that your owners have the correct user rights:
+
+
+
+ l PAM Administrator – the user can view and editall PAM containers.
+
+
+
+ l PAM Viewer – the user can view all PAM containers, and can edit any container the user is an owner of.
+
+
+Note thatifyou designate an identity orworkgroup as a PAM container owner, but do not also add the PAM Admin-
+istratoror PAM Viewer capability tothat identity orworkgroup, the container owner willnot be able to directly manage
+the container(s) they own.
+
+For details about how approvals are handled forchanges to PAM containers, see Approvals forChanges to PAM Con-
+tainers.
+
+Container Details: Identities
+
+Use thistab to view, add, or remove identities inthis container.
+
+
+
+
+
+
+ SailPoint Privileged Account Management 17
+
+===== Page 21/39 =====
+Managing Privileged Accounts
+
+
+The add and remove features are only available ifthisoption was enabled during your PAM configuration. See
+PAM Global Configuration Settings for more information on these configuration options and Adding and Removing
+Identities ina PAM Container fordetails on adding and removing identities.
+
+The Direct Access tab shows identities granted direct access tothis container (view, add, remove)
+
+The Effective Access tab shows identitiesgranted access to thiscontainer through group membership (view only)
+
+Display Name
+
+ The display name of the identity as aggregated from the privileged account management application.
+
+Status
+
+ Current status of the identity as determined through aggregation.
+
+Manager
+
+ The listedmanager of thisidentity, ifone has been assigned.
+
+Details
+
+ View details, permissions granted and the account and application from which they were granted, or Remove
+ the identity from the container. For more details, see Adding and Removing Identities in a PAM Container
+
+
+Container Details: Groups
+
+Use thistab toview detailed information about groups.
+
+Display Name
+
+ The display name of the group as aggregated from the PAM application.
+
+Description
+
+ A description of thisgroup, ifone isavailable.
+
+Details
+
+ View details, the identities contained within the group, the permission granted the group by this container, and all
+ of the permissions granted this group and the containers through which they are granted.
+
+Container Details: Privileged Items
+
+Use thistab toview, add, or remove privileged items to which this container grants access. Privileged items are things
+likeaccounts, credentials, files,and keys.
+
+
+
+
+ SailPoint Privileged Account Management 18
+
+===== Page 22/39 =====
+Managing Privileged Accounts
+
+
+The add and remove features are only visible ifenabled during your PAM configuration. See PAM Global Con-
+figuration Settings formore information on these configuration options, and Adding and Removing Privileged Items in
+a PAM Container fordetails on adding and removing items.
+Adding New PAM Containers Manually
+
+PAM containers are typicallycreated through aggregation from the PAM vendor application. In addition, system
+administrators, and other users with the PAM Administrator capability, can manually add PAM containers inIden-
+tityIQ.
+
+Some global and application-level settings forPAM determine whether this option is available and how itworks:
+
+
+
+ l The option to add containers must be enabled globally. To enable this option, navigate to the gear menu >
+ Global Settings > IdentityIQ Configuration > Privileged Account Management tab, and select Enable
+ the creation of PAM containers. See PAM Global Configuration Settings.
+
+
+
+ l A provisioning policy for creating containers must be defined inthe application definition for the PAM applic-
+ ation thatwill be associated with the new container. This policy determines which specific fieldsneed to be
+ defined for a new container when itisadded. See Configuring a PAM Application.
+
+To add a PAM container:
+
+ 1. In the Quicklink menu, click Manage Access > Privileged Account Management.
+
+ 2. Click Add Container.
+
+ 3. Choose the PAM application forthis container from the dropdown. Note that the drop-down only listsapplic-
+ ations of type Privileged Account Management. When you choose the application, additional Create Con-
+ tainer Policy fields appear for the container, based on the provisioning policy that isset for the application.
+
+ 4. Enter a Display Name, Description, and Owner for the container.
+
+ 5. Create Container Policy fields;any fields required by the provisioning policy forcreating containers will
+ appear and should be completed. This information is used to provision the container inthe PAM system, and
+ can also determine how container information is displayed in the Entitlement Catalog. The provisioning policy
+ for creating containers is defined inthe application definition. See Configuring a PAM Application.
+
+ 6. Click Submit.
+
+By default, the creation of a new PAM container must be approved by the owner of the PAM application associated
+with the container. An approval item is created for the application owner and can be accessed through the Approvals
+tileon the approver's home page.
+
+
+
+
+
+
+
+ SailPoint Privileged Account Management 19
+
+===== Page 23/39 =====
+Managing Privileged Accounts
+
+
+ Note: PAM container creation ishandled by a workflow task. To monitor status ofthis task, use
+ the gear icon > Administrator Console > Provisioning tab. You can view the results ofthis
+ task ineither the Administrator Console Tasks tab,or in the Setup > Tasks > Task Results tab.
+
+Adding and Removing Identities in a PAM Container
+
+System administrators, and other users with the PAM Administrator capability,can manually add orremove iden-
+titiesina PAM container.
+
+Some global settings forPAM determine whether thisoption isavailable and how itworks. See PAM Global Con-
+figuration Settings for more information on these configuration options.
+
+
+
+ l The option toadd or remove identities ina PAM containers must be enabled globally.To enable this option,
+ navigate to the gear menu > Global Settings > IdentityIQ Configuration > Privileged Account Man-
+ agement tab, and select the Enable adding and removing identities in PAM containers option.
+
+
+
+ l The approval path for additions or deletions of identitiesin a PAM container isdetermined by the business pro-
+ cess selected for The workflow used to provision identities.
+
+To add or remove identitiesin a PAM container:
+
+ 1. In the Quicklink menu, clickManage Access > Privileged Account Management.
+
+ 2. Click View Details forthe container whose items you want tomodify.
+
+ 3. Click Add Identities. Note that you can only add orremove an identityfrom the Direct Access list;the Effective
+ Access listisview-only.
+
+ 4. Choose the identitiesto add. Note that you can only select identities thathave an account on the PAM applic-
+ ation associated with this container.
+
+ Note: You can use the Manage Access feature inLifecycle Manager to request that an
+ account be added fora user on the PAM application, ifone does not exist.See the Life-
+ cycle Manager documentation formore information.
+
+ 5. Click Next.
+
+ 6. Select permissions for these users on thiscontainer. You may be prompted to select an account, ifthe user has
+ more than one account on the application.
+
+ 7. Click Submit tobegin the approval/provisioning process.
+
+
+
+
+
+
+
+
+
+ SailPoint Privileged Account Management 20
+
+===== Page 24/39 =====
+Managing Privileged Accounts
+
+ 8. To remove identities,clickthe Remove button beside the identity, and confirm the deletion. You select multiple
+ identities and click Bulk Remove to remove multiple identities atonce.
+
+
+ Note: Any approvals thatare required by the business process for identityprovisioning in PAM
+ must be completed, as part of the addition or removal process.
+
+For details about approval paths and notifications for changes toPAM containers, see Approvals forChanges toPAM
+Containers and Notifications About Changes to PAM Containers.
+Adding and Removing Privileged Items in a PAM Container
+
+Although you cannot create new privileged items directlyin IdentityIQ, any privileged items that have been aggregated
+from your PAM vendor(s) can be manually added to PAM containers.
+
+The option to add privileged items to containers must be enabled globally. To enable this option, navigate to the gear
+menu > Global Settings > IdentityIQ Configuration > Privileged Account Management tab,and select the
+Enable adding and removing privileged items in PAM containers option. With thisoption enabled, users can
+also remove privileged items from containers. See PAM Global Configuration Settings.
+
+To add or remove items in a PAM container:
+
+ 1. In the Quicklink menu, click Manage Access > Privileged Account Management.
+
+ 2. Click View Details for the container whose items you want tomodify.
+
+ 3. Click the Privileged Items tab.
+
+ 4. Click Add Privileged Items.
+
+ 5. Select the items to add from the dropdown. You can select more than one item before you submit the change,
+ but items are selected one ata time.
+
+
+ Note: Be sure toselect allthe items you want toadd before submitting the request,
+ because once the request has been submitted, the resulting business process must be
+ completed before you can add more items tothis container.
+
+ 6. Click Submit.
+
+ 7. To remove an item from the container, clickthe Remove button beside the item, and confirm the deletion. You
+ can select multiple items and remove them inbulk using Bulk Remove.
+
+
+
+
+
+
+
+
+
+
+ SailPoint Privileged Account Management 21
+
+===== Page 25/39 =====
+Managing Privileged Accounts
+
+
+By default, changes to items in a PAM container must be approved by the owner of the PAM container. Ifthere isno
+owner set for the container, approvals go to the owner of the PAM application associated with the container.
+Approvals are accessed through the Approvals tileon the approver's home page.
+
+Once the addition or removal of items has been approved, these new associations between the items and the con-
+tainer are provisioned to the PAM application, according to the provisioning policies that are defined inthe application
+definitionfor the application. See Configuring a PAM Application.
+
+ Note: The addition ofitems to a PAM container ishandled by a workflow task. To monitor status
+ ofthis task, use the gear icon > Administrator Console > Provisioning tab.You can view the
+ results ofthis task in eitherthe Administrator Console Tasks tab,or in the Setup > Tasks >
+ Task Results tab.
+
+For details about approval paths and notifications forchanges to PAM containers, see Approvals for Changes toPAM
+Containers and Notifications About Changes to PAM Containers.
+Approvals for Changes to PAM Containers
+
+Changes to PAM containers follow an approval path thatis defined by a business process. The approval process var-
+ies,depending on what isbeing changed in the PAM container: identities,or items.
+
+Approvals for Changes to Identities in a PAM Container
+
+The business process formanaging PAM container approvals is set ingear > Global Settings > IdentityIQ Con-
+figuration on the Privileged Account Management tab. By default, IdentityIQ uses the out-of-the-box PAM Identity
+Provisioning business process forthese approvals.
+
+The PAM IdentityProvisioning business process routes approvals forchanges to identities ina PAM container to the
+identity'smanager. This behavior can be changed by modifying the approvalScheme variable in the business pro-
+cess.
+
+The business process can specify a single value for the approver, or can specify several values ina comma-sep-
+arated list.Ifmultiple values are provided, the order inwhich they are listedin the comma-separated listdetermines
+the order in which they are processed.
+
+Approver options include:
+
+
+
+ l Manager – the identity'smanager gets the approval item
+
+
+
+ l None – approvals are disabled
+
+
+
+ l Identity – the identities/workgroups in the variable approvingIdentities get the approval item.
+
+
+
+
+
+
+
+
+
+ SailPoint Privileged Account Management 22
+
+===== Page 26/39 =====
+Managing Privileged Accounts
+
+
+
+ l Owner – the owner of the container gets the approval item.Ifthe container has no owner, then the application
+ owner gets the approval item.
+
+Electronic Signatures
+
+The PAM IdentityProvisioning business process supports the use of electronic signatures forapprovals. Use these
+process variables inthe business process to specify electronic signature objects, as needed:
+
+
+
+ l managerElectronicSignature
+
+
+
+ l identityElectronicSignature
+
+
+
+ l ownerElectronicSignature
+
+Approvals for Changes to Items in a PAM Container
+
+Approvals for changes to the items in a PAM container are managed by the Entitlement Update business process. If
+an owner is defined fora PAM Container, by default approvals forchanges to the items in a container willgo to the con-
+tainer'sowner. Ifno owner isdefined for a container, approvals will go to the owner of the application associated with
+the container.
+
+Container owners can be aggregated from the PAM application and can also be manually added to acontainer
+through the Entitlement Catalog.
+
+For more information about the Entitlement Catalog, see the IdentityIQ Application Management Guide.
+
+For more information about configuring the PAM application, see Configuring a PAM Application. For more inform-
+ation on aggregating PAM data, see Privileged Account Management Tasks: Aggregation, Indexing, and Refresh.
+
+Fallback Approvers for Changes to a PAM Container
+
+You can also set a fallback approver forboth the PAM Identity Provisioning business process and the Entitlement
+Update business process. A fallback approver is an identity orworkgroup thatwillhandle approvals incases where
+the designated approver can not be resolved. For example, ifthe business process specifies "manager" as the
+approver, but an identity does not have an assigned manager, a fallback approver (ifone has been set) willhandle
+approvals for thatidentity.
+Notifications About Changes to PAM Containers
+
+The approval business process that governs changes toPAM containers can callanother business process to define
+how notifications about changes and approvals are handled.
+
+By default, IdentityIQ uses the out-of-the-box PAM Identity Provisioning Notify business process to handle noti-
+fications.This notification business process iscalled by the approval business process; there is no UI option (apart
+from the business process UI itself)forchoosing a business process for handling notifications.
+
+
+
+
+
+ SailPoint Privileged Account Management 23
+
+===== Page 27/39 =====
+Managing Privileged Accounts
+
+
+The business process thathandles notifications about changes to PAM containers includes a string thatspecifies who
+should be notified when achange request has been completed.
+
+The value of thisstring can be null, oritcan be a comma-separated listof one or more ofthe following options:
+
+
+
+ l None or null– disable notifications, meaning no notifications are sent
+
+
+
+ l User – the Identity that isbeing updated willbe notified
+
+
+
+ l Manager – the manager ofthe Identity that isbeing updated willbe notified
+
+
+
+ l Requester – the person that has requested the update willbe notified
+
+
+
+ l Owner – the owner of the container willbe notified
+
+PAM Notification Templates
+
+The PAM module provides several out-of-the-box notification templates to use for PAM notifications. The PAM Iden-
+tityProvisioning Notify business process specifies which ofthese notification templates to use forwhich type of
+user (manager, requester, etc.). The templates can be viewed and edited inthe Debug pages by choosing EmailTem-
+plate in the object browser. To more easily locate the PAM notification templates, filterthetemplate listusing the term
+"PAM."
+Using Rapid Setup Joiner and Leaver Processes for PAM Users
+
+You can use Rapid Setup to manage joiner and leaver processes for PAM applications, in the same manner as for any
+other application. Ifyou want to use Rapid Setup with your PAM applications, you can configure Rapid Setup torun
+additional functions that are specific to PAM, such as deleting containers via a rule.
+
+A set of sample Rapid Setup rules isincluded with Rapid Setup. Sample Rapid Setup rules are in the rsexampler-
+ules.xml file,which islocated in your IdentityIQ installationdirectory under <identityiq_home>\WEB-INF\-
+config\rapidsetup.
+
+For information on how toimport filesinto IdentityIQ, see the System Configuration documentation.
+
+The sample rules include examples of rule logic forperforming PAM-specific actions, such as deleting containers.
+Once imported, the rulemust be modified to reference the correct PAM applications and associated PAM containers.
+Then the rule can be selected as part of your Rapid Setup global configuration. See PAM Global Configuration Set-
+tings.
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Privileged Account Management 24
+
+===== Page 28/39 =====
+Privileged Account Management Credential Cycling
+
+Privileged Account Management Credential Cycling
+
+
+Credential cycling enables applications that require credentials, such as username and password, to obtain that
+information directlyfrom a PAM vendor, such as a CyberArk orBeyond Trust vault.Credential cycling enables cre-
+dentials to be authenticated directly from the PAM source atruntime.
+
+An administrator defines which applications willuse credential cycling, which PAM solution provides those cre-
+dentials, and how each of the applications willcontact the PAM repository to retrieve the credentials. This is done
+using a configuration filethat isimported into IdentityIQ as an object.
+Credential Cycling Configuration
+
+This section gives an overview ofthe process forconfiguring credential cycling. More detailed information about tem-
+plate configuration isprovided in Solution-Specific Configuration Details.
+
+ Note: To enable credential cycling, BeyondTrust PowerBroker Password Safe application
+ passwords must be configured inthe JSON format:
+ {"bt_user":"MyUserName","bt_password":"MyPasswordValue"}
+
+Prerequisites for Credential Cycling
+
+
+
+ l Installand configure the PAM Module. See Activating the Privileged Account Management Module.
+
+
+
+ l Define a PAM application in IdentityIQ. See Configuring a PAM Application.
+
+Edit and Import the Configuration Template
+
+A template fileisprovided in your IdentityIQ installationforuse as a model forsetting up your own configuration. The
+template fileincludes sections for BeyondTrust, CyberArk, and a solution-neutral mapping option. Ifyou are using a
+PAM solution other than BeyondTrust or CyberArk, you can use those sections of the template as a model for con-
+figuringanother PAM solution.
+
+This credentialConfigurationTemplate.xml islocated in the WEB-INF\config directory of your IdentityIQ
+installation.
+
+The fileisfullycommented to provide guidance as you insert your configuration settings.
+
+ Note: When working with templates itisa best practice to make a copy of the template to hold
+ your specific configuration values, rather than modifying the original template file.
+
+The basic steps you willfollow for using the configuration template are:
+
+
+
+
+
+
+ SailPoint Privileged Account Management 25
+
+===== Page 29/39 =====
+Privileged Account Management Credential Cycling
+
+
+
+ l Edit your copy ofthe template toadd information about which of your applications willuse credential cycling
+
+
+
+ l Import the edited template fileintoIdentityIQ using Gear icon > Global Configuration > Import File
+
+
+
+ l Importing the filecreates a new configuration object inIdentityIQ: Credential Configuration
+
+Modifying Your Credential Cycling Configuration
+
+Ifyou need toupdate your credential cycling configuration, you can modify and reimport the credential configuration
+template, oryou can editthe Credential Configuration object directly inthe Debug pages. Choose Configuration in
+the Debug page's Select an object listbox, to findCredential Configuration inthe listof objects.
+
+Solution-Specific Configuration Details
+
+See these sections for solution-specific guidance on the configuration template:
+
+
+
+ l BeyondTrust Credential Cycling Configuration
+
+
+
+ l CyberArk Credential Cycling Configuration
+
+
+
+ l Direct Mapping Credential Cycling Configuration
+
+BeyondTrust Credential Cycling Configuration
+
+This section provides details on configuring credential cycling foruse with BeyondTrust.
+
+Note thatto enable credential cycling with the BeyondTrust PowerBroker Password Safe application, passwords must
+be configured in the JSON format. For example:
+
+{"bt_user":"MyUserName","bt_password":"MyPasswordValue"}
+
+Inthe Credential Source section, you configure:
+
+
+
+ l The URL to your BeyondTrust source
+
+
+
+ l The "run as" user forauthenticating toyour source
+
+
+
+ l An API key for authentication
+
+
+
+ l Your BeyondTrust Managed System and Managed Account names. Inthe Credential Source section, you set
+ values for your overall BeyondTrust implementation.
+
+ Note: Ifspecific applications willuse differentor unique Managed Systems orManaged
+ Accounts, you can set values for those that are specific to particular applications in the
+ Credential Association section. Values set in the Credential Source section are
+
+
+
+
+
+ SailPoint Privileged Account Management 26
+
+===== Page 30/39 =====
+PrivilegedAccount Management Credential Cycling
+
+
+ overridden by values of the same name in theAttributes map ofeach Credential Asso-
+ ciation.
+
+
+Inthe Credential Association section,you configure:
+
+
+
+ l The name(s) of your IdentityIQapplications that willuse credentialcycling
+
+
+
+ l The attributesforyour application'susername and password, and the corresponding BeyondTrust username
+ and password that provides the secure credentialto the applicationat runtime.
+
+
+
+ l Any application-specificoverrides tothe overallBeyondTrust Managed System orManaged Account names
+
+
+
+ <CredentialSource credentialClass="sailpoint.pam.credential.BeyondTrustCredentialManager"
+ name="beyondTrust ">
+                 <!-- The attributes in this map are used mainly to communicate with
+ BeyondTrust.
+                      Any values here can be overridden by values of the same name in the
+ attributes
+                      map of each credential association.  Required attributes must either
+ be configured
+                      here or in every credential source.  Attributes:
+                     Required:  url
+                     Required:  runas
+                     Required:  apikey
+                     Required:  managedSystemName
+                     Required:  managedAccountName
+                     Optional:  durationMinutes
+                     Optional:  credentialCacheMinutes
+                     Optional:  checkInReason
+                     Optional:  checkOutReason
+                    -->
+                 <Attributes>
+                   <Map>
+                     <entry key="url">
+                       <value><String>https://your.beyondtrust.server/BeyondTrust/api/publ-
+ ic/v3/</String></value>
+                     </entry>
+                     <entry key="runas">
+                       <value><String>runas_user</String></value>
+                     </entry>
+                     <entry key="apikey">
+                       <value><String>your_beyondtrust_api_key_goes_here</String></value>
+                     </entry>
+                     <entry key="managedAccountName" value="beyond_trust_managed_account_
+ name"/>
+                     <entry key="managedSystemName" value="beyond_trust_managed_system_
+ name"/>
+                   </Map>
+                 </Attributes>
+                 <!-- ***Application Configuration -->
+                 <CredentialAssociation applicationName="application_name"
+
+
+
+
+
+
+SailPoint Privileged Account Management 27
+
+===== Page 31/39 =====
+Privileged Account Management Credential Cycling
+
+
+
+                                        attributeName="application_username_attribute"
+                                        credentialAttributeName="bt_user">
+                   <!-- *** Attribute values go here.  These attributes can be used to
+ override values from
+                        *** above, or can be left out if not needed -->
+                   <Attributes>
+                     <Map>
+                       <entry key="managedAccountName" value="special_beyond_trust_man-
+ aged_account_name"/>
+                     </Map>
+                   </Attributes>
+                 </CredentialAssociation>
+                 <CredentialAssociation applicationName="application_name"
+                                        attributeName="application_password_attribute"
+                                        credentialAttributeName="bt_password"/>
+               </CredentialSource>
+
+CyberArk Credential Cycling Configuration
+
+This section provides details on configuring credential cycling for use with CyberArk.
+
+Prerequisites for CyberArk Credential Cycling
+
+These prerequisites are specific toCyberArk, and are inaddition to the general prerequisites for credential cycling out-
+linedin Credential Cycling Configuration.
+
+
+
+ l InstallCyberArk's Credential Provider API on the server hosting your IdentityIQ instance. The Credential Pro-
+ vider API enables passwords that are stored in CyberArk DigitalVaults to be retrieved by IdentityIQ.
+
+
+ Ifyou are using multiple hosts, installthe Credential Provider API on allofyour task hosts. Ifyou are using UI
+ hosts for actions such as testconnections, previewing account information, running targeted aggregations,
+ managing accounts, processing access requests, or business processes configured to run inthe foreground,
+ the Credential Provider API must be installed on those hosts as well.
+
+
+ Note that the Credential Provider API isnot the same as CyberArk's Central Credential Provider.
+
+
+ For version 8.4 ofIdentityIQ, use version 9.8 of allCyberArk components.
+
+
+
+ l JavaPasswordSDK.jar: IdentityIQ distributesa version ofthe JavaPasswordSDK.jar for the CyberArk integ-
+ ration. This jarcontains several classes that allow IdentityIQ to communicate with the CyberArk's Credential
+ Provider.
+
+ CyberArk customers should confirm the appropriate version ofthe library fortheir version of CyberArk, and
+
+
+
+
+
+
+
+
+ SailPoint Privileged Account Management 28
+
+===== Page 32/39 =====
+Privileged Account Management Credential Cycling
+
+
+ obtain itfrom the vendor ifnecessary.
+
+
+
+ l Obtain application IDs, corresponding safe names, and folder names from your CyberArk administrator.
+
+Application Hash Value Authentication for CyberArk
+
+IdentityIQ uses the "Application Hash Value" method of authenticating tothe CyberArk API; other methods of authen-
+ticationwillnot work.
+
+Verify connectivity to the CyberArk DigitalVault using the command line clipasswordsdk before attempting tocon-
+structthe attributes of the Credential Cycling Configuration object.
+
+ How to generate a hash to add to the application ifthe SCIM server is not installed on
+ the IdentityIQ server
+
+
+ Note: For more information, refer toCyberArk's Credential Provider documentation and ASCP
+ Implementation Guide.
+
+First,ensure that you have extracted the pam-credential.jar filefrom the identityiq.war file.
+
+Ifyou have deployed IdentityIQ using the "exploded" form of the war file,you don't need to take any extra steps to
+extract the pam-credential.jar file;however, ifyou are not using thisdeployment strategy, you willhave to extract the
+pam-credential.jar from the identityiq.war file,perform the steps below, then repackage the pam-credential.jar
+back into the identityiq.war file.
+
+ 1. Run the CyberArk utilityJavaAIMGetAppInfo (under \Cy-
+ berArk\ApplicationPasswordProvider\Utils):
+
+
+ (Unix) java -jar javaaimgetappinfo.jar GetHash -AppExecutablesPattern=/{path to
+ identityiq directory}/WEB-INF/lib/pam-credential.jar
+
+
+ (Windows) java -jar JavaAIMGetAppInfo.jar GetHash /AppExecutablesPattern=C:\{path
+ to identityiq directory}\WEB-INF\lib\pam-credential.jar
+
+ 2. Copy the generated hash to the vault:
+
+ a. Log in tothe CyberArk Web Application.
+
+ b. Navigate to Applications > SailpointIIQ > Authentication > Add Hash and paste the generated hash.
+
+ 3. Restart the CyberArk Privileged Session Managers service to make the configuration change to take place
+ immediately. Alternatively you can wait approximately 3 minutes to allow the CyberArk Privileged Session Man-
+ ager toread the new configuration.
+
+
+
+
+
+
+ SailPoint Privileged Account Management 29
+
+===== Page 33/39 =====
+Privileged Account Management Credential Cycling
+
+Working with the CyberArk Configuration Template
+
+IdentityIQ provides a template touse as a guide forcreating your CyberArk configuration. The template defines:
+
+
+
+ l Which of your applications in IdentityIQ willuse credential cycling.
+
+
+
+ l The CyberArk source values to use for credentials.
+
+
+
+ l How these source values map to your IdentityIQ application fields for authentication.
+
+
+Inthe Credential Source section, you configure:
+
+
+
+ l The name of your CyberArk safe. This information comes from CyberArk.
+
+
+
+ l The folder where your secure credentials are stored. This information comes from CyberArk. Use "root"here if
+ you do not use folders.
+
+
+
+ l An appId, which isa unique identifier,used for authorization, which the CyberArk Credential Provider creates
+ when itis installed on a host. This information comes from CyberArk.
+
+
+ Note: These values can also be added inthe Credential Association section, and settings in the
+ Credential Association section willoverride values in the Credential Source section. Configuring
+ applications inthe Credential Association section isuseful ifyou need to define multiple applic-
+ ations inthe configuration file.See the CyberArk Configuration Template -Configured Example
+ section below for an example of this type of structure.
+
+Inthe Credential Association section, you configure
+
+
+
+ l The name(s) of your IdentityIQ applications that willuse credential cycling.
+
+
+
+ l The attributes for your application's username, and the corresponding CyberArk username that provides the
+ secure username credential to the application at runtime.
+
+
+
+ l The attributes for your application's password, and the corresponding CyberArk password that provides the
+ secure password to use for the application at runtime.
+
+
+
+ l A CyberArk object, which isthe name identifierfor the password or certificate data object in the CyberArk con-
+ tainer.
+
+
+
+ l Any application-specific overrides to the overall CyberArk settings.
+
+ CyberArk Configuration Template - Defaults
+
+
+
+
+
+
+
+
+ SailPoint Privileged Account Management 30
+
+===== Page 34/39 =====
+PrivilegedAccount Management Credential Cycling
+
+
+ Note: The template provided withIdentityIQ includes individualsections forCyberArk, Bey-
+ ondTrust, and a solution-neutralmapping option. Remove the sections thatyou willnot use
+ before importing the template.
+
+
+ ?xml version='1.0' encoding='UTF-8'?>
+ <!DOCTYPE sailpoint PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+ <sailpoint>
+   <Configuration name="CredentialConfiguration">
+     <Attributes>
+       <Map>
+         <entry key="sources">
+           <value>
+             <List>
+ <CredentialSource credentialClass="sailpoint.pam.credential.CyberArkCredentialManager"
+ name="cyberark">
+                 <!-- The attributes in this map are used mainly to communicate with
+ CyberArk.
+                      Any values here can be overriden by values of the same name in the
+ attributes
+                      map of each credential association.  Required attributes must either
+ be configured
+                      here or in every credential source.  Attributes:
+                     Required:  safe
+                     Required:  folder
+                     Required:  appId
+                     Required:  object
+                    -->
+                 <Attributes>
+                   <Map>
+                     <entry key="safe" value="cyber_ark_safe_name"/>
+                     <entry key="folder" value="cyber_ark_folder_name"/>
+                     <entry key="appId" value="cyber_ark_app_ID"/>
+                   </Map>
+                 </Attributes>
+
+                 <!-- *** Application Configuration -->
+                 <CredentialAssociation applicationName="application_name"
+                                        attributeName="application_username_attribute"
+                                        credentialAttributeName="CyberArk_username_
+ attribute">
+                   <!-- *** Attribute values go here.  These attributes can be used to
+ override values from
+                        *** above, or can be left out if not needed -->
+                   <Attributes>
+                     <Map>
+                       <entry key="object" value="object_value"/>
+                     </Map>
+                   </Attributes>
+                 </CredentialAssociation>
+             </CredentialSource>
+            </List>
+           </value>
+
+
+
+
+
+
+
+SailPoint Privileged Account Management 31
+
+===== Page 35/39 =====
+Privileged Account Management Credential Cycling
+
+
+
+         </entry>
+       </Map>
+     </Attributes>
+   </Configuration>
+     </sailpoint>
+
+
+ CyberArk Configuration Template - Configured Example
+
+Note that thisexample includes only the CyberArk-specific elements in the template. See the example above or the
+configuration template supplied with IdentityIQ foradditional elements required inthe template.
+
+Inthisexample, application details are specified in the CredentialAssociation element. The values are defined
+as follows:
+
+
+
+ l JDBCDirectDemoData is the application inIdentityIQ that willuse credential cycling.
+
+
+
+ l SailPointIdentityIQ is the unique application identifierinCyberArk forthis IdentityIQ instance.
+
+
+
+ l Demodata is the specificsafe withinCyberArk which contains credentials for the JDBCDirectDemoData sys-
+ tem.
+
+
+
+ l Database-MySQL-JDBCDirDemoData represents the collection ofattributes in CyberArk which store pass-
+ word and user name information for the JDBCDirectDemoData application.
+
+
+
+ l The user attributeName key isthe attributein the JDBCDirectDemoData application in IdentityIQ thatholds
+ the username for connecting to the JDBCDirectDemoData system. The PassProps.Username cre-
+ dentialAttributeName key is the corresponding attributein CyberArk which holds the username cre-
+ dential,which willbe passed to the IdentityIQ user attribute.
+
+
+
+ l The password attributeName key isthe attribute inthe JDBCDirectDemoData application inIdentityIQ that
+ contains the password forconnecting tothe JDBCDirectDemoData system. The Password cre-
+ dentialAttributeName key is the corresponding attributein CyberArk which holds the password cre-
+ dential,which willbe passed to the IdentityIQ password attribute.
+
+
+ <CredentialSource credentialClass="sailpoint.pam.credential.CyberArkCredentialManager"
+ name="cyberark">
+               <CredentialAssociation applicationName="JDBCDirectDemoData" attrib-
+ uteName="password" credentialAttributeName="Password">
+                 <Attributes>
+                   <Map>
+                     <entry key="appId" value="SailpointIdentityIQ"/>
+                     <entry key="folder" value="root"/>
+                     <entry key="object" value="Database-MySQL-JDBCDirDemoData"/>
+
+
+
+
+
+
+
+SailPoint Privileged Account Management 32
+
+===== Page 36/39 =====
+Privileged Account Management Credential Cycling
+
+
+
+                     <entry key="safe" value="Demodata"/>
+                   </Map>
+                 </Attributes>
+               </CredentialAssociation>
+               <CredentialAssociation applicationName="JDBCDirectDemoData" attrib-
+ uteName="user" credentialAttributeName="PassProps.Username">
+                 <Attributes>
+                   <Map>
+                     <entry key="appId" value="SailpointIdentityIQ"/>
+                     <entry key="folder" value="root"/>
+                     <entry key="object" value="Database-MySQL-JDBCDirDemoData"/>
+                     <entry key="safe" value="Demodata"/>
+                   </Map>
+                 </Attributes>
+               </CredentialAssociation>
+     </CredentialSource>
+
+
+
+
+Here ishow credential cycling, as configured using the template above, willappear in IdentityIQin the JDBCDir-
+ectDemoData application. The message indicatesthat the Connection User and Connection Password, which are
+marked with asterisks indicatingthat they are required, do not need to be supplied here because they willbe provided
+through credential cycling.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint Privileged Account Management 33
+
+===== Page 37/39 =====
+Privileged Account Management Credential Cycling
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Configuring Multiple Applications in the CyberArk Configuration Template
+
+A single configuration template isused to configure allapplications that willuse CyberArk credential cycling.
+
+To configure multipleapplications inthe template, use Credential Associations elements to define each of them. See
+the CyberArk Configuration Template -Configured Example section above foran example.
+
+Special Considerations for Active Directory
+
+A special syntax is used toreplace Active Directory Application attributes when using credential cycling. The feature
+uses SailPoint's MapUtil API. Here isan example:
+
+
+ <CredentialSource credentialClass="sailpoint.pam.credential.CyberArkCredentialManager"
+ name="cyberark">
+  <Attributes>
+   <Map>
+    <entry key="appId" value="CyberArk"/>
+    <entry key="folder" value="root"/>
+    <entry key="object" value="ActiveDirectory"/>
+    <entry key="safe" value="MicrosoftSafe"/>
+   </Map>
+  </Attributes>
+    <CredentialAssociation applicationName="ActiveDirectory" attributeName="domainSettings
+
+
+
+
+
+ SailPoint Privileged Account Management 34
+
+===== Page 38/39 =====
+Privileged Account Management Credential Cycling
+
+
+
+ [domainNetBiosName=DOMAINNAME].password" credentialAttributeName="password"/>
+ </CredentialSource>
+
+
+
+Additional Resources
+
+Video: IdentityIQCyberArk IntegrationDemo
+
+
+Direct Mapping Credential Cycling Configuration
+
+Use this sectionof the template forsolution-neutral directattributemapping. Be sure toremove the CyberArk and Bey-
+ondTrust sections ofthe template.
+
+Inthe Credential Source section, you configure your actual credential values, since you are not connecting toa third-
+partyPAM source. Itisa good practiceto use encrypted passwords inthissection.
+
+The Credential Associations settings connect thevalues inthe Credential Source section toyour applications as
+shown inthe template XML below.
+
+
+ <CredentialSource credentialClass="sailpoint.pam.credential.MapCredentialManager"
+ name="mapCredManager">
+                 <!-- The attributes in this map are the values that will be returned by
+ the map credential manager.
+                      It's probably a good idea to encrypt these so they are not stored in
+ plain text if the values
+                      are sensitive -->
+                 <Attributes>
+                   <Map>
+                     <entry key="credentialValues">
+                       <value>
+                         <Map>
+                           <entry key="map_username_attribute" value="john_doe_username"/>
+                           <entry key="map_password_attribute" value="super_secret_
+ password"/>
+                         </Map>
+                       </value>
+                     </entry>
+                   </Map>
+                 </Attributes>
+                 <!-- *** Application Configuration -->
+                 <CredentialAssociation applicationName="application_name"
+                                        attributeName="application_username_attribute"
+                                        credentialAttributeName="map_username_attribute"/>
+                 <CredentialAssociation applicationName="application_name"
+                                        attributeName="application_password_attribute"
+                                        credentialAttributeName="map_password_attribute"/>
+               </CredentialSource>
+
+
+
+
+
+
+ SailPointPrivileged Account Management 35
+
+===== Page 39/39 =====
+Privileged Account Management Credential Cycling
+
+Credential Cycling in an Application
+
+When credential cycling is configured foran application, the Application Definition page displays amessage for the
+users. Although the relevant credential fields (inthis example, Connection User and Connection Password) are still
+marked as requiring values, these fields are not validated when credential cycling isenabled, and so can be leftblank
+orcan include dummy values.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint Privileged Account Management 36

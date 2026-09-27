@@ -1,0 +1,778 @@
+===== Page 1/14 =====
+ IdentityIQ Risk Scoring
+
+
+ Version:8.4
+
+ Revised:September2023
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thisdocument and theinformation contained hereinisSailPoint ConfidentialInformation
+
+===== Page 2/14 =====
+Copyright and Trademark Notices
+
+Copyright © 2023 SailPoint Technologies, Inc.  All Rights Reserved.
+
+Alllogos, text,content, including underlying HTML code, designs, and graphics used and/or depicted on these written
+materials or in thisInternet website are protected under United States and international copyright and trademark laws
+and treaties, and may not be used or reproduced without the prior express written permission of SailPoint Tech-
+nologies, Inc.
+
+“SailPoint Technologies,” (design and word mark), “SailPoint,” (design and word mark), "Identity IQ,” “IdentityNow,”
+“SecurityIQ,” “Identity AI,” “Identity Cube,” and “SailPoint Predictive Identity” are registered trademarks of SailPoint
+Technologies, Inc. “Identity isEverything,” “The Power of Identity,” and “Identity University” are trademarks of
+SailPoint Technologies, Inc. None of the foregoing marks may be used without the prior express written permission of
+SailPoint Technologies, Inc. Allother trademarks shown herein are owned by the respective companies or persons
+indicated.
+
+SailPoint Technologies, Inc. makes no warranty ofany kind regarding these materials or the information included
+therein, including, but not limited to,the implied warranties ofmerchantability and fitness for a particular purpose.
+SailPoint Technologies shall not be liable for errors contained herein or direct, indirect, special, incidental orcon-
+sequential damages inconnection with the furnishing, performance, or use of thismaterial.
+
+Patents Notice. https://www.sailpoint.com/patents
+
+Restricted Rights Legend. All rights are reserved. No part ofthis document may be published, distributed, reproduced,
+publicly displayed, used to create derivative works, or translated to another language, without the prior written consent
+ofSailPoint Technologies. The information contained inthis document issubject to change without notice.
+
+Use, duplication or disclosure by the U.S. Government is subject to restrictions as set forth insubparagraph (c) (1) (ii)
+ofthe Rights inTechnical Data and Computer Software clause at DFARS 252.227-7013 for DOD agencies, and sub-
+paragraphs (c)(1) and (c)(2) ofthe Commercial Computer Software Restricted Rights clause at FAR 52.227-19 for
+other agencies.
+
+Regulatory/Export Compliance. The export and re-export of this software iscontrolled for export purposes by the U.S.
+Government. By accepting this software and/or documentation, licensee agrees to comply with allU.S. and foreign
+export laws and regulations as they relate to software and related documentation.  Licensee will not export or re-
+export outside the United States software or documentation, whether directly or indirectly, to any Prohibited Party and
+willnot cause, approve or otherwise intentionally facilitate others inso doing. A Prohibited Party includes: a party in a
+U.S. embargoed country or country the United States has named as a supporter of international terrorism; a party
+involved in proliferation; a party identified by the U.S. Government as a Denied Party; a party named on the U.S.
+Department of Commerce’s Entity Listin Supplement No. 4 to 15 C.F.R. § 744; a party prohibited from participation in
+export orre-export transactions by a U.S. Government General Order; a party listed by the U.S. Government’s Office
+ofForeign Assets Control as ineligible to participate in transactions subject toU.S. jurisdiction; or any party that
+licensee knows or has reason toknow has violated or plans to violate U.S. or foreign export laws or regulations.
+Licensee shall ensure that each of itssoftware users complies with U.S. and foreign export laws and regulations as
+they relate to software and related documentation.
+
+===== Page 3/14 =====
+Contents
+
+
+ Configure Risk Scoring 1
+
+ Identity Risk Score Configuration 2
+
+ Identity Baseline Access Risk Tab 3
+
+ Identity Composite Scoring Tab 5
+
+ Application Risk Score Configuration 7
+
+ Application Component Scores Tab 7
+
+ Application Composite Score Tab 8
+
+ Viewing Application and Identity Risk Scores 9
+
+ Identity Risk Scores 9
+
+ Application Risk Scores 10
+
+===== Page 4/14 =====
+Configure Risk Scoring
+
+
+Configure Risk Scoring
+
+
+Use the risk scoring configuration pages to define the algorithms used by IdentityIQ to determine risk scores for iden-
+titiesand applications within your organization. Risk scores are used throughout the product to highlight high risk
+users and accounts and totrigger notices when configured to do so.
+
+To access Risk configuration options, go toIdentities > Identity Risk Model orApplication > Application Risk
+Model. Configuring riskscoring requires the assignment ofadministrative capabilities within IdentityIQ.
+
+To configure riskscoring for identities and applications refer to following:
+
+
+
+ l Identity Risk Score Configuration
+
+
+
+ l Application Risk Score Configuration
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Risk Scoring 1
+
+===== Page 5/14 =====
+Identity Risk Score Configuration
+
+Identity Risk Score Configuration
+
+
+IdentityIQ uses a combination of base access riskand compensated scoring method todetermine the overall Identity
+Risk Scores, or Composite Risk Score, used throughout the product. You configure Baseline Access and Composite
+riskscoring for identities by navigating to Identities > Identity Risk Model.
+
+Base access riskis a measure ofinherent user access risk.Base riskscores are set on each role,entitlement, and
+policy defined. This type ofscore ranges from 0 (lowest risk)to 1000 (highest risk).The account weight assigned to
+any additional entitlements that are assigned to an identity also have an impact base riskscores. Account weights are
+factored into the entitlement baseline access risk scores.
+
+IdentityIQ applies a series of compensating factors toeach base riskscore to calculate compensated scores. These
+compensated scores are then weighted using a maximum contribution percentage and combined to form an overall
+Composite Risk Score foreach user.
+
+The compensating factors and weighted values enable IdentityIQ to accurately identify high-risk users based on more
+than just the roles they are assigned within your enterprise.
+
+For example, a user assigned only low riskroles might be considered high riskifthey have never been included ina
+certificationprocess or the roles they do have are in violation ofseparation of duty policies.
+
+Scoring Definitions
+
+There are a number of scores, ortypes of scores, that contribute to the overall Identity Risk Score, or Composite Risk
+foreach IdentityIQ user. The basic scores thatare used to determine the overall score are:
+
+ Score Definition
+
+ Base Risk Score The score assigned to each role, entitlement, or policy violation.
+ The total score of allbase risk scores of the same component type on a per
+ Total Base Risk user basis.
+ Score For example, add the base risk scores for allroles assigned to a specific user
+ together to determine the role total base risk score.
+ Compensated The value of the base risk score fora component multiplied by the com-
+ Risk Score pensating factor for that component type.
+ Total Com- The Total Base Risk Score for a specific component type multiplied by the
+ pensated Risk Compensated Risk Score for that component type.
+ Score
+ Composite Risk The overall riskscore for a user after the composite weighing, or maximum
+ Score or Identity contribution to total score factor, is applied tothe totalcompensated risk
+ Risk Score scores foreach component.
+
+
+
+
+
+
+ SailPoint IdentityIQ Risk Scoring 2
+
+===== Page 6/14 =====
+Identity Risk Score Configuration
+
+
+ Score Definition
+
+ The time since the last certification was performed on the user is also figured
+ intothis score with the totalcompensated scores for role,entitlement, and
+ policy violation.
+
+Use the sliding bars or manually enter a value, to define scoring on each panel.
+
+Use the following tabs tocreate risk score factors foryour enterprise:
+
+
+
+ l Identity Baseline Access Risk Tab — apply base risk scores to roles, entitlements and policy violations.
+
+
+
+ l Identity Composite Scoring Tab — apply compensating factors to base risk scores.
+
+Identity Baseline Access Risk Tab
+
+The Baseline Access Risk score is a measure of inherent risk.A user's Baseline Access Risk score rarely changes
+because their role within the enterprise isthe primary factor in defining the score. This type of score ranges
+from 0 (lowest risk)to 1000 (highest risk).
+
+Select one ofthe following options todefine how IdentityIQ calculates base access risks. Each role, entitlement, and
+policy violation is assigned a score that fallsinto a band. The number of bands isconfigured on the Advanced Con-
+figuration page and applies tothe entire IdentityIQ application.
+
+To configure baseline access risk scores for role,entitlement, and policy violation access, navigate to Identities >
+Identities Risk Model and select the Baseline Access Risk tab.
+
+ Role Baseline Access Risk
+
+Role Baseline Access Risk score is calculated based on the roles correlated to the identity. This listcontains every
+role defined in IdentityIQ. To limitthe number of items displayed in the list,filterthe listby role name and type.
+
+ Column Description
+
+ Name The name of the role.
+ Type The role type as defined when the role was modeled.
+ Description The description ofthe role as defined when the role was modeled.
+ Risk Level The current risk level assigned to the role.
+
+Click on a role todisplay the configuration panel to see the role details and set or modify the risk level.Use the slider
+control to set the risk level or enter a value inthe field on the right.
+
+ Entitlement Baseline Access Risk
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Risk Scoring 3
+
+===== Page 7/14 =====
+Identity Risk Score Configuration
+
+
+Entitlement Baseline Access Risk score is calculated based on the additional entitlements correlated toan identity.
+Additional entitlements are entitlements that are assigned to a user, but are not part of any of the roles assigned to that
+user.
+
+Entitlements fallinto two categories: Permissions and Attributes. A Permission isa privilege, such as create, read,
+update, delete, and execute. Attributes are customized user characteristics made up ofan attribute/value pair, such
+as group/Administrators. A risk score isconfigured foreach Permission and Attribute/Value pair inthe system. A
+user's Entitlement Baseline Access Risk score isdetermined by summing the risks associated with each of the addi-
+tional entitlements that they hold.
+
+Use this page to add applications to the listand towork with the entitlements on each. The Entitlement Baseline
+Access Risk Configuration page contains the following information:
+
+ Column Description
+
+ Application The name of the application with which the entitlements are associated.
+ The default score assigned to any identity that is assigned entitlements on this
+ application. Account Weight scores are not compensated.
+ Account This score is not applied to the identity risk score ifthe entitlements assigned to
+ Weight the user are, either allused as part ofroles assigned to the user, or ifthe risk
+ score for allof the entitlements assigned to the user are zero based on cer-
+ tification rules.
+ Click inthis column tomodify the weight assigned to the permissions forthe
+ Permissions associated application.
+ Use the sliding bar or enter a value inthe fieldon the right to modify permission
+ weight.
+ Click inthis column toadd, delete or modify the weight assigned to the attributes
+ for the associated application.
+ Attributes Select an attribute from the drop-down list,type an attribute name, and click Add
+ to assign a weight to a new attribute, or modify and existing attribute inthe list.
+ Select an attribute using the check-boxes on the leftand click Delete toremove
+ an attribute from the list.
+
+To add an application tothe list,select an application from the drop-down liston the bottom of the page. The listcon-
+tains allof the application configure to work with IdentityIQ that are not currently on the list.Use the Permissions and
+Attributes columns to add entitlements to applications for risk tracking.
+
+ Policy Violation Baseline Access Risk
+
+Policy Violation Baseline Access Risk score iscalculated using policy violations that are detected for a user based on
+defined policy rules. A risk score is configured for every rule in each policy or for the policy ifno rules apply. This score
+
+
+
+
+
+
+ SailPoint IdentityIQ Risk Scoring 4
+
+===== Page 8/14 =====
+Identity Risk Score Configuration
+
+
+iscalculated by taking the sum of the risks associated with every policy or rule that the user violates.
+
+Use the Policy Violation Baseline Access Risk page toview and modify the risklevel associated with each policy or
+policy rule defined. The page is divided into tables based on policy type. Ifthe policy does not contain rules, set the
+risklevel for the entire policy. Use the slideror type a value inthe field tothe right.
+
+Identity Composite Scoring Tab
+
+Use the Composite Scoring tab toassign value to the compensating factors foreach base component used to cal-
+culate the composite riskscores forusers. You can also define the maximum contribution of each component tothe
+totalscore. The maximum composite risk score is1000. Use the Maximum Contribution to Total Score value tocontrol
+the impact of compensated scores on composite scores.
+
+Use the Composite Scoring tab todefine the maximum impact of a total compensated score on a user's Composite
+Risk Score. For example, ifthe time since the last certification on an identity isconsidered low risk,you can set the Cer-
+tificationAge to a low value, such as 20% so that even at itsmaximum value that component only contributes 200
+points of the total 1000. If,however, policy violations are considered high risk, you can set the Separation of Duty
+Violation Compensated Score to 100% so that policy violations move users into the high-risk category quickly. Use the
+Composite Scoring tab to define the maximum impact of a totalcompensated score on a user's Composite Risk
+Score.
+
+
+
+ Category Compensating Control
+
+ Based on applying the following compensating factors toeach role base
+ score:
+
+ The user's role has never been certified before
+
+ The user's role is approved
+ Role Com- The user's role was allowed as an exception
+ pensated Score
+ An allowed exception on the user's role has expired
+
+ Revocation of the user's role ispending
+
+ Activity monitoring is enabled on one or more applications associated with
+ the user's role
+ Based on applying the following compensating factors toeach entitlement
+ Entitlement Com- base score:
+
+ pensated Score The user's entitlement has never been certifiedbefore
+
+ The user's entitlement isapproved
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Risk Scoring 5
+
+===== Page 9/14 =====
+Identity Risk Score Configuration
+
+
+ Category Compensating Control
+
+ The user's entitlement was allowed as an exception
+
+ An allowed exception on the user's entitlement has expired
+
+ Revocation of the user's entitlement ispending
+
+ Activity monitoring is enabled on one or more applications to which the
+ user's entitlement applies
+ Based on applying the following compensating factors topolicy base score:
+
+ The user's violation has never been certified before
+
+ Policy Violation The user's violation was allowed
+ Compensated An allowed exception on the user's policy violation has expired
+ Score The user's policy violation remains uncorrected
+
+ Activity monitoring is enabled on the applications on which the user's viol-
+ ation occurred
+ Based on applying the following compensating factors toan expired cer-
+ Certification Age tification:
+
+ Score The risk score starts increasing this many days after the latest certification
+
+ The risk score reaches its maximum value this many days later
+ Inactive User looks for inactive users. When this score isenabled any identity is found to
+ Score be inactive, a default riskscore of500 isassigned for this score component
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Risk Scoring 6
+
+===== Page 10/14 =====
+Application Risk Score Configuration
+
+Application Risk Score Configuration
+
+
+IdentityIQ uses a combination of Component and Composite scoring to determine the overall application risk scores
+used throughout the application. You configure Component and Composite riskscoring for your applications by nav-
+igating to Applications > Application Risk Model.
+
+Allscores are calculated by firstdetermining the percentage of accounts that have the qualities tested by the com-
+ponent score. For example, if10 out of100 accounts are flagged as service accounts, then the raw percentage is ten
+percent (.10).This number is then multiplied by a sensitivity value which can be used to increase or decrease the
+impact of the original percentage. The default sensitivity value is5 making the adjusted percentage fiftypercent (.50).
+This finalpercentage isthen applied to the score range of1000 resulting in a component score of 500.
+
+After the component score is calculated a weight, or compensating factor, isapplied to each component score to
+determine the amount each contributes to the overall risk score forthe application. The resulting score is the com-
+posite score. For example, a few violator accounts might increase riskmore than many inactive accounts.
+
+To view the currently configured risk information for an application, go to the Application Definition page, click on a
+listedapplication, and then select the Risk tab.
+
+Use these tabs to create riskscore factors for your enterprise:
+
+
+
+ l Application Component Scores Tab — apply base risk scores to roles, entitlements and policy violations.
+
+
+
+ l Application Composite Score Tab — apply compensating factors tobase riskscores.
+
+Application Component Scores Tab
+
+Use the Component Scores tab todefine the values for each account or component.
+
+Service Account, Inactive Account, and Privileged Account component scores look forlinks that have a con-
+figured attribute. For example, the component service with a configured value true.
+
+The Dormant Account score looks for a configured attributethat is expected to have a date value, forexample
+lastLogin. This algorithm has an argument, daysTillDormant, that defaults to thirty(30). Ifthe lastlogin date is
+more than thirty(30) days prior to the current date, the account is considered dormant and isfactored into the risk
+score.
+
+The Risky Account score looks forlinks whose owning identityhas a composite riskscore greater than a configured
+threshold. The default threshold is fivehundred (500).
+
+The Violator Account score looks for links whose owning identity has a number of policy violations greater than a con-
+figured threshold. The default threshold isten (10).
+
+Ifyou check Disabled for any componet, the component is not used to determine the application risk score.
+
+
+
+
+
+ SailPoint IdentityIQ Risk Scoring 7
+
+===== Page 11/14 =====
+Application Risk Score Configuration
+
+Application Composite Score Tab
+
+Use the Composite Scoring tab to apply a weight or compensating factor foreach component. Specify theper-
+centage ofcontribution forthe component scores.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Risk Scoring 8
+
+===== Page 12/14 =====
+Viewing Application and Identity Risk Scores
+
+
+Viewing Application and Identity Risk Scores
+
+
+Use the Intelligence > Identity Risk Score page to view individual riskscores forusers. The page displays one tab
+foreach risklevel defined inIdentityIQ. The risk criteriaand number ofrisk levels are defined during the configuration
+process.
+
+Use the Intelligence > Application Risk Scores page to view the risk scores associated with each application. This
+page displays a table that summarizes all ofthe applications score cards. The score information foreach applications
+isseparated into scoring components that were defined when the product was configured.
+Identity Risk Scores
+
+Use this page to view individual risk scores for users. The page displays one tab foreach risklevel defined inIden-
+tityIQ.Click a tab to display a listof allof the users that fallinto that risk level.
+
+You can access thispage from the navigation menu bar. Go to Intelligence > Identity Risk Scores.
+
+Use the Filter options to reduce the number ofidentities displayed on the list.
+
+
+
+ l The Group to filterby drop-down listiscontains all ofthe groups defined foryour enterprise when IdentityIQ
+ was configured and isbased on attributes use foridentity mapping.
+
+
+
+ l The Value drop-down listcontains allof the values assigned to the selected attribute.
+
+
+Identity riskscores are determined by weighted scores assigned to components that comprise the individual’s Identity
+Cube. The identity risk scores table liststhe component scores and enables you toidentify the areas most at risk and
+take the appropriate actions.
+
+From the Identity Risk Scores table you can schedule Identity Certifications for any or allidentities listed. Identity
+Certifications are certification requests foridentities with risk scores that warrant special attention. For example, a con-
+tractdatabase administrator might require more frequent certification than a full-time employee. These do not replace
+the regularly scheduled certification requests, such as Manager or Application, but are in addition to those cer-
+tifications.
+
+This Identity Risk Scores table includes the following:
+
+
+
+ Column Description
+ Name
+
+ Identity selec- Activate this check-box tomark this user as one forwhom to request an Identity
+
+
+
+
+
+
+ SailPoint IdentityIQ Risk Scoring 9
+
+===== Page 13/14 =====
+Viewing Application and Identity Risk Scores
+
+
+ Column Description
+ Name
+
+ tion box Certification.
+ Name The login name ofthe user. Only users with risk scores that fallinto the risk band
+ associated with the selected tab are displayed.
+ First Name The firstand last name of the user.
+ Last Name
+ Composite The total composite risk score for the user. This score isbased on riskfactors
+ Score defined when IdentityIQ was configured for your enterprise.
+ Role The sum of compensated role risk scores as defined when IdentityIQ was con-
+ figured.
+ Entitlement The sum of compensated entitlement scores as defined when IdentityIQ was con-
+ figured.
+ Policy The sum of compensated risk scores associated with policy violations as defined
+ when IdentityIQ was configured.
+ Certification The sum of compensated risk scores associated with certifications as defined
+ when IdentityIQ was configured.
+
+Click a user inthe table to open the View Identity page. The View Identity page contains individual Identity Cube risk
+information. Identity Cubes are multi-dimensional data models of identity information that offera single, logical rep-
+resentation of each managed user. Each Cube contains information about user entitlements, associated context and
+historical records of user access configurations and activity.
+Application Risk Scores
+
+Use this page to view the risk scores associated with each application. You can access this page from Intelligence >
+Application Risk Scores.
+
+This page displays a table summarizing allofthe applications score cards. The score information foreach applications
+isbroken down by the scoring components defined when the product was configured. The firstcolumn inthe table con-
+tains the composite riskscore for the application. The composite score iscalculated by combining the compensated
+scores of the individual components.
+
+Click an application inthe table to display the Edit Application page. Click the Risk tab to view the latest score card
+forthe application.
+
+The algorithms used by the Refresh Application Scoring task toupdate this page are defined on the Application
+Risk page.
+
+Allscores are calculated by firstdetermining the percentage ofaccounts that have the qualities tested by the com-
+ponent score. For example, if10 out of 100 accounts are flagged as service accounts, then the raw percentage is ten
+
+
+
+
+ SailPoint IdentityIQ Risk Scoring 10
+
+===== Page 14/14 =====
+Viewing Application and Identity Risk Scores
+
+
+percent (.10). This number isthen multiplied by a sensitivity value which can be used toincrease or decrease the
+impact of the original percentage. The default sensitivity value is 5 making the adjusted percentage fiftypercent (.50).
+This final percentage is then applied to the score range of 1000 resulting in a component score of 500.
+
+After the component score iscalculated, a weight or compensating factor is applied to each component score to
+determine the amount each willcontribute to the overall risk score forthe application. For example, a few violator
+accounts might increase risk more than many inactive accounts.
+
+Service, Inactive, and Privileged component scores look for links that have a configured attribute. For example, the
+component service with a configured value true.
+
+The Dormant Account score looks for a configured attribute that is expected to have a date value, forexample
+lastLogin. This algorithm has an argument, daysTillDormant, that defaults to thirty(30). Ifthe lastlogin date is
+more than thirty(30) days prior tothe current date, the account is considered dormant and isfactored into the risk
+score.
+
+The Risky Account score looks forlinks whose owning identity has a composite risk score greater than a configured
+threshold. The default threshold isfive hundred (500).
+
+The Violator Account score looks for links whose owning identity has a number ofpolicy violations greater than a a
+configured threshold. The default threshold isten (10).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Risk Scoring 11

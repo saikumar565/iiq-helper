@@ -1,0 +1,3866 @@
+===== Page 1/67 =====
+ IdentityIQ Tasks
+
+
+ Version:8.4
+
+ Revised:September2023
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thisdocument and theinformation contained herein isSailPoint Confidential Information
+
+===== Page 2/67 =====
+Copyright and Trademark Notices
+
+Copyright © 2023 SailPoint Technologies, Inc.  All Rights Reserved.
+
+Alllogos, text,content, including underlying HTML code, designs, and graphics used and/or depicted on these written
+materials or in thisInternet website are protected under United States and international copyright and trademark laws
+and treaties, and may not be used or reproduced without the prior express written permission of SailPoint Tech-
+nologies, Inc.
+
+“SailPoint Technologies,” (design and word mark), “SailPoint,” (design and word mark), "Identity IQ,” “IdentityNow,”
+“SecurityIQ,” “Identity AI,” “Identity Cube,” and “SailPoint Predictive Identity” are registered trademarks of SailPoint
+Technologies, Inc. “Identity isEverything,” “The Power of Identity,” and “Identity University” are trademarks of
+SailPoint Technologies, Inc. None of the foregoing marks may be used without the prior express written permission of
+SailPoint Technologies, Inc. Allother trademarks shown herein are owned by the respective companies or persons
+indicated.
+
+SailPoint Technologies, Inc. makes no warranty ofany kind regarding these materials or the information included
+therein, including, but not limited to,the implied warranties ofmerchantability and fitness for a particular purpose.
+SailPoint Technologies shall not be liable for errors contained herein or direct, indirect, special, incidental orcon-
+sequential damages inconnection with the furnishing, performance, or use of thismaterial.
+
+Patents Notice. https://www.sailpoint.com/patents
+
+Restricted Rights Legend. All rights are reserved. No part ofthis document may be published, distributed, reproduced,
+publicly displayed, used to create derivative works, or translated to another language, without the prior written consent
+ofSailPoint Technologies. The information contained inthis document issubject to change without notice.
+
+Use, duplication or disclosure by the U.S. Government is subject to restrictions as set forth insubparagraph (c) (1) (ii)
+ofthe Rights inTechnical Data and Computer Software clause at DFARS 252.227-7013 for DOD agencies, and sub-
+paragraphs (c)(1) and (c)(2) ofthe Commercial Computer Software Restricted Rights clause at FAR 52.227-19 for
+other agencies.
+
+Regulatory/Export Compliance. The export and re-export of this software iscontrolled for export purposes by the U.S.
+Government. By accepting this software and/or documentation, licensee agrees to comply with allU.S. and foreign
+export laws and regulations as they relate to software and related documentation.  Licensee will not export or re-
+export outside the United States software or documentation, whether directly or indirectly, to any Prohibited Party and
+willnot cause, approve or otherwise intentionally facilitate others inso doing. A Prohibited Party includes: a party in a
+U.S. embargoed country or country the United States has named as a supporter of international terrorism; a party
+involved in proliferation; a party identified by the U.S. Government as a Denied Party; a party named on the U.S.
+Department of Commerce’s Entity Listin Supplement No. 4 to 15 C.F.R. § 744; a party prohibited from participation in
+export orre-export transactions by a U.S. Government General Order; a party listed by the U.S. Government’s Office
+ofForeign Assets Control as ineligible to participate in transactions subject toU.S. jurisdiction; or any party that
+licensee knows or has reason toknow has violated or plans to violate U.S. or foreign export laws or regulations.
+Licensee shall ensure that each of itssoftware users complies with U.S. and foreign export laws and regulations as
+they relate to software and related documentation.
+
+===== Page 3/67 =====
+Contents
+
+
+ Tasks Overview 1
+
+ Template-Style Tasks and Special-Purpose Tasks 1
+
+ How Tasks Are Run 1
+
+ Process Overview forCreating Tasks 2
+
+ Working with Tasks 3
+
+ How toCreate a New Task 3
+
+ How toEdit a Task 5
+
+ How toSchedule a Task 8
+
+ Working with Schedules 9
+
+ How toEdit a Schedule 9
+
+ Task Administration 10
+
+ Running Tasks on Specific Hosts 10
+
+ Tracking Task Run Length forTroubleshooting 10
+
+ Administrator Console: Tasks Page 11
+
+ Tasks Page 12
+
+ Predefined Tasks 13
+
+ Scheduled Tasks Page 16
+
+ Task Results Page 17
+
+ Task Types 19
+
+ Access History Tasks 22
+
+ Account Aggregation 22
+
+ Account Group Aggregation 27
+
+ ActivityAggregation 28
+
+ Alert Aggregation 29
+
+ Alert Processor 29
+
+ Application Builder 30
+
+ ArcSight Data Export 32
+
+ Data Export 35
+
+ Effective Access Indexing 36
+
+===== Page 4/67 =====
+ Encrypted Data Synchronization Task 37
+
+ Entitlement Role Generator 37
+
+ File Access Manager Classification 38
+
+ ITIM Application Creator 39
+
+ IdentityIQ Cloud Gateway Synchronization 40
+
+ Identity Refresh 40
+
+ Identity Request Maintenance 49
+
+ Missing Managed Entitlements Scan 50
+
+ OIM Application Creator 51
+
+ Policy Scan 51
+
+ Propagate Role Changes 51
+
+ Refresh Logical Accounts 54
+
+ Reset Failed NativeIdentityChangeEvents 55
+
+ Role Index Refresh 56
+
+ Role-Entitlement Associations 56
+
+ Run Rule 56
+
+ Sequential Task Launcher 57
+
+ System Maintenance 57
+
+ Target Aggregation 61
+
+How to Complete Task Work Items 63
+
+===== Page 5/67 =====
+Tasks Overview
+
+Tasks Overview
+
+
+
+ Caution: When working with tasks, do not open multiple tabs or browsers. Opening multiple tabs
+ might cause a change inone tab to overwrite changes made in another.
+
+
+Task are used to automate the processes which build,update, and maintain the information inIdentityIQ. Tasks per-
+form periodic operations such as aggregating data from applications, refreshing Identity Cubes to update entitlements
+and roles,running rules, performing system maintenance, and more.
+
+IdentityIQ offers many predefined tasks to handle typical IdentityIQ operations. Tasks are categorized by type and
+function, to help you findthe righttask to accomplish what you need. In most cases, you can set specific parameters
+fora task to control its behavior and results. You can also create custom tasks tomeet specialized needs of your
+organization.
+Template-Style Tasks and Special-Purpose Tasks
+
+Most ofthe tasks IdentityIQ provides as standard types are designed tobe used as templates. This means that you
+can create multiple instances ofa particular type of task, and use parameters todetermine what the task does and
+how itbehaves. For example, you can set up a unique instance of an Account Aggregation task foreach of your applic-
+ations – such as one task for your LDAP application, a different one foryour procurement system, etc. As another
+example, you could set up one instance of an Identity Refresh task that runs daily to update entitlements and roles,
+and a differentinstance of Identity Refresh that runs weekly to do analysis of policy violations.
+
+Other tasks have a specialized purpose and do not support parameters or multiple instances. An example of this type
+oftask isthe Check Expired Work Items task.
+How Tasks Are Run
+
+Tasks can be run on demand from the Task UI,by right-clickingon a task in the Task tabs and choosing Execute in
+Background, orby choosing Save and Execute afteryou have configured a particular task.
+
+Tasks can be scheduled by right-clickingon a configured task inthe Tasks tab and choosing Schedule. For more
+information, see How to Schedule a Task and Working with Schedules.
+
+There isa specialized task called the Sequential Task Launcher that letsyou run a series of tasks sequentially,
+without having to schedule each of them individually. For more information, see Sequential Task Launcher.
+
+ Note: Access to the Tasks feature, and the abilitytorun tasks or only view tasks, are controlled
+ by IdentityIQ Capabilities and scopes. Talk to your system administrator ifyou do not have
+ access to the Task features you need.
+
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 1
+
+===== Page 6/67 =====
+Tasks Overview
+
+Process Overview for Creating Tasks
+
+The basic process for creating a new instance of task isas follows. Specific details about parameters and options for
+each type of task isin Task Types.
+
+
+
+ l Choose the type oftask you want to run from the New Task dropdown.
+
+
+
+ l Give the task instance and name, and configure the task parameters to define the behavior you want.
+
+
+
+ l Save the task.Ifyou want torun the task immediately, choose Save and Execute. Ifyou want to save the task
+ without running ityet,choose Save. When you save a task, an entry iscreated foriton the Tasks tab of the
+ Tasks Page.
+
+
+
+ l Ifyou want toschedule the task to run at a specifictime, or to repeat on a specific schedule, right-clickthe task
+ in the Tasks tab of the Tasks Page and choose Schedule. Scheduled tasks are listed on the Scheduled Tasks
+ Page. For more information on how to schedule tasks, see How to Schedule a Task and Working with Sched-
+ ules.
+
+
+
+ l When a task has completed, you can see task results from the Task Results Page.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 2
+
+===== Page 7/67 =====
+Working with Tasks
+
+Working with Tasks
+
+
+To run or execute a task, right-clickon the task name and select Execute or Execute in background. Execute dis-
+plays a pop-up progress window and opens the Task Result page when itiscomplete. Execute in background
+launches the task inthe background and you must go tothe Tasks Results page to track progress or view the finished
+task. See Task Results Page.
+
+Tasks that require sign off generate work items and email notifications that are assigned tothe designated signers.
+Sign off decisions are retained with the task results for tracking purposes. See How to Complete Task Work Items.
+
+To create a new task, use the Create new task dropdown listtoselect a task type and display the New Task page.
+
+ Note: The predefined tasks are not templates that can be used tocreate new tasks. Changes
+ made tothese tasks overwrite existing information. To create new task you must use the Create
+ New Task dropdown menu at the bottom of the page.
+
+See How to Create a New Task.
+
+To edit an existing task, clicka task orright-click and select Edit to display the Edit Task page. See How toEdit a
+Task.
+
+To schedule a task, right-clickand select Schedule from the dropdown listtodisplay the New Schedule dialog. You
+can schedule task to run once, hourly, daily,weekly, monthly, quarterly or annually tomeet the requirements of your
+enterprise and auditors. Go to the Scheduled Tasks tab to view or edit existing schedules. See How to Schedule a
+Task and Scheduled Tasks Page.
+
+To terminate a currently running task, access the Task Results page, right-clickon the task to terminate and select
+Terminate from the dropdown menu. You are asked toconfirm the termination request. Task that are currently run-
+ning are flagged as pending inthe Date Complete column of the Task Results table.
+
+To delete a task, right-clickthe task and select Delete from the dropdown menu. Click Yes on the confirmation pop-
+up to delete the task. When you delete a task from the Tasks table,allassociated task results are deleted as well.
+How to Create a New Task
+
+Use the New Task page tocreate a task based on the task types provided. Tasks can be as general or specific as
+required.
+
+See Task Types for the complete listoftasks types available inIdentityIQ.
+
+ 1. Click or mouse over the Setup tab and select Tasks toopen the Tasks page.
+
+ 2. Select a task type from the New Task dropdown listtoopen the New Task page.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 3
+
+===== Page 8/67 =====
+Working with Tasks
+
+ 3. Enter a Name and brief Description for the new task. This information isdisplayed on the Tasks table when
+ the new task is saved.
+
+ 4. Select a Previous Result Action from the dropdown list.Delete is selected by default. Previous result actions
+ determine how subsequent runs of this tasks react to existing task results.
+
+ a. Delete – overwrite the previous task results with the new information.
+
+ b. Rename Old – append a numeral to the name of the old task result and preserve both.
+
+ c. Rename New – append a numeral to the name of the new task result and preserve both.
+
+ d. Cancel – cancel the new run of the task.
+
+ e. Optional: Allow concurrency. Select Allow Concurrency to enable two identical tasks to run at the
+ same time. Ifenabled, allow concurrency appends a numeric value to the name of the task that started
+ second. Ifdisabled, the second task is canceled and an exception sent to the requestor.
+
+ 5. Optional: Require sign off.
+
+ a. Select Required sign offto expand the Signoff Properties section.
+
+ b. Select an email notification template from the InitialNotification Email dropdown list.For example, the
+ Task Result Signoff template.
+ Templates are created and defined when the application isconfigured.
+
+ c. Specify the escalation criteria forthe sign off request. Use the options displayed to set your escalation
+ parameters.
+ None – no reminder emails are sent and no escalation is performed for this work item.
+ Send Reminders – email reminders are sent at the configured interval.
+ Reminders then Escalation – the configured number ofreminders are sent and then the work item is
+ escalated to the signers manager.
+ Escalation only – this work item isescalated after the configured interval with no reminders being sent.
+
+ d. Specify the required signers.
+ Enter the firstletter,or letters, of an identity or workgroup to display a selection listofvalid identities or
+ workgroups containing that letter string or clickthe arrow to the right ofthe fieldto display allidentities
+ and workgroups and select a signer.
+ You can add as many signers as required.
+
+ 6. Optional: Host. Ifyou want to choose a specific host or set of hosts to run the task on, add a comma separated
+ listof host names. Ifmultiple hosts are specified, the task manager selects the firstactive host Ifthere are no
+
+
+
+
+
+
+SailPoint IdentityIQ Tasks 4
+
+===== Page 9/67 =====
+Working with Tasks
+
+
+ active hosts, or ifan incorrect host name isgiven, the task terminates, and an error message is leftinthe result.
+
+ 7. Email Task Alerts. Choose an Email Notification type, ifyou want to send email notifications upon task com-
+ pletion, to the recipients whose email isbeing registered toreceive the task status. These settings overwrite the
+ email notification configured atthe IdentityIQ Configuration level setting. Use these options to set your noti-
+ fication:
+
+ Caution: If your installation has enabled the task reanimator service on the host where this
+ task isrun, be aware that when a task hangs and isrestarted by the reanimator service,
+ email task alert notifications may not be sent. For more information on the task reanimator
+ service, see the IdentityIQ System Administration documentation.
+
+
+
+
+
+ l Disabled – no email notification will be sent.
+
+
+
+ l Warning – email notification willbe sent in case of any warning after completion of task.
+
+
+
+ l Failure – email notification willbe sent in case of task Failure.
+
+
+
+ l Always – email notification will be sent at completion of task irrespective of the task status.
+
+
+
+ l Email Notification Template – (Applicable only ifDisabled is not selected) Select Task Status tem-
+ plate to send emails on task completion. Templates are customizable.
+
+
+
+ l Email Recipients – (Applicable only ifDisabled isnot selected) Select the identity to register them to
+ receive task status notification on emails associated with it.
+
+ 8. Specify the task options required for the task you are creating. Each task type displays unique task options.
+ See the Tasks Page fordetails on each type.
+
+ 9. Click Save tosave the new task to the Tasks table, or Click Save and Executeto save the task to the Tasks
+ table and run itimmediately. The Tasks Results page displays when the task completes.
+
+See Task Results Page.
+
+
+How to Edit a Task
+
+Use the Edit Task page to make changes toan existing task.
+
+ Note: There isno Save As function on the Edit Task page. Any changes made toan existing task
+ overwrite the task you are editing. You must use the Create New Task dropdown menu to cre-
+ ate a new task.
+
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 5
+
+===== Page 10/67 =====
+Working with Tasks
+
+Procedure
+
+ 1. Click ormouse over the Monitor tab and select Tasks to open the Tasks page.
+
+ 2. Click on a task, or right-clickon a task and select Edit from the dropdown listtoopen the Edit Task page.
+
+ 3. Edit the Name and Description section as needed.
+
+ 4. Note: Changing the name does not save this as a new task and preserve the task being edited. Anything
+ entered here overwrites the existing information.
+
+ 5. Select a Previous Result Action from the dropdown list.Delete isselect by default.
+
+Previous result actions determine how subsequent runs of thistasks react to existing task results.
+
+Delete – overwrite the previous task results with the new information.
+
+Rename Old – append a numeral to the name of the old task resultand preserve both.
+
+Rename New – append a numeral to the name of the new task result and preserve both.
+
+Cancel – cancel the new run ofthe task.
+
+ 6. Optional: Allow concurrency. Select Allow Concurrency to enable two identical tasks to
+ run at the same time.
+
+Ifenabled, allow concurrency appends a numeric value to the name of the task that started second.
+
+Ifdisabled, the second task iscanceled and an exception sent tothe requestor.
+
+ 7. Optional: Require sign off.
+
+ a. Select Required sign off toexpand the Signoff Properties section.
+
+ b. Select an email notification template from the InitialNotification Email drop-down list.For example, the
+ Task Result Signoff template.
+ Templates are created and defined when the application isconfigured.
+
+ c. Specify the escalation criteriaforthe sign offrequest. Use the options displayed to set your escalation
+ parameters.
+ None – no reminder emails are sent and no escalation isperformed for this work item.
+ Send Reminders – email reminders are sent atthe configured interval.
+ Reminders then Escalation – the configured number of reminders are sent and then the work item is
+ escalated to the signers manager.
+ Escalation only – thiswork item isescalated after the configured interval with no reminders being sent.
+
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 6
+
+===== Page 11/67 =====
+Working with Tasks
+
+ d. Specify the required signers.
+ Enter the firstletter,or letters, of an identity or workgroup to display a selection listof valid identities or
+ workgroups containing that letter string or click the arrow to the rightof the fieldto display allidentities
+ and workgroups and select a signer.
+ You can add as many signers as required.
+
+ 8. Optional: Host.
+ Ifyou want to choose a specific host or set ofhosts to run the task on, add a comma separated listof host
+ names. Ifmultiple hosts are specified, the task manager selects the firstactive host Ifthere are no active hosts,
+ or ifan incorrect host name is given, the task terminates, and an error message isleftin the result.
+
+ 9. Email Task Alerts. Choose an Email Notification type, ifyou want to send email notifications upon task com-
+ pletion, to the recipients whose email isbeing registered to receive the task status. These settings overwrite the
+ email notification configured at the IdentityIQ Configuration level setting. Use these options toset your noti-
+ fication:
+
+ Important: If your installation has enabled the task reanimator service on the host where
+ this task isrun, be aware that when a task hangs and isrestarted by the reanimator ser-
+ vice, email task alert notifications may not be sent. For more information on the task rean-
+ imator service, see the IdentityIQ System Administration documentation.
+
+
+
+
+
+ l Disabled – no email notification will be sent.
+
+
+
+ l Warning – email notification willbe sent in case of any warning after completion of task.
+
+
+
+ l Failure – email notification willbe sent in case of task Failure.
+
+
+
+ l Always – email notification willbe sent at completion of task irrespective of the task status.
+
+
+
+ l Email Notification Template – (Applicable only ifDisabled isnot selected) Select Task Status tem-
+ plate to send emails on task completion. Templates are customizable.
+
+
+
+ l Email Recipients – (Applicable only ifDisabled is not selected) Select the identity to register them to
+ receive task status notification on emails associated with it.
+
+ 10. Specify the task options required forthe task you are creating. Each task type displays unique task options.
+ See the Tasks Page for details on each type.
+
+ 11. Click Save to save the new task to the Tasks table, or Click Save and Executeto save the task to the Tasks
+ table and run itimmediately. The Tasks Results page displays when the task completes.
+
+ See Task Types for details on each type.
+
+
+
+
+
+
+SailPoint IdentityIQ Tasks 7
+
+===== Page 12/67 =====
+Working with Tasks
+
+ 12. Click Save to save the new task tothe Tasks table.
+
+— OR —
+
+Click Save and Execute to save the task to the Tasks table and run itimmediately. The Tasks Results page displays
+when the task completes.
+
+For more information, see Task Results Page.
+How to Schedule a Task
+
+Use the New Schedule dialog to schedule tasks to run during times oflow business activity.Schedule recurring tasks
+as needed tomaintain routine compliance within your enterprise.
+
+The New Schedule dialog enables you toassign a unique name and description tothe task schedule. This information
+isstored on the Scheduled Tasks page and displays in the Task Results table.
+
+See Scheduled Tasks Page and Task Results Page.
+
+Procedure
+
+ 1. Click or mouse over the Monitor tab and select Tasks to open the Tasks page.
+
+ 2. Right-click on a task name and select Schedule from the dropdown listtoopen the New Schedule dialog.
+
+ 3. Enter aunique name and description for thisschedule task.
+
+
+ Note: Task thatrun across time zones run atthe time scheduled, relativeto the time zone in
+ which they are scheduled. For example, a task scheduled torun at 4:00 PDT runs at 1:00 EDT.
+
+ 4. Enter thedate and time tolaunch the firstexecution ofthis task.
+
+You can enter the date manually, orclick the [...]iconto select a date from the calendar.
+
+— OR —
+
+Select the Run Nowfield toschedule the task torun immediately after clickingSchedule. For recurring tasks, the task
+runs at the current time at the specified Execution Frequency.
+
+ 5. Specify how often this task should run with the Execution Frequency drop-down list.Sub-
+ sequent executions of this task occur at the time specified in the First Execution fields.
+
+ 6. Click Schedule to save this scheduled task. You can go to the Schedule Tasks page to view
+ a listof allscheduled tasks. See Scheduled Tasks Page.
+
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 8
+
+===== Page 13/67 =====
+Working with Schedules
+
+Working with Schedules
+
+
+To edit an existing schedule, clicka schedule name or right-clickand select Edit todisplay the Edit Schedule dialog.
+
+See How to Edit a Schedule.
+
+To delete a schedule, right-clickthe schedule name and select Delete from the drop-down menu. Click Yes on the
+confirmation pop-up todelete the schedule.
+How to Edit a Schedule
+
+Use the Edit Schedule dialog to edit task schedules:
+
+ 1. Click or mouse over the Monitor tab and select Tasks to open the Tasks page.
+
+ 2. Click on the Schedule Tasks tab todisplay the listofscheduled tasks.
+
+ 3. Click a schedule name or right-clickand select Edit todisplay the Edit Schedule dialog.
+
+ 4. Edit the name or description for thisscheduled task.
+
+
+ Note: Task that run across time zones run at the time scheduled, relativeto the time zone in
+ which they are scheduled. For example, a task scheduled to run at 4:00 PDT runs at 1:00 EDT.
+
+ 5. Change the date and time tolaunch the firstexecution ofthis task.
+
+You can enter the date manually, or clickthe [...]icon to select a date from the calendar.
+
+— OR —
+
+Select the Run Now fieldto execute the task immediately after clickingSchedule. For recurring tasks, the task runs at
+the current time atthe specified Execution Frequency.
+
+ 6. Specify how often thistask should run with the Execution Frequency dropdown list.Subsequent executions
+ of this task occur atthe time specified in the First Execution fields.
+
+ 7. Click Save to save thisscheduled task and return to the Schedule Tasks page.
+
+See Scheduled Tasks Page.
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 9
+
+===== Page 14/67 =====
+Task Administration
+
+Task Administration
+
+
+Task administrators and system administrators have some tools both within the Task feature itselfand inIdentityIQ's
+Administrator Console, to help them manage where and how tasks are run, and totroubleshoot common task issues.
+Running Tasks on Specific Hosts
+
+Ifyour IdentityIQ instance isconfigured to use multiple hosts, you can configure tasks to run on specific host
+machines. This is done in the Task definition.
+
+ 1. Navigate to Setup > Tasks and either create your new task, or select an existing task you want toedit.
+
+ 2. In the Host field,enter the name of the host to use. You can specify more than one host in a comma-delimited
+ list,to provide alternative options ifthe first-choice server is unavailable. Note that IdentityIQ does not validate
+ the host names you enter; ifyou enter an invalid or inactive host, the task willfail.
+
+ 3. Ifyou specify more than one host, the task service willrun the task on the firsthost in the listwhich responds
+ (that is,which has an active heartbeat).
+
+ 4. When the task isrun, either manually or based on a task schedule, the host configuration you have specified
+ will be used.
+
+The task results include information about which host the task ran on.
+Tracking Task Run Length for Troubleshooting
+
+IdentityIQ keeps track ofhow long a task takes to execute, both per execution and on average. This isuseful foreval-
+uating when a task is running longer than normal, so that administrators can investigate and troubleshoot system or
+network problems.
+
+IdentityIQ reports the number of runs and the average run time inthe task definition (thatis,the UI where you con-
+figure parameters and other settings forthe task) and inthe task results. The task definition shows the number of
+times the task has been run since the lastreset ofrun statistics,along with the average run time for the task across
+those task executions.
+
+The task result shows both the current run time and the average run time, as well as the percent change inrun time of
+thisexecution vs. the average. The Average Run Time value indicates the average not including the current task run.
+The Run Time and Run Time Change values are not updated until the task completes (they are valued at zero dur-
+ing task execution). See Task Results Page.
+
+The Tasks page inthe Administrator Console also shows thisinformation forcompleted tasks. Average Runtime
+reflects the average time of runs prior to thisexecution. Tasks willonly have average and difference values once they
+have been run multiple times. For more information, see the System Administration documentation.
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 10
+
+===== Page 15/67 =====
+Task Administration
+
+Restarting Run Time Average Calculations
+
+When system configuration changes occur which should substantially impact a task's run time, you may want toreset
+the statisticsto ensure the average run time value represents clean and meaningful data. Within the task definition
+(Setup > Tasks > select the relevant task), click Reset Run Statistics to clear out the saved run count and average
+run time.
+
+Itisrecommended that you reset run statisticsany time you change the options selected fora task, since the selected
+options will directlyimpact the set of activitiesthe task isperforming and therefore its execution time. Likewise,
+changes to the designated Host forthe task (ifyou have chosen toselect specific host(s) forrunning the task) should
+also prompt resetting run statistics,as should any hardware changes on the host(s) which would affecttask (and over-
+allsystem) performance.
+Administrator Console: Tasks Page
+
+The Administrator Console page for managing tasks is accessible through the gear menu > Administrator Console
+> Tasks. On this page, administrative users can postpone a scheduled task, terminate a running task, or dump a
+stack trace of a running task to see what iscurrently happening init(typically used when the task isrunning long and
+the administrator wants to diagnose problems). For more information, see the System Administration doc-
+umentation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 11
+
+===== Page 16/67 =====
+Tasks Page
+
+Tasks Page
+
+
+The Tasks page contains a listof allof the tasks that have been created. The firsttime you access the Task page you
+see the predefined tasks provided by SailPoint. The tasks are grouped into categories based on the task type. You
+can expand or contract the categories on the grid using the plus (+)or minus (-)icon next to the category name.
+
+ Note: Task category headings are only displayed ifa task exists in that category.
+
+The task categories are:
+
+
+
+ l Account Aggregation
+
+
+
+ l Account Group Aggregation
+
+
+
+ l ActivityAggregation
+
+
+
+ l ActivityAlerts
+
+
+
+ l Certification Refresh
+
+
+
+ l Generic
+
+
+
+ l Identity
+
+
+
+ l Scoring
+
+
+
+ l System
+
+
+
+ l Target Aggregation
+
+
+See Predefined Tasks.
+
+Use the search options tolimit the number of tasks displayed inthe table. Entering a letter,or partial name, in the
+Search fielddisplays any tasks with names containing that letter pattern.
+
+Use this page to create, edit, run, schedule or delete task.
+
+See Working with Tasks.
+
+The Tasks page contains the following information:
+
+ Field Name Description
+
+ Name The name ofthe task as defined when the itwas created.
+ Description A briefdescription of the specific task.
+
+
+
+
+ SailPoint IdentityIQ Tasks 12
+
+===== Page 17/67 =====
+Tasks Page
+
+Predefined Tasks
+
+SailPoint provides a number of predefined tasks that can be run to aggregate, correlate and refresh information within
+your enterprise.
+
+ Note: The predefined tasks are not templates that can be used to create new tasks. Changes
+ made tothese tasks overwrite exiting information. To create new task you must use the New
+ Task dropdown menu at the bottom of the page.
+
+
+ Caution: These tasks are defined to perform specific functions within your enterprise. Deleting or
+ altering these tasks might have negative affects on the performance of IdentityIQ.
+
+
+SailPoint provides the following tasks:
+
+Generic Tasks:
+
+
+
+ l Refresh Role Indexes – update allrole information and create the indexes needed to perform
+ role searches. You must run this task before performing any role searching.
+
+Identity Tasks:
+
+
+
+ l Check Active Policies – scan allusers for policy violations and update Identity Risks Scores. Edit this task to
+ specify how policy violations are handled when detected.
+
+
+
+ l Prune Identity Cubes – delete identities that have no account linksand have no important references. Identities
+ in any ofthe following states are protected:
+
+
+
+ l Marked protected
+
+
+
+ l Is a manager (managerStatus flag true)
+
+
+
+ l Has capabilities
+
+
+
+ l Bundle, Application, Workitem, or TaskResult owners
+
+
+
+ l Work item requestor
+
+
+
+ l Application secondary owner
+
+
+
+ l Application remediator
+
+
+
+ l Creator of a MitigationExpiration
+
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 13
+
+===== Page 18/67 =====
+Tasks Page
+
+
+Ifthe protectIfCertifying option is on, identities are protected ifthey are inan active certification. There isalso an
+option to run the scan for analysis but not delete any identities.
+
+
+
+ l Refresh Entitlement Correlation – scan all user entitlements and applications to update role assignments.
+
+
+
+ l Refresh Groups – scan allusers and update the group indexes forall identity groups.
+
+
+
+ l Refresh Identity Cube – perform a fullrefresh of the identity cubes for allusers. Edit this task tospecify which
+ portions ofthe identity cubes are refreshed by this task.
+
+
+
+ l Refresh Risk Scores – scan all users and update the Identity Risk Scores foreach.
+
+
+Scoring Tasks:
+
+
+
+ l Refresh Application Scores – runs the scoring algorithms against all specified applications and updates the
+ Application Risk Scores page.
+
+
+
+ l Refresh Role Scorecard – analyzes each role in the system and collects statistics about them.
+
+
+System Tasks:
+
+
+
+ l Check Expired Mitigations – scans all users fortemporary exceptions allowed in a certification that have now
+ expired. The original certifiercan optionally be notified when allowed exceptions expire.
+
+
+
+ l Check Expired Work Items – scans allwork items looking for those that need to be canceled or escalated to a
+ different user.
+
+
+
+ l Check Sunset Requests – send notifications when a Role with a sunset date is approaching expiration.
+
+
+
+ l Complete Orphaned Identity Requests – removes completed requests forroles that exist in your system.
+
+
+
+ l Dispatch Access History – transforms IdentityIQ objects to create a JSON message and dispatches itto the
+ access history service.
+
+
+
+ l Effective Access Index Refresh – refreshes or rebuilds the effective access index.
+
+
+
+ l FullText Index Refresh – builds and refreshes the index filesused forfulltext searches on defined fieldson the
+ access request pages of the Lifecycle Manager. The index filesare rebuilt each time thistask isrun.
+
+
+
+ l Perform Identity Request Maintenance – prunes old identity request objects and scans unverified access
+ requests to check forprovisioning completeness.
+
+
+
+ l Perform Maintenance – prunes identity snapshots, task results, and certifications, escalates orphaned work
+ items, and performs other background maintenance tasks.
+
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 14
+
+===== Page 19/67 =====
+Tasks Page
+
+
+ Note: Electronically signed objects are not affected by this task.
+
+
+
+
+ l Refresh Role-Entitlement Associations – deletes all existing role-entitlement associations and re-creates them
+ for allroles.
+
+ Remove Orphan Role Requests – stops and removes requests for roles that no longer exists in your system.
+ For example, ifthe sunset date fora role passes before the request isprocessed, thistask removes that
+ request.
+
+
+
+ l Role Overlap Analysis – performs impact analysis on a specified role. The task result name is annotated with
+ the name of the selected role so you can tellmultiple analysis results apart.
+
+
+
+ l Synchronize Roles – synchronizes IdentityIQ roles with the roles on the identity management systems that are
+ configured to work through a provisioning provider.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Tasks 15
+
+===== Page 20/67 =====
+Scheduled Tasks Page
+
+Scheduled Tasks Page
+
+
+The Scheduled Tasks page contains a listofall scheduled tasks, whether recurring or one time only. One-time tasks
+are removed from the listafterthey are executed.
+
+Tasks that are scheduled, but do not execute due to malformed task definitions are displayed inthe Scheduled Task
+table with an error icon (!)in the Last Executed column. Tasks that failin this way never execute and, therefore, never
+display results on the Tasks Results page. To see details of the execution error,click on the task to display the Edit
+Schedule dialog. The error information is displayed in the Last Launch Error field.Errors of thistype should only
+occur forcustom task definitions, not for any of the tasks supplied with the product. To correct the error, delete the task
+schedule, correct the task definition,and recreate the schedule.
+
+Use the Scheduled Tasks page to editor delete schedules.
+
+Use the search options tolimit the number of tasks displayed in the table. Entering a letter,or partial name, inthe
+Search fielddisplays any tasks with names containing that letterpattern. Click Result to search by task results. See
+Working with Schedules.
+
+To create a scheduled task see How toSchedule a Task.
+
+The Scheduled Tasks page contains the following information:
+
+ Field Name Description
+
+ Name The name ofthe schedule as defined on the New Schedule page.
+ Next Exe- The date and time atwhich the task is next scheduled toexecute.
+ cution
+ Last Exe- The date and time atwhich the task most recently executed.
+ cution This fielddisplays an error icon (!)for tasks that do not execute due to malformed
+ tasks definitions.
+ Last Result The result ofthe lastrun of this task, for example Success or Failed.
+ Owner The creator of the schedule.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 16
+
+===== Page 21/67 =====
+Task Results Page
+
+Task Results Page
+
+
+The Task Results page contains a listof allof the tasks that have run or are currently running.
+
+Use the search options to limitthe number of tasks displayed inthe table. Entering a letter,or partial name, inthe
+Search fielddisplays any tasks with names containing that letter pattern. Click Advanced Search to filterby start
+date, end date, orresults.
+
+ Column Description
+
+ Name The name of the task.
+ Date Com- The date and time stamp of when the task completed running.
+ plete
+ The result status, Pending, Success, or Failed.
+ Result A result of Success with an exclamation point (!)indicates that there are warnings
+ associated with the results.
+ The status of the sign offrequest forthe task results.
+ Signoff None – no sign offrequired
+ Waiting – sign off request not complete
+ Signed – a sign offdecision has been made
+ Owner The name of the user who launched this task.
+
+Click on a task name in the Tasks Results table to display the Task Results page. Each task type returns information
+specific to the options that were selected. Tasks that executed with partitioning enabled also display the partitioned
+results, broken down by the host name ofthe partitions on which they ran.
+
+Several statistics related to task run length are maintained tohelp identify tasks that are running longer or shorter than
+expected. Each time a task is run, we save the start time. When the task is complete we calculate the run time in
+seconds.
+
+These statisticsare not set untilthe task complete. Until then they are zero. The run time change is a positive or neg-
+ative integer representing the percent change in run length for this task relative to the average at the time was started.
+A value of 25 means the task ran 25% longer than average, and a value of -10 means the task was 10% faster.
+
+See Task Types for details on the information that might be on the Task Results page.
+
+To terminate a currently running task, a task flagged as pending in the Date Complete column, right-clickon the task
+and select Terminate from the drop-down menu. You are asked to confirm the termination.
+
+To delete task results, right-clickon a result and select Delete. Tasks that require a sign off can only be deleted by a
+user with the Signoff Administrator capability.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 17
+
+===== Page 22/67 =====
+Task Results Page
+
+
+Ifa task was scheduled to run but no results were returned, go to the Scheduled Task tab to ensure that errors did not
+occur during the task execution.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Tasks 18
+
+===== Page 23/67 =====
+Task Types
+
+Task Types
+
+
+The task types are:
+
+
+
+ l Access History – gathers objects and places them in a queue to create history events related
+ to identities. See Access History Tasks.
+
+
+
+ l Account Aggregation – scan all applications, discover users and entitlements on those applic-
+ ations, and then correlate those users and entitlements with roles. See Account Aggregation.
+
+
+
+ l Account Group Aggregation – scans applications and aggregates account groups and application object types.
+ These are then used for group certification (eitherpermissions or membership) or for displaying group inform-
+ ation inidentity certifications.See Account Group Aggregation.
+
+
+
+ l Activity Aggregation – scan allapplications, discover activityon the applications, and then correlate that activity
+ with identitycubes. This enables you to track and monitor allactivity forpossible policy violations. See Activity
+ Aggregation.
+
+
+
+ l Alert Aggregation – scan applications and aggregates alerts from a set of AlertCollectors. These are then used
+ to generate alertactions. See Alert Aggregation
+
+
+
+ l Alert Processor – process the aggregated alerts against the alertdefinitions and launch the appropriate action.
+ See AlertProcessor
+
+
+
+ l Application Builder – create multiple IdentityIQ applications or update the attributemap of an existing IdentityIQ
+ application. See Application Builder
+
+
+
+ l ArcSight Data Export – export data for HP ArcSight Database Connector to an external database table. See
+ ArcSight Data Export
+
+
+
+ l Data Export – generate a denormalized data report to export toan external database table.See Data Export
+
+
+
+ l Effective Access Indexing – generate an index of any indirect access that was granted through another object.
+ For example a nested group, an unstructured target, oranother role.See Effective Access Indexing
+
+
+
+ l Encrypted Data Synchronization Task – re-encrypt data with user-generated encryption key. See Encrypted
+ Data Synchronization Task
+
+
+
+ l Entitlement Role Generator – scans the entitlements inthe system and automatically generates a simple role
+ and appropriates a profile foreach one that itfinds. See Entitlement Role Generator
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 19
+
+===== Page 24/67 =====
+Task Types
+
+
+
+ l File Access Manager Classification – retrieve classification data from File Access Manager and assigns itto
+ entitlements according to correlation logic defined in the applications that aggregate relevant account and
+ group data or in the File Access Manager global configuration settings. See FileAccess Manager
+ Classification.
+
+
+
+ l ITIM Application Creator – inspect the IBM Tivoli Identity Manager (ITIM) and retrieve information about the
+ ITIM services (applications). This task auto-generates an application for each service defined in ITIM. See ITIM
+ Application Creator
+
+
+
+ l Identity IQ Cloud Gateway Synchronization – synchronize the specified objects to the Cloud Gateway. See
+ IdentityIQ Cloud Gateway Synchronization
+
+
+
+ l Identity Refresh – scan allapplications, including the IdentityIQ application, to ensure that allidentity inform-
+ ation isup-to-date and accurate. Refresh identity scans are also used to detect and report on policy violations
+ and trigger event certifications. See Identity Refresh.
+
+
+
+ l Identity Request Maintenance – scan for completed Lifecycle Manager access requests. See Identity Request
+ Maintenance.
+
+
+
+ l Missing Managed Entitlements Scan – scan the selected application tocreate entitlement objects for items
+ added after the application was last aggregated. See Missing Managed Entitlements Scan
+
+
+
+ l OIM Application Creator – inspect the OIM application and retrieve information about allconnected applic-
+ ations. See OIM Application Creator.
+
+
+
+ l Policy Scan – runs policies against identity cubes and update identity score cards with any policy violations dis-
+ covered. See Policy Scan.
+
+
+
+ l Propagate Role Changes – refreshes identities who have an assigned role whose associated entitlements
+ have changed. See Propagate Role Changes.
+
+
+
+ l Refresh Logical Accounts – isused torefresh composite accounts for allidentities that could, potentially, have
+ a composite account on the composite applications selected. See Refresh Logical Accounts.
+
+
+
+ l Role Index Refresh – updates all role information and creates the indexes needed to perform role searches.
+ You must run this task before performing any role searching. See Role Index Refresh
+
+
+
+ l Run Rule – runs the specified rule with name / value pairs. See Run Rule
+
+
+
+ l Role-Entitlement Associations – deletes existing role-entitlement associations then analyzes each role in the
+ system and creates associations between the role and any granted entitlements. See Role-Entitlement Asso-
+ ciations.
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Tasks 20
+
+===== Page 25/67 =====
+Task Types
+
+
+
+ l Sequential Task Launcher – launches the specified tasks in the order defined. This enables you tolaunch tasks
+ that must be run sequentially inthe proper order without having toschedule each separately based on estim-
+ ated run times. See Sequential Task Launcher
+
+
+
+ l System Maintenance – tasks designed to run in the background.
+
+
+
+ l Target Aggregation – scan selected applications for activitytargets. See Target Aggregation.
+
+
+See Tasks Page for information on working with these task types.
+
+Alltask types contain the following standard properties:
+
+ Field Description
+
+ Name The name of the task as defined when the task was created
+ Description Brief description of the task.
+ Previous result actions determine how subsequent runs of this task react to
+ existing task results.
+ Previous Res- Delete – overwrite the previous task results with the new information.
+ ultAction Rename Old – append a numeral to the name of the old task result.
+ Rename New – append a numeral to the name ofthe new task result.
+ Cancel – cancel the new run of the task ifa task result with the same name
+ exists.
+ Enable two identical tasks to run at the same time.
+
+ Allow Con- Ifenabled, allow concurrency appends a numeric value tothe name ofthe task
+ currency that started second.
+
+ Ifdisabled, the second task iscancelled and an exception sent tothe requestor.
+ Require sign off on the results ofthis task.
+ Require Tasks that require sign offgenerate work items and email notifications that are
+ Signoff assigned to the designated signers. Sign off decisions are retained with the task
+ results for tracking purposes.
+ A comma separated listofhost names on which to run this task. Ifmultiple hosts
+ are specified, the task manager selects the firstactive host
+ Host
+ Ifthere are no active hosts, or ifan incorrect host name is given, the task ter-
+ minates, and an error message is leftinthe result.
+ Number of The number oftimes this task has been run.
+ Runs
+ Average Run The average time ittakes to run thistask, based on priorruns.
+ Time
+
+
+
+
+
+SailPoint IdentityIQ Tasks 21
+
+===== Page 26/67 =====
+Task Types
+
+
+ Field Description
+
+ Reset the statisticifyou reconfigure the task and expect the run times to
+ change.
+ Reset Run When you reconfigure complex tasks like aggregation or refresh, you should
+ Statistics consider resetting run statistics.For example, enabling provisioning in the
+ refresh task can profoundly influence run time so statisticsshould not be diluted
+ by the previous average before provisioning was enabled.
+ Email Task Alerts
+ Select a frequency for email notification to be sent upon task completion.
+ Email Noti- Disable – no email notification sent on task completion
+ fication Warning – send an email notification ifthe task results in a warning
+ Failure – send an email notification ifthe task fails
+ Always – always send an email notification upon task completion
+ Email Noti-
+ fication Tem- Select a notification email template from the dropdown list.
+ plate
+ The listof users to receive the task completion notification.
+ Email Recip-
+ ients Use the dropdown arrow to display allidentities, ortype the firstfew lettersof a
+ name. select names from the list.
+
+Access History Tasks
+
+Access History tasks should be run periodically to gather objects and place them in a queue tocreate history events
+related to identities. When Access History runs, itprocesses the objects from the queue and writes them into database
+tables to populate the access history store.
+
+Before you can use the Access History task, Access History must be enabled.
+
+Under Access History Options, select an Access History YAMLConfig from the dropdown menu.
+
+.
+Account Aggregation
+
+Account Aggregation tasks scan all applications, discover users and entitlements on those applications, and, option-
+allycorrelates those users and entitlements with roles.
+
+Identities that have changed since the lastaggregation performed on an application are marked as needing refresh to
+increase the performance of identityrefresh tasks. You can disable thisfunction.
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 22
+
+===== Page 27/67 =====
+Task Types
+
+
+You can perform the correlation functions as part ofthis task orrun account aggregation on allof the applications in
+your enterprise and then correlate the Identity Cubes with all ofthe aggregated information using an identity refresh
+task.
+
+To perform aggregation on a composite application you must include the composite application and allof the applic-
+ations that have accounts with which itis associated in the task definition.
+
+ Partitioning
+
+Partitioning is available to speed the processing time for account aggregations and level the load on the machines run-
+ning these tasks. Partitioning isused to break operations intomultiple pieces, or partitions. Each partition isthen
+placed in a global queue, and machines, or hosts, in a cluster compete to execute the partitions inthe queue.
+Machines are added or removed from the cluster dynamically with automatic balancing. Ifa machine failsor is taken
+down while processing a partition,the partition isplaced back into the queue and reassigned toa different machine. A
+single result object isshared by all partitions and is continually updated so you can monitor the overall progress of the
+partitioned operation. When all partitions have finished executing the result ismarked complete. See the System
+Administration documentation.
+
+
+ Note: You must run the Target Aggregation task after this task is complete ifyou have activity tar-
+ gets set. This tasks removes alltargets when itisrun. See Target Aggregation.
+
+ Handling Duplicate Distinguished Names in Active Directory
+
+During aggregation, ifIdentityIQ detects two Active Directory accounts or account groups with the same Distinguished
+Name but different UUIDs, itwillupdate the UUID to the most recent value, and treat the two accounts or account
+groups as the same. This handles the case where an account or group is accidentally deleted and readded. Con-
+sequently, itis not advisable to reuse the same DN with a different meaning. IdentityIQ willnot detect this as an
+account or account group change to any attribute but UUID.
+
+The information scanned and updated is determined by the following criteria when the task iscreated oredited. You
+can use any combination of options to build a task.
+
+ Option Description
+
+ Select an
+ application to The dropdown listof allapplications.
+ scan
+ Optionally Ifaccounts are discovered that do not have matching identities in the IdentityIQ
+ select a rule application, the rule specified here isused to create a new Identity Cube.
+ to assign cap- These rules are created during configuration and deployment.
+ abilitiesor per-
+ form other Note: Click the [...]icon tolaunch the Rule Editor tomake
+
+
+
+
+
+
+SailPoint IdentityIQ Tasks 23
+
+===== Page 28/67 =====
+Task Types
+
+
+Option Description
+
+processing on changes to your rules ifneeded.
+new identities
+ Scan for newly assigned roles and update Identity Cubes.
+Refresh
+assigned and IMPORTANT: it isnot recommended to use this setting if
+detected you are also using the Identity Refresh task tomanage
+roles entitlement correlation or provisioning, as this can result in
+ unintended or incomplete provisioning.
+
+Check active Scan for policy violations and update Identity Cubes.
+policies
+Only create
+links ifthey
+can be cor- Check to updated existing identities, but not to create new identities ifa match is
+related to an not found
+existing iden-
+tity.
+Refresh the
+identity risk Scan for riskscore information and update identity riskscore cards.
+scorecards
+Maintain iden- Compare current Identity Cubes to existing Identity Cube history, snapshots,
+tityhistories and create new snapshots ifany changes are discovered.
+Enable Delta Enable the connector toaggregate only those accounts that have changed since
+Aggregation the lastaggregation. This requires support by the connector.
+ Compare current aggregated accounts with the accounts previously aggregated
+ and report any deleted accounts.
+Detect
+deleted Maximum deleted accounts:
+accounts This isthe maximum number of accounts that can be flagged fordeletion after
+ an account aggregation. Ifthis number is passed, no accounts are deleted from
+ the application.
+Refresh Refresh assigned scope based on changes discovered during the aggregation
+assigned and correlation process.
+scope
+Disable auto
+creation of Do not automatically assign scope to identities as part of thistask.
+scopes
+
+
+
+
+
+
+SailPoint IdentityIQ Tasks 24
+
+===== Page 29/67 =====
+Task Types
+
+
+Option Description
+
+Disable optim-
+ization of Use thisoption to force the aggregation of allaccounts, changed or unchanged
+unchanged since the last aggregation.
+accounts
+Promote man- When enabled, any values forentitlement or permissions encountered while run-
+aged attrib- ning the task automatically get promoted as managed attributes.
+utes
+ This option affects aggregation from Active Directory. Itenables IdentityIQ to
+ detect when an account group DN has changed due to being renamed. Iden-
+ tityIQ determines whether a DN is new or is a rename of an existing DN, by
+ examining the relevant account group's GUID or UUID. Enabling this option can
+Enable prevent unintended changes to access that isbased on assignment rules which
+rename detec- use DN as assignment criteria.For more information on Active Directory moves
+tion on man- and renames, see the IdentityIQ Application Management documentation.
+
+aged Note that when a change ismade in Active Directory to an OU which contains
+attributes accounts orgroups (such as renaming or moving it),a delta aggregation does
+ not pick up the changes. This isdue to a limitation in Microsoft DirSync Control.
+
+ To avoid this issue, perform a fullaggregation to capture the changes and
+ update the child objects. You might have todo this regularly to ensure the data is
+ up to date.
+Disable auto-
+creation of Do not automatically create application objects formultiplexed accounts.
+applications
+Disable mark- Disable marking only identities on which change was detected as need to be
+ing the iden- refreshed.
+
+tityas All identities are included insubsequent identity refresh task.
+needing For more information on using thisoption to optimize peformance, see Refresh-
+refresh ing Changed Identities Only (Delta Identity Refresh).
+
+ Enable partitioning ofthis task across multiple hosts.
+
+Enable Par- Partitioning is not supported for PE2 based connectors.
+titioning Partitioning has to be configured on the applications and connectors before this
+
+ option is valid.
+Objects per Ifthe connector(s) for the selected application(s) do not support partitioning, use
+partition this fieldto specify the number of objects per partition. The default value is 1000.
+
+
+
+
+
+
+SailPoint IdentityIQ Tasks 25
+
+===== Page 30/67 =====
+Task Types
+
+
+Option Description
+
+ The loss limitsets the maximum number of accounts that will be reprocessed in
+Loss Limit case ofa sudden termination of a partitioned refresh. This option isused only
+ when partitioning isenabled. See the System Administration documentation.
+ Terminate after the specified number oferrors occurs.
+
+Terminate Ifthe database is available, the task result contains a message indicating that
+when max- the task was terminated due to excessive errors. Ifthe database is down, the
+imum number task result cannot be persisted and the task might appear to remain in the
+of errors is pending state.
+exceeded Maximum errors before termination
+
+ Number of errors totolerate before terminating the task.
+Sequential
+Execution - Force applications to aggregate inthe listed order and stop the aggregation task
+Terminate an ifan error isencountered.
+Error
+ Select the actions performed as part ofthe aggregation task forwhich detailed
+ information should be included in the task results.
+ This task performs a number of individual actions on accounts and Identity
+ Cubes during the aggregation and configuration processes. By default only the
+ final results of the task are included in the task results report.
+ To included detailed information on the actions performed as part of the task,
+ select those actions from the list.
+ Correlate Manual – identities with accounts that were manually correlated.
+ These are not changed by the task.
+Actions to Correlate Maintain – correlation information has not changed since the last
+include in the time this task ran.
+task result Correlate New Account – a new account was discovered for an existing iden-
+ tityand assigned.
+ Correlate Reassign – an existing account was reassigned from one identity to
+ another as part of the correlation process.
+ Create New Identity – an account was discovered foran identity that did not
+ exist in IdentityIQ. An Identity Cube was created for the new identity.
+ Ignore – an account for a new identity was discovered, but a new Identity Cube
+ was not created. This might occur ifthistasks is configured toperform cor-
+ relation only.
+ Remove Account – an account discovered as part of a previous aggregation
+
+
+
+
+
+
+
+SailPoint IdentityIQ Tasks 26
+
+===== Page 31/67 =====
+Task Types
+
+
+ Option Description
+
+ was not found during this aggregation. These accounts are removed from Iden-
+ tityIQ.
+
+Account Group Aggregation
+
+An Account Group Aggregation task scans applications and aggregates account groups and application object types.
+These results are then used for group certification (either permissions or membership), for displaying group inform-
+ation in certifications, and for performing identity searches.
+
+The information scanned and updated isdetermined by the following criteria when the task is created or edited. You
+can use any combination of options to build a task.
+
+ Option Description
+
+ Select applic- The dropdown listofall applications configured to work with IdentityIQ.
+ ations toscan
+ This option isonly available for applications on which multiple application
+ objects can exist.
+
+ This option isnot available ifyou select to scan more than one application.
+ Filterobject The listof allobject types or account groups associated with the selected
+ types to scan application. Ifnothing isselected, allobject types and account groups are
+ included.
+
+ Itmight become important to scan object types separately ifthey share attrib-
+ utes.
+ Enable Delta Enable the connector to aggregate only those account groups or application
+ Aggregation objects that have changed since the lastaggregation. This requires support
+ by the connector.
+ Detect deleted Detect and delete any account group or application object that was deleted on
+ account groups the native application since the lastaggregation task was run.
+ Automatically
+ promote descrip- The default locale forthe description attribute of the account group or applic-
+ tions to this loc- ation object. This option isused ifan existing description locale isnot found.
+ ale
+ The Description Attribute defined in the Application Group Schema overwrites
+ Description any value set here.
+ attribute (default
+ description) The attribute that stores the description. This value defaults to the value
+ description ifthis option isnot set.
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 27
+
+===== Page 32/67 =====
+Task Types
+
+
+ Option Description
+
+ Group Aggreg- The rule used toset the owner or modify the account group when itis created
+ ation Refresh or refreshed.
+ Rule Click the [...]icon tolaunch the Rule Editor to modify the rule ifneeded.
+
+ Promote Clas- Promote classification from the ResourceObject classification to the Man-
+ sifications agedAttribute.
+ Enable partitioning of this task across multiple hosts.
+ Enable par-
+ titioning Partitioning must be configured globally before this option can be used.See
+ the System Administration documentation.
+ Number of par- Specify a number of partitions. Ifno number is specified, IdentityIQ calculates
+ titions an optimal number based on available request servers.
+ The loss limit sets the maximum number of identities that willbe reprocessed
+ Loss Limit in case of a sudden termination of a partitioned refresh. This option isused
+ only when partitioning isenabled. See the System Administration doc-
+ umentation.
+ Terminate afterthe specified number of errors occurs.
+
+ Terminate when Ifthe database isavailable, the task result contains a message indicating that
+ maximum num- the task was terminated due to excessive errors. Ifthe database is down, the
+ ber of errors is task result cannot be persisted and the task might appear to remain in the
+ exceeded pending state.
+
+ Maximum errors before termination
+ Number of errors to tolerate before terminating the task.
+
+Activity Aggregation
+
+Activity Aggregation tasks scan allapplications, discover activityon the applications, and then correlate that activity
+with identity cubes. Using these tasks enables you to track and monitor activity within your enterprise.
+
+The information scanned and updated is determined by the following criteria when the task iscreated or edited. You
+can use any combination of options to build a task.
+
+ Option Description
+
+ The dropdown listofall activitydata sources discovered by IdentityIQ.
+ Select an activity data Ifno data source is selected, allavailable data sources are scanned as
+ source part ofthe task.
+ You applications must be configured to support activity tracking.
+
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 28
+
+===== Page 33/67 =====
+Task Types
+
+
+ Option Description
+
+ Ifenabled, the task marks the last activity scanned on the data source
+ Enable storage of the so that subsequent runs of thistask begin scans atthat mark instead of
+ last activityposition rescanning information.
+ scanned on the data
+ source Ifthis option is not enabled, each run of the task scans the entire data
+ source.
+ Store uncorrelated Ifenabled, all activitydiscovered on the data source isstored, even if
+ activities so they can that activity does not correlate to a user in the application. Storing this
+ be re-scanned and cor- activity enables you to add users and update theiridentity cubes
+ related ata later time without having to rescan your data sources.
+
+Alert Aggregation
+
+Alert Aggregation tasks scan applications and aggregates alerts from a set of Alert Collectors. These are then used to
+generate alert actions.
+
+The information scanned and updated isdetermined by the following criteriawhen the task iscreated or edited. You
+can use any combination of options to build a task.
+
+ Option Description
+
+ The dropdown listof allalert data sources discovered by IdentityIQ.
+ Select sources If no data source is selected, allavailable data sources are scanned as part of
+ to scan the task.
+ You applications must be configured to support alerttracking.
+ If enabled, the task only aggregates alerts that have occurred since the last run
+ Enable Delta of this task.
+ Aggregation
+ This option requires support from the connectors being scanned.
+ If enabled, an Alert Processor task willlaunch as soon as this Alert Aggregation
+ task iscomplete.
+ Process Alerts
+ If you select this option, you can limitthe alerttypes processed in a comma sep-
+ arated list,orprocess allof the alerts collected.
+
+Alert Processor
+
+Alert Processor tasks process the aggregated alerts against the alert definitions and launch the appropriate action.
+
+The information scanned and updated isdetermined by the following criteriawhen the task iscreated or edited. You
+can use any combination of options to build a task.
+
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 29
+
+===== Page 34/67 =====
+Task Types
+
+
+ Option Description
+
+ Optional filterstring to constrain the alerts Ifnot set, allare processed.
+ processed
+ Exclude alerts previously processed Enable toexclude Alerts that were previously pro-
+ cessed.
+ Optional filterstring to constrain the alert Ifnot set, allAlert Definitions are evaluated.
+ definitions to match against alerts
+ Enable Partitioning Enable the task to splitinto partitions and run across
+ multiple threads and hosts, ifavailable.
+
+Application Builder
+
+The Application Builder task lets you create multiple IdentityIQ applications, and update existing applications in bulk.
+The task also includes the abilityto perform account and group aggregation for a host using the associated applic-
+ation. Itcan also export essential data about your existing applications.
+
+The task accepts the inputs required to create orupdate applications from a.csv file.Sample.csv filesfor Linux-Direct
+and Windows-Local are provided with this task as examples ofhow input data can be defined. The sample filesare loc-
+ated in the WEB-INF/config directory of your IdentityIQ installation.You can also use the task's Read option to create
+.csv filesfrom your existing applications, to use as models for creating .csv filesthat support the create and update
+options.
+
+By default, before creating or updating an application on IdentityIQ, a test connection isperformed to ensure that the
+connector isperforming correctly. To skip the Test Connection operation, use Skip Test Connection inthe Applic-
+ation Builder options.
+
+To enable logging for the Application Builder task, add this entry to the log4j2.properties file:
+
+logger.ApplicationBuilderExecutor.name=sailpoint.task.ApplicationBuilderExecutor
+
+logger.ApplicationBuilderExecutor.level=debug
+
+Before using the task toupdate an existing application, itisrecommended that you use the iiq console to export the
+application definition, incase you need torestore them totheir original state.
+
+When you use thistask to Update an existing application, the update ispartial; that is,the update operation can add
+new attribute definitions toan existing schema, as well as adding a new schema.
+
+Use the account or group aggregation options totrigger a background aggregation task.
+
+Working with Flexible Schemas and Provisioning Forms
+
+The Application Builder task supports including XML definitions in your csv filesifyou need tocreate or update flexible
+account schemas, or provisioning forms. Refer tothe sample.csv files provided with thistask forexamples of how a
+
+
+
+
+ SailPoint IdentityIQ Tasks 30
+
+===== Page 35/67 =====
+Task Types
+
+
+schema definition can be included in the.csv file.Sample filesare provided inthe WEB-INF/config directory forLinux-
+Direct and Windows-Local.
+
+Ifyour input fileincludes an XML definition of a Provisioning Form, be aware that importing a Provisioning Form defin-
+itionin a create or update operation willreplace allexisting Provisioning Forms with the new form as defined inthe
+.csv
+
+ Option Description
+
+ Select an application type from the drop-down list.This is type of application you
+ Application want to bulk-process. A single application builder task can only process applic-
+ Type ations of the same IdentityIQ-supported type, such as JDBC, Active Directory, or
+ LDAP
+ Select an operation from the drop-down list.
+
+ Create – create multiple applications by providing parameters in the .csv filein
+ the specified format
+ Update – update existing applications by providing parameters inthe .csv filein
+ the specified format
+ Operation Read – export existing applications to the .csv fileformat. Any existing exported
+ fileswill be overwritten ifthe task is run again using the same filename.
+
+ The Read operation reads the attribute map, account schema, and provisioning
+ policy of an existing application present in IdentityIQ and exports itto the file
+ path provided in CSV format. You must provide the application type and filepath
+ to which the fileisto be exported before running the operation.
+ The filepath, including filename, for the.csv file.For the Read option, this isthe
+ path to the location and name of the filethe task willcreate. For Create and
+ Update options, this isthe path to the filecontaining the data for creating or
+ updating your applications; these filesmust be present on the application server
+ File Path or accessible within the network.
+
+ Sample .csv files are provided in the WEB-INF/config directory for Linux-Direct
+ and Windows-Local:
+ Application-builder_linux.csv
+ Application-builder-windows-local.csv
+ Executes the account aggregation task. The account aggregation task is
+ triggered sequentially.
+ Account
+ Aggregation The aggregation task willuse the following format; the UID (unique identifier)is
+ generated automatically:
+ <Application type> + <Account Aggregation> + <Current time stamp> + <UID>
+
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 31
+
+===== Page 36/67 =====
+Task Types
+
+
+ Option Description
+
+ Executes the group aggregation task. The group aggregation task is triggered
+ sequentially.
+ Group
+ Aggregation The aggregation task willuse the following format; the UID (unique identifier)is
+ generated automatically:
+ <Application type> + <Group Aggregation> + <Current time stamp> + <UID>
+ Number of
+ Applications The number ofapplication included ineach aggregation task.
+ per Aggreg- Default: 10
+ ation Task
+ Skip Test Skip the default test connection operation.
+ Connection
+
+ArcSight Data Export
+
+Export data for HP ArcSight Database Connector to an external database table.
+
+The ArcSight data export task enables you to export IdentityIQ data to external tables.
+
+Before you can use the ArcSight data export task, you must create the export databases on your destination data
+source.
+
+The task schedule user interface includes a button that generates a customized DDL which you can hand offto a data-
+base administrator for execution. Once the data source parameters are entered, clickGenerate Table Creation
+SQL. The task adds the following tables in database:
+
+ Tables Description
+
+ sptr_arcsight_export Table to maintain the task execution history.
+ sptr_arcsight_identity Table contains exported data ofIdentity.
+ sptr_arcsight_audit_event Table contains Audit Events information.
+
+
+
+
+ Option Description
+
+ Datasource Parameters
+ Database Select a database type from the dropdown list.
+ User Name Enter the user name parameter of the database table.
+ Password Enter the password of the database table.
+ Driver Enter the driver class used for database.
+
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 32
+
+===== Page 37/67 =====
+Task Types
+
+
+ Option Description
+
+ Class
+ URL Enter the URL of the database.
+ Object Export Options
+ Export Identity related data inArcSight tables. Itprovides the following options:
+
+ Full: Exports allthe records irrespective ifthey were exported earlier.
+ Export Iden-
+ tities Incremental: Exports only records that are updated since last run of this task.
+
+ This option can even be selected when running the task for firsttime. When the
+ task is running for firsttime, this option exports allrecords similar to the Full option.
+ Export Audit Events in ArcSight table. It provides the following options:
+
+ Export Full: Exports allthe records irrespective ifthey were exported earlier.
+
+ Audits Incremental: Exports only records that are updated since last run of this task.
+ This option can even be selected when running the task for firsttime. When the
+ task is running for firsttime, this option exports allrecords similar to the Full option.
+
+After you complete customizing your task options, click Save forlater use or Save and Execute tosave the task and
+run itimmediately.
+
+Configuring HP ArcSight Task to populate host name or IP
+
+The value ofcolumn application_host can be populated by adding a map with the value as arcsightAppNameHostMap
+as shown in the following example. The fieldThis isread from the map as explained below:
+
+Itisdifficultto determine the host name or IP address of the account as the field isnot constant in Application definition
+inIdentityIQ. Hence, customer can define a map inTaskDefinition and select the task added to export data inArcSight
+table. The key in the map should be name of the application defined in IdentityIQ and value should be hostname, IP, or
+any string thatArcSight administrator understands.
+
+To add the map:
+
+ 1. Go todebug page, navigate to TaskDefinition and open the ArcSight task configured above.
+
+ 2. Add the entry as key = Name of Application defined inIdentityIQ and value as the string toidentify host of
+ Account likeHostname or IP.
+
+ 3. Save the task definition. For example:
+
+
+
+   <entry key="arcsightAppNameHostMap">
+     <value>
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 33
+
+===== Page 38/67 =====
+Task Types
+
+
+
+         <Map>
+           <entry key="LinuxApp1" value="linux01.iiq.com"/>
+           <entry key="LinuxApp2" value="127.15.19.21"/>
+           <entry key="ADDirectApp" value="AD.iiq.com"/>
+           <entry key="ServiceNowApp" value="https://iiq.service-now.com"/>
+           <entry key="ACF2App" value="ACF2-Mainframe"/>
+         </Map>
+     </value>
+ </entry>
+
+
+ Note: If the application name is not defined in the map the host field isblank.
+
+The following fields are added in export table:
+
+ Fields Description
+
+ linkid Primary key forLink table in IdentityIQ database. This fieldis copied from spt_link
+ table idfield and isthe primary key for export table.
+ identityid Primary key inIdentity table. This fieldis copied from spt_Identity table.
+ modified_dt Populates timestamp when the record is exported inexport table. The field can
+ be referred while configuring time based ArcSight database connector.
+ identity_dis- Represents Display Name of Identity which is copied from spt_identity table field
+ play_name (display_name).
+ identity_first- Represents firstname of Identity which is copied from spt_identity table field(first-
+ name name).
+ identity_last- Represents last name of Identity which is copied from spt_identity table field(last-
+ name name).
+ application_ Populates the type of Account which is connected tothe Identity likeAct-
+ type iveDirectory – Direct, ACF2 – Full, Box, Cloud Gateway, ServiceNow and so on.
+ The host name, IP, or any string which can be used by ArcSight administrator to
+ application_ identify the host of link/account uniquely. Customer can enter any string which
+ host can be sent to ArcSight to identify the host of link.
+
+ This fieldcan be populated as explained inArcSight Data Export.
+ application_ Populates the name of Application of the Account connected to the Identity.
+ name
+ link_display_ The account connected to the identity which is copied from spt_link table, fielddis-
+ name play_name.
+ entitlements Represents comma separated listofentitlements to the linkof Identity.
+ risk_score Represents the composite risk score ofIdentity.
+
+
+
+
+
+
+
+SailPoint IdentityIQ Tasks 34
+
+===== Page 39/67 =====
+Task Types
+
+
+ Fields Description
+
+ auditid The audit ID which isprimary key for the export Audit table. The fieldiscopied
+ from spt_audit_event table id field.
+ created_dt Populates timestamp when the record isexported in export table. The fieldcan be
+ referred while configuring time based ArcSight database connector.
+ owner Describes the Owner ofthe audit generated.
+ source Provides more details to help ArcSight administrator determine the source of
+ audit.
+ action Describes the action taken on entity.
+ target Provides target details.
+ application Describes the name of application the target belongs to.
+ account_ The name of Account ispopulated inthis field.
+ name
+ attribute_ The name of attribute modified.
+ name
+ attribute_ The value provided to the attribute.
+ value
+
+Data Export
+
+The Data Export task enables you to export IdentityIQ data to an external database. You can select to export any com-
+bination of identity, account, and certification data.
+
+Before you can use the Data Export task, you must create the export database tables on your destination data source.
+
+The task schedule user interface includes a button that generates a customized DDL which you can hand offto a data-
+base administrator forexecution. Once the data source parameters are entered, click Generate Table Creation
+SQL.
+
+ Option Description
+
+ Datasource Parameters
+ Database Select a database type from the dropdown list.
+ User Name Enter the user name parameter ofthe database table.
+ Password Enter the password of the database table.
+ Driver Class Enter the driver class used for database.
+ URL Enter the URL of the database.
+ Object Export Options
+ Export Iden- Export identity related data. You can perform a fullor incremental export. Use
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 35
+
+===== Page 40/67 =====
+Task Types
+
+
+ Option Description
+
+ tities. the Export Filter fieldto apply any database filters.
+ Export Export account related data. You can perform a fullor incremental export. Use
+ Accounts. the Export Filter fieldto apply any database filters.
+ Export Cer- Export certification related data. You can perform a fullor incremental export.
+ tifications. Use the Export Filter field toapply any database filters.
+
+After you complete customizing your task options, click Save for later use or Save and Execute to save the task and
+run itimmediately.
+Effective Access Indexing
+
+Effective Access is any indirect access that was granted through another object, such as a nested group, an unstruc-
+tured target, or another role.
+
+ Option Description
+
+ Index Enti- Include any effective entitlements associated with application that support
+ tlement Targets effective access searching.
+ Index Role Tar- Include any effective roles associated with application that support effective
+ gets access searching.
+ Index direct Include any effective direct role permissions associated with application that
+ role per- support effective access searching.
+ missions
+ Index direct Include any effective direct entitlement permissions associated with applic-
+ entitlement per- ation that support effective access searching.
+ missions
+ Index unstruc- Include any unstructured targets.
+ tured targets
+ Refresh Fulltext Refresh the Fulltext index as part of this task.
+ Index
+ Add an entitlement's classifications tothe target association that iscreated
+ Index clas- when the entitlement target is indexed; inthe UI, this means that an enti-
+ sifications tlement's classifications willbe displayed whenever that entitlement occurs as
+ Effective Access.
+ Promote classifications up the effective access "chain" to the entitlement that
+ Promote clas- grants the effective access. For example, ifEntitlementA grants you effective
+ sifications access to EntitlementB, and EntitlementB has a classification assigned to it,
+ then with the Promote Classifications option enabled, the classification
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 36
+
+===== Page 41/67 =====
+Task Types
+
+
+ Option Description
+
+ assigned to EntitlementB willalso be displayed inthe UI forEntitlementA.
+ Index elevated This willmake the elevated access for a role orentitlement show as effective
+ access access ifitisassociated with other objects
+ Promote elev- Marks the role as Elevated ifithas any target associations. They must be
+ ated access indexed first.
+ Clean elevated Removal of any items marked as Promote Elevate Access ifthe association is
+ access broken or removed.
+ Delete allcur-
+ rent targets Clear an existing Effective Access Index before running this task.
+ before indexing
+
+After you complete customizing your task options, click Save forlater use orSave and Execute to save the task and
+run itimmediately.
+Encrypted Data Synchronization Task
+
+The Encrypted Data Synchronization Task is used to re-encrypt IdentityIQ data when a new custom encryption key is
+generated.
+
+ Option Description
+
+ Disable Application Syn- Select thisoption toignore encryption key synchronization
+ chronization against applications.
+ Disable Identity Syn- Select thisoption toignore encryption key synchronization
+ chronization against identities.
+ Disable IntegrationConfig Syn- Select thisoption toignore encryption key synchronization
+ chronization against IntegrationConfig objects.
+ Disable Attachment Syn- Select thisoption toignore encryption key synchronization
+ chronization against attachments.
+ Convert Encrypted Identity Select thisoption toconvert any encryption keys touse hash-
+ Secrets to Hashing ing.
+
+Once you have completed customizing your task options, clickSave for lateruse or Save and Execute to save the
+task and run itimmediately.
+Entitlement Role Generator
+
+The Entitlement Role Generator creates an Entitlement Role for every entitlement found in a specified application.
+Recommended role types are Entitlement or IT.
+
+
+
+
+ SailPoint IdentityIQ Tasks 37
+
+===== Page 42/67 =====
+Task Types
+
+
+You can further refine creation by specifying an entitlement name or permission target so that only entitlements match-
+ing the specified criteria are used.
+
+Itisrecommended to specify a template tobe used to name the created roles. IdentityIQ uses Velocity templates. Ifno
+template isused, a generic name based on either the entitlement or role is created.
+
+ Option Description
+
+ Select one or more
+ Applications applications from
+ the dropdown list.
+ Input the name of
+ Type of Role to Create the role based on
+ the specifications
+ for your enterprise.
+ Enter the locale to check for descriptions. (Ifleftblank the default Locale is Enter the location of
+ used) the role description.
+ Enter letters inthe
+ Generate entitlements from attributes whose name starts with attribute name to fil-
+ ter the scan.
+ Enter letters inthe
+ Generate entitlements from permissions whose target starts with permission name to
+ filterthe scan
+ Velocity template from which to generate entitlement role names. The tem-
+ plate is always passed the applicationName parameter. The description, Enter the Velocity
+ attributeName, attributeValue, permissionTarget, and/or permissionRights template string.
+ parameters are set when available.
+
+File Access Manager Classification
+
+The File Access Manager Classification task isused when you are integrating with File Access Manager, to use File
+Access Manager's classification toflag and categorize entitlements within IdentityQ. This task retrieves classification
+data from File Access Manager and assigns itto entitlements according to the correlation logic that is defined in the
+applications that aggregate relevant account and group data, or in IdentityIQs File Access Manager global con-
+figuration settings.
+
+ Option Description
+
+ Classification You can use a rule tocustomize your classification object, for example to add
+ Customization or modify attributes in the object. Rules must be of the type "Clas-
+ Rule sificationCustomization" to appear in thisselection list.
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 38
+
+===== Page 43/67 =====
+Task Types
+
+
+ Option Description
+
+ Automatically The locale that any description that isincluded in the File Access Manager
+ promote objects willbe promoted to,by default. This is used ifan existing description
+ descriptions to locale isnot found.
+ this locale
+
+Classification Filter Rule
+
+The Classification FilterRule feature on the File Access Manager Classification task isexposed as of version 8.4. Itis
+used to narrow the scope of Classifications forthe task. Like most rules, itaccepts a SailPointContext and a Logger.
+
+The return value is a QueryOptions that contains a Filter that isused to generate the SCIM query. The Filtersupports
+"and" operations but not "or." Ifexpression values include reserved URL characters, they need tobe encoded.
+
+Page size isnow configurable on the task. This argument specifies the number ofrecords fetched with each SCIM call
+toFile Access Manager.
+
+Several arguments added to the File Access Manager Classification task allow users to adjust itstolerance. They are
+Retry Limit,Retry Gap, and Max Errors.
+
+ Option Description
+
+ Retry Limit The number oftimes to retry a failed query before giving up and moving
+ on.
+ Retry Gap The number ofmilliseconds to wait before retrying a failed query
+ Max Errors The number oftimes that the retry limit can be exceeded before giving up
+ on the task.
+
+After you complete customizing your task options, clickSave for lateruse, or Save and Execute to save the task and
+run itimmediately.
+ITIM Application Creator
+
+Run the ITIM Application Creator task toinspect IBM TivoliIdentity Manager (ITIM) and retrieve information about the
+ITIM services (applications). This task auto-generates an application for each service defined in ITIM. Each ITIM
+application contains a listof services that are roughly equivalent tothe listofapplications maintained in IdentityIQ. The
+applications generated by this task are added tothe listofapplications inIdentityIQ.
+
+ Option Description
+
+ ITIM Applications Select applications toinspect and from which applications should be
+ generated based on the services found.
+ Generated application Specify a prefix toappend to any applications created by thistask.
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 39
+
+===== Page 44/67 =====
+Task Types
+
+
+ Option Description
+
+ name prefix
+ Generated application Specify a suffix to append to any applications created by thistask.
+ name suffix
+
+IdentityIQ Cloud Gateway Synchronization
+
+IdentityIQ Cloud Gateway Synchronization tasks scan selected IdentityIQ applications for specified objects and syn-
+chronizes them with IdentityIQ Cloud applications. Itisintended foruse when IdentityIQ isnot able to communicate dir-
+ectly with the managed system.
+
+ Option Description
+
+ IdentityIQ Cloud Gateway Select the name of the application to synchronize.
+ application name
+ Applications hosted on the Select the name of the hosted cloud gateway application with
+ IdentityIQ Cloud Gateway which to synchronize the IdentityIQ application.
+ Rules to be executed on the Select which rules to execute against selected applications.
+ IdentityIQ Cloud Gateway
+
+Identity Refresh
+
+Refresh identity tasks scan allidentities to ensure that allidentity information is up-to-date and accurate. Refresh iden-
+tityscans are also used to detect and report on policy violations and launch event certifications.
+
+Incremental identity refresh can be configured to only refresh those identities on which information has changed since
+the last refresh was performed, to increase performance.
+
+ Note: Partitioning isdisabled ifyou enable Mark dormant scopes after refresh or Refresh the
+ group scorecards options.
+
+
+ Note: The Number of Refresh Threads option isnot supported when partitioning is enabled.
+
+Partitioning is available to speed the processing time for identity refresh tasks and level the load on the machines run-
+ning these tasks. Partitioning is used to break operations into multiple pieces, or partitions. Each partitionis then
+placed in a global queue, and machines, or hosts, ina cluster compete to execute the partitions in the queue.
+Machines are added or removed from the cluster dynamically with automatic balancing. Ifa machine fails or istaken
+down while processing a partition, the partition is placed back into the queue and reassigned to a different machine. A
+single result object isshared by allpartitions and iscontinually updated so you can monitor the overall progress ofthe
+partitioned operation. When allpartitions have finished executing the result ismarked complete. See the System
+Administration documentation.
+
+
+
+
+ SailPoint IdentityIQ Tasks 40
+
+===== Page 45/67 =====
+Task Types
+
+
+The information scanned and updated isdetermined by the following criteria when the task is created or edited. You
+can use any combination of options to build a task.
+
+To reduce or eliminate the possibility of getting an ObjectAlreadyLocked exception, there are additional parameters
+available on the IdentityIQ debug pages. enableTriggerIdentityQueue, set to true toenable the queuing fea-
+ture,and triggerIdentityQueueSize, to specify the number of triggers toqueue prior toprocessing, without this
+setting, the default is10.
+
+ Option Description
+
+ Optional filterstring to A filtering string used to limitthe number of identity cubes updated by
+ constrain the identities this task. For example you can limitthe refresh to one department
+ refreshed within your enterprise, such as Finance, by entering: department ==
+ "Finance"
+ Optional listof group or A filtering string used to limitthe number of identity cubes updated by
+ population names to this task. For example you can limitthe refresh to one group or pop-
+ constrain the identities ulation within your enterprise.
+ refreshed
+ Refresh any identities not refreshed since the date entered.
+
+ Enter and date manually or click the [...]icon to display the calendar
+ view.
+
+ Refresh identities Use this to recover from a refresh that ended abnormally. For
+ whose last refresh date example, you start a refresh task and itruns for a day before stopping
+ isbefore this date abnormally. After resolving the issue with the task, instead of repeat-
+ ing the refresh of allthe identities that completed before the task
+ stopped, you can only refresh the ones that were missed on the last
+ refresh. Enter the approximate date the last refresh stopped and only
+ refresh the remainder.
+ Enter the number of hours manually.
+
+ Refresh identities Use this option to refresh identities that have not been refreshed
+ whose last refresh date recently. The time is in thisoption is relative rather than absolute.
+ isat least this number of Instead of remembering a specific task launch date and typing that in
+ hours ago each time you run the refresh task you can have just one task and run
+ that repeatedly. For example you can run itfor every thing more than
+ an hour old.
+ Refresh identities Enter the number of hours manually.
+ whose last refresh date
+ iswithin thisnumber of Use this option to refresh identities that were refreshed recently. The
+ hours primary use case forthis is torefresh things that were recently
+
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 41
+
+===== Page 46/67 =====
+Task Types
+
+
+ Option Description
+
+ touched by aggregation.
+
+ For example, ifyou have several aggregation sources but those
+ sources tend to touch different subsets of all identities,and you would
+ rather not refresh the identities that were not touch be the lastaggreg-
+ ation.
+ Refresh any identities modified within the specified time frames.
+
+ There are two dates stored on each Identity, the date oflast refresh
+ and the date of lastmodification.
+
+ The last refresh date is set whenever you run the refresh or aggreg-
+ ation tasks and the identity is changed insome way.
+
+ The last modification date is set whenever you edit the identity in
+ some way outside of a refresh or aggregation task, for example from a
+ Lifecycle Manager workflow or a custom task.
+ Include modified Use this option torefresh identities that were edited within a period of
+ identities inthe refresh time, but not necessarily by the refresh task. For example, you might
+ window do a fullrefresh once a week but during the week people were adding
+ or removing roles, changing extended identity attributes, doing
+ manual correlation, or changing identities in some other way. Most of
+ those cases have options to do a targeted refresh immediately after
+ the change happens but this is not always the case and sometimes it
+ isbetter tobatch up a number of refreshes rather than have hundreds
+ ofindividual refreshes occurring concurrently. If you ran the refresh
+ task with one ofthe date-based options you would not necessarily
+ pick up identities that were manually edited. Ifyou want to include
+ those select this option.
+ Refresh only identities Only refresh identities marked as needing refresh during the most
+ marked as needing recent aggregation task.
+ refresh during aggreg- For more information on using this option to optimize performance,
+ ation see Refreshing Changed Identities Only (Delta Identity Refresh).
+
+ Do not clear the needing refresh marker set during aggregation.
+ Do not reset the need-
+ ing refresh marker after Use this option ifyou have multiple refresh tasks scheduled, such as
+ refresh entitlement and risk refresh. Then you can set the finalrefresh to clear
+ the markers.
+ Exclude identities Exclude inactive identities from the refresh.
+
+
+
+
+
+
+SailPoint IdentityIQ Tasks 42
+
+===== Page 47/67 =====
+Task Types
+
+
+ Option Description
+
+ marked inactive
+ Refresh identity attrib- Update Identity Cubes with any changes made to the attributes used
+ utes todefine identities.
+ Refresh any account attribute mark as an entitlement inthe applic-
+ Refresh Identity ation schema.
+ Entitlements forall links This process is resource intensive as itrefreshes allentitlement val-
+ ues for alllinks.
+ Update allIdentity Cubes inwhich the manager status has changed.
+ Refresh manager status For example, ifa user was promoted tomanager intheir department,
+ theirIdentity Cube would be updated by this task.
+ Refresh assigned and Update any assigned or detected role assignments that have change
+ detected roles and since the lasttime this task was run. Any additional entitlements found
+ promote additional inthis refresh are promoted during this task.
+ entitlements
+ Provision assignments Provision any assigned roles and entitlements detected since the last
+ time this task was run.
+ Disable deprovisioning Prevents assigned roles from being deprovisioned after they have
+ ofdeassigned roles been deassigned.
+ Update information about the identity's relationship to their role. For
+ example, information regarding whether or not an identity has allthe
+ Refresh role metadata roles required by the given role.
+ foreach identity
+ Note: This option must be selected in order to
+ generate Role Statistics.
+
+ Sent Account Selection Notification emails tousers with more than
+ Enable manual account one account on any application where the system cannot determine
+ selection the provisioning account. By default, no provisioning isdone in this
+ case.
+ Synchronize Attributes Provision identity mapping targets iftheirvalue has changed.
+ Refresh the identity risk Update Identity Risk Scores with any information discovered by the
+ scorecards scan performed by this task.
+ Maintain identity his- Update the identity history by creating a snapshot ofany identities
+ tories with information that has changed since the lastrefresh.
+ Refresh the group score- Update Group Risk Scores with any information discovered by the
+ cards scan performed by this task.
+
+
+
+
+
+
+SailPoint IdentityIQ Tasks 43
+
+===== Page 48/67 =====
+Task Types
+
+
+ Option Description
+
+ Partitioning is disabled ifyou select this option.
+ Clean up groups defin- Delete unreferenced group definitions.
+ itionsthat are no longer This option isonly supported ifitis selected in conjunction with the
+ referenced Refresh the group score card option and they run in the same task.
+
+ Check active policies Scan foractive policies and apply those policies to the identities
+ included inthe task.
+ Keep previous viol- Maintain a history of violations that are no longer active.
+ ations
+ A comma separated list
+ ofspecific policy names. Scan forand apply only those policies included inthis listto the iden-
+ When set this overrides titiesincluded inthe task.
+ the default policies
+ Refresh assigned scope Refresh assigned scope based on changes discovered.
+ Disable auto creation of Do not automatically assign scope to identities as part of thistask.
+ scopes
+ Mark dormant scopes Mark scopes that are not assigned to any identities as dormant.
+ after refresh Partitioning is disabled ifyou select this option.
+
+ Enable event certifications.
+
+ Use the snapshots created during aggregation to approximate the pre-
+ Process Events vious state of the identities at the beginning of the refresh. This copied
+ identity is compared to the updated identity to determine ifevent cer-
+ tifications are launched.
+ Identity processing thresholds letyou stop lifecycle events before they
+ are fully processed to prevent any dangerous workflows from acci-
+ dentally being triggered. They can ben enabled in Rapid Setup events
+ Disable identity pro- and in Lifecycle and Certification events.
+ cessing threshold Ifidentty processing threholds are enabled, use this field to disable
+
+ the identity processing threshold for thistask.
+
+ See the Rapid Setup documentation for more details.
+ Refresh logical applic- Scan forchanges to composite applications and refresh the link
+ ation links information.
+ Promote managed attrib- When enabled, any values for entitlement or permissions
+ utes encountered while running the task automatically get promoted as
+ managed attributes
+
+
+
+
+
+
+SailPoint IdentityIQ Tasks 44
+
+===== Page 49/67 =====
+Task Types
+
+
+ Option Description
+
+ Specify the number of concurrent threads used during task pro-
+ Number of Refresh cessing.
+
+ Threads The number of threads should not exceed 10.
+
+ This option isnot supported with partitioning enabled.
+ Always launch the work- Launch a workflow for each identity even ifno identity triggers or pro-
+ flow (even ifthe usual visioning policy questions apply.
+ triggers do not apply)
+ Enable the generation Create work items forrole entitlements that are not managed by avail-
+ of work items forunman- able connectors or provisioning integration modules so the appro-
+ aged parts ofthe pro- priate action can be taken.
+ visioning plan
+ Disable connector Disable the default MANAGER_LOOKUP feature and stop the auto-
+ lookup of managers that matic lookup/bootstrap of the manager account at the connector level.
+ do not correlate
+ Enable partitioning of this task across multiple hosts.
+
+ Enable partitioning Partitioning must be configured globally before this option can be
+ used.
+
+ See the System Administration documentation.
+ Number of partitions Specify a number of partitions. Ifno number isspecified, IdentityIQ cal-
+ culates an optimal number based on available request servers.
+ The loss limitsets the maximum number of identities that willbe repro-
+ cessed in case of a sudden termination of a partitioned refresh. This
+ Loss Limit option is used only when partitioning is enabled.
+
+ See Loss Limits. See the System Administration documentation.
+ Disables the scheduling of provisioning retryrequests, when pro-
+ Do not schedule retry visioning failsdue to an application being within a maintenance win-
+ requests during applic- dow. Application maintenance windows can be set for each
+ ation maintenance win- application.
+ dows
+ See the Application Configuration documentation.
+
+Refreshing Changed Identities Only (Delta Identity Refresh)
+
+A "delta" identity refresh letsyou update only those Identity Cubes that have changed since your lastaggregation(s),
+rather than updating all identities.This can result ina significant reduction inrefresh time, and can remove orreduce
+the need to partition your identities intosubsets for efficientrefresh processing.
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 45
+
+===== Page 50/67 =====
+Task Types
+
+
+In most cases, identities which have had no changes to theirattributes or accounts ("link" objects) as a result of
+aggregations are not likelyto have new policy violations or need new workflows launched to handle state changes.
+These identities can therefore be skipped or not processed by the Identity Refresh task. In contrast, identities that
+have undergone some kind of change, referred to as some kind of "delta," should be processed by the Identity
+Refresh task.
+
+IdentityIQ lets you set up your tasks to refresh only the changed or delta identities; this isa two-step process:
+
+ 1. Configure and run an aggregation task to mark identities as changed when attribute or account data on the
+ identities has been modified.
+
+ 2. Configure and run an Identity Refresh task to perform theirfunctions only on the marked identities.
+
+Marking Identities as Changed
+
+During an aggregation, details ofsome identities are changed, while some others may not be. IdentityIQ's aggregation
+tasks include a setting that lets the task flag any identities updated by the aggregation as needing a refresh. This lets
+you single out only updated identities fora refresh when the Refresh Identity Cube task is run. The default behavior of
+aggregation task is toset thisflag; ifyou don't want an aggregation task to flag identities that need a refresh, you can
+turn this option off.
+
+During the aggregation task, IdentityIQ marks the identities that have changed by setting the attribute needsRefresh
+to true on the changed identities as they are updated. This isa default operation performed inall aggregation tasks,
+although itcan be turned off with an option on each of the aggregation tasks ifdesired.
+
+This needsRefresh flag can then be used by the Identity Refresh tasks to target only those identities with accounts
+that were modified in a recent aggregation. The refresh tasks can then reset that flag tofalse when they are done
+with the identities so that subsequent aggregations can set the flag anew, and subsequent refresh cycles will again
+only pick up changed identities.
+
+Ifyou want to use this delta identity refresh feature, you should carefully consider which attributes you choose to
+aggregate from your applications into IdentityIQ. Aggregating attributes such as last login date, forexample, would
+likelycause IdentityIQ to reflect changes toidentities more frequently than choosing to aggregate only more static
+data fields,and would therefore flag more identities for delta refresh.
+
+Note that aggregation isthe only process which automatically sets this needsRefresh flag on identities. Ifother pro-
+cesses (such as Lifecycle Manager requests) make attribute or account changes to an identity which would affect iden-
+tityrefresh functionality, a fullrefresh that does not rely on thisflag would be required to process those other identities'
+changes. Alternatively, the Lifecycle Manager workflows also include an optional targeted identity refresh step which
+could refresh the single changed identity immediately, and could be configured either to clear or not clear that iden-
+tity'scurrent needsRefresh flag value at that time.
+
+To set up an aggregation task that willmark identities that have changed:
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 46
+
+===== Page 51/67 =====
+Task Types
+
+ 1. Click Setup > Tasks.
+
+ 2. Choose the aggregation task to edit.
+
+ 3. Uncheck the Disable marking the identity as needing a refresh option.
+
+ 4. Save the task.
+
+Refreshing Only Identities Marked As Changed
+
+Inthe Refresh Identity Cube task (orother refresh tasks), select the option to Refresh only identities marked as
+needing refresh during aggregation. Itis important to note that this operation isdisabled by default; that is,default
+behavior for Identity Refresh tasks is to ignore the needsRefresh flag that was set by the aggregation task. Ifyou
+want to use the delta identity refresh feature, you have to explicitlyset this option in your refresh task(s):
+
+ 1. Click Setup > Tasks.
+
+ 2. Choose the refresh task to edit.
+
+ 3. Check the Refresh only identities marked as needing refresh during aggregation option.
+
+ 4. Save the task.
+
+When the refresh task runs, itresets the needsRefresh flag tofalse for every identityitprocesses. This way, Iden-
+tityIQknows that the identity has been refreshed already and so willnot refresh itagain untilthe next aggregation.
+However, you can change this behavior ifyou want. Depending on how you run refresh tasks, you may or may not
+want to reset this flag.
+
+For example, ifyou aggregate and refresh infrequently, itcan be a good practice to have the refresh task clear the
+needsRefresh tag, to avoid needlessly repeating refreshes on an identity that has just been refreshed. However, if
+you segment the refresh task to, forexample, splitout the refreshing of entitlements, attributes, and policies, you
+would not want to clear the needsRefresh tag. Leaving the needsRefresh tag in place as you iterate through all
+the refresh segments letsyou avoid a situation where an identity is updated only for one segment of the fullrefresh pro-
+cess, rather than all segments thatmight apply.
+
+To configure the refresh task so that itdoes not clear the needsRefresh flag from an Identity Cube when itruns:
+
+ 1. Click Setup > Tasks.
+
+ 2. Choose the refresh task to edit.
+
+ 3. Check the Do not reset the needing refresh marker after refresh option.
+
+ 4. Save the task.
+
+
+
+
+ SailPoint IdentityIQ Tasks 47
+
+===== Page 52/67 =====
+Task Types
+
+Best Practices for Delta Identity Refresh
+
+Delta identity refresh offers flexibilityformanaging the important identity refresh functions more efficiently.Here are
+some recommended best practices for using this functionality.
+
+ Interspersing Delta and Full Refreshes
+
+Delta identity refresh can be a helpful performance boost for IdentityIQ, as itstreamlines time-intensive identity refresh
+processes. Itis stillstrongly recommended, however, that customers regularly run a fullrefresh toensure that alliden-
+titiesget updated and processed following other changes which may occur outside the data flows which would trigger
+identities to be marked as needing refresh. For example, Lifecycle Manager request workflows may or may not refresh
+identities after entitlement and role assignments, depending on options configured in the workflows, and they do not
+set the needsRefresh flag by default; a fullrefresh on a periodic basis would catch those identities and update them
+as needed.
+
+Different customers run refreshes on different schedules, often depending on the volume of ongoing changes they
+anticipate or experience in their environment. For example, customers who run an hourly delta refresh should plan to
+run a daily fullrefresh, while customers with lower change volumes may run daily delta refreshes with weekly full
+refreshes.
+
+ Timed Triggers
+
+Itiscommon for installations to define workflow triggers (IdentityTrigger objects) which are set to run based on the cal-
+endar date when the trigger executes. For example, a "pre-offboarding" workflow could be configured to run the day
+before a user's termination date or a "pre-onboarding" workflow could run a day or a week before the user's start date,
+with those dates being specified through attributes in an HR or authoritative system feed. The Identity Refresh task
+that launches those workflow triggers (through its"Process Events" option) should be configured as a fullrefresh
+which processes allidentities, not a delta refresh handling only identities that need refreshing; the Identity's attributes
+or accounts might not change inany aggregation run on the day these events need to execute, so thisworkflow needs
+to evaluate allidentities, not just recently changed ones.
+
+ Delta Identity Refresh and Logical Applications
+
+Logical applications in IdentityIQ are applications which are defined based on accounts, entitlements, and /or per-
+missions granted through one or more other applications. For example, Application X, for which access iscontrolled
+by membership in the AppX group inLDAP, could be configured as a logical application in IdentityIQ.
+
+Logical application "aggregation" is actually performed by processing information already stored in IdentityIQ forother
+applications (for example, to identify Application X accounts and entitlements, IdentityIQ looks atthe LDAP application
+accounts with the AppX group), rather than by reading data from an external source liketraditional application aggreg-
+ations do. Standard applications, with a data source external to IdentityIQ, support an optimized aggregation process
+inwhich IdentityIQ skips the bulk of processing on any records itfinds to be unchanged as itreads the source.
+Because the data source for logical applications isexisting identity data which must be dynamically examined and
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 48
+
+===== Page 53/67 =====
+Task Types
+
+
+assessed forlogical accounts based on the logical application definition, there isno built-inoption for optimizing
+aggregation from logical applications.
+
+Delta identity refresh offers functionality which can be used to approximate an "optimized refresh," so itispossible to
+use thisfeature to manage a more optimized aggregation of logical applications. These are the steps to implement
+that option:
+
+ 1. Run an optimized aggregation from the tierapplications in the logical application definition. This aggregation
+ willthen mark only the changed identities from those applications with the needsRefresh flag.For best res-
+ ults,this should be run ata time when there are no identities previous marked as needing refresh, that is, a full
+ or delta refresh process has reset the needsRefresh flag on allmarked identities prior to this aggregation.)
+
+ 2. Run a delta identity refresh task to recalculate the logical application accounts. Since itwillonly look at the iden-
+ titieswhose accounts changed in the optimized aggregation, itwillonly recalculate the logical accounts for
+ those identities. This refresh should have these options set:
+
+
+
+ l Refresh only identities marked as needing refresh during aggregation – enable thisoption to have
+ the task process only identities which were marked as changed in the optimized aggregations in step 1.
+
+
+
+ l Refresh logical application links – enable this option touse this refresh for logical application account
+ calculation.
+
+
+
+ l Edit the task's definition in the Debug pages to add a compositeApplicationskey, set to a comma-sep-
+ arated listof logical application names which this refresh should process; this can be a single logical
+ application at a time or a limited listso the task only processes the logical application(s) which are based
+ on the tierapplications justaggregated
+
+Identity Request Maintenance
+
+The Identity Request Maintenance task scans allLifecycle Manager access requests to ensure that allidentity change
+requests were provisioned.
+
+Partitioning isavailable to speed the processing time forthis task, and to level the load on the machines running these
+tasks. Partitioning is used to break operations into multiple pieces, or partitions. Each partition is then placed in a
+global queue, and machines, or hosts, ina cluster compete to execute the partitions in the queue. Machines are
+added or removed from the cluster dynamically with automatic balancing. Ifa machine fails or istaken down while pro-
+cessing a partition, the partition isplaced back into the queue and reassigned to a different machine. A single result
+object is shared by allpartitions and iscontinually updated so you can monitor the overall progress ofthe partitioned
+operation. When allpartitions have finished executing the result is marked complete. See the System Admin-
+istration documentation.
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 49
+
+===== Page 54/67 =====
+Task Types
+
+
+ Option Description
+
+ The maximum number of days that an identity request object
+ (AccessRequest) is stored in the IdentityIQ database before itis
+ Max age (indays) for removed.
+
+ Identity Request Set this according to your policy on how long access request details are
+ objects required.
+
+
+
+ The default is zero (0),which indicates that they are stored forever.
+ Verify provisioning for Scan for provisioning requests which have been verified.
+ requests?
+ The number of days the task attempts to scan for verified access
+ requests before reporting a failure.
+
+ Number of days to When a timeout occurs, any item not verified isleftin the non-finished
+ attempt to verify the provisioning state, either Committed or Pending, and the overall
+ request with the Iden- request ismarked Partially Complete ifany item succeeded. Ifno item
+ titymodel before fail- succeed the entire request is marked failed.
+ ing.
+
+ Set this value based on the type of connectors and theirexpected pro-
+ visioning times. The default setting is continuous checking forever.
+ Enable partitioning of this task across multiple hosts.
+ Enable partitioning
+ Partitioning has to be configured before this option is valid.
+ Number of partitions Specify a number of partitions. If no number isspecified, IdentityIQ cal-
+ culates an optimal number based on available request servers.
+
+Missing Managed Entitlements Scan
+
+Missing Managed Entitlement Scan tasks scan the selected application and create any entitlement objects foritems
+added after the application was lastaggregated.
+
+Select the applications to include inthe scan. At least one application must be specified. Click the arrow to the right of
+the suggestion fieldto display a listof allapplications, or enter a few letters inthe fieldto display a listof applications
+that start with that letterstring.
+
+This task returns a listof entitlement names, values, and the application on which they were detected.
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 50
+
+===== Page 55/67 =====
+Task Types
+
+OIM Application Creator
+
+Run the OIM Application Creator task toinspect Oracle Identity Manager applications and retrieve information about
+the applications towhich they are connected. This task generates an IdentityIQ application forapplications connected
+to the OIM application specified. The applications generated by this task are added to the listof applications in Iden-
+tityIQ.
+
+ Option Description
+
+ OIM Applic- Select an OIM application toinspect and from which applications should be gen-
+ ation erated.
+
+Policy Scan
+
+The Policy task type isused to run policies against identity cubes and update identity score cards with any policy viol-
+ations discovered. IdentityIQ provides the Check Active Policies task as a global policy update task.
+
+The information scanned and updated is determined by the following criteria when the task iscreated or edited. You
+can use any combination of options to build a task.
+
+ Option Description
+
+ Optional filterstring to con- A filteringstring used to limitthe number of identity cubes updated
+ strain the identities by this task. For example you can limit the refresh toone depart-
+ refreshed ment within your enterprise, such as Finance, by entering: depart-
+ ment == "Finance"
+ Optional listof group or pop- Use this listto further limitthe number of identities included in this
+ ulation names to constrain policy scan.
+ the identities refreshed
+ Apply allactive policies Scan foractive policies and apply those policies to the identities
+ included in the task.
+ A comma separated listof
+ specific policy names. Scan forand apply only those policies included inthis listto the
+ When set, this overrides the identities included in the task.
+ default policies
+
+Propagate Role Changes
+
+
+ Note: IdentityIQ does not propagate role changes for entitlements on applications that do not sup-
+ port direct provisioning and would require the creation of multiple work items. Ifrequired, a busi-
+ ness process can be enabled inthe System Configuration settings to handle that situation.
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 51
+
+===== Page 56/67 =====
+Task Types
+
+
+ Note: Entitlements that were detected are not removed from an identity during role propagation,
+ unless they are also part of an assignment.. Only those entitlements that were assigned, indi-
+ vidually or as part of a role assignment, are removed during propagation.
+
+The Propagate Role Changes task updates any identities that have assigned roles whose associated entitlements
+have changed. This is the only task that can propagate the removal of entitlements from an assigned role.
+
+ Option Description
+
+ Number of The number of minutes for the task to run.
+ minutes
+ task should The task stops only after finishing current event processing.
+ run
+ Check act- Scan for active policies and apply those to the identities included in the task.
+ ive policies
+ Keep pre-
+ vious viol- Mark old policies as inactive but do not delete them.
+ ations
+ A comma
+ separated
+ listofspe-
+ cificpolicy
+ names. Scan for and apply only those policies included inthis listto the identities included
+ When set, in this task.
+ thisover-
+ rides the
+ default
+ policies.
+ Enable Par- Allow the task to splitinto partitions and run across multiple threads and hosts, if
+ tition available.
+ Maximum This parameter sets the number of times a role change event can failto progress
+ failures before itispruned. A failure to progress isdefined as zero successes on the event
+ before during the task. Events that are blocked by other pending events are not counted
+ event prun- as failingto progress. Ifthis value isleft blank, the event willnever be pruned until it
+ ing has been fullyprocessed.
+ Maximum This parameter limits how many identities can failto be provisioned by a single role
+ failure change event, expressed as a percentage of the total number of identities affected
+ threshold by the event. All partitions for a role change event are allowed to run to completion,
+ and once finished, the transition request computes the actual failure percentage
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 52
+
+===== Page 57/67 =====
+Task Types
+
+
+ Option Description
+
+ and compares itto the maximum failurethreshold. If the percentage is exceeded,
+ the propagation terminates. Note that this does not mean that a single role change
+ event willstop as soon as ithitsthe maximum; itmeans that ifan event exceeds
+ the maximum, no more subsequent events willbe processed.
+
+Once you have completed customizing your task options, click Save forlater use or Save and Execute tosave the
+task and run itimmediately.
+
+After executing the task, the Task Result page displays the following output:
+
+
+
+ l Number of Identity Updates – displays the total number of Identity updates propagated. Itisdifferent than
+ number of Identities updated, since multiple role events include some common identities and are counted mul-
+ tiple times, for each role event.
+
+
+
+ l Number of Events Processed – displays the totalnumber ofrole events propagated. This isnot the number
+ of role modifications but the role change events inthe queue. As single role modification results in multiple role
+ change events inthe queue.
+
+
+
+ l Number of Events Pending – displays the totalnumber ofpending role change events inthe queue. Iftimeout
+ is not defined, Role Propagation task completes only after propagating allthe events. Iftimeout isdefined,
+ there could be pending events in the queue even after successful completion of this task.
+
+
+
+ l Number of Events with No Impacted Identities – displays the total number of events which are not impact-
+ ing on connected identities.This event count isbased on those bundles which are not directly assigned to the
+ identities.
+
+
+
+ l Role change events are propagated sequentially and are not consolidated to cancel out redundant changes.
+
+
+
+ l IfRefresh Identity Task is run before Role propagation task, and ifitadds any entitlement as part of role
+ changes, processing of role change event through Role Propagation Task would be redundant.
+
+
+
+ l In case of retry status, the transaction would be marked as failed and role propagation task would be stopped.
+
+
+
+ l While adding an entitlement, ifaccount is missing, transaction would be marked as failed and role propagation
+ task would be stopped. User has to run Refresh Identity task toresolve this.
+
+
+
+ l While processing an event, ifthe following exception isfrom target system, the task would remain blocked until
+ the events are successfully processed.
+
+
+ mandatory group cannot be removed
+
+
+ This issue can be resolved by deleting the event from the database.
+
+
+
+
+SailPoint IdentityIQ Tasks 53
+
+===== Page 58/67 =====
+Task Types
+
+
+
+ l When the Role Propagation task is running, ifa user creates events in database, these events are not pro-
+ cessed by the current task. These events will be processed the next time the task runs.
+
+Refresh Logical Accounts
+
+The Refresh Logical Accounts task type isused to refresh composite accounts forall identities that could, potentially,
+have a logical account on the applications selected. This refresh occurs without performing aggregation on the logical
+or tiered applications containing the links.
+
+A logical account rule is run on each identity that has a logical link,or a link on the primary tier application of the logical
+application. Ifno primary tierhas been defined, the rule is run on allidentities that have an account on any of the tier
+applications.
+
+The information scanned and updated isdetermined by the following criteria when the task iscreated or edited. You
+can use any combination ofoptions tobuild a task.
+
+ Option Description
+
+ Logical Applications Select composite applications to refresh from the dropdown list.
+ Refresh any identities that have not been refreshed since the
+ Refresh identities whose last date entered.
+ refresh date isbefore this date Enter and date manually or click the [...]icon to display the cal-
+ endar view.
+ Perform an aggregation of identity information on each applic-
+ ation and update the account attributes on each identity as
+ Refresh allapplication account required.
+ attributes Selecting this attribute initiates a fullapplication aggregation for
+ each identity included inthis task. This might impact the per-
+ formance of IdentityIQ.
+ Refresh identity attributes Update identity cubes with any changes made to the attributes
+ used to define identities.
+ Update allidentity cubes in which the manager status has
+ Refresh manager status changed. For example, ifa user was promoted to manager in
+ theirdepartment, their identity cube would be updated by this
+ task.
+ Refresh the identity risk score- Update Identity Risk Scores with any information discovered by
+ cards the scan performed by this task.
+ Maintain identity histories Update the identity history by creating a snapshot of any iden-
+ titieswith information that has changed since the last refresh.
+ Refresh the group scorecards Update Group Risk Scores with any information discovered by
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 54
+
+===== Page 59/67 =====
+Task Types
+
+
+ Option Description
+
+ the scan performed by thistask.
+ Apply allactive policies Scan for active policies and apply those policies to the identities
+ included in the task.
+ A comma separated listof spe-
+ cificpolicy names. When set Scan for and apply only those policies included in thislistto the
+ thisoverrides the default identities included inthe task.
+ policies
+ Number ofRefresh Threads Number ofthreads touse simultaneously while running this
+ task.
+
+Reset Failed NativeIdentityChangeEvents
+
+This task is used with the Active Directory Native Move/Rename feature.
+
+IdentityIQ uses the Active Directory GUID, a globally unique identifier,to determine when an account or group object’s
+DN has changed. When a change is detected, the object is updated, and the change ispropagated toallDN ref-
+erences throughout IdentityIQ.
+
+When a changed DN isupdated on aggregation, IdentityIQ creates an event to propagate the changes.
+
+To process the event, a Native Identity Change Propagation Request iscreated, which propagates changes to the
+appropriate destinations based on the event type. After allpropagations to the destinations have completed suc-
+cessfully, the event ismarked as DONE. Ifthe event failsforany reason, the event and request are both marked as
+FAILED.
+
+Failed events can be restarted or pruned from your system using the Reset Failed Nat-
+iveIdentityChangeEvents task.
+
+ Option Description
+
+ Prune Failed Events whose Select thisoption to prune events that failed due toa mismatch
+ old and new Native Identity dif- in the case of the Native Identity.
+ feronly by case
+ Reset and process Failed Nat- Select thisoption to create a Native Identity Change Propaga-
+ ive Identity Change Events tion request to process failed events, and reset event status
+ from FAILED to PENDING.
+
+For more information on the Active Directory Native Move/Rename feature, see the IdentityIQ Application Man-
+agement Guide.
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 55
+
+===== Page 60/67 =====
+Task Types
+
+Role Index Refresh
+
+A role index refresh task updates allrole information and creates the indexes needed toperform role searches. You
+must run this task before performing any role searching.
+Role-Entitlement Associations
+
+This task deletes existing role-entitlement associations then analyzes each role in the system and creates asso-
+ciations between the roleand any granted entitlements.
+
+This task only needs to be run one time to establish role associations to entitlements and permissions; once ithas
+been run, IdentityIQ automatically updates the relationship table any time changes are made to role profiles.This task
+isrun by default when upgrading from an earlier version ofIdentityIQ to the current version; in an upgrade scenario,
+you do not need to run the task independently ofthe upgrade process in order to establish these relationships.
+
+Although there isno requirement to run the Role-Entitlement Associations task again after itisfirstrun, you can
+choose torun itifyou want to – forexample, ifyou have onboarded many applications in a short timeframe and want
+totake extra care to ensure that your relationship table is up to date.
+
+For more information about the associations between roles and the entitlements and permissions they grant, see
+Understanding Relationships Between Roles and Entitlements/Permissions.
+
+ Option Description
+
+ Enable partitioning of thistask across multiple hosts.
+ Enable Par- Partitioning must be configured globally before this option can be used.
+ titioning
+ See the System Administration documentation.
+ Number of Specify a number ofpartitions. Ifno number isspecified, IdentityIQ calculates an
+ Partitions optimal number based on available request servers.
+
+After you complete customizing your task options, click Save forlater use, or Save and Execute tosave the task and
+run itimmediately.
+Run Rule
+
+A task used to run an arbitrary rule with a series ofname / value pairs.
+
+You must have to configure some return statement as string.From your code, you have to return some meaningful
+string tothe task. Inyour task definition declare:
+ <Returns>
+ <Argument name="tskSuccess" type="string">
+ <Prompt>Task Result:</Prompt>
+ </Argument>
+ </Returns>
+
+
+
+
+ SailPoint IdentityIQ Tasks 56
+
+===== Page 61/67 =====
+Task Types
+
+
+And inyour code:
+ String tskSuccess = "failed";
+ if ( Do some condition check here) {
+ //Do something;
+ String tskSuccess = "Success";
+ }
+ return tskSuccess;
+The rule isexpected to return a string value representing itsstatus. Any string other than Success results ina failed
+task result.
+
+For an overview of developing and using rules in IdentityIQ, see the IdentityIQ System Administration guide.
+Sequential Task Launcher
+
+A sequential task launcher initiates the specified tasks in the order defined. This enables you to run tasks sequentially
+without having toschedule each separately based on estimated run times.
+
+ Option Description
+
+ Enter the listoftasks you would liketo Select the tasks you would like to run and the order in
+ run. Tasks are run in the order that they which they should run.
+ are entered.
+ Specify the timeout argument forthe sequential task.
+ Task execution timeout This argument isapplied to each task defined as part
+ ofthe sequential task.
+ Print log statements to indicate which Select toprint log statements so the sequential tasks
+ tasks have been completed. can be tracked.
+ Cease execution ifone of the executing Select tostop the sequential task ifone of the tasks in
+ tasks encounters an error. the listfails.Ifthisoption isnot selected the task con-
+ tinues in order.
+
+System Maintenance
+
+SailPoint provides System Maintenance tasks with the IdentityIQ application, the Work Item Expiration Scanner, Mit-
+igation Expiration Scanner, System Maintenance, System Maintenance Object Pruner, Role Overlap Analysis, and
+the Synchronize Roles task. These tasks are configured, by default, to run in the background of the application and
+update score card, application, and role information as needed.
+
+Inaddition to the Perform Maintenance. task and the System Tasks defined to perform specific functions within your
+enterprise as described inPredefined Tasks, the following maintenance tasks may be defined via Setup > Tasks
+> New Task:
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 57
+
+===== Page 62/67 =====
+Task Types
+
+
+
+ l The System Maintenance Object Pruner prunes objects inbatches to improve performance. This task isnot
+ part of the System Maintenance task pruning operations and is run independently when necessary. This task is
+ always run with partitioning enabled. This task is useful ifyou want toset up tasks specifically for pruning
+ objects; pruning can also be accomplished using the System Maintenance/Perform Maintenance task,with par-
+ titioning enabled.
+
+
+
+ l The Reset Orphaned WorkItem Events task is designed torecover orphaned work item events. This is a
+ user-driven task to determine the conditions inwhich a work item event isdetermined to be orphaned by way of
+ workflow name, which should be restarted or discarded. The determination condition would be forwork items
+ that are of type Event, have expired locks, and are x-time beyond the date inwhich the Perform Maintenance
+ task was tohave run. You control x-time. A listof workflows can also be supplied used to declare forwhich work-
+ flows a work item would restart. Any work item that otherwise matches the search condition ispurged. Details
+ of the purged work items can be captured in the task result or Work Item Archive.
+
+Perform Maintenance
+
+The Perform Maintenance isa predefined system maintenance task that performs a variety of essential operational
+activities.Itprunes identity snapshots, task results, and certifications,escalates orphaned work items, and performs
+other background maintenance tasks.
+
+The predefined Perform Maintenance task is accessed from the Tasks tab in the Setup > Tasks UI. Itis grouped with
+other System tasks. To create a new maintenance task, as an alternative tousing IdentityIQ's preconfigured version,
+choose New Task > System Maintenance.
+
+Object Pruning Options in the Perform Maintenance Task
+
+The Perform Maintenance task's pruning options control which objects are pruned, and when. A good practice is to
+configure dedicated Perform Maintenance tasks that run on independent and separate cycles, toprune and archive
+objects. For example, you may choose to configure specific Perform Maintenance tasks foreach type ofobject.
+
+Global settings are used in conjunction with Perform Maintenance, to control what ispruned and when. Settings under
+the gear menu > Global Settings > IdentityIQ Configuration > Miscellaneous tab control the timing for object
+"expirations." The expiration timeframes for objects determine when these objects are eligibleto be pruned by the Per-
+form Maintenance task. For more information, see the System Configuration documentation.
+
+ IMPORTANT: Once objects are pruned, they are unrecoverable unless a backup has been
+ made.
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 58
+
+===== Page 63/67 =====
+Task Types
+
+Perform Maintenance Task Options
+
+
+ Option Description
+
+ Identity snapshots are copies of Identity data that can be maintained for
+ historical purposes. These snapshots are created during certification
+ generation, and by using the option "Maintain identity histories" in the
+ Prune identitysnap- Identity Refresh task.
+ shots
+ Snapshots are deleted by thistask according to the expiration days set
+ inthe "Days before snapshot deletion" option in the gear menu >
+ Global Settings > IdentityIQ Configuration > Miscellaneous tab.
+ Deletes the results of any tasks that are complete and do not have
+ Prune task results pending sign-offs, per the expiration days set inthe "Days before task
+ result deletion" option in the gear menu > Global Settings > IdentityIQ
+ Configuration > Miscellaneous tab.
+ Background requests are created internally by IdentityIQ, to handle
+ future execution, likemitigation expirations, email requests, and sun-
+ set/sunrise.
+
+ This option deletes background requests whose creation date has
+ Prune requests passed the requestMaxAge set in the System Configuration object,
+ and uncompleted requests whose expiration has passed.
+
+ The timeframe for pruning background requests can only be set in the
+ System Configuration object, using the requestMaxAge parameter; it
+ can not be set in the UI.
+ Prune provisioning Deletes any provisioning transactions older than the age set in the "Days
+ before provisioning transaction event deletion" option of the Pro-
+ transactions visioning Transaction Log Settings in the gear menu > Global Set-
+ tings > IdentityIQ Configuration > Miscellaneous tab.
+ Archives and / or deletes completed certifications based on the expir-
+ ation days set in the gear menu > Global Settings > IdentityIQ Con-
+ Archive and prune figuration > Miscellaneous tab.
+ certifications
+ This option firstarchives completed certifications; when the archive expir-
+ ation date isreached, the option deletes the archived certification.
+ Finds and closes allcertifications that have an automatic closing date
+ Automatically close earlier than right now and that are not yet marked signed.
+ certifications For more information on automatic closing of certifications, see the Cer-
+ tifications and Access Reviews documentation.
+ Finish certifications Finishing isthe finalstep ofa certification after ithas been completed /
+
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 59
+
+===== Page 64/67 =====
+Task Types
+
+
+Option Description
+
+ signed off.
+
+ This option checks certifications for completion status and any other final
+ validations. Ifthe certification isready tobe finished, this option also gen-
+ erates any needed remediation work items.
+ Set a number of concurrent threads to use during the task, to improve
+ performance. This option is not supported ifyou are using partitioning for
+Number of finisher this task.
+threads
+ The maximum allowable number of threads is five times the number of
+ cores.
+Transition cer- This option finds any certifications that have passed their phase trans-
+tifications phases ition date, and advances them to the next phase (for example, from an
+ active toa remediation phase).
+ Finds any certifications that contain items that have been revoked, but
+Scan for completed not yet marked complete. This option finds allentities requiring remedi-
+revocations ation, and marks whether entitlements requiring remediation have been
+ remediated. By default, revocations for a certification are only scanned
+ once per day
+ Escalate any inactive work items to the designated user or workgroup.
+
+ Forwarding isdetermined firstby rules configured in the Work Items
+Forward inactive user Rules under the gear menu > Global Settings > IdentityIQ Con-
+work items figuration > Work Items tab. Ifno rule is specified the item isforwarded
+ to the identity's manager. Ifthe identity does not have a manager, the
+ item isforwarded to the Administrator.
+Denormalize scopes Updates any object whose assigned scope has changed in the scope
+ hierarchy.
+Prune batch requests Deletes any batch requests older than 30 days.
+ A syslog event is a capture of an error inthe system, including the stack
+ trace ofthe error.
+Prune syslog events This option deletes any syslog events older than the age set in the Sys-
+ log Settings section of the gear menu > Global Settings > IdentityIQ
+ Configuration > Miscellaneous tab
+Process background Processes workflow events that have moved to the background.
+workflow events
+Number of back- The number ofthreads that should be created to handle background
+ground workflow workflow processes.
+threads
+Workflow thread The number ofseconds to wait before aborting the background thread.
+
+
+
+
+
+
+SailPoint IdentityIQ Tasks 60
+
+===== Page 65/67 =====
+Task Types
+
+
+ Option Description
+
+ timeout (seconds) This variable can be overridden by specifying a variable within the work-
+ flow, but by default itis leftblank and the thread never times out.
+ Delete attachments older than 30 days that are not associated with an
+ access request.
+
+ For auditing purposes, there is an audit event called Prune Pending
+ Prune Attachments Attachments which can be triggered during the cleanup in the System
+ Maintenance Task. To enable auditing for attachment pruning, enable
+ the Prune Pending Attachments option in IdentityIQ's Audit Con-
+ figuration (gear menu > Global Settings > Audit Configuration).
+ Delete filesattached to abandoned access requests that are older than
+ 12 hours. The attachment is considered "pending" and eligible to be
+ deleted when the attachment filehas been uploaded but the request has
+ Prune Pending Attach- not been submitted.
+ ments
+ This timeframe can be overridden by adding an entry to the System Con-
+ figuration object called pendingAttachmentPruneAge with a value
+ that represents a number of hours.
+ Prune Native Identity Deletes native identity change events that are older than the age spe-
+ Change Events cified in the System Configuration.
+
+ Prune Inoperable Deletes records that are unable to be processed
+ Intercepted Deletes
+ Deletes PostCommitNotificationObjects older than 30 days.
+ Prune Post Commit
+ Notification Objects For details about the PostCommitNotificationObject itself,see the Iden-
+ tityIQ Object Model and Usage technical white paper on Compass.
+ Enable partitioning ofthis task across multiple hosts.
+ Enable Partitioning
+ For more information, see the System Administration documentation.
+
+Target Aggregation
+
+A target aggregation task scans applications or target sources, and aggregates activity targets from those applic-
+ations. These targets are then used foractivity monitoring and riskassessment.
+
+Select the application or target source toinclude in the scan. Ifno applications are specified, allapplications are
+included. Click the arrow to the right of the suggestion field todisplay a listof alltarget sources.
+
+Select Include empty targets to aggregate targets with no associated users or groups. By default, empty containers
+willnot be included.
+
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 61
+
+===== Page 66/67 =====
+Task Types
+
+
+For Privileged Account Management (PAM), use this task to aggregate PAM container permissions; select your PAM
+Target Source (that is,the Unstructured Target Collector you configured when setting up your PAM application) as the
+target source to aggregate.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SailPoint IdentityIQ Tasks 62
+
+===== Page 67/67 =====
+How toComplete Task Work Items
+
+How to Complete Task Work Items
+
+
+Task work items are generated by task that require sign offon the results they create, and those sign offrequest that
+are forwarded by a designated signer. Sign off request are displayed on your home page and you are notified through
+an email when the work item iscreated.
+
+Sign-off decisions are retained with the task results for tracking purposes.
+
+ 1. Select My Work > Work Items to view your current work items.
+
+ 2. Select the View button to the right ofa task sign-off work item to display the request.
+
+ 3. Review the work item information in the Summary section.
+
+ 4. Review the Comments section for any information associated with this work item.
+
+ 5. Select Click to View Task Results inthe Details sections to review the Task Results page. After reviewing the
+ task results,select Return to Work Item.
+
+ 6. Select an action button toopen the associated comments dialog and conclude thiswork item. Action options
+ are Signoff, Reject, Forward, Save, or Cancel.
+
+
+ Note: Ifyou sign off on, or reject the sign offrequest, the status ofthe task results isupdated to
+ reflectthat decision. Ifyou forward the work item, you must specify a recipient.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ SailPoint IdentityIQ Tasks 63
